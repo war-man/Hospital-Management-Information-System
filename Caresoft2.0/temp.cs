@@ -7,5 +7,6 @@ namespace Caresoft2._0
 {
     public class temp
     {
+        public void getdata() { }
     }
 }
