@@ -38,11 +38,13 @@ namespace CaresoftHMISDataAccess
             this.MCHPreventativeServices = new HashSet<MCHPreventativeService1>();
             this.MCHPreviousPregnancies = new HashSet<MCHPreviousPregnancy>();
             this.MedicalAdministrationEntries = new HashSet<MedicalAdministrationEntry>();
+            this.Medications = new HashSet<Medication>();
             this.MorgAdmissions = new HashSet<MorgAdmission>();
             this.NutritionScreeningDetails = new HashSet<NutritionScreeningDetail>();
             this.OutsideTests = new HashSet<OutsideTest>();
             this.PatientAllergies = new HashSet<PatientAllergy>();
             this.PatientAppointments = new HashSet<PatientAppointment>();
+            this.PatientDiagnosis = new HashSet<PatientDiagnosi>();
             this.PatientReferals = new HashSet<PatientReferal>();
             this.PatientReferals1 = new HashSet<PatientReferal>();
             this.Patients = new HashSet<Patient>();
@@ -118,6 +120,8 @@ namespace CaresoftHMISDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MedicalAdministrationEntry> MedicalAdministrationEntries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Medication> Medications { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MorgAdmission> MorgAdmissions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NutritionScreeningDetail> NutritionScreeningDetails { get; set; }
@@ -127,6 +131,8 @@ namespace CaresoftHMISDataAccess
         public virtual ICollection<PatientAllergy> PatientAllergies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PatientAppointment> PatientAppointments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PatientDiagnosi> PatientDiagnosis { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PatientReferal> PatientReferals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="36f90d3133de47e2b24471bb20beb932" Name="Diagram1">
-        <EntityTypeShape EntityType="CaresoftHMISModel.AdmissionRecommendation" Width="1.5" PointX="13.5" PointY="153.75" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.AdmissionRecommendation" Width="1.5" PointX="10.5" PointY="175.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.AmbulanceMaster" Width="1.5" PointX="7.75" PointY="5.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.AmbulanceRequest" Width="1.5" PointX="0.75" PointY="9.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.AMCMaster" Width="1.5" PointX="2.75" PointY="9.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.AssignmentDetail" Width="1.5" PointX="12" PointY="381.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.BillAdjustmentLog" Width="1.5" PointX="18.75" PointY="161.25" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.BillPayment" Width="1.5" PointX="15" PointY="299.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.BillService" Width="1.5" PointX="7.5" PointY="159.625" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.AssignmentDetail" Width="1.5" PointX="15" PointY="384" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.BillAdjustmentLog" Width="1.5" PointX="15.75" PointY="167.75" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.BillPayment" Width="1.5" PointX="15" PointY="284.5" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.BillService" Width="1.5" PointX="18.5" PointY="167.625" />
         <EntityTypeShape EntityType="CaresoftHMISModel.BloodBankBloodComponet" Width="1.5" PointX="9.75" PointY="4.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.BloodBankBloodTest" Width="1.5" PointX="4.75" PointY="9.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.BloodBankCampInformation" Width="1.5" PointX="9.75" PointY="9.75" />
@@ -23,31 +23,31 @@
         <EntityTypeShape EntityType="CaresoftHMISModel.BloodBankInformation" Width="1.5" PointX="13.75" PointY="10.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.BloodBankPatientRequisition" Width="1.5" PointX="0.75" PointY="14.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.BloodGroup" Width="1.5" PointX="2.75" PointY="14.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Branch" Width="1.5" PointX="0.75" PointY="162.125" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.CashPointReconciliation" Width="1.5" PointX="9.75" PointY="295" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Branch" Width="1.5" PointX="0.75" PointY="163.125" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.CashPointReconciliation" Width="1.5" PointX="9.75" PointY="245.625" />
         <EntityTypeShape EntityType="CaresoftHMISModel.CleanupRequest" Width="1.5" PointX="4.75" PointY="14.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Company" Width="1.5" PointX="5.25" PointY="311.625" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.CompanyType" Width="1.5" PointX="3" PointY="312.625" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Complaint" Width="1.5" PointX="19.5" PointY="154.5" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.CorneaClinicEntry" Width="1.5" PointX="16.5" PointY="155.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.CSSDIssueToPatient" Width="1.5" PointX="12" PointY="378.125" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Company" Width="1.5" PointX="8.25" PointY="325.5" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.CompanyType" Width="1.5" PointX="6" PointY="326.5" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Complaint" Width="1.5" PointX="7.5" PointY="167.5" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.CorneaClinicEntry" Width="1.5" PointX="19.5" PointY="151.75" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.CSSDIssueToPatient" Width="1.5" PointX="15" PointY="398.875" />
         <EntityTypeShape EntityType="CaresoftHMISModel.CSSDRequest" Width="1.5" PointX="6.75" PointY="14.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.DashboardIcon" Width="1.5" PointX="13.75" PointY="14.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Department" Width="1.5" PointX="0.75" PointY="157.375" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.DepartmentType" Width="1.5" PointX="1.5" PointY="154.125" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Designation" Width="1.5" PointX="0.75" PointY="165.25" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Department" Width="1.5" PointX="0.75" PointY="166.875" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.DepartmentType" Width="1.5" PointX="1.5" PointY="171.625" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Designation" Width="1.5" PointX="0.75" PointY="160.375" />
         <EntityTypeShape EntityType="CaresoftHMISModel.Diagnosis1s" Width="1.5" PointX="15.75" PointY="0.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.Diagnosis2s" Width="1.5" PointX="15.75" PointY="3.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.Diagnosis3s" Width="1.5" PointX="15.75" PointY="6.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.DischargeRecommendation" Width="1.5" PointX="10.5" PointY="151.75" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.DischargeRecommendation" Width="1.5" PointX="16.5" PointY="175.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.Disease" Width="1.5" PointX="15.75" PointY="10.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.DoctorNote" Width="1.5" PointX="7.5" PointY="168" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.DoctorsSchedule" Width="1.5" PointX="7.5" PointY="298.375" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Employee" Width="1.5" PointX="3" PointY="160.875" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.EWallet" Width="1.5" PointX="9.75" PointY="389.375" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.FamilyHealthOverview" Width="1.5" PointX="12" PointY="356.25" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.FamilyMedicalHistoryQuestion" Width="1.5" PointX="9.75" PointY="291.5" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.FamilyMedicalHistoryRespons" Width="1.5" PointX="12" PointY="303.25" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.DoctorNote" Width="1.5" PointX="7.5" PointY="173.875" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.DoctorsSchedule" Width="1.5" PointX="7.5" PointY="207.875" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Employee" Width="1.5" PointX="3" PointY="161.875" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.EWallet" Width="1.5" PointX="9.75" PointY="400" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.FamilyHealthOverview" Width="1.5" PointX="15" PointY="335.875" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.FamilyMedicalHistoryQuestion" Width="1.5" PointX="12.75" PointY="305.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.FamilyMedicalHistoryRespons" Width="1.5" PointX="15" PointY="317.125" />
         <EntityTypeShape EntityType="CaresoftHMISModel.FieldMeta" Width="1.5" PointX="15.75" PointY="14.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.FinanceBanking" Width="1.5" PointX="7.75" PointY="1" />
         <EntityTypeShape EntityType="CaresoftHMISModel.FinanceBank" Width="1.5" PointX="8.75" PointY="16.75" />
@@ -55,28 +55,28 @@
         <EntityTypeShape EntityType="CaresoftHMISModel.FinanceComfirmBanking" Width="1.5" PointX="10" PointY="1.5" />
         <EntityTypeShape EntityType="CaresoftHMISModel.FinanceDirectBanking" Width="1.5" PointX="17.75" PointY="0.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.FreeFormMarkup" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.FreeFormMarkupType" Width="1.5" PointX="0.75" PointY="1.875" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.FreeForm" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.FreeFormMarkupType" Width="1.5" PointX="0.75" PointY="5.875" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.FreeForm" Width="1.5" PointX="0.75" PointY="1.625" />
         <EntityTypeShape EntityType="CaresoftHMISModel.FreeFormSelectOption" Width="1.5" PointX="5.25" PointY="1.375" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.GroupRight" Width="1.5" PointX="5.25" PointY="153.5" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.HSBed" Width="1.5" PointX="7.5" PointY="317.625" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.HSBuilding" Width="1.5" PointX="0.75" PointY="316.125" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.HSFloor" Width="1.5" PointX="3" PointY="316.125" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.HSWardCategory" Width="1.5" PointX="3" PointY="319.25" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.HSWard" Width="1.5" PointX="5.25" PointY="317.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.GroupRight" Width="1.5" PointX="5.25" PointY="177" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.HSBed" Width="1.5" PointX="10.5" PointY="331.5" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.HSBuilding" Width="1.5" PointX="3.75" PointY="330" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.HSFloor" Width="1.5" PointX="6" PointY="330" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.HSWardCategory" Width="1.5" PointX="6" PointY="333.125" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.HSWard" Width="1.5" PointX="8.25" PointY="331.25" />
         <EntityTypeShape EntityType="CaresoftHMISModel.IdentificationType" Width="1.5" PointX="17.75" PointY="4.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.ImmunizationAdmin" Width="1.5" PointX="10.5" PointY="167.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.ImmunizationCategory" Width="1.5" PointX="8.25" PointY="176.125" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.ImmunizationMaster" Width="1.5" PointX="10.5" PointY="171.5" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.ImmunizationAdmin" Width="1.5" PointX="19.5" PointY="175.75" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.ImmunizationCategory" Width="1.5" PointX="8.25" PointY="149.125" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.ImmunizationMaster" Width="1.5" PointX="10.5" PointY="157.375" />
         <EntityTypeShape EntityType="CaresoftHMISModel.ImmunizationType" Width="1.5" PointX="17.75" PointY="7.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.InsuranceCard" Width="1.5" PointX="18" PointY="305.625" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.InsuranceInvoice" Width="1.5" PointX="19.5" PointY="173.125" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.InsurancePrice" Width="1.5" PointX="12" PointY="278.375" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.InvoiceServiceAllocation" Width="1.5" PointX="21.75" PointY="166.875" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.IPDBillPartialPayment" Width="1.5" PointX="12.75" PointY="149.875" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.InsuranceCard" Width="1.5" PointX="18" PointY="323.5" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.InsuranceInvoice" Width="1.5" PointX="16.5" PointY="150" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.InsurancePrice" Width="1.5" PointX="20.75" PointY="289.875" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.InvoiceServiceAllocation" Width="1.5" PointX="21.75" PointY="159.125" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.IPDBillPartialPayment" Width="1.5" PointX="23.75" PointY="169.875" />
         <EntityTypeShape EntityType="CaresoftHMISModel.ItemName" Width="1.5" PointX="17.75" PointY="10.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.JPayAutoPayment" Width="1.5" PointX="14.25" PointY="330.125" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.JPayment" Width="1.5" PointX="12" PointY="361.125" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.JPayAutoPayment" Width="1.5" PointX="17.25" PointY="357.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.JPayment" Width="1.5" PointX="15" PointY="402.5" />
         <EntityTypeShape EntityType="CaresoftHMISModel.KeyValuePair" Width="1.5" PointX="12.75" PointY="17.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.LinenRequest" Width="1.5" PointX="17.75" PointY="13.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.MaintenaceWorkType" Width="1.5" PointX="14.75" PointY="17.75" />
@@ -88,92 +88,93 @@
         <EntityTypeShape EntityType="CaresoftHMISModel.MaritalStatu" Width="1.5" PointX="19.75" PointY="5.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.MasterContraceptive" Width="1.5" PointX="6.75" PointY="19.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.MasterPostNatalTest" Width="1.5" PointX="19.75" PointY="8.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MCHAntenatalProfile" Width="1.5" PointX="16.5" PointY="150.25" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MCHBabyPostNatalEXam" Width="1.5" PointX="12" PointY="296.125" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MCHAntenatalProfile" Width="1.5" PointX="13.5" PointY="157.125" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MCHBabyPostNatalEXam" Width="1.5" PointX="15" PointY="321.25" />
         <EntityTypeShape EntityType="CaresoftHMISModel.MCHCancerScreening" Width="1.5" PointX="19.75" PointY="11.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MCHClinicalNote" Width="1.5" PointX="12" PointY="352.875" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MCHDelivery" Width="1.5" PointX="12" PointY="365" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MCHFamilyPlaning" Width="1.5" PointX="7.5" PointY="155.625" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MCHMaternalProfile" Width="1.5" PointX="19.5" PointY="166.625" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MCHMedicalAndSergicalHistory" Width="1.5" PointX="13.5" PointY="172.25" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MCHMotherPostNatalExam" Width="1.5" PointX="12" PointY="307.5" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MCHPhysicalExamination" Width="1.5" PointX="7.5" PointY="150.25" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MCHPresentPregnancy" Width="1.5" PointX="13.5" PointY="165.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MCHPreventativeService" Width="1.5" PointX="12" PointY="329.25" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MCHPreventativeService1" Width="1.5" PointX="7.5" PointY="171.375" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MCHPreviousPregnancy" Width="1.5" PointX="19.5" PointY="149" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MCHWeightGainChart" Width="1.5" PointX="12" PointY="345.75" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MCHClinicalNote" Width="1.5" PointX="15" PointY="364.75" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MCHDelivery" Width="1.5" PointX="15" PointY="391.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MCHFamilyPlaning" Width="1.5" PointX="10.5" PointY="149.625" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MCHMaternalProfile" Width="1.5" PointX="16.5" PointY="155.625" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MCHMedicalAndSergicalHistory" Width="1.5" PointX="7.5" PointY="157.125" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MCHMotherPostNatalExam" Width="1.5" PointX="15" PointY="352.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MCHPhysicalExamination" Width="1.5" PointX="7.5" PointY="162.125" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MCHPresentPregnancy" Width="1.5" PointX="10.5" PointY="161.75" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MCHPreventativeService" Width="1.5" PointX="15" PointY="310.625" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MCHPreventativeService1" Width="1.5" PointX="13.5" PointY="162.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MCHPreviousPregnancy" Width="1.5" PointX="16.5" PointY="162" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MCHWeightGainChart" Width="1.5" PointX="15" PointY="380.5" />
         <EntityTypeShape EntityType="CaresoftHMISModel.MealType" Width="1.5" PointX="8.75" PointY="20.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MedicalAdministrationEntry" Width="1.5" PointX="13.5" PointY="162" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MedicalHistoryQuestion" Width="1.5" PointX="12.75" PointY="314.5" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MedicalHistoryRespons" Width="1.5" PointX="15" PointY="306.25" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MedicalAdministrationEntry" Width="1.5" PointX="10.5" PointY="167.875" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MedicalHistoryQuestion" Width="1.5" PointX="15.75" PointY="332.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MedicalHistoryRespons" Width="1.5" PointX="18" PointY="319.125" />
         <EntityTypeShape EntityType="CaresoftHMISModel.MedicationFrequency" Width="1.5" PointX="10.75" PointY="20.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Medication" Width="1.5" PointX="17.25" PointY="268.875" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MorgAdmission" Width="1.5" PointX="12.75" PointY="230" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MorgCabinet" Width="1.5" PointX="10.5" PointY="223" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.MorgColdroom" Width="1.5" PointX="8.25" PointY="223.125" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Medication" Width="1.5" PointX="13.5" PointY="166.875" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MorgAdmission" Width="1.5" PointX="12.75" PointY="237.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MorgCabinet" Width="1.5" PointX="10.5" PointY="232.25" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.MorgColdroom" Width="1.5" PointX="8.25" PointY="232.5" />
         <EntityTypeShape EntityType="CaresoftHMISModel.NurseTheatreRequest" Width="1.5" PointX="12.75" PointY="20.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.NutritionAdultRegister" Width="1.5" PointX="20.75" PointY="17.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.NutritionChildRegister" Width="1.5" PointX="21.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.NutritionScreeningDetail" Width="1.5" PointX="10.5" PointY="159.5" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.OpdRegister" Width="1.5" PointX="9.75" PointY="299" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.OutsideTest" Width="1.5" PointX="16.5" PointY="171.625" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.PatientAllergy" Width="1.5" PointX="9.75" PointY="232.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.PatientAppointment" Width="1.5" PointX="9.75" PointY="236.125" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.PatientDiagnosi" Width="1.5" PointX="12" PointY="338.125" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.PatientReferal" Width="1.5" PointX="13.5" PointY="157.5" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Patient" Width="1.5" PointX="7.5" PointY="302.375" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.PatientTurnAroundTime" Width="1.5" PointX="12" PointY="391.875" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.PaymentMode" Width="1.5" PointX="12.75" PointY="289.75" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.NutritionDietchart" Width="1.5" PointX="21.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.NutritionScreeningDetail" Width="1.5" PointX="21.5" PointY="167.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.OpdRegister" Width="1.5" PointX="12.75" PointY="311.875" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.OutsideTest" Width="1.5" PointX="10.5" PointY="171.5" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.PatientAllergy" Width="1.5" PointX="9.75" PointY="240.125" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.PatientAppointment" Width="1.5" PointX="9.75" PointY="235.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.PatientDiagnosi" Width="1.5" PointX="13.5" PointY="152.875" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.PatientReferal" Width="1.5" PointX="7.5" PointY="152.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Patient" Width="1.5" PointX="7.5" PointY="316.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.PatientTurnAroundTime" Width="1.5" PointX="15" PointY="388" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.PaymentMode" Width="1.5" PointX="12.75" PointY="286.625" />
         <EntityTypeShape EntityType="CaresoftHMISModel.Permission" Width="1.5" PointX="14.75" PointY="21.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.PhysicalExamination" Width="1.5" PointX="9.75" PointY="226.25" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.QuestionnaireMultichoice" Width="1.5" PointX="12" PointY="192" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.QuestionnaireQuize" Width="1.5" PointX="9.75" PointY="191.875" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.QuestionnaireRespons" Width="1.5" PointX="15" PointY="234.375" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.QuestionnaireResponseType" Width="1.5" PointX="7.5" PointY="189.25" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Questionnaire" Width="1.5" PointX="7.5" PointY="191.875" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Rebate" Width="1.5" PointX="10.5" PointY="156" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.RefundedItem" Width="1.5" PointX="21.75" PointY="161.625" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Refund" Width="1.5" PointX="20.25" PointY="232.25" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.PhysicalExamination" Width="1.5" PointX="15.75" PointY="238.625" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.QuestionnaireMultichoice" Width="1.5" PointX="12" PointY="308.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.QuestionnaireQuize" Width="1.5" PointX="9.75" PointY="313.25" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.QuestionnaireRespons" Width="1.5" PointX="18" PointY="242.25" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.QuestionnaireResponseType" Width="1.5" PointX="7.5" PointY="310.625" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Questionnaire" Width="1.5" PointX="7.5" PointY="313.25" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Rebate" Width="1.5" PointX="10.5" PointY="153.875" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.RefundedItem" Width="1.5" PointX="21.75" PointY="163.25" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Refund" Width="1.5" PointX="17.25" PointY="222" />
         <EntityTypeShape EntityType="CaresoftHMISModel.RegularComplaint" Width="1.5" PointX="4.75" PointY="22.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.Relationship" Width="1.5" PointX="22.75" PointY="15.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.Religion" Width="1.5" PointX="16.75" PointY="22.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.RenalDialysisInfo" Width="1.5" PointX="12" PointY="385.875" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.RenalDialysisOrder" Width="1.5" PointX="12" PointY="341.5" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.RenalMachineCheck" Width="1.5" PointX="12" PointY="372.5" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.RenalPatientProfile" Width="1.5" PointX="12" PointY="317.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.RenalPostDialysisObservation" Width="1.5" PointX="12" PointY="292.25" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.RenalDialysisInfo" Width="1.5" PointX="15" PointY="326.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.RenalDialysisOrder" Width="1.5" PointX="15" PointY="368" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.RenalMachineCheck" Width="1.5" PointX="15" PointY="359.125" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.RenalPatientProfile" Width="1.5" PointX="15" PointY="376" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.RenalPostDialysisObservation" Width="1.5" PointX="15" PointY="302.125" />
         <EntityTypeShape EntityType="CaresoftHMISModel.RightsAllocation" Width="1.5" PointX="22.75" PointY="18.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.RoleRight" Width="1.5" PointX="3" PointY="150.875" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.RoleRightsAction" Width="1.5" PointX="5.25" PointY="150" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.RoleRight" Width="1.5" PointX="3" PointY="174.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.RoleRightsAction" Width="1.5" PointX="5.25" PointY="173.5" />
         <EntityTypeShape EntityType="CaresoftHMISModel.RoutingAdmin" Width="1.5" PointX="22.75" PointY="21.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.SafetyInstructionMaster" Width="1.5" PointX="23.75" PointY="0.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.Salutation" Width="1.5" PointX="23.75" PointY="3.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.SanctionedAmount" Width="1.5" PointX="18" PointY="231.25" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.ServiceGroup" Width="1.5" PointX="3" PointY="172.25" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Service" Width="1.5" PointX="5.25" PointY="170.25" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.ServicesPrice" Width="1.5" PointX="9.75" PointY="243.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Shift" Width="1.5" PointX="7.5" PointY="295" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.SanctionedAmount" Width="1.5" PointX="18" PointY="238" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.ServiceGroup" Width="1.5" PointX="14" PointY="182.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Service" Width="1.5" PointX="16.25" PointY="180.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.ServicesPrice" Width="1.5" PointX="18.5" PointY="252.75" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Shift" Width="1.5" PointX="7.5" PointY="245.625" />
         <EntityTypeShape EntityType="CaresoftHMISModel.SystemExamCategory" Width="1.5" PointX="2.75" PointY="6" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.SystemicExamResult" Width="1.5" PointX="15" PointY="238.25" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.SystemicExamResult" Width="1.5" PointX="18" PointY="246" />
         <EntityTypeShape EntityType="CaresoftHMISModel.SystemRight" Width="1.5" PointX="23.75" PointY="6.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Tariff" Width="1.5" PointX="7.5" PointY="312.125" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Tariff" Width="1.5" PointX="10.5" PointY="326" />
         <EntityTypeShape EntityType="CaresoftHMISModel.TATLog" Width="1.5" PointX="6.75" PointY="23.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.TblController" Width="1.5" PointX="3" PointY="146.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.TBScreeningQuestion" Width="1.5" PointX="12.75" PointY="322.625" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.TBScreeningRespons" Width="1.5" PointX="15" PointY="310.25" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.TblController" Width="1.5" PointX="3" PointY="168.25" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.TBScreeningQuestion" Width="1.5" PointX="15.75" PointY="307.5" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.TBScreeningRespons" Width="1.5" PointX="18" PointY="315.125" />
         <EntityTypeShape EntityType="CaresoftHMISModel.temp" Width="1.5" PointX="8.75" PointY="23.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.TheatreDepartment" Width="1.5" PointX="9.75" PointY="241" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.TheatreDesignation" Width="1.5" PointX="12" PointY="199.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.TheatreOperationPersonel" Width="1.5" PointX="14.25" PointY="199" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.TheatrePatientBioData" Width="1.5" PointX="12" PointY="239.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.UserRole" Width="1.5" PointX="3" PointY="157" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.User" Width="1.5" PointX="5.25" PointY="157.375" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.TheatreDepartment" Width="1.5" PointX="18.75" PointY="234.75" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.TheatreDesignation" Width="1.5" PointX="21" PointY="198.5" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.TheatreOperationPersonel" Width="1.5" PointX="23.25" PointY="197.875" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.TheatrePatientBioData" Width="1.5" PointX="21" PointY="236.625" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.UserRole" Width="1.5" PointX="3" PointY="158" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.User" Width="1.5" PointX="5.25" PointY="158.125" />
         <EntityTypeShape EntityType="CaresoftHMISModel.VitalRanx" Width="1.5" PointX="23.75" PointY="9.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.WaiverReason" Width="1.5" PointX="0.75" PointY="24.75" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.Waiver" Width="1.5" PointX="15" PointY="230.25" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.WardTypeCharge" Width="1.5" PointX="7.5" PointY="244.5" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.PatientClaim" Width="1.5" PointX="18" PointY="235.5" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.Waiver" Width="1.5" PointX="21" PointY="242" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.WardTypeCharge" Width="1.5" PointX="18.5" PointY="257.5" />
+        <EntityTypeShape EntityType="CaresoftHMISModel.PatientClaim" Width="1.5" PointX="15" PointY="245.375" />
         <EntityTypeShape EntityType="CaresoftHMISModel.SystemExamParticular" Width="1.5" PointX="5" PointY="6" />
         <EntityTypeShape EntityType="CaresoftHMISModel.InvoiceBill" Width="1.5" PointX="10.75" PointY="24.75" />
         <EntityTypeShape EntityType="CaresoftHMISModel.InvoiceMedicationBill" Width="1.5" PointX="24.75" PointY="13.75" />
@@ -287,6 +288,7 @@
         <AssociationConnector Association="CaresoftHMISModel.FK_Medication_OpdRegister" />
         <AssociationConnector Association="CaresoftHMISModel.FK_Medications_Waivers" />
         <AssociationConnector Association="CaresoftHMISModel.FK_RefundedItems_Medications" />
+        <AssociationConnector Association="CaresoftHMISModel.FK_UserId_Medications" />
         <AssociationConnector Association="CaresoftHMISModel.FK_MorgAdmissions_MorgCabinets" />
         <AssociationConnector Association="CaresoftHMISModel.FK_MorgAdmissions_Patients" />
         <AssociationConnector Association="CaresoftHMISModel.FK_MorgAdmissions_Users" />
@@ -319,6 +321,7 @@
         <AssociationConnector Association="CaresoftHMISModel.FK_PatientAppointments_PatientAppointments" />
         <AssociationConnector Association="CaresoftHMISModel.FK_PatientAppointments_Patients" />
         <AssociationConnector Association="CaresoftHMISModel.FK_PatientAppointments_Users" />
+        <AssociationConnector Association="CaresoftHMISModel.FK_UserId_PatientDiagnosis" />
         <AssociationConnector Association="CaresoftHMISModel.FK_PatientReferals_Users" />
         <AssociationConnector Association="CaresoftHMISModel.FK_PatientReferals_Users1" />
         <AssociationConnector Association="CaresoftHMISModel.FK_Patient_UserRegistrer" />
@@ -355,7 +358,6 @@
         <AssociationConnector Association="CaresoftHMISModel.FK_Users_UserRoles" />
         <AssociationConnector Association="CaresoftHMISModel.FK_PatientClaims_Users" />
         <AssociationConnector Association="CaresoftHMISModel.FK_Waivers_Users" />
-        <EntityTypeShape EntityType="CaresoftHMISModel.NutritionDietchart" Width="1.5" PointX="3.375" PointY="25.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
