@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AC598A80-91D7-4DE2-B104-B8A9C27BB18C}</ProjectGuid>
+    <ProjectGuid>{EB91C709-8860-440D-89DB-F7D03D264D65}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QuantaPharmacyDataAccess</RootNamespace>
-    <AssemblyName>QuantaPharmacyDataAccess</AssemblyName>
+    <RootNamespace>TharakaDataAccess</RootNamespace>
+    <AssemblyName>TharakaDataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -29,8 +29,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.CrystalReports.Engine.1.0.0\lib\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -50,58 +60,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="drugstocktakinglist.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PharmacyDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PharmacyDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PharmacyDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PharmacyDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PharmacyDataModel.edmx</DependentUpon>
+    <Compile Include="AddressBook.cs">
+      <DependentUpon>TharakaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="vw_currentstockvaluesakuda.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
+    <Compile Include="TharakaModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TharakaModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="vw_overthecountersakuda.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
+    <Compile Include="TharakaModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TharakaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="VW_PatientSummaryReportSakuda.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
+    <Compile Include="TharakaModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TharakaModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="user.cs">
+      <DependentUpon>TharakaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_servicechartter.cs">
+      <DependentUpon>TharakaModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="PharmacyDataModel.edmx">
+    <EntityDeploy Include="TharakaModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PharmacyDataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>TharakaModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <None Include="PharmacyDataModel.edmx.diagram">
-      <DependentUpon>PharmacyDataModel.edmx</DependentUpon>
+    <None Include="TharakaModel.edmx.diagram">
+      <DependentUpon>TharakaModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PharmacyDataModel.Context.tt">
+    <Content Include="TharakaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PharmacyDataModel.Context.cs</LastGenOutput>
-      <DependentUpon>PharmacyDataModel.edmx</DependentUpon>
+      <LastGenOutput>TharakaModel.Context.cs</LastGenOutput>
+      <DependentUpon>TharakaModel.edmx</DependentUpon>
     </Content>
-    <Content Include="PharmacyDataModel.tt">
+    <Content Include="TharakaModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PharmacyDataModel.edmx</DependentUpon>
-      <LastGenOutput>PharmacyDataModel.cs</LastGenOutput>
+      <DependentUpon>TharakaModel.edmx</DependentUpon>
+      <LastGenOutput>TharakaModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
