@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "WaiverSummaryReport";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+
+<style>
+    .text-box {
+        width: 200px;
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+</style>
+
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px">
+                <strong>Waiver Report</strong>
+            </p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="@Url.Action("GetWaiverReport","Reports")">
+                        <table class="table-form">
+                            <tr>
+                                <td>From Date</td>
+                                <td>
+                                    <input type="date" class="text-box" value="@DateTime.Now.ToString("yyyy-MM-dd")" name="FromDate" />
+                                </td>
+                                <td>To Date</td>
+                                <td>
+                                    <input type="date" class="text-box" value="@DateTime.Now.ToString("yyyy-MM-dd")" name="ToDate" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="submit" class="btn btn-primary btn-sm" value="Generate Report"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

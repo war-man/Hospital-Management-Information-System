@@ -1,0 +1,235 @@
+﻿
+@{
+    ViewBag.Title = "LumpsumPayments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Finance/Views/Shared/_LeftNavigation.cshtml")
+</div>
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Lumpsum Payments
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12"> 
+                        <table>
+                            <tr>
+                                <td>
+                                    cash Point:
+                                </td>
+                                <td>
+                                    <input type="text" id="CashPoint" name="CashPoint" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                   &nbsp; Shift No:
+                                </td>
+                                <td>
+                                    <input type="number" name="ShiftNo" id="ShiftNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+                        <fieldset>
+                            <label>
+                                <input type="radio" name="Payee" id="Consultants" value="Consultant" />Consultant &nbsp
+                            </label>
+                            <label>
+                                <input type="radio" name="Payee" id="Others" value="Others" />Others &nbsp
+                            </label>
+                            <label>
+                                <input type="radio" name="Payee" id="Suppliers" value="Suppliers" /> Suppliers &nbsp
+                            </label>
+                            <label>
+                                <input type="radio" name="Payee" id="Debtors" value="Debtors" /> Debtors &nbsp
+                            </label>
+                            <label>
+                                <input type="radio" name="Payee" id="Patients" value="Patients" /> Patients &nbsp
+                            </label>
+                            <label>
+                                <input type="radio" name="Payee" id="Cashboob" value="CashBook" /> CashBook &nbsp
+                            </label>
+                            <label>
+                                <input type="radio" name="Payee" id="PettyCash" value="PettyCash" /> Petty Cash &nbsp
+                            </label>
+                            <label>
+                                <input type="radio" name="Payee" id="Payroll" value="Payroll" /> PayRoll &nbsp
+                            </label>
+                        </fieldset>
+                        <table class="marg-top-16px">
+                            <tr>
+                                <td>
+                                    Paid To:
+                                </td>
+                                <td>
+                                    <input list="Paidto" name="PaidTo" class="text-box  margin-top-bottom-2" style="width:100%" />
+                                    <datalist id="Paidto">
+                                        <option value=""></option>
+                                    </datalist>
+                                </td>
+                                <td>
+                                   &nbsp; Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="Date" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Payment Details:
+                                </td>
+                                <td>
+                                    <input list="PaymentDetails" name="PaymentDetails" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    <datalist id="PaymentDetails">
+                                        <option value=""></option>
+                                    </datalist>
+                                </td>
+                                <td>
+                                    &nbsp; GI Code:
+                                </td>
+                                <td>
+                                    <input name="GICode" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Payment Mode:
+                                </td>
+                                <td>
+                                    <select name="PaymentMode" id="PaymentMode" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option value="Cash">Cash</option>
+                                        <option value="Cheque">Cheque</option>
+                                        <option value="EFT">EFT</option>
+                                        <option value="CreditCard">Credit Card</option>
+                                        <option value="Universal HealthCare Scheme">Universal HealthCare Scheme</option>
+                                        <option value="Schemes">Schemes</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    &nbsp;  Narration:
+                                </td>
+                                <td>
+                                    <input name="Narration" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Document No:
+                                </td>
+                                <td>
+                                    <input type="text" name="DocumentNo" id="DocumentNo" style="width:100%" class="text-box margin-top-bottom-2" />
+                                </td>
+                                <td>
+                                    &nbsp;  Payer:
+                                </td>
+                                <td>
+                                    <input name="Payer" class="text-box margin-top-bottom-2" style="width:100%" id="Payer" />
+                                </td>
+                            </tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="radio" name="Deductions" id="SomeDeductions" value="SomeDeductions" />Any Deductions? &nbsp;                                
+                                    <input type="radio" name="Deductions" id="NoDeductions" value="NoDeductions" />No Deductions
+                                </td>
+                            </tr>     
+                            <tr><td>&nbsp;</td></tr>
+                            <tr>
+                                <td>
+                                    Deduction Name:
+                                </td>
+                                <td>
+                                    <input list="DeductionName" name="DeductionName" id="DeductionName" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    <datalist id="DeductionName">
+                                        <option value=""></option>
+                                    </datalist>
+                                </td>
+                                <td>
+                                    &nbsp; Remitting Institution:
+                                </td>
+                                <td>
+                                    <input type="text" name="RemittingInst" id="RemittingInst" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Deduction Acc
+                                </td>
+                                <td>
+                                    <input type="number" class="text-box margin-top-bottom-2" style="width:100%" name="DeductionAcc" id="DeductionAcc" />
+                                </td>
+                                <td>
+                                    &nbsp; Amount Deducted:
+                                </td>
+                                <td>
+                                    <input type="number" name="AmountDeducted" class="text-box margin-top-bottom-2" style="width:100%" id="AmountDeducted" />
+                                </td>
+                            </tr>
+                            <tr><td>&nbsp;</td></tr>
+                       
+                            <tr>
+                                <td>
+                                    Bank Acc No:
+                                </td>
+                                <td>
+                                    <input list="BankAcc" name="BankAccNo" class="text-box margin-top-bottom-2" style="width:100%" type="number" />
+                                    <datalist id="BankAcc">
+                                        <option value=""></option>
+                                    </datalist>
+                                </td>
+                                <td>
+                                    &nbsp;  Account Name:
+                                </td>
+                                <td>
+                                    <input name="AccName" type="text" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Cheque Number:
+                                </td>
+                                <td>
+                                    <input list="ChequeNo" type="number" name="ChequeNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    <datalist id="ChequeNo">
+                                        <option value=""></option>
+                                    </datalist>
+                                </td>
+                                <td>
+                                    &nbsp;  Bank Name:
+                                </td>
+                                <td>
+                                    <input name="BankName" class="text-box margin-top-bottom-2" style="width:100%" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Net Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="NetAmount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp;  GL Account:
+                                </td>
+                                <td>
+                                    <input name="GLAccount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <button type="submit" name="Save" class="btn btn-primary bn-sm">Save</button>
+                        <button type="reset" name="Clear">Clear</button>
+                    </div>                                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

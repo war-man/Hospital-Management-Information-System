@@ -1,0 +1,26 @@
+﻿@model Caresoft2._0.Areas.Procurement.ViewModel.CompareProvisionalOrder
+
+<table class="table table-data" style="background-color:ghostwhite;">
+    <tr>
+        <td></td>
+        <th colspan="2">Supplier Name</th>
+        <td colspan="2">@Model.Supplier</td>
+    </tr>
+    <tr>
+        <th>Drug Name</th>
+        <th>Quantity</th>
+        <th>Min. Cost/Unit</th>
+        <th>Cost/Unit</th>
+        <th>Total Cost</th>
+    </tr>
+    @foreach(var item in Model.provisionalPOItemsDetail)
+    {
+    <tr>
+        <td>@item.Drug.Name</td>
+        <td>@item.Quantity</td>
+        <td></td>
+        <td>@item.CostPerUnit</td>
+        <td>@item.TotalCost</td>
+    </tr>
+    }
+</table>

@@ -1,0 +1,168 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Present Pregnancy";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>@ViewBag.Title</p>
+    </div>
+   
+    <div class="panel-body">
+
+       <table class="table table-condensed table-data" id="present_pregnancy_table">
+           <thead>
+               <tr>
+                   <th>No of visit</th>
+                   <th>Date</th>
+                   <th>Urine</th>
+                   <th>Weight</th>
+                   <th>Bp.</th>
+                   <th>H.b.</th>
+                   <th>Pallor</th>
+                   <th>Maturity</th>
+                   <th>Fundal Height</th>
+                   <th>Presentation</th>
+                   <th>Lie</th>
+                   <th>Foetal Height</th>
+                   <th>Foetal Movt.</th>
+                   <th>Next Visit</th>
+               </tr>
+           </thead>
+           <tbody class="bg-white">
+               @foreach (var e in Model.OpdRegister.MCHPresentPregnancies)
+               {
+                   <tr style="background-color:chartreuse">
+                       <td></td>
+                       <td>@e.DateOfVisit</td>
+                       <td>@e.Urine</td>
+                       <td>@e.Weight</td>
+                       <td>@e.BP</td>
+                       <td>@e.HB</td>
+                       <td>@e.Pallor</td>
+                       <td>@e.Maturity</td>
+                       <td>@e.FundalHeight</td>
+                       <td>@e.Presentation</td>
+                       <td>@e.Lie</td>
+                       <td>@e.FoetalHeight</td>
+                       <td>@e.FoetalMovement</td>
+                       <td>@e.NextVisit</td>
+
+                   </tr>
+               }
+               
+           </tbody>
+           <tfoot>
+               <tr id="input_row" style="background-color:chartreuse">
+                   <td></td>
+                   <td class="editable-td date-of-visit" data-col="DateOfVisit" contenteditable="true"  ></td>
+                   <td class="editable-td urine" data-col="Urine" contenteditable="true"></td>
+                   <td class="editable-td weight" data-col="Weight" contenteditable="true"></td>
+                   <td class="editable-td bp" data-col="BP" contenteditable="true"></td>
+                   <td class="editable-td hp" data-col="HP" contenteditable="true"></td>
+                   <td class="editable-td pallor" data-col="Pallor" contenteditable="true"></td>
+                   <td class="editable-td maturity" data-col="Maturity" contenteditable="true"></td>
+                   <td class="editable-td fundal-height" data-col="FundalHeight" contenteditable="true"></td>
+                   <td class="editable-td presentation" data-col="Presentation" contenteditable="true"></td>
+                   <td class="editable-td lie" data-col="Lie" contenteditable="true"></td>
+                   <td class="editable-td foetal-height" data-col="FoetalHeight" contenteditable="true"></td>
+                   <td class="editable-td foetal-movement" data-col="FoetalMovement" contenteditable="true"></td>
+                   <td class="editable-td next-visit" data-col="NextVisit" contenteditable="true"></td>
+               </tr>
+           </tfoot>
+       </table>
+       <div class="marg-top-6px">
+           <button class="btn btn-sm btn-primary" id="btn_add_present_pregnancy">Save</button>
+           <button class="btn btn-sm btn-primary">Cancel</button>
+           @Html.ActionLink("Continue", "WeightGainChart", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+@style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+           &nbsp;
+           &nbsp;
+           @Html.ActionLink("Previous", "AntenatalProfile", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+@style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+       </div>
+    </div>
+    
+</div>
+
+
+
+
+@section scripts{
+<script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+
+    
+    $("#btn_add_present_pregnancy").click(function () {
+            var tr = $("#input_row");
+            var create = false;
+            var entry = {};
+            tr.find("td").each(function () {
+                if ($(this).text().trim() !== ""){
+                    create = true;
+
+                    entry[$(this).data("col")] = $(this).text().trim();
+                }
+            })
+            if (!create) {
+                showNotification("Fill in some data", "warning", true);
+                return false;
+            }
+
+
+            $(".loader").show();
+            entry.OPDNo = @Model.OpdRegister.Id;
+            $.ajax({
+                url: "@Url.Action("SavePresentPregnancy", "MCH")",
+                method: "post",
+                data: entry,
+                success: function (res) {
+                    $(".loader").hide();
+
+                    if (res.Status === "success") {
+                        $("#present_pregnancy_table tbody").append("<tr>" + tr.html() + "</tr>");
+
+                        $("#present_pregnancy_table tbody tr td").each(function () {
+                            $(this).removeClass("editable-td");
+                            $(this).prop("contenteditable", false);
+                        })
+                        tr.find("td").each(function () {
+                            $(this).text("");
+                        })
+                    } else {
+                        showNotification(res.Message, res.Status, true);
+                    }
+                },
+                error: function (e, x, r) {
+                    $(".loader").hide();
+                    showNotification("An error occured", "danger", true);
+                    console.log(e.responseText);
+                }
+            })
+
+            
+
+    })
+    
+    
+</script>
+}
+
+

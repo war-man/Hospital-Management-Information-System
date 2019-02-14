@@ -1,0 +1,137 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.PhamarcyRequests>
+
+@{
+    ViewBag.Title = "View Pending Request";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+}
+
+<div class="col-md-8">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading">
+           @ViewBag.Title
+        </div>
+        <div class="panel-body">
+            <div class="">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td></td>
+                            <td>
+
+                                <p class="pathology-border margin-top-bottom-2" style="padding:5px;">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Issue" checked="checked">Pending
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Partial">Partial Processed
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Processed">Processed
+                                    </label>
+                                </p>
+
+                            </td>
+                            <td></td>
+
+                        </tr>
+                        <tr class="margin-top-bottom-2">
+                            <td>From Date</td>
+                            <td>
+                                <input type="date" class="text-box" id="FromDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </td>
+                            <td>To Date</td>
+                            <td>
+                                <input type="date" class="text-box" id="ToDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button  id="btnShow" class="btn btn-primary btn-sm margin-top-bottom-2">Show</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br />
+
+                    <div id="lstTable">
+                        <table class="table table-data-pathology table-condensed" style="background-color:white">
+                            <tr>
+                                <th>Issue</th>
+                                <th>Request Form</th>
+                                <th>Ward No</th>
+                                <th>Request Date</th>
+                                <th>Requested By</th>
+                            </tr>
+                            @if (Model.Count()<1)
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center"> No data to display</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td><a href="@Url.Action("ViewPharmacyRequestedItems","DepartmentTransactionMStore",new {Id=item.Id, Area="MedicalStore"})" class="btn btn-primary btn-xs">Issue</a></td>
+                                        <td>@item.RequestFrom</td>
+                                        <td>@item.WardNo</td>
+                                        <td>@item.RequestDate</td>
+                                        <td>@item.RequestBy</td>
+                                    </tr>
+
+                                }
+                            }
+
+
+                            </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    
+    <script>
+
+        $("#btnShow").click(function () {
+            ViewPendingRequestSearch();
+        });
+
+        $("input:radio[name=optradio]").on('change', function () {
+            ViewPendingRequestSearch();
+        })
+
+        function ViewPendingRequestSearch() {
+            var Name = $("input:radio[name=optradio]:checked").val();
+
+            if (Name != null) {
+                var url = "/MedicalStore/DepartmentTransactionMStore/ViewPendingRequestSearch?name=" + Name;
+                $('.loader').show()
+                $.ajax({
+                    type: "POST",
+                    data: { sTime: $('#FromDate').val(), eTime: $('#ToDate').val()},
+                    url: url,
+                    success: function (obj) {
+                        $("#lstTable").empty();
+                        $("#lstTable").append(obj);
+
+                        $('.loader').hide()
+
+                    },
+                    error: function () {
+                        $('.loader').hide()
+
+                    }
+                });
+            }
+        }
+
+
+    </script>
+}

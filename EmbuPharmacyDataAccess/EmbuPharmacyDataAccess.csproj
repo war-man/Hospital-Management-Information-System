@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DFAF0FAA-F20D-477A-81F5-DA654188A135}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EmbuPharmacyDataAccess</RootNamespace>
+    <AssemblyName>EmbuPharmacyDataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AcceptedProvisionalPurchaseOrder.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AcceptedProvisionalPurchaseOrderItemsDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AMCMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ApprovalRequest.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AreaMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssignRoomToNurStationDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuditPharmacy.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillTransaction.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillTransactionold.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillTransaction_LF.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillTransDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillTransDetail_LF.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillTransInfo.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bom_Details.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bom_Main.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BuildingMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="CleanupRequest.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CleanupRequestTransaction.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CleanUpSchedule.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CleanUpTransaction.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ComplaintMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DrugExchanage.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DrugMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DrugMaster_old.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DrugOfferDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DrugTypeMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FinancialYear.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FloorAreaMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FloorMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FP_MethodsMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GenericLabDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GroupMst.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GroupMst_Company.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GroupMst_old.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HouseKeeperMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Indent.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IndentDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Installationmaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InstructionMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceNumber.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceTransaction.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceTransDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IssueToLoundry.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMaster_Company.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMaster_CSSD.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMaster_M.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMaster_old.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMaster_old2.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMaster_W.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemNomaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemStockLedger.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Item_Transaction.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KiambuPharmacy.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KiambuPharmacy.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KiambuPharmacy.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KiambuPharmacy.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KiambuPharmacy.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Labconsumption.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LabDetailsAgainstGenericDrug.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LocationMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoundryMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoundryReceivedFromWard.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Manufacturecompanymaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NurseReturnLinenToHk.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NurseStationMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Operation_Schedule.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OT_Schedule.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientInfo.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PMAsssignTo.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PMMaterial.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PMSchedule.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PMTaskSafetyInstruction.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PreventiveMiantenance.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvisionalPurchaseOrder.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProvisionalPurchaseOrderItemsDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProvisionalPurchaseOrderSupplierDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RateType.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RateType_ForAwardAmount.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RefundReqFromNurse.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Refund_Details.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Refund_Main.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reimbursement.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReimbursementDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Report_setting.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestCSSDDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestCSSDMain.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestDeptDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestDeptMain.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestForInventory.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestForInventoryDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestForNewItem.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestTransDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Returnable_Items.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReturnIssueVoucher.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReturnIssueVoucherDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RoomMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScheduleMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SetDrugLocation.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShiftMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StockTaking.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_AcceptedQty.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_BarCodePrint.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_CellMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_ChamberMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_ChamberMasterDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_ColdChainEquipment.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_DrugEffectMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_Error.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_GRNReturn.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_IssueItem.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_IssueItemToPatient.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_IssueSetToPatient.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_ItemMasterLF.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_ItemSendToCSSD.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_MissingItem.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_MissingSet.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_NurseIndentTemp.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_PackageDescription.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_PackageDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_PackageMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_Prescription.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_ReqForItem.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_RequestForPack.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_RouteMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_RowMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_ShelfDetail.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_ShelfMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_SterileItem.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_SubPack.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_SupplierOffer.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Supplierratelist.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Supplierratelist_Tran.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_VaccinConsumption.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_CompThemes.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_GenericDrug.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_GenericDrug_old.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_GenericDrug_old2.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_MedicineRequirement.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_MedicineRequirementMain.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_StatusMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_Themes.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TempDeptIndentNurse.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TempMedicalIndent.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TempTable2.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TempTable3.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TempTransaction.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Temp_ItemStockLedger.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TmpGetLabconsumption.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TmpGetTreatment.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tmp_VaccineReport.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tmp_VaccRecIss.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionInfo.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VatMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WardMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkNameMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkTradeMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkTypeMaster.cs">
+      <DependentUpon>KiambuPharmacy.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="KiambuPharmacy.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>KiambuPharmacy.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="KiambuPharmacy.edmx.diagram">
+      <DependentUpon>KiambuPharmacy.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="KiambuPharmacy.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>KiambuPharmacy.Context.cs</LastGenOutput>
+      <DependentUpon>KiambuPharmacy.edmx</DependentUpon>
+    </Content>
+    <Content Include="KiambuPharmacy.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KiambuPharmacy.edmx</DependentUpon>
+      <LastGenOutput>KiambuPharmacy.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

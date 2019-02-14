@@ -1,0 +1,179 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+
+    var myProfile = new CaresoftHMISDataAccess.MCHAntenatalProfile();
+
+    if (Model.OpdRegister.MCHAntenatalProfiles != null)
+    {
+        myProfile = Model.OpdRegister.MCHAntenatalProfiles
+            .OrderByDescending(e=>e.Id).FirstOrDefault();
+    }
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Antenatal Profile";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>@ViewBag.Title</p>
+    </div>
+    <style>
+        input.box-sm{
+            width:120px
+        }
+    </style>
+    <div class="panel-body">
+        <form id="antenatal_profile" method="post" action="@Url.Action("SaveAntenatalProfile", "mch")">
+            <input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+            <fieldset>
+                <table class="table-form">
+
+                    <tr>
+                        <td>
+                            <label>Hb</label>
+
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-lg" name="Hb" value="" required />
+                        </td>
+                        <td>
+                            <label>Blood Group </label>
+
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-lg" name="BloodGroup" value=""  required />
+                        </td>
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label>Rhesus</label>
+
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-lg" name="Rhesus" value="" required />
+                        </td>
+                        <td>
+                            <label>Serology (VDRL/RPR)</label>
+
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-lg" name="Serology" value="" required />
+                        </td>
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label>TD Screening as per the intensive care finding tool.</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-lg" name="TDScreening" value="" required />
+                        </td>
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+
+                            <label>IPT Isoniazid Date Given</label>
+
+                        </td>
+                        <td>
+                            <input type="Date" class="text-box box-lg" name="IPTIsoniazidDateGiven"  required value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                        </td>
+                        <td>
+                            <label>Next Visit</label>
+
+                        </td>
+                        <td>
+                            <input type="date" class="text-box box-lg" name="NextVisit" value="@Html.DisplayFor(model=>myProfile.NextVisit)" required />
+                        </td>
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+                    <tr>
+                        <td>
+
+                            <label>HIV:</label>
+
+                            <ul style="list-style-type:none">
+                                <li>
+                                    <label>Reactive <input type="radio" name="HIV" value="Reactive" required /></label>
+                                </li>
+                                <li>
+                                    <label>Non Reactive <input type="radio" name="HIV" value="Non Reactive" required /></label>
+                                </li>
+                                <li>
+                                    <label>Not tested <input type="radio" name="HIV" value="Not tested" required /></label>
+                                </li>
+                            </ul>
+
+                        </td>
+
+
+                        <td>
+
+                            <label>Urinalysis:</label>
+
+                            <ul style="list-style-type:none">
+                                <li>
+                                    Couple HIV Counseling and testing done<br />
+                                    <label>Yes <input type="radio" name="Urinalysis" value="@Html.DisplayFor(model=>myProfile.Urinalysis)"  required/></label> <label>No <input type="radio" name="Urinalysis" value="@Html.DisplayFor(model=>myProfile.Urinalysis)" /></label>
+                                </li>
+                                if No, Counsel and test
+                            </ul>
+
+                        </td>
+
+                    </tr>
+                </table>
+
+                <div class="marg-top-16px">
+                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                    @Html.ActionLink("Continue", "PresentPregnancy", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+@style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+                    &nbsp;
+                    &nbsp;
+                    @Html.ActionLink("Previous", "PhysicalExam", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+         @style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+                </div>
+
+            </fieldset>
+        </form>
+        <div>
+            @Html.Partial("AntenatalProfileDetails", Model.OpdRegister.MCHAntenatalProfiles)
+        </div>
+
+    </div>
+    
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+    </script>
+}
+
+

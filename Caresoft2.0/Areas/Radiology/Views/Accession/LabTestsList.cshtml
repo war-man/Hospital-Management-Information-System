@@ -1,0 +1,75 @@
+﻿@model IEnumerable<LabsDataAccess.WorkOrderTest>
+@{
+    var main_department_id = ViewBag.main_department_id;
+    var ShowInQueueBillNotPaid = ViewBag.ShowInQueueBillNotPaid;}
+
+<table class="table table-data-pathology table-condensed">
+    <thead class="bg-primary">
+        <tr class="table-primary">
+            <th>Test Names</th>
+            <th>Sample Type</th>
+            <th>BarCode</th>
+            <th>Ref.Customer</th>
+            <th>Sample Condition</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @foreach (var item in Model)
+        {
+            var color = "black";
+            var textcolor = "white";
+
+            if (item.BillPaid)
+            {
+                color = "var(--LabsColorBillPaid)";
+                textcolor = "Black";
+            }
+            else if (!item.BillPaid)
+            {
+                color = "var(--LabsColorPendingBill)";
+                textcolor = "White";
+
+            }
+            if (item.BillPaid || item.WorkOrder1.OPDType.Equals("IPD") || ShowInQueueBillNotPaid.ToLower() == "true")
+            {
+                <tr>
+                    <td style="background: @color; color: @textcolor;">@item.LabTest.Test</td>
+                    <td>
+                        @if (item.LabTest.Sample != null)
+                        {@item.LabTest.Sample.Sample_Type}
+                    </td>
+                    <td><input name="BarCod" type="text" value="@item.Id.ToString().PadLeft(10, '0')" /></td>
+                    <td></td>
+                    <td>@item.Condition</td>
+                </tr>
+            }
+
+        }
+
+        <tr>
+            <td colspan="5"> 
+
+                <div class="col-md-12 col-md-offset-0" >
+                    <div class="panel panel-primary caresoft-panel ">
+                        <div class="panel-heading">
+                            <strong><p style="color:#000"> Doctors Notes </p></strong>
+                        </div>
+                        <div class="panel-body" >
+                            @try
+                            {
+                                @Model.FirstOrDefault().WorkOrder1.DoctorsNotes
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+

@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Reports";
+    ViewBag.ShowTopMenu = true;
+}
+
+<div class="col-sm-6 col-sm-offset-3">
+    <div class="panel panel-primary glass caresoft-panel">
+        <div class="panel-heading">
+            <h5>Reports</h5>
+            Set report parameters and click generate.
+        </div>
+        <div class="panel-body">
+            <form name="ReportFilter" method="post" action="">
+                <table class="table-form">
+                    <tr>
+                        <td>
+                            <lable>Select Report</lable>
+                        </td>
+                        <td colspan="3">
+                            <select class="text-box " name="Report" required>
+                                <option></option>
+                                <option value="DCBI">Daily Collection By Billing Item</option>
+                                <option value="DCBC">Daily Collection By Cashiers</option>
+                            </select>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <lable>Start Date</lable>
+                        </td>
+                        <td>
+                            <input class="text-box box-lg" type="date" name="StartDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                        </td>
+                        <td>
+                            <lable>End Date</lable>
+                        </td>
+                        <td>
+                            <input class="text-box box-lg" type="date" name="EndDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <lable>Department</lable>
+                        </td>
+                        <td>
+                            <select class="text-box box-lg" name="Department">
+                                <option>All</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <lable>User</lable>
+                        </td>
+                        <td>
+                            <select class="text-box box-lg" name="User">
+                                <option>All</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="right">
+                            <input type="submit" class="btn btn-sm btn-primary" value="Generate Report" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+

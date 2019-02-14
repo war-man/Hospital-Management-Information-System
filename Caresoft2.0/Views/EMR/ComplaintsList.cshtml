@@ -1,0 +1,99 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Complaint>
+<style>
+    #complaints-table td {
+        white-space: normal;
+        vertical-align:middle;
+    }
+    #complaints-table th {
+        white-space: nowrap;
+    }
+</style>
+<table class="table table-data table-condensed table-hover" id="complaints-table">
+    <tr>
+        <th>
+           OPD/IPD No
+        </th>
+       
+        <th>
+           Visit No
+        </th>
+        <th>
+           Complaint Date
+        </th>
+        
+        <th>
+           Diagnosis
+        </th>
+        
+        
+    </tr>
+    @{var x = Model.Count();}
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <b>@item.OpdIpdNumber</b> 
+        </td>
+
+        <td>
+            <b>@x</b>
+        </td>
+        <td style="white-space: nowrap;">
+            <b>@item.ComplaintDate.ToShortDateString()</b>
+        </td>
+
+        <td>
+        <b>
+                @if (item.OpdRegister.PatientDiagnosis !=null)
+                 {
+                    foreach (var diagnosis in item.OpdRegister.PatientDiagnosis)
+                    {
+                        <em style="color:#FF1F1F;">@(diagnosis.FinalDiagnosis + ", ")</em>
+                    }
+                 }
+            </b>
+        </td>
+
+
+    </tr>
+    <tr>
+        <td colspan="4">
+            <table class="table table-condensed table-bordered">
+                <thead class="bg-primary">
+                    <tr>
+                        <th>Date</th>
+                        <th>Chief Complaints</th>
+                        <th>Present Illness</th>
+                        <th>Treatment Taken</th>
+                        <th>Outcome</th>
+                        <th>Note</th>
+                        <th>Provisional Diagnosis</th>
+                        <th>Doctor</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="white-space: nowrap;">@item.ComplaintDate.ToShortDateString()</td>
+                        <td>@item.ChiefComplaints</td>
+                        <td>@item.HistoryOfPresentIllness</td>
+                        <td>@item.TreatmentTaken</td>
+                        <td>@item.Outcome</td>
+                        <td>@item.Note</td>
+                        <td>@item.ProvisionalDiagnostic</td>
+                        <td>@item.User.Employee.Salutation @item.User.Employee.FName @item.User.Employee.OtherName</td>
+                        <td>
+                            @if(item.ComplaintDate == DateTime.Today)
+                            {
+                                <button class="btn btn-xs btn-warning" onclick="confirmDelete('@item.Id', this)">Delete</button>
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    x--;
+}
+
+</table>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.DoctorNote>
+
+
+<table class="table table-data table-condensed table-hover">
+    <tr>
+        <th>
+            Doctor Note
+        </th>
+       
+        
+        <th>
+            Consultant Doctor
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAdded)
+        </th>
+        
+    </tr>
+    <tbody class="bg-white">
+        @foreach (var item in Model)
+    {
+        <tr>
+            <td >
+                @Html.DisplayFor(modelItem => item.DoctorNote1)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.OpdRegister.ConsultantDoctor)
+            </td>
+
+            <td class="human-time">
+                @Html.DisplayFor(modelItem => item.DateAdded)
+            </td>
+
+        </tr>
+}
+
+    </tbody>
+
+</table>

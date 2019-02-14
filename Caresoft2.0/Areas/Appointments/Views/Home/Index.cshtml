@@ -1,0 +1,202 @@
+﻿@{
+    Layout = "~/Areas/Appointments/Views/Shared/_Layout.cshtml";
+
+    var docs = (List<CaresoftHMISDataAccess.User>)ViewBag.Doctors;
+    var dept = (List<CaresoftHMISDataAccess.Department>)ViewBag.Speciality;
+}
+<div class="col-md-12">
+    <div class="col-md-2">
+        @Html.Partial("~/Areas/Appointments/Views/Shared/_SideNav.cshtml")
+    </div>
+    <div class="col-md-8">
+        <div class="panel panel-primary caresoft-panel glass shadow">
+            <div class="panel-heading">
+                Set Appointment(Set Doctor Schedule)
+            </div>
+            <div class="panel-body">
+
+                @using (Html.BeginForm("Appointment", "Home", FormMethod.Post,
+                  new { enctype = "multipart/form-data" }))
+                {
+                    <fieldset>
+                        <legend>Select Doctor</legend>
+
+                        <table>
+                            <tr>
+                                <td>
+                                    Choose a Doctor:
+                                </td>
+                                <td>
+
+                                    <select class="text-box" name="Doctor">
+                                        @foreach (var doc in docs)
+                                        {
+                                            <option value=@doc.Id>@doc.Employee.FName @doc.Employee.OtherName </option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                    Speciality:
+                                </td>
+                                <td>
+                                    <input list="Speciality" class="text-box marg-top-6px" name="Speciality" />
+                                    <datalist id="Speciality">
+                                        @foreach (var speciality in dept.Where(e => e.IsMedical != null && e.IsMedical.ToLower() == "yes"))
+                                        {
+                                            <option value="@speciality.DepartmentName"></option>
+                                        }
+                                        @*<option value="Pediatrician">*@
+
+                                    </datalist>
+                                </td>
+                            </tr>
+                            <tr>
+                            <td></td>
+                              
+                            </tr>
+
+                        </table>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Appointment Availability Setting</legend>
+
+                        <table>
+                            <tr>
+                                <td>
+                                    Shift:
+                                </td>
+                                <td>
+                                    <input list="Shift" class="text-box marg-top-6px" name="Shift" />
+                                    <datalist id="Shift">
+                                        <option value="General"></option>
+                                        <option value="Morning"></option>
+                                        <option value="Evening"></option>
+                                        <option value="Night"></option>
+
+                                    </datalist>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Time From:
+                                </td>
+                                <td>
+                                    <input type="time" class="text-box marg-top-6px" id="TimeFrom" name="TimeFrom"
+                                           required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Time to:
+                                </td>
+                                <td>
+                                    <input type="time" class="text-box marg-top-6px" id="ToTime" name="ToTime"
+                                           required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Interval Between Patients:
+                                </td>
+                                <td>
+                                    <input list="Interval" class="text-box marg-top-6px" name="Interval" required />
+                                    <datalist id="Interval">
+                                        <option value=5>5 min</option>
+                                        <option value=10>10 min</option>
+                                        <option value=15>15 min</option>
+                                        <option value=20>20 min</option>
+                                        <option value=25>25 min</option>
+                                        <option value=30>30 min</option>
+                                        <option value=35>35 min</option>
+                                        <option value=40>40 min</option>
+                                        <option value=60>60 min</option>
+                                    </datalist>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Daywise Scheduling</legend>
+                        <label>
+                            &nbsp;&nbsp;<input type="checkbox" class="checkbx" name="" value="Monday" /> Monday &nbsp;&nbsp;
+
+                        </label>
+                        <label>
+                            <input type="checkbox" class="checkbx" name="" value="Tuesday" /> Tuesday &nbsp;&nbsp;
+                        </label>
+                        <label>
+                            <input type="checkbox" class="checkbx" name="" value="Wednesday" />Wednesday  &nbsp;&nbsp;
+
+                        </label>
+                        <label>
+                            <input type="checkbox" class="checkbx" name="" value="Thurday" /> Thursday &nbsp;&nbsp;
+
+                        </label>
+                        <label>
+                            <input type="checkbox" class="checkbx" name="" value="Friday" />Friday &nbsp;&nbsp;
+
+                        </label>
+                        <label>
+                            <input type="checkbox" class="checkbx" name="" value="Saturday" />Saturday &nbsp;&nbsp;
+
+                        </label>
+                        <label>
+                            <input type="checkbox" class="checkbx" name="" value="Sunday" />Sunday
+
+                        </label>
+
+
+                        <input type="hidden" id="Days" name="Days" />
+                    </fieldset>
+                    <fieldset>
+                        <table>
+                            <tr>
+                                <td>
+                                    <input class="btn-sm btn-primary marg-top-6px" type="submit" id="SetAppointment" value="SetAppointment" />
+                                </td>
+                                <td>
+                                    @*<button class="btn-sm btn-primary marg-top-6px" type="button" id="cancelAppointment">Cancel Appointment</button>*@
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+
+                    }
+                </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+
+    <script>
+
+        var days = "";
+
+        $(".checkbx").change(function () {
+            
+            days = "";
+            checkboxesChecked();
+            $("#Days").val(days);
+
+        });
+
+
+
+        function checkboxesChecked() {
+
+            $(".checkbx:checkbox:checked").is(function () {
+
+                days += $(this).val() + ", ";
+
+            });
+        }
+
+
+
+    </script>
+
+
+}

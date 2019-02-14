@@ -1,0 +1,326 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.MfgCo>
+@{
+    ViewBag.Title = "ManufactureCompany";
+    Layout = "~/Areas/FixedAssets/Views/Shared/_LayoutFixedAssets.cshtml";
+}
+
+<style>
+    .table > tbody + tbody {
+        background-color: white;
+    }
+</style>
+<div>
+    <div class="col-md-8">
+        <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+            <div class="panel-heading custom-navbar">
+                <p style="color:black">Mfg Co</p>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-7 col-md-offset-2">
+                        <input type="hidden" id="MfgCoId" />
+                        <table class="table-form">
+                            <tr>
+                                <td>Mfg Company Name</td>
+                                <td>
+                                    <input name="Name" type="text" id="MfgName" class="text-box" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" class="btn btn-sm btn-primary" value="Save" id="btnSave" />
+                                    <input type="hidden" class="btn btn-sm btn-primary" value="Edit Company" id="btnEdit" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div id="result">
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="row" id="MgfCoList">
+                        <hr />
+                        @Html.Partial("~/Areas/Procurement/Views/Shared/_MfgCoList.cshtml", Model)
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="DeleteManufacturingCoModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Manafucturing Company Details </h4>
+            </div>
+            <div class="modal-body">
+                <div class="">
+                    <input type="hidden" id="MfgCoNumber" />
+                    <table class="table-form">
+                        <tr>
+                            <td>Name</td>
+                            <td id="MfgCoName"></td>
+
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button" id="btnConfirmDelete" class="btn btn-primary btn-sm">Confirm Delete</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            DeleteManufacturingCo();
+            EditManufacturingCo();
+        })
+
+        $("#btnSave").click(function () {
+            var Name = $("#MfgName").val();
+
+            if ($("#MfgName").val().length > 0) {
+                console.log(Name);
+                var model = { Name: Name }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/MasterFixedAssets/ManufacturingCompany',
+                    data: model,
+                    beforeSend: function () { $("#btnSave").prop("disabled", true); },
+                    success: function (obj) {
+                        var mgfList = $("#MgfCoList");
+                        mgfList.empty();
+                        mgfList.append(obj);
+                        $("#MfgName").val("");
+                        DeleteManufacturingCo();
+                        EditManufacturingCo();
+                        $("#btnSave").prop("disabled", false);
+
+                    },
+                    error: function () {
+                        console.log("an error occured");
+                    }
+
+                });
+
+            }
+            else {
+
+                var result = $("#result");
+                result.empty();
+                result.append('<div class="alert alert-warning">' +
+                    '<strong> Warning!</strong > Please Enter name.' +
+                    '</div>');
+
+                result.fadeTo(2000, 500).slideUp(500, function () {
+                    result.slideUp(1000);
+                })
+
+            }
+
+        });
+
+        /* Deleting Manufacturing Details */
+        function DeleteManufacturingCo() {
+            $(".btnDelete").click(function () {
+                var mfgco = $(this).data("mfgco");
+
+                if (mfgco != null || mfgco != "" || mfgco != " ") {
+                    $.ajax({
+                        type: 'GET',
+                        url: "/ProcurementMaster/GetMfgCo",
+                        data: { mfgco: mfgco },
+                        beforeSend: function () { },
+                        success: function (obj) {
+                            //console.log(obj);
+                            $("#MfgCoName").text(obj.Name);
+                            $("#MfgCoNumber").val(obj.Id);
+                            $("#DeleteManufacturingCoModal").modal('show');
+
+                        },
+                        error: function (x, y, z) { console.log(x.responseText); }
+
+                    })
+                }
+            })
+
+        }
+
+        $("#btnConfirmDelete").click(function () {
+            var MfgCoNumber = $("#MfgCoNumber").val();
+
+            if (MfgCoNumber != null || MfgCoNumber != "" || MfgCoNumber == " ") {
+                $.ajax({
+                    type: 'POST',
+                    url: '/ProcurementMaster/DeleteMfgCoConfirmed',
+                    data: { MfgCoNumber: MfgCoNumber },
+                    beforeSend: function () { },
+                    success: function (obj) {
+                        //console.log(obj);
+                        UpdateMfgCoList(obj);
+                        $("#DeleteManufacturingCoModal").modal('hide');
+                        ShowResult();
+                        DeleteManufacturingCo();
+                        EditManufacturingCo();
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                    }
+                })
+            }
+        });
+
+        function UpdateMfgCoList(data) {
+            var MfgCoList = $("#MgfCoList");
+            MfgCoList.empty();
+            MfgCoList.append(data);
+        }
+
+        function ShowResult() {
+            var result = $("#result");
+            result.empty();
+
+            result.append('<div class="alert alert-success">' +
+                '<strong> Successful!</strong > Deleted.' +
+                '</div>');
+
+            //here the div containing the label successful is hidden after two seconds
+            result.fadeTo(2000, 1000).slideUp(500, function () {
+                result.slideUp(500);
+            });
+        }
+
+        function ShowResultError() {
+            var result = $("#result");
+            result.empty();
+
+            result.append('<div class="alert alert-warning">' +
+                '<strong> Error!</strong > Please Check your Entities.' +
+                '</div>');
+
+            //here the div containing the label successful is hidden after two seconds
+            result.fadeTo(2000, 1000).slideUp(500, function () {
+                result.slideUp(500);
+            });
+        }
+        /* End of Delete */
+
+        /* Editing Manufacturing Details*/
+
+        function EditManufacturingCo() {
+            $(".btnEdit").click(function () {
+                var mfgco = $(this).data("mfgco");
+
+                if (mfgco != null || mfgco != "" || mfgco != " ") {
+                    $.ajax({
+                        type: 'GET',
+                        url: "/ProcurementMaster/GetMfgCo",
+                        data: { mfgco: mfgco },
+                        beforeSend: function () { },
+                        success: function (obj) {
+                            //UpdateFormTextBoxes(obj);
+                            $("#MfgCoId").val(obj.Id);
+                            $("#MfgName").val(obj.Name);
+                            $("#btnSave").prop("type", "hidden");
+                            $("#btnEdit").prop("type", "button");
+                        },
+                        error: function (x, y, z) { console.log(x.responseText); }
+
+                    })
+                }
+
+            });
+        }
+
+        $("#btnEdit").click(function () {
+
+            var name = $("#MfgName").val();
+            var id = $("#MfgCoId").val();
+
+            var Model = { Id: id, Name: name };
+            //console.log(Model);
+
+            $.ajax({
+                type: "POST",
+                url: '/ProcurementMaster/EditManufacturingCo',
+                data: Model,
+                success: function (obj) {
+
+                    var mgfList = $("#MgfCoList");
+                    mgfList.empty();
+                    mgfList.append(obj);
+
+                    $("#MfgName").val("");
+
+                    $("#btnSave").attr("type", "button");
+                    $("#btnEdit").attr("type", "hidden");
+
+                    DeleteManufacturingCo();
+                    EditManufacturingCo();
+
+
+                    var result = $("#result");
+                    result.empty();
+
+                    result.append('<div class="alert alert-success">' +
+                        '<strong> Editing Successful!</strong >' +
+                        '</div>');
+                    result.fadeTo(2000, 1000).slideUp(500, function () {
+                        result.slideUp(500);
+                    })
+
+                },
+                error: function () {
+                    var result = $("#result");
+                    result.empty();
+                    result.append('<div class="alert alert-warning">' +
+                        '<strong> Warning!</strong > An Error Occured.' +
+                        '</div>');
+                    //console.log(obj);
+
+                    //here the div containing the label successful is hidden after two seconds
+                    result.fadeTo(2000, 1000).slideUp(500, function () {
+                        result.slideUp(3000);
+                    })
+                    console.log("an error occured");
+                }
+
+            });
+
+        })
+
+            /* End of Editing Manufacturing Details*/
+
+
+
+
+
+
+    </script>
+
+}
+
+
+
+
+
+

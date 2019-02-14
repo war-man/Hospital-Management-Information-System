@@ -1,0 +1,205 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "BankCharges";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+
+    var modes = (List<CaresoftHMISDataAccess.PaymentMode>)ViewBag.PaymentModes;
+    var banks = (List<CaresoftHMISDataAccess.FinanceBank>)ViewBag.banks;
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Finance/Views/Shared/_LeftNavigation.cshtml")
+</div>
+<div class="col-md-8">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Bank Charges
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Cash Point:
+                                </td>
+                                <td>
+                                    <input type="text" name="CashPoint" class="text-box margin-top-bottom-2" id="CashPoint" style="width:100%" />
+                                </td>                            
+                                <td>
+                                   &nbsp; Shift NO.
+                                </td>
+                                <td>
+                                    <input type="number" name="shiftNo" class="text-box margin-top-bottom-2" id="ShiftNO" style="width:100%" />
+                                </td>                            
+                                <td>
+                                  &nbsp;  Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="Date" class="text-box margin-top-bottom-2" id="Date" style="width:100%" />
+                                </td>
+                            </tr>   
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Payment Mode:
+                                </td>
+                                <td>
+                                    <select name="PaymentMode" id="PaymentMode" class="text-box margin-top-bottom-2" style="width: 100%">
+                                        <option>--Select--</option>
+                                        @foreach (var item in modes)
+                                        {
+                                            <option value="@item.PaymentModeName">@item.PaymentModeName</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                   &nbsp; Other Details:
+                                </td>
+                                <td>
+                                    <input type="text" name="OtherDetails" id="OtherDetails" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr id="tr">
+                                <td>
+                                    Schemes:
+                                </td>
+                                <td>
+                                    <input name="Schemes" class="text-box margin-top-bottom-2" style="width: 100%" />
+                                </td>
+                                <td>
+                                   &nbsp; GI Code:
+                                </td>
+                                <td>
+                                    <input type="text" name="GICode" id="GICode" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Recieved From:
+                                </td>
+                                <td>
+                                    <input type="text" name="ReceivedFrom" id="ReceivedFrom" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                               
+                            </tr>
+                            <tr>                               
+                                <td></td>
+                                <td>
+                                    <fieldset>
+                                        <input type="radio" name="DebitCredit" id="Debit" />Debit
+                                        &nbsp;
+                                        <input type="radio" name="DebitCredit" id="credit" />Credit
+                                    </fieldset>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Bank Name:
+                                </td>
+                                <td>
+                                    <select type="text" name="GIName" id="GIName" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option >--Select--</option>
+                                        @foreach (var item in banks)
+                                        {
+                                            <option value="@item.GIName">@item.GIName</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                   &nbsp; Account Name:
+                                </td>
+                                <td>
+                                    <input type="text" name="AccName" class="text-box margin-top-bottom-2" id="AccName" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Acc NO:
+                                </td>
+                                <td>
+                                    <input name="AccNo" id="AccNumber" class="text-box margin-top-bottom-2" style="width: 100%" />
+                                </td>
+                                <td>
+                                   &nbsp; Doc Number:
+                                </td>
+                                <td>
+                                    <input type="number" name="DocNumber" id="DocNumber" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    GL Account:
+                                </td>
+                                <td>
+                                    <input name="GLAcc" id="GLAcc" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                  &nbsp;  Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="Amount" id="Amount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <button type="submit" name="Save" class="btn btn-primary bn-sm">OK</button>
+                        <button type="reset">clear</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#GIName").autocomplete({
+                source: function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Finance/Home/getBankDetails",
+
+                        data: { GIName: $("#GIName").val() },
+
+                        success: function (data) {
+
+                            $("#AccNumber").val(data.AccNo);
+                            $("#GLAcc").val(data.GICode);
+                            $("#AccName").val(data.BankName);
+                        },
+
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                    });
+
+                }, select: function (event, ui) {
+
+                }
+
+            });
+        });
+
+    </script>
+
+
+}

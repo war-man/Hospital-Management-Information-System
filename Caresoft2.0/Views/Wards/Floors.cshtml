@@ -1,0 +1,78 @@
+﻿@model Caresoft2._0.CustomData.FloorMasterData
+@{
+    ViewBag.Title = "Ward Floors Master";
+    ViewBag.FormName = ViewBag.Title;
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+}
+
+<form id="BuildingForm" action="@Url.Action("Floor", "Wards")" method="POST">
+    <table class="table-form">
+        <tr>
+            <td><label>Building Name</label></td>
+            <td>
+                <select class="text-box box-lg" name="BuildingId" required>
+                    @if(ViewBag.SelectedBuilding != null)
+                    {
+                        <option value="@ViewBag.SelectedBuilding.Id">@ViewBag.SelectedBuilding.BuildingName</option>
+                    }
+
+                    @foreach (var building in Model.Buildings)
+                    {
+                        <option value="@building.Id">@building.BuildingName</option>
+                    }
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label>Floor Name</label></td>
+            <td><input type="text" class="text-box box-lg" name="FloorName" required/></td>
+        </tr>
+        
+
+        <tr>
+            <td>
+                <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+                <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<table class="table table-data table-condensed" id="wards-table">
+    <thead>
+        <tr>
+            <th>Edit</th>
+            
+            <th>Building Name</th>
+            <th>Floor Name</th>
+            <th>Wards</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @foreach(var floor in Model.Floors)
+        {
+            <tr>
+                <td>
+                    <label class="edit-table-row-item" data-item-id="@floor.Id">Edit</label>
+                </td>
+                <td>
+                    @floor.HSBuilding.BuildingName
+                </td>
+               
+                <td>
+                    @floor.FloorName
+                </td>
+                <td>
+                    @floor.HSWards.Count() 
+                </td>
+                <td>
+                    <label class="delete-table-row-item" data-item-id="@floor.Id">Delete</label>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

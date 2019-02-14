@@ -1,0 +1,577 @@
+﻿@model PagedList.IPagedList<CaresoftHMISDataAccess.OpdRegister>
+@using PagedList.Mvc;
+
+@{ 
+    ViewBag.Title = "Patient Registration Queue";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Areas/Theatre/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-8 col-md-offset-2">
+    <div class="col-xs-12">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+
+                @{
+                    var Pending = "active";
+                    var Registered = "";
+
+                    var FromDate = (DateTime)ViewBag.FromDate;
+                    var ToDate = (DateTime)ViewBag.ToDate;
+
+                    if (ViewBag.RegStatus == "Registered")
+                    {
+                        Registered = "active";
+                        Pending = "";
+
+                    }
+                    else
+                    {
+                        Pending = "active";
+                        Registered = "";
+                    }
+                }
+
+                <ul class="nav nav-pills top-tab">
+                    <li class="@Pending"><a href="/Theatre/Registration?queuetype=Pending"><strong>Pending</strong></a></li>
+                    <li width="100%" class="@Registered"><a href="/Theatre/Registration?queuetype=Registered"><strong style="margin-bottom:2px">Booked For Theatre</strong></a></li>
+
+                    <li style="float:right">
+                        <form id="dateSearch">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>From &nbsp; &nbsp; <strong> : </strong> &nbsp; &nbsp; </td>
+                                        <td> <input class="text-box dateSearch" type="date" id="FromDate" name="FromDate" value="@FromDate.ToString("yyyy-MM-dd")" </td>
+                                        <td>&nbsp; &nbsp; To &nbsp; &nbsp; <strong> : </strong> &nbsp; &nbsp; </td>
+                                        <td> <input class="text-box dateSearch" type="date" id="ToDate" name="ToDate" value="@ToDate.ToString("yyyy-MM-dd")"</td>
+                                    </tr>
+                                    <tr class="hidden">
+                                        <td></td>
+                                        <td> <input class="text" name="queuetype" type="text" value="@ViewBag.RegStatus" /> </td>
+                                        <td></td>
+                                        <td>
+                                            <button type="submit" id="btnsubmit" class="btn btn-xs btn-primary" value="Search">Search</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </form>
+                    </li>
+
+                </ul>
+                <br />
+                <table class="table table-data-pathology table-condensed" style="background:white">
+                    <tr>
+                        <th></th>
+                        <th>
+                            Reg Number
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Referring Doctor
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Patient Diagnosis
+                        </th>
+
+                    </tr>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center"><strong>No Patients To Display</strong></td>
+                        </tr>
+                    }
+                    @foreach (var item in Model)
+                    {
+                        var bType = "Register";
+                        var Color = "";
+                        var btypeClass = "btn-primary";
+
+                        if (ViewBag.RegStatus == "Registered")
+                        {
+                            bType = "Proceed";
+                        }
+                        {
+
+
+                            if (item.TheatrePatientBioDatas.Any(e => !e.TheatreOperationPersonels.Any()))
+                            {
+                                bType = "Update";
+                                Color = "green";
+                                btypeClass = "btn-success";
+                            }
+                        }
+
+                        <tr id="@item.Id">
+                            <td>
+
+                                @Ajax.ActionLink(bType, "Register", new { id = item.Id },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show'); registrationViewOnClicks(); proceduresViewOnClicks();" +
+                                      "autocompleates(); setTableRowId('" + item.Id  + "');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs btn-block " + btypeClass  + ""})
+                            <td Style="color: @Color">
+                                @Html.DisplayFor(model => item.Patient.RegNumber)
+                            </td>
+                            <td Style="color: @Color">
+                                @Html.DisplayFor(modelItem => item.Patient.Salutation) @Html.DisplayFor(modelItem => item.Patient.FName) @Html.DisplayFor(modelItem => item.Patient.MName) @Html.DisplayFor(modelItem => item.Patient.LName)
+                            </td>
+                            <td Style="color: @Color">
+                                @Html.DisplayFor(modelItem => item.ConsultantDoctor)
+                            </td>
+                            <td Style="color: @Color">
+                                @Html.DisplayFor(modelItem => item.TimeAdded)
+                            </td>
+                            <td>
+                                @Ajax.ActionLink("History", "PatientHistory", "Reports", new { id = item.Id }, new AjaxOptions
+                                {
+                                    UpdateTargetId = "UniversalModalView",
+                                    InsertionMode = InsertionMode.Replace,
+                                    HttpMethod = "GET",
+                                    LoadingElementId = "loadingElement",
+                                    OnSuccess = "$('#UniversalModal').modal('show');"
+
+                                }, new {@class="btn btn-xs btn-primary" })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+            </div>
+        </div>
+
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+
+</div>
+
+@section scripts{
+    <script>
+
+        var trid = 0;
+
+        function setTableRowId(_trid) {
+            trid = _trid;
+        }
+        function getresult(data){
+            if (data > 0 & $('#Id').val() > 0) {
+                showNotification("Patient successfully Updated", "success", true)
+            } else if (data > 0) {
+                $('#Id').val(data);
+                $('#PatientPreparation').removeClass('collapse', 1000, "easeInBack" );
+                $('#btnSubmitReg').val('Update');
+
+                $('#registerForm').trigger("reset");
+                showNotification("Patient successfully Registered", "success", true)
+            } else {
+                $('#Id').val(data);
+                showNotification("An Error Occured, Try again Later", "danger", false)
+            }
+        }
+
+        function getresultPatientPrep(data) {
+            if (data > 0) {
+                showNotification("Theatre Personel Setup was success", "success", true);
+                $('#UniversalModal').modal("hide");
+
+                setTimeout(function () {
+                    $('table tr#' + trid).addClass("disabled");
+                    $('table tr#' + trid).fadeOut(1000, function () { $(this).remove(); });
+
+                }, 1000); // How long do you want the delay to be (in milliseconds)? 
+
+               
+
+            }  
+        }
+
+        function registrationViewOnClicks() {
+
+            $("#DepartmentId").change(function () {
+                $("#TotalPatientsBooked").text('-');
+
+                $.get('/Theatre/Registration/getDepartmentPatientBooked/' + $(this).val(),  // url
+                    function (data, textStatus, jqXHR) {  // success callback
+                        $("#TotalPatientsBooked").text(data);
+                    });
+            });
+
+            $("#addSurgeon").click(function () {
+
+                var flag = false;
+
+                $('.SurgeonId').each(function () {
+                    if ($(this).val() != $("#SurgeonId").val()) {
+                       
+                    } else {
+                        flag = true;
+                    }
+                });                    
+
+                if ($('#SurgeonId').val() == "") {
+                    $('#Surgeon').notify("Required Field");
+                    $('#Surgeon').val("");
+                    $('#SurgeonId').val("");
+                }
+                else if (flag == false) {
+
+                    $('#SelectedSurgeon').append(
+                        ' <div>' +
+                        '<input value="' + $("#SurgeonId").val() + '" hidden id = "" class= "text-box theatrestaff SurgeonId" style = "width:50%" />' +
+                        '<input readonly value="' + $("#Surgeon").val() + '" id = "" class= "text-box theatrestaff Surgeon" style = "width:50%" />' +
+                        '<input hidden value="' + $("#SurgeonRole").val() + '"  id = "" class= "text-box theatrestaff SurgeonRole" style = "width:50%" />' +
+                        '&nbsp;<input readonly value="' + $("#SurgeonRole option:selected").text() + '" id = "" class= "text-box theatrestaff SurgeonRoleName" style = "width:30%" />' +
+                        '&nbsp;<img id="" class="text-box removeUsers" style="height:25px" src="/Content/icons/treeviewicons/button-open.png">' +
+                        '</div >'
+                    );
+                    $('#Surgeon').val("");
+                    $('#SurgeonId').val("");
+
+                } else {
+                    showNotification("Surgeon Already Added", "danger", true);
+                }
+
+                removeSurgeonOnClicks();
+            });
+
+            function removeSurgeonOnClicks(){
+                $(".removeUsers").click(function () {
+                    $(this).parent().remove();
+                });
+            }
+            
+            $("#addScrubNurse").click(function () {
+                var flag = false;
+
+                $('.ScrubNurseId').each(function () {
+                    if ($(this).val() != $("#ScrubNurseId").val()) {
+
+                    } else {
+                        flag = true;
+                    }
+                });
+                
+                if ($('#ScrubNurseId').val() == "") {
+                    $('#ScrubNurse').notify("Required Field");
+                    $('#ScrubNurse').val("");
+                    $('#ScrubNurseId').val("");
+                }
+                else if (flag == false) {
+
+                    $('#SelectedScrubNurses').append(
+                        ' <div>' +
+                        '<input value="' + $("#ScrubNurseId").val() + '" hidden id = "" class= "text-box theatrestaff ScrubNurseId" style = "width:50%" />' +
+                        '<input readonly value="' + $("#ScrubNurse").val() + '" id = "" class= "text-box theatrestaff ScrubNurse" style = "width:50%" />' +
+                        '&nbsp;<input hidden readonly value="' + $("#ScrubNurseRole").val() + '" id = "" class= "text-box theatrestaff ScrubNurseRole" style = "width:30%" />' +
+                        '&nbsp;<input readonly value="' + $("#ScrubNurseRole option:selected").text() + '" id = "" class= "text-box theatrestaff ScrubNurseRole" style = "width:30%" />' +
+                        '&nbsp;<img id="" class="text-box removeUsers" style="height:25px" src="/Content/icons/treeviewicons/button-open.png">' +
+                        '</div >'
+                    );
+
+                    $('#ScrubNurse').val("");
+                    $('#ScrubNurseId').val("");
+
+                } else {
+                    showNotification("Scrub Nurse Already Added", "danger", true);
+                }
+               
+                removeSurgeonOnClicks();
+
+            });
+
+            $("#addCirculatoryNurse").click(function () {
+
+                var flag = false;
+
+                $('.CirculatoryNurseId').each(function () {
+                    if ($(this).val() != $("#CirculatoryNurseId").val()) {
+
+                    } else {
+                        flag = true;
+                    }
+                });
+
+                if ($('#CirculatoryNurseId').val() == "") {
+                    $('#CirculatoryNurse').notify("Required Field");
+                    $('#CirculatoryNurse').val("");
+                    $('#CirculatoryNurseId').val("");
+                }
+                else if (flag == false) {
+
+                    $('#SelectedCirculatoryNurses').append(
+                        ' <div>' +
+                        '<input value="' + $("#CirculatoryNurseId").val() + '" hidden id = "" class= "text-box theatrestaff CirculatoryNurseId" style = "width:50%" />' +
+                        '<input readonly value="' + $("#CirculatoryNurse").val() + '" id = "" class= "text-box theatrestaff CirculatoryNurse" style = "width:50%" />' +
+                        '&nbsp;<input hidden readonly value="' + $("#CirculatoryNurseRole").val() + '" id = "" class= "text-box theatrestaff CirculatoryNurseRole" style = "width:30%" />' +
+                        '&nbsp;<input readonly value="' + $("#CirculatoryNurseRole option:selected").text() + '" id = "" class= "text-box theatrestaff CirculatoryNurseRole" style = "width:30%" />' +
+                        '&nbsp;<img id="" class="text-box removeUsers" style="height:25px" src="/Content/icons/treeviewicons/button-open.png">' +
+                        '</div >'
+                    );
+
+                    $('#CirculatoryNurse').val("");
+                    $('#CirculatoryNurseId').val("");
+
+                } else {
+                    showNotification("Circulatory Nurse Already Added", "danger", true);
+                }
+                
+                removeSurgeonOnClicks();
+
+            });
+
+            $("#addAnaesthesist").click(function () {
+
+                var flag = false;
+
+                $('.AnaesthesistId').each(function () {
+                    if ($(this).val() != $("#AnaesthesistId").val()) {
+
+                    } else {
+                        flag = true;
+                    }
+                });
+
+                if ($('#AnaesthesistId').val() == "") {
+                    $('#Anaesthesist').notify("Required Field");
+                    $('#Anaesthesist').val("");
+                    $('#AnaesthesistId').val("");
+                }
+                else if (flag == false) {
+
+                    $('#SelectedAnaesthesists').append(
+                        ' <div>' +
+                        '<input value="' + $("#AnaesthesistId").val() + '" hidden id = "" class= "text-box theatrestaff AnaesthesistId" style = "width:50%" />' +
+                        '<input readonly value="' + $("#Anaesthesist").val() + '" id = "" class= "text-box theatrestaff Anaesthesist" style = "width:50%" />' +
+                        '&nbsp;<input hidden readonly value="' + $("#AnaesthesistRole").val() + '" id = "" class= "text-box theatrestaff AnaesthesistRole" style = "width:30%" />' +
+                        '&nbsp;<input readonly value="' + $("#AnaesthesistRole option:selected").text() + '" id = "" class= "text-box theatrestaff AnaesthesistRole" style = "width:30%" />' +
+                        '&nbsp;<img id="" class="text-box removeUsers" style="height:25px" src="/Content/icons/treeviewicons/button-open.png">' +
+                        '</div >'
+                    );
+
+                    $('#Anaesthesist').val("");
+                    $('#AnaesthesistId').val("");
+
+                } else {
+                    showNotification("Anaesthesist Already Added", "danger", true);
+                }
+                
+                removeSurgeonOnClicks();
+
+            });
+
+            $("#savePatientPreparation").click(function () {
+
+                if ($('#Id').val() == 0) {
+                    showNotification("Please Register the Patient First", "danger", true);
+                    return;
+                }
+                var Data = [];
+               
+                $('.SurgeonId').each(function () {
+                    Data.push({ Id: 0, Name: ($(this).siblings()[0]).value, TheatreUserId: $(this).val(), Designation: ($(this).siblings()[1]).value, TheatrePatientBioDataId: $('#Id').val(), User: 0, CreatedUtc: '@DateTime.Now' });
+                });
+
+                
+                $('.ScrubNurseId').each(function () {
+                    Data.push({ Id: 0, Name: ($(this).siblings()[0]).value, TheatreUserId: $(this).val(), Designation: ($(this).siblings()[1]).value, TheatrePatientBioDataId: $('#Id').val(), User: 0, CreatedUtc : '@DateTime.Now' });
+                });              
+
+                $('.CirculatoryNurseId').each(function () {
+                    Data.push({ Id: 0 , Name: ($(this).siblings()[0]).value, TheatreUserId: $(this).val(), Designation: ($(this).siblings()[1]).value, TheatrePatientBioDataId: $('#Id').val(), User: 0, CreatedUtc : '@DateTime.Now' });
+                });
+
+                $('.AnaesthesistId').each(function () {
+                    Data.push({ Id: 0 , Name: ($(this).siblings()[0]).value, TheatreUserId: $(this).val(), Designation: ($(this).siblings()[1]).value, TheatrePatientBioDataId: $('#Id').val(), User: 0, CreatedUtc : '@DateTime.Now' });
+                });
+
+                sendDataToOperationTeam(Data);
+              
+            });
+        }
+
+        function sendDataToOperationTeam(data) {
+
+            var data2 = {
+                theatreOperationPersonel : data, __RequestVerificationToken: $('input[name=__RequestVerificationToken]').val()
+            };
+
+            console.log(data);
+
+
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("PatientPreparation")",
+                dataType: "json",
+                data: data2,
+                success: function (data) {
+                    console.log(data);
+                    getresultPatientPrep(data);
+                }
+            });
+        }
+
+        function autocompleates(){
+            $(".theatrestaff").autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+                        type: 'GET',
+                        url: "@Url.Action("GetDoctors")",
+                        dataType: "json",
+                        data: { name: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.Name + " { " + item.UserName + " } ",
+                                    value: item.Name + " { " + item.UserName + " } ", selectedId: item.Id
+                                };
+                            }));
+                        }
+                    });
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    showNotification("An Error Occured, try again later", "danger", true);
+                },
+                minLength: 2,
+                select: function (event, ui) {
+
+                    var type = $(this)[0].id;
+
+                    if (type == "Surgeon") {
+                        $("#SurgeonId").val(ui.item.selectedId);
+                    } else if (type == "ScrubNurse") {
+                        $("#ScrubNurseId").val(ui.item.selectedId);
+                    } else if (type == "Anaesthesist") {
+                        $("#AnaesthesistId").val(ui.item.selectedId);
+                    } else if (type == "CirculatoryNurse") {
+                        $("#CirculatoryNurseId").val(ui.item.selectedId);
+                    }
+                    console.log(ui.item.selectedId);
+                }
+            });
+
+        }
+
+
+        function proceduresViewOnClicks() {
+            
+             $("#Procedure").change(function () {
+                $('#ProcedureId').val($(this).val());
+                $('#ProcedureDepartment').val("THEATRE");
+            });
+
+
+            $("#addProceedure").click(function () {
+
+                var flag = false;
+
+                $('.Procedure').each(function () {
+
+                    if ($(this).val() != $('#Procedure option:selected').text()) {
+
+                    } else {
+                        showNotification("Procedure Already Added", "danger", true);
+                        flag = true;
+
+                        return;
+                    }
+                });
+
+                if ($('#ProcedureId').val() == "") {
+                    $('#Procedure').notify("Please Select a Procedure");                   
+                }
+                else if (flag == false) {
+
+                    $('#selectedProcedures').append(
+                        ' <div>' +
+                        '<input hidden value="' + $('#ProcedureId').val() + '"  readonly id = "" class= "text-box theatrestaff ProcedureId theatreProcedures" style = "width:50%" />' +
+                        '<input readonly value="' + $("#Procedure option:selected").text() + '" id = "" class= "text-box theatrestaff Procedure" style = "width:50%" />' +
+                        '&nbsp;<input value="' + $('#Quantity').val() + '" id = "" class= "text-box theatrestaff Quatity" style = "width:10%" />' +
+                        '&nbsp;<input readonly value="' + "THEATRE" + '" id = "" class= "text-box theatrestaff ProcedureDepartment" style = "width:30%" />' +
+                        '&nbsp;<img id="removeProcedure" class="text-box removeProcedure" style="height:25px" src="/Content/icons/treeviewicons/button-open.png">' +
+                        '</div >'
+                    );
+
+                    $('#Quantity').val("1");
+                    $('#ProcedureId').val("");
+                    $('#ProcedureDepartment').val("");
+                    $('#Procedure option[value="0"]').attr("selected", true);
+
+                } 
+                removeProceedureOnClicks();
+
+            });
+
+
+            $("#btnSaveProcedures").click(function () {
+
+                if ($('#Id').val() == 0) {
+                    showNotification("Please Register the Patient First", "danger", true);
+                    return;
+                }
+                var Data = [];
+               
+                $('.theatreProcedures').each(function () {
+                    Data.push({ DepartmentId: null, ServiceId: parseInt($(this).val()), Quantity: parseInt(($(this).siblings()[1]).value) });
+                });
+
+                sendProceduresAndServices(Data);
+              
+            });
+           
+        }
+
+        function sendProceduresAndServices(Data) {
+            Data = { procedures: { OPDNo: $('#OPDNo').val(), tempProcedure: Data } };
+            console.log(Data);
+
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("Procedures", "Operation")",
+                dataType: "json",
+                data: Data,
+                success: function (data) {
+                    console.log("Test : " + data);
+                    $('.theatreProcedures').each(function () {
+
+
+                        $(this).parent().chil.prop('readonly', true);
+                        //Data.push({ DepartmentId: null, ServiceId: ($(this)).val(), Quantity: ($(this).siblings()[1]).value });
+                    });
+                }, error: function (xmlhttprequest, textstatus, errorthrown) {
+                    showNotification("An Error Occured, try again later", "danger", true);
+                }
+            });
+            
+        }
+
+        function removeProceedureOnClicks(Data) {
+            $(".removeProcedure").click(function () {
+                $(this).parent().remove();
+            });
+        }
+
+
+        $(".dateSearch").change(function () {
+            $("#btnsubmit").trigger("click");
+        });
+
+    </script>
+}

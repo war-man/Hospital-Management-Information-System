@@ -1,0 +1,110 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Employee>
+
+<table width="100%" class="table-data-pathology table-condensed">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RollNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salutation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.IdNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Designation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.DateAdded)
+            </th>*@
+            <th></th>
+        </tr>
+        <tr class="new-entry-row">
+            <td id="RollNo	"></td>
+            <td id="Salutation"></td>
+            <td id="FName"></td>
+            <td id="OtherName"></td>
+            <td id="Gender"></td>
+            @*<td id="dob"></td>*@
+            <td id="idNumber"></td>
+            <td id="mobile"></td>
+            <td id="email"></td>
+            <td id="designation"></td>
+            <td id="branchId"></td>
+            @*<td id="dateAdded"></td>*@
+            <td class="actions"></td>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RollNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salutation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OtherName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Designation.DesignationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.DateAdded)
+                </td>*@
+                <td>
+                    <button type="button" class="btn btn-sm" data-toggle="modal" id="BtnEdit">Edit</button> |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+

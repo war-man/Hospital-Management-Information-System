@@ -1,0 +1,203 @@
+﻿@model CaresoftHMISDataAccess.OpdRegister
+@{
+    ViewBag.Title = "Ipd Invoicing";
+    ViewBag.ShowTopMenu = true;
+
+    var db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+
+    var i = 1;
+    var TTBal = 0.0;
+
+
+}
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-primary caresoft-panel ">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+            <table class="table-condensed table-bordered" width="100%" style="color:#000">
+                <tr id="patientDetails">
+                    <td><label>Reg No:</label></td>
+                    <th>@Html.DisplayFor(model => model.Patient.RegNumber)</th>
+                    <td><label>Name:</label></td>
+                    <th>
+                        @Html.DisplayFor(model => model.Patient.Salutation)
+                        @Html.DisplayFor(model => model.Patient.FName)
+                        @Html.DisplayFor(model => model.Patient.MName)
+                        @Html.DisplayFor(model => model.Patient.LName)
+
+                        @if (ViewBag.WalkinMedications != null)
+                        {
+                            var walkinMeds = (IEnumerable<Caresoft2._0.Areas.Procurement.Models.Walking>)ViewBag.WalkinMedications;
+                            @Html.DisplayFor(model => walkinMeds.First().PatientsName)
+                        }
+
+                    </th>
+                    <td><label>Patient Category: </label></td>
+                    <th>@Html.DisplayFor(model => model.Tariff.TariffName)</th>
+                    <td><label>Bill No:</label></td>
+                    <th>@Html.DisplayFor(model => model.Id)</th>
+                    <td>
+                        <label>
+                            <span>IPD No</span>
+                        </label>
+                    </td>
+                    <th>@Html.DisplayFor(model => model.Id)</th>
+                </tr>
+            </table>
+
+            <br />
+
+            <table class="table table-data-pathology table-condensed" id="bill-service-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Department</th>
+                        <th>Service</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>SubTotal</th>
+                        <th>Award</th>
+                        <th>Waived</th>
+                        <th>Paid</th>
+                        <th>P.Paid</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+
+                <tbody class="bg-white">
+
+                    @if (Model.BillServices.OrderByDescending(e => e.DepartmentId) != null)
+                    {
+                        var dep = 0;
+                        foreach (var data in Model.BillServices)
+                        {
+                            var Quantity = data.Quatity;
+                            var Price = data.Price;
+                            var WaivedAmount = data.WaivedAmount ?? 0;
+                            var Award = data.Award;
+                            var Paid = data.BillPayment?.PaidAmount ?? 0;
+                            var pp = db.IPDBillPartialPayments.FirstOrDefault(f => f.BillServiceId == data.Id)?.AllocatedAmount??0;
+                            var Bal = (Price * Quantity) - ((Award * Quantity) + WaivedAmount + pp);
+                            TTBal += Bal;
+
+                            var classBal = "";
+
+                            if (Bal > 0)
+                            {
+                                classBal = "text-danger cust-text-bold";
+                            }
+                            if (dep != data.DepartmentId)
+                            {
+                                <tr>
+                                    <td colspan="11" style="color:white; background-color:var(--primary-dark-color)">
+                                        @data.Service.Department.DepartmentName.ToUpper()
+                                    </td>
+                                </tr>
+                            }
+                            <tr>
+                                <td>@i</td>
+                                <td>@data.Service.Department.DepartmentName</td>
+                                <td>@data.Service.ServiceName</td>
+                                <td>@Quantity</td>
+                                <td class="money">@Price</td>
+                                <td class="money">@(Price * Quantity)</td>
+                                <td class="money">@(Award * Quantity)</td>
+                                <td class="money">@WaivedAmount</td>
+                                <td class="money">@Paid</td>
+                                <td class="money">
+                                    @pp
+                                </td>
+                                <td class="money @classBal">
+                                    @Bal
+                                </td>
+                            </tr>
+
+
+                            dep = data.DepartmentId;
+                            i++;
+                        }
+                    }
+
+                    <tr><td colspan="11" style="color:white; background-color:var(--primary-dark-color)">PHARMACY</td></tr>
+                    @if (Model.Medications != null)
+                    {
+                        foreach (var data in Model.Medications.Where(e => e.Available ?? false))
+                        {
+                            var Quantity = data.Quantity;
+                            var Price = data.UnitPrice;
+                            var WaivedAmount = data.WaivedAmount ?? 0;
+                            var Award = data.Award;
+                            var Paid = data.BillPayment?.PaidAmount ?? 0;
+                            var pp = db.IPDBillPartialPayments.FirstOrDefault(f => f.MedicationId == data.Id)?.AllocatedAmount ?? 0;
+                            var Bal = (Price * Quantity) - (Award + WaivedAmount + pp);
+                            TTBal += Bal ?? 0;
+
+                            var classBal = "";
+
+                            if (Bal > 0)
+                            {
+                                classBal = "text-danger cust-text-bold";
+                            }
+
+                            <tr>
+                                <td>@i</td>
+                                <td>Pharmacy</td>
+                                <td>@data.DrugName</td>
+                                <td>@Quantity</td>
+                                <td class="money">@Price</td>
+                                <td class="money">@(Price * Quantity)</td>
+                                <td class="money">@Award</td>
+                                <td class="money">@WaivedAmount</td>
+                                <td class="money">
+                                    @Paid
+                                </td>
+                                <td class="mney">
+                                    @pp
+                                </td>
+                                <td class="money  @classBal">
+                                    @Bal
+                                </td>
+
+                            </tr>
+
+
+
+                            i++;
+                        }
+                    }
+
+
+                    @{
+                        var classTTBal = "";
+                        if (TTBal > 0)
+                        {
+                            classTTBal = "text-danger cust-text-bold";
+                        }
+                    } 
+
+                    <tr>
+                        <td colspan="10" class="cust-text-bold " style="color:var(--primary-dark-color);">Total Balance</td>
+                        <td><strong class="@classTTBal money">@TTBal</strong></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+            <p style="float:right">
+                @Html.ActionLink("Interim Invoice", "downloadIpdInvoice", new {id=Model.Id, type = "interim" }, new { @class = "btn btn-sm btn-primary" })
+                @if (TTBal == 0)
+                {
+                    @Html.ActionLink("Final Invoice", "downloadIpdInvoice", new { id = Model.Id, type = "final" }, new { @class = "btn btn-sm btn-primary " })
+                }
+                else
+                {
+                    @Html.ActionLink("Final Invoice", "downloadIpdInvoice", new { id = Model.Id, type = "final" }, new { @class = "btn btn-sm btn-primary disabled" })
+                }
+            </p>
+        </div>
+    </div>
+
+
+</div>

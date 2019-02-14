@@ -1,0 +1,318 @@
+﻿@model CaresoftHMISDataAccess.BillPayment
+
+@{
+    ViewBag.Title = "Confirm Refund";
+    ViewBag.ShowTopMenu = true;
+}
+
+
+<div class="col-xs-8 col-sm-offset-2">
+    <div class="panel panel-primary caresoft-panel ">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+           <fieldset>
+               <legend>Patient Details</legend>
+               <table class="table-form">
+                   <tr>
+                       <th>
+                           <lable>Reg Number</lable>
+                       </th>
+                       <td>
+                           @if (Model.OPDNo.HasValue)
+                           {
+                               var pat = Model.OpdRegister.Patient;
+                               <text>@pat.RegNumber</text>
+                           }
+                       </td>
+                       <th>
+                           <lable>Patient Name</lable>
+                       </th>
+                       <td>
+                           @if (Model.OPDNo.HasValue)
+                           {
+                               var pat = Model.OpdRegister.Patient;
+                               <text>@pat.Salutation @pat.FName @pat.MName @pat.LName</text>
+                           }
+                       </td>
+                   </tr>
+                    <tr>
+                       <th>
+                           <lable>Age[Gender]</lable>
+                       </th>
+                       <td>
+                           @if (Model.OPDNo.HasValue)
+                           {
+                               var pat = Model.OpdRegister.Patient;
+                               <text>@(DateTime.Today.Year -  pat.DOB.Value.Year)yr [@pat.Gender]</text>
+                           }
+                       </td>
+                       
+                   </tr>
+               </table>
+           </fieldset>
+           <fieldset>
+               <legend>Paymnent Details</legend>
+               <table class="table-form">
+                   <tr>
+                       <th>
+                           <lable>Receipt No.</lable>
+                       </th>
+                       <td>
+                           @Model.Id.ToString().PadLeft(4, '0')
+                       </td>
+                       <th>
+                           <lable>Date</lable>
+                       </th>
+                       <td>
+                           @Model.DateAdded.ToShortDateString()
+                       </td>
+
+                       <th>
+                           <lable>Patient Type</lable>
+                       </th>
+                       <td>
+                           @if (Model.OPDNo.HasValue)
+                           {
+                               var opd = Model.OpdRegister;
+                               <text>@opd.Tariff.TariffName [@opd.Tariff.Company.CompanyName]</text>
+                           }
+                       </td>
+                   </tr>
+               </table>
+
+               <table class="table table-data table-condened marg-top-16px">
+                   <thead>
+                       <tr>
+                           <th>#</th>
+                           <th>Service/Med</th>
+                           <th>Department</th>
+                           <th>Qty</th>
+                           <th>Price</th>
+                           <th>S.Total</th>
+                           <th>Award</th>
+                           <th>Discount</th>
+                           <th>Payable</th>
+                           <th>Paid</th>
+                           <th>Refund</th>
+                       </tr>
+                   </thead>
+                   <tbody class="bg-white">
+                       @* OPD Receipt items start  *@
+                       @foreach(var e in Model.BillServices)
+                       {
+                       <tr id="bill_service@(e.Id)" data-entry_id="@e.Id" data-entry_type="service">
+                           <td>@e.Id.ToString().PadLeft(4, '0')</td>
+                           <td>@e.ServiceName</td>
+                           <td>@e.Service.Department.DepartmentName</td>
+                           <td>@e.Quatity</td>
+                           <td>@e.Price</td>
+                           <td>@(e.Quatity * e.Price)</td>
+                           <td>@(e.Quatity * e.Award)</td>
+                           <td>@(e.Discount ?? 0)</td>
+                           <td>@((e.Quatity * e.Price) - (e.Quatity * e.Award) - (e.Discount ?? 0))</td>
+                           <td class="paid">@((e.Quatity * e.Price) - (e.Quatity * e.Award) - (e.Discount ?? 0))</td>
+                           <td>
+                               @if (e.RefundedItems != null && e.RefundedItems.Count() > 0)
+                                       {
+                                           <text>Refunded</text>
+                                       }
+                                       else
+                                       {
+                                           <input type="checkbox"  class="cb_refund"/>
+                                       }
+                           </td>
+                       </tr>
+                       }
+
+                       @foreach(var e in Model.Medications)
+                       {
+                       <tr id="medication@(e.Id)" data-entry_id="@e.Id" data-entry_type="medication">
+                           <td>@e.Id.ToString().PadLeft(4, '0')</td>
+                           <td>@e.DrugName</td>
+                           <td>PHARMACY</td>
+                           <td>@e.QuantityIssued</td>
+                           <td>@e.UnitPrice</td>
+                           <td>@(e.QuantityIssued * e.UnitPrice)</td>
+                           <td>@(e.QuantityIssued * e.Award)</td>
+                           <td>@(e.Discount ?? 0)</td>
+                           <td>@((e.QuantityIssued * e.UnitPrice) - (e.QuantityIssued * e.Award) - (e.Discount ?? 0))</td>
+                           <td class="paid">@((e.QuantityIssued * e.UnitPrice) - (e.QuantityIssued * e.Award) - (e.Discount ?? 0))</td>
+                           <td>
+                               @if (e.RefundedItems != null && e.RefundedItems.Count() > 0)
+                               {
+                                   <text>Refunded</text>
+                               }
+                               else
+                               {
+                                   <input type="checkbox"  class="cb_refund"/>
+                               }
+                           </td>
+                       </tr>
+                       }
+                       @* OPD Receipt items end  *@
+
+                       @* IPD Receipt items start  *@
+                       @{ var pp = Model.IPDBillPartialPayments.ToList(); }
+                       @foreach (var ps in pp.Where(e => e.BillServiceId != null).GroupBy(e=>e.BillServiceId))
+                       {
+                           var e = ps.FirstOrDefault().BillService;
+                           <tr id="bill_service@(e.Id)" data-entry_id="@e.Id" data-entry_type="service">
+                               <td>@e.Id.ToString().PadLeft(4, '0')</td>
+                               <td>@e.ServiceName</td>
+                               <td>@e.Service.Department.DepartmentName</td>
+                               <td>@e.Quatity</td>
+                               <td>@e.Price</td>
+                               <td>@(e.Quatity * e.Price)</td>
+                               <td>@(e.Quatity * e.Award)</td>
+                               <td>@(e.Discount ?? 0)</td>
+                               <td>@((e.Quatity * e.Price) - (e.Quatity * e.Award) - (e.Discount ?? 0))</td>
+                               <td class="paid">@(ps.Sum(s=>s.AllocatedAmount) - (e.Quatity * e.Award) - (e.Discount ?? 0))</td>
+                               <td>
+                                   @if (e.RefundedItems != null && e.RefundedItems.Count() > 0)
+                                       {
+                                           <text>Refunded</text>
+                                       }
+                                       else
+                                       {
+                                           <input type="checkbox"  class="cb_refund"/>
+                                       }
+                               </td>
+                           </tr>
+                       }
+
+
+                       @foreach (var ps in pp.Where(e => e.MedicationId != null).GroupBy(e=>e.MedicationId))
+                       {
+                           var e = ps.FirstOrDefault().Medication;
+                           <tr id="bill_service@(e.Id)" data-entry_id="@e.Id" data-entry_type="medication">
+                               <td>@e.Id.ToString().PadLeft(4, '0')</td>
+                               <td>@e.DrugName</td>
+                               <td>PHARMACY</td>
+                               <td>@e.QuantityIssued</td>
+                               <td>@e.UnitPrice</td>
+                               <td>@(e.QuantityIssued * e.UnitPrice)</td>
+                               <td>@(e.QuantityIssued * e.Award)</td>
+                               <td>@(e.Discount ?? 0)</td>
+                               <td>@((e.QuantityIssued * e.UnitPrice) - (e.QuantityIssued * e.Award) - (e.Discount ?? 0))</td>
+                               <td class="paid">@(ps.Sum(s=>s.AllocatedAmount) - (e.QuantityIssued * e.Award) - (e.Discount ?? 0))</td>
+                               <td>
+                                   @if (e.RefundedItems != null && e.RefundedItems.Count() > 0)
+                                       {
+                                           <text>Refunded</text>
+                                       }
+                                       else
+                                       {
+                                           <input type="checkbox"  class="cb_refund"/>
+                                       }
+                               </td>
+                           </tr>
+                       }
+                       
+                       @* IPD Receipt items end  *@
+                   </tbody>
+                   
+               </table>
+               <fieldset>
+                   <legend>Refund Summary</legend>
+                   <form id="form_refund">
+                       <input type="hidden" name="RefundedMedications" id="RefundedMedications" />
+                       <input type="hidden" name="RefundedServices" id="RefundedServices" />
+                       <input type="hidden" name="ReceiptNo" value="@Model.Id" />
+                       <table class="table-form">
+                           <tr>
+                               <td>
+                                   <label>Refunded Items</label>
+                               </td>
+                               <td>
+                                   <input type="text" class="text-box box-lg" readonly id="refundedItems" name="RefundedItemsCount" />
+                               </td>
+
+                               <td>
+                                   <label>Refunded Amount</label>
+                               </td>
+                               <td>
+                                   <input type="text" class="text-box box-lg" readonly id="RefundedAmount" name="RefundedAmount" />
+                               </td>
+                           </tr>
+
+                           <tr>
+                               <td>
+                                   <label for="ReasonForRefund">Reason for Refund</label>
+                               </td>
+                               <td>
+                                   <input type="text" class="text-box box-lg"  id="ReasonForRefund" name="ReasonForRefund" required/>
+                               </td>
+
+                              
+                           </tr>
+                       </table>
+                       <input type="submit" class="btn btn-sm btn-primary" value="Confirm Refund" id="btn_confirm_bill" @if (Model.Refunds != null && Model.Refunds.Count() > 0) { <text>disabled</text>}/>
+                   </form>
+               </fieldset>
+           </fieldset>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        markRequiredFields();
+
+        $(".cb_refund").each(function () {
+            $(this).click(function () {
+                calculateRefund();
+            });
+        })
+
+
+        function calculateRefund() {
+            var totalpaid = 0;
+            var x = 0; var refundedMeds = ""; var refundedServices = "";
+            
+            $(".cb_refund").each(function () {
+                if ($(this).is(":checked")) {
+                    x++;
+                    var tr = $(this).parent().parent();
+                    var paid = parseFloat(tr.find(".paid").text()) || 0;
+                    totalpaid += paid;
+                    var entryId = tr.data("entry_id");
+                    if (tr.data("entry_type") === "medication") {
+                        refundedMeds += entryId + ",";
+                    } else {
+                        refundedServices += entryId + ",";
+                    }
+                }
+            })
+            $("#refundedItems").val(x); $("#RefundedAmount").val(totalpaid);
+            $("#RefundedMedications").val(refundedMeds);
+            $("#RefundedServices").val(refundedServices);
+        }
+
+        $("#form_refund").submit(function (e) {
+            e.preventDefault();
+            var data = $(this).serializeObject();
+
+            console.log(data);
+            $(".loader").show();
+            $.ajax({
+                method: "post",
+                url: "@Url.Action("SaveRefund", "Billing")",
+                data: data,
+                success: function (res) {
+                    $(".loader").hide();
+                    showNotification(res.Message, res.Status, true);
+                    $("#btn_confirm_bill").attr('disabled', 'disabled');
+                    //TODO Mark all refunded items as refunded to prevent
+                },
+                error: function (e, x, r) {
+                    showNotification("An error occured!", "danger", true);
+                    $(".loader").hide();
+
+                }
+            })
+        })
+
+    </script>
+}

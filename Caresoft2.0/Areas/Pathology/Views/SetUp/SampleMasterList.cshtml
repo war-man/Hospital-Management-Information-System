@@ -1,0 +1,33 @@
+﻿@model IEnumerable<LabsDataAccess.Sample>
+
+<div style="height:30vh; overflow:auto; border: 1px solid var(--primary-dark-color); background:white;">
+    <table class="table table-bordered table-condensed">
+        <thead class="bg-primary">
+            <tr class="table-primary">
+                <th>
+                    &nbsp;                    
+                    @Html.DisplayNameFor(model => model.Sample_Type)
+                </th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+
+        <tr>
+            <td>
+                &nbsp;
+                @Html.DisplayFor(modelItem => item.Sample_Type)
+            </td>
+            <td style="width:10px">
+                @Html.ActionLink("Edit", "", new { id = item.Id }, new { @class = "edit", data_Id = item.Id, sample = item.Sample_Type })
+            </td>
+            <td style="width:10px">
+                @Html.ActionLink("Delete", "", new { id = item.Id }, new { @class = "delete", data_Id = item.Id, sample = item.Sample_Type })
+            </td>
+        </tr>
+        }
+
+    </table>
+</div>

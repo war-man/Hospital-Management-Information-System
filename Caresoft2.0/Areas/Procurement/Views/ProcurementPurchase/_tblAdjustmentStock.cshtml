@@ -1,0 +1,35 @@
+﻿@model Caresoft2._0.Areas.Procurement.Models.ItemMaster
+<table class="table table-data-pathology" id="TableList" style="background:White">
+    <tr>
+        <th>Edit</th>
+        <th>Item Name</th>
+        <th>Batch No</th>
+        <th>Current Stock</th>
+        <th>Cost</th>
+        <th>Adjusted Quantity</th>
+        <th>Delete</th>
+    </tr>
+    @if (Model == null)
+    {
+        <tr>
+            <td colspan="7">
+                No Data
+            </td>
+        </tr>
+
+    }
+    else
+    {
+        <tr>
+            <td><button class="btn btn-info btn-xs">Edit</button></td>
+            <td>@Model.ItemName</td>
+            <td>@Model.BatchNo</td>
+            <td>@Model.CurrentStock</td>
+            <td>@Model.CostPriceUnit</td>
+            <td>@ViewBag.AdjustedQuantity</td>
+            <td><button class="btn btn-info btn-xs">Delete</button></td>
+        </tr>
+    }
+
+</table>
+

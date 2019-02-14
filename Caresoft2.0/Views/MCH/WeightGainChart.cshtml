@@ -1,0 +1,231 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+	var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+	ViewBag.WideView = true;
+	ViewBag.Title = "Weight Gain Chart";
+	ViewBag.ShowTopMenu = true;
+	Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+	<div class="panel-heading custom-navbar">
+		<p>@ViewBag.Title</p>
+	</div>
+	<style>
+		input.box-sm {
+			width: 120px
+		}
+	</style>
+	<div class="panel-body">
+		<fieldset>
+			<form action="@Url.Action("SaveWeightGainChart", "mch")" method="post">
+				<input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+
+				<table>
+					<tr>
+						<td>
+							<label>Date Of Visit</label>
+
+						</td>
+						<td colspan="3">
+							<input type="date" name="DateOfVisit" class="text-box box-xlg" required value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+						</td>
+					</tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<tr>
+						<td>
+							<label>Week No</label>
+
+						</td>
+						<td colspan="3">
+							<input type="number" name="WeekNo" class="text-box box-xlg" required />
+						</td>
+					</tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<tr>
+						<td>
+							<label>Weight (In Kgs)</label>
+
+						</td>
+						<td colspan="3">
+							<input type="number" name="Weight" class="text-box box-xlg" required />
+						</td>
+					</tr>
+				</table>
+				<div class="marg-top-16px">
+					<button class="btn btn-sm btn-primary" type="submit">Save</button>
+					<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Graph Modal</button>
+
+				</div>
+
+					@Html.ActionLink("Continue", "PreventativeServices", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+@style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+					&nbsp;
+					&nbsp;
+					@Html.ActionLink("Previous", "PresentPregnancy", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+		 @style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+
+				</div>
+
+			</form>
+		</fieldset>
+
+
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<head>
+						<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	theme: "light1",
+	animationEnabled: true,
+	title: {
+		text: "Weight Gain"
+	},
+	axisY: {
+		title: "Pressure (in mmHg)",
+		maximum: 190,
+		gridThickness: 0
+	},
+	axisY2: {
+		title: "Body Temperature (in °C)",
+		includeZero: false,
+		suffix: " °C",
+		gridThickness: 0
+	},
+	toolTip: {
+		shared: true
+	},
+	data: [{
+ 
+		type: "spline",
+		axisYType: "secondary",
+		name: "Body Temperature",
+		yValueFormatString: "#.0 °C",
+		toolTipContent: "<b>{name}:</b> {y}",
+		xValueType: "dateTime",
+		dataPoints:  @Html.Raw(ViewBag.DataPoints2)
+	}]
+});
+chart.render();
+
+}
+						</script>
+					</head>
+					<body>
+						<div id="chartContainer" style="height: 360px; width: 370px;"></div>
+						<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+						<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+						<script src="https://canvasjs.com/assets/script/jquery-ui.1.11.2.min.js"></script>
+						<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+
+					</body>
+				</div>
+
+			</div>
+		</div>
+
+		<div>
+			@Html.Partial("weightGainChartDetails", Model.OpdRegister.MCHWeightGainCharts)
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+@section scripts{
+	<script>
+
+		getRecentInfo();
+		function getRecentInfo() {
+			$.ajax({
+				type: "GET",
+				url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+				datatype: "html",
+				success: function (result) {
+					$('#patient-recent-physical-info').html(result);
+				}
+			});
+		}
+
+
+/*
+
+			 $(document).ready(function () {
+			async: false
+			$.ajax({
+				type: "POST",
+				url: "/MCH/GetPieRenderer/",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				success: OnSuccess,
+				error: OnError
+			});
+
+			function OnSuccess(response) {
+
+				var aData = response;
+				var dataArray = [];
+
+
+				$.each(aData, function (i, item) {
+					dataArray.push([item.WeekNo, item.Weight]);
+				});
+
+
+
+				var plot1 = jQuery.jqplot('chartdiv', [dataArray],
+					{
+						seriesDefaults: {
+							showMarker: true,
+							pointLabels: { show: true },
+							showDataLabels: true,
+
+						},
+						legend: { show: true },
+						axes: {
+							xaxis: {
+								label: 'Gestation in Weeks',
+								labelRenderer: $.jqplot.canvasAxisLabelRenderer,
+								renderer: $.jqplot.CategoryAxisRenderer
+							},
+							yaxis: {
+								label: 'Weight',
+								labelRenderer: $.jqplot.canvasAxisLabelRenderer,
+								tickOptions: {
+									formatString: "%#.2f%"
+								}
+
+							}
+						}
+					}
+				);
+
+			}
+			function OnError(response) {
+
+				alert("Error !");
+
+				console.log(e.responseText);
+			}
+
+		});*/
+
+	</script>
+}
+

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserManagementLayout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="panel caresoft-panel panel-primary">
+        <div class="panel-heading">
+            ActiveUsers
+        </div>
+
+        <div class="panel-body" style="overflow:auto">
+
+            @Html.ActionLink("Download Users Report", "ExportUsers", new { }, new { @class = "btn btn-primary btn-sm" })
+            <table class="table table-data-pathology table-condensed">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Username)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastRefresh)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Employee.RollNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserRole.RoleName)
+                    </th>
+                </tr>
+                <tbody style="background-color:white;">
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Username)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastRefresh)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Employee.RollNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserRole.RoleName)
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>

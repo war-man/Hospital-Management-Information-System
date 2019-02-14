@@ -1,0 +1,204 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.SimulationPatientIssueVoucher>
+@using CaresoftHMISDataAccess;
+
+@{
+    CaresoftHMISEntities db = new CaresoftHMISEntities();
+
+}
+<div>
+    <br />
+    <table class="table table-data-pathology table-condensed" style="background-color:ghostwhite;">
+        <tr>
+            <th>Select</th>
+            <th>Reg No</th>
+            <th>Patients Name</th>
+            <th>Patient Type</th>
+            <th>OPD</th>
+            <th>IPD</th>
+            <th>HIV No</th>
+            <th>Transaction ID</th>
+        </tr>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="8" style="text-align:center">No data to display</td>
+            </tr>
+        }
+        else
+        {
+
+            foreach (var item in Model)
+            {
+
+                if (item.Opd != null && db.OpdRegisters.Find(int.Parse(item.Opd)).IsIPD)
+                {
+                    item.Ipd = item.Opd;
+                }
+
+                if (item.IsWalkIn == true)
+                {
+                    if (item.isPaid == false && !item.isPatiallyPaid)
+                    {
+                        <tr>
+                            <td style="background-color:red;color:white;">
+                                <a href="@Url.Action("DirectPatientIssueVoucherWalkIn", "PharmacyPatientTransaction", new { Id = item.Id, Area = "PharmacyModule" })" class="btn btn-sm btn-primary btn-xs">Select</a>
+                            </td>
+                            <td>@item.Regno</td>
+                            <td>@item.PatientsName</td>
+
+                            <td>Cash</td>
+                            <td>
+                                @if (item.Ipd == null){@item.Opd}
+                            </td>
+                            <td>@item.Ipd</td>
+                            <td>@item.HivNo</td>
+                            <td>@item.TransactionId</td>
+                        </tr>
+                    }
+                    else if (item.isPatiallyPaid)
+                    {
+                        <tr>
+                            <td style="background-color:yellow;color:white;">
+                                <a href="@Url.Action("DirectPatientIssueVoucherWalkIn", "PharmacyPatientTransaction", new { Id = item.Id, Area = "PharmacyModule" })" class="btn btn-sm btn-primary btn-xs">Select</a>
+                            </td>
+                            <td>@item.Regno</td>
+                            <td>@item.PatientsName</td>
+
+                            <td>Cash</td>
+                            <td>
+                                @if (item.Ipd == null)
+                                {@item.Opd}
+                            </td>
+                            <td>@item.Ipd</td>
+                            <td>@item.HivNo</td>
+                            <td>@item.TransactionId</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td style="background-color:green">
+                                <a href="@Url.Action("DirectPatientIssueVoucherWalkIn", "PharmacyPatientTransaction", new { Id = item.Id, Area = "PharmacyModule" })" class="btn btn-sm btn-primary btn-xs">Select</a>
+                            </td>
+                            <td>@item.Regno</td>
+                            <td>@item.PatientsName</td>
+
+                            <td>Cash</td>
+                            <td>
+                                @if (item.Ipd == null)
+                                {@item.Opd}
+                            </td>
+                            <td>@item.Ipd</td>
+                            <td>@item.HivNo</td>
+                            <td>@item.TransactionId</td>
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    var Opd = int.Parse(item.Opd);
+
+                    if (item.isFromDoctor == true)
+                    {
+
+                        <tr>
+                            <td style="background-color:blue;color:ghostwhite;">
+                                <a href="@Url.Action("DirectPatientIssueVoucher", "PharmacyPatientTransaction", new { Id = item.Id, Area = "PharmacyModule" })" class="btn btn-sm btn-primary btn-xs">Select</a><span class="badge" style="font-size:small;">new</span>
+                            </td>
+                            <td>@item.Regno</td>
+                            <td style="white-space:normal">@item.PatientsName</td>
+
+                            <td>@db.OpdRegisters.Find(Opd).Tariff.TariffName</td>
+                            <td>
+                                @if (item.Ipd == null)
+                                {@item.Opd}
+                            </td>
+                            <td>@item.Ipd</td>
+                            <td>@item.HivNo</td>
+                            <td>@item.TransactionId</td>
+                        </tr>
+                    }
+                    else
+                    {
+
+                        if (item.isPaid == false && !item.isPatiallyPaid)
+                        {
+                        <tr>
+                            <td style="background-color:red;color:ghostwhite;">
+                                <a href="@Url.Action("DirectPatientIssueVoucher", "PharmacyPatientTransaction", new { Id = item.Id, Area = "PharmacyModule" })" class="btn btn-sm btn-primary btn-xs">Select</a>
+                            </td>
+                            <td>@item.Regno</td>
+                            <td>@item.PatientsName</td>
+
+                            <td>@db.OpdRegisters.Find(Opd).Tariff.TariffName</td>
+                            <td>
+                                @if (item.Ipd == null)
+                                {@item.Opd}
+                            </td>
+                            <td>@item.Ipd</td>
+                            <td>@item.HivNo</td>
+                            <td>@item.TransactionId</td>
+                        </tr>
+                        }
+                        else if (item.isPatiallyPaid)
+                        {
+
+                        <tr>
+                            <td style="background-color:yellow">
+                                <a href="@Url.Action("DirectPatientIssueVoucher", "PharmacyPatientTransaction", new { Id = item.Id, Area = "PharmacyModule" })" class="btn btn-sm btn-primary btn-xs">Select</a>
+                            </td>
+                            <td>@item.Regno</td>
+                            <td>@item.PatientsName</td>
+
+                            <td>@db.OpdRegisters.Find(Opd).Tariff.TariffName</td>
+
+                            <td>
+                                @if (item.Ipd == null)
+                                {@item.Opd}
+                            </td>
+                            <td>@item.Ipd</td>
+                            <td>@item.HivNo</td>
+                            <td>@item.TransactionId</td>
+                        </tr>
+                        }
+                        else
+                        {
+                        <tr>
+                            <td style="background-color:green">
+                                <a href="@Url.Action("DirectPatientIssueVoucher", "PharmacyPatientTransaction", new { Id = item.Id, Area = "PharmacyModule" })" class="btn btn-sm btn-primary btn-xs">Select</a>
+                            </td>
+                            <td>@item.Regno</td>
+                            <td>@item.PatientsName</td>
+
+                            <td>@db.OpdRegisters.Find(Opd).Tariff.TariffName</td>
+
+                            <td>
+                                @if (item.Ipd == null)
+                                {@item.Opd}
+                            </td>
+                            <td>@item.Ipd</td>
+                            <td>@item.HivNo</td>
+                            <td>@item.TransactionId</td>
+                        </tr>
+                        }
+                    }
+                }
+
+
+            }
+        }
+    </table>
+    <div class="col-md-7 col-md-offset-1">
+        <div class="col-md-12">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            of @Model.PageCount
+        </div>
+        <div class="col-md-12">
+            @Html.PagedListPager(Model, page => Url.Action("SearchPatientIssueVoucher", "PharmacyPatientTransaction", 
+           new { page, Area = "PharmacyModule", tDate = ViewBag.tDate, fDate = ViewBag.tDate }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+        </div>
+
+    </div>
+</div>

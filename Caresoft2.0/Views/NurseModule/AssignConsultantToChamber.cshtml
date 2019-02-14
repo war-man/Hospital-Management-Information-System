@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Assign Chamber to Consultant Physician";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                Assign Chamber to Consultant Physician
+            </div>
+            <div class="panel-body">
+                <form name="chamberMasterForm">
+                    <table class="form-table" width="100%">
+                        <tr>
+                            <td><label>Chamber No</label></td>
+                            <td>
+                                <select class="text-box" name="chamberNumber" id="chamberNumber">
+                                    <option>Select</option>
+                                </select>
+                            </td>
+                         </tr>
+                        <tr>
+                            <td><label>Doctor Name</label></td>
+                            <td>
+                                <fieldset class="inscroll marg-top-2px">
+
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="marg-top-2px">
+                        <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+                        <input type="button" class="btn btn-sm btn-primary" value="Save" />
+                    </div>
+                </form>
+
+                <table class="table table-data table-condensed marg-top-16px">
+                    <thead>
+                        <tr>
+                            <th>Chamber No</th>
+                            <th>Doctor Name</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

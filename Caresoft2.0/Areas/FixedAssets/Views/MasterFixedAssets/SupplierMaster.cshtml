@@ -1,0 +1,466 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.supplier>
+
+@{
+    ViewBag.Title = "SupplierMaster";
+    Layout = "~/Areas/FixedAssets/Views/Shared/_LayoutFixedAssets.cshtml";
+}
+
+
+<style>
+    .table-form tr {
+        height: 35px;
+    }
+
+    .text-box {
+        width: 250px;
+    }
+
+    .table > tbody + tbody {
+        background-color: white;
+    }
+</style>
+
+<div>
+    <div class="col-md-12">
+        <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+            <div class="panel-heading custom-navbar">
+                <p style="color:black">Supplier Details</p>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-7 col-md-offset-2">
+                        <form id="formSupplierMaster">
+                            <table class="table-form">
+                                <tr>
+                                    <td>Supplier Type</td>
+                                    <td>
+                                        <div id="type">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="General Supplier">General Supplier
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="Donor Supplier">Donor Supplier
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Supplier Name</td>
+                                    <td>
+                                        <input type="text" id="SupplierName" class="text-box" required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td>
+                                        <input type="text" id="SupplierAddress" class="text-box" multiple required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>City</td>
+                                    <td>
+                                        <input type="text" id="SupplierCity" class="text-box" multiple required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Telephone No</td>
+                                    <td>
+                                        <input type="text" id="SupplierTelephone" class="text-box" multiple required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fax No</td>
+                                    <td>
+                                        <input type="text" id="SupplierFax" class="text-box" multiple required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>
+                                        <input type="text" id="SupplierEmail" class="text-box" multiple email required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Web</td>
+                                    <td>
+                                        <input type="text" id="SupplierWeb" class="text-box" multiple required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="button" class="btn btn-sm btn-primary" value="Save" id="btnSave" />
+                                        <input type="hidden" class="btn btn-sm btn-primary" value="Save Edited Item" id="SaveEditedItem" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div id="result">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+                <hr />
+                <div class="" id="SupplierList">
+                    @Html.Partial("~/Areas/Procurement/Views/Shared/_SupplierList.cshtml", Model)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="DeleteSupplierModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Supplier Details </h4>
+            </div>
+            <div class="modal-body">
+                <div class="">
+                    <table class="table-form">
+                        <tr>
+                            <td>Supplier Code </td>
+                            <td id="SuppCode"></td>
+                        </tr>
+                        <tr>
+                            <td>Supplier Name </td>
+                            <td id="SuppName"></td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td id="Address"></td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td id="City"></td>
+                        </tr>
+                        <tr>
+                            <td>Telephone</td>
+                            <td id="Telephone"></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td id="Email"></td>
+                        </tr>
+                        <tr>
+                            <td>Fax Number</td>
+                            <td id="FaxNumber"></td>
+                        </tr>
+                        <tr>
+                            <td>Supp Type</td>
+                            <td id="SuppType"></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button" id="btnConfirmDelete" class="btn btn-primary btn-sm">Confirm Delete</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+
+        $(document).ready(function () {
+            DeleteSupplier();
+            EditSupplier();
+        })
+
+        $("#btnSave").click(function () {
+            var type = $("input:radio[name=optradio]:checked").val()
+            var name = $("#SupplierName").val();
+            var address = $("#SupplierAddress").val();
+            var city = $("#SupplierCity").val();
+            var telephone = $("#SupplierTelephone").val();
+            var fax = $("#SupplierFax").val();
+            var email = $("#SupplierEmail").val();
+            var web = $("#SupplierWeb").val();
+
+            var Model = { Supplier_Type: type, Supplier_Name: name, Supplier_Address: address, Supplier_City: city, Supplier_TelNo: telephone, Email: email, Fax: fax, };
+
+            console.log(Model);
+
+            var checkIfModelIsNull = false;
+
+            $.each(Model, function (key, value) {
+                if (value == "" || value == " " || value == null) {
+                    checkIfModelIsNull = true;
+                }
+            })
+
+            if (checkIfModelIsNull != true) {
+                $.ajax({
+                    type: "POST",
+                    url: '/MasterFixedAssets/SupplierMaster',
+                    data: Model,
+                    success: function (obj) {
+                        $("#formSupplierMaster")[0].reset();
+                        var result = $("#result");
+                        result.empty();
+
+                        result.append('<div class="alert alert-success">' +
+                            '<strong> Successful!</strong > Added Successfully.' +
+                            '</div>');
+
+                        //console.log(obj);
+                        UpdateSupplierList(obj);
+                        DeleteSupplier();
+
+                        //here the div containing the label successful is hidden after two seconds
+                        result.fadeTo(2000, 1000).slideUp(500, function () {
+                            result.slideUp(500);
+                        })
+                    },
+                    error: function () {
+                        var result = $("#result");
+                        result.empty();
+                        result.append('<div class="alert alert-warning">' +
+                            '<strong> Warning!</strong > An Error Occured.' +
+                            '</div>');
+                        //console.log(obj);
+
+                        //here the div containing the label successful is hidden after two seconds
+                        result.fadeTo(2000, 1000).slideUp(500, function () {
+                            result.slideUp(3000);
+                        })
+                        console.log("an error occured");
+                    }
+
+                });
+            }
+            else {
+                ShowResultError();
+            }
+
+
+
+        });
+
+        function UpdateSupplierList(data) {
+
+            //console.log(data);
+            var supplierList = $("#SupplierList");
+            supplierList.empty();
+            supplierList.append(data);
+        }
+
+
+        /* Deleting Supplier Details */
+        function DeleteSupplier() {
+            $(".deleteSupplier").click(function () {
+                var supplierCode = $(this).data("supplierid");
+
+                if (supplierCode != null || supplierCode != "" || supplierCode != " ") {
+                    $.ajax({
+                        type: 'GET',
+                        url: "/ProcurementMaster/DeleteSupplier",
+                        data: { supplierCode: supplierCode },
+                        beforeSend: function () { },
+                        success: function (obj) {
+                            UpdateDeleteModalWithValues(obj);
+                            $("#DeleteSupplierModal").modal('show');
+
+                        },
+                        error: function (x, y, z) { console.log(x.responseText); }
+
+                    })
+                }
+            })
+
+        }
+
+        function UpdateDeleteModalWithValues(obj) {
+            console.log(obj);
+            $("#SuppName").text(obj.Supplier_Name);
+            $("#SuppCode").text(obj.Supplier_Code);
+            $("#Address").text(obj.Supplier_Address);
+            $("#City").text(obj.Supplier_City);
+            $("#Telephone").text(obj.Supplier_TelNo);
+            $("#Email").text(obj.Email);
+            $("#FaxNumber").text(obj.Fax);
+            $("#SuppType").text(obj.Supplier_Type);
+
+        }
+
+        $("#btnConfirmDelete").click(function () {
+            var supplierCode = $("#SuppCode").text();
+
+            if (supplierCode != null || supplierCode != "" || supplierCode == " ") {
+                $.ajax({
+                    type: 'POST',
+                    url: '/ProcurementMaster/DeleteSupplierConfirmed',
+                    data: { supplierCode: supplierCode },
+                    beforeSend: function () { },
+                    success: function (obj) {
+                        //console.log(obj);
+                        UpdateSupplierList(obj);
+                        $("#DeleteSupplierModal").modal('hide');
+                        ShowResult();
+                        DeleteSupplier();
+                        EditSupplier();
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                    }
+                })
+            }
+        });
+
+        function ShowResult() {
+            var result = $("#result");
+            result.empty();
+
+            result.append('<div class="alert alert-success">' +
+                '<strong> Successful!</strong > Deleted.' +
+                '</div>');
+
+            //here the div containing the label successful is hidden after two seconds
+            result.fadeTo(2000, 1000).slideUp(500, function () {
+                result.slideUp(500);
+            });
+        }
+
+        function ShowResultError() {
+            var result = $("#result");
+            result.empty();
+
+            result.append('<div class="alert alert-warning">' +
+                '<strong> Error!</strong > Please Check your Entities.' +
+                '</div>');
+
+            //here the div containing the label successful is hidden after two seconds
+            result.fadeTo(2000, 1000).slideUp(500, function () {
+                result.slideUp(500);
+            });
+        }
+
+        /* End of Deleting Supplier Details */
+
+        /* Editing Supplier Details */
+
+        function EditSupplier() {
+            $(".editSupplier").click(function () {
+                var supplierCode = $(this).data("supplierid");
+
+                if (supplierCode != null || supplierCode != "" || supplierCode != " ") {
+                    $.ajax({
+                        type: 'GET',
+                        url: "/ProcurementMaster/DeleteSupplier",
+                        data: { supplierCode: supplierCode },
+                        beforeSend: function () { },
+                        success: function (obj) {
+                            UpdateFormTextBoxes(obj);
+                            console.log(obj);
+
+                        },
+                        error: function (x, y, z) { console.log(x.responseText); }
+
+                    })
+                }
+
+            });
+        }
+
+        function UpdateFormTextBoxes(obj) {
+
+            var supplier = document.getElementById("SupplierName");
+            supplier.setAttribute('data-suppliercode', obj.Supplier_Code);
+
+            $("input:radio[name=optradio]:checked").val()
+            $("#SupplierName").val(obj.Supplier_Name);
+            $("#SupplierName").data('supplier_code', obj.Supplier_Code);
+            $("#SupplierAddress").val(obj.Supplier_Address);
+            $("#SupplierCity").val(obj.Supplier_City);
+            $("#SupplierTelephone").val(obj.Supplier_TelNo);
+            $("#SupplierFax").val(obj.Fax);
+            $("#SupplierEmail").val(obj.Email);
+            $("#SupplierWeb").val();
+            $("#btnSave").attr("type", "hidden");
+            $("#SaveEditedItem").attr("type", "button");
+
+        }
+
+        $("#SaveEditedItem").click(function () {
+            var type = $("input:radio[name=optradio]:checked").val()
+            var name = $("#SupplierName").val();
+            var address = $("#SupplierAddress").val();
+            var city = $("#SupplierCity").val();
+            var telephone = $("#SupplierTelephone").val();
+            var fax = $("#SupplierFax").val();
+            var email = $("#SupplierEmail").val();
+            var web = $("#SupplierWeb").val();
+            var supplierCode = $("#SupplierName").data('suppliercode');
+
+
+            var Model = { Supplier_Type: type, Supplier_Code: supplierCode, Supplier_Name: name, Supplier_Address: address, Supplier_City: city, Supplier_TelNo: telephone, Email: email, Fax: fax, };
+
+            //console.log(Model);
+
+            $.ajax({
+                type: "POST",
+                url: '/ProcurementMaster/SupplierMasterEdit',
+                data: Model,
+                success: function (obj) {
+                    $("#formSupplierMaster")[0].reset();
+                    var result = $("#result");
+                    result.empty();
+
+                    result.append('<div class="alert alert-success">' +
+                        '<strong> Successful!</strong > Added Successfully.' +
+                        '</div>');
+
+                    //console.log(obj);
+                    UpdateSupplierList(obj);
+                    DeleteSupplier();
+                    EditSupplier();
+                    //here the div containing the label successful is hidden after two seconds
+                    result.fadeTo(2000, 1000).slideUp(500, function () {
+                        result.slideUp(500);
+                    })
+
+                    $("#btnSave").attr("type", "button");
+                    $("#SaveEditedItem").attr("type", "hidden");
+                },
+                error: function () {
+                    var result = $("#result");
+                    result.empty();
+                    result.append('<div class="alert alert-warning">' +
+                        '<strong> Warning!</strong > An Error Occured.' +
+                        '</div>');
+                    //console.log(obj);
+
+                    //here the div containing the label successful is hidden after two seconds
+                    result.fadeTo(2000, 1000).slideUp(500, function () {
+                        result.slideUp(3000);
+                    })
+                    console.log("an error occured");
+                }
+
+            });
+
+        })
+
+
+    </script>
+
+
+
+}
+
+
+
+

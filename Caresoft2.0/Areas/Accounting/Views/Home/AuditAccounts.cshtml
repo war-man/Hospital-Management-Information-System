@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "AuditAccounts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+}
+
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Writting Off Invoices
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Begin Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="Begin" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; End Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="End" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <table class="table table-data-pathology table-condensed">
+                            <tr>
+                                <th>Index</th>
+                                <th>Date</th>
+                                <th>Transaction No</th>
+                                <th>Patient Name</th>
+                                <th>Service</th>
+                                <th>Cashier</th>
+                                <th>Shift No</th>
+                                <th>Amount</th>
+                            </tr>
+                            <tbody style="background-color: white">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <button type="button" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Refresh Data</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

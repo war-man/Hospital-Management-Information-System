@@ -1,0 +1,148 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Physical Examination";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>@ViewBag.Title</p>
+    </div>
+    <style>
+        input.box-sm{
+            width:120px
+        }
+    </style>
+
+
+
+
+
+    <div class="panel-body">
+        <form method="post" action="@Url.Action("SavePhysicalExam","MCH")">
+            <input type="hidden" value="@Model.OpdRegister.Id" name="OPDNo"/>
+            <fieldset>
+                <table class="table-form">
+                    <tr>
+                        <td>
+                            <label>General</label>
+
+                        </td>
+                        <td colspan="3">
+                            <input type="text" name="General" class="text-box box-xlg" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>BP</label>
+
+                        </td>
+                        <td>
+                            <input type="text" name="BP" class="text-box" required />
+                        </td>
+                        <td>
+                            <label>Height(in cm)</label>
+
+                        </td>
+                        <td>
+                            <input type="number" name="Height" class="text-box" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>CVS</label>
+
+                        </td>
+                        <td>
+                            <input type="text" name="CVS" class="text-box" required />
+                        </td>
+                        <td>
+                            <label>Resp. </label>
+
+                        </td>
+                        <td>
+                            <input type="text" name="Resp" class="text-box" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                            <label>Breasts</label>
+
+                        </td>
+                        <td>
+                            <input type="text" name="Breasts" class="text-box" required />
+                        </td>
+                        <td>
+                            <label>Abdomen </label>
+
+                        </td>
+                        <td>
+                            <input type="text" name="Abdomen" class="text-box" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                            <label>Vaginal Examination</label>
+
+                        </td>
+                        <td>
+                            <input type="text" name="VaginalExamination" class="text-box" required />
+                        </td>
+                        <td>
+                            <label>Discharge/genital Ulcer </label>
+
+                        </td>
+                        <td>
+                            <input type="text" name="DischargeGenitalUlcer" class="text-box" required />
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="marg-top-16px">
+                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                    @Html.ActionLink("Continue", "AntenatalProfile", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+@style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+                    &nbsp;
+                    &nbsp;
+                    @Html.ActionLink("Previous", "PreviousPregnancy", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+         @style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+                </div>
+
+            </fieldset>
+            
+        </form>
+
+        @Html.Partial("PhysicalExamList", Model.OpdRegister.MCHPhysicalExaminations)
+        
+    </div>
+    
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+    </script>
+}
+
+

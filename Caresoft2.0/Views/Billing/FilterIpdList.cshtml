@@ -1,0 +1,95 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.OpdRegister>
+
+
+<table class="table table-data table-condensed " id="ipd_list">
+    <tr>
+        <th>
+            IPD No
+        </th>
+        <th>
+            RegNumber
+        </th>
+        <th>
+            Scheme
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Ward
+        </th>
+
+        <th>
+            Date
+        </th>
+
+        <th></th>
+    </tr>
+    <tbody class="bg-white">
+
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            var colorCode = "";
+            if (item.BillServices.FirstOrDefault(e => !e.Paid) != null)
+            {
+                if (item.Status == "Emergency")
+                {
+                    colorCode = "Emergency";
+                }
+                else
+                {
+                    colorCode = "Unpaid";
+                }
+
+            }
+            else if (item.Complaints.Count() < 1)
+            {
+                colorCode = "Unread";
+            }
+            else
+            {
+                colorCode = "Read";
+            }
+
+            if (item.Status.ToLower().Trim().Equals("emergency") && colorCode == "Unread")
+            {
+                colorCode = "Emergency";
+            }
+        <tr class="@colorCode tr-href" data-href="@Url.Action("Index", "Billing", new { id = item.Id })">
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient.RegNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tariff.TariffName)
+            </td>
+            <td>
+                @item.Patient.Salutation @item.Patient.FName @item.Patient.MName @item.Patient.LName
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.HSBed.HSWard.WardName)
+                @Html.DisplayFor(modelItem => item.HSBed.BedName)
+            </td>
+
+            <td>
+                @item.Date.ToString("dd-MMM-yyyy")
+            </td>
+
+            <td align="right">
+                <a href="@Url.Action("Index", "Billing", new { id = item.Id })" class="btn btn-xs btn-primary">Select</a>
+            </td>
+        </tr>
+        }
+
+        @{ if (Model.Count() < 1)
+            {
+                <tr>
+                    <td colspan="6" align="center"><em>No data was found matching your query</em></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

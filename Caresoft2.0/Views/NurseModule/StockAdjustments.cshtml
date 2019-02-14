@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Stock Adjustment";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                <table class="table-form">
+                    <tr>
+                        <td>
+                            <label>From Date</label>
+                        </td>
+                        <td>
+                            <input type="date" class="text-box" value='@DateTime.Now.ToString("yyyy-MM-dd")' />
+                        </td>
+                        <td>
+                            <label>To Date</label>
+                        </td>
+                        <td>
+                            <input type="date" class="text-box" value='@DateTime.Now.ToString("yyyy-MM-dd")' />
+                            <button class="btn btn-sm btn-primary" type="button">Show</button>
+                        </td>
+                    </tr>
+                   
+                </table>
+                <table class="table table-data table-condensed">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Item Description</th>
+                            <th>Adjusted Date</th>
+                            <th>Current Stock</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr>
+                            <td colspan="4" align="center">
+                                <label>No data at the moment</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="#" class="call-modal-form btn btn-sm btn-primary" data-opd="0" data-action="AdjustStockForm">Adjust Stock</a>
+            </div>
+        </div>
+    </div>
+</div>

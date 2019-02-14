@@ -1,0 +1,51 @@
+﻿@model Caresoft2._0.CustomData.TariffData
+@{
+    ViewBag.Title = "Tariff";
+    ViewBag.FormName = "Create Tariff";
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+}
+
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>Tariff</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tariff.TariffName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Tariff.TariffName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tariff.TariffName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tariff.CompanyId, "CompanyId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.DropDownList("CompanyId", null, htmlAttributes: new { @class = "form-control" })*@
+                    @Html.DropDownListFor(model => model.Tariff.CompanyId, new SelectList(Model.CompaniesList, "Id", "CompanyName"), "Select Company", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Tariff.CompanyId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group collapse">
+                @Html.LabelFor(model => model.Tariff.DateAdded, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Tariff.DateAdded, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tariff.DateAdded, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    
+    <div>
+        @Html.Partial("Index", Model.Tariffs)
+    </div>

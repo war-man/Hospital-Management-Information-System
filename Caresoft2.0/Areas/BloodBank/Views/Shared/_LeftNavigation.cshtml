@@ -1,0 +1,266 @@
+﻿@{
+    ViewBag.Title = "Finance";
+}
+
+<div>
+    <div class="menu-list">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Blood Bank
+            </div>
+            <div class="panel-body">
+                <table>
+                    <tr>
+                        <td>
+                            <a class="collapsible">
+                                Master Setting
+                            </a>
+                            <div class="content">
+                                <ul>
+                                    <li>
+                                        @Ajax.ActionLink("Master Setting", "MasterSetting", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td>
+                            <a class="collapsible">
+                                Blood Bank
+                            </a>
+                            <div class="content">
+                                <ul>
+                                    <li>
+                                        @Ajax.ActionLink("Blood Bank Information", "BloodBankInformation", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                    &nbsp;
+                                    <li>
+                                        @Ajax.ActionLink("Blood Components", "BloodComponets", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                    &nbsp;
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td>
+                            <a class="collapsible">
+                                Donor
+                            </a>
+                            <div class="content">
+                                <ul>
+                                    <li>
+                                        @Ajax.ActionLink("Donor Information", "DonorInformation", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                    &nbsp;
+                                    <li>
+                                        @Ajax.ActionLink("Donor Blood Grouping", "DonorBloodGrouping", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                    &nbsp;
+                                    <li>
+                                        @Ajax.ActionLink("Donor Blood Bank Test", "DonorBloodBankTest", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                    &nbsp;
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td>
+                            <a class="collapsible">
+                                Camp
+                            </a>
+                            <div class="content">
+                                <ul>
+                                    <li>
+                                        @Ajax.ActionLink("Camp Organizer", "CampOrganizer", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                    &nbsp;
+                                    <li>
+                                        @Ajax.ActionLink("Camp Information", "CampInformation", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td>
+                            <a class="collapsible">
+                                Patient
+                            </a>
+                            <div class="content">
+                                <ul>
+                                    <li>
+                                        @Ajax.ActionLink("Patient Requisition", "PatientRequisition", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                    &nbsp;
+                                    <li>
+                                        @Ajax.ActionLink("Patient Blood Grouping", "PatientBloodGrouping", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                    &nbsp;
+                                    <li>
+                                        @Ajax.ActionLink("Cross Match", "CrossMatch", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                    &nbsp;
+                                    <li>
+                                        @Ajax.ActionLink("Issue Blood Bag", "IssueBloodBag", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td>
+                            <a class="collapsible">
+                                Account
+                            </a>
+                            <div class="content">
+                                <ul>
+                                    <li>
+                                        @Ajax.ActionLink("Patient Bill", "PatientBill", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                    &nbsp;
+                                    <li>
+                                        @Ajax.ActionLink("Advance Bill Amount", "AdvanceBillAmount", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                    &nbsp;
+                                    <li>
+                                        @Ajax.ActionLink("Bill Refund", "BillRefund", "Home", new { @Area = "BloodBank" },
+                                  new AjaxOptions {
+                                      LoadingElementId = "loadingElement",
+                                      UpdateTargetId = "UniversalModalView",
+                                      OnSuccess = "$('#UniversalModal').modal('show');",
+                                      HttpMethod = "GET",
+                                  }, new { @class = "btn btn-xs"})
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td>
+                            <a class="collapsible">
+                                Reports
+                            </a>
+                            <div class="content">
+                                <ul>
+                                    <li>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>

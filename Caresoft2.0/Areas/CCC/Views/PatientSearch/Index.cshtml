@@ -1,0 +1,81 @@
+﻿
+@{
+                /**/
+
+                Layout = "~/Areas/HIV/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="col-md-2">
+
+
+    </div>
+</div>
+
+<div class="panel panel-primary caresoft-panel glass shadow">
+    <div class="panel-heading">
+        Patient Search
+    </div>
+</div>
+<div class="panel-body">
+</div>
+<form method="post">
+    <div class="col-md-12">
+    </div>
+    <div class="form-group">
+    </div>
+
+    <table>
+        <tbody>
+            <tr>
+                <td>First Name/RegNo</td>
+                <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px; margin-right:15px; margin-bottom:15px;" type="text" id="search" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <fieldset>
+        <legend>Personal Information</legend>
+    </fieldset>
+    <table>
+        <tr>
+            <td>Entry Date</td>
+            <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px; margin-right:15px;margin-top:15px; margin-bottom:15px;" type="date" id="datepicker" /></td>
+
+            <td>Entry Time</td>
+            <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px; margin-right:15px;margin-top:15px; margin-bottom:15px;" type="time" id="datepicker" /></td>
+        </tr>
+    </table>
+
+
+
+</form>
+
+
+
+@section scripts{
+    <script>
+
+       $("#search").autocomplete({
+            source: function (req, res) {
+                $.ajax({
+                    type: "GET",
+                    url: "@Html.Action("SearchPatient")",
+                    dataType: "json",
+                    data: { search: $("search").val() },
+
+                    success: function (data) {
+                        res($.map(data, function (item) {
+                            return { label: item.RegNumber, value: item.RegNumber, Id: item.Id };
+                        }));
+                    },
+
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            }
+        });
+    </script>
+
+}

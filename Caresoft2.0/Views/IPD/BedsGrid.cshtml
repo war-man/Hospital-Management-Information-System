@@ -1,0 +1,83 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HSWard>
+<style>
+    .bed-icon {
+        border: 1px solid black;
+        width: 20%;
+        border-radius: .4em;
+        background: #ffffff;
+        float: left;
+    }
+    
+    .bed-icon:hover {
+        background: var(--primary-light-color);
+        cursor: pointer;
+    }
+</style>
+@foreach (var ward in Model)
+{
+    <div class="row ward-entry" id="ward-@ward.Id">
+        <div class="col-sm-12">
+            <div class="panel panel-primary caresoft-panel" style="border: 1px solid #008000;">
+                <div class="panel-heading text-center" style="background: #008000; color: #fff; padding: .1em;">
+                    <label style="color: #BAD239; font-weight: 700; ">Ward Name: </label> @ward.WardName
+                    <label style="color: #BAD239; font-weight: 700; ">Floor: </label> @ward.HSFloor.FloorName
+                    <label style="color: #BAD239; font-weight: 700; ">Building: </label> @ward.HSFloor.HSBuilding.BuildingName
+                    <label style="color: #BAD239; font-weight: 700; ">Total Beds: </label> @ward.HSBeds.Count()
+                    <label style="color: #BAD239; font-weight: 700; ">Occupied Beds: </label>  @{ var occupied = ward.HSBeds.Sum(e => e.OpdRegisters.Where(r => r.Status.ToLower() == "active").ToList().Count());} @occupied
+                    <label style="color: #BAD239; font-weight: 700; ">Un Occupied Beds: </label> @(ward.HSBeds.Count() - occupied)
+                </div>
+                <div class="panel-body">
+                    @foreach (var bed in ward.HSBeds)
+                    {
+                        var paidColor = "text-success";
+                       
+                        <div class="bed-icon" style="padding: .2em;">
+                            <p id="bed-name-@bed.Id">@bed.BedName</p>
+
+                           @{ var everAdmited = bed.OpdRegisters.ToList(); var admit_button_class = "";}
+                               @if (everAdmited.FirstOrDefault(e => e.Status.ToLower().Trim().Equals("active")) != null)
+                               {
+                                   var admission = everAdmited.FirstOrDefault(e => e.Status.ToLower().Trim().Equals("active"));
+                                   var patient = admission.Patient;
+                                   admit_button_class = "collapse";
+                                   var isRecommendedDischarge = false;
+                                   if (admission.DischargeRecommendations != null)
+                                   {
+                                       //isRecommendedDischarge = admission.DischargeRecommendations.Count() > 0;
+
+                                       isRecommendedDischarge = true;
+                                   }
+
+                                   if (patient.OpdRegisters.Any(e => e.BillServices.Any(f => !f.Paid )))
+                                   {
+                                       paidColor = "text-danger";
+                                   }
+                                    <span class="pat-details">
+                                        <label id="patient-in-bed-@bed.Id" class="pat-name @paidColor">@patient.Salutation @(patient.FName?.ToLower()) @(patient.MName?.ToLower()) @(patient.LName?.ToLower())</label><br>
+
+                                        <img src="~/Content/icons/ipddashboardicons/admitpatient.png" />
+                                        <img class="img-shift-patient" data-bed-id="@bed.Id" data-admission-id="@admission.Id" src="~/Content/icons/ipddashboardicons/shifting1.png" />
+                                        @if (isRecommendedDischarge)
+                                        {
+                                        <img src="/Content/icons/ipddashboardicons/dischargel.png" onclick="dischargeMe(@admission.Id, this)">
+                                        }
+                                    </span>
+                                        
+                               }
+
+                                    <span class="admit_patient_icons @admit_button_class ">
+                                        <label>&nbsp;</label>
+                                        <br />
+                                        <img data-bed-id="@bed.Id" class="call-modal-form" data-action="@Url.Action("IPDAdmissionForm", "IPD", new { id = bed.Id })"
+                                             data-callback="IPDAdmissionFormModalListener" src="~/Content/icons/ipddashboardicons/bed1.png" title="Admit" />
+                                    </span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

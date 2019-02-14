@@ -1,0 +1,189 @@
+﻿@model Caresoft2._0.CustomData.A4ReceiptData
+
+<style>
+    .caresoftTable{
+        margin:20px;
+    }
+</style>
+
+<div class="container col-md-4 col-md-offset-3">
+
+    <div class="" id="printArea">
+
+        <table class="caresoftTable">
+            <tr><td><h3>SOS HOSPITAL</h3></td></tr>
+            <tr><td><h3>Address: SOS 0100 22 KITUI</h3></td></tr>
+            <tr><td><h3>TEL: 000-4422221</h3></td></tr>
+        </table>
+
+        <hr style="height:2px;background-color:red">
+
+        <table class="caresoftTable">
+            <tr>
+                <td> <h3 style="color:blue">Patient Detail Report</h3></td>
+            </tr>
+            <tr>
+                <td><p>@DateTime.Now</p></td>
+            </tr>
+        </table>
+
+        <hr style="height:2px;background-color:black">
+
+
+        <table class="caresoftTable">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td><b>MR . No.</b></td>
+                            <td>SOS-A-000649/1</td>
+                        </tr>
+                        <tr>
+                            <td><b>Bill No.</b></td>
+                            <td>512</td>
+                        </tr>
+                        <tr>
+                            <td><b>Type</b></td>
+                            <td>General Cash</td>
+                        </tr>
+                        <tr>
+                            <td><b>Name</b> </td>
+                            <td>Mr Anit G Rana</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>OPD No</b>
+                            </td>
+                            <td>467</td>
+                        </tr>
+                        <tr>
+                            <td><b>Bill Dt</b></td>
+                            <td>@DateTime.Now</td>
+                        </tr>
+                    </table>
+                </td>
+
+            </tr>
+        </table>
+
+
+
+        <hr style="height:2px;background-color:seagreen">
+
+        <h3>Consultation Charges</h3>
+
+        <hr style="height:2px;background-color:black">
+
+        <hr style="width:5px; color:red;" />
+
+        <table class="table table-sm caresoftTable">
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Units</th>
+                <th>Line Total</th>
+            </tr>
+            <tr>
+                <td>Room Consultation</td>
+                <td>Ksh. 720.00</td>
+                <td>1.0</td>
+                <td>Ksh. 720</td>
+            </tr>
+            <tr>
+                <td>Medical Examination</td>
+                <td>Ksh. 200</td>
+                <td>1.0</td>
+                <td>Ksh. 200</td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td> <b>TOTAL: </b></td>
+                    <td>Ksh. 920</td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="color:red; font-weight:bold">Total Amt: </td>
+                    <td>Ksh 920 </td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="color:red;font-weight:bold">Amount Paid: </td>
+                    <td>Ksh 720 </td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="color:red;font-weight:bold">Discount: </td>
+                    <td>Ksh 0.00 </td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="color:red;font-weight:bold">Balance: </td>
+                    <td>Ksh 200 </td>
+
+                </tr>
+            </tfoot>
+        </table>
+        <p>Recieved with thanks sum of Ksh 720.00/=  from Ankit G Rana</p>
+        <table class="table table-bordered caresoftTable" style="margin:10px">
+            <tr>
+                <th>Receipt Date</th>
+                <th>Reciept</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>02/03/2018</td>
+                <td>C-2</td>
+                <td>720.00</td>
+            </tr>
+        </table>
+
+        <hr style="height:2px;background-color:red">
+
+        <p style="font-style:oblique">User Name: Kimb</p>
+
+    </div>
+
+    @using (Html.BeginForm("PrintSmallReceipt", "Billing", FormMethod.Post, new
+    { enctype = "text/javasrcript" }))
+    {
+        <input type="button" class="btn btn-primary pull-right" value="Print Receipt" id="btn" style="margin:5px" />
+    }
+
+</div>
+
+@section scripts{
+    
+<script src="~/Scripts2/jQuery.print.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#btn').click(function () {
+            $('#printArea').print({
+                globalStyles: true,
+                mediaPrint: false,
+                stylesheet: null,
+                noPrintSelector: ".no-print",
+                iframe: true,
+                append: null,
+                prepend: null,
+                manuallyCopyFormValues: true,
+                deferred: $.Deferred(),
+                timeout: 750,
+                title: null,
+                doctype: '<!doctype html>'
+            });
+        });
+    });
+</script>
+  
+    }

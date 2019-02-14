@@ -1,0 +1,178 @@
+﻿@model IEnumerable<LabsDataAccess.WorkOrder>
+
+@{
+    int main_department_id = ViewBag.main_department_id;
+    var ShowInQueueBillNotPaid = ViewBag.ShowInQueueBillNotPaid;
+}
+
+<table class="table table-condensed table-data-pathology">
+    <thead class="bg-primary">
+        <tr class="table-primary">
+            <th style="width:40px"></th>
+            <th>Lab No</th>
+            <th>OPD/IPD No</th>
+            <th>Path No</th>
+            <th>Patient Name</th>
+            <th>Sex</th>
+            <th>Age</th>
+            <th>MDY</th>
+            <th>Submit</th>
+            <th>Submit and Preview</th>
+            <th>Sample Condition</th>
+            <th>History</th>
+            <th>Investigation</th>
+            <th>Sample</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @if (Model.Count() == 0)
+        {
+            <tr class="table-primary">
+                <td colspan="13" class="text-center"><strong>No data to Display</strong></td>
+
+            </tr>
+        }
+        @foreach (var item in Model)
+        {
+
+            using (CaresoftHMISDataAccess.CaresoftHMISEntities entity = new CaresoftHMISDataAccess.CaresoftHMISEntities())
+            {
+                var patient = entity.OpdRegisters.SingleOrDefault(e => e.Id == item.OPDNo);
+
+                var color = "black";
+                var textcolor = "white";
+
+                var color_text = "black";
+
+
+                if (item.WorkOrderTests.Where(f => f.LabTest.DepartmentRadPath == main_department_id).All(e => e.BillPaid == false && e.LabTest.DepartmentRadPath == main_department_id))
+                {
+                    color = "var(--LabsColorPendingBill)";
+                    textcolor = "White";
+
+                }
+                else if (item.WorkOrderTests.Where(f => f.LabTest.DepartmentRadPath == main_department_id).All(e => e.BillPaid == true && e.LabTest.DepartmentRadPath == main_department_id))
+                {
+                    color = "var(--LabsColorBillPaid)";
+                    textcolor = "Black";
+
+                }
+                else if (item.WorkOrderTests.Where(f => f.LabTest.DepartmentRadPath == main_department_id).Any(e => e.BillPaid == true && e.LabTest.DepartmentRadPath == main_department_id))
+                {
+                    color = "var(--LabsColorPartialBillPaid)";
+                }
+                else if (item.Accession_Status == 0)
+                {
+                    color = "#F073F0";
+                }
+                else if (item.Accession_Status != 0)
+                {
+                    color = "#008000";
+                }
+
+
+                if (item.ShowInSpecimentResultEnty != null && item.ShowInSpecimentResultEnty == true)
+                {
+                    color_text = "var(--LabsColorAccessionDonePatient)";
+                }
+                else
+                {
+                    color_text = "var(--LabsColorAccessionPendingPatient)";
+                }
+
+            <tr id="wo_row_id@(item.Id)" style="color: @color_text;">
+                <td>
+                    @if ((item.OPDType.Trim() == "OPD" && item.WorkOrderTests.Any(e => e.BillPaid)) || item.OPDType.Trim() == "IPD" || ShowInQueueBillNotPaid.ToLower() == "true")
+                    {
+                        <img style="height:15px;" id="@item.Id" class="toggle-testlist" data-toggle="collapse" href="#toggle@(item.Id)" OPD="@item.OPDNo" row-Id="@item.Id" src="~/Content/icons/treeviewicons/button-closed.png" />
+                    }
+                    else
+                    {
+                        <img style="height:15px;" href="#toggle@(item.Id)" OPD="@item.OPDNo" src="~/Content/icons/treeviewicons/button-closed.png" />
+                    }
+
+                </td>
+                <td style="color: @textcolor!important ;background: @color">
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>@item.OPDType : @item.OPDNo</td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PathNo)
+                </td>
+                <td style="color: @color_text;">
+                    @patient.Patient.FName @patient.Patient.MName @patient.Patient.LName
+                </td>
+                <td>
+                    @patient.Patient.Gender
+                </td>
+                <td>
+                    @{
+                        if (patient.Patient.DOB != null)
+                        {
+                            var age = (int)((DateTime.Now - (DateTime)patient.Patient.DOB).TotalDays) / 365;
+                            @age
+
+                        }
+
+                    }
+                </td>
+                <td>
+                    Years
+                </td>
+                @if ((item.OPDType.Trim() == "OPD" && item.WorkOrderTests.Any(e => e.BillPaid)) || item.OPDType.Trim() == "IPD" || ShowInQueueBillNotPaid.ToLower() == "true")
+                {
+                    <td>
+                        <button type="button" class="btn btn-xs btn-primary submitbuttons" Rowid="@item.Id" OPD="@item.OPDNo">Submit</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-xs btn-primary submitpreviewbuttons" Rowid="@item.Id" OPD="@item.OPDNo">Submit and Preview</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-xs btn-primary sampleconditionbuttons" Rowid="@item.Id" OPD="@item.OPDNo">Sample Condition</button>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <button type="button" disabled class="btn btn-xs btn-primary submitbuttons" Rowid="@item.Id" OPD="@item.OPDNo">Submit</button>
+                    </td>
+                    <td>
+                        <button type="button" disabled class="btn btn-xs btn-primary submitpreviewbuttons" Rowid="@item.Id" OPD="@item.OPDNo">Submit and Preview</button>
+                    </td>
+                    <td>
+                        <button type="button" disabled class="btn btn-xs btn-primary sampleconditionbuttons" Rowid="@item.Id" OPD="@item.OPDNo">Sample Condition</button>
+                    </td>
+                }
+                <td>
+                    @Ajax.ActionLink("History", "PatientHistory", "Reports", new { id = item.OPDNo }, new AjaxOptions
+               {
+                   UpdateTargetId = "UniversalModalView",
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   LoadingElementId = "loadingElement",
+                   OnSuccess = "$('#UniversalModal').modal('show');"
+
+               }, new {@class="btn btn-xs btn-primary" })
+                </td>
+                <td><button type="button" disabled class="btn btn-xs btn-primary sampleconditionbuttons" Rowid="@item.Id" OPD="@item.OPDNo">Investigation</button></td>
+                <td><button type="button" disabled class="btn btn-xs btn-primary sampleconditionbuttons" Rowid="@item.Id" OPD="@item.OPDNo">Sample</button></td>
+
+            </tr>
+
+            }
+
+            <tr>
+                <td id="labTestListHolder@(item.Id)" colspan="13" class="collapse" style="background:white">
+                    <div style="margin: 0 50px 0 50px" id="toggle@(item.Id)" class="panel-collapse collapse">
+                        <div class="text-center" id="labTestList@(item.Id)">
+                            No Tests To Display
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

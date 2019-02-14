@@ -1,0 +1,2003 @@
+﻿@{
+
+    var worktrade = (List<CaresoftHMISDataAccess.MaintenceWorkTrade>)ViewBag.Worktrade;
+    var worktype = (List<CaresoftHMISDataAccess.MaintenaceWorkType>)ViewBag.worktypes;
+
+    ViewBag.Title = "Maintenance";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    /* Add an active class to the active dropdown button */
+
+    /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+    .dropdown-container {
+        display: none;
+        background-color: #262626;
+        padding-left: 8px;
+    }
+
+    /* Optional: Style the caret down icon */
+    .fa-caret-down {
+        float: right;
+        padding-right: 8px;
+    }
+    /* On mouse-over */
+    .list-group a:hover, .dropdown-btn:hover {
+        color: blue;
+    }
+</style>
+
+<div style="min-height:75vh; background-image: url('../../Content/Images/maintenace-equip.jpg'); background-repeat: no-repeat; background-size: cover;">
+    <div class="col-md-2">
+
+        <div class="panel caresoft-panel panel-primary">
+            <div class="panel-heading">
+
+            </div>
+            <script>
+                /* When the user clicks on the button,
+                toggle between hiding and showing the dropdown content */
+                function myFunction() {
+                    document.getElementById("myDropdown").classList.toggle("show");
+                }
+
+                // Close the dropdown if the user clicks outside of it
+
+                window.onclick = function (event1) {
+                    //alert();
+                    if (!event1.target.matches('.dropdown-btn1')) {
+
+                        var dropdowns1 = document.getElementsByClassName("dropdown-content1");
+                        var i;
+                        for (i = 0; i < dropdowns1.length; i++) {
+                            var openDropdown = dropdowns1[i];
+                            if (openDropdown.classList.contains('show')) {
+                                openDropdown.classList.remove('show');
+                            }
+                        }
+                    }
+                    if (!event.target.matches('.dropdown-btn2')) {
+                        var dropdowns = document.getElementsByClassName("dropdown-content2");
+                        var i;
+                        for (i = 0; i < dropdowns.length; i++) {
+                            var openDropdown = dropdowns[i];
+                            if (openDropdown.classList.contains('show')) {
+                                openDropdown.classList.remove('show');
+                            }
+                        }
+                    }
+                }
+                function my2Function() {
+                    document.getElementById("my2Dropdown").classList.toggle("show");
+
+
+                }
+
+                // Close the dropdown if the user clicks outside of it
+
+            </script>
+            <style type="text/css">
+                .dropdown-content1 {
+                    display: none;
+                    position: absolute;
+                    background-color: deepskyblue;
+                    min-width: 160px;
+                    overflow: auto;
+                    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                    z-index: 1;
+                }
+
+                .dropdown-content2 {
+                    display: none;
+                    position: absolute;
+                    background-color: deepskyblue;
+                    min-width: 160px;
+                    overflow: auto;
+                    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                    z-index: 1;
+                }
+
+
+                .dropdown-content1 a {
+                    color: white;
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    display: block;
+                }
+
+                .dropdown-content2 a {
+                    color: white;
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    display: block;
+                }
+            </style>
+            <div class="panel-body">
+                <div class="list-group">
+
+                    <a href="#" class="list-group-item active"><i class="fa fa-key"></i> <span>Maintenance Panel</span></a>
+                    <a href="#" class="list-group-item" data-toggle="modal" data-target="#amc-master"><i class="fa fa-credit-card"></i> <span>AMC Master</span></a>
+                    <a href="#" class="dropdown-btn1  list-group-item" onclick="myFunction()"> <i class="fa fa-caret-down"></i> <span>Maintenace Wordorder</span></a>
+                    <a href="#" class="list-group-item " data-toggle="modal" data-target="#pm-master"><i class="fa fa-question-circle"></i> <span>PM Master</span></a>
+
+                    <div id="myDropdown" class="dropdown-content1">
+                        <a href="#" data-toggle="modal" data-target="#safety-instruction"><i class="fa fa-arrow-circle-o-left"></i> <span>Safety Instructions</span></a>
+                        <a href="#" data-toggle="modal" data-target="#stock-report"><i class="fa fa-arrow-circle-o-left"></i> <span>Stock Details</span></a>
+                        <a href="#" data-toggle="modal" data-target="#cssd-request"><i class="fa fa-arrow-circle-o-left"></i> <span>Work Type</span></a>
+                    </div>
+
+
+                    <a href="#" class="list-group-item" data-toggle="modal" data-target="#current-stock"><i class="fa fa-book"></i> <span>Item Stock</span></a>
+                    <a href="#" class="dropdown-btn2 list-group-item " onclick="my2Function()"><i class="fa fa-caret-down"></i> <span>Depreciation</span></a>
+                    <div id="my2Dropdown" class="dropdown-content2">
+                        <a href="#" data-toggle="modal" data-target="#depreciation-inventory"><i class="fa fa-arrow-circle-o-left"></i> <span>Depreciation In Inventory</span></a>
+                        <a href="#" data-toggle="modal" data-target="#depreciation-calculation"><i class="fa fa-arrow-circle-o-left"></i> <span>Depreciation Calculation</span></a>
+
+                    </div>
+                    <a href="#" class="list-group-item" data-toggle="modal" data-target="#sample-bi"><i class="fa fa-book"></i> <span>Sample BI</span></a>
+                </div>
+
+            </div>
+
+            <div class="modal fade" id="amc-master" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="width:850px;">
+                    <div class="modal-content">
+
+                        <div class="panel panel-primary caresoft-panel">
+                            <div class="panel-heading">
+                                AMC Details
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="panel-body">
+                                    @using (Ajax.BeginForm("SaveAMCMaster", "Maintenance", new { }, new AjaxOptions
+                                    {
+                                        LoadingElementId = "loadingElement",
+                                        HttpMethod = "POST",
+                                        UpdateTargetId = "",
+                                        OnFailure = "showNotification('Failed', 'danger', 'false')",
+                                        OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                                    }))
+                                    {
+                                        <form id="cleanup" method="post" action="@Url.Action("SaveAMCMaster", "Maintenance")">
+                                            <table class="table-form">
+                                                <tr>
+                                                    <td>
+                                                        <label>Provider Name</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="text-box box-lg" name="ProviderName" />
+                                                    </td>
+
+
+
+                                                </tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <tr>
+                                                    <td>
+                                                        <label>AMC Start date</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="date" class="text-box box-lg" name="AMCStartDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                                    </td>
+                                                    <td>
+                                                        <label>AMC End date</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="date" class="text-box box-lg" name="AMCEndDate" />
+                                                    </td>
+
+                                                </tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+
+
+                                                <tr>
+                                                    <td>
+                                                        <label>Category</label>
+                                                    </td>
+                                                    <td>
+                                                        <select class="text-box box-lg" name="AMCCategory">
+                                                            <option>Select Category</option>
+                                                            <option>CSSD</option>
+                                                            <option>Furniture</option>
+                                                            <option>Pathogy</option>
+                                                        </select>
+                                                    </td>
+
+                                                </tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <tr>
+                                                    <td>
+                                                        <label>Product Name</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="text-box box-lg" name="ProductName" />
+                                                    </td>
+                                                    <td>
+                                                        <label>Warranty upto</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="date" class="text-box box-lg" name="WarrantUpto" disabled />
+                                                    </td>
+
+                                                </tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <tr>
+                                                    <td>
+                                                        <label>Cost Price</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="text-box box-lg" name="AMCCostPrice" />
+                                                    </td>
+                                                    <td>
+                                                        <label>AMC Bill Amount</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="Text" class="text-box box-lg" name="AMCBillAmount" />
+                                                    </td>
+
+                                                </tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <tr>
+                                                    <td>
+                                                        <label>Select File</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="file" name="myFile" class="text-box box-lg">
+                                                    </td>
+                                                </tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <tr>
+                                                    <td>
+                                                        <label>Remarks</label>
+                                                    </td>
+                                                    <td>
+                                                        <textarea type="text" class="text-box box-lg" name="Remarks"> </textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div>
+                                                <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+                                                <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+                                            </div>
+
+                                        </form>
+
+                                    }
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="safety-instruction" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="width:650px;">
+                    <div class="modal-content">
+
+                        <div class="panel panel-primary caresoft-panel">
+                            <div class="panel-heading">
+                                Safety Instructions
+                            </div>
+                            <div class="panel-body">
+
+
+                                @using (Ajax.BeginForm("SaveSafetyInstruction", "Maintenance", new { }, new AjaxOptions
+                                {
+                                    LoadingElementId = "loadingElement",
+                                    HttpMethod = "POST",
+                                    UpdateTargetId = "",
+                                    OnFailure = "showNotification('Failed', 'danger', 'false')",
+                                    OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                                }))
+                                {
+                                    <form id="cleanup" method="post" action="@Url.Action("SaveSafetyInstruction", "Maintenance")">
+                                        <table class="table-form">
+                                            <tr>
+                                                <td>
+                                                    <label>Model No/Name</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="text-box box-lg" name="ModelNoName" />
+                                                </td>
+
+
+
+                                            </tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <tr>
+                                                <td>
+                                                    <label>Safety Instructions</label>
+                                                </td>
+                                                <td>
+                                                    <textarea type="text" class="text-box box-lg" name="SafetyInstruction"></textarea>
+
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+                                        <div>
+                                            <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+                                            <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+                                        </div>
+
+                                    </form>
+
+                                }
+
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="modal fade" id="stock-report" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="width:750px;">
+                    <div class="modal-content">
+                        @model CaresoftHMISDataAccess.Patient
+                        @using CaresoftHMISDataAccess
+
+                        @{
+                            var rHeader = "_DefaultReportsHeader";
+
+                            var db = new CaresoftHMISEntities();
+                        }
+
+                        <div class="panel panel-primary caresoft-panel">
+                            <div class="panel panel-heading">
+                                <button class="btn btn-xs btn-warning" title="Print Report" onclick="$('page').print()"><i class="fa fa-print"></i></button>
+                                &nbsp;
+                                <button class="btn btn-xs btn-danger" title="Download PDF Report"><i class="fa fa-file-pdf-o"></i></button>
+                                &nbsp;
+                                <button class="btn btn-xs btn-success" title="Export to Excel"><i class="fa fa-file-excel-o"></i></button>
+
+                                <button style="margin-bottom:50px;" type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">X</button>
+
+                            </div>
+                            <div class="panel-body">
+                                <page size="@ViewBag.Size" orientation="@ViewBag.Orientation">
+                                    @Html.Partial(rHeader)
+
+                                    <div style=" padding:5px; " class="text-center">
+                                        <strong>Stock Monitoring</strong>
+                                    </div>
+                                    <div>
+                                        <div style="width:100%; background:red!important; height:2px!important;"></div>
+
+                                        <div style=" margin:5px; ">
+                                            <strong style="color:blue;">
+                                                Item general report:
+                                            </strong>
+                                            <div style=" margin:5px; ">
+                                                <table width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th><strong style="color:red!important;"> Category No: </strong> &nbsp; &nbsp;  </th>
+
+                                                            <th><strong style="color:red!important;"> Category Name: </strong>  &nbsp;</th>
+
+
+
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th><strong style="color:red!important;">Model No: </strong> &nbsp; &nbsp;</th>
+
+                                                            <th><strong style="color:red!important;"> Model Name: </strong> &nbsp; &nbsp; </th>
+
+                                                            <th><strong style="color:red!important;"> Item Name: &nbsp; &nbsp; </strong></th>
+
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th><strong style="color:red!important;"> Item Name :</strong> &nbsp; &nbsp; </th>
+
+                                                            <th><strong style="color:red!important;"> Item Description: </strong> &nbsp; &nbsp;</th>
+
+                                                            <th><strong style="color:red!important;"> Date of purchase: </strong>  &nbsp; &nbsp;</th>
+
+
+
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div style="width:100%; background:red!important; height:2px!important;"></div>
+
+
+                                        <div style="border:1px solid gray!important; margin:5px!important">
+
+
+                                            <div style=" margin:5px; ">
+
+                                                <div style=" margin:5px; ">
+
+                                                    <div style=" margin:5px; ">
+                                                        <table width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="20%"><strong style="color:red!important;"> Current Stock: </strong> &nbsp; &nbsp;  </th>
+
+                                                                    <th width="40%"><strong style="color:red!important;"> Re-Order Level: </strong>  &nbsp;</th>
+
+
+
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div style=" margin:5px; ">
+
+                                                <div style=" margin:5px; ">
+                                                    <strong style="color:blue;">
+                                                        History:
+                                                    </strong>
+                                                    <div style=" margin:5px; ">
+
+                                                        <table width="100%" class="table-data-pathology">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="text-center">
+                                                                        <span style="color:red!important;">Rate of Depreciation</span>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+
+                                                                    <td class="text-center">
+                                                                        No data available
+                                                                    </td>
+
+
+
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <br />
+
+                                                        <table width="100%" class="table-data-pathology">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="text-center">
+                                                                        <span style="color:red!important;">Servicing done</span>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="text-center">
+                                                                        No previous service
+                                                                    </td>
+
+                                                                    <td></td>
+
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <br />
+
+                                                        <table width="100%" class="table-data-pathology">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="text-center">
+                                                                        <span style="color:red!important;">Safety Instructions</span>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+
+                                                                    <td class="text-center">
+                                                                        No info available
+                                                                    </td>
+
+
+
+
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <br />
+                                                        <table width="100%" class="table-data-pathology">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th colspan="4" class="text-center">
+                                                                        <span style="color:red!important;">Reported Complaints</span>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+
+                                                                    <td class="text-center">
+                                                                        No Confirmed Complaints
+                                                                    </td>
+
+
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <br />
+
+                                                        <table width="100%" class="table-data-pathology">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th colspan="5" rowspan="2" class="text-center">
+                                                                        <span style="color:red!important;">Scheduled PM</span>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="text-danger" style="background-color:rgba(0, 0, 0, 0.2)!important;">
+                                                                    <td><b>Sceduling Type</b></td>
+                                                                    <td><b>Scheduled date</b></td>
+                                                                    <td><b>Scheduled time</b></td>
+                                                                    <td><b>Assigned to</b></td>
+                                                                    <td><b>Due Date</b></td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td colspan="5" class="text-center">No Schedule Data</td>
+                                                                </tr>
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <br />
+                                        <br />
+
+
+
+                                    </div>
+                                </page>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="current-stock" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="width:800px;">
+                    <div class="modal-content">
+
+                        <div class="panel panel-primary caresoft-panel">
+                            <div class="panel-heading">
+                                Safety Instructions
+                            </div>
+                            <div class="panel-body">
+
+
+                                @using (Ajax.BeginForm("SaveSafetyInstruction", "Maintenance", new { }, new AjaxOptions
+                                {
+                                    LoadingElementId = "loadingElement",
+                                    HttpMethod = "POST",
+                                    UpdateTargetId = "",
+                                    OnFailure = "showNotification('Failed', 'danger', 'false')",
+                                    OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                                }))
+                                {
+                                    <form id="cleanup" method="post" action="@Url.Action("SaveSafetyInstruction", "Maintenance")">
+                                        <table class="table-form">
+                                            <tr>
+                                                <td>
+                                                    <label>Model No/Name</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="text-box box-lg" name="ModelNoName" />
+                                                </td>
+
+                                                <td>
+                                                    <label>Model Number</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="text-box box-lg" name="ModelNo" />
+
+                                                </td>
+
+
+
+                                        </table>
+                                        <div>
+                                            <input type="submit" class="btn btn-sm btn-primary" value="submit" />
+
+                                        </div>
+                                        <div></div>
+
+                                        <div>
+                                            <table id="Stock Table" class="table table-data-pathology table-condensed">
+
+                                                <thead>
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Model Number</th>
+                                                        <th>Model Name</th>
+                                                        <th>Description</th>
+                                                        <th>Current Stock Totals</th>
+
+
+
+                                                    </tr>
+                                                    <tr class="bg-white">
+                                                        <td colspan="5" class="text-center">No available Data</td>
+                                                    </tr>
+                                                </thead>
+
+                                            </table>
+                                        </div>
+
+
+
+                                    </form>
+
+                                }
+
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                jQuery(document).ready(function ($) {
+
+                    $('#depreciation-inventory').on('shown.bs.modal', function () {
+
+                        function yesnoCheck() {
+                            alert();
+                            if (document.getElementById('yesCheck').checked) {
+                                document.getElementById('ifYes').style.display = 'block';
+                            }
+                            else document.getElementById('ifYes').style.display = 'none';
+
+                        }
+                    });
+                });
+            </script>
+            <div class="modal fade" id="depreciation-inventory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="width:800px;">
+                    <div class="modal-content">
+
+                        <div class="panel panel-primary caresoft-panel">
+                            <div class="panel-heading">
+                                Depreciation in Inventory
+                            </div>
+
+                            <div class="panel-body">
+
+
+                                @using (Ajax.BeginForm("SaveSafetyInstruction", "Maintenance", new { }, new AjaxOptions
+                                {
+                                    LoadingElementId = "loadingElement",
+                                    HttpMethod = "POST",
+                                    UpdateTargetId = "",
+                                    OnFailure = "showNotification('Failed', 'danger', 'false')",
+                                    OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                                }))
+                                {
+                                    <form id="cleanup" method="post" action="@Url.Action("SaveSafetyInstruction", "Maintenance")">
+                                        <table class="table-form">
+                                            <tr>
+                                                <td>
+                                                    <input onclick="document.getElementById('custom').disabled = false; document.getElementById('charstype').disabled = true;" type="radio" name="type" checked="checked">Straight Line Method
+                                                    <input onclick="document.getElementById('custom').disabled = true; document.getElementById('charstype').disabled = false;" type="radio" name="type" value="customurl">Reduced Balance Method
+
+
+                                                </td>
+                                            </tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <tr>
+
+                                                <td>
+                                                    <label>Enter Category</label>
+                                                </td>
+                                                <td>
+                                                    <select class="text-box box-lg" name="">
+                                                        <option>select</option>
+                                                        <option>Funiture</option>
+                                                        <option>CSSD</option>
+                                                        <option>Pathology</option>
+
+                                                    </select>
+                                                </td>
+
+                                            </tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <tr>
+                                                <td>
+                                                    <label>No of Years to depreciate</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="" id="custom" />
+                                                </td>
+                                            </tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <tr>
+                                                <td>
+                                                    <label>Reduced Line %</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="" id="charstype" disabled="disabled" />
+                                                </td>
+                                            </tr>
+
+
+
+                                        </table>
+                                        <div>
+                                            <input type="submit" class="btn btn-sm btn-primary" value="submit" />
+
+                                        </div>
+                                        <div></div>
+
+                                        <div>
+                                            <table id="Stock Table" class="table table-data-pathology table-condensed">
+
+                                                <thead>
+                                                    <tr>
+                                                        <th>Edit</th>
+                                                        <th>Category No</th>
+                                                        <th>Category Name</th>
+                                                        <th>years depreciation</th>
+                                                        <th>Reducing Balance %</th>
+                                                        <th>Delete</th>
+
+
+
+                                                    </tr>
+                                                    <tr class="bg-white">
+                                                        <td colspan="5" class="text-center bg-white">No available Data</td>
+                                                    </tr>
+                                                </thead>
+
+                                            </table>
+                                        </div>
+
+
+
+                                    </form>
+
+                                }
+
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="depreciation-calculation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="width:800px;">
+                    <div class="modal-content">
+
+                        <div class="panel panel-primary caresoft-panel">
+                            <div class="panel-heading">
+                                Depreciation Calculation
+                            </div>
+
+                            <div class="panel-body">
+
+
+                                @using (Ajax.BeginForm("SaveSafetyInstruction", "Maintenance", new { }, new AjaxOptions
+                                {
+                                    LoadingElementId = "loadingElement",
+                                    HttpMethod = "POST",
+                                    UpdateTargetId = "",
+                                    OnFailure = "showNotification('Failed', 'danger', 'false')",
+                                    OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                                }))
+                                {
+                                    <form id="cleanup" method="post" action="@Url.Action("SaveSafetyInstruction", "Maintenance")">
+                                        <table class="table-form">
+
+                                            <tr>
+
+                                                <td>
+                                                    <label>Enter Category</label>
+                                                </td>
+                                                <td>
+                                                    <select class="text-box box-lg" name="">
+                                                        <option>select</option>
+                                                        <option>Funiture</option>
+                                                        <option>CSSD</option>
+                                                        <option>Pathology</option>
+
+                                                    </select>
+                                                </td>
+
+                                            </tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <tr>
+                                                <td>
+                                                    <label>Item Name</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="" />
+                                                </td>
+                                            </tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <tr>
+                                                <td>
+                                                    <label>Formula Parcent %</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="" />
+                                                </td>
+                                            </tr>
+
+
+
+                                        </table>
+                                        <div>
+                                            <input type="submit" class="btn btn-sm btn-primary" value="submit" />
+
+                                        </div>
+                                        <div></div>
+
+                                        <div>
+                                            <table id="Stock Table" class="table table-data-pathology table-condensed">
+
+                                                <thead>
+                                                    <tr>
+                                                        <th>Purchase Date</th>
+                                                        <th>Value</th>
+                                                        <th>Year</th>
+                                                        <th>Depreciation Rate</th>
+                                                        <th>Depreciation</th>
+                                                        <th>AfterDepreciation</th>
+                                                        <th>Total Depreciation</th>
+                                                        <th>Cost of machine</th>
+
+
+
+                                                    </tr>
+                                                    <tr class="bg-white">
+                                                        <td colspan="8" class="text-center bg-white">No available Data</td>
+                                                    </tr>
+                                                </thead>
+
+                                            </table>
+                                        </div>
+
+
+
+                                    </form>
+
+                                }
+
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="modal fade" id="pm-master" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="width:950px;">
+                    <div class="modal-content">
+
+                        <div class="panel panel-primary caresoft-panel">
+                            <div class="panel-heading">
+                                AMC Details
+                            </div>
+                            <div class="panel-body">
+                                <ul class="nav nav-pills">
+                                    <li class="active top-tab"><a data-toggle="pill" href="#pm-main">Add PM Task</a></li>
+                                    <li class="top-tab"><a data-toggle="pill" href="#work-order">Work Trade Master</a></li>
+                                    <li class="top-tab"><a data-toggle="pill" href="#work-type">Work Type Master</a></li>
+                                    <li class="top-tab"><a data-toggle="pill" href="#pm-scheduling">PM Scheduling</a></li>
+                                    <li class="top-tab"><a data-toggle="pill" href="#schedule-report">Scheduling Report</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="pm-main" class="right-element tab-pane fade in active">
+                                        @using (Ajax.BeginForm("SavePMMAster", "Maintenance", new { }, new AjaxOptions
+                                        {
+                                            LoadingElementId = "loadingElement",
+                                            HttpMethod = "POST",
+                                            UpdateTargetId = "",
+                                            OnFailure = "showNotification('Failed', 'danger', 'false')",
+                                            OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                                        }))
+                                        {
+                                            <form id="cleanup" method="post" action="@Url.Action("SavePMMAster", "Maintenance")">
+                                                <table class="table-form">
+                                                    <tr>
+                                                        <td>
+                                                            <label>PM Task No</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="text-box box-lg" name="PMNo" />
+                                                        </td>
+                                                        <td>
+                                                            <label>PM Task Name</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="text-box box-lg" name="PMTaskName" />
+                                                        </td>
+                                                        <td>
+                                                            <label>Remarks</label>
+                                                        </td>
+                                                        <td>
+                                                            <textarea type="text" class="text-box box-lg" name="Remarks"></textarea>
+                                                        </td>
+
+
+                                                    </tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <tr>
+                                                        <td>
+                                                            <label>Est Labour Hr</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="text-box box-lg" name="EstLabourHr" />
+                                                        </td>
+                                                        <td>
+                                                            <label>Select File</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="myFile" class="text-box box-lg">
+                                                        </td>
+
+
+                                                    </tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+
+
+
+
+                                                    <tr>
+                                                        <td>
+                                                            <label>Contractor/Supplier No</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="text-box box-lg" name="ContractorNo" />
+                                                        </td>
+                                                        <td>
+                                                            <label>Contractor/Supplier Name</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="text-box box-lg" name="ContractorName" />
+                                                        </td>
+
+
+                                                    </tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <tr>
+                                                        <td>
+                                                            <label>Employee Name</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="Text" class="text-box box-lg" id="EmployeeName" name="EmployeeName" placeholder="search employee" />
+                                                        </td>
+                                                        <td>
+                                                            <label>Employee No</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="text-box box-lg" id="EmployeeNo" name="EmployeeNo" />
+                                                        </td>
+
+
+
+                                                    </tr>
+
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+
+                                                    <tr>
+                                                        <td>
+                                                            <label>Part No</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="text-box box-lg" name="PartNo" />
+                                                        </td>
+                                                        <td>
+                                                            <label>Part Description</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="text-box box-lg" name="PartDescription" />
+                                                        </td>
+                                                        <td>
+                                                            <label>Quantity</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="text-box box-lg" name="Quantity" />
+                                                        </td>
+
+                                                    </tr>
+
+
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <tr>
+                                                        <td>
+                                                            <label>Safety Instruction</label>
+                                                        </td>
+                                                        <td>
+                                                            <textarea type="text" class="text-box box-lg" name="SafetyInstructions"> </textarea>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <div>
+                                                    <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+                                                    <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+                                                </div>
+
+                                            </form>
+
+                                        }
+
+
+                                    </div>
+
+                                    <div id="work-order" class="tab-pane fade">
+                                        @using (Ajax.BeginForm("SaveWorkTrade", "Maintenance", new { }, new AjaxOptions
+                                        {
+                                            LoadingElementId = "loadingElement",
+                                            HttpMethod = "POST",
+                                            UpdateTargetId = "",
+                                            OnFailure = "showNotification('Failed', 'danger', 'false')",
+                                            OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                                        }))
+                                        {
+                                            <form id="cleanup" method="post" action="@Url.Action("SaveWorkTrade", "Maintenance")">
+                                                <table class="table-form">
+                                                    <tr>
+                                                        <td>
+                                                            <label>Work Trade</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="text-box box-lg" name="WorkTrade" />
+                                                        </td>
+
+
+
+                                                    </tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <tr>
+                                                        <td>
+                                                            <label>Description</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="text-box box-lg" name="Description" />
+                                                        </td>
+
+                                                    </tr>
+
+                                                </table>
+                                                <div>
+                                                    <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+                                                    <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+                                                </div>
+
+                                            </form>
+
+                                        }
+
+
+                                    </div>
+
+                                    <div id="work-type" class="tab-pane fade">
+                                        @using (Ajax.BeginForm("SaveWorkType", "Maintenance", new { }, new AjaxOptions
+                                        {
+                                            LoadingElementId = "loadingElement",
+                                            HttpMethod = "POST",
+                                            UpdateTargetId = "",
+                                            OnFailure = "showNotification('Failed', 'danger', 'false')",
+                                            OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                                        }))
+                                        {
+                                            <form id="cleanup" method="post" action="@Url.Action("SaveWorkType", "Maintenance")">
+                                                <table class="table-form">
+                                                    <tr>
+                                                        <td>
+                                                            <label>Work Type</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="text-box box-lg" name="WorkType" />
+                                                        </td>
+
+
+
+                                                    </tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <tr>
+                                                        <td>
+                                                            <label>Description</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="text-box box-lg" name="Description" />
+                                                        </td>
+
+                                                    </tr>
+
+                                                </table>
+                                                <div>
+                                                    <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+                                                    <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+                                                </div>
+
+                                            </form>
+
+                                        }
+
+
+                                    </div>
+
+                                    <div id="pm-scheduling" class="tab-pane fade">
+
+
+                                        @using (Ajax.BeginForm("SaveSchedule", "Maintenance", new { }, new AjaxOptions
+                                        {
+                                            LoadingElementId = "loadingElement",
+                                            HttpMethod = "POST",
+                                            UpdateTargetId = "",
+                                            OnFailure = "showNotification('Failed', 'danger', 'false')",
+                                            OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                                        }))
+                                        {
+                                            <form id="cleanup" method="post" action="@Url.Action("SaveSchedule", "Maintenance")">
+                                                <table class="table-form">
+                                                    <tr>
+                                                        <td>
+                                                            <label>PM Name</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="text-box box-lg" id="PMName" name="PMName" placeholder="search PM" />
+                                                        </td>
+                                                        <td>
+                                                            <label>PM No</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="text-box box-lg" id="PMNo" name="PMNo" />
+                                                        </td>
+
+
+
+                                                    </tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <tr>
+                                                        <td>
+                                                            <label>Scheduling</label>
+                                                        </td>
+                                                        <td>
+                                                            <select class="text-box box-lg" name="Schedule">
+                                                                <option>Select Schedule</option>
+                                                                <option>Fixed Day</option>
+                                                                <option>Fixed Date</option>
+                                                                <option>Week</option>
+                                                                <option>Month</option>
+                                                            </select>
+                                                        </td>
+
+                                                    </tr>
+
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <tr>
+                                                        <td>
+                                                            <label>From Date</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="date" class="text-box box-lg" name="FromDate" />
+                                                        </td>
+                                                        <td>
+                                                            <label>From Time</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="time" class="text-box box-lg" name="FromTime" />
+                                                        </td>
+
+                                                    </tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <tr>
+                                                        <td>
+                                                            <label>Due on</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="date" class="text-box box-lg" name="DueOn" />
+                                                        </td>
+
+
+                                                    </tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <tr>
+                                                        <td>
+                                                            <label>Work Type</label>
+                                                        </td>
+                                                        <td>
+                                                            <select class="text-box box-lg" name="WorkType">
+                                                                <option>select work type</option>
+                                                                @foreach (var r in worktype)
+                                                                {
+                                                                    <option>@r.WorkType</option>
+                                                                }
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <label>Work Trade</label>
+                                                        </td>
+                                                        <td>
+                                                            <select class="text-box box-lg" name="WorkTrade">
+                                                                <option>select</option>
+                                                                @foreach (var r in worktrade)
+                                                                {
+                                                                    <option>@r.WorkTrade</option>
+                                                                }
+                                                            </select>
+                                                        </td>
+
+                                                    </tr>
+
+                                                </table>
+                                                <div>
+                                                    <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+                                                    <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+                                                </div>
+
+                                            </form>
+
+                                        }
+
+
+                                    </div>
+
+
+
+                                    <div id="schedule-report" class="tab-pane fade">
+
+                                        <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                                        <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+                                        <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                                        <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                                        <script src="~/Scripts/bootstrap.min.js"></script>
+                                        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                                        <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+                                        <link href="~/Content/Css/JQueryUI/themes/base/jquery-ui.css" rel="stylesheet" />
+
+
+
+
+
+
+                                        <script type="text/javascript">
+                                                jQuery(document).ready(function ($) {
+                                                    $('#pm-master').on('shown.bs.modal', function () {
+
+                                                        //  var table = $('#dataTable').DataTable();
+                                                        $('#scheduledatatable').DataTable({
+                                                            "ajax": {
+                                                                "url": "/Maintenance/GetScheduleActivity",
+                                                                "type": "GET",
+                                                                "datatype": "json",
+                                                                "dataSrc": "",
+                                                            },
+                                                            "columns": [
+                                                                { "data": "Id" },
+                                                                { "data": "PMNo" },
+                                                                { "data": "PMName" },
+                                                                { "data": "Schedule" },
+                                                                { "data": "WorkTrade" },
+                                                                { "data": "WorkType" },
+                                                                {
+                                                                    'data': 'FromDate', 'render': function (data) {
+                                                                        return moment(data).format(' MMMM d, YYYY ');
+                                                                    }
+                                                                },
+                                                                {
+                                                                    'data': 'DueOn', 'render': function (data) {
+                                                                        return moment(data).format(' MMMM d, YYYY ');
+                                                                    }
+                                                                },
+
+                                                                {
+                                                                    "data": function (data, type, row) {
+                                                                        if (data["Status"] == "0") {
+
+                                                                            return "<span class='glyphicon glyphicon-remove'> Pending </span> <input type='button' value='Confirm Complete' class='btnEdit sfBtn sfPrimaryBtn sfLocale' />"
+
+
+                                                                        }
+
+                                                                        else if (data["Status"] == "1") {
+
+                                                                            return "Work Done"
+                                                                        }
+
+
+
+                                                                    }
+
+                                                                },
+
+
+                                                            ],
+                                                            "createdRow": function (row, data, dataIndex) {
+                                                                if (data["Status"] == "0") {
+                                                                    $(row).css("background-color", "Red");
+
+                                                                }
+
+                                                                else if (data["Status"] == "1") {
+                                                                    $(row).css("background-color", "Green");
+                                                                    $(row).css("color", "white");
+                                                                }
+                                                            },
+
+
+                                                        });
+                                                        var table = $('#scheduledatatable').DataTable();
+                                                        $('.scheduledatatable').on('click', 'tbody tr', function () {
+                                                            console.log('API row values : ', table.row(this).data());
+
+                                                            $('.nav-tabs a[href="#assign-amb"]').tab('show');
+                                                            // alert();
+
+                                                        })
+
+
+                                                        $("#scheduledatatable tbody").on("click", ".btnEdit", function () {
+                                                            var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                                            // alert(id);
+                                                            //alert($(this).text());
+                                                            //alert();
+                                                            $.ajax({
+                                                                data: { id: id },
+                                                                url: '/Maintenance/ConfirmPM',
+                                                                type: 'POST',
+                                                                success: function (data) {
+                                                                    alert("Schedule completed");
+                                                                }
+                                                            });
+                                                        });
+
+                                                        $("#AssignedWorker").autocomplete({
+                                                            source: function (req, res) {
+                                                                $.ajax({
+                                                                    type: "POST",
+                                                                    minLength: 0,
+                                                                    url: "@Url.Action("SearchWorker", "Maintenance")",
+                                                                    dataType: "json",
+                                                                    data: { search: $("#AssignedWorker").val() },
+                                                                    success: function (data) {
+                                                                        res($.map(data, function (item) {
+                                                                            return { label: item.Name, value: item.Name, Id: item.Id };
+                                                                        }));
+                                                                    },
+                                                                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                                                                        console.log(errorthrown, "danger")
+                                                                        console.log(xmlhttprequest.responseText);
+                                                                    }
+                                                                });
+                                                            }
+                                                        });
+                                                        $("#EmployeeName").autocomplete({
+                                                            source: function (req, res) {
+                                                                $.ajax({
+                                                                    type: "POST",
+                                                                    minLength: 0,
+                                                                    url: "@Url.Action("SearchWorker", "Maintenance")",
+                                                                    dataType: "json",
+                                                                    data: { search: $("#EmployeeName").val() },
+                                                                    success: function (data) {
+                                                                        res($.map(data, function (item) {
+                                                                            return { label: item.Name, value: item.Name, Id: item.Id };
+                                                                        }));
+                                                                    },
+                                                                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                                                                        console.log(errorthrown, "danger")
+                                                                        console.log(xmlhttprequest.responseText);
+                                                                    }
+                                                                });
+                                                            }
+                                                        });
+
+                                                        $("#EmployeeName").on("autocompleteselect", function (event, ui) {
+                                                            $("#EmployeeNo").val(ui.item.Id);
+
+
+
+
+                                                            console.log(ui);
+
+
+                                                        });
+                                                        $("#RequsetedTask").autocomplete({
+
+
+                                                            source: function (request, res) {
+
+
+                                                                $.ajax({
+
+                                                                    type: "POST",
+                                                                    url: "@Url.Action("SearchRequest", "Maintenance")",
+
+                                                                    dataType: "json",
+                                                                    data: { Prefix: request.term },
+
+
+                                                                    data: { search: $("#RequsetedTask").val() },
+                                                                    success: function (data) {
+                                                                        res($.map(data, function (item) {
+                                                                            return {
+                                                                                label: item.ComplainName + "( Building name: " + item.RequestBuilding + ")" + "( Floor : " + item.RequestFloor + ")",
+                                                                                value: item.ComplainName, Id: item.Id
+                                                                            };
+                                                                        }));
+                                                                    },
+
+                                                                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                                                                        console.log(errorthrown, "danger")
+                                                                        console.log(xmlhttprequest.responseText);
+                                                                    }
+
+                                                                });
+                                                            },
+
+                                                            messages: {
+                                                                noResults: "", results: ""
+
+                                                            }
+
+                                                        });
+
+                                                        $("#PMName").on("autocompleteselect", function (event, ui) {
+                                                            $("#PMNo").val(ui.item.PMNo);
+
+
+
+
+                                                            console.log(ui);
+
+
+                                                        });
+
+
+                                                        $("#PMName").autocomplete({
+
+
+                                                            source: function (request, res) {
+
+                                                               // alert();
+                                                                $.ajax({
+
+                                                                    type: "POST",
+                                                                    url: "@Url.Action("SearchPM", "Maintenance")",
+
+                                                                    dataType: "json",
+                                                                    data: { Prefix: request.term },
+
+
+                                                                    data: { search: $("#PMName").val() },
+                                                                    success: function (data) {
+                                                                        res($.map(data, function (item) {
+                                                                            return {
+                                                                                label: item.PMTaskName + "( PM NO : " + item.PMNo + ")",
+                                                                                value: item.PMTaskName, Id: item.Id, PMNo: item.PMNo
+                                                                            };
+                                                                        }));
+                                                                    },
+
+                                                                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                                                                        console.log(errorthrown, "danger")
+                                                                        console.log(xmlhttprequest.responseText);
+                                                                    }
+
+                                                                });
+                                                            },
+
+                                                            messages: {
+                                                                noResults: "", results: ""
+
+                                                            }
+
+                                                        });
+                                                    });
+                            });
+
+
+
+
+
+
+
+                                        </script>
+
+
+                                        <h4 class="text-center text-uppercase">Sent Requests</h4>
+                                        <div id="dataTable_wrapper"></div>
+
+                                        <ul class="legend" style="float:right;">
+                                            <li><span class="Available"></span> <strong>Finished</strong></li>
+                                            <li><span class="Unfinished"></span> <strong>Unfinished</strong></li>
+
+                                        </ul>
+
+                                        <style>
+
+                                            .legend {
+                                                list-style: none;
+                                            }
+
+                                                .legend li {
+                                                    float: left;
+                                                    margin-right: 10px;
+                                                }
+
+                                                .legend span {
+                                                    border: 1px solid #ccc;
+                                                    float: left;
+                                                    width: 12px;
+                                                    height: 12px;
+                                                    margin: 2px;
+                                                }
+                                                /* your colors */
+                                                .legend .Unfinished {
+                                                    background-color: red;
+                                                }
+
+                                                .legend .Available {
+                                                    background-color: green;
+                                                }
+                                        </style>
+                                        <table id="scheduledatatable" class="table table-data-pathology table-condensed">
+
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>PM No</th>
+                                                    <th>PM Name</th>
+                                                    <th>Schedule</th>
+                                                    <th>Work Trade</th>
+                                                    <th>Work Type</th>
+                                                    <th>From</th>
+                                                    <th>Due On</th>
+                                                    <th>Status</th>
+
+
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-8">
+
+        <div class="panel caresoft-panel panel-primary">
+            <div class="panel-heading">
+                Request Details
+            </div>
+            <div class="panel-body">
+                <ul class="nav nav-pills">
+                    <li class="active top-tab"><a data-toggle="pill" href="#request-list">Nurse Request</a></li>
+                    <li class="top-tab"><a data-toggle="pill" href="#assign-worker">Assign Work</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="request-list" class="right-element tab-pane fade in active">
+                        <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                        <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+                        <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                        <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                        <script src="~/Scripts/bootstrap.min.js"></script>
+                        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                        <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+                        <link href="~/Content/Css/JQueryUI/themes/base/jquery-ui.css" rel="stylesheet" />
+
+
+
+
+
+
+                        <script type="text/javascript">
+                            jQuery(document).ready(function ($) {
+                                //  var table = $('#dataTable').DataTable();
+                                $('#dataTable').DataTable({
+                                    "ajax": {
+                                        "url": "/Maintenance/GetMaintenanceReq",
+                                        "type": "GET",
+                                        "datatype": "json",
+                                        "dataSrc": "",
+                                    },
+                                    "columns": [
+                                        { "data": "Id" },
+                                        { "data": "ComplainName" },
+                                        { "data": "Problem" },
+                                        { "data": "RequestBuilding" },
+                                        { "data": "RequestFloor" },
+                                        { "data": "RequestArea" },
+                                        { "data": "Priority" },
+
+
+                                        {
+                                            "data": function (data, type, row) {
+                                                if (data["Assigned"] == "0") {
+
+                                                    return "<span class='glyphicon glyphicon-remove'> Not Assigned "
+
+
+                                                }
+                                                else if (data["Assigned"] == "1" && data["Status"] == "0") {
+                                                    return "<span class='glyphicon glyphicon-ok'> Continuing</span > "
+                                                }
+
+                                                else if (data["Assigned"] == "1" && data["Status"] == "1") {
+
+                                                    return "Work Done"
+                                                }
+
+
+
+                                            }
+
+                                        },
+
+
+                                    ],
+                                    "createdRow": function (row, data, dataIndex) {
+                                        if (data["Assigned"] == "0") {
+                                            $(row).css("background-color", "Red");
+
+                                        }
+                                        else if (data["Assigned"] == "1" && data["Status"] == "0") {
+                                            $(row).css("background-color", "Yellow");
+                                        }
+                                        else if (data["Status"] == "1") {
+                                            $(row).css("background-color", "Green");
+                                            $(row).css("color", "white");
+                                        }
+                                    },
+
+
+                                });
+                                var table = $('#dataTable').DataTable();
+                                $('.dataTable').on('click', 'tbody tr', function () {
+                                    console.log('API row values : ', table.row(this).data());
+
+                                    $('.nav-tabs a[href="#assign-amb"]').tab('show');
+                                    // alert();
+
+                                })
+
+
+                                $("#dataTable tbody").on("click", ".btnEdit", function () {
+                                    var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                    // alert(id);
+                                    //alert($(this).text());
+                                    //alert();
+                                    $.ajax({
+                                        data: { id: id },
+                                        url: '/Ambulatory/Releive',
+                                        type: 'POST',
+                                        success: function (data) {
+                                            alert("The Vehicle has become available");
+                                        }
+                                    });
+                                });
+
+                                                            $("#AssignedWorker").autocomplete({
+                source: function (req, res) {
+                    $.ajax({
+                        type: "POST",
+                        minLength: 0,
+                        url: "@Url.Action("SearchWorker", "Maintenance")",
+                        dataType: "json",
+                        data: { search: $("#AssignedWorker").val() },
+                        success: function (data) {
+                            res($.map(data, function (item) {
+                                return { label: item.Name, value: item.Name, Id: item.Id };
+                            }));
+                        },
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                    });
+                }
+            });
+
+                            $("#RequsetedTask").autocomplete({
+
+
+                  source: function (request, res) {
+
+
+                      $.ajax({
+
+                          type: "POST",
+                          url: "@Url.Action("SearchRequest", "Maintenance")",
+
+                          dataType: "json",
+                          data: { Prefix: request.term },
+
+
+                          data: { search: $("#RequsetedTask").val() },
+                          success: function (data) {
+                              res($.map(data, function (item) {
+                                  return {
+                                      label: item.ComplainName + "( Building name: " + item.RequestBuilding + ")" + "( Floor : " + item.RequestFloor + ")",
+                                      value: item.ComplainName, Id: item.Id
+                                  };
+                              }));
+                          },
+
+                          error: function (xmlhttprequest, textstatus, errorthrown) {
+                              console.log(errorthrown, "danger")
+                              console.log(xmlhttprequest.responseText);
+                          }
+
+                      });
+                  },
+
+                  messages: {
+                      noResults: "", results: ""
+
+                  }
+
+        });
+
+                            });
+
+
+
+
+
+
+
+                        </script>
+
+
+                        <h4 class="text-center text-uppercase">Sent Requests</h4>
+                        <div id="dataTable_wrapper"></div>
+
+                        <ul class="legend" style="float:right;">
+                            <li><span class="Available"></span> <strong>Available</strong></li>
+                            <li><span class="Engaged"></span> <strong>Engaged</strong></li>
+
+                        </ul>
+
+                        <style>
+
+                            .legend {
+                                list-style: none;
+                            }
+
+                                .legend li {
+                                    float: left;
+                                    margin-right: 10px;
+                                }
+
+                                .legend span {
+                                    border: 1px solid #ccc;
+                                    float: left;
+                                    width: 12px;
+                                    height: 12px;
+                                    margin: 2px;
+                                }
+                                /* your colors */
+                                .legend .Engaged {
+                                    background-color: yellow;
+                                }
+
+                                .legend .Available {
+                                    background-color: green;
+                                }
+                        </style>
+                        <table id="dataTable" class="table table-data-pathology table-condensed">
+
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Compalain Name</th>
+                                    <th>Problem</th>
+                                    <th>Building</th>
+                                    <th>Floor</th>
+
+                                    <th>Area</th>
+                                    <th>Priority</th>
+
+                                    <th>Status</th>
+
+
+                                </tr>
+                            </thead>
+                        </table>
+
+
+                    </div>
+                    <div id="assign-worker" class="tab-pane fade">
+                        @using (Ajax.BeginForm("SaveMaintenanceAssn", "Maintenance", new { }, new AjaxOptions
+                        {
+                            LoadingElementId = "loadingElement",
+                            HttpMethod = "POST",
+                            UpdateTargetId = "",
+                            OnFailure = "showNotification('Failed', 'danger', 'false')",
+                            OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                        }))
+                        {
+
+                            <form id="cleanup" method="post" action="@Url.Action("SaveMaintenanceAssn", "Maintenance")">
+                                <table class="table-form">
+                                    <tr>
+                                        <td>
+                                            <label>Assigned Worker</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="AssignedWorker" name="AssignedWorker" />
+                                        </td>
+
+                                    </tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <tr>
+                                        <td>
+                                            <label>Search Task</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="RequsetedTask" name="RequsetedTask" />
+                                        </td>
+
+                                    </tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+
+                                    <tr>
+                                        <td>
+                                            <label>Allocated Date</label><br />
+                                        <td>
+                                            <input type="date" id="AllocatedDate" name="AllocatedDate" />
+                                        </td>
+                                        <td>
+                                            <label>Allocated Time</label><br />
+                                        <td>
+                                            <input type="time" id="AllocatedTime" name="AllocatedTime" />
+                                        </td>
+
+                                    </tr>
+
+
+                                </table>
+
+                                <div>
+                                    <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit" name="btnSubmit">Save</button>
+                                    <button type="reset" class="btn btn-sm btn-primary">Cancel</button>
+                                </div>
+                            </form>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="sample-bi" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:800px;">
+        <div class="modal-content">
+            <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiNzZhYzNiY2MtYjI1Ni00YzcxLTlkZDQtMTU3ZmY4NGUyYTEwIiwidCI6IjQ4MjZhNDg4LTk2NDktNDQwMy1hMTZhLTJiZTZkNmIyYTIyOCIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>
+
+        </div>
+    </div>
+</div>
+
+

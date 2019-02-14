@@ -1,0 +1,303 @@
+﻿@model Caresoft2._0.CustomData.ProcedureFormData
+<div class="panel panel-primary  shadow glass caresoft-panel" style="margin-bottom:-1em;">
+    <div class="panel-heading caresoft-panel">
+        Procedure
+    </div>
+    <div class="panel-body">
+        <div class="row marg-top-2px">
+            <div class="col-xs-12">
+                <fieldset class="collapse">
+                    <legend>Search</legend>
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <label>Groups</label>
+                            </td>
+                            <td>
+                                <select class="text-box box-lg">
+                                    <option>Select</option>
+                                    <option>Consulation</option>
+                                    <option>Domiciliary Visiting Within A Radius Of 7km</option>
+                                    <option>Injections</option>
+                                </select>
+                            </td>
+                            <td>
+                                <label>Procedure</label>
+                            </td>
+                            <td>
+                                <select class="text-box">
+                                    <option>Select</option>
+                                    <option>Syringes, Needles etc</option>
+
+                                </select>
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>From Date</label>
+                            </td>
+                            <td>
+                                <input class="text-box box-lg" type="date" />
+                            </td>
+                            <td>
+                                <label>To Date</label>
+                            </td>
+                            <td>
+                                <input class="text-box" type="date" />
+                            </td>
+                            <td colspan="2" align="right">
+                                <input type="button" class="btn btn-primary btn-sm" value="Search" />
+                            </td>
+
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <form id="form-add-procedure">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            
+                            <label>Department</label>
+                            <select class="text-box box-lg" name="DepartmentId" id="Department" onchange="getThisDepartmentProcedures()">
+                                @if (ViewBag.SelectedDept != null)
+                                {
+                                    <option value="@ViewBag.SelectedDept.Id">@ViewBag.SelectedDept.DepartmentName</option>
+                                }
+                                @foreach (var dept in Model.Departments)
+                                {
+                                    <option value="@dept.Id">@dept.DepartmentName</option>
+                                }
+                            </select>
+                           
+                        </div>
+                        <div class="col-xs-5">
+                            <label>Procedure</label>
+                            @*<input type="text" class="text-box box-lg" name="Proceudre" id="Proceudre">*@
+                            <select name="ServiceId" id="ServiceId" class="text-box box-lg">
+
+                            </select>
+                            <input type="hidden" name="OPDNo" id="OPDNo" value="@Model.OPDRegister.Id"/>
+                            <input type="hidden" name="View" value="ProcedureForm" />
+                        </div>
+
+                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <br />
+                            Nurse <span class="" style="background:#FFC0CB; border:3px solid black; height:20px; width:20px;">&nbsp;&nbsp;&nbsp;</span>
+
+                        </div>
+                        <div class="col-xs-4">
+                            <br />
+                            Doctor <span class="" style="background:#FFF; border:3px solid black; height:20px; width:20px;">&nbsp;&nbsp;&nbsp;</span>
+                        </div>
+                    </div>
+
+                    <div class="row marg-top-16px">
+                        <style>
+                            .small-text-box {
+                                width: 65px;
+                            }
+                        </style>
+                        <div class="col-xs-12">
+                            <label>Rate</label> <input type="text" class="small-text-box" id="Rate" readonly required />
+                            <label for="Quantity">Qty</label> <input type="number" class="small-text-box" id="Quantity" name="Quantity" min="1" value="1" required />
+                            Award <input type="text" class="small-text-box" id="Award" name="Award" readonly />
+                                  <input type="hidden" class="small-text-box" id="BaseAward" name="BaseAward" />
+                            Total <input type="text" class="small-text-box" name="Total" id="Total" readonly />
+                            <input type="checkbox" name="IsNurse" id="IsNurse" value="1"/><label for="IsNurse">Is Nurse</label>
+                            <input type="submit" class="btn btn-primary btn-sm" value="Save" />
+                        </div>
+                       
+                    </div>
+                    </form>
+                    <div class="row marg-top-16px">
+                        <div class="col-xs-12">
+                            <ul class="nav nav-pills">
+                                <li class="active top-tab"><a data-toggle="pill" href="#billDetails">Bill Details</a></li>
+                                <li class="top-tab"><a data-toggle="pill" href="#applyProcedure">Apply Procedure</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <table>
+                                    <tr>
+                                        <td class="color-key" id="EMRUnpaid"></td>
+                                        <td><label>Un Paid</label></td>
+                                        <td class="color-key"></td>
+
+                                        <td class="color-key" id="EMRunread"></td>
+                                        <td><label>Paid</label></td>
+                                        <td class="color-key"></td>
+
+                                        <td class="color-key" id="EMRRead"></td>
+                                        <td><label>Applied</label></td>
+
+
+                                    </tr>
+                                </table>
+                                <div id="billDetails" class="tab-pane fade in active">
+                                    <fieldset>
+
+                                        <table class="table table-data table-condensed">
+                                            <thead class="bg-primary">
+                                                <tr>
+                                                    <th>Procedure</th>
+                                                    <th>Date</th>
+                                                    <th>Doctor</th>
+                                                    <th>Rate</th>
+                                                    <th>Qty</th>
+                                                    <th>Award</th>
+                                                    <th>Payable</th>
+
+                                                    <th>Is Nurse</th>
+                                                    <th>Applied</th>
+                                                    <th>Delete</th>
+                                                </tr>
+
+
+
+                                            </thead>
+                                            <tbody class="bg-white">
+                                                @{var award = 0.0; var total = 0.0; }
+                                                @foreach (var procedure in Model.OPDRegister.BillServices.Where
+                        (e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim().Equals("procedure")).OrderByDescending(e => e.Id))
+                                                {
+
+                                                    var cls = "Unpaid";
+                                                    if (procedure.Paid)
+                                                    {
+                                                        cls = "Unread";
+                                                    }
+
+                                                    if (procedure.Offered)
+                                                    {
+                                                        cls = "Read";
+                                                    }
+                            <tr class="@cls" id="service-@procedure.Id">
+                                <td>@procedure.ServiceName</td>
+                                <td>@procedure.DateAdded</td>
+                                <td></td>
+                                <td>@procedure.Price</td>
+                                <td>@procedure.Quatity</td>
+                                <td>@procedure.Award</td>
+                                <td>@((procedure.Price * procedure.Quatity) - (procedure.Award * procedure.Quatity) )</td>
+                                <td>@procedure.IsNurse</td>
+                                <td>@procedure.Offered</td>
+                                <td>
+                                    @if (procedure.Paid || procedure.Offered)
+                                    {
+                                        //No delete
+                                    }
+                                    else
+                                    {
+                                     <button id="delete-@procedure.Id" class="btn btn-xs btn-primary" @if (procedure.Offered) { <text> disabled</text>} else { <text>onclick="deleteProcedureFromBillServices(@procedure.Id)" </text> }>
+                                        Delete
+                                    </button>
+                                    }
+                                </td>
+                            </tr>
+
+{ award += procedure.Award; }
+{ total += ((procedure.Price * procedure.Quatity) - procedure.Award); }
+}
+                                            </tbody>
+                                            <tfoot>
+                                                <tr class="">
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>
+                                                        sum = @award
+                                                    </td>
+                                                    <td>
+                                                        Sum = @total
+                                                    </td>
+                                                    <td> </td>
+                                                    <td></td>
+                                                    <td></td>
+
+                                                </tr>
+                                            </tfoot>
+
+                                        </table>
+                                    </fieldset>
+                                </div>
+                                <div id="applyProcedure" class="tab-pane fade">
+                                    <fieldset>
+
+                                        <table class="table table-data table-condensed ">
+                                            <thead class="bg-primary">
+                                                <tr>
+                                                    <th>Procedure</th>
+                                                    <th>Date</th>
+                                                    <th>Doctor</th>
+                                                    <th>Qty</th>
+                                                    <th>Award</th>
+                                                    <th>Total</th>
+
+                                                    <th>Is Nurse</th>
+                                                    <th>Apply</th>
+
+                                                </tr>
+
+               
+
+
+                                            </thead>
+                                            <tbody class="bg-white">
+                                                @foreach (var procedure in Model.OPDRegister.BillServices.Where
+                                (e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim().Equals("procedure"))
+                                .OrderByDescending(e => e.Id))
+                                                {
+                                                    var cls = "Unpaid";
+                                                    if (procedure.Paid)
+                                                    {
+                                                        cls = "Unread";
+                                                    }
+
+                                                    if (procedure.Offered)
+                                                    {
+                                                        cls = "Read";
+                                                    }
+
+                                            <tr class="@cls" id="apply-service-@procedure.Id">
+                                                <td>@procedure.ServiceName</td>
+                                                <td>@procedure.DateAdded</td>
+                                                <td></td>
+                                                <td>@procedure.Quatity</td>
+                                                <td>@procedure.Award</td>
+                                                <td>@(procedure.Price * procedure.Quatity)</td>
+                                                <td>@procedure.IsNurse</td>
+                                                <td>
+                                                    @if (procedure.Offered)
+                                                    {
+                                                        <text>Applied</text>
+                                                    }
+                                                    else if (procedure.Paid || (DateTime.Now.Year -  procedure.OpdRegister.Patient.DOB.Value.Year)<=5 )
+                                                    {
+                                                        <button type="button" class="btn btn-xs btn-primary" onclick="applyProcedure(@procedure.Id, this)">Apply</button>
+                                                    }
+                                                   
+                                                </td>
+                                            </tr>
+}
+                                            </tbody>
+
+
+                                        </table>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>

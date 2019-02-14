@@ -1,0 +1,433 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.CorneaClinicEntry>
+
+
+<table class="table table-data table-condensed">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AdherantLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdherantRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdnexaLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdnexaRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnteriorChambersLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnteriorChambersRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CScrapingGramsLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CScrapingGramsRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CStainingFluorescenceLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CStainingFluorescenceRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConjunctivaLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConjunctivaRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CornealSensationLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CornealSensationRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrectedVALeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrectedVARight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CultureLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CultureRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeepLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeepRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepthOpacityLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepthOpacityRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discharge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FundusLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FundusRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HOExanthematousFever)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HOSurgery)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HOUsageOfCL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IOPLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IOPRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IRISLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IRISRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KOHLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KOHRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LENSRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LissamineLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LissamineRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Local)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OpacityLLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OpacityLRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OpacityNLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OpacityNRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pain)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PatAttacks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PresentingComplaints)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Redness)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoseBengalLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoseBengalRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchimerTestLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchimerTestRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TreatmentHOSystemic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UlcerDepthLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UlcerDepthRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UlcerSizeLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UlcerSizeRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VALeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VARight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VitreousLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VitreousRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kmLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kmRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAdded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OpdRegister.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Username)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdherantLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdherantRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdnexaLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdnexaRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnteriorChambersLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnteriorChambersRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CScrapingGramsLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CScrapingGramsRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CStainingFluorescenceLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CStainingFluorescenceRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConjunctivaLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConjunctivaRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CornealSensationLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CornealSensationRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorrectedVALeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorrectedVARight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CultureLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CultureRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeepLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeepRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepthOpacityLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepthOpacityRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discharge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FundusLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FundusRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HOExanthematousFever)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HOSurgery)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HOUsageOfCL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IOPLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IOPRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IRISLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IRISRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KOHLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KOHRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LENSRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LissamineLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LissamineRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Local)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpacityLLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpacityLRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpacityNLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpacityNRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pain)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatAttacks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PresentingComplaints)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Redness)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoseBengalLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoseBengalRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SchimerTestLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SchimerTestRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TreatmentHOSystemic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UlcerDepthLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UlcerDepthRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UlcerSizeLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UlcerSizeRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VALeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VARight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VitreousLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VitreousRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kmLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kmRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAdded)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpdRegister.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Username)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

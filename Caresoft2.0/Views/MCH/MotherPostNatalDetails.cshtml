@@ -1,0 +1,110 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.MCHMotherPostNatalExam>
+
+
+@{
+
+}
+
+<table class="table table-caresoft table-condensed">
+    <thead>
+        <tr>
+
+            <td style="color:fuchsia">OPD No</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+
+            <th style="color:fuchsia">User</th>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+            <th style="color:fuchsia; font-family:Calibri; font:16px">Date Of Visit</th>
+
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+        <tr>
+            <td>@a.OPDNo</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+            <td>@a.UserId</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td style="color:crimson">@a.DateAdded</td>
+
+
+        </tr>
+        }
+
+    </tbody>
+
+    <td>&nbsp;</td>
+    <thead>
+        <tr>
+            <th>Done By</th>
+            <th>Date Added</th>
+            <th>Done To</th>
+            <th>HIV Initial</th>
+            <th>Date Of Visit</th>
+            <th>Blood Pressure</th>
+            <th>C/S scar</th>
+            <th>Uterus Evaluation</th>
+            <th>Respiratory Rate</th>
+            <th>pulse</th>
+            <th>Lochia</th>
+            <th>Pelvix exam</th>
+            <th>Vagina Examination</th>
+            <th>Haemoglobin</th>
+            <th>HIV status</th>
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+            <tr style="background-color:chartreuse;">
+                <td>@a.UserId</td>
+                <td>@a.DateAdded</td>
+                <td>@a.DoneTo</td>
+                <td>@a.HIVInitial</td>
+                <td>@a.DateOfVisit</td>
+                <td>@a.BloodPressure</td>
+                <td>@a.CSScar</td>
+                <td>@a.UterusEvaluation</td>
+                <td>@a.RespiratoryRate</td>
+                <td>@a.Pulse</td>
+                <td>@a.Lochia</td>
+                <td>@a.PelvixExam</td>
+                <td>@a.VaginalExamination</td>
+                <td>@a.Haemoglobin</td>
+                <td>@a.HIVStatus</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+

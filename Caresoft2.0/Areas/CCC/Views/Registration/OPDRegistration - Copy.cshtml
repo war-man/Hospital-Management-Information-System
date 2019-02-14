@@ -1,0 +1,239 @@
+﻿@*@model CaresoftHMISDataAccess.Patient*@
+@model Caresoft2._0.CustomData.OPDModels
+
+<div class="row">
+    <div class="col-sm-12">
+        <form name="RegistrationForm">
+            <input type="hidden" name="PatientId" value="@Model.Patient.Id" />
+            <table class="table-form">
+                <tr>
+                    <td colspan="2">
+                        <fieldset style="width:98%">
+                            <input type="radio" name="initialQue" value="OPD" id="OPD" /> <label for="OPD">OPD</label>
+                            <input type="radio" name="initialQue" value="IPD" id="IPD" /> <label for="IPD">IPD</label>
+                            <input type="radio" name="initialQue" value="Casualty" id="Casualty" /> <label for="Casualty">Casualty</label>
+                            <input type="radio" name="initialQue" value="Lab" id="LAB" /> <label for="LAB">LAB</label>
+                            <input type="radio" name="initialQue"checked  value="HIV" id="HIV" /> <label for="HIV">HIV</label>
+                        </fieldset>
+                    </td>
+
+                    <td><label for="claim-number">Claim Number</label></td>
+
+                    <td>
+                        <input type="text" class="text-box box-xlg" id="claim-number" value="@Model.Patient.RegNumber" name="RegNumber" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="name-and-reg-number">Name/Reg No.</label></td>
+                    <td>
+                        <input type="text" class="text-box box-xlg" placeholder="Search by RegNumber or Name" id="name-and-reg-number" name="PatientName" value="@Html.DisplayFor(model => model.Patient.Salutation) @Html.DisplayFor(model => model.Patient.FName) @Html.DisplayFor(model => model.Patient.LName)" />
+                    </td>
+                    <td><label for="Department">Department</label></td>
+                    <td>
+                        <select class="text-box box-xlg" id="Department" name="Department" >
+                            @{
+                                foreach(var item in Model.RevenueDepartments)
+                                {
+                                    <option>@item.DepartmentName</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="MainCategory">
+                            Main Category
+                        </label>
+                    </td>
+                    <td>
+                        <select id="MainCategory" name="MainCategory" class="text-box box-lg">
+                            @foreach (var mainCategory in Model.MainCategories)
+                            {
+                                <option data-main-cat-id="@mainCategory.Id">@mainCategory.CompanyTypeName</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <label for="PatientCategory">
+                            Patient Category
+                        </label>
+                    </td>
+                    <td>
+                        <select type="text" id="PatientCategory" name="PatientCategory" class="text-box box-lg">
+                            @foreach (var patCat in Model.MainCategories.Where(e => e.CompanyTypeName.Equals(1)))
+                            {
+                                <option data-pat-cat-id="@patCat.Id">@patCat.CompanyTypeName</option>
+                            }
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td><label for="Service">Service</label></td>
+                    <td>
+                        <select name="Service" class="text-box box-xlg"></select>
+                    </td>
+
+                    <td><label for="ConsultantDoctor">Consultant Doctor</label></td>
+                    <td>
+                        <select class="text-box box-xlg" id="ConsultantDoctor" name="ConsultantDoctor" >
+                            @{
+                                foreach (var item in Model.Doctors)
+                                {
+                                    <option>@item.Salutation @item.FName</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="AwardAmount">Award Amount</label></td>
+                    <td>
+                        <input type="text" class="text-box box-lg" id="AwardAmount" name="AwardAmount" />
+                    </td>
+                    <td><label for="complaints">Complaints</label></td>
+                    <td>
+                        
+                        <textarea type="text" class="text-box box-xlg" id="complaints" name="complaints" ></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="ShortfallAmount">Payable  Amount</label></td>
+                    <td>
+                        <input type="text" class="text-box box-lg" name="ShortfallAmount" id="ShortfallAmount" />
+                    </td>
+                    <td><label for="ReferringDoctor">Referring Doctor</label></td>
+                    <td>
+                        <input type="text" class="text-box box-xlg" id="ReferringDoctor" name="ReferringDoctor" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="ShortfallAmountPaidBy">Amount Paid By</label>
+                    </td>
+                    <td>
+                        <select class="text-box box-lg" id="ShortfallAmountPaidBy" name="ShortfallAmountPaidBy">
+                            <option>Self</option>
+                            <option>Insurance</option>
+                        </select>
+                    </td>
+                    <td colspan="2">
+                        <input type="checkbox" name="ReferralIn" id="ReferralIn" /> <label for="ReferralIn">Referral In</label>
+                        <input type="checkbox" name="CounterReferral" id="CounterReferral" /> <label for="CounterReferral">Counter Referral</label>
+                        <input type="checkbox" name="ReferralByCHW" id="ReferralByCHW" /> <label for="ReferralByCHW">Referral By CHW</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="button" id="btn-add-bill-item" class="btn box-lg btn-primary btn-sm">Add to Bill</button>
+                    </td>
+                    <td><label for="ReferringFacility">Referring Facility</label></td>
+                    <td>
+                        <textarea class="text-box box-xlg" name="ReferringFacility" id="ReferringFacility"></textarea>
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td colspan="4">
+                        <fieldset>
+                            <legend>Medico Legal </legend>
+                            <label for="BroughtBy">Brought By</label> <input type="text" class="text-box box-lg" id="BroughtBy" name="BroughtBy" />
+                            <label for="MLCNo">Brought By</label> <input type="text" class="text-box box-lg" id="MLCNo" name="MLCNo" />
+                            <label for="PoliceStationName">Police Station Name</label> <input type="text" class="text-box box-lg" id="PoliceStationName" name="PoliceStationName" />
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <fieldset>
+                            <table class="table table-data">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Dr Name</th>
+                                        <th>Service</th>
+                                        <th>Award</th>
+                                        <th>Shortfall</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Sum = </td>
+                                        <td>Sum = </td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </fieldset>
+                    </td>
+                </tr>
+            </table>
+            
+            <input type="hidden" value="Unread" name="Status" />
+        </form>
+        <fieldset>
+            <legend>Patient Details</legend>
+            <table width="100%">
+                <tr>
+                    <td>Patient Main Type</td>
+                    <td id="patient-main-type" class="pat-details">@Html.DisplayFor(model => model.Patient.MainCategory)</td>
+                    <td>Patient Type</td>
+                    <td id="patient-type" class="pat-details">@Html.DisplayFor(model => model.Patient.PatientCategory)</td>
+                    <td>Gender</td>
+                    <td id="patient-gender" class="pat-details">@Html.DisplayFor(model => model.Patient.Gender)</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td id="patient-name" class="pat-details">@Html.DisplayFor(model => model.Patient.Salutation) @Html.DisplayFor(model => model.Patient.FName) @Html.DisplayFor(model => model.Patient.MName) @Html.DisplayFor(model => model.Patient.LName)</td>
+                    <td>Blood Group</td>
+                    <td id="patient-blood-group" class="pat-details">@Html.DisplayFor(model => model.Patient.BloodGroup)</td>
+                    <td>Reg Date</td>
+                    <td id="patient-reg-date" class="pat-details">@Model.Patient.RegDate.Value.ToString("dd-MMM-yyyy")</td>
+                </tr>
+                <tr>
+                    <td>Date Of Birth</td>
+                    <td id="patient-dob" class="pat-details">@Model.Patient.DOB.Value.ToString("dd-MMM-yyyy")</td>
+                    <td>Contact</td>
+                    <td id="patient-contact" class="pat-details">@Html.DisplayFor(model => model.Patient.Email)</td>
+                    <td>Reg Time</td>
+                    <td id="patient-reg-time" class="pat-details">@Html.DisplayFor(model => model.Patient.RegTime)</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td colspan="3" id="patient-address" class="pat-details">@Html.DisplayFor(model => model.Patient.HomeAddress)</td>
+                    
+                    
+                    <td>Religion</td>
+                    <td id="patient-religion" class="pat-details">@Html.DisplayFor(model => model.Patient.Religion)</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td id="patient-email" class="pat-details">@Html.DisplayFor(model => model.Patient.Email)</td>
+                    <td>Insuarance Company</td>
+                    <td id="patient-insuarance-company" class="pat-details">&nbsp;</td>
+                    <td>Scheme Name</td>
+                    <td id="patient-scheme-name" class="pat-details">&nbsp;</td>
+                </tr>
+            </table>
+        </fieldset>
+        <div class="marg-top-16px">
+            <button type="button" class="btn btn-primary" id="save-opd-form">Save</button>
+            <button type="button" class="btn btn-primary" id="">Clear</button>
+            <button type="button" class="btn btn-primary" id="">Insurance</button>
+            <button type="button" class="btn btn-primary disabled" id="">Investigation</button>
+            <button type="button" class="btn btn-primary" id="">Case Paper</button>
+            <p  style="float:right;">
+             <label class="btn btn-warning" for="emergency">Emergency</label>   <input type="checkbox" class="btn" id="emergency" />
+            </p>
+        </div>
+    </div>
+</div>

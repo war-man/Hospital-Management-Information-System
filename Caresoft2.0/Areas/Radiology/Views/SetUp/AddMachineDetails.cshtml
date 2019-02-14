@@ -1,0 +1,90 @@
+﻿@model LabsDataAccess.MachineDetail
+
+@{
+    ViewBag.Title = "Machine Details";
+    ViewBag.ShowTopMenu = false;
+}
+
+<div class="col-xs-6 col-xs-offset-3">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading" style="height:40px ; ">
+            <h5 style="font-weight:bold">Add New Heading</h5>
+        </div>
+        <div class="panel-body">
+
+            <div style="border:2px solid black;padding:6px; margin:5px;">
+                <span style="font-weight:bold;">Please attend to the following:	</span>
+            </div>
+            <div class="col-xs-8 col-xs-offset-2">
+
+                @using (Ajax.BeginForm("MachineMaster", "Setup", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "MachineMaster",
+        OnSuccess = "",
+        OnBegin = "RequestFormLoaderShow",
+        OnComplete = "RequestFormLoaderHide",
+    }))
+    {
+            @Html.AntiForgeryToken()
+
+            <table class="" style="width:100%;">
+                <tbody>
+                    <tr>
+                        <td style="padding:5px; float:right"> Department </td>
+                        <td>
+                            <select name="Department" style="width:100%;" class="text-box" se>
+                                @foreach (LabsDataAccess.Department m in ViewBag.Department)
+    {
+                            <option value="@m.Id">@m.Department1</option>
+}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:5px; float:right"> Title </td>
+                        <td>
+                            <select name="Title" style="width:100%;" class="text-box">
+                                @foreach (LabsDataAccess.Heading m in ViewBag._Title)
+                                {
+                            <option value="@m.Id">@m.Heading1</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:5px; float:right"> Machine Name </td>
+                        <td>
+                            <select name="MachineName" style="width:100%;" class="text-box">
+                                @foreach (LabsDataAccess.Machine m in ViewBag.MachineName)
+    {
+                            <option value="@m.Id">@m.Machine_Name</option>
+}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:5px; float:right">Bioname</td>
+                        <td><input style="width:100%;" type="text" name="Bioname" class="text-box" /></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td></td>
+                        <td style="padding:10px">
+                            <button class="btn btn-sm btn-primary">Save</button>
+                            <button type="submit" class="btn btn-sm btn-primary" data-dismiss="modal">Back</button>
+
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+}
+
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

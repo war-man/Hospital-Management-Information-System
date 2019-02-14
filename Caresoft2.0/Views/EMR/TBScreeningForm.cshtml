@@ -1,0 +1,125 @@
+﻿@{ var allQuizez = (IEnumerable<CaresoftHMISDataAccess.TBScreeningQuestion>)ViewBag.TBQuizez;
+
+    var adultQuizes = allQuizez.Where(e => e.IsAdult);
+
+    var childQuizes = allQuizez.Where(e => !e.IsAdult);
+    var x = 1; var y = 1;
+
+    var age = DateTime.Today.Year - Model.Patient.DOB.Value.Year;
+}
+@model CaresoftHMISDataAccess.OpdRegister
+
+<div class="panel panel-primary shadow glass caresoft-panel" style="margin-bottom:-1em;">
+    <div class="panel-heading">
+       TB Screening Form
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-pills">
+            <li class="@if (age > 15) { <text>active</text>} top-tab"><a data-toggle="pill" href="#adults">ADULTS</a></li>
+            <li class="@if (age <= 15) { <text>active</text>} top-tab"><a data-toggle="pill" href="#under15">CHILDREN UNDER 15 YRS</a></li>
+        </ul>
+        
+        <div class="tab-content">
+            <input type="hidden" id="OPDNo" value="@Model.Id" />
+            <div id="adults" class="tab-pane fade  @if (age > 15) { <text>in active</text>}">
+                <fieldset>
+                   <form id="form_tb_screening_adult">
+                       <table class="table-data table table-condensed table-bordered">
+                       <tr>
+                           <th></th>
+                           <th>Question</th>
+                           <th>Yes/No</th>
+                       </tr>
+                       <tbody class="bg-white">
+                    @foreach(var a in adultQuizes)
+                     {
+                         <tr>
+                             <td>@x</td>
+                             <td>@a.Question</td>
+                             <td>
+                                 <label>
+                                     <input type="radio" value="YES" name="@a.Id" 
+                                            @if (Model.TBScreeningResponses.OrderByDescending(e => e.Id)
+                                                        .FirstOrDefault(e => e.QuizId == a.Id && e.Response == "YES") != null) {<text>checked</text> }/> YES
+                                     </label>
+    
+                                     <label>
+    
+                                         <input type="radio" value="NO" name="@a.Id"
+                                                @if (Model.TBScreeningResponses.OrderByDescending(e => e.Id)
+                                                        .FirstOrDefault(e => e.QuizId == a.Id && e.Response == "NO") != null) {<text>checked</text> }/> NO
+                                     </label>
+    
+                                 </td>
+    
+                             </tr>
+
+                             x++;
+                                            }
+                       </tbody>
+                    
+                   </table>
+                    <input type="submit" value="Save" class="btn btn-sm btn-primary"/>
+                   </form>
+                </fieldset>
+            </div>
+            <div id="under15" class="tab-pane fade @if (age <= 15) { <text> in active</text>}">
+                <fieldset>
+                    <form id="form_under15_screening">
+                    <table class="table-data table table-condensed table-bordered">
+                       <tr>
+                           <th></th>
+                           <th>Question</th>
+                           <th>Yes/No</th>
+                       </tr>
+                       <tbody class="bg-white">
+                    @foreach(var a in childQuizes )
+                     {
+                         <tr>
+                             <td>@y</td>
+                             <td>@a.Question</td>
+                             <td>
+                                 <label>
+                                     <input type="radio" value="YES" name="@a.Id"
+                                            @if (Model.TBScreeningResponses.OrderByDescending(e => e.Id)
+                                                        .FirstOrDefault(e => e.QuizId == a.Id && e.Response == "YES") != null) {<text>checked</text> }/> YES
+                                 </label>
+                                 <label>
+                                     <input type="radio" value="NO" name="@a.Id"
+                                            @if (Model.TBScreeningResponses.OrderByDescending(e => e.Id)
+                                                        .FirstOrDefault(e => e.QuizId == a.Id && e.Response == "NO") != null) {<text>checked</text> }/> NO
+                                 </label>
+                             </td>
+                         </tr>
+
+                         y++;
+                     }
+                       </tbody>
+                    
+                   </table>
+                    <input type="submit" value="Save" class="btn btn-sm btn-primary" />
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+
+        <fieldset>
+            <legend>
+                If yes to any of the above questions, evalute the patient further for TB.
+            </legend>
+            <p>Actions to take</p>
+            <ol>
+                <li>Sputum for AFB/Gene Xpert</li>
+                <li>Chest XRAY</li>
+                <li>Start Anti TB</li>
+                <li>Any Other</li>
+            </ol>
+            @*<button type="button" id="btn-investigation" class="call-modal-form btn btn-sm btn-primary"
+                    data-action="@Url.Action("InvestigationForm", "EMR", new { id= Model.Id })" 
+                    data-callback="investigationModalListener">Order Investigation</button>*@
+
+        </fieldset>
+    </div>
+ </div>
+        
+

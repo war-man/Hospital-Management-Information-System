@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.ItemMaster>
+
+<table class="table table-data-pathology table-condensed" style="background-color:white">
+    <tr>
+        <th>Edit</th>
+        <th>Item Name</th>
+        <th>Category</th>
+        <th>Cost Price</th>
+        <th>Current Stock</th>
+        <th>Case Pack</th>
+        <th>Delete</th>
+    </tr>
+    @if (Model.Count()>0)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td><a class="btn btn-xs btn-primary" href="@Url.Action("ItemMasterEdit","MedicalStoreMaster",new { Id=item.Id,Area="MedicalStore"})">Edit</a></td>
+                <td style="word-wrap:break-word">@item.ItemName</td>
+                <td>@item.Category</td>
+                <td>@item.CostPriceUnit</td>
+                <td>@item.CurrentStock </td>
+                <td>@item.UnitsPack</td>
+                <td><button class="btnDrug btn btn-xs btn-primary" data-drugid="@item.Id">Delete</button></td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="7" class="text-center">No data to display</td>
+        </tr>
+    }
+</table>

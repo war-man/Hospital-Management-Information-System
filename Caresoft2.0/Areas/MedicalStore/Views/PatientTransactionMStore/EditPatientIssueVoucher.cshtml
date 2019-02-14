@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.SimulationPatientIssueVoucher>
+
+@{
+    ViewBag.Title = "EditPatientIssueVoucher";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+}
+
+<div class="col-md-10">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px"> <strong> Edit Patient Issue Voucher</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                From Date
+                            </td>
+                            <td>
+                                <input type="date" class="text-box" />
+                            </td>
+                            <td>
+                                To Date
+                            </td>
+                            <td>
+                                <input type="date" class="text-box" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Reg No
+                            </td>
+                            <td>
+                                <input type="text" class="text-box" />
+                            </td>
+                            <td></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">Search</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <table class="table table-data">
+                        <tr>
+                            <th>Edit</th>
+                            <th>Voucher No</th>
+                            <th>Issue Date</th>
+                            <th>Reg No</th>
+                            <th>OPD No</th>
+                            <th>HIV No</th>
+                            <th>Clinic No</th>
+                            <th>Patient Name</th>
+                            <th>Total Amount</th>
+                            <th>Amount Paid</th>
+                            <th>Discount</th>
+                            <th>Report</th>
+                        </tr>
+                        @if(Model==null)
+                        {
+                            <tr>
+                                <td colspan="11">No data to diaplay</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var item in Model)
+                            {
+                            <tr>
+                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                <td>@item.VoucherNumber</td>
+                                <td>@item.DateIssued</td>
+                                <td>@item.Regno</td>
+                                <td>@item.Opd</td>
+                                <td>@item.HivNo</td>
+                                <td>@item.ClinicNo</td>
+                                <td>@item.PatientsName</td>
+                                <td>@item.totalAmount</td>
+                                <td>.</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            }
+
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

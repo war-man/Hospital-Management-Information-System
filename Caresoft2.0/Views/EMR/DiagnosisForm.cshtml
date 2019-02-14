@@ -1,0 +1,82 @@
+﻿@model Caresoft2._0.CustomData.DiagnosisFormData
+<div class="panel panel-primary shadow glass caresoft-panel" style="margin-bottom:-1em;">
+    <div class="panel-heading ">
+        Diagnosis
+    </div>
+    <div class="panel-body">
+       <table class="table-form table-condensed table-bordered" >
+           <tr>
+               <td>OPD NO.:</td>
+               <th>@Model.OpdRegister.Id
+                <input type="hidden" id="OPDNo" value="@Model.OpdRegister.Id"/>
+               </th>
+               <td>Reg Number</td>
+               <th>@Model.OpdRegister.Patient.RegNumber</th>
+               <td>Patient Name</td>
+               <th>
+                   @Model.OpdRegister.Patient.Salutation
+                   @Model.OpdRegister.Patient.FName
+                   @Model.OpdRegister.Patient.MName 
+                   @Model.OpdRegister.Patient.LName
+               </th>
+           </tr>
+       </table>
+        <style>
+            #search-results label:hover{
+                color:var(--primary-color);
+                text-decoration:underline;
+            }
+        </style>
+       <div class="row">
+           <div class="col-xs-6">
+               <div class="input-group">
+                   <input type="text" id="FilterDiagnosis" name="FilterDiagnosis" class="form-control" style="border-color:var(--primary-dark-color)" />
+                   <div class="input-group-btn">
+                       <button class="btn btn-primary" type="button">
+                           <i class="glyphicon glyphicon-search"></i>
+                       </button>
+                   </div>
+               </div>
+              
+               <div id="search-results" style="height:400px; overflow-y:auto; background:#fff; padding:.4em;" class="marg-top-2px">
+                   @foreach(var diagno1 in Model.Diagnosis1s)
+                   {
+                       <input class="level1" type="checkbox" value="@diagno1.icd_id" id="diagno@(diagno1.Id)-l1" data-diagnosis="@diagno1.icd_id @diagno1.Diagno_name.Trim()" /> 
+                       <label data-value="@diagno1.icd_id" data-slide-target="#@(diagno1.icd_id)-children" class="level1" >@diagno1.icd_id @diagno1.Diagno_name.Trim()</label>
+                       <div id="@(diagno1.icd_id)-children" class="collapse" style="border-left:1px solid var(--primary-dark-color); margin-left:.5em; padding:.4em; "></div>
+                       <br />
+                    
+                   }
+               </div>
+               
+           </div>
+           <div class="col-xs-6">
+               <br />
+               <table id="selected-diagnosis" class="table table-bordered table-condensed">
+                   <thead>
+                       <tr>
+                           <th>Diagnosis Name</th>
+                           <th>Delete</th>
+                       </tr>
+                   </thead>
+                   <tbody></tbody>
+               </table>
+
+               <div class="marg-top-2px">
+                   <label>Diagnosis</label>:
+                   <div class="input-group">
+                       <input type="text" id="NewDiagnosis" name="NewDiagnosis" class="form-control" style="border-color:var(--primary-dark-color)" />
+                       <div class="input-group-btn">
+                           <button class="btn btn-primary" type="button" id="add-newDiagnosis" >
+                               <i class="glyphicon glyphicon-plus"></i>
+                           </button>
+                       </div>
+                   </div>
+                   
+               </div>
+               
+               <button class="btn btn-primary btn-sm marg-top-2px" disabled id="save-final-diagnosis">Save</button>
+           </div>
+       </div>
+    </div>
+</div>

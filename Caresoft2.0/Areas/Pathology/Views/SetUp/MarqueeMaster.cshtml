@@ -1,0 +1,45 @@
+﻿@model CaresoftHMISDataAccess.KeyValuePair
+
+
+@{
+    ViewBag.Title = "Marquee Entry";
+    ViewBag.ShowTopMenu = true;
+    Layout = ViewBag.Layout;
+
+}
+
+<div class="col-xs-6 col-xs-offset-3">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading" style="height:40px ; ">
+            <h5 style="font-weight:bold">@ViewBag.Title</h5>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+           
+            <div class="form-group">
+                @Html.Label("Marquee", htmlAttributes: new { @class = "col-xs-2" })
+                <div class="col-xs-10">
+                    @Html.TextAreaFor(model => model.Value, new { @class = "text-box", style="width:90%; height: 100px" })
+                    @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+          
+
+            <div class="form-group">
+                <div class="col-xs-offset-2 col-xs-10">
+                    <input type="submit" value="Submit" class="btn btn-sm btn-primary" />
+                </div>
+            </div>
+        </div>
+}
+
+        </div>
+    </div>
+</div>
+           

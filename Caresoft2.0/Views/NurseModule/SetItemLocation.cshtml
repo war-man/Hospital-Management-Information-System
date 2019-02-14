@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Set Item Location";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                <table class="table-form">
+                    <tr>
+                        <td>
+                            <label>Item Name</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-lg"  />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Select Rack Name</label>
+                        </td>
+                        <td>
+                            <select class="text-box box-lg">
+                                <option>Select Rack Name</option>
+                            </select>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Total Number Of Cells</label>
+                        </td>
+                        <td>
+                            <fieldset class="inscroll marg-top-2px"></fieldset>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="button" class="btn btn-primary bnt-sm" value="Save" />
+
+                            <input type="button" class="btn btn-primary bnt-sm" value="Clear" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="table-data table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Edit</th>
+                            <th>Item Name</th>
+                            <th>Rack Name</th>
+                            <th>No of Cells</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr>
+                            <td colspan="5" align="center">
+                                <label>No data to display</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,264 @@
+﻿@model CaresoftHMISDataAccess.OpdRegister
+
+<style>
+    .ebook-footer {
+        margin: 1em;
+        background-color: var(--primary-light-color);
+        padding: .5em;
+    }
+
+</style>
+
+<div class="panel panel-primary shadow glass caresoft-panel" style="margin-bottom:-1em;">
+    <div class="panel-heading ">
+        Patient E Book
+    </div>
+    <style>
+        span.index-page-no{
+        float:right;
+        }
+    </style>
+    <div class="panel-body">
+        <div class="flipbook-viewport">
+            <div class="container">
+                <div class="flipbook">
+                    <div>
+                        <div>
+                            <h4 class="text-center" style="color:var(--primary-dark-color)">PATIENT RECORD</h4>
+
+                            <table class="table-form" style="margin:1em;">
+                                <tr>
+                                    <th>Patient Name:</th>
+                                    <td>
+                                        @Model.Patient.Salutation
+                                        @Model.Patient.FName
+                                        @Model.Patient.MName
+                                        @Model.Patient.LName
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Reg Number:</th>
+                                    <td>
+                                        @Model.Patient.RegNumber
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Address:</th>
+                                    <td>
+                                        @Model.Patient.HomeAddress
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Gender/Age:</th>
+                                    <td>
+                                        @Model.Patient.Gender / @(DateTime.Now.Year - @Model.Patient.DOB.Value.Year) Years
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center">
+                                        <img src="~/Content/icons/person-placeholder.png" />
+                                        
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div></div>
+                    <div>
+                        <h5 class="text-center" style="color:var(--primary-dark-color)">INDEX</h5>
+                        <ul class="list-group" style="margin:1em;">
+                            <li class="list-group-item">Physical Examination <span class="index-page-no">4</span></li>
+                            <li class="list-group-item">Systemic Examination <span class="index-page-no">5</span></li>
+                            <li class="list-group-item">Chief Complaints <span class="index-page-no">6</span></li>
+                            <li class="list-group-item">Investigation Required <span class="index-page-no">7</span></li>
+                            <li class="list-group-item">Investigation Resuts <span class="index-page-no">8</span></li>
+                            <li class="list-group-item">Final Diagnosis <span class="index-page-no">9</span></li>
+                            <li class="list-group-item">Treatment<span class="index-page-no">10</span>t</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <div class="ebook-heading">Physical Examination <span class="index-page-no">4</span></div>
+                        <table style="margin:1em;" class="table-condensed">
+                            <tr>
+                                <th>Temperature</th>
+                                <td>
+                                    @foreach (var pe in Model.Patient.PhysicalExaminations)
+                                    {
+                                        <span>@pe.Temperature > </span>
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Pulse</th>
+                                <td>
+                                    @foreach (var pe in Model.Patient.PhysicalExaminations)
+                                    {
+                                        <span>@pe.Pulse > </span>
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Respiratory Rate</th>
+                                <td>
+                                    @foreach (var pe in Model.Patient.PhysicalExaminations)
+                                    {
+                                        <span>@pe.RespiratoryRate></span>
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Weight</th>
+                                <td>
+                                    @foreach (var pe in Model.Patient.PhysicalExaminations)
+                                    {
+                                      <span>@pe.Weight ></span>
+                                    }
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Height</th>
+                                <td>
+                                    @foreach (var pe in Model.Patient.PhysicalExaminations)
+                                    {
+                                        <span>@pe.Height ></span>
+                                    }
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>BP Diastolic Sitting</th>
+                                <td>
+                                    @foreach (var pe in Model.Patient.PhysicalExaminations)
+                                    {
+                                        <span>@pe.BPDIASTOLICSSitting ></span>
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>BP Diastolic Supine</th>
+                                <td>
+                                    @foreach (var pe in Model.Patient.PhysicalExaminations)
+                                    {
+                                        <span>@pe.BPSDIASTOLICSupine ></span>
+                                    }
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+
+                    <div>
+                        <div class="ebook-heading">Systemic Examination <span class="index-page-no">5</span></div>
+                        <table style="margin:1em;" class="table-condensed">
+                        @foreach(var sys in Model.SystemicExamResults.Where(e=>e.NormalAbnormal!= "Not Examined"))
+                        {
+                            <tr>
+                                <td>@sys.ParticularQuiz</td>
+                                <td>@sys.NormalAbnormal</td>
+                                <td>@sys.Findings</td>
+                            </tr>
+                        }
+                        </table>
+                    </div>
+
+                    <div>
+                        <div class="ebook-heading">Chief Complaint <span class="index-page-no">5</span></div>
+                        <table style="margin:1em;" class="table-condensed">
+                            @foreach (var complaint in Model.Complaints.Where(e => !e.ChiefComplaints.StartsWith("[DELETED]")))
+                            {
+                                <tr>
+                                    <th>Complaint</th>
+                                    <td>@complaint.ChiefComplaints</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Since</th>
+                                    <td>@complaint.Since @complaint.SinceUnit</td>
+                                </tr>
+                                <tr>
+                                    <th>Treatment Taken</th>
+                                    <td>@complaint.TreatmentTaken </td>
+                                </tr>
+                                <tr>
+                                    <th>Provisional Diagnostic</th>
+                                    <td>@complaint.ProvisionalDiagnostic </td>
+                                </tr>
+                            }
+                        </table>
+                        <div class="ebook-footer"><em> @{ var lastComplaint = Model.Complaints
+                                .Where(e => !e.ChiefComplaints.StartsWith("[DELETED]")).ToList();} @if (lastComplaint != null) { 
+                            <text></text>}</em>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="ebook-heading">Investigations Required</div>
+                        <table style="margin:1em;" class="table-condensed">
+                            @foreach (var investigation in Model.BillServices.Where(e => e.Service.IsLAB || e.Service.IsXRAY))
+                            {
+                                <tr>
+                                    <th>Test Name</th>
+                                    <td>@investigation.ServiceName</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <div>
+                        <div class="ebook-heading">Investigations Results</div>
+                        <table style="margin:1em;" class="table-condensed">
+                            <tr>
+                                <th>Result</th>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <div class="ebook-heading">Final Diagnosis</div>
+                        <table style="margin:1em;" class="table-condensed">
+                            @foreach (var pd in Model.PatientDiagnosis)
+                            {
+                                <tr>
+                                    <td>@pd.FinalDiagnosis</td>
+                                </tr>
+                            }
+                           
+                        </table>
+                    </div>
+                    <div>
+                        <div class="ebook-heading">Treatment</div>
+                        <table style="margin:1em;" class="table-condensed table-bordered">
+                            <tr class="">
+                                <th>Drug</th>
+                                <th>Freq</th>
+                                <th>Days</th>
+                                <th>Qty</th>
+                                <th>Start</th>
+                            </tr>
+                            @foreach (var tr in Model.Medications)
+                            {
+                                <tr>
+                                    <td>@tr.DrugName</td>
+                                    <td>@tr.Frequency</td>
+                                    <td>@tr.Day</td>
+                                    <td>@tr.Quantity</td>
+                                    <td>@tr.StartDate.ToShortDateString()</td>
+                                </tr> 
+                            }
+
+                        </table>
+                    </div>
+                    <div>
+                        <h4 class="text-center" style="color:var(--primary-dark-color); margin-top:4em;">END</h4>
+                        <h5 class="text-center" style="margin-top:4em;">
+                           @ViewBag.CompanyName
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

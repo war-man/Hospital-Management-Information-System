@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "RateTypeForAwardAmount";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+}
+
+<style>
+    .text-box {
+        width: 150px;
+    }
+
+    .table-form tr {
+        height: 40px;
+    }
+</style>
+<div class="col-md-8">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading">
+            Rate Type For Award Amount
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="">
+                        <tr>
+                            <td>Drug Name &nbsp;&nbsp;&nbsp;</td>
+                            <td><input type="text" class="text-box margin-top-bottom-2" id="drugName" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>Drug Code &nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                <select class="text-box margin-top-bottom-2">
+                                    <option>Select</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Insuarance &nbsp;&nbsp;&nbsp;</td>
+                            <td><input type="text" class="text-box margin-top-bottom-2" id="drugName" /></td>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <table class="table table-data-pathology" style="background:white;">
+                        <tr>
+                            <th>Scheme </th>
+                            <th>Amount </th>
+                            <th>Delete</th>
+                        </tr>
+                        <tr>
+                            <td colspan="3"  class="text-center"> No data to display</td>
+                        </tr>
+                    </table>
+                    <div>
+                        <button class="btn btn-primary btn-sm" id="btnSave">Save</button>
+                        <button class="btn btn-primary btn-sm" id="btnBack">Back</button>
+                        <button class="btn btn-primary btn-sm" id="btnCancel">Cancel</button>
+                    </div>
+                    <br />
+                    <table class="table table-data-pathology" style="background:white;">
+                        <tr>
+                            <th>Drug Name</th>
+                            <th>Insuarance Company</th>
+                            <th>Scheme</th>
+                            <th>Award Amount(%)</th>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-center"> No data to display</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#drugName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Action("SearchDrugbyName", "PatientTransactionMStore")",
+                    dataType: "json",
+                    data: { name: $('#name').val() },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Name, value: item.Name, selectedId: item.Id };
+                        }));
+                    }
+                });
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                showNotification("An Error Occured, try again later", "danger", true);
+            },
+            minLength: 1,
+            select: function (event, ui) {
+                $("#DrugId").val(ui.item.selectedId);
+                AddTextBoxesForTarrifsAndPrices(ui.item.selectedId);
+                console.log(ui.item.selectedId);
+            }
+        });
+    </script>
+}

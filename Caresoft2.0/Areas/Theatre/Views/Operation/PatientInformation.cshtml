@@ -1,0 +1,152 @@
+﻿@model CaresoftHMISDataAccess.TheatrePatientBioData
+@{ 
+    var age = "";
+    try
+    {
+        age = new Caresoft2._0.HouseKeeping().GetAge(Model.OpdRegister.Patient.DOB.Value);
+    }catch (Exception e)
+    {
+
+    }
+}
+<fieldset>
+    <legend> <h5><b> Patient Information </b> </h5> </legend>
+    <div class="col-md-12">
+
+        <fieldset>
+            <legend> <h5><b> Patient OPD/IPD Information </b> </h5> </legend>
+
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayName("Patient Name")
+                </dt>
+
+                <dd style="color: blue">
+                    @Html.DisplayFor(model => model.PatientName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Reg No")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OpdRegister.Patient.RegNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("OPD/IPD No")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OpdRegister.Id)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Is IPD")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OpdRegister.IsIPD)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Age / Sex")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => age)  /  @Html.DisplayFor(model => model.OpdRegister.Patient.Gender)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Ward")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OpdRegister.HSBed.HSWard.WardName)
+                </dd>
+
+            </dl>
+
+        </fieldset>
+
+    </div>
+
+    <div class="col-md-12">
+
+        <fieldset>
+            <legend> <h5><b> Patient Theatre Information </b> </h5> </legend>
+
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayName("HIV Status")
+                </dt>
+
+                @if (Model.HIV.Contains("Positive") )
+                {
+                    <dd style="color:red; font-weight:bold;">
+                        @Html.DisplayFor(model => model.HIV)
+                    </dd>
+                }
+                else
+                {
+                    <dd>
+                        @Html.DisplayFor(model => model.HIV)
+                    </dd>
+                }
+
+                <dt>
+                    @Html.DisplayName("Appointment Date")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AppointmentDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Reg Status")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RegStatus)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Reffered From")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OpdRegister.Department)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Theatre Department")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TheatreDepartment.DepartmentName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Registror")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.User.Username)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Registration Time")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CreatedUTC)
+                </dd>
+
+            </dl>
+
+        </fieldset>
+
+    </div>
+</fieldset>

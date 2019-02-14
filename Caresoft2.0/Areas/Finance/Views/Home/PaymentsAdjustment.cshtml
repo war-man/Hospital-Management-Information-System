@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "PaymentsAdjustment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Finance/Views/Shared/_LeftNavigation.cshtml")
+</div>
+
+<div class="col-md-6">
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Payment Adjustment
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Cash Point:
+                                </td>
+                                <td>
+                                    <input type="text" name="CashPoint" id="CashPoint" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                   &nbsp; Shift No:
+                                </td>
+                                <td>
+                                    <input type="number" name="ShiftNo" id="ShiftNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr>
+                                <td>
+                                    Voucher No:
+                                </td>
+                                <td>
+                                    <select id="VoucherNo" name="VoucherNo" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option value=""></option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Supplier Name:
+                                </td>
+                                <td>
+                                    <input type="text" name="SupplierName" id="SupplierName" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                  &nbsp;  Transaction Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="TransactionDate" id="TransactionDate" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Payment Mode:
+                                </td>
+                                <td>
+                                    <select name="PaymentMode" id="PaymentMode" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option value=""></option>
+                                    </select>
+                                </td>
+                                <td>
+                                   &nbsp; Narration:
+                                </td>
+                                <td>
+                                    <input name="Narration" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Cheque Number:
+                                </td>
+                                <td>
+                                    <input type="number" name="ChequeNo" id="ChequeNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                  &nbsp;  GL Account:
+                                </td>
+                                <td>
+                                    <input type="text" name="GLAccount" id="GLAccount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr><td>&nbsp;</td></tr>
+                            @*<tr>
+                                <td>
+                                    Cheque Number:
+                                </td>
+                                <td>
+                                    <input type="number" name="ChequeNo" id="ChequeNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                   &nbsp; GL Account:
+                                </td>
+                                <td>
+                                    <input type="text" name="GLAccount" id="GLAccount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>*@
+                            <tr>
+                                <td>
+                                    Bank Account Number:
+                                </td>
+                                <td>
+                                    <select name="BankAccNo" id="BankAccNo" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option value=""></option>
+                                    </select>
+                                </td>
+                                <td>
+                                   &nbsp; Bank Name:
+                                </td>
+                                <td>
+                                    <input type="text" name="BankName" id="BankName" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Account Name:
+                                </td>
+                                <td>
+                                    <input type="text" name="AccName" id="AccName" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                  &nbsp;  Gross Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="GrossAmount" id="GrossAmount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <button type="submit" name="Save" class="btn btn-primary bn-sm">Save</button>
+                        <button type="reset" name="Clear">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

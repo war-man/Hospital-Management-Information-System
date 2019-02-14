@@ -1,0 +1,3036 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CareSoftLabsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DepartmentAssignments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="UserType" Type="int" Nullable="false" />
+          <Property Name="SingatureImage" Type="varchar" MaxLength="255" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Main_Department" Type="int" Nullable="false" />
+          <Property Name="Department1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Department_Code" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Modality" Type="varchar" MaxLength="50" />
+          <Property Name="Department_Order_No" Type="int" />
+          <Property Name="Remark" Type="varchar(max)" />
+          <Property Name="Profile_Department" Type="bit" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Headings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Heading1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LabTest" Type="int" Nullable="false" />
+          <Property Name="Heading_Order" Type="int" />
+          <Property Name="CreatedUtc" Type="datetime" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InterpretationEntries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nchar" MaxLength="50" />
+          <Property Name="Test" Type="int" />
+          <Property Name="Profiles" Type="int" />
+          <Property Name="Data" Type="varchar(max)" />
+          <Property Name="CreatedUtc" Type="datetime" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LabOptionHtmlTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LabTests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Test" Type="varchar(max)" Nullable="false" />
+          <Property Name="Department" Type="int" Nullable="false" />
+          <Property Name="Test_Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Order_Number" Type="varchar" MaxLength="50" />
+          <Property Name="Test_Method" Type="varchar" MaxLength="50" />
+          <Property Name="ICD10" Type="varchar" MaxLength="50" />
+          <Property Name="HCPCS_Code" Type="varchar" MaxLength="50" />
+          <Property Name="CPT_Code" Type="varchar" MaxLength="50" />
+          <Property Name="Machine_Name" Type="int" />
+          <Property Name="Title_Machine_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Sample_Type" Type="int" />
+          <Property Name="Shot_Form" Type="varchar" MaxLength="50" />
+          <Property Name="Preparation_Time" Type="varchar" MaxLength="50" />
+          <Property Name="Specific_Instruction_For_Preparation" Type="varchar(max)" />
+          <Property Name="Sex" Type="int" />
+          <Property Name="Attach_Graph" Type="bit" Nullable="false" />
+          <Property Name="Update_All" Type="bit" Nullable="false" />
+          <Property Name="IsHide" Type="bit" Nullable="false" />
+          <Property Name="GlocusePP" Type="bit" Nullable="false" />
+          <Property Name="ParametersList" Type="int" />
+          <Property Name="Parameter" Type="bit" Nullable="false" />
+          <Property Name="Available" Type="bit" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LabTestsResultsOptions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Test" Type="int" Nullable="false" />
+          <Property Name="Parameter" Type="int" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Result" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MachineDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Department" Type="int" />
+          <Property Name="Title" Type="int" />
+          <Property Name="Machine" Type="int" />
+          <Property Name="Bioname" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedUtc" Type="datetime" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Machines">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Machine_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedUtc" Type="datetime" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MainDepartments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MainDepartment1" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NormalValues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Test" Type="int" Nullable="false" />
+          <Property Name="Parameter" Type="int" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="Lower_Age" Type="int" />
+          <Property Name="Upper_Age" Type="int" />
+          <Property Name="Days" Type="int" />
+          <Property Name="LowerRange" Type="float" />
+          <Property Name="UpperRange" Type="float" />
+          <Property Name="Unit" Type="varchar" MaxLength="10" />
+          <Property Name="General" Type="varchar(max)" />
+          <Property Name="CreatedUtc" Type="datetime" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PanicValues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Test" Type="int" Nullable="false" />
+          <Property Name="Parameter" Type="int" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="Lower_Age" Type="int" />
+          <Property Name="Upper_Age" Type="int" />
+          <Property Name="Days" Type="int" />
+          <Property Name="Lower_Range" Type="float" />
+          <Property Name="UpperRange" Type="float" />
+          <Property Name="Unit" Type="varchar" MaxLength="10" />
+          <Property Name="General" Type="varchar(max)" />
+          <Property Name="CreatedUtc" Type="datetime" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parameters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Parameter_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Parameter_Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Parameter_Order" Type="int" />
+          <Property Name="Parameter_Method" Type="varchar" MaxLength="50" />
+          <Property Name="Machine_Name" Type="int" />
+          <Property Name="Title_Machine_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Short_Form" Type="varchar" MaxLength="50" />
+          <Property Name="Heading" Type="int" />
+          <Property Name="Test" Type="int" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PathKeyValuePairs">
+          <Key>
+            <PropertyRef Name="Key_" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key_" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="varchar(max)" />
+          <Property Name="Owner" Type="varchar" MaxLength="50" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Periods">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Days" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Group_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Group_Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Profile_Method" Type="varchar" MaxLength="50" />
+          <Property Name="ProfileTest" Type="int" />
+          <Property Name="Selected_Tests" Type="varchar" MaxLength="50" />
+          <Property Name="Profile_Department" Type="int" Nullable="false" />
+          <Property Name="CreatedUtc" Type="datetime" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReasonMasters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Reason" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedUtc" Type="datetime" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Samples">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sample_Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedUtc" Type="datetime" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShortForms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Test" Type="int" Nullable="false" />
+          <Property Name="Short_Form" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="CreatedUtc" Type="datetime" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StandardOperative_Procedures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Test" Type="int" />
+          <Property Name="Standard_Operative_Procedure" Type="varchar(max)" />
+          <Property Name="CreatedUtc" Type="datetime" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusValue" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Test_Turn_Around_Times">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Test" Type="int" Nullable="false" />
+          <Property Name="TTAT_Days" Type="int" Nullable="false" />
+          <Property Name="TTAT_Hours" Type="int" Nullable="false" />
+          <Property Name="RDD_Days" Type="int" Nullable="false" />
+          <Property Name="RDD_Hours" Type="int" Nullable="false" />
+          <Property Name="Vial_Type" Type="int" />
+          <Property Name="srno" Type="varchar" MaxLength="50" />
+          <Property Name="srno1" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedUtc" Type="datetime" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User" Type="int" Nullable="false" />
+          <Property Name="Department" Type="int" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserType1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VialMasters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vial_Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedUtc" Type="datetime" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkOrderPositions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Position" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkOrders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OPDNo" Type="int" />
+          <Property Name="OPDType" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="BillPaid" Type="int" Nullable="false" />
+          <Property Name="Doctor" Type="int" Nullable="false" />
+          <Property Name="LabNo" Type="varchar" MaxLength="50" />
+          <Property Name="PathNo" Type="varchar" MaxLength="50" />
+          <Property Name="ShowInSpecimentResultEnty" Type="bit" />
+          <Property Name="ShowInSpecimentCollection" Type="bit" />
+          <Property Name="Accession_Status" Type="int" Nullable="false" />
+          <Property Name="Financial_Year" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedUtc" Type="datetime" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="DoctorsNotes" Type="text" />
+        </EntityType>
+        <EntityType Name="WorkOrderTestParameters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkOrderTest" Type="int" Nullable="false" />
+          <Property Name="Parameter" Type="int" Nullable="false" />
+          <Property Name="Results" Type="varchar(max)" />
+          <Property Name="CreatedUtc" Type="datetime" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="WorkOrderTests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkOrder" Type="int" Nullable="false" />
+          <Property Name="Test" Type="int" Nullable="false" />
+          <Property Name="BillPaid" Type="bit" Nullable="false" />
+          <Property Name="ReceiptNo" Type="int" />
+          <Property Name="BarCode" Type="varchar" MaxLength="50" />
+          <Property Name="RefCustomer" Type="varchar" MaxLength="50" />
+          <Property Name="Condition" Type="varchar" MaxLength="50" />
+          <Property Name="Results" Type="varchar(max)" />
+          <Property Name="Doctor" Type="int" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="TimeAuthorized" Type="datetime" />
+          <Property Name="CreatedUtc" Type="datetime" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CareSoftLabs.dbo.LabTestForMOH505Report' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LabTestForMOH505Report">
+          <Key>
+            <PropertyRef Name="WorkOrderTestId" />
+            <PropertyRef Name="LabTestId" />
+            <PropertyRef Name="LabTest" />
+            <PropertyRef Name="LabTestCode" />
+            <PropertyRef Name="OPDIPDNo" />
+            <PropertyRef Name="PatientID" />
+            <PropertyRef Name="DepartmentRadPath" />
+            <PropertyRef Name="DepartmentName" />
+          </Key>
+          <Property Name="WorkOrderTestId" Type="int" Nullable="false" />
+          <Property Name="LabTestId" Type="int" Nullable="false" />
+          <Property Name="LabTest" Type="varchar(max)" Nullable="false" />
+          <Property Name="LabTestCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LabTestResults" Type="varchar" MaxLength="50" />
+          <Property Name="OPDIPDNo" Type="int" Nullable="false" />
+          <Property Name="PatientID" Type="int" Nullable="false" />
+          <Property Name="PatientRegNo" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" MaxLength="1" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedUtc" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CareSoftLabs.dbo.SearchPatientView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SearchPatientView">
+          <Key>
+            <PropertyRef Name="WorkOrderTestId" />
+            <PropertyRef Name="LabTestId" />
+            <PropertyRef Name="LabTest" />
+            <PropertyRef Name="LabNumber" />
+            <PropertyRef Name="OPDType" />
+            <PropertyRef Name="DoctorUsername" />
+            <PropertyRef Name="BillPrice" />
+            <PropertyRef Name="BillPaid" />
+            <PropertyRef Name="InsuranceGrant" />
+            <PropertyRef Name="TestDepartmentId" />
+            <PropertyRef Name="TestDepartmentName" />
+            <PropertyRef Name="TarrifId" />
+            <PropertyRef Name="TariffName" />
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="CompanyTypeId" />
+            <PropertyRef Name="CompanyTypeName" />
+            <PropertyRef Name="DepartmentRadPath" />
+            <PropertyRef Name="Expr1" />
+          </Key>
+          <Property Name="WorkOrderTestId" Type="int" Nullable="false" />
+          <Property Name="LabTestId" Type="int" Nullable="false" />
+          <Property Name="LabTest" Type="varchar(max)" Nullable="false" />
+          <Property Name="LabNumber" Type="int" Nullable="false" />
+          <Property Name="OPDNo" Type="int" />
+          <Property Name="OPDType" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CreatedUtc" Type="datetime" />
+          <Property Name="PatientRegNumber" Type="varchar" MaxLength="50" />
+          <Property Name="PatientSalutation" Type="varchar" MaxLength="10" />
+          <Property Name="PatientFName" Type="varchar" MaxLength="50" />
+          <Property Name="PatientMName" Type="varchar" MaxLength="50" />
+          <Property Name="PatientLName" Type="varchar" MaxLength="50" />
+          <Property Name="DoctorUsername" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DoctorSalutation" Type="varchar" MaxLength="50" />
+          <Property Name="DoctorFName" Type="varchar" MaxLength="50" />
+          <Property Name="DoctorOtherNames" Type="varchar" MaxLength="50" />
+          <Property Name="BillPrice" Type="float" Nullable="false" />
+          <Property Name="BillPaid" Type="bit" Nullable="false" />
+          <Property Name="InsuranceGrant" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="TestDepartmentId" Type="int" Nullable="false" />
+          <Property Name="TestDepartmentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TarrifId" Type="int" Nullable="false" />
+          <Property Name="TariffName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyTypeId" Type="int" Nullable="false" />
+          <Property Name="CompanyTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="Expr1" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CareSoftLabs.dbo.SearchPatientView\' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SearchPatientView\">
+          <Key>
+            <PropertyRef Name="WorkOrderTestId" />
+            <PropertyRef Name="LabTestId" />
+            <PropertyRef Name="LabTest" />
+            <PropertyRef Name="LabNumber" />
+            <PropertyRef Name="OPDType" />
+            <PropertyRef Name="DoctorUsername" />
+            <PropertyRef Name="BillPrice" />
+            <PropertyRef Name="BillPaid" />
+            <PropertyRef Name="InsuranceGrant" />
+            <PropertyRef Name="TestDepartmentId" />
+            <PropertyRef Name="TestDepartmentName" />
+            <PropertyRef Name="DepartmentRadPath" />
+            <PropertyRef Name="TarrifId" />
+            <PropertyRef Name="TariffName" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="CompanyTypeId" />
+            <PropertyRef Name="CompanyTypeName" />
+          </Key>
+          <Property Name="WorkOrderTestId" Type="int" Nullable="false" />
+          <Property Name="LabTestId" Type="int" Nullable="false" />
+          <Property Name="LabTest" Type="varchar(max)" Nullable="false" />
+          <Property Name="LabNumber" Type="int" Nullable="false" />
+          <Property Name="OPDNo" Type="int" />
+          <Property Name="OPDType" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CreatedUtc" Type="datetime" />
+          <Property Name="PatientRegNumber" Type="varchar" MaxLength="50" />
+          <Property Name="PatientSalutation" Type="varchar" MaxLength="10" />
+          <Property Name="PatientFName" Type="varchar" MaxLength="50" />
+          <Property Name="PatientMName" Type="varchar" MaxLength="50" />
+          <Property Name="PatientLName" Type="varchar" MaxLength="50" />
+          <Property Name="DoctorUsername" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DoctorSalutation" Type="varchar" MaxLength="50" />
+          <Property Name="DoctorFName" Type="varchar" MaxLength="50" />
+          <Property Name="DoctorOtherNames" Type="varchar" MaxLength="50" />
+          <Property Name="BillPrice" Type="float" Nullable="false" />
+          <Property Name="BillPaid" Type="bit" Nullable="false" />
+          <Property Name="InsuranceGrant" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="TestDepartmentId" Type="int" Nullable="false" />
+          <Property Name="TestDepartmentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
+          <Property Name="TarrifId" Type="int" Nullable="false" />
+          <Property Name="TariffName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyTypeId" Type="int" Nullable="false" />
+          <Property Name="CompanyTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DepartmentAssignments_UserType">
+          <End Role="UserTypes" Type="Self.UserTypes" Multiplicity="1" />
+          <End Role="DepartmentAssignments" Type="Self.DepartmentAssignments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DepartmentAssignments">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Heading_LabTests">
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Headings" Type="Self.Headings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Headings">
+              <PropertyRef Name="LabTest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InterpretationEntry_LabTests">
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="0..1" />
+          <End Role="InterpretationEntries" Type="Self.InterpretationEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InterpretationEntries">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InterpretationEntry_Profile">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="0..1" />
+          <End Role="InterpretationEntries" Type="Self.InterpretationEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InterpretationEntries">
+              <PropertyRef Name="Profiles" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabTests_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabTests">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabTests_Gender">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="0..1" />
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabTests">
+              <PropertyRef Name="Sex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabTests_Machines">
+          <End Role="Machines" Type="Self.Machines" Multiplicity="0..1" />
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machines">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabTests">
+              <PropertyRef Name="Machine_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabTests_Sample">
+          <End Role="Samples" Type="Self.Samples" Multiplicity="0..1" />
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Samples">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabTests">
+              <PropertyRef Name="Sample_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabTestsResultsOptions_LabOptionHtmlTypes">
+          <End Role="LabOptionHtmlTypes" Type="Self.LabOptionHtmlTypes" Multiplicity="1" />
+          <End Role="LabTestsResultsOptions" Type="Self.LabTestsResultsOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabOptionHtmlTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabTestsResultsOptions">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabTestsResultsOptions_LabTests">
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="1" />
+          <End Role="LabTestsResultsOptions" Type="Self.LabTestsResultsOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabTestsResultsOptions">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineDetails_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="MachineDetails" Type="Self.MachineDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MachineDetails">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineDetails_LabTests">
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="0..1" />
+          <End Role="MachineDetails" Type="Self.MachineDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MachineDetails">
+              <PropertyRef Name="Title" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineDetails_Machine">
+          <End Role="Machines" Type="Self.Machines" Multiplicity="0..1" />
+          <End Role="MachineDetails" Type="Self.MachineDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machines">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MachineDetails">
+              <PropertyRef Name="Machine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NormalValues_Gender">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="0..1" />
+          <End Role="NormalValues" Type="Self.NormalValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NormalValues">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NormalValues_LabTests">
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NormalValues" Type="Self.NormalValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NormalValues">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NormalValues_Parameter">
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="0..1" />
+          <End Role="NormalValues" Type="Self.NormalValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameters">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NormalValues">
+              <PropertyRef Name="Parameter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NormalValues_Period">
+          <End Role="Periods" Type="Self.Periods" Multiplicity="0..1" />
+          <End Role="NormalValues" Type="Self.NormalValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Periods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NormalValues">
+              <PropertyRef Name="Days" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PanicValue_Gender">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="0..1" />
+          <End Role="PanicValues" Type="Self.PanicValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PanicValues">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PanicValue_LabTests">
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="1" />
+          <End Role="PanicValues" Type="Self.PanicValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PanicValues">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PanicValue_Parameter">
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="0..1" />
+          <End Role="PanicValues" Type="Self.PanicValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameters">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PanicValues">
+              <PropertyRef Name="Parameter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PanicValue_Period">
+          <End Role="Periods" Type="Self.Periods" Multiplicity="0..1" />
+          <End Role="PanicValues" Type="Self.PanicValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Periods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PanicValues">
+              <PropertyRef Name="Days" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parameter_LabTests">
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parameters">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profile_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="Profile_Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShortForm_LabTests">
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="1" />
+          <End Role="ShortForms" Type="Self.ShortForms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShortForms">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StandardOperative_Procedure_LabTests">
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="0..1" />
+          <End Role="StandardOperative_Procedures" Type="Self.StandardOperative_Procedures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StandardOperative_Procedures">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Turn_Around_Time_LabTests">
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="1" />
+          <End Role="Test_Turn_Around_Times" Type="Self.Test_Turn_Around_Times" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Test_Turn_Around_Times">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Turn_Around_Time_VialMaster">
+          <End Role="VialMasters" Type="Self.VialMasters" Multiplicity="0..1" />
+          <End Role="Test_Turn_Around_Times" Type="Self.Test_Turn_Around_Times" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VialMasters">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Test_Turn_Around_Times">
+              <PropertyRef Name="Vial_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Department_DepartmentAssignments">
+          <End Role="DepartmentAssignments" Type="Self.DepartmentAssignments" Multiplicity="1" />
+          <End Role="User_Department" Type="Self.User_Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DepartmentAssignments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User_Department">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Department_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="User_Department" Type="Self.User_Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User_Department">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrder_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="WorkOrders" Type="Self.WorkOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOrders">
+              <PropertyRef Name="Accession_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrderTestParameters_Parameter">
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="1" />
+          <End Role="WorkOrderTestParameters" Type="Self.WorkOrderTestParameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameters">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOrderTestParameters">
+              <PropertyRef Name="Parameter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrderTestParameters_WorkOrderTests">
+          <End Role="WorkOrderTests" Type="Self.WorkOrderTests" Multiplicity="1" />
+          <End Role="WorkOrderTestParameters" Type="Self.WorkOrderTestParameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkOrderTests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOrderTestParameters">
+              <PropertyRef Name="WorkOrderTest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrderTests_DepartmentAssignments">
+          <End Role="DepartmentAssignments" Type="Self.DepartmentAssignments" Multiplicity="0..1" />
+          <End Role="WorkOrderTests" Type="Self.WorkOrderTests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DepartmentAssignments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOrderTests">
+              <PropertyRef Name="Doctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrderTests_LabTests">
+          <End Role="LabTests" Type="Self.LabTests" Multiplicity="1" />
+          <End Role="WorkOrderTests" Type="Self.WorkOrderTests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOrderTests">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrderTests_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="WorkOrderTests" Type="Self.WorkOrderTests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOrderTests">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrderTests_WorkOrder1">
+          <End Role="WorkOrders" Type="Self.WorkOrders" Multiplicity="1" />
+          <End Role="WorkOrderTests" Type="Self.WorkOrderTests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOrderTests">
+              <PropertyRef Name="WorkOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CareSoftLabsModelStoreContainer">
+          <EntitySet Name="DepartmentAssignments" EntityType="Self.DepartmentAssignments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Headings" EntityType="Self.Headings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InterpretationEntries" EntityType="Self.InterpretationEntries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LabOptionHtmlTypes" EntityType="Self.LabOptionHtmlTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LabTests" EntityType="Self.LabTests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LabTestsResultsOptions" EntityType="Self.LabTestsResultsOptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MachineDetails" EntityType="Self.MachineDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Machines" EntityType="Self.Machines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MainDepartments" EntityType="Self.MainDepartments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NormalValues" EntityType="Self.NormalValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PanicValues" EntityType="Self.PanicValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parameters" EntityType="Self.Parameters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PathKeyValuePairs" EntityType="Self.PathKeyValuePairs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Periods" EntityType="Self.Periods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReasonMasters" EntityType="Self.ReasonMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Samples" EntityType="Self.Samples" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShortForms" EntityType="Self.ShortForms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StandardOperative_Procedures" EntityType="Self.StandardOperative_Procedures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test_Turn_Around_Times" EntityType="Self.Test_Turn_Around_Times" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Department" EntityType="Self.User_Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTypes" EntityType="Self.UserTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VialMasters" EntityType="Self.VialMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkOrderPositions" EntityType="Self.WorkOrderPositions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkOrders" EntityType="Self.WorkOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkOrderTestParameters" EntityType="Self.WorkOrderTestParameters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkOrderTests" EntityType="Self.WorkOrderTests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LabTestForMOH505Report" EntityType="Self.LabTestForMOH505Report" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LabTestForMOH505Report].[WorkOrderTestId] AS [WorkOrderTestId], 
+    [LabTestForMOH505Report].[LabTestId] AS [LabTestId], 
+    [LabTestForMOH505Report].[LabTest] AS [LabTest], 
+    [LabTestForMOH505Report].[LabTestCode] AS [LabTestCode], 
+    [LabTestForMOH505Report].[LabTestResults] AS [LabTestResults], 
+    [LabTestForMOH505Report].[OPDIPDNo] AS [OPDIPDNo], 
+    [LabTestForMOH505Report].[PatientID] AS [PatientID], 
+    [LabTestForMOH505Report].[PatientRegNo] AS [PatientRegNo], 
+    [LabTestForMOH505Report].[Gender] AS [Gender], 
+    [LabTestForMOH505Report].[DOB] AS [DOB], 
+    [LabTestForMOH505Report].[DepartmentRadPath] AS [DepartmentRadPath], 
+    [LabTestForMOH505Report].[DepartmentName] AS [DepartmentName], 
+    [LabTestForMOH505Report].[CreatedUtc] AS [CreatedUtc]
+    FROM [dbo].[LabTestForMOH505Report] AS [LabTestForMOH505Report]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SearchPatientView" EntityType="Self.SearchPatientView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SearchPatientView].[WorkOrderTestId] AS [WorkOrderTestId], 
+    [SearchPatientView].[LabTestId] AS [LabTestId], 
+    [SearchPatientView].[LabTest] AS [LabTest], 
+    [SearchPatientView].[LabNumber] AS [LabNumber], 
+    [SearchPatientView].[OPDNo] AS [OPDNo], 
+    [SearchPatientView].[OPDType] AS [OPDType], 
+    [SearchPatientView].[CreatedUtc] AS [CreatedUtc], 
+    [SearchPatientView].[PatientRegNumber] AS [PatientRegNumber], 
+    [SearchPatientView].[PatientSalutation] AS [PatientSalutation], 
+    [SearchPatientView].[PatientFName] AS [PatientFName], 
+    [SearchPatientView].[PatientMName] AS [PatientMName], 
+    [SearchPatientView].[PatientLName] AS [PatientLName], 
+    [SearchPatientView].[DoctorUsername] AS [DoctorUsername], 
+    [SearchPatientView].[DoctorSalutation] AS [DoctorSalutation], 
+    [SearchPatientView].[DoctorFName] AS [DoctorFName], 
+    [SearchPatientView].[DoctorOtherNames] AS [DoctorOtherNames], 
+    [SearchPatientView].[BillPrice] AS [BillPrice], 
+    [SearchPatientView].[BillPaid] AS [BillPaid], 
+    [SearchPatientView].[InsuranceGrant] AS [InsuranceGrant], 
+    [SearchPatientView].[Discount] AS [Discount], 
+    [SearchPatientView].[TestDepartmentId] AS [TestDepartmentId], 
+    [SearchPatientView].[TestDepartmentName] AS [TestDepartmentName], 
+    [SearchPatientView].[TarrifId] AS [TarrifId], 
+    [SearchPatientView].[TariffName] AS [TariffName], 
+    [SearchPatientView].[CompanyID] AS [CompanyID], 
+    [SearchPatientView].[CompanyName] AS [CompanyName], 
+    [SearchPatientView].[CompanyTypeId] AS [CompanyTypeId], 
+    [SearchPatientView].[CompanyTypeName] AS [CompanyTypeName], 
+    [SearchPatientView].[DepartmentRadPath] AS [DepartmentRadPath], 
+    [SearchPatientView].[Expr1] AS [Expr1]
+    FROM [dbo].[SearchPatientView] AS [SearchPatientView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SearchPatientView\" EntityType="Self.SearchPatientView\" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SearchPatientView\].[WorkOrderTestId] AS [WorkOrderTestId], 
+    [SearchPatientView\].[LabTestId] AS [LabTestId], 
+    [SearchPatientView\].[LabTest] AS [LabTest], 
+    [SearchPatientView\].[LabNumber] AS [LabNumber], 
+    [SearchPatientView\].[OPDNo] AS [OPDNo], 
+    [SearchPatientView\].[OPDType] AS [OPDType], 
+    [SearchPatientView\].[CreatedUtc] AS [CreatedUtc], 
+    [SearchPatientView\].[PatientRegNumber] AS [PatientRegNumber], 
+    [SearchPatientView\].[PatientSalutation] AS [PatientSalutation], 
+    [SearchPatientView\].[PatientFName] AS [PatientFName], 
+    [SearchPatientView\].[PatientMName] AS [PatientMName], 
+    [SearchPatientView\].[PatientLName] AS [PatientLName], 
+    [SearchPatientView\].[DoctorUsername] AS [DoctorUsername], 
+    [SearchPatientView\].[DoctorSalutation] AS [DoctorSalutation], 
+    [SearchPatientView\].[DoctorFName] AS [DoctorFName], 
+    [SearchPatientView\].[DoctorOtherNames] AS [DoctorOtherNames], 
+    [SearchPatientView\].[BillPrice] AS [BillPrice], 
+    [SearchPatientView\].[BillPaid] AS [BillPaid], 
+    [SearchPatientView\].[InsuranceGrant] AS [InsuranceGrant], 
+    [SearchPatientView\].[Discount] AS [Discount], 
+    [SearchPatientView\].[TestDepartmentId] AS [TestDepartmentId], 
+    [SearchPatientView\].[TestDepartmentName] AS [TestDepartmentName], 
+    [SearchPatientView\].[DepartmentRadPath] AS [DepartmentRadPath], 
+    [SearchPatientView\].[TarrifId] AS [TarrifId], 
+    [SearchPatientView\].[TariffName] AS [TariffName], 
+    [SearchPatientView\].[CompanyId] AS [CompanyId], 
+    [SearchPatientView\].[CompanyName] AS [CompanyName], 
+    [SearchPatientView\].[CompanyTypeId] AS [CompanyTypeId], 
+    [SearchPatientView\].[CompanyTypeName] AS [CompanyTypeName]
+    FROM [dbo].[SearchPatientView\] AS [SearchPatientView\]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_DepartmentAssignments_UserType" Association="Self.FK_DepartmentAssignments_UserType">
+            <End Role="UserTypes" EntitySet="UserTypes" />
+            <End Role="DepartmentAssignments" EntitySet="DepartmentAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Heading_LabTests" Association="Self.FK_Heading_LabTests">
+            <End Role="LabTests" EntitySet="LabTests" />
+            <End Role="Headings" EntitySet="Headings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InterpretationEntry_LabTests" Association="Self.FK_InterpretationEntry_LabTests">
+            <End Role="LabTests" EntitySet="LabTests" />
+            <End Role="InterpretationEntries" EntitySet="InterpretationEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InterpretationEntry_Profile" Association="Self.FK_InterpretationEntry_Profile">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="InterpretationEntries" EntitySet="InterpretationEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabTests_Departments" Association="Self.FK_LabTests_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="LabTests" EntitySet="LabTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabTests_Gender" Association="Self.FK_LabTests_Gender">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="LabTests" EntitySet="LabTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabTests_Machines" Association="Self.FK_LabTests_Machines">
+            <End Role="Machines" EntitySet="Machines" />
+            <End Role="LabTests" EntitySet="LabTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabTests_Sample" Association="Self.FK_LabTests_Sample">
+            <End Role="Samples" EntitySet="Samples" />
+            <End Role="LabTests" EntitySet="LabTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabTestsResultsOptions_LabOptionHtmlTypes" Association="Self.FK_LabTestsResultsOptions_LabOptionHtmlTypes">
+            <End Role="LabOptionHtmlTypes" EntitySet="LabOptionHtmlTypes" />
+            <End Role="LabTestsResultsOptions" EntitySet="LabTestsResultsOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabTestsResultsOptions_LabTests" Association="Self.FK_LabTestsResultsOptions_LabTests">
+            <End Role="LabTests" EntitySet="LabTests" />
+            <End Role="LabTestsResultsOptions" EntitySet="LabTestsResultsOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineDetails_Departments" Association="Self.FK_MachineDetails_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="MachineDetails" EntitySet="MachineDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineDetails_LabTests" Association="Self.FK_MachineDetails_LabTests">
+            <End Role="LabTests" EntitySet="LabTests" />
+            <End Role="MachineDetails" EntitySet="MachineDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineDetails_Machine" Association="Self.FK_MachineDetails_Machine">
+            <End Role="Machines" EntitySet="Machines" />
+            <End Role="MachineDetails" EntitySet="MachineDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NormalValues_Gender" Association="Self.FK_NormalValues_Gender">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="NormalValues" EntitySet="NormalValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NormalValues_LabTests" Association="Self.FK_NormalValues_LabTests">
+            <End Role="LabTests" EntitySet="LabTests" />
+            <End Role="NormalValues" EntitySet="NormalValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NormalValues_Parameter" Association="Self.FK_NormalValues_Parameter">
+            <End Role="Parameters" EntitySet="Parameters" />
+            <End Role="NormalValues" EntitySet="NormalValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NormalValues_Period" Association="Self.FK_NormalValues_Period">
+            <End Role="Periods" EntitySet="Periods" />
+            <End Role="NormalValues" EntitySet="NormalValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PanicValue_Gender" Association="Self.FK_PanicValue_Gender">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="PanicValues" EntitySet="PanicValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PanicValue_LabTests" Association="Self.FK_PanicValue_LabTests">
+            <End Role="LabTests" EntitySet="LabTests" />
+            <End Role="PanicValues" EntitySet="PanicValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PanicValue_Parameter" Association="Self.FK_PanicValue_Parameter">
+            <End Role="Parameters" EntitySet="Parameters" />
+            <End Role="PanicValues" EntitySet="PanicValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PanicValue_Period" Association="Self.FK_PanicValue_Period">
+            <End Role="Periods" EntitySet="Periods" />
+            <End Role="PanicValues" EntitySet="PanicValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parameter_LabTests" Association="Self.FK_Parameter_LabTests">
+            <End Role="LabTests" EntitySet="LabTests" />
+            <End Role="Parameters" EntitySet="Parameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_Departments" Association="Self.FK_Profile_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Profiles" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShortForm_LabTests" Association="Self.FK_ShortForm_LabTests">
+            <End Role="LabTests" EntitySet="LabTests" />
+            <End Role="ShortForms" EntitySet="ShortForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StandardOperative_Procedure_LabTests" Association="Self.FK_StandardOperative_Procedure_LabTests">
+            <End Role="LabTests" EntitySet="LabTests" />
+            <End Role="StandardOperative_Procedures" EntitySet="StandardOperative_Procedures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Turn_Around_Time_LabTests" Association="Self.FK_Test_Turn_Around_Time_LabTests">
+            <End Role="LabTests" EntitySet="LabTests" />
+            <End Role="Test_Turn_Around_Times" EntitySet="Test_Turn_Around_Times" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Turn_Around_Time_VialMaster" Association="Self.FK_Test_Turn_Around_Time_VialMaster">
+            <End Role="VialMasters" EntitySet="VialMasters" />
+            <End Role="Test_Turn_Around_Times" EntitySet="Test_Turn_Around_Times" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Department_DepartmentAssignments" Association="Self.FK_User_Department_DepartmentAssignments">
+            <End Role="DepartmentAssignments" EntitySet="DepartmentAssignments" />
+            <End Role="User_Department" EntitySet="User_Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Department_Departments" Association="Self.FK_User_Department_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="User_Department" EntitySet="User_Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrder_Status" Association="Self.FK_WorkOrder_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="WorkOrders" EntitySet="WorkOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrderTestParameters_Parameter" Association="Self.FK_WorkOrderTestParameters_Parameter">
+            <End Role="Parameters" EntitySet="Parameters" />
+            <End Role="WorkOrderTestParameters" EntitySet="WorkOrderTestParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrderTestParameters_WorkOrderTests" Association="Self.FK_WorkOrderTestParameters_WorkOrderTests">
+            <End Role="WorkOrderTests" EntitySet="WorkOrderTests" />
+            <End Role="WorkOrderTestParameters" EntitySet="WorkOrderTestParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrderTests_DepartmentAssignments" Association="Self.FK_WorkOrderTests_DepartmentAssignments">
+            <End Role="DepartmentAssignments" EntitySet="DepartmentAssignments" />
+            <End Role="WorkOrderTests" EntitySet="WorkOrderTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrderTests_LabTests" Association="Self.FK_WorkOrderTests_LabTests">
+            <End Role="LabTests" EntitySet="LabTests" />
+            <End Role="WorkOrderTests" EntitySet="WorkOrderTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrderTests_Status" Association="Self.FK_WorkOrderTests_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="WorkOrderTests" EntitySet="WorkOrderTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrderTests_WorkOrder1" Association="Self.FK_WorkOrderTests_WorkOrder1">
+            <End Role="WorkOrders" EntitySet="WorkOrders" />
+            <End Role="WorkOrderTests" EntitySet="WorkOrderTests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CareSoftLabsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CareSoftLabsEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CareSoftLabsModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CareSoftLabsModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="DepartmentAssignments" EntityType="CareSoftLabsModel.DepartmentAssignment" />
+          <EntitySet Name="Departments" EntityType="CareSoftLabsModel.Department" />
+          <EntitySet Name="Genders" EntityType="CareSoftLabsModel.Gender" />
+          <EntitySet Name="Headings" EntityType="CareSoftLabsModel.Heading" />
+          <EntitySet Name="InterpretationEntries" EntityType="CareSoftLabsModel.InterpretationEntry" />
+          <EntitySet Name="LabOptionHtmlTypes" EntityType="CareSoftLabsModel.LabOptionHtmlType" />
+          <EntitySet Name="LabTests" EntityType="CareSoftLabsModel.LabTest" />
+          <EntitySet Name="LabTestsResultsOptions" EntityType="CareSoftLabsModel.LabTestsResultsOption" />
+          <EntitySet Name="MachineDetails" EntityType="CareSoftLabsModel.MachineDetail" />
+          <EntitySet Name="Machines" EntityType="CareSoftLabsModel.Machine" />
+          <EntitySet Name="MainDepartments" EntityType="CareSoftLabsModel.MainDepartment" />
+          <EntitySet Name="NormalValues" EntityType="CareSoftLabsModel.NormalValue" />
+          <EntitySet Name="PanicValues" EntityType="CareSoftLabsModel.PanicValue" />
+          <EntitySet Name="Parameters" EntityType="CareSoftLabsModel.Parameter" />
+          <EntitySet Name="PathKeyValuePairs" EntityType="CareSoftLabsModel.PathKeyValuePair" />
+          <EntitySet Name="Periods" EntityType="CareSoftLabsModel.Period" />
+          <EntitySet Name="Profiles" EntityType="CareSoftLabsModel.Profile" />
+          <EntitySet Name="ReasonMasters" EntityType="CareSoftLabsModel.ReasonMaster" />
+          <EntitySet Name="Samples" EntityType="CareSoftLabsModel.Sample" />
+          <EntitySet Name="ShortForms" EntityType="CareSoftLabsModel.ShortForm" />
+          <EntitySet Name="StandardOperative_Procedures" EntityType="CareSoftLabsModel.StandardOperative_Procedures" />
+          <EntitySet Name="Status" EntityType="CareSoftLabsModel.Status" />
+          <EntitySet Name="Test_Turn_Around_Times" EntityType="CareSoftLabsModel.Test_Turn_Around_Times" />
+          <EntitySet Name="User_Department" EntityType="CareSoftLabsModel.User_Department" />
+          <EntitySet Name="UserTypes" EntityType="CareSoftLabsModel.UserType" />
+          <EntitySet Name="VialMasters" EntityType="CareSoftLabsModel.VialMaster" />
+          <EntitySet Name="WorkOrderPositions" EntityType="CareSoftLabsModel.WorkOrderPosition" />
+          <EntitySet Name="WorkOrders" EntityType="CareSoftLabsModel.WorkOrder" />
+          <EntitySet Name="WorkOrderTestParameters" EntityType="CareSoftLabsModel.WorkOrderTestParameter" />
+          <EntitySet Name="WorkOrderTests" EntityType="CareSoftLabsModel.WorkOrderTest" />
+          <EntitySet Name="LabTestForMOH505Report" EntityType="CareSoftLabsModel.LabTestForMOH505Report" />
+          <EntitySet Name="SearchPatientViews" EntityType="CareSoftLabsModel.SearchPatientView" />
+          <EntitySet Name="SearchPatientView_" EntityType="CareSoftLabsModel.SearchPatientView_" />
+          <AssociationSet Name="FK_DepartmentAssignments_UserType" Association="CareSoftLabsModel.FK_DepartmentAssignments_UserType">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="DepartmentAssignment" EntitySet="DepartmentAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Department_DepartmentAssignments" Association="CareSoftLabsModel.FK_User_Department_DepartmentAssignments">
+            <End Role="DepartmentAssignment" EntitySet="DepartmentAssignments" />
+            <End Role="User_Department" EntitySet="User_Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrderTests_DepartmentAssignments" Association="CareSoftLabsModel.FK_WorkOrderTests_DepartmentAssignments">
+            <End Role="DepartmentAssignment" EntitySet="DepartmentAssignments" />
+            <End Role="WorkOrderTest" EntitySet="WorkOrderTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabTests_Departments" Association="CareSoftLabsModel.FK_LabTests_Departments">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="LabTest" EntitySet="LabTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineDetails_Departments" Association="CareSoftLabsModel.FK_MachineDetails_Departments">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="MachineDetail" EntitySet="MachineDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_Departments" Association="CareSoftLabsModel.FK_Profile_Departments">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Profile" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Department_Departments" Association="CareSoftLabsModel.FK_User_Department_Departments">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="User_Department" EntitySet="User_Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabTests_Gender" Association="CareSoftLabsModel.FK_LabTests_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="LabTest" EntitySet="LabTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NormalValues_Gender" Association="CareSoftLabsModel.FK_NormalValues_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="NormalValue" EntitySet="NormalValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PanicValue_Gender" Association="CareSoftLabsModel.FK_PanicValue_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="PanicValue" EntitySet="PanicValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Heading_LabTests" Association="CareSoftLabsModel.FK_Heading_LabTests">
+            <End Role="LabTest" EntitySet="LabTests" />
+            <End Role="Heading" EntitySet="Headings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InterpretationEntry_LabTests" Association="CareSoftLabsModel.FK_InterpretationEntry_LabTests">
+            <End Role="LabTest" EntitySet="LabTests" />
+            <End Role="InterpretationEntry" EntitySet="InterpretationEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InterpretationEntry_Profile" Association="CareSoftLabsModel.FK_InterpretationEntry_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="InterpretationEntry" EntitySet="InterpretationEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabTestsResultsOptions_LabOptionHtmlTypes" Association="CareSoftLabsModel.FK_LabTestsResultsOptions_LabOptionHtmlTypes">
+            <End Role="LabOptionHtmlType" EntitySet="LabOptionHtmlTypes" />
+            <End Role="LabTestsResultsOption" EntitySet="LabTestsResultsOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabTests_Machines" Association="CareSoftLabsModel.FK_LabTests_Machines">
+            <End Role="Machine" EntitySet="Machines" />
+            <End Role="LabTest" EntitySet="LabTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabTests_Sample" Association="CareSoftLabsModel.FK_LabTests_Sample">
+            <End Role="Sample" EntitySet="Samples" />
+            <End Role="LabTest" EntitySet="LabTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabTestsResultsOptions_LabTests" Association="CareSoftLabsModel.FK_LabTestsResultsOptions_LabTests">
+            <End Role="LabTest" EntitySet="LabTests" />
+            <End Role="LabTestsResultsOption" EntitySet="LabTestsResultsOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineDetails_LabTests" Association="CareSoftLabsModel.FK_MachineDetails_LabTests">
+            <End Role="LabTest" EntitySet="LabTests" />
+            <End Role="MachineDetail" EntitySet="MachineDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NormalValues_LabTests" Association="CareSoftLabsModel.FK_NormalValues_LabTests">
+            <End Role="LabTest" EntitySet="LabTests" />
+            <End Role="NormalValue" EntitySet="NormalValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PanicValue_LabTests" Association="CareSoftLabsModel.FK_PanicValue_LabTests">
+            <End Role="LabTest" EntitySet="LabTests" />
+            <End Role="PanicValue" EntitySet="PanicValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parameter_LabTests" Association="CareSoftLabsModel.FK_Parameter_LabTests">
+            <End Role="LabTest" EntitySet="LabTests" />
+            <End Role="Parameter" EntitySet="Parameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShortForm_LabTests" Association="CareSoftLabsModel.FK_ShortForm_LabTests">
+            <End Role="LabTest" EntitySet="LabTests" />
+            <End Role="ShortForm" EntitySet="ShortForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StandardOperative_Procedure_LabTests" Association="CareSoftLabsModel.FK_StandardOperative_Procedure_LabTests">
+            <End Role="LabTest" EntitySet="LabTests" />
+            <End Role="StandardOperative_Procedures" EntitySet="StandardOperative_Procedures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Turn_Around_Time_LabTests" Association="CareSoftLabsModel.FK_Test_Turn_Around_Time_LabTests">
+            <End Role="LabTest" EntitySet="LabTests" />
+            <End Role="Test_Turn_Around_Times" EntitySet="Test_Turn_Around_Times" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrderTests_LabTests" Association="CareSoftLabsModel.FK_WorkOrderTests_LabTests">
+            <End Role="LabTest" EntitySet="LabTests" />
+            <End Role="WorkOrderTest" EntitySet="WorkOrderTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineDetails_Machine" Association="CareSoftLabsModel.FK_MachineDetails_Machine">
+            <End Role="Machine" EntitySet="Machines" />
+            <End Role="MachineDetail" EntitySet="MachineDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NormalValues_Parameter" Association="CareSoftLabsModel.FK_NormalValues_Parameter">
+            <End Role="Parameter" EntitySet="Parameters" />
+            <End Role="NormalValue" EntitySet="NormalValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NormalValues_Period" Association="CareSoftLabsModel.FK_NormalValues_Period">
+            <End Role="Period" EntitySet="Periods" />
+            <End Role="NormalValue" EntitySet="NormalValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PanicValue_Parameter" Association="CareSoftLabsModel.FK_PanicValue_Parameter">
+            <End Role="Parameter" EntitySet="Parameters" />
+            <End Role="PanicValue" EntitySet="PanicValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PanicValue_Period" Association="CareSoftLabsModel.FK_PanicValue_Period">
+            <End Role="Period" EntitySet="Periods" />
+            <End Role="PanicValue" EntitySet="PanicValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrderTestParameters_Parameter" Association="CareSoftLabsModel.FK_WorkOrderTestParameters_Parameter">
+            <End Role="Parameter" EntitySet="Parameters" />
+            <End Role="WorkOrderTestParameter" EntitySet="WorkOrderTestParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrder_Status" Association="CareSoftLabsModel.FK_WorkOrder_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="WorkOrder" EntitySet="WorkOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrderTests_Status" Association="CareSoftLabsModel.FK_WorkOrderTests_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="WorkOrderTest" EntitySet="WorkOrderTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Turn_Around_Time_VialMaster" Association="CareSoftLabsModel.FK_Test_Turn_Around_Time_VialMaster">
+            <End Role="VialMaster" EntitySet="VialMasters" />
+            <End Role="Test_Turn_Around_Times" EntitySet="Test_Turn_Around_Times" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrderTests_WorkOrder1" Association="CareSoftLabsModel.FK_WorkOrderTests_WorkOrder1">
+            <End Role="WorkOrder" EntitySet="WorkOrders" />
+            <End Role="WorkOrderTest" EntitySet="WorkOrderTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrderTestParameters_WorkOrderTests" Association="CareSoftLabsModel.FK_WorkOrderTestParameters_WorkOrderTests">
+            <End Role="WorkOrderTest" EntitySet="WorkOrderTests" />
+            <End Role="WorkOrderTestParameter" EntitySet="WorkOrderTestParameters" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="DepartmentAssignment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserType" Type="Int32" Nullable="false" />
+          <Property Name="SingatureImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserType1" Relationship="CareSoftLabsModel.FK_DepartmentAssignments_UserType" FromRole="DepartmentAssignment" ToRole="UserType" />
+          <NavigationProperty Name="User_Department" Relationship="CareSoftLabsModel.FK_User_Department_DepartmentAssignments" FromRole="DepartmentAssignment" ToRole="User_Department" />
+          <NavigationProperty Name="WorkOrderTests" Relationship="CareSoftLabsModel.FK_WorkOrderTests_DepartmentAssignments" FromRole="DepartmentAssignment" ToRole="WorkOrderTest" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Main_Department" Type="Int32" Nullable="false" />
+          <Property Name="Department1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Department_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Modality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Department_Order_No" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Profile_Department" Type="Boolean" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LabTests" Relationship="CareSoftLabsModel.FK_LabTests_Departments" FromRole="Department" ToRole="LabTest" />
+          <NavigationProperty Name="MachineDetails" Relationship="CareSoftLabsModel.FK_MachineDetails_Departments" FromRole="Department" ToRole="MachineDetail" />
+          <NavigationProperty Name="Profiles" Relationship="CareSoftLabsModel.FK_Profile_Departments" FromRole="Department" ToRole="Profile" />
+          <NavigationProperty Name="User_Department" Relationship="CareSoftLabsModel.FK_User_Department_Departments" FromRole="Department" ToRole="User_Department" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LabTests" Relationship="CareSoftLabsModel.FK_LabTests_Gender" FromRole="Gender" ToRole="LabTest" />
+          <NavigationProperty Name="NormalValues" Relationship="CareSoftLabsModel.FK_NormalValues_Gender" FromRole="Gender" ToRole="NormalValue" />
+          <NavigationProperty Name="PanicValues" Relationship="CareSoftLabsModel.FK_PanicValue_Gender" FromRole="Gender" ToRole="PanicValue" />
+        </EntityType>
+        <EntityType Name="Heading">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Heading1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LabTest" Type="Int32" Nullable="false" />
+          <Property Name="Heading_Order" Type="Int32" />
+          <Property Name="CreatedUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LabTest1" Relationship="CareSoftLabsModel.FK_Heading_LabTests" FromRole="Heading" ToRole="LabTest" />
+        </EntityType>
+        <EntityType Name="InterpretationEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Test" Type="Int32" />
+          <Property Name="Profiles" Type="Int32" />
+          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LabTest" Relationship="CareSoftLabsModel.FK_InterpretationEntry_LabTests" FromRole="InterpretationEntry" ToRole="LabTest" />
+          <NavigationProperty Name="Profile" Relationship="CareSoftLabsModel.FK_InterpretationEntry_Profile" FromRole="InterpretationEntry" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="LabOptionHtmlType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LabTestsResultsOptions" Relationship="CareSoftLabsModel.FK_LabTestsResultsOptions_LabOptionHtmlTypes" FromRole="LabOptionHtmlType" ToRole="LabTestsResultsOption" />
+        </EntityType>
+        <EntityType Name="LabTest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Test" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="Int32" Nullable="false" />
+          <Property Name="Test_Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Order_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Test_Method" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ICD10" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HCPCS_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CPT_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Name" Type="Int32" />
+          <Property Name="Title_Machine_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sample_Type" Type="Int32" />
+          <Property Name="Shot_Form" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Preparation_Time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Specific_Instruction_For_Preparation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="Int32" />
+          <Property Name="Attach_Graph" Type="Boolean" Nullable="false" />
+          <Property Name="Update_All" Type="Boolean" Nullable="false" />
+          <Property Name="IsHide" Type="Boolean" Nullable="false" />
+          <Property Name="GlocusePP" Type="Boolean" Nullable="false" />
+          <Property Name="ParametersList" Type="Int32" />
+          <Property Name="Parameter" Type="Boolean" Nullable="false" />
+          <Property Name="Available" Type="Boolean" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Department1" Relationship="CareSoftLabsModel.FK_LabTests_Departments" FromRole="LabTest" ToRole="Department" />
+          <NavigationProperty Name="Gender" Relationship="CareSoftLabsModel.FK_LabTests_Gender" FromRole="LabTest" ToRole="Gender" />
+          <NavigationProperty Name="Headings" Relationship="CareSoftLabsModel.FK_Heading_LabTests" FromRole="LabTest" ToRole="Heading" />
+          <NavigationProperty Name="InterpretationEntries" Relationship="CareSoftLabsModel.FK_InterpretationEntry_LabTests" FromRole="LabTest" ToRole="InterpretationEntry" />
+          <NavigationProperty Name="Machine" Relationship="CareSoftLabsModel.FK_LabTests_Machines" FromRole="LabTest" ToRole="Machine" />
+          <NavigationProperty Name="Sample" Relationship="CareSoftLabsModel.FK_LabTests_Sample" FromRole="LabTest" ToRole="Sample" />
+          <NavigationProperty Name="LabTestsResultsOptions" Relationship="CareSoftLabsModel.FK_LabTestsResultsOptions_LabTests" FromRole="LabTest" ToRole="LabTestsResultsOption" />
+          <NavigationProperty Name="MachineDetails" Relationship="CareSoftLabsModel.FK_MachineDetails_LabTests" FromRole="LabTest" ToRole="MachineDetail" />
+          <NavigationProperty Name="NormalValues" Relationship="CareSoftLabsModel.FK_NormalValues_LabTests" FromRole="LabTest" ToRole="NormalValue" />
+          <NavigationProperty Name="PanicValues" Relationship="CareSoftLabsModel.FK_PanicValue_LabTests" FromRole="LabTest" ToRole="PanicValue" />
+          <NavigationProperty Name="Parameters" Relationship="CareSoftLabsModel.FK_Parameter_LabTests" FromRole="LabTest" ToRole="Parameter" />
+          <NavigationProperty Name="ShortForms" Relationship="CareSoftLabsModel.FK_ShortForm_LabTests" FromRole="LabTest" ToRole="ShortForm" />
+          <NavigationProperty Name="StandardOperative_Procedures" Relationship="CareSoftLabsModel.FK_StandardOperative_Procedure_LabTests" FromRole="LabTest" ToRole="StandardOperative_Procedures" />
+          <NavigationProperty Name="Test_Turn_Around_Times" Relationship="CareSoftLabsModel.FK_Test_Turn_Around_Time_LabTests" FromRole="LabTest" ToRole="Test_Turn_Around_Times" />
+          <NavigationProperty Name="WorkOrderTests" Relationship="CareSoftLabsModel.FK_WorkOrderTests_LabTests" FromRole="LabTest" ToRole="WorkOrderTest" />
+        </EntityType>
+        <EntityType Name="LabTestsResultsOption">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Test" Type="Int32" Nullable="false" />
+          <Property Name="Parameter" Type="Int32" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Result" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LabOptionHtmlType" Relationship="CareSoftLabsModel.FK_LabTestsResultsOptions_LabOptionHtmlTypes" FromRole="LabTestsResultsOption" ToRole="LabOptionHtmlType" />
+          <NavigationProperty Name="LabTest" Relationship="CareSoftLabsModel.FK_LabTestsResultsOptions_LabTests" FromRole="LabTestsResultsOption" ToRole="LabTest" />
+        </EntityType>
+        <EntityType Name="MachineDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Department" Type="Int32" />
+          <Property Name="Title" Type="Int32" />
+          <Property Name="Machine" Type="Int32" />
+          <Property Name="Bioname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Department1" Relationship="CareSoftLabsModel.FK_MachineDetails_Departments" FromRole="MachineDetail" ToRole="Department" />
+          <NavigationProperty Name="LabTest" Relationship="CareSoftLabsModel.FK_MachineDetails_LabTests" FromRole="MachineDetail" ToRole="LabTest" />
+          <NavigationProperty Name="Machine1" Relationship="CareSoftLabsModel.FK_MachineDetails_Machine" FromRole="MachineDetail" ToRole="Machine" />
+        </EntityType>
+        <EntityType Name="Machine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Machine_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LabTests" Relationship="CareSoftLabsModel.FK_LabTests_Machines" FromRole="Machine" ToRole="LabTest" />
+          <NavigationProperty Name="MachineDetails" Relationship="CareSoftLabsModel.FK_MachineDetails_Machine" FromRole="Machine" ToRole="MachineDetail" />
+        </EntityType>
+        <EntityType Name="MainDepartment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MainDepartment1" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NormalValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Test" Type="Int32" Nullable="false" />
+          <Property Name="Parameter" Type="Int32" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="Lower_Age" Type="Int32" />
+          <Property Name="Upper_Age" Type="Int32" />
+          <Property Name="Days" Type="Int32" />
+          <Property Name="LowerRange" Type="Double" />
+          <Property Name="UpperRange" Type="Double" />
+          <Property Name="Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="General" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gender1" Relationship="CareSoftLabsModel.FK_NormalValues_Gender" FromRole="NormalValue" ToRole="Gender" />
+          <NavigationProperty Name="LabTest" Relationship="CareSoftLabsModel.FK_NormalValues_LabTests" FromRole="NormalValue" ToRole="LabTest" />
+          <NavigationProperty Name="Parameter1" Relationship="CareSoftLabsModel.FK_NormalValues_Parameter" FromRole="NormalValue" ToRole="Parameter" />
+          <NavigationProperty Name="Period" Relationship="CareSoftLabsModel.FK_NormalValues_Period" FromRole="NormalValue" ToRole="Period" />
+        </EntityType>
+        <EntityType Name="PanicValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Test" Type="Int32" Nullable="false" />
+          <Property Name="Parameter" Type="Int32" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="Lower_Age" Type="Int32" />
+          <Property Name="Upper_Age" Type="Int32" />
+          <Property Name="Days" Type="Int32" />
+          <Property Name="Lower_Range" Type="Double" />
+          <Property Name="UpperRange" Type="Double" />
+          <Property Name="Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="General" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gender1" Relationship="CareSoftLabsModel.FK_PanicValue_Gender" FromRole="PanicValue" ToRole="Gender" />
+          <NavigationProperty Name="LabTest" Relationship="CareSoftLabsModel.FK_PanicValue_LabTests" FromRole="PanicValue" ToRole="LabTest" />
+          <NavigationProperty Name="Parameter1" Relationship="CareSoftLabsModel.FK_PanicValue_Parameter" FromRole="PanicValue" ToRole="Parameter" />
+          <NavigationProperty Name="Period" Relationship="CareSoftLabsModel.FK_PanicValue_Period" FromRole="PanicValue" ToRole="Period" />
+        </EntityType>
+        <EntityType Name="Parameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Parameter_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Parameter_Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Parameter_Order" Type="Int32" />
+          <Property Name="Parameter_Method" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Name" Type="Int32" />
+          <Property Name="Title_Machine_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Short_Form" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Heading" Type="Int32" />
+          <Property Name="Test" Type="Int32" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LabTest" Relationship="CareSoftLabsModel.FK_Parameter_LabTests" FromRole="Parameter" ToRole="LabTest" />
+          <NavigationProperty Name="NormalValues" Relationship="CareSoftLabsModel.FK_NormalValues_Parameter" FromRole="Parameter" ToRole="NormalValue" />
+          <NavigationProperty Name="PanicValues" Relationship="CareSoftLabsModel.FK_PanicValue_Parameter" FromRole="Parameter" ToRole="PanicValue" />
+          <NavigationProperty Name="WorkOrderTestParameters" Relationship="CareSoftLabsModel.FK_WorkOrderTestParameters_Parameter" FromRole="Parameter" ToRole="WorkOrderTestParameter" />
+        </EntityType>
+        <EntityType Name="PathKeyValuePair">
+          <Key>
+            <PropertyRef Name="Key_" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key_" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Owner" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Period">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Days" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NormalValues" Relationship="CareSoftLabsModel.FK_NormalValues_Period" FromRole="Period" ToRole="NormalValue" />
+          <NavigationProperty Name="PanicValues" Relationship="CareSoftLabsModel.FK_PanicValue_Period" FromRole="Period" ToRole="PanicValue" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Group_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Group_Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Profile_Method" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProfileTest" Type="Int32" />
+          <Property Name="Selected_Tests" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Profile_Department" Type="Int32" Nullable="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="CareSoftLabsModel.FK_Profile_Departments" FromRole="Profile" ToRole="Department" />
+          <NavigationProperty Name="InterpretationEntries" Relationship="CareSoftLabsModel.FK_InterpretationEntry_Profile" FromRole="Profile" ToRole="InterpretationEntry" />
+        </EntityType>
+        <EntityType Name="ReasonMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sample">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sample_Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LabTests" Relationship="CareSoftLabsModel.FK_LabTests_Sample" FromRole="Sample" ToRole="LabTest" />
+        </EntityType>
+        <EntityType Name="ShortForm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Test" Type="Int32" Nullable="false" />
+          <Property Name="Short_Form" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LabTest" Relationship="CareSoftLabsModel.FK_ShortForm_LabTests" FromRole="ShortForm" ToRole="LabTest" />
+        </EntityType>
+        <EntityType Name="StandardOperative_Procedures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Test" Type="Int32" />
+          <Property Name="Standard_Operative_Procedure" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LabTest" Relationship="CareSoftLabsModel.FK_StandardOperative_Procedure_LabTests" FromRole="StandardOperative_Procedures" ToRole="LabTest" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusValue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="WorkOrders" Relationship="CareSoftLabsModel.FK_WorkOrder_Status" FromRole="Status" ToRole="WorkOrder" />
+          <NavigationProperty Name="WorkOrderTests" Relationship="CareSoftLabsModel.FK_WorkOrderTests_Status" FromRole="Status" ToRole="WorkOrderTest" />
+        </EntityType>
+        <EntityType Name="Test_Turn_Around_Times">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Test" Type="Int32" Nullable="false" />
+          <Property Name="TTAT_Days" Type="Int32" Nullable="false" />
+          <Property Name="TTAT_Hours" Type="Int32" Nullable="false" />
+          <Property Name="RDD_Days" Type="Int32" Nullable="false" />
+          <Property Name="RDD_Hours" Type="Int32" Nullable="false" />
+          <Property Name="Vial_Type" Type="Int32" />
+          <Property Name="srno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="srno1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LabTest" Relationship="CareSoftLabsModel.FK_Test_Turn_Around_Time_LabTests" FromRole="Test_Turn_Around_Times" ToRole="LabTest" />
+          <NavigationProperty Name="VialMaster" Relationship="CareSoftLabsModel.FK_Test_Turn_Around_Time_VialMaster" FromRole="Test_Turn_Around_Times" ToRole="VialMaster" />
+        </EntityType>
+        <EntityType Name="User_Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User" Type="Int32" Nullable="false" />
+          <Property Name="Department" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DepartmentAssignment" Relationship="CareSoftLabsModel.FK_User_Department_DepartmentAssignments" FromRole="User_Department" ToRole="DepartmentAssignment" />
+          <NavigationProperty Name="Department1" Relationship="CareSoftLabsModel.FK_User_Department_Departments" FromRole="User_Department" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserType1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DepartmentAssignments" Relationship="CareSoftLabsModel.FK_DepartmentAssignments_UserType" FromRole="UserType" ToRole="DepartmentAssignment" />
+        </EntityType>
+        <EntityType Name="VialMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vial_Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Test_Turn_Around_Times" Relationship="CareSoftLabsModel.FK_Test_Turn_Around_Time_VialMaster" FromRole="VialMaster" ToRole="Test_Turn_Around_Times" />
+        </EntityType>
+        <EntityType Name="WorkOrderPosition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Position" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OPDNo" Type="Int32" />
+          <Property Name="OPDType" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="BillPaid" Type="Int32" Nullable="false" />
+          <Property Name="Doctor" Type="Int32" Nullable="false" />
+          <Property Name="LabNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PathNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShowInSpecimentResultEnty" Type="Boolean" />
+          <Property Name="ShowInSpecimentCollection" Type="Boolean" />
+          <Property Name="Accession_Status" Type="Int32" Nullable="false" />
+          <Property Name="Financial_Year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="DoctorsNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Status" Relationship="CareSoftLabsModel.FK_WorkOrder_Status" FromRole="WorkOrder" ToRole="Status" />
+          <NavigationProperty Name="WorkOrderTests" Relationship="CareSoftLabsModel.FK_WorkOrderTests_WorkOrder1" FromRole="WorkOrder" ToRole="WorkOrderTest" />
+        </EntityType>
+        <EntityType Name="WorkOrderTestParameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkOrderTest" Type="Int32" Nullable="false" />
+          <Property Name="Parameter" Type="Int32" Nullable="false" />
+          <Property Name="Results" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Parameter1" Relationship="CareSoftLabsModel.FK_WorkOrderTestParameters_Parameter" FromRole="WorkOrderTestParameter" ToRole="Parameter" />
+          <NavigationProperty Name="WorkOrderTest1" Relationship="CareSoftLabsModel.FK_WorkOrderTestParameters_WorkOrderTests" FromRole="WorkOrderTestParameter" ToRole="WorkOrderTest" />
+        </EntityType>
+        <EntityType Name="WorkOrderTest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkOrder" Type="Int32" Nullable="false" />
+          <Property Name="Test" Type="Int32" Nullable="false" />
+          <Property Name="BillPaid" Type="Boolean" Nullable="false" />
+          <Property Name="ReceiptNo" Type="Int32" />
+          <Property Name="BarCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RefCustomer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Condition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Results" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Doctor" Type="Int32" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="TimeAuthorized" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DepartmentAssignment" Relationship="CareSoftLabsModel.FK_WorkOrderTests_DepartmentAssignments" FromRole="WorkOrderTest" ToRole="DepartmentAssignment" />
+          <NavigationProperty Name="LabTest" Relationship="CareSoftLabsModel.FK_WorkOrderTests_LabTests" FromRole="WorkOrderTest" ToRole="LabTest" />
+          <NavigationProperty Name="Status1" Relationship="CareSoftLabsModel.FK_WorkOrderTests_Status" FromRole="WorkOrderTest" ToRole="Status" />
+          <NavigationProperty Name="WorkOrder1" Relationship="CareSoftLabsModel.FK_WorkOrderTests_WorkOrder1" FromRole="WorkOrderTest" ToRole="WorkOrder" />
+          <NavigationProperty Name="WorkOrderTestParameters" Relationship="CareSoftLabsModel.FK_WorkOrderTestParameters_WorkOrderTests" FromRole="WorkOrderTest" ToRole="WorkOrderTestParameter" />
+        </EntityType>
+        <EntityType Name="LabTestForMOH505Report">
+          <Key>
+            <PropertyRef Name="WorkOrderTestId" />
+            <PropertyRef Name="LabTestId" />
+            <PropertyRef Name="LabTest" />
+            <PropertyRef Name="LabTestCode" />
+            <PropertyRef Name="OPDIPDNo" />
+            <PropertyRef Name="PatientID" />
+            <PropertyRef Name="DepartmentRadPath" />
+            <PropertyRef Name="DepartmentName" />
+          </Key>
+          <Property Name="WorkOrderTestId" Type="Int32" Nullable="false" />
+          <Property Name="LabTestId" Type="Int32" Nullable="false" />
+          <Property Name="LabTest" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LabTestCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LabTestResults" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OPDIPDNo" Type="Int32" Nullable="false" />
+          <Property Name="PatientID" Type="Int32" Nullable="false" />
+          <Property Name="PatientRegNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SearchPatientView">
+          <Key>
+            <PropertyRef Name="WorkOrderTestId" />
+            <PropertyRef Name="LabTestId" />
+            <PropertyRef Name="LabTest" />
+            <PropertyRef Name="LabNumber" />
+            <PropertyRef Name="OPDType" />
+            <PropertyRef Name="DoctorUsername" />
+            <PropertyRef Name="BillPrice" />
+            <PropertyRef Name="BillPaid" />
+            <PropertyRef Name="InsuranceGrant" />
+            <PropertyRef Name="TestDepartmentId" />
+            <PropertyRef Name="TestDepartmentName" />
+            <PropertyRef Name="TarrifId" />
+            <PropertyRef Name="TariffName" />
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="CompanyTypeId" />
+            <PropertyRef Name="CompanyTypeName" />
+            <PropertyRef Name="DepartmentRadPath" />
+            <PropertyRef Name="Expr1" />
+          </Key>
+          <Property Name="WorkOrderTestId" Type="Int32" Nullable="false" />
+          <Property Name="LabTestId" Type="Int32" Nullable="false" />
+          <Property Name="LabTest" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LabNumber" Type="Int32" Nullable="false" />
+          <Property Name="OPDNo" Type="Int32" />
+          <Property Name="OPDType" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <Property Name="PatientRegNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PatientSalutation" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PatientFName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PatientMName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PatientLName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoctorUsername" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoctorSalutation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoctorFName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoctorOtherNames" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillPrice" Type="Double" Nullable="false" />
+          <Property Name="BillPaid" Type="Boolean" Nullable="false" />
+          <Property Name="InsuranceGrant" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="TestDepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="TestDepartmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TarrifId" Type="Int32" Nullable="false" />
+          <Property Name="TariffName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CompanyTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="Expr1" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SearchPatientView_">
+          <Key>
+            <PropertyRef Name="WorkOrderTestId" />
+            <PropertyRef Name="LabTestId" />
+            <PropertyRef Name="LabTest" />
+            <PropertyRef Name="LabNumber" />
+            <PropertyRef Name="OPDType" />
+            <PropertyRef Name="DoctorUsername" />
+            <PropertyRef Name="BillPrice" />
+            <PropertyRef Name="BillPaid" />
+            <PropertyRef Name="InsuranceGrant" />
+            <PropertyRef Name="TestDepartmentId" />
+            <PropertyRef Name="TestDepartmentName" />
+            <PropertyRef Name="DepartmentRadPath" />
+            <PropertyRef Name="TarrifId" />
+            <PropertyRef Name="TariffName" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="CompanyTypeId" />
+            <PropertyRef Name="CompanyTypeName" />
+          </Key>
+          <Property Name="WorkOrderTestId" Type="Int32" Nullable="false" />
+          <Property Name="LabTestId" Type="Int32" Nullable="false" />
+          <Property Name="LabTest" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LabNumber" Type="Int32" Nullable="false" />
+          <Property Name="OPDNo" Type="Int32" />
+          <Property Name="OPDType" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <Property Name="PatientRegNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PatientSalutation" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PatientFName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PatientMName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PatientLName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoctorUsername" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoctorSalutation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoctorFName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoctorOtherNames" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillPrice" Type="Double" Nullable="false" />
+          <Property Name="BillPaid" Type="Boolean" Nullable="false" />
+          <Property Name="InsuranceGrant" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="TestDepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="TestDepartmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
+          <Property Name="TarrifId" Type="Int32" Nullable="false" />
+          <Property Name="TariffName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CompanyTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_DepartmentAssignments_UserType">
+          <End Type="CareSoftLabsModel.UserType" Role="UserType" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.DepartmentAssignment" Role="DepartmentAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DepartmentAssignment">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Department_DepartmentAssignments">
+          <End Type="CareSoftLabsModel.DepartmentAssignment" Role="DepartmentAssignment" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.User_Department" Role="User_Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DepartmentAssignment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User_Department">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrderTests_DepartmentAssignments">
+          <End Type="CareSoftLabsModel.DepartmentAssignment" Role="DepartmentAssignment" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.WorkOrderTest" Role="WorkOrderTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DepartmentAssignment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOrderTest">
+              <PropertyRef Name="Doctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabTests_Departments">
+          <End Type="CareSoftLabsModel.Department" Role="Department" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabTest">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineDetails_Departments">
+          <End Type="CareSoftLabsModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.MachineDetail" Role="MachineDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MachineDetail">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profile_Departments">
+          <End Type="CareSoftLabsModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.Profile" Role="Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="Profile_Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Department_Departments">
+          <End Type="CareSoftLabsModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.User_Department" Role="User_Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User_Department">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabTests_Gender">
+          <End Type="CareSoftLabsModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabTest">
+              <PropertyRef Name="Sex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NormalValues_Gender">
+          <End Type="CareSoftLabsModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.NormalValue" Role="NormalValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NormalValue">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PanicValue_Gender">
+          <End Type="CareSoftLabsModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.PanicValue" Role="PanicValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PanicValue">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Heading_LabTests">
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CareSoftLabsModel.Heading" Role="Heading" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Heading">
+              <PropertyRef Name="LabTest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InterpretationEntry_LabTests">
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.InterpretationEntry" Role="InterpretationEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InterpretationEntry">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InterpretationEntry_Profile">
+          <End Type="CareSoftLabsModel.Profile" Role="Profile" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.InterpretationEntry" Role="InterpretationEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InterpretationEntry">
+              <PropertyRef Name="Profiles" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabTestsResultsOptions_LabOptionHtmlTypes">
+          <End Type="CareSoftLabsModel.LabOptionHtmlType" Role="LabOptionHtmlType" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.LabTestsResultsOption" Role="LabTestsResultsOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabOptionHtmlType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabTestsResultsOption">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabTests_Machines">
+          <End Type="CareSoftLabsModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabTest">
+              <PropertyRef Name="Machine_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabTests_Sample">
+          <End Type="CareSoftLabsModel.Sample" Role="Sample" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sample">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabTest">
+              <PropertyRef Name="Sample_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabTestsResultsOptions_LabTests">
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.LabTestsResultsOption" Role="LabTestsResultsOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabTestsResultsOption">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineDetails_LabTests">
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.MachineDetail" Role="MachineDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MachineDetail">
+              <PropertyRef Name="Title" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NormalValues_LabTests">
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CareSoftLabsModel.NormalValue" Role="NormalValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NormalValue">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PanicValue_LabTests">
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.PanicValue" Role="PanicValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PanicValue">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parameter_LabTests">
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CareSoftLabsModel.Parameter" Role="Parameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parameter">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShortForm_LabTests">
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.ShortForm" Role="ShortForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShortForm">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StandardOperative_Procedure_LabTests">
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.StandardOperative_Procedures" Role="StandardOperative_Procedures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StandardOperative_Procedures">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Turn_Around_Time_LabTests">
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.Test_Turn_Around_Times" Role="Test_Turn_Around_Times" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Test_Turn_Around_Times">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrderTests_LabTests">
+          <End Type="CareSoftLabsModel.LabTest" Role="LabTest" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.WorkOrderTest" Role="WorkOrderTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOrderTest">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineDetails_Machine">
+          <End Type="CareSoftLabsModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.MachineDetail" Role="MachineDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MachineDetail">
+              <PropertyRef Name="Machine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NormalValues_Parameter">
+          <End Type="CareSoftLabsModel.Parameter" Role="Parameter" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.NormalValue" Role="NormalValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NormalValue">
+              <PropertyRef Name="Parameter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NormalValues_Period">
+          <End Type="CareSoftLabsModel.Period" Role="Period" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.NormalValue" Role="NormalValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NormalValue">
+              <PropertyRef Name="Days" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PanicValue_Parameter">
+          <End Type="CareSoftLabsModel.Parameter" Role="Parameter" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.PanicValue" Role="PanicValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PanicValue">
+              <PropertyRef Name="Parameter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PanicValue_Period">
+          <End Type="CareSoftLabsModel.Period" Role="Period" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.PanicValue" Role="PanicValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PanicValue">
+              <PropertyRef Name="Days" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrderTestParameters_Parameter">
+          <End Type="CareSoftLabsModel.Parameter" Role="Parameter" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.WorkOrderTestParameter" Role="WorkOrderTestParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOrderTestParameter">
+              <PropertyRef Name="Parameter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrder_Status">
+          <End Type="CareSoftLabsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.WorkOrder" Role="WorkOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOrder">
+              <PropertyRef Name="Accession_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrderTests_Status">
+          <End Type="CareSoftLabsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.WorkOrderTest" Role="WorkOrderTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOrderTest">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Turn_Around_Time_VialMaster">
+          <End Type="CareSoftLabsModel.VialMaster" Role="VialMaster" Multiplicity="0..1" />
+          <End Type="CareSoftLabsModel.Test_Turn_Around_Times" Role="Test_Turn_Around_Times" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VialMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Test_Turn_Around_Times">
+              <PropertyRef Name="Vial_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrderTests_WorkOrder1">
+          <End Type="CareSoftLabsModel.WorkOrder" Role="WorkOrder" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.WorkOrderTest" Role="WorkOrderTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOrderTest">
+              <PropertyRef Name="WorkOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrderTestParameters_WorkOrderTests">
+          <End Type="CareSoftLabsModel.WorkOrderTest" Role="WorkOrderTest" Multiplicity="1" />
+          <End Type="CareSoftLabsModel.WorkOrderTestParameter" Role="WorkOrderTestParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkOrderTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOrderTestParameter">
+              <PropertyRef Name="WorkOrderTest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CareSoftLabsModelStoreContainer" CdmEntityContainer="CareSoftLabsEntities">
+          <EntitySetMapping Name="DepartmentAssignments">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.DepartmentAssignment">
+              <MappingFragment StoreEntitySet="DepartmentAssignments">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="SingatureImage" ColumnName="SingatureImage" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.Department">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="Profile_Department" ColumnName="Profile_Department" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Department_Order_No" ColumnName="Department_Order_No" />
+                <ScalarProperty Name="Modality" ColumnName="Modality" />
+                <ScalarProperty Name="Department_Code" ColumnName="Department_Code" />
+                <ScalarProperty Name="Department1" ColumnName="Department1" />
+                <ScalarProperty Name="Main_Department" ColumnName="Main_Department" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.Gender">
+              <MappingFragment StoreEntitySet="Genders">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Headings">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.Heading">
+              <MappingFragment StoreEntitySet="Headings">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="Heading_Order" ColumnName="Heading_Order" />
+                <ScalarProperty Name="LabTest" ColumnName="LabTest" />
+                <ScalarProperty Name="Heading1" ColumnName="Heading1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InterpretationEntries">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.InterpretationEntry">
+              <MappingFragment StoreEntitySet="InterpretationEntries">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Profiles" ColumnName="Profiles" />
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LabOptionHtmlTypes">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.LabOptionHtmlType">
+              <MappingFragment StoreEntitySet="LabOptionHtmlTypes">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LabTests">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.LabTest">
+              <MappingFragment StoreEntitySet="LabTests">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="Parameter" ColumnName="Parameter" />
+                <ScalarProperty Name="ParametersList" ColumnName="ParametersList" />
+                <ScalarProperty Name="GlocusePP" ColumnName="GlocusePP" />
+                <ScalarProperty Name="IsHide" ColumnName="IsHide" />
+                <ScalarProperty Name="Update_All" ColumnName="Update_All" />
+                <ScalarProperty Name="Attach_Graph" ColumnName="Attach_Graph" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Specific_Instruction_For_Preparation" ColumnName="Specific_Instruction_For_Preparation" />
+                <ScalarProperty Name="Preparation_Time" ColumnName="Preparation_Time" />
+                <ScalarProperty Name="Shot_Form" ColumnName="Shot_Form" />
+                <ScalarProperty Name="Sample_Type" ColumnName="Sample_Type" />
+                <ScalarProperty Name="Title_Machine_Name" ColumnName="Title_Machine_Name" />
+                <ScalarProperty Name="Machine_Name" ColumnName="Machine_Name" />
+                <ScalarProperty Name="CPT_Code" ColumnName="CPT_Code" />
+                <ScalarProperty Name="HCPCS_Code" ColumnName="HCPCS_Code" />
+                <ScalarProperty Name="ICD10" ColumnName="ICD10" />
+                <ScalarProperty Name="Test_Method" ColumnName="Test_Method" />
+                <ScalarProperty Name="Order_Number" ColumnName="Order_Number" />
+                <ScalarProperty Name="Test_Code" ColumnName="Test_Code" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LabTestsResultsOptions">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.LabTestsResultsOption">
+              <MappingFragment StoreEntitySet="LabTestsResultsOptions">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Parameter" ColumnName="Parameter" />
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MachineDetails">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.MachineDetail">
+              <MappingFragment StoreEntitySet="MachineDetails">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="Bioname" ColumnName="Bioname" />
+                <ScalarProperty Name="Machine" ColumnName="Machine" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Machines">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.Machine">
+              <MappingFragment StoreEntitySet="Machines">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="Machine_Name" ColumnName="Machine_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainDepartments">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.MainDepartment">
+              <MappingFragment StoreEntitySet="MainDepartments">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="MainDepartment1" ColumnName="MainDepartment1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NormalValues">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.NormalValue">
+              <MappingFragment StoreEntitySet="NormalValues">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="General" ColumnName="General" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="UpperRange" ColumnName="UpperRange" />
+                <ScalarProperty Name="LowerRange" ColumnName="LowerRange" />
+                <ScalarProperty Name="Days" ColumnName="Days" />
+                <ScalarProperty Name="Upper_Age" ColumnName="Upper_Age" />
+                <ScalarProperty Name="Lower_Age" ColumnName="Lower_Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Parameter" ColumnName="Parameter" />
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PanicValues">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.PanicValue">
+              <MappingFragment StoreEntitySet="PanicValues">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="General" ColumnName="General" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="UpperRange" ColumnName="UpperRange" />
+                <ScalarProperty Name="Lower_Range" ColumnName="Lower_Range" />
+                <ScalarProperty Name="Days" ColumnName="Days" />
+                <ScalarProperty Name="Upper_Age" ColumnName="Upper_Age" />
+                <ScalarProperty Name="Lower_Age" ColumnName="Lower_Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Parameter" ColumnName="Parameter" />
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parameters">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.Parameter">
+              <MappingFragment StoreEntitySet="Parameters">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="Heading" ColumnName="Heading" />
+                <ScalarProperty Name="Short_Form" ColumnName="Short_Form" />
+                <ScalarProperty Name="Title_Machine_Name" ColumnName="Title_Machine_Name" />
+                <ScalarProperty Name="Machine_Name" ColumnName="Machine_Name" />
+                <ScalarProperty Name="Parameter_Method" ColumnName="Parameter_Method" />
+                <ScalarProperty Name="Parameter_Order" ColumnName="Parameter_Order" />
+                <ScalarProperty Name="Parameter_Code" ColumnName="Parameter_Code" />
+                <ScalarProperty Name="Parameter_Name" ColumnName="Parameter_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PathKeyValuePairs">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.PathKeyValuePair">
+              <MappingFragment StoreEntitySet="PathKeyValuePairs">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Key_" ColumnName="Key_" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Periods">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.Period">
+              <MappingFragment StoreEntitySet="Periods">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="Days" ColumnName="Days" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.Profile">
+              <MappingFragment StoreEntitySet="Profiles">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="Profile_Department" ColumnName="Profile_Department" />
+                <ScalarProperty Name="Selected_Tests" ColumnName="Selected_Tests" />
+                <ScalarProperty Name="ProfileTest" ColumnName="ProfileTest" />
+                <ScalarProperty Name="Profile_Method" ColumnName="Profile_Method" />
+                <ScalarProperty Name="Group_Code" ColumnName="Group_Code" />
+                <ScalarProperty Name="Group_Name" ColumnName="Group_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReasonMasters">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.ReasonMaster">
+              <MappingFragment StoreEntitySet="ReasonMasters">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Samples">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.Sample">
+              <MappingFragment StoreEntitySet="Samples">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="Sample_Type" ColumnName="Sample_Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShortForms">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.ShortForm">
+              <MappingFragment StoreEntitySet="ShortForms">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Short_Form" ColumnName="Short_Form" />
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StandardOperative_Procedures">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.StandardOperative_Procedures">
+              <MappingFragment StoreEntitySet="StandardOperative_Procedures">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="Standard_Operative_Procedure" ColumnName="Standard_Operative_Procedure" />
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="StatusValue" ColumnName="StatusValue" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test_Turn_Around_Times">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.Test_Turn_Around_Times">
+              <MappingFragment StoreEntitySet="Test_Turn_Around_Times">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="srno1" ColumnName="srno1" />
+                <ScalarProperty Name="srno" ColumnName="srno" />
+                <ScalarProperty Name="Vial_Type" ColumnName="Vial_Type" />
+                <ScalarProperty Name="RDD_Hours" ColumnName="RDD_Hours" />
+                <ScalarProperty Name="RDD_Days" ColumnName="RDD_Days" />
+                <ScalarProperty Name="TTAT_Hours" ColumnName="TTAT_Hours" />
+                <ScalarProperty Name="TTAT_Days" ColumnName="TTAT_Days" />
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Department">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.User_Department">
+              <MappingFragment StoreEntitySet="User_Department">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.UserType">
+              <MappingFragment StoreEntitySet="UserTypes">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="UserType1" ColumnName="UserType1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VialMasters">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.VialMaster">
+              <MappingFragment StoreEntitySet="VialMasters">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="Vial_Type" ColumnName="Vial_Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkOrderPositions">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.WorkOrderPosition">
+              <MappingFragment StoreEntitySet="WorkOrderPositions">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkOrders">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.WorkOrder">
+              <MappingFragment StoreEntitySet="WorkOrders">
+                <ScalarProperty Name="DoctorsNotes" ColumnName="DoctorsNotes" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="Financial_Year" ColumnName="Financial_Year" />
+                <ScalarProperty Name="Accession_Status" ColumnName="Accession_Status" />
+                <ScalarProperty Name="ShowInSpecimentCollection" ColumnName="ShowInSpecimentCollection" />
+                <ScalarProperty Name="ShowInSpecimentResultEnty" ColumnName="ShowInSpecimentResultEnty" />
+                <ScalarProperty Name="PathNo" ColumnName="PathNo" />
+                <ScalarProperty Name="LabNo" ColumnName="LabNo" />
+                <ScalarProperty Name="Doctor" ColumnName="Doctor" />
+                <ScalarProperty Name="BillPaid" ColumnName="BillPaid" />
+                <ScalarProperty Name="OPDType" ColumnName="OPDType" />
+                <ScalarProperty Name="OPDNo" ColumnName="OPDNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkOrderTestParameters">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.WorkOrderTestParameter">
+              <MappingFragment StoreEntitySet="WorkOrderTestParameters">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="Results" ColumnName="Results" />
+                <ScalarProperty Name="Parameter" ColumnName="Parameter" />
+                <ScalarProperty Name="WorkOrderTest" ColumnName="WorkOrderTest" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkOrderTests">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.WorkOrderTest">
+              <MappingFragment StoreEntitySet="WorkOrderTests">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="TimeAuthorized" ColumnName="TimeAuthorized" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Doctor" ColumnName="Doctor" />
+                <ScalarProperty Name="Results" ColumnName="Results" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="RefCustomer" ColumnName="RefCustomer" />
+                <ScalarProperty Name="BarCode" ColumnName="BarCode" />
+                <ScalarProperty Name="ReceiptNo" ColumnName="ReceiptNo" />
+                <ScalarProperty Name="BillPaid" ColumnName="BillPaid" />
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="WorkOrder" ColumnName="WorkOrder" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LabTestForMOH505Report">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.LabTestForMOH505Report">
+              <MappingFragment StoreEntitySet="LabTestForMOH505Report">
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PatientRegNo" ColumnName="PatientRegNo" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="OPDIPDNo" ColumnName="OPDIPDNo" />
+                <ScalarProperty Name="LabTestResults" ColumnName="LabTestResults" />
+                <ScalarProperty Name="LabTestCode" ColumnName="LabTestCode" />
+                <ScalarProperty Name="LabTest" ColumnName="LabTest" />
+                <ScalarProperty Name="LabTestId" ColumnName="LabTestId" />
+                <ScalarProperty Name="WorkOrderTestId" ColumnName="WorkOrderTestId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchPatientViews">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.SearchPatientView">
+              <MappingFragment StoreEntitySet="SearchPatientView">
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="CompanyTypeName" ColumnName="CompanyTypeName" />
+                <ScalarProperty Name="CompanyTypeId" ColumnName="CompanyTypeId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="TariffName" ColumnName="TariffName" />
+                <ScalarProperty Name="TarrifId" ColumnName="TarrifId" />
+                <ScalarProperty Name="TestDepartmentName" ColumnName="TestDepartmentName" />
+                <ScalarProperty Name="TestDepartmentId" ColumnName="TestDepartmentId" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="InsuranceGrant" ColumnName="InsuranceGrant" />
+                <ScalarProperty Name="BillPaid" ColumnName="BillPaid" />
+                <ScalarProperty Name="BillPrice" ColumnName="BillPrice" />
+                <ScalarProperty Name="DoctorOtherNames" ColumnName="DoctorOtherNames" />
+                <ScalarProperty Name="DoctorFName" ColumnName="DoctorFName" />
+                <ScalarProperty Name="DoctorSalutation" ColumnName="DoctorSalutation" />
+                <ScalarProperty Name="DoctorUsername" ColumnName="DoctorUsername" />
+                <ScalarProperty Name="PatientLName" ColumnName="PatientLName" />
+                <ScalarProperty Name="PatientMName" ColumnName="PatientMName" />
+                <ScalarProperty Name="PatientFName" ColumnName="PatientFName" />
+                <ScalarProperty Name="PatientSalutation" ColumnName="PatientSalutation" />
+                <ScalarProperty Name="PatientRegNumber" ColumnName="PatientRegNumber" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="OPDType" ColumnName="OPDType" />
+                <ScalarProperty Name="OPDNo" ColumnName="OPDNo" />
+                <ScalarProperty Name="LabNumber" ColumnName="LabNumber" />
+                <ScalarProperty Name="LabTest" ColumnName="LabTest" />
+                <ScalarProperty Name="LabTestId" ColumnName="LabTestId" />
+                <ScalarProperty Name="WorkOrderTestId" ColumnName="WorkOrderTestId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchPatientView_">
+            <EntityTypeMapping TypeName="CareSoftLabsModel.SearchPatientView_">
+              <MappingFragment StoreEntitySet="SearchPatientView\">
+                <ScalarProperty Name="CompanyTypeName" ColumnName="CompanyTypeName" />
+                <ScalarProperty Name="CompanyTypeId" ColumnName="CompanyTypeId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="TariffName" ColumnName="TariffName" />
+                <ScalarProperty Name="TarrifId" ColumnName="TarrifId" />
+                <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
+                <ScalarProperty Name="TestDepartmentName" ColumnName="TestDepartmentName" />
+                <ScalarProperty Name="TestDepartmentId" ColumnName="TestDepartmentId" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="InsuranceGrant" ColumnName="InsuranceGrant" />
+                <ScalarProperty Name="BillPaid" ColumnName="BillPaid" />
+                <ScalarProperty Name="BillPrice" ColumnName="BillPrice" />
+                <ScalarProperty Name="DoctorOtherNames" ColumnName="DoctorOtherNames" />
+                <ScalarProperty Name="DoctorFName" ColumnName="DoctorFName" />
+                <ScalarProperty Name="DoctorSalutation" ColumnName="DoctorSalutation" />
+                <ScalarProperty Name="DoctorUsername" ColumnName="DoctorUsername" />
+                <ScalarProperty Name="PatientLName" ColumnName="PatientLName" />
+                <ScalarProperty Name="PatientMName" ColumnName="PatientMName" />
+                <ScalarProperty Name="PatientFName" ColumnName="PatientFName" />
+                <ScalarProperty Name="PatientSalutation" ColumnName="PatientSalutation" />
+                <ScalarProperty Name="PatientRegNumber" ColumnName="PatientRegNumber" />
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="OPDType" ColumnName="OPDType" />
+                <ScalarProperty Name="OPDNo" ColumnName="OPDNo" />
+                <ScalarProperty Name="LabNumber" ColumnName="LabNumber" />
+                <ScalarProperty Name="LabTest" ColumnName="LabTest" />
+                <ScalarProperty Name="LabTestId" ColumnName="LabTestId" />
+                <ScalarProperty Name="WorkOrderTestId" ColumnName="WorkOrderTestId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

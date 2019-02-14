@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetMoh717Inpatients" targetNamespace="http://tempuri.org/DataSetMoh717Inpatients.xsd" xmlns:mstns="http://tempuri.org/DataSetMoh717Inpatients.xsd" xmlns="http://tempuri.org/DataSetMoh717Inpatients.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetMoh717Inpatients" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetMoh717Inpatients" msprop:Generator_UserDSName="DataSetMoh717Inpatients">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="InPatients" msprop:Generator_TableClassName="InPatientsDataTable" msprop:Generator_TableVarName="tableInPatients" msprop:Generator_TablePropName="InPatients" msprop:Generator_RowDeletingName="InPatientsRowDeleting" msprop:Generator_RowChangingName="InPatientsRowChanging" msprop:Generator_RowEvHandlerName="InPatientsRowChangeEventHandler" msprop:Generator_RowDeletedName="InPatientsRowDeleted" msprop:Generator_UserTableName="InPatients" msprop:Generator_RowChangedName="InPatientsRowChanged" msprop:Generator_RowEvArgName="InPatientsRowChangeEvent" msprop:Generator_RowClassName="InPatientsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Medical" msprop:Generator_ColumnVarNameInTable="columnMedical" msprop:Generator_ColumnPropNameInRow="Medical" msprop:Generator_ColumnPropNameInTable="MedicalColumn" msprop:Generator_UserColumnName="Medical" type="xs:int" minOccurs="0" />
+              <xs:element name="Surgical" msprop:Generator_ColumnVarNameInTable="columnSurgical" msprop:Generator_ColumnPropNameInRow="Surgical" msprop:Generator_ColumnPropNameInTable="SurgicalColumn" msprop:Generator_UserColumnName="Surgical" type="xs:int" minOccurs="0" />
+              <xs:element name="ObstGyn" msprop:Generator_ColumnVarNameInTable="columnObstGyn" msprop:Generator_ColumnPropNameInRow="ObstGyn" msprop:Generator_ColumnPropNameInTable="ObstGynColumn" msprop:Generator_UserColumnName="ObstGyn" type="xs:int" minOccurs="0" />
+              <xs:element name="Paediatrics" msprop:Generator_ColumnVarNameInTable="columnPaediatrics" msprop:Generator_ColumnPropNameInRow="Paediatrics" msprop:Generator_ColumnPropNameInTable="PaediatricsColumn" msprop:Generator_UserColumnName="Paediatrics" type="xs:int" minOccurs="0" />
+              <xs:element name="Maternity" msprop:Generator_ColumnVarNameInTable="columnMaternity" msprop:Generator_ColumnPropNameInRow="Maternity" msprop:Generator_ColumnPropNameInTable="MaternityColumn" msprop:Generator_UserColumnName="Maternity" type="xs:int" minOccurs="0" />
+              <xs:element name="Eye" msprop:Generator_ColumnVarNameInTable="columnEye" msprop:Generator_ColumnPropNameInRow="Eye" msprop:Generator_ColumnPropNameInTable="EyeColumn" msprop:Generator_UserColumnName="Eye" type="xs:int" minOccurs="0" />
+              <xs:element name="NurseryNewBorn" msprop:Generator_ColumnVarNameInTable="columnNurseryNewBorn" msprop:Generator_ColumnPropNameInRow="NurseryNewBorn" msprop:Generator_ColumnPropNameInTable="NurseryNewBornColumn" msprop:Generator_UserColumnName="NurseryNewBorn" type="xs:int" minOccurs="0" />
+              <xs:element name="Orthopeadic" msprop:Generator_ColumnVarNameInTable="columnOrthopeadic" msprop:Generator_ColumnPropNameInRow="Orthopeadic" msprop:Generator_ColumnPropNameInTable="OrthopeadicColumn" msprop:Generator_UserColumnName="Orthopeadic" type="xs:int" minOccurs="0" />
+              <xs:element name="Other" msprop:Generator_ColumnVarNameInTable="columnOther" msprop:Generator_ColumnPropNameInRow="Other" msprop:Generator_ColumnPropNameInTable="OtherColumn" msprop:Generator_UserColumnName="Other" type="xs:int" minOccurs="0" />
+              <xs:element name="NameOfService" msprop:Generator_ColumnVarNameInTable="columnNameOfService" msprop:Generator_ColumnPropNameInRow="NameOfService" msprop:Generator_ColumnPropNameInTable="NameOfServiceColumn" msprop:Generator_UserColumnName="NameOfService" type="xs:string" minOccurs="0" />
+              <xs:element name="Isolation" msprop:Generator_ColumnVarNameInTable="columnIsolation" msprop:Generator_ColumnPropNameInRow="Isolation" msprop:Generator_ColumnPropNameInTable="IsolationColumn" msprop:Generator_UserColumnName="Isolation" type="xs:int" minOccurs="0" />
+              <xs:element name="Amenity" msprop:Generator_ColumnVarNameInTable="columnAmenity" msprop:Generator_ColumnPropNameInRow="Amenity" msprop:Generator_ColumnPropNameInTable="AmenityColumn" msprop:Generator_UserColumnName="Amenity" type="xs:int" minOccurs="0" />
+              <xs:element name="Pychiatry" msprop:Generator_ColumnVarNameInTable="columnPychiatry" msprop:Generator_ColumnPropNameInRow="Pychiatry" msprop:Generator_ColumnPropNameInTable="PychiatryColumn" msprop:Generator_UserColumnName="Pychiatry" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

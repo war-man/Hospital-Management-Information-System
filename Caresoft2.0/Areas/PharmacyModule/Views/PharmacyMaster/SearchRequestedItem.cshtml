@@ -1,0 +1,148 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.PhamarcyRequests>
+
+@{
+    ViewBag.Title = "Search Requested Item";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+}
+
+<div class="col-md-7">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+
+        <div class="panel-body">
+            <div class="col-md-12">
+                <table class="table-form">
+                    <tbody>
+                        @if ((Session["StartDate"] != null || Session["ToDate"] != null))
+                        {
+                            var fromDate = (DateTime)Session["StartDate"];
+                            var toDate = (DateTime)Session["ToDate"];
+                            <tr>
+
+                                <td>
+                                    From Date
+                                </td>
+                                <td>
+                                    <input class="text-box" type="date" id="fromDate" name="FromDate" value="@fromDate.ToString("yyyy-MM-dd")" />
+                                </td>
+                                <td>
+                                    To Date
+                                </td>
+                                <td>
+                                    <input class="text-box" type="date" id="toDate" name="ToDate" value="@toDate.ToString("yyyy-MM-dd")" />
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>
+                                    From Date
+                                </td>
+                                <td>
+                                    <input class="text-box" type="date" id="fromDate" name="FromDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                </td>
+                                <td>
+                                    To Date
+                                </td>
+                                <td>
+                                    <input class="text-box" type="date" id="toDate" name="ToDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                </td>
+                            </tr>
+                        }
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-12">
+                <br />
+                <div id="InvoiceList">
+                    @Html.Partial("~/Areas/PharmacyModule/Views/PharmacyMaster/_SearchRequestedItem.cshtml", Model)
+
+                </div>
+
+               
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+
+    <script>
+
+        $("#fromDate").on('change', function () {
+            var fromDate = $(this).val();
+            var toDate = $("#toDate").val();
+
+            var dates = { fromDate: fromDate, toDate: toDate };
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyMaster/SearchByDatesRequestedItems",
+                data: dates,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                    
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                   
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+
+        })
+
+        $("#toDate").on('change', function () {
+            var fromDate = $("#fromDate").val();
+            var toDate = $(this).val();
+
+            var dates = { fromDate: fromDate, toDate: toDate };
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyMaster/SearchByDatesRequestedItems",
+                data: dates,
+                beforeSend: function () {
+                    $(".loader").show();
+
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                    
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+
+        })
+
+    </script>
+
+   
+
+
+}

@@ -1,0 +1,222 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var myProfile = new CaresoftHMISDataAccess.MCHMaternalProfile();
+
+    if (Model.OpdRegister.MCHMaternalProfiles != null)
+    {
+        myProfile = Model.OpdRegister.MCHMaternalProfiles
+            .OrderByDescending(e=>e.Id).FirstOrDefault();
+    }
+
+    var relationships = (List<CaresoftHMISDataAccess.Relationship>)ViewBag.Relationships;
+    var maritals = (List<CaresoftHMISDataAccess.MaritalStatu>)ViewBag.Maritals;
+
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Maternal Profile";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>Maternal Profile (First Visit)</p>
+    </div>
+    <style>
+        input.box-sm{
+            width:120px
+        }
+    </style>
+    <div class="panel-body">
+        <form id="maternal_profile" method="post" action="@Url.Action("SaveMaternalProfile", "mch")">
+            <input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+            <fieldset>
+
+                <table class="table-form marg-top-16px">
+                    <tr>
+                        <td>
+                            <label for="ANCNo">
+                                ANC NO
+                            </label>
+                        </td>
+                        <td>
+                            <input name="ANCNo" required id="ANCNo" type="number" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>
+                                PNC NO
+                            </label>
+                        </td>
+                        <td>
+                            <input type="number" name="PNCNo" class="text-box box-lg" required />
+                        </td>
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label>Gravida</label>
+                        </td>
+                        <td>
+                            <input type="text" name="Gravida" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>Parity</label>
+                        </td>
+                        <td>
+                            <input type="text" name="Parity" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>Height(in centimeter cm)</label>
+                        </td>
+                        <td>
+                            <input type="number" name="Height" class="text-box box-lg" required />
+                        </td>
+
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label>Weight</label>
+                        </td>
+                        <td>
+                            <input type="number" name="Weight" class="text-box box-lg" required />
+                        </td>
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label>
+                                L.M.P
+                            </label>
+                        </td>
+                        <td>
+                            <input type="date" name="LMP" class="text-box box-lg" required value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                        </td>
+                        <td>
+                            <label>
+                                EDD
+                            </label>
+                        </td>
+                        <td>
+                            <input type="date" name="EDD" class="text-box box-lg" required value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                        </td>
+
+                        <td>
+                            <label>
+                                Marital Status
+                            </label>
+                        </td>
+                        <td>
+                            <select name="MaritalStatus" class="text-box box-lg">
+                                <option>@Html.DisplayFor(model => myProfile.MaritalStatus)</option>
+                                @foreach (var m in maritals)
+                                {
+                                    <option>@m.MaritalStatusName</option>
+                                }
+                            </select>
+                        </td>
+
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label>
+                                Education
+                            </label>
+                        </td>
+                        <td>
+                            <select name="Education" class="text-box box-lg">
+                                <option>@Html.DisplayFor(model => myProfile.Education)</option>
+                                <option>Primary</option>
+                                <option>Secondary</option>
+                                <option>Tertiary</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>Telephone</label>
+                        </td>
+                        <td>
+                            <input name="Telephone" type="tel" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>Address</label>
+                        </td>
+                        <td>
+                            <input name="Address" type="text" class="text-box box-lg" required />
+                        </td>
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label>
+                                Next of Kin
+                            </label>
+                        </td>
+                        <td>
+                            <input name="NextOfKin" type="text" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>Relationship</label>
+                        </td>
+                        <td>
+                            <select name="Relationship" class="text-box box-lg box-lg">
+                                <option>@Html.DisplayFor(model => myProfile.Relationship)</option>
+                                @foreach (var r in relationships)
+                                {
+                                    <option>@r.RelationshipName</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <label>Kin's Address</label>
+                        </td>
+                        <td>
+                            <input name="KinsAddress" type="text" class="text-box box-lg" required />
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" class="btn btn-sm btn-primary " value="Save" />
+
+                @Html.ActionLink("Continue", "MedicalAndSergicalHistory", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+               @style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+
+
+
+            </fieldset>
+            
+        </form>
+        <div>
+            @Html.Partial("MaternalProfileDetails",Model.OpdRegister.MCHMaternalProfiles)
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+    </script>
+}
+
+

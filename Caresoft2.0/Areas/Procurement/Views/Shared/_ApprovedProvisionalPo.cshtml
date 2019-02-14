@@ -1,0 +1,31 @@
+﻿@model Caresoft2._0.Areas.Procurement.ViewModel.ReturnApproveProvisionalPO
+
+<div class="col-md-10 col-md-offset-1">
+    <hr />
+    <table class="table table-data">
+        <tr>
+            <th>Accepted Provisional PO ID</th>
+            <th>Supplier Name</th>
+            <th>Total Items</th>
+            <th>Total Quantity</th>
+            <th>Total Amount</th>
+            <th>Approve</th>
+            <th>DisApprove</th>
+            <th>Details</th>
+        </tr>
+        <tr>
+            <td>@Model.ProvisionalPOId</td>
+            <td>@Model.supplierName</td>
+            <td>@Model.TotalItems</td>
+            <td>@Model.TotalQuantity</td>
+            <td>@Model.TotalAmount</td>
+            <td>
+                <input type="button" class="btn btn-primary btn-sm" value="Approve"/>
+            </td>
+            <td><input type="button" class="btn btn-primary btn-sm" value="DisApprove" /></td>
+            <td>
+                <input type="button" class="btn btn-primary btn-sm" value="Details" />
+            </td>
+        </tr>
+    </table>
+</div>

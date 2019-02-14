@@ -1,0 +1,104 @@
+﻿@model Caresoft2._0.CustomData.WardsMasterData
+@{
+    ViewBag.Title = "Ward Master";
+    ViewBag.FormName = ViewBag.Title;
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+    
+}
+    <form id="new-ward-form" method="post">
+        <table class="table-form">
+            <tr>
+                <td><label>Ward Name</label></td>
+                <td><input type="text" class="text-box box-lg" id="WardName" name="WardName" required/></td>
+            </tr>
+            <tr>
+                <td><label>Ward Type</label></td>
+                <td>
+                    <select class="text-box box-lg" id="CategoryId" name="CategoryId">
+                        @foreach (var cat in Model.Categories)
+                        {
+                            <option value="@cat.Id">@cat.WardCategoryName</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Building Name</label></td>
+                <td>
+                    <select class="text-box box-lg" id="HS-building" name="">
+                        <option>Select</option>
+                        @foreach (var building in Model.Buildings)
+                        {
+                            <option value="@building.Id">@building.BuildingName</option>
+                        }
+                    </select>
+                </td>
+                <td><label>Floor Name</label></td>
+                <td>
+                    <select class="text-box box-lg" id="FloorId" name="FloorId" required></select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Actual Beds</label></td>
+                <td><input type="number" class="text-box box-lg" id="NumberOfBeds" name="NumberOfBeds" value="1" required /></td>
+                <td><label>Authorized Beds</label></td>
+                <td><input type="number" class="text-box box-lg" id="AuthorizedBeds" name="AuthorizedBeds" value="1" required /></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" class="btn btn-sm btn-primary" value="Add" /></td>
+            </tr>
+        </table>
+    </form>
+    
+    
+    <div id="wards-list">
+        @Html.Partial("WardsList", Model.Wards)
+    </div>
+    
+@section scripts{
+    <script>
+        $("#HS-building").on("change", function () {
+            var buildingId = $(this).val();
+            if ($.isNumeric(buildingId)) {
+                var url = '@Url.Action("GetFloors", "Wards", new { id = -1})';
+                url = url.replace('-1', buildingId);
+                $.ajax({
+                    method: 'post',
+                    url: url,
+                    success: function (result) {
+                        $("#FloorId").html(result);
+                    }
+                })
+            }
+        });
+
+        $("#new-ward-form").submit(function (e) {
+
+            e.preventDefault();
+            if ($(this).valid()) {
+                $(".loader").show();
+                var data = $(this).serialize();
+                $.ajax({
+                    method: 'post',
+                    url: '@Url.Action("CreateWard", "Wards")',
+                    data:data,
+                    success: function (result) {
+                        $("#wards-list").html(result);
+                        $(".loader").hide();
+                        $("#WardName").val("");
+                        $("#NumberOfBeds").val("");
+                        $("#AuthorizedBeds").val("");
+                    },
+                    error: function (e, x, r) {
+                        $(".loader").hide();
+                        console.log(e.responseText);
+                    }
+                });
+            }
+
+
+
+        });
+    </script>    
+}

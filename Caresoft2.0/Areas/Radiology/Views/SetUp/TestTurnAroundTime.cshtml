@@ -1,0 +1,202 @@
+﻿@model LabsDataAccess.Test_Turn_Around_Times
+
+
+    @{
+        ViewBag.Title = "Test Turn Around Time";
+        ViewBag.ShowTopMenu = true;
+        Layout = "~/Areas/Radiology/Views/Shared/_LayoutRadiology.cshtml";
+
+    }
+
+    <div class="container">
+        <div class="col-xs-offset-2 col-xs-8 CustomLabel">
+            <div class=" col-xs-offset-0 col-xs-12">
+                <div class="panel panel-primary caresoft-panel">
+
+                    <div class="panel-heading">
+                        @ViewBag.Title
+                    </div>
+                    <div class="panel-body">
+
+
+                        @using (Ajax.BeginForm("TestTurnAroundTime", "SetUp", new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            //UpdateTargetId = "TestList",
+                            OnSuccess = "$('#Message').text('Record Updated Sucessfully...	'); $('#Message').removeClass('alert-danger'); $('#Message').addClass('alert-success');",
+                            OnFailure = "$('#Message').text('Record Updated Sucessfully...	'); $('#Message').removeClass('alert-success');  $('#Message').addClass('alert-danger');",
+                            LoadingElementId = "loadingElement",
+                        }))
+                        {
+                                @Html.AntiForgeryToken()
+                                <form>
+                                    <div style="border: 2px solid #000000; padding:5px; margin:5px; overflow:auto;">
+                                        <b id="Message">Please attend to the following:</b>
+                                    </div>
+
+                                    <div style="margin:2px;">
+                                        <span><b>Select Test &emsp; &emsp;</b></span><input id="TestName" name="TestName" style="width:40%;" class="text-box" required="required" /><br />
+
+                                    </div>
+                                    <div hidden style="margin:2px;">
+                                        <span><b>Select Test &nbsp;&nbsp;&nbsp;</b></span><input id="Test" type="number" name="Test" class="text-box" required="required" />
+                                    </div>
+
+                                    <div id="ttat_inputs" class="hidden">
+                                        <div class="Radiology-border" style="background:white; margin:5px;">
+                                            <table class="table table-bordered table-condensed table-data-Radiology">
+                                                <thead style="white-space:nowrap">
+                                                    <tr>
+                                                        <th>
+                                                            Test Name
+                                                        </th>
+                                                        <th colspan="2">
+                                                            Test Turn Around Time
+                                                        </th>
+                                                        <th colspan="2">
+                                                            Report Due Days
+                                                        </th>
+                                                        <th>
+                                                            Vial Type
+                                                        </th>
+                                                        <th>srno</th>
+                                                        <th>srno1</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td valign="middle" id="TestName" rowspan="2" style="width:150px;"></td>
+                                                        <td colspan="1">
+                                                            <input type="number" value="0" id="TTAT_Days" name="TTAT_Days" style="width:50px;" class="text-box" />
+                                                        </td>
+                                                        <td colspan="1">
+                                                            <input value="0" type="number" id="TTAT_Hours" name="TTAT_Hours" style="width:50px;" class="text-box" />
+                                                        </td>
+                                                        <td colspan="1">
+                                                            <input value="0" type="number" id="RDD_Day" name="RDD_Day" style="width:50px;" class="text-box" />
+                                                        </td>
+                                                        <td colspan="1">
+                                                            <input value="0" type="number" id="RDD_Hours" name="RDD_Hours" style="width:50px;" class="text-box" />
+                                                        </td>
+                                                        <td rowspan="2">
+                                                            <select class="text-box" name="Vial_Type" id="VialType">
+                                                                <option selected="selected" value="0">Select Vial Type</option>
+
+                                                                @foreach (LabsDataAccess.VialMaster i in ViewBag.VialTypes)
+                                                                {
+                                                                    <option value="@i.Id">@i.Vial_Type</option>
+
+                                                                }
+                                                            </select>
+                                                        </td>
+                                                        <td valign="middle" rowspan="2"></td>
+                                                        <td class="table-data-Radiology-v-centre" rowspan="2"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Days
+                                                        </td>
+                                                        <td>
+                                                            Hours
+                                                        </td>
+                                                        <td>
+                                                            Days
+                                                        </td>
+                                                        <td>
+                                                            Hours
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            }
+
+                        </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    @section scripts{
+
+        <script>
+            $("#TestName").autocomplete({
+                source: function (req, res) {
+                    $.ajax({
+                        type: "GET",
+                        url: "searchTTATTests?search=" + $("#TestName").val(),
+                        dataType: "json",
+                        data: { search: $("#PatientName").val() },
+
+                        success: function (data) {
+                            res($.map(data, function (item) {
+                                return { label: item.Test, value: item.Test, Id: item.id };
+                            }));
+                        },
+
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                    });
+                }
+            });
+
+            $("#TestName").on("autocompleteselect", function (event, ui) {
+                $('#Test').val(ui.item.Id);
+                getTestData(ui.item.Id);
+            });
+
+            function getTestData(id) {
+                showNotification("message", "danger", true);
+
+                $.ajax({
+                    type: "GET",
+                    url: "getSingleTTAT/" + id,
+
+                    success: function (data) {
+
+                        $('#Message').text('Please attend to the following...');
+                        $('#Message').removeClass('alert-danger');
+                        $('#Message').removeClass('alert-success');
+
+                        $('#ttat_inputs').removeClass('hidden');
+                        console.log(data);
+
+                        $('#TestName').text(data.Test);
+
+                        $('#TTAT_Days').val(data.TTAT_Days);
+                        $('#TTAT_Hours').val(data.TTAT_Hours);
+
+                        $('#RDD_Day').val(data.RDD_Days);
+                        $('#RDD_Hours').val(data.RDD_Hours);
+
+
+                        $('#VialType').val(data.Vial_Type);
+
+                        //$('TTAT_Days').val(data.srno);
+                        //$('TTAT_Days').val(data.srno1);
+
+
+                    },
+
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        $('#Message').text('Please attend to the following...');
+                        $('#Message').removeClass('alert-danger');
+                        $('#Message').removeClass('alert-success');
+
+                        $('#ttat_inputs').addClass('hidden');
+                    }
+                });
+            }
+        </script>
+    }

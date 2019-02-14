@@ -1,0 +1,5 @@
+			 else if (ViewBag.ShowTopMenu.ToString() == "CareSoftReports")
+                        {
+                            @Html.Partial("~/Areas/CareSoftReports/Views/Shared/_NavCaresoftReports.cshtml")
+
+                        }

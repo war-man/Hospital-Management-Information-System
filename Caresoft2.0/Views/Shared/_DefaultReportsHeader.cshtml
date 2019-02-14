@@ -1,0 +1,27 @@
+﻿@{ using (CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities())
+    {
+        var kvp = db.KeyValuePairs.ToList();
+
+        <table width="100%" class="gray-hr-bottom" style="color:#000000 !important">
+            <thead>
+                <tr>
+                    <td  colspan="2" align="center">
+                        <h3 class=" text-center" style="text-transform:uppercase; font-weight:500px">
+                            <strong>@kvp.FirstOrDefault(e => e.Key_ == "FacilityName").Value</strong>
+                        </h3>
+                        <p class=" text-center" style="text-transform:uppercase">
+                            <strong style="color:var(--primary-dark-color)">@kvp.FirstOrDefault(e => e.Key_ == "FacilityAddress").Value</strong>
+                        </p>
+                        <p class=" text-center">
+                            <strong style="color:var(--primary-dark-color)">@kvp.FirstOrDefault(e => e.Key_ == "FacilityContactNumber").Value</strong>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><h4 class="">@ViewBag.Title</h4>@ViewBag.FromTo</td>
+                    <td class="" align="right">Print Date: @DateTime.Now.ToShortDateString()</td>
+                </tr>
+            </thead>
+        </table>
+    }
+}

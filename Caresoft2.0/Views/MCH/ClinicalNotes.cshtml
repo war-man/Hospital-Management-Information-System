@@ -1,0 +1,76 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Clinical Notes";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>@ViewBag.Title</p>
+    </div>
+
+
+    <div class="panel-body">
+        <form id="family-planning" method="post" action="@Url.Action("SaveClinicalNotes", "mch")">
+            <input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+            <table class="table-form">
+                <tr>
+                    <td>
+                        <label>Date</label>
+                    </td>
+                    <td>
+                        <input type="date" name="DateAdministered" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="text-box box-lg" required />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label>Clinical Notes</label>
+                    </td>
+
+                    <td>
+                        <textarea class="text-box box-lg" name="ClinicalNotes" required  ></textarea>
+                    </td>
+
+                </tr>
+            </table>
+            <div class="">
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                <button type="reset" class="btn btn-sm btn-primary">Cancel</button>
+                @Html.ActionLink("Previous", "FamilyPlanning", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+@style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+            </div>
+
+            <div>
+                @Html.Partial("ClinicalNotesDetails", Model.OpdRegister.MCHClinicalNotes)
+            </div>
+    </div>
+
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+    </script>
+}
+
+

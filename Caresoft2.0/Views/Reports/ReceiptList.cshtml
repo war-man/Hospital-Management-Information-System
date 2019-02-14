@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Reports";
+    ViewBag.ShowTopMenu = true;
+
+    var users = (IEnumerable<CaresoftHMISDataAccess.User>)ViewBag.Users;
+
+}
+
+
+
+<div class="col-sm-6 col-sm-offset-3">
+    <div class="panel panel-primary glass caresoft-panel">
+        <div class="panel-heading">
+            <h5>Reports</h5>
+            Receipts list report
+        </div>
+        <div class="panel-body">
+            <form name="ReportFilter" method="post" action="">
+                <table class="table-form">
+                    
+                    <tr>
+                        <td>
+                            <lable>Start Date</lable>
+                        </td>
+                        <td>
+                            <input class="text-box box-lg" type="date" name="StartDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                        </td>
+                        <td>
+                            <lable>End Date</lable>
+                        </td>
+                        <td>
+                            <input class="text-box box-lg" type="date" name="EndDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                        </td>
+                    </tr>
+
+                    
+
+                    <tr>
+                        <td>
+                            <lable>User</lable>
+                        </td>
+                        <td>
+                            <select class="text-box box-lg" name="User">
+                                <option value="0">All</option>
+                                @foreach(var user in users)
+                                {
+                                    <option value="@user.Id">@user.Username</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="right">
+                            <input type="submit" class="btn btn-sm btn-primary" value="Generate Report" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+

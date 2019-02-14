@@ -1,0 +1,958 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+@using Caresoft2._0.Utils
+@{
+    ViewBag.IsEMR = true;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.OpdNo = Model.OpdRegister.Id;
+
+    
+
+}
+
+<style>
+    table#patient-info td {
+        font-family: Tahoma;
+        font-weight: 400;
+        font-size: 12px;
+    }
+
+    table#patient-info th {
+        font-family: Tahoma;
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    .side-nav:hover {
+        background: #EEF2F5;
+    }
+</style>
+
+<table width="100%" style="margin-top:-.6em;">
+    <tr style="background: linear-gradient( #D7E8FC, #94B6E8);  color:#fff;">
+        <td align="center" style="border:2px solid var(--primary-light-color); font-family:Verdana; font-weight:700; font-size:12px; padding:.8em">PATIENT INFO</td>
+        <td style="border:2px solid var(--primary-light-color);  padding:.8em">
+            <table width="100%" id="patient-info">
+                <tr>
+                    <th>Reg No:</th>
+                    <td>@Model.Patient.RegNumber</td>
+                    <th>Patient Name:</th>
+                    <td>@Model.Patient.Salutation @Model.Patient.FName @Model.Patient.MName @Model.Patient.LName</td>
+                    <th>Patient Type</th>
+                    <td>@Model.OpdRegister.Tariff.Company.CompanyType.CompanyTypeName</td>
+                </tr>
+                <tr>
+                    <th>
+                        @if ((ViewBag.IsIPD != null && ViewBag.IsIPD) || Model.OpdRegister.IsIPD)
+                        {<text>IPD No</text>}
+                    else
+                    { <text>OPD No</text>}
+                </th>
+                <td>@Model.OpdRegister.Id</td>
+                <th>Age &amp; Gender:</th>
+                <td>@(new AgeCalculator().CalculateYourAge(Model.Patient.DOB.Value)) [ @Model.Patient.Gender]</td>
+                <th>Category</th>
+                <td>@Model.OpdRegister.Tariff.Company.CompanyName [ @Model.OpdRegister.Tariff.TariffName]</td>
+            </tr>
+            @if ((ViewBag.IsIPD != null && ViewBag.IsIPD) || Model.OpdRegister.IsIPD)
+            {
+                <tr>
+                    <th>Ward Type</th>
+                    <td>@Model.OpdRegister.HSBed.HSWard.HSWardCategory.WardCategoryName</td>
+                    <th>Ward No [Bed]</th>
+                    <td>@Model.OpdRegister.HSBed.HSWard.WardName [@Model.OpdRegister.HSBed.BedName]</td>
+                    <th>Admitted On</th>
+                    <td>@Model.OpdRegister.AdmissionDate.Value.ToShortDateString()</td>
+                </tr>
+            }
+        </table>
+    </td>
+    <td align="center">
+        <i class="call-modal-form fa fa-book fa-2x" data-action="@Url.Action("PatientEbook", "emr", new { id = ViewBag.OpdNo })" data-callback="patientEbookListener"></i>
+    </td>
+</tr>
+<tr>
+    @if (ViewBag.IsIPD == null || !ViewBag.IsIPD)
+    {
+        <td valign="top" id="preventDefault" width="18%" class="side-nav">
+            <ul class="nav nav-tabs">
+                <li style="display: inline;" class="active"><a data-toggle="pill" href="#menu-options">Menu</a></li>
+                <li style="display: inline;"><a data-toggle="pill" href="#mini-list">Patients List</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="menu-options" class="tab-pane fade in active">
+                    @Html.Partial("_SideNavigation")
+                </div>
+
+                
+                <div id="mini-list" class="tab-pane fade">
+                    <style>
+                        #table-minilist a {
+                            text-decoration: none;
+                        }
+                    </style>
+                    <table class="color-legend-table">
+                        <tr>
+
+                            <td class="color-key" id="EMRunread"></td>
+                            <td> Unread</td>
+                            <td class="color-key" id="EMRRead"></td>
+                            <td> Read</td>
+                            <td class="color-key" id="EMRUnpaid"></td>
+                            <td> Unpaid</td>
+                            <td class="color-key" id="EMREmergency"></td>
+                            <td> Emergency</td>
+                        </tr>
+                    </table>
+                    <table id="table-minilist" class="table-data table-bordered  small-table"
+                           width="100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    OPD No
+                                </th>
+                                <th>
+                                    Reg Number/Name
+
+                                </th>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input type="search" class="text-box box-xlg"
+                                           placeholder="Search today's OPD list"
+                                           id="filter-opd-minilist" onkeyup="filterOpdMiniList()" />
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ using (CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities())
+                {
+                    var opdMiniList = db.OpdRegisters.Where(e => e.Date >= DateTime.Today && !e.Status.Trim().ToLower().Equals("draft")).ToList();
+                    @Html.Partial("~/Views/emr/OPDMiniList.cshtml", opdMiniList);
+}
+                            }
+
+
+                        </tbody>
+
+
+                    </table>
+                </div>
+            </div>
+        </td>
+    }
+    else
+    {
+        <td width="18%"></td>
+    }
+
+
+    <td valign="top" style="padding:5px;">
+        @RenderBody()
+    </td>
+    @if (ViewBag.IsIPD == null || !ViewBag.IsIPD)
+    {
+        <td valign="top" style="padding:5px" width="18%">
+            <div @*class="col-xs-2" style="margin-left:-1em;"*@ id="patient-recent-physical-info"></div>
+        </td>
+    }
+    else
+    {
+        <td width="18%"></td>
+    }
+</tr>
+
+
+</table>
+
+
+
+
+
+
+
+
+
+
+@section scripts{
+    <script src="~/Scripts/turn.js"></script>
+    <script src="~/Scripts/CollapsibleLists.js"></script>
+    <script>
+        CollapsibleLists.apply();
+
+
+        var message = "<em><small>Please Wait...</small></em>";
+
+        function listenToCheckboxClicks() {
+            $("#search-results input[type=checkbox]").each(function () {
+                $(this).unbind("click");
+                $(this).click(function () {
+                    populateSelectedDiagnosisTable();
+                });
+            })
+        }
+
+        function populateSelectedDiagnosisTable() {
+            var customDiagnosis =  $("table#selected-diagnosis tbody tr.custom");
+            $("table#selected-diagnosis tbody").html("");
+            $("table#selected-diagnosis tbody").append(customDiagnosis);
+            $("#search-results input[type=checkbox]").each(function () {
+                if ($(this).is(":checked")) {
+                    var diagnosis = '<tr><td  class="final-diagnosis">' + $(this).data("diagnosis") + '</td><td>' +
+                        '<button class="btn btn-xs btn-primary delete-diagnosis" data-checkbox="' + $(this).attr("id") + '">Delete</button></td ></tr > ';
+
+                    $("table#selected-diagnosis tbody").append(diagnosis);
+                }
+            });
+
+            toggleSaveButton();
+
+            diagnosisDeleteListener();
+        }
+        function toggleSaveButton() {
+            var rows = $("table#selected-diagnosis tbody tr").length;
+            if (rows > 0) {
+                $("button#save-final-diagnosis").removeAttr("disabled");
+            } else {
+                $("button#save-final-diagnosis").attr("disabled", true);
+            }
+        }
+        function diagnosisDeleteListener() {
+            $("button.delete-diagnosis").each(function () {
+                var clicked = $(this);
+                clicked.unbind("click");
+                clicked.click(function () {
+                    var row = clicked.parent().parent();
+                    row.fadeOut(function () {
+                        row.remove();
+                        toggleSaveButton();
+                    });
+                    var checkbox = clicked.data("checkbox");
+                    if (checkbox.length > 0) {
+                        $("input[type=checkbox]#" + checkbox).prop('checked', false);
+                    } else {
+                        //crequest coming from a custom diagnosis, no ICD10 checkbox to uncheck
+                    }
+                });
+            });
+
+        }
+
+        function diagnosisFormModalListener() {
+            listenToCheckboxClicks();
+            $("label.level1").each(function () {
+                $(this).click(function () {
+                    var clicked = $(this);
+                    var target = $($(this).data("slide-target"));
+                    target.html(message);
+                    target.slideToggle(function () {
+                        if (target.css("display")==='block') {
+                            getLevelTwoClassifications(clicked.data("value"), target);
+                        } else {
+                            target.html(message);
+                        }
+                    });
+                });
+            });
+            $("#save-final-diagnosis").click(function () {
+                saveFinalDiagnosis();
+            });
+
+            $("button#add-newDiagnosis").click(function () {
+                addCustomDiagnosis();
+            });
+            $("#NewDiagnosis").keypress(function (e) {
+                if (e.which == 13) {
+                    addCustomDiagnosis();
+                }
+            });
+
+        }
+        function addCustomDiagnosis() {
+            var NewDiagnosis = $("#NewDiagnosis").val().trim();
+            if (NewDiagnosis.length > 0) {
+                var diagnosis = '<tr class="custom"><td class="final-diagnosis">' + NewDiagnosis + '</td><td>' +
+                    '<button class="btn btn-xs btn-primary delete-diagnosis" data-checkbox="">Delete</button></td></tr>';
+                $("table #selected-diagnosis tbody").append(diagnosis);
+                diagnosisDeleteListener();
+                toggleSaveButton();
+                $("#NewDiagnosis").val("");
+            }
+        }
+        function diseaseEntryModalListener() {
+
+
+            $("#filter_diseases").keyup(function () {
+                var st = $(this).val();
+                if (st.length > 1) {
+                    $("#save_disease_as_others").prop("disabled", false);
+                } else {
+                    $("#save_disease_as_others").prop("disabled", true);
+                }
+
+                $.ajax({
+                    url: "@Url.Action("FilterDisease", "Emr")",
+                    data: { search: st },
+                    success: function (data) {
+                        $("#disease_list").html(data);
+                    }
+                })
+            })
+
+            $("#save_disease_as_others").click(function () {
+                
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("SaveFinalDiagnosis", "emr")/1", //pass one to return a list of the saved diagnosis
+
+                    data: {
+                        FinalDIagnosis: "Other " + $("#filter_diseases").val(),
+                        OldNewCase: $("input[name=OldNewCase]:checked").val(), OPDNo:@Model.OpdRegister.Id },
+
+                    success: function (data) {
+                        $(".loader").hide();
+                        $("#modal-content").html(data);
+                        diseaseEntryModalListener();
+                        getComplaintsList();
+                        addClosingButton("modal-forms-holder");
+
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        $(".loader").hide();
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            })
+                
+
+            $("#disease-entry-form").submit(function (e) {
+                e.preventDefault();
+                var finalDiagnosis = [];
+                $(this).find("input[type=checkbox]").each(function () {
+                    if ($(this).is(":checked")) {
+                        var entry = $(this).val();
+                        finalDiagnosis.push(entry);
+                    }
+                });
+
+                if (finalDiagnosis.length < 1) {
+                    showNotification("Please select at least one disesase!", "warning", true);
+                    return false;
+                }
+                $(".loader").show();
+                console.log(finalDiagnosis);
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("SaveFinalDiagnosis", "emr")/1", //pass one to return a list of the saved diagnosis
+
+                    data: { FinalDIagnosis: finalDiagnosis, OldNewCase: $("input[name=OldNewCase]:checked").val(), OPDNo:@Model.OpdRegister.Id },
+
+                    success: function (data) {
+                        $(".loader").hide();
+                        $("#modal-content").html(data);
+                        diseaseEntryModalListener();
+                        getComplaintsList();
+                        addClosingButton("modal-forms-holder");
+
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        $(".loader").hide();
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+
+            })
+        }
+        function saveFinalDiagnosis() {
+            //using ICD10 form
+            $(".loader").show();
+            var finalDiagnosis = [];
+            $("td.final-diagnosis").each(function () {
+                var entry = $(this).text();
+                finalDiagnosis.push(entry);
+            });
+
+            console.log(finalDiagnosis);
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("SaveFinalDiagnosis", "emr")",
+
+                data: { FinalDIagnosis: finalDiagnosis, OldNewCase: $("input[name=OldNewCase]:checked").val(), OPDNo:$("#OPDNo").val() },
+                headers: {
+                    "authToken": ""
+                },
+                success: function (data) {
+                    $(".loader").hide();
+                    $("#modal-forms-holder").modal("hide");
+                    getComplaintsList();
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+
+        }
+
+        function getLevelTwoClassifications(level1Code, target) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("GetLevelTwoClassifications", "emr")",
+
+                data: { level1code: level1Code },
+                headers: {
+                    "authToken": ""
+                },
+                success: function (data) {
+                    target.html(data);
+                    listenToCheckboxClicks();
+                    levelTwoClickListeners(target);
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+
+        }
+
+        function levelTwoClickListeners(target) {
+            target.find("label.level2").each(function () {
+                $(this).click(function () {
+                    var clicked = $(this);
+                    var target2 = $(clicked.data("slide-target"));
+                    target2.html(message);
+                    target2.slideToggle(function () {
+                        if (target.css("display") === 'block') {
+                            getLevelThreeClassification(clicked.data("value"), target2);
+                        } else {
+                            target.html(message);
+                        }
+                    });
+                });
+            });
+        }
+
+        function getLevelThreeClassification(level2Code, target2) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("GetLevelThreeClassifications", "emr")",
+
+                data: { level2Code: level2Code },
+                headers: {
+                    "authToken": ""
+                },
+                success: function (data) {
+                    target2.html(data);
+                    listenToCheckboxClicks();
+
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+        }
+
+        function procedureFormModalListener() {
+            getThisDepartmentProcedures();
+            $("#Proceudre").autocomplete({
+                source: function (req, res) {
+                    $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("SearchDepartmentProcedures", "emr")",
+                    dataType: "json",
+                    data: { search: $("#Proceudre").val(), departmentId: $("#Department").val()},
+                    headers: {
+                        "authToken": ""
+                    },
+                    success: function (data) {
+                        res($.map(data, function (item) {
+                            return { label: item.Name, value: item.Name, Id: item.Id };
+                        }));
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                    });
+                }
+            });
+
+
+
+            $("#ServiceId").on("change", function () {
+
+                var data = {
+                    ServiceId: $(this).val(),
+                    OPDNo: $("#OPDNo").val(),
+                };
+
+                $.ajax({
+                    type: "POST",
+                    data: data,
+                    url: "@Url.Action("ServiceAwardAmount", "Registration")",
+                    success: function (result) {
+                        console.log(result);
+                        $("#Rate").val(result.Price);
+                        $("#Quantity").val(1);
+                        $("#Award").val(result.Award);
+                        $("#BaseAward").val(result.Award);
+                        $("#Total").val(result.Price - result.Award);
+                    }
+                });
+            });
+
+            $("#Quantity").bind("keyup change", function () {
+                var qty = parseInt($(this).val()) || 0;
+                var award = (parseFloat($("#BaseAward").val()) || 0) * (qty);
+                $("#Award").val(award);
+                var total = ((parseFloat($("#Rate").val()) || 0) * qty) - award;
+                $("#Total").val(total);
+
+
+            });
+
+            $("#form-add-procedure").submit(function (e) {
+                e.preventDefault();
+                var data = $(this).serializeObject();
+                if ((parseInt(data.ServiceId) || 0) < 1) {
+                    showNotification("Please select a procedure to proceed!", "warning", true);
+                    return false;
+                }
+                $(".loader").show();
+                console.log(data);
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("EnterBillService", "Registration")",
+                    data: data,
+                    headers: {
+                        "authToken": ""
+                    },
+                    success: function (result) {
+                        $(".loader").hide();
+                        $("#modal-content").html(result);
+                        procedureFormModalListener();
+                        addClosingButton("modal-forms-holder");
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        $(".loader").hide();
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+
+            });
+
+        }
+        function allergyModalListener() {
+
+        }
+        
+        function treatmentFormModalListener() {
+            $("#BrandName").autocomplete({
+                source: function (req, res) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("SearchDrugs", "emr")",
+                    data: { search: $("#BrandName").val()},
+
+                    success: function (data) {
+                        res($.map(data, function (item) {
+                            return { label: item.Name, value: item.Name, Id: item.Id, Price: item.Price, Instock: item.InStock, Frequency: item.Frequency, Routing: item.RoutingAdmin, Quantity: item.Quantity };
+                        }));
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                    });
+                }
+            });
+
+            $("#BrandName").on("autocompleteselect", function (event, ui) {
+                console.log(ui);
+                $("#DrugId").val(ui.item.Id);
+                $("#Instock").val(ui.item.Instock);
+                $("#UnitPrice").val(ui.item.Price);
+                //$("#RoutingAdmin").val(ui.item.Routing);
+                //$("#Frequency").val(ui.item.Frequency);
+                //$("#Frequency").prop("Quantity", ui.item.Quantity);
+                
+            });
+
+
+
+            $("#Day").keyup(function () {
+                calculateDosagePlan();
+            });
+            $("#Day").change(function () {
+                calculateDosagePlan();
+            });
+
+            $("#StartDate").add($("#Frequency")).change(function () {
+                calculateDosagePlan();
+            });
+
+            function calculateDosagePlan() {
+                var startDate = $("#StartDate").val();
+                var frequency = $("#Frequency option:selected").data("quantity");
+                var day = $("#Day").val();
+                $("#EndDate").val(moment(startDate).add(day, 'days').format("YYYY-MM-DD"));
+                $("#Quantity").val(frequency * day);
+            }
+
+            $("#prescription-form").submit(function (e) {
+                e.preventDefault();
+                var data = $(this).serializeObject();
+
+                if (!isValidForm($(this))) {
+                    return false;
+                }
+
+                $(".loader").show();
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("EnterMedication", "emr")",
+                    data: {
+                        "Medication": data, "AllergiesInfo": $("#AllergiesInfo").val(),
+                        FormName: $("#formtype").val()
+                    },
+                    //data: { "Medication": data, "AllergiesInfo": $("#AllergiesInfo").val()},
+
+                    success: function (result) {
+                        $(".loader").hide();
+                        showNotification("Drug requested successfully!", "success", true);
+                        $("#modal-content").html(result);
+                        treatmentFormModalListener();
+                        addClosingButton("modal-forms-holder");
+
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        $(".loader").hide();
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+
+            });
+        }
+
+        function editMedication(medicationId) {
+            $("#EditMedicatioId").val(medicationId);
+            $("#entry-mode").val("Edit");
+            var tds = $("#drug-" + medicationId).children();
+            $("#BrandName").val($(tds[1]).text());
+            //to be continued
+        }
+
+        function deleteDrugFromMedication(id) {
+            $("#delete-" + id).prop("disabled", true);
+            $.ajax({
+                method: "post",
+                url: "@Url.Action("deletedrug", "emr")/" + id,
+                success: function (res) {
+                    if (res.status == "success") {
+                        $("#drug-" + id).remove();
+                    } else {
+                        showNotification(res.message, res.status, true)
+                    }
+                },
+                error: function (e, x, r) {
+                    showNotification("An Error Occured!", "danger", true);
+                    $("#delete-" + id).prop("disabled", false);
+                }
+            })
+        }
+
+        function deleteProcedureFromBillServices(id) {
+            $("#delete-" + id).prop("disabled", true);
+            $.ajax({
+                method: "post",
+                url: "@Url.Action("deleteBillService", "emr")/" + id,
+                success: function (res) {
+                    if (res.status == "success") {
+                        $("#service-" + id).remove();
+                        $("#apply-service-" + id).remove();
+
+                    } else {
+                        showNotification(res.message, res.status, true)
+                    }
+                },
+                error: function (e, x, r) {
+                    showNotification("An Error Occured!", "danger", true);
+                    $("#delete-" + id).prop("disabled", false);
+                }
+            })
+        }
+
+        function applyProcedure(id, obj) {
+            //this function can be used to mark any bill service as offered
+            
+            var btn = $(obj); 
+            btn.prop("disabled", true);
+            var td = btn.parent();
+            var tr = td.parent();
+            
+            $.ajax({
+                url: "@Url.Action("applyProcedure", "emr")/" + id,
+                success: function (res) {
+                    showNotification(res.Message, res.Status, true)
+
+                    if (res.Status === "success") {
+                        
+                        td.html("Applied");
+                        tr.attr('class', '');
+                        tr.addClass("Read");
+                        $("#service-" + id).attr('class', '');
+                        $("#service-" + id).addClass("Read");
+                        $("#service-" + id).find("button").remove();
+
+
+                    } 
+                },
+                error: function (e, x, r) {
+                    showNotification("An Error Occured!", "danger", true);
+                    $("#apply-" + id).prop("disabled", false);
+                }
+            })
+        }
+
+        function patientEbookListener() {
+            $('.flipbook').turn({
+
+                width: 800,
+
+                height: 500,
+
+                elevation: 50,
+
+                gradients: true,
+
+                autoCenter: true
+
+            });
+
+        }
+
+        $("td#preventDefault").find('a').each(function () {
+            if ($(this).attr("href") == "#") {
+                $(this).click(function (e) {
+                    e.preventDefault();
+                });
+            }
+        })
+
+        function deleteThisTest(itemId) {
+            $(".loader").show();
+            $.ajax({
+                url: "@Url.Action("DeleteTestRequest", "emr")/" + itemId,
+                success: function (res) {
+                    $(".loader").hide();
+                    if (res.status === "success") {
+                        $("#service-" + res.TestServiceId).remove();
+                    } else {
+                        showNotification(res.message, res.status, true);
+                    }
+                },
+                error: function (e, x, r) {
+                    showNotification("An error occured!", "danger", true);
+                    $(".loader").hide();
+                    console.log(e.responseText());
+
+                }
+            })
+
+        }
+
+        function referalFormModalListener() {
+            markRequiredFields();
+            GetThisDepartmentDoctors();
+
+            $("#referal-form").submit(function (e) {
+                e.preventDefault();
+                var data = $(this).serializeObject();
+                $(".loader").show();
+                $.ajax({
+                    method:"post",
+                    url: "@Url.Action("SaveReferalDetails", "EMR")",
+                    data:data,
+                    success: function (res) {
+                        $(".loader").hide();
+                        showNotification("Referal request sent successfully!", "success", true);
+                        $("#modal-forms-holder").modal("hide");
+                    },
+                    error: function (e, x, r) {
+                        $(".loader").hide();
+                        showNotification("An error occured", "danger", true);
+                    }
+                });
+
+            })
+
+        }
+
+        function GetThisDepartmentDoctors() {
+            var depId = $("#DepartmentId").val();
+            $("#ReferedToId").html("");
+            $.ajax({
+                url: "@Url.Action("GetThisDepartmentDoctors", "Departments")/" + depId,
+                success: function (res) {
+                    $.each(res, function (k, v) {
+                        $("#ReferedToId").append("<option value='" + v.UserId + "'>" + v.Name + "</option>")
+                    });
+                }
+            });
+        }
+
+        function getThisDepartmentProcedures() {
+            var departmentId = $("#Department").val();
+            $("#ServiceId").html("<option>Select procedure</option>");
+            $.ajax({
+                url: "@Url.Action("procedures","services")/" + departmentId,
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        $("#ServiceId").append("<option value='" + v.ProcedureId+"'>" + v.ProcedureName+"</option>");
+                    })
+                },
+                error: function (e, x, r) {
+                    showNotification("Unable to retrieve procedures for this department.", "error", true);
+                    console.log(e.responseText());
+                }
+            })
+        }
+
+        function filterOpdMiniList() {
+
+            var s = $("#filter-opd-minilist").val();
+
+            $.ajax({
+                url: "@Url.Action( "SearchOPDMiniList", "emr")/?search="+s,
+                success: function (result) {
+                    $('#table-minilist').find("tbody").html(result);
+                }
+            });
+        }
+
+        function attemptDeleteDiagno(id, obj) {
+            var cont = confirm("Are you sure you want to delete a record?");
+            if (cont) {
+                $(".loader").show();
+                $.ajax({
+                    url: "@Url.Action("DeleteDiagnosis", "EMR")/" + id,
+                    success: function (data) {
+                        $(".loader").hide();
+                        if (data.Status === "success") {
+                            var tr = $(obj).parent().parent();
+                            tr.fadeOut();
+                        } else {
+                            $(obj).prop("disabled", true)
+                        }
+
+                        showNotification(data.Message, data.Status, true);
+                    },
+                    error: function (e, x, r) {
+                        $(".loader").hide();
+                        showNotification("An Error Occured.", "danger", true);
+                    }
+                })
+            }
+            
+        }
+
+        function immunizationEntryListener() {
+            $("#immunization_entry_form").submit(function (e) {
+                e.preventDefault();
+                var data = $(this).serializeObject();
+                if (!isValidForm($(this))) {
+                    return false;
+                }
+                console.log(data);
+
+                $(".loader").show();
+                $.ajax({
+                    url: "@Url.Action("SaveImmunizationEntry", "EMR")/",
+                    method: "POST",
+                    data: data,
+                    success: function (data) {
+                        $(".loader").hide();
+                        showNotification(data.Message, data.Status, true);
+                        if (data.Status === "success") {
+                            var entry = data.Entry;
+                            $("#modal-forms-holder").modal("hide");
+                            var tr = $("#imm_" + entry.ImmunizationMasterId);
+                            tr.find(".date_given").append(data.DateGiven + "<br>");
+                            tr.find(".next_visit").append(data.NextVisit + "<br>")
+                            tr.find(".remarks").append(entry.Remarks + "<br>");
+                        }
+                        
+                    },
+                    error: function (e, x, r) {
+                        $(".loader").hide();
+                        showNotification("An Error Occured.", "danger", true);
+                    }
+                })
+            })
+        }
+
+        function chestConditionFormCallback() {
+            $("#YesChestCondition").prop("checked", true);
+            universalModalCaller();
+
+            $("form").submit(function (e) {
+                e.preventDefault();
+
+                var entries = $(this).serializeObject();
+                var data = [];
+               
+                $.each(entries, function (k, v) {
+                    var entry = {
+                        "OPDNo": $("#OPDNo").val(),
+                        "QuizId": k,
+                        "Response":v
+                    }
+
+                    data.push(entry);
+                });
+             
+                if (data.length > 0) {
+                    $(".loader").show();
+                    
+                    $.ajax({
+                        method: "post",
+                        data: { "Responses": data },
+                        url: "@Url.Action("SaveTBScreeningData","EMR")",
+                        success: function (res) {
+                            $(".loader").hide();
+                            showNotification("TB Screening details saved successfully.", "success", true);
+                            $("#modal-forms-holder").modal("hide");
+
+                        },
+                        error: function (e, x, r) {
+                            $(".loader").hide();
+                            showNotification("An error occured!", "danger", true);
+                            console.log(e.responseText);
+                        }
+                    })
+
+                } else {
+                    showNotification("No data to save", "info", true);
+                }
+                
+            })
+
+
+        }
+
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+
+}

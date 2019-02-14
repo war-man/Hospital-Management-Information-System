@@ -1,0 +1,68 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.PhamarcyRequests>
+
+<table class="table table-data-pathology table-condensed" style="background-color:ghostwhite;">
+    <thead>
+        <tr>
+            <th>
+                Issue Date
+            </th>
+            <th>
+                Request To
+            </th>
+            <th>
+                Req Stock
+            </th>
+            <th>
+                Report
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() == 0 || Model == null)
+        {
+            <tr>
+                <td colspan="4" class="text-center"> No requests made from Pharmacy Yet.</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                //var QuantityRequired = 0;
+                //foreach (var requestedItems in item.PharmacyRequestedItems)
+                //{
+                //    QuantityRequired += requestedItems.RequiredQuantity;
+                //}
+
+                <tr>
+                    <td width="25%" valign="middle">@item.RequestDate.ToString("dd-MMM-yyyy")</td>
+                    <td width="25%" valign="middle">@item.RequestFrom</td>
+                    <td width="25%" valign="middle">@item.PharmacyRequestedItems.Sum(p => p.RequiredQuantity)</td>
+                    <td width="25%" valign="middle">
+                        <button id="search" class="btn btn-xs btn-primary">Report</button>
+                    </td>
+                </tr>
+            }
+        }
+
+
+
+
+    </tbody>
+</table>
+
+
+<div id="pagination" class="col-md-12">
+    <div class="col-md-12">
+        <div class="pagination">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            of @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("SearchRequestedItem", "PharmacyMaster", new { page, Area= "PharmacyModule" }))
+        </div>
+    </div>
+
+</div>

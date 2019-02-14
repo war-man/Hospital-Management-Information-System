@@ -1,0 +1,274 @@
+﻿@model PagedList.IPagedList<CaresoftHMISDataAccess.OpdRegister>
+@using PagedList.Mvc;
+@using CaresoftHMISDataAccess;
+
+@{
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Insurance Patient Claim";
+
+    var FromDate = ViewBag.SearchData.FromDate.ToString("yyyy-MM-dd");
+    var ToDate = ViewBag.SearchData.ToDate.ToString("yyyy-MM-dd");
+
+    var RegNo = ViewBag.SearchData.RegNo;
+    var Name = ViewBag.SearchData.Name;
+
+    var Company = ViewBag.SearchData.Company;
+    var BarCode = ViewBag.SearchData.BarCode;
+
+}
+
+<div class="col-md-6 col-lg-offset-3">
+    <div class="panel caresoft-panel panel-primary ">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("Index", "PatientClaims", FormMethod.Get, new { }))
+            {
+                <table width="100%">
+                    <tr>
+                        <td><input id="page" name="page" hidden /></td>
+                        <td>
+                            <div class="text-box" style="padding:5px">
+                                @if (ViewBag.SelectedCompanyType == null || ViewBag.SelectedCompanyType == "Insurance")
+                                {
+                                    <label class="radio-inline"><input type="radio" name="PatientType" class="PatientType" value="Insurance" checked>Insurance</label>
+                                    <label class="radio-inline"><input type="radio" name="PatientType" class="PatientType" value="Corporate">Corporate</label>
+
+                                }
+                                else
+                                {
+                                    <label class="radio-inline"><input type="radio" name="PatientType" class="PatientType" value="Insurance">Insurance</label>
+                                    <label class="radio-inline"><input type="radio" name="PatientType" class="PatientType" value="Corporate" checked>Corporate</label>
+                                }
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>From Date</td>
+                        <td>
+                            <input type="date" id="FromDate" name="FromDate" style="width:90%" class="text-box margin-top-bottom-2" value="@FromDate" />
+                        </td>
+                        <td>To Date</td>
+                        <td>
+                            <input type="date" id="ToDate" name="ToDate" style="width:90%" class="text-box margin-top-bottom-2" value="@ToDate" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Name/Reg No	</td>
+                        <td>
+                            <input value="@RegNo" id="RegNo" name="RegNo" style="width:90%" class="text-box margin-top-bottom-2" />
+                        </td>
+                        <td>Patient Name	</td>
+                        <td>
+                            <input value="@Name" id="Name" name="Name" style="width:90%" class="text-box margin-top-bottom-2" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Company Name</td>
+                        <td>
+                            <select id="Company" name="Company" style="width:90%" class="text-box margin-top-bottom-2">
+
+                                <option>Select </option>
+
+                                @foreach (var comp in (List<Company>)ViewBag.Companies)
+                                {
+                                    var selected = "";
+                                    if (ViewBag.SelectedCompany == comp.Id)
+                                    {
+                                        selected = "selected";
+                                    }
+                                    <option @selected class="@comp.CompanyType.CompanyTypeName.Trim()" value="@comp.Id"> @comp.CompanyName </option>
+                                }
+
+                            </select>
+                        </td>
+                        <td>Bar Code</td>
+                        <td>
+                            <input value="@BarCode" id="BarCode" name="BarCode" style="width:90%" class="text-box margin-top-bottom-2" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button id="btnSearch" class="btn btn-sm btn-primary ">Search </button>
+                            <button class="btn btn-sm btn-primary ">Biometric Identification </button>
+                        </td>
+                        <td>Select Claim Number File</td>
+                        <td>
+                            <input id="ClaimNumber" style="width:90%" class="text-box margin-top-bottom-2" />
+                        </td>
+                    </tr>
+
+                </table>
+            }
+
+            <br />
+
+            <table class="table table-data-pathology table-condensed table-responsive">
+                <tr>
+                    <th style="font-size:10px">
+                        Update <br /> Claim
+                    </th>
+                    <th style="font-size:10px">
+                        Reg No
+                    </th>
+                    <th style="font-size:10px">
+                        IPD No
+                    </th>
+                    <th style="font-size:10px">
+                        OPD No
+                    </th>
+                    <th style="font-size:10px">
+                        Claim No
+                    </th>
+                    <th style="font-size:10px">
+                        Name
+                    </th>
+                    <th style="font-size:10px">
+                        Doctor <br /> Incharge
+                    </th>
+                    <th style="font-size:10px">
+                        Insurance <br /> Validity
+                    </th>
+                    <th style="font-size:10px">
+                        Department
+                    </th>
+                </tr>
+
+                <tbody style="background:White;">
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <button data-opd="@item.Id" type="button" class="btnUpdate btn btn-xs btn-primary">Update</button>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Patient.RegNumber)
+                            </td>
+                            <td>
+                                @if (item.IsIPD)
+                                {
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                }
+                            </td>
+                            <td>
+                                @if (!item.IsIPD)
+                                {
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PatientClaims.FirstOrDefault().ClaimNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Patient.Salutation)
+                                @Html.DisplayFor(modelItem => item.Patient.FName)
+                                @Html.DisplayFor(modelItem => item.Patient.MName)
+                                @Html.DisplayFor(modelItem => item.Patient.LName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ConsultantDoctor)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InsuranceCards.FirstOrDefault().ExpiryDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Department)
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+
+        $("#RegNo").autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+                        type: 'GET',
+                        url: "@Url.Action("SearchPatient", "Billing")",
+                        dataType: "json",
+                        data: { search: $("#RegNo").val() },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.RegNumber + " ( " + item.Name + " ) ",
+                                    value: item.RegNumber,
+                                    Name: item.Name,
+                                };
+                            }));
+                        }
+                    });
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    showNotification("An Error Occured, try again later", "danger", true);
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    $("#Name").val(ui.item.Name);
+
+                    console.log(ui.item.Name);
+                }
+        });
+
+        $(".PatientType").on("change", function () {
+
+            if ($(this).val() == "Corporate") {
+                $(".Corporate").removeClass("hidden");
+                $(".Insurance").addClass("hidden");
+            } else {
+                $(".Corporate").addClass("hidden");
+                $(".Insurance").removeClass("hidden");
+            }
+
+        });
+
+        $(".btnUpdate").click(function () {
+            var Opd = $(this).data("opd");
+            var ClaimNumber = $('#ClaimNumber').val();
+
+            if (!ClaimNumber.trim()) {
+                showNotification("Please Set Claim Number", "danger", true);
+                return null;
+            }
+
+            $.get("/PatientClaims/UpdateClaimNo?id=" + Opd + "&ClaimNumber=" + ClaimNumber, function (data, status) {
+                //alert("Data: " + data + "\nStatus: " + status);
+
+                $('#btnSearch').trigger("click");
+
+            });
+        });
+
+        $(".pagination  a").click(function (event ) {
+            event.preventDefault();
+
+            $('#page').val($(this).text());
+            $('#btnSearch').trigger("click");
+        });
+        
+
+    </script>
+}

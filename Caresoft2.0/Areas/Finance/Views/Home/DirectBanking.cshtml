@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "DirectBanking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var banks = (List<CaresoftHMISDataAccess.FinanceBank>)ViewBag.Banks;
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Finance/Views/Shared/_LeftNavigation.cshtml")
+</div>
+
+<div class="col-md-6">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Direct Banking
+            </div>
+            <div class="panel-body">
+                <form method="post" action="/Finance/Home/PostDirectBanking" name="DirectBanking">
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Payment Mode:
+                                </td>
+                                <td>
+                                    <select name="PaymentMode" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option value="--Select">--Select</option>
+                                        <option value="Cash">Cash</option>
+                                        <option value="Mpesa">Mpesa</option>
+                                        <option value="Cheque">Cheque</option>
+                                        <option value="EFt">EFt</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    Cheque No:
+                                </td>
+                                <td>
+                                    <input type="number" name="ChequeNo" id="ChequeNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                <td>
+                                    Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="Amount" id="Amount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        <tr><td>&nbsp;</td></tr>
+                            <tr>
+                                <td>
+                                    Account Name:
+                                </td>
+                                <td>
+                                    <input list="AccNo" name="GIName" class="text-box margin-top-bottom-2" style="width:100%" id="GIName" />
+                                    <datalist id="AccNo">
+                                        @foreach (var bank in banks)
+                                        {
+                                            <option value="@bank.GIName"></option>
+
+                                        }
+                                    </datalist>
+                                </td>
+                                <td>
+                                    Acc No:
+                                </td>
+                                <td>
+                                    <input type="text" name="AccNo" class="text-box margin-top-bottom-2" style="width:100%" id="AccNumber" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Branch:
+                                </td>
+                                <td>
+                                    <input type="text" name="Branch" class="text-box margin-top-bottom-2" style="width:100%" id="Branch" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <button type="submit" name="Ok" class="btn btn-primary bn-sm">OK</button>
+                        <button type="reset">Clear</button>
+                    </div>                   
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+
+            $("#GIName").autocomplete({
+                source: function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Finance/Home/getBankDetails",
+
+                        data: { GIName: $("#GIName").val() },
+
+                        success: function (data) {
+
+                            $("#AccNumber").val(data.AccNo);
+                            $("#Branch").val(data.Branch)
+                        },
+
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                    });
+
+                }, select: function (event, ui) {
+
+                }
+
+            });
+        });
+
+    </script>
+
+}

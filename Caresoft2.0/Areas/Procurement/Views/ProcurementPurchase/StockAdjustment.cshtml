@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.StockAdjusted>
+
+@{
+    ViewBag.Title = "StockAdjustment";
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+}
+
+
+<div class="col-md-11">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black;margin-left:10px;"><strong>Stock Adjustment</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                From Date
+                            </td>
+                            <td>
+                                <input type="date" class="text-box" id="StartDate" name="StartTime" value="@ViewBag.StartTime.ToString("yyyy-MM-dd")" />
+                            </td>
+                            <td>
+                                To Date
+                            </td>
+                            <td>
+                                <input type="date" class="text-box" id="EndDate" name="EndTime" value="@ViewBag.Endtime.ToString("yyyy-MM-dd")" />
+                                <input type="submit" class="btn btn-primary btn-sm" value="Search" />
+                                <input type="reset" class="btn btn-primary btn-sm" value="Reset" />
+                            </td>
+                        </tr>
+                        @*<tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <input type="button" class="btn btn-primary btn-sm" value="Search" />
+                </td>
+            </tr>*@
+                    </table>
+                </div>
+
+                <div class="col-md-12">
+                    <table class="table table-data-pathology table-condensed" style="background-color:white">
+                        <tr>
+                            <th>Item Description</th>
+                            <th>Adjusted Date</th>
+                            <th>Type</th>
+                            <th>Quantity Adjusted</th>
+                            <th>Current Stock</th>
+                            <th>Store</th>
+                            <th>Date</th>
+                            <th>Report</th>
+                        </tr>
+                        @if (Model.Count() > 0)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.ItemMaster.ItemName</td>
+                                    <td>@item.DateAdjusted.ToString("dd-MM-yyyy")</td>
+                                    <td>@item.Type</td>
+                                    <td>@item.Quantity.ToString("N2")</td>
+                                    <td>@item.ItemMaster.CurrentStock</td>
+                                    <td>@item.Department</td>
+                                    <td>@item.DateAdjusted</td>
+
+                                    <td><button class="btn btn-primary btn-xs">Report</button></td>
+
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="6" style="text-align:center; font-style:italic"> No Stocks Adjusted</td>
+                            </tr>
+                        }
+
+
+                    </table>
+                </div>
+                <div class="col-md-12">
+                    <a href="@Url.Action("AdjustmentStock","ProcurementPurchase")" class="btn btn-primary">Stock Adjustment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

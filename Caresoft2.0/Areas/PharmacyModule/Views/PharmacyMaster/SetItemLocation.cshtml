@@ -1,0 +1,242 @@
+﻿@using Caresoft2._0.Areas.Procurement.Models
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.ItemMaster>
+
+@{
+    ViewBag.Title = "SetItemLocation";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+
+    List<RackMaster> rackMasters = new List<RackMaster>();
+
+    rackMasters = (List<RackMaster>)ViewBag.RackNames;
+}
+
+<style>
+    .text-box{
+        margin-bottom:5px;
+    }
+    .formrequired{
+        color:red;
+        font-size:12px;
+    }
+
+
+</style>
+<div class="col-md-8">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading">
+            Search Item Name
+        </div>
+        <div class="panel-body">
+            <div class="col-md-8">
+                <table class="table-form">
+                    <tbody>
+                        <tr>
+                            <td>Item Name  </td>
+                            <td>
+                                <input type="text" id="name" class="text-box" style="width:300px;" autocomplete="off" /> <span class="formrequired">*</span>
+                                <div class="text-box suggestions collapse" id="ItemNameList" style="width:300px;"></div>
+                            </td>
+                            <td><input hidden class="text-box" type="text" id="ItemId" /></td>
+
+                        </tr>
+                        <tr>
+                            <td>Select Rack Name:</td>
+                            <td>
+                                <select id="rackName" class="text-box" style="width:300px;">
+                                    <option value="0">Select Rack Name</option>
+                                    @if (rackMasters.Count() > 0)
+                                    {
+                                        foreach (var item in rackMasters)
+                                        {
+                                            <option value="@item.name" data-cellno="@item.totalNumberOfCells">@item.name</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Total Number Of Cells	&nbsp;&nbsp; </td>
+                            <td>
+                                <div class="text-box" id="AddCheckboxes" style="width:299px;height:100px;"></div> <span style="color:red;">*</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="">
+                    <button type="submit" class="btn btn-sm btn-primary " id="btnSave">Save</button>
+                    <button type="reset" class="btn btn-sm btn-primary " id="btnNew">Back</button>
+                    <button class="btn btn-sm btn-primary" id="btnReport">Clear</button>
+                </div>
+            </div>
+
+            <div class="col-md-12" id="lstSetItemLocation">
+                @Html.Partial("~/Areas/PharmacyModule/Views/PharmacyMaster/_SetItemLocation.cshtml", Model)
+            </div>
+            <div id="pagination" class="col-md-12">
+                <br />
+                <div class="col-md-6 col-offset-3">
+                    <div class="pagination">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                        of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("SupplierMaster", new { page }))
+                    </div>
+                </div>
+               </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts{
+
+<script>
+      $("#rackName").on('change', function () {
+
+            var rackId = $(this).val();
+            var noOfCells = $(this).find(':selected').data('cellno');
+            AddCheckBoxes(noOfCells);
+
+        });
+
+      function AddCheckBoxes(obj) {
+            var theDiv = $("#AddCheckboxes");
+            theDiv.empty();
+
+            var string = '';
+
+            for (var i = 0; i < obj; i++) {
+                //var str = '<input class="theDivCheckbox" type="checkbox" value=' + i + '/> cell-' + i;
+                var cell_No = i + 1;
+                var str = '<input type= "radio" name= "rack" value= "' + cell_No + '" /> Cell ' + cell_No;
+                string += str + "&nbsp; &nbsp; &nbsp;" ;
+            }
+
+            theDiv.html(string);
+    }
+
+    $("#name").keyup(function () {
+
+        var itemName = $("#name").val();
+        var itemList = $("#ItemNameList");
+
+
+        if (itemName.length < 1) {
+
+            itemList.fadeOut();
+        }
+        else {
+
+            var nam = { name: itemName };
+
+            $.ajax({
+                type: 'POST',
+                url: '/PharmacyMaster/SearchDrugList',
+                data: nam,
+                success: function (obj) {
+                    //console.log(obj);
+                    //create an array to store the values searched
+                    var item = [];
+                    //loop through all the items and push then into the array variable
+
+                    $.each(obj, function (key, value) {
+                        var string = '<p class="searchedItems" data-id="' + value.Id + '" data-value="' + value.ItemName + '">' + value.ItemName + '</p>';
+                        item.push(string);
+
+                    })
+
+                    // empty the div element
+                    $("#ItemNameList").empty();
+
+                    var items = item.join("");
+                    itemList.append(items);
+                    itemList.fadeIn();
+
+                    $(".searchedItems").each(function () {
+                        $(this).click(function () {
+                            var val = $(this).data("value");
+                            var Id = $(this).data("id");
+                            $("#name").val(val);
+                            $("#ItemId").val(Id);
+                            $("#ItemNameList").fadeOut();
+                            $("#ItemNameList").empty();
+
+                        })
+                    });
+
+
+                },
+                error: function (e, x, y) {
+                    console.log(e.responseText);
+                }
+            })
+
+        }
+
+    })
+
+    
+    $("#btnSave").click(function () {
+
+        var rackName = $("#rackName").val();
+        var CellinRack = $("input:radio[name=rack]:checked").val();
+        var itemId = $("#ItemId").val();
+
+        var itemLocationModel = {
+            ItemId: itemId,
+            RackName: rackName,
+            CellInRack: CellinRack
+        }
+
+        var checkIfModelIsValid = true;
+
+        $.each(itemLocationModel, function (key, value) {
+            if (value) {
+
+            }
+            else {
+                checkIfModelIsValid = false;
+            }
+        })
+
+        if (checkIfModelIsValid == true) {
+
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyMaster/SetItemLocation",
+                data: itemLocationModel,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    console.log(obj);
+                    $("#lstSetItemLocation").empty();
+                    $("#lstSetItemLocation").append(obj);
+
+                    $("#rackName").val("");
+                    $("input:radio[name=rack]:checked").val("");
+                    $("#ItemId").val("");
+
+
+                    $(".loader").hide();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                }
+            });
+        }
+        else
+        {
+            $.notify("Check your entries", {
+                className:'error',
+            })
+        }
+
+    })
+
+
+</script>    
+
+}

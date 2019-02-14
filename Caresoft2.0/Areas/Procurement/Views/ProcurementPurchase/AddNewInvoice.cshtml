@@ -1,0 +1,820 @@
+﻿@model Caresoft2._0.Areas.Procurement.ViewModel.InvoiceAndInvoiceDetails
+
+@{
+    ViewBag.Title = "AddNewInvoice";
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+}
+
+<style>
+    .table-form tr {
+        height: 30px;
+    }
+
+    .text-box {
+        width: 175px;
+    }
+
+    .fa-plus-circle {
+        color: orange;
+        font-size: 24px;
+    }
+
+    .fa-asterisk {
+        color: red;
+        font-size: 7px;
+    }
+
+    .fa-plus-circle > span {
+        color: darkslategray;
+        font-size: 16px;
+    }
+
+    .modal {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        bottom: 0;
+        left: 0;
+        z-index: 10040;
+        overflow: auto;
+        overflow-y: auto;
+    }
+
+    #EditInvoiceItem {
+        position: absolute;
+    
+        /* now you must set a margin left under zero - value is a half width your window */
+       
+        /* this same situation is with height - example */
+        height: 500px;
+        top: 50%;
+        margin-top: -250px;
+    }
+
+    .formrequired {
+        color: red;
+        font-size: 18px;
+    }
+
+</style>
+
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black">Add New Invoice</p>
+        </div>
+        <div class="panel-body">
+            <div class="tab-content" id="reg-form-holder">
+                <form id="InvoiceMain" autocomplete="off">
+                    @if (Model.Invoice.Id >= 1)
+                    {
+                        <table class="table-form">
+                            <tr>
+                                <td>Supplier Type</td>
+                                <td>
+                                    <div id="SupplierType">
+                                        <fieldset>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="General Supplier" checked> General Supplier
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="Donor Supplier">Donor Supplier
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                </td>
+                                <td>Select Financial Year</td>
+                                <td>
+                                    <select class="text-box" id="FinancialYear" disabled>
+                                        <option>Select Year</option>
+                                        <option value="2019-2020">2018-2019</option>
+                                        <option value="2018-2019">2018-2019</option>
+                                        <option value="2017-2018">2017-2018</option>
+                                        <option value="2016-2017">2016-2017</option>
+                                    </select>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>PO No.</td>
+                                <td>
+                                    <select class="text-box" id="PoNumber" disabled>
+                                        <option>Select PO No.</option>
+                                        <option value="1001">1001</option>
+                                        <option value="1002">1002</option>
+                                        <option value="1003">1003</option>
+                                    </select>
+                                </td>
+                                <td>PO Date</td>
+                                <td>
+                                    <input type="text" class="text-box" id="PoDate" disabled value="@Model.Invoice.PODate.ToString("MM/dd/yyyy")" />
+
+                                </td>
+                                <td>Invoice Date</td>
+                                <td>
+                                    <input type="text" class="text-box" id="InvoiceDate" disabled value="@Model.Invoice.InvoiceDate.ToString("MM/dd/yyyy")" /> <i class="fa fa-asterisk"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Invoice No</td>
+                                <td><input type="text" class="text-box" id="InvoiceNumber" disabled value="@Model.Invoice.InvoiceNo" /> <i class="fa fa-asterisk"></i> </td>
+                                <td>Supplier Name</td>
+                                <td>
+                                    <input type="text" class="text-box" id="SupplierName" disabled autocomplete="off" value="@Model.Invoice.SupplierName" /> <i class="fa fa-asterisk"></i>
+                                    <div class="text-box suggestions collapse" id="SupplierList">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Temp Invoice No.</td>
+                                <td><input type="text" class="text-box" id="TempInvoiceNumber" disabled/> </td>
+                            </tr>
+                        </table>
+                    }
+                    else
+                    {
+                        <table class="table-form">
+                            <tr>
+                                <td>Supplier Type</td>
+                                <td>
+                                    <div id="SupplierType">
+                                        <fieldset>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="General Supplier" checked> General Supplier
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="Donor Supplier">Donor Supplier
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                </td>
+                                <td>Select Financial Year</td>
+                                <td>
+                                    <select class="text-box" id="FinancialYear">
+                                        <option>Select Year</option>
+                                        <option value="2019-2020">2018-2019</option>
+                                        <option value="2018-2019">2018-2019</option>
+                                        <option value="2017-2018">2017-2018</option>
+                                        <option value="2016-2017">2016-2017</option>
+                                    </select>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>PO No.</td>
+                                <td>
+                                    <select class="text-box" id="PoNumber">
+                                        <option>Select PO No.</option>
+                                        <option value="1001">1001</option>
+                                        <option value="1002">1002</option>
+                                        <option value="1003">1003</option>
+                                    </select>
+                                </td>
+                                <td>PO Date</td>
+                                <td>
+                                    <input type="text" class="text-box" id="PoDate" value="@DateTime.Now.ToString("MM/dd/yyyy")" />
+
+                                </td>
+                                <td>Invoice Date</td>
+                                <td>
+                                    <input type="text" class="text-box" id="InvoiceDate" value="@DateTime.Now.ToString("MM/dd/yyyy")" /> <i class="fa fa-asterisk"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Invoice No</td>
+                                <td><input type="text" class="text-box" id="InvoiceNumber" /> <i class="fa fa-asterisk"></i> </td>
+                                <td>Supplier Name</td>
+                                <td>
+                                    <input type="text" class="text-box" id="SupplierName" placeholder="Type to select Supplier" /> <i class="fa fa-asterisk"></i>
+                                    <div class="text-box suggestions collapse" id="SupplierList">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Temp Invoice No.</td>
+                                <td><input type="text" class="text-box" id="TempInvoiceNumber" /> </td>
+                            </tr>
+                        </table>
+                    }
+
+                </form>
+                <form id="invoicedetails" autocomplete="off">
+                    <table class="table-form">
+                        <tr><td><h5><strong>Invoice Details</strong> </h5></td> </tr>
+
+                        <tr>
+                            <td>Item</td>
+                            <td>
+                                <input type="text" placeholder="Type to select Drug" class="text-box" id="ItemName" /> <i class="fa fa-asterisk"></i> <i class="fa fa-plus-circle" id="AddNewDrug"><span>New Drug</span></i>
+                                <div class="text-box suggestions collapse" id="ItemList">
+                                </div>
+                            </td>
+                            <td>Batch No</td>
+                            <td><input type="text" class="text-box" id="BatchNo" /> <i class="fa fa-asterisk"></i> </td>
+                            <td>Units Per Case</td>
+                            <td><input type="number" class="text-box" id="UnitsPerCase" /> </td>
+
+                        </tr>
+                        <tr>
+                            <td>No of Pack</td>
+                            <td><input type="number" class="text-box" id="NoOfPacks" /> </td>
+                            <td>Total Units</td>
+                            <td><input type="number" class="text-box" id="Units" /> </td>
+                            <td>Per</td>
+                            <td><input type="number" class="text-box" id="Per" /> </td>
+                        </tr>
+                        <tr>
+                            <td>Cost price</td>
+                            <td><input type="number" class="text-box" id="CostPrice" /> </td>
+                            <td>Amount</td>
+                            <td><input type="number" class="text-box" id="Amount" /> </td>
+                            <td>Free Units</td>
+                            <td><input type="number" class="text-box" id="FreeUnits" /> </td>
+                        </tr>
+                        <tr>
+                            <td>Cost per Case Pack</td>
+                            <td><input type="number" class="text-box" id="CostPerCasePack" /> </td>
+                            <td>Mgf Date</td>
+                            <td><input type="text" class="text-box" id="MfgDate" /> <i class="fa fa-asterisk"></i> </td>
+                            <td>Expiry Status</td>
+                            <td>
+                                <select id="ExpiryStatus" class="text-box">
+                                    <option value="NonExpiryItem" selected="selected">Non Expiry Item</option>
+                                    <option value="ExpiryItem">Expiry Item</option>
+                                </select>
+                                <i class="fa fa-asterisk"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mgf Company</td>
+                            <td><input type="text" class="text-box" id="MfgCompany" /> </td>
+                            <td>MRP/Pack</td>
+                            <td><input type="datetime" class="text-box" id="MrpPack" value="1" /> <i class="fa fa-asterisk"></i></td>
+                            <td></td>
+                            <td><input type="date" class="text-box collapse" id="expiryDate" /></td>
+                        </tr>
+                        <tr>
+                            <td>Discount</td>
+                            <td>
+
+                                <div id="discount">
+                                    <fieldset class="text-box" style="padding-top:7px;padding-bottom:10px;">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="discount" value="DiscountAmount" >Amt
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="discount" value="DiscountPercentage" checked>Per
+                                        </label>
+                                        <input type="hidden" id="actualDiscount" />
+
+                                    </fieldset>
+                                </div>
+                            </td>
+                            <td>VAT/CST</td>
+                            <td>
+                                <fieldset class="text-box" style="padding-top:7px;padding-bottom:10px;">
+                                    <div id="type">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="vat_cst" value="GST" checked>GST
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="vat_cst" value="CST">CST
+                                        </label>
+                                    </div>
+                                </fieldset>
+                            </td>
+                            <td>VAT/CST on</td>
+                            <td>
+                                <select class="text-box" id="Vat_Cst">
+                                    <option>Select Value</option>
+                                    <option value="MRP">MPR</option>
+                                    <option value="CostPrice">Cost Price</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="number" class="text-box" id="DiscountGiven" /> </td>
+                            <td></td>
+                            <td></td>
+                            <td>VAT/CST(%)</td>
+                            <td>
+                                <input type="number" class="text-box" id="vat_cst_percentage" />
+                                <input type="hidden" id="vatAmount" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Freight Charges</td>
+                            <td><input type="number" class="text-box" id="freightCharges" /> </td>
+                            <td>Packing Charges</td>
+                            <td><input type="number" class="text-box" id="packingCharges" /> </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" class="btn btn-primary btn-sm" id="BtnSave" value="Save" />
+                            </td>
+                            <td>
+                                <div id="showNotification">
+
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <br />
+                <div id="invoiceDetailsList">
+                    @Html.Partial("_InvoiceList", Model.InvoiceDetails)
+                </div>
+                <label class="label label-danger">(*) Marked Fields are Mandatory</label>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="button" id="TSave" value="Save" class="btn btn-sm btn-primary" />
+                                <input type="button" value="Add New" id="AddNewInvoice" class="btn btn-sm btn-primary" />
+                                <a href="/ProcurementPurchase/GenerateReport" class="btn btn-primary btn-sm">Report</a>
+                                <div id="ShowInvoiceNotification">
+
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <fieldset disabled>
+                                    <p><label class="label label-default">Primary Currency</label></p>
+                                    @if (Model.Invoice.Id >= 1)
+                                    {
+                                        <form id="form0">
+                                            <table class="table-form">
+                                                <tr>
+                                                    <td style="padding:5px">Amount</td>
+                                                    <td><input type="text" id="TAmount" class="text-box" style="width:100px" value="@Model.InvoiceDetails.Sum(p=>p.Amount).ToString("N2")" /></td>
+                                                    <td>VAT/CST</td>
+                                                    <td><input type="text" id="Tvat" class="text-box" value="@Model.InvoiceDetails.Sum(p=>p.VatAmt).ToString("N2")" style="width:100px" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:5px">Cash Discount</td>
+                                                    <td><input type="text" id="Tdiscount" class="text-box" style="width:100px" value="@Model.InvoiceDetails.Sum(p=>p.Discount).ToString("N2")" /></td>
+                                                    <td>Total Amount</td>
+                                                    <td><input type="text" id="AmountT" class="text-box" style="width:100px" value="@Model.InvoiceDetails.Sum(p=>p.Amount).ToString("N2")" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:5px">Other</td>
+                                                    <td><input type="text" id="other" class="text-box" style="width:100px" /></td>
+                                                    <td>Amount Page</td>
+                                                    <td><input type="text" id="AmountPage" class="text-box" style="width:100px" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:5px">Balance</td>
+                                                    <td><input type="text" id="balance" class="text-box" style="width:100px" /></td>
+                                                    <td>Grand Total</td>
+                                                    @{ 
+                                                        var GrandTotal = (Model.InvoiceDetails.Sum(p => p.Amount) + Model.InvoiceDetails.Sum(p => p.VatAmt)) - Model.InvoiceDetails.Sum(p => p.Discount);
+                                                    }
+                                                    <td><input type="text" id="grandtotal" class="text-box" style="width:100px" value="@GrandTotal.ToString("N2")" /></td>
+                                                </tr>
+                                            </table>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <form id="form0">
+                                            <table class="table-form">
+                                                <tr>
+                                                    <td style="padding:5px">Amount</td>
+                                                    <td><input type="text" id="TAmount" class="text-box" style="width:100px" /></td>
+                                                    <td>VAT/CST</td>
+                                                    <td><input type="text" id="Tvat" class="text-box" style="width:100px" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:5px">Cash Discount</td>
+                                                    <td><input type="text" id="Tdiscount" class="text-box" style="width:100px" /></td>
+                                                    <td>Total Amount</td>
+                                                    <td><input type="text" id="AmountT" class="text-box" style="width:100px" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:5px">Other</td>
+                                                    <td><input type="text" id="other" class="text-box" style="width:100px" /></td>
+                                                    <td>Amount Page</td>
+                                                    <td><input type="text" id="AmountPage" class="text-box" style="width:100px" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:5px">Balance</td>
+                                                    <td><input type="text" id="balance" class="text-box" style="width:100px" /></td>
+                                                    <td>Grand Total</td>
+                                                    <td><input type="text" id="grandtotal" class="text-box" style="width:100px" /></td>
+                                                </tr>
+                                            </table>
+                                        </form>
+                                    }
+
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*modal for the new drug*@
+<div id="NewDrugModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            @*<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add New Drug</h4>
+            </div>*@
+            <div class="modal-body">
+                <div class="panel panel-primary caresoft-panel ">
+                    <div class="panel-heading">
+                        Add New Drug
+                        <span style="float:right">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table-form">
+                            <tr>
+                                <td>Drug Name</td>
+                                <td><input type="text" class="text-box" id="drugName" /></td>
+                            </tr>
+                            <tr>
+                                <td>ICD10 Code</td>
+                                <td><input type="text" class="text-box" id="icdtencode" /></td>
+                            </tr>
+                            <tr>
+                                <td>Generic Drug Name</td>
+                                <td>
+                                    <input type="text" class="text-box" id="genericDrugName" />
+                                    <div class="text-box suggestions collapse" id="genericDrugList">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Category</td>
+                                <td><input type="text" class="text-box" id="CategoryName" /></td>
+                            </tr>
+                            <tr>
+                                <td>Unit/Packs</td>
+                                <td><input type="text" class="text-box" id="unitpacks" /></td>
+                            </tr>
+                            <tr>
+                                <td>Reorder Level</td>
+                                <td><input type="text" class="text-box" id="reorderLevel" /></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <div id="resultAddNewDrug">
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div style="float:right;">
+                            <button type="button" id="btnSaveNewDrug" class="btn btn-primary btn-sm">Save</button>
+                            <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="modal-footer">
+                <button type="button" id="btnSaveNewDrug" class="btn btn-primary btn-sm">Save</button>
+                <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+            </div>*@
+        </div>
+
+    </div>
+</div>
+
+
+@*Modal for Editing An Invoice Item*@
+<div id="EditInvoiceItem" class="modal fade" role="dialog" style="margin-left:-300px;">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class=" modal-lg">
+
+            <div class="caresoft-panel">
+                <div class="panel-heading">
+                    <button style="color:red" type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Invioice Item</h4>
+                </div>
+                <div class="panel-body">
+                    <form id="invoicedetailsEdit">
+                        <input id="InvoiceNo" name="InvoiceNo" value="" />
+                        <table class="table-form">
+
+                            <tr>
+                                <td>Item</td>
+                                <td>
+                                    <input type="text" autocomplete="off" class="text-box" id="ItemNameEdit" />
+                                    <input type="hidden" value="" id="ItemId" />
+                                </td>
+                                <td>Batch No</td>
+                                <td><input type="text" class="text-box" id="BatchNoEdit" /> </td>
+                                <td>Units Per Case</td>
+                                <td><input type="text" class="text-box" id="UnitsPerCaseEdit" /> </td>
+
+                            </tr>
+                            <tr>
+                                <td>No of Pack</td>
+                                <td><input type="text" class="text-box" id="NoOfPacksEdit" /> </td>
+                                <td>Units</td>
+                                <td><input type="text" class="text-box" id="UnitsEdit" /> </td>
+                                <td>Per</td>
+                                <td><input type="text" class="text-box" id="PerEdit" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Cost price</td>
+                                <td><input type="text" class="text-box" id="CostPriceEdit" /> </td>
+                                <td>Amount</td>
+                                <td><input type="text" class="text-box" id="AmountEdit" /> </td>
+                                <td>Free Units</td>
+                                <td><input type="text" class="text-box" id="FreeUnitsEdit" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Cost per Case Pack</td>
+                                <td><input type="text" class="text-box" id="CostPerCasePackEdit" /> </td>
+                                <td>Mgf Date</td>
+                                <td><input type="date" class="text-box" id="MfgDateEdit" /> </td>
+                                <td>Expiry Status</td>
+                                <td>
+                                    <select id="ExpiryStatusEdit" class="text-box">
+                                        <option>Select Value</option>
+                                        <option value="ExpiryItem">Expiry Item</option>
+                                        <option value="NonExpiryItem">Non Expiry Item</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mgf Company</td>
+                                <td><input type="text" class="text-box" id="MfgCompanyEdit" /> </td>
+                                <td>MRP/Pack</td>
+                                <td><input type="datetime" class="text-box" id="MrpPackEdit" /> </td>
+                                <td></td>
+                                <td><input type="date" class="text-box collapse" id="expiryDateEdit" /></td>
+                            </tr>
+                            <tr>
+                                <td>Discount</td>
+                                <td>
+
+                                    <div id="discount">
+                                        <fieldset class="text-box" style="padding-top:7px;padding-bottom:10px;">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="discount" value="DiscountAmountEdit">Amt
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="discount" value="DiscountPercentageEdit">Per
+                                            </label>
+                                            <input type="hidden" id="actualDiscountEdit" />
+
+                                        </fieldset>
+                                    </div>
+                                </td>
+                                <td>VAT/CST</td>
+                                <td>
+                                    <fieldset class="text-box" style="padding-top:7px;padding-bottom:10px;">
+                                        <div id="type">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="vat_cst" value="GSTEdit">GST
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="vat_cst" value="CSTEdit">CST
+                                            </label>
+                                        </div>
+                                    </fieldset>
+                                </td>
+                                <td>VAT/CST on</td>
+                                <td>
+                                    <select class="text-box" id="Vat_CstEdit">
+                                        <option>Select Value</option>
+                                        <option value="MRP">MPR</option>
+                                        <option value="CostPrice">Cost Price</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="number" class="text-box" id="DiscountGivenEdit" /> </td>
+                                <td></td>
+                                <td></td>
+                                <td>VAT/CST(%)</td>
+                                <td>
+                                    <input type="number" class="text-box" id="vat_cst_percentageEdit" />
+                                    <input type="hidden" id="vatAmountEdit" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Freight Charges</td>
+                                <td><input type="number" class="text-box" id="freightChargesEdit" /> </td>
+                                <td>Packing Charges</td>
+                                <td><input type="number" class="text-box" id="packingChargesEdit" /> </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="button" class="btn btn-primary btn-sm" id="BtnSaveEdit" value="Save" />
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+@section scripts{
+
+    <script>
+        $(window).on('load', function () {
+            $("#MfgDate").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+
+            $("#PoDate").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+
+            $("#InvoiceDate").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+            
+
+            
+        })
+
+        function faclick() {
+            $(".fa").click(function () {
+                var id = $(this).data("value");
+
+                if (id != "") {
+
+                    var url = "/ProcurementPurchase/EditInvoiceDetail?Id=" + id;
+                    $.ajax({
+
+                        type: 'GET',
+                        url: url,
+                        success: function (obj) {
+                            $("#EditInvoiceItem").modal('show');
+                            AssignVarriables(obj);
+                        },
+                        error: function (x, y, z) {
+                            console.log(x.responseText);
+                        }
+                    })
+                }
+                console.log(id);
+            })
+        }
+
+        $(".fa").click(function(){
+            var id = $(this).data("value");
+
+            if (id != "") {
+
+                var url = "/ProcurementPurchase/EditInvoiceDetail?Id=" + id;
+                $.ajax({
+
+                    type: 'GET',
+                    url: url,
+                    success: function (obj) {
+                        $("#EditInvoiceItem").modal('show');
+                        AssignVarriables(obj);
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                    }
+                })
+            }
+            console.log(id);
+        })
+
+        function AssignVarriables(obj) {
+            console.log(obj);
+            $("#InvoiceNo").val(obj.InvoiceNo);
+
+            $("#ItemId").val(obj.Id);
+            $("#ItemNameEdit").val(obj.Item);
+            $("#BatchNoEdit").val(obj.BatchNo);
+            $("#UnitsPerCaseEdit").val(obj.UnitsPerCase);
+            $("#NoOfPacksEdit").val(obj.NoOfPack);
+            $("#UnitsEdit").val(obj.Units);
+            $("#PerEdit").val(obj.per);
+            $("#CostPriceEdit").val(obj.CostPrice);
+            $("#AmountEdit").val(obj.Amount);
+            $("#FreeUnitsEdit").val(obj.FreeUnits);
+            $("#CostPerCasePackEdit").val(obj.CostPerCasePack);
+            $("#MfgDateEdit").val(obj.MfgDate);
+            $("#MfgCompanyEdit").val(obj.MfgCoNm);
+            $("#MrpPackEdit").val(obj.MRP);
+            $("#DiscountGivenEdit").val(obj.Discount);
+            $("#vat_cst_percentageEdit").val(obj.Vat_Cst);
+            $("#freightChargesEdit").val(obj.FreightCharges);
+            $("#packingChargesEdit").val(obj.PackingCharges);
+
+        }
+
+        var InvoiceDetailsEdit = null;
+
+        $("#BtnSaveEdit").click(function () {
+            assignVariablesForEdit()
+            console.log(InvoiceDetailsEdit);
+
+            if(true) {
+
+                if (true) {
+                    $('loader').show();
+                    $.ajax({
+                        type: 'POST',
+                        url: '/ProcurementPurchase/EditInvoiceDetail',
+                        data: InvoiceDetailsEdit,
+                        success: function (obj) {
+
+                            $("#EditInvoiceItem").modal('toggle');
+                            
+                            console.log("Yeeeee: " + obj)
+                            $('loader').hide();
+                            $("#invoiceDetailsList").html(obj);
+                            faclick();
+                        },
+                        error: function (x, y, z) {
+                            $('loader').hide();
+
+                            console.log(x.responseText);
+                        }
+                    })
+
+                }
+
+            }
+        })
+
+        function assignVariablesForEdit() {
+            //variables for the Invoice Details Section
+            var _Id = $("#ItemId").val();
+            var _InvoiceNo = $("#InvoiceNo").val();
+            var _item = $("#ItemNameEdit").val();
+            var batch_no = $("#BatchNoEdit").val();
+            var units_per_case = $("#UnitsPerCaseEdit").val();
+            var no_of_pack = $("#NoOfPacksEdit").val();
+            var _units = $("#UnitsEdit").val();
+            var _per = $("#PerEdit").val();
+            var cost_price = $("#CostPriceEdit").val();
+            var _amount = $("#AmountEdit").val();
+            var llll = $("input:radio[name=discountEdit]:checked").val()
+            var free_units = $("#FreeUnitsEdit").val();
+            var cost_per_case_pack = $("#CostPerCasePackEdit").val();
+            var mfg_date = $("#MfgDateEdit").val();
+            var expiry_status = $("#ExpiryStatusEdit").val();
+            var mgf_company = $("#MfgCompanyEdit").val();
+            var mrp_pack = $("#MrpPackEdit").val();
+            var _discount = $("#actualDiscountEdit").val();
+            var vat_cst = $("input:radio[name=vat_cst]:checked").val()
+            var vat_cst_on = $("#Vat_CstEdit").val();
+            var vatAmount = $("#vatAmountEdit").val();
+            var freight_charges = $("#freightChargesEdit").val();
+            var packing_charges = $("#packingChargesEdit").val();
+
+            InvoiceDetailsEdit = {
+                InvoiceNo: _InvoiceNo,
+                Id: _Id,
+                Item: _item,
+                BatchNo: batch_no,
+                UnitsPerCase: units_per_case,
+                NoOfPack: no_of_pack,
+                Units: _units,
+                per: _per,
+                CostPrice: cost_price,
+                Amount: _amount,
+                FreeUnits: free_units,
+                CostPerCasePack: cost_per_case_pack,
+                MfgDate: mfg_date,
+                ExpiryStatus: expiry_status,
+                MfgCoNm: mgf_company,
+                MRP: mrp_pack,
+                Discount: _discount,
+                VatAmt: vatAmount,
+                Vat_Cst: vat_cst,
+                VatCstOn: vat_cst_on,
+                //VAT_CstPercentage: vat_cst_percentage,
+                FreightCharges: freight_charges,
+                PackingCharges: packing_charges
+            }
+        }
+    </script>
+
+
+    <script src="~/Areas/Procurement/Scripts/AddNewInvoice.js?v=@(new Random().Next(1,10000))"></script>
+}

@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.RecieveDetails>
+
+@{
+    ViewBag.Title = "AcknowledgementDetail";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+}
+
+<style>
+    .text-box {
+        width: 150px;
+    }
+
+    .table-form tr {
+        height: 40px;
+    }
+
+    .pending {
+        color: darkorange;
+    }
+
+    .recieved {
+        color: cyan;
+    }
+
+    .processed {
+        color: darkgreen;
+    }
+</style>
+<div class="col-md-8">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px"> <strong>Acknowlegement Details</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <table class="table-form">
+                        <tr>
+                            <td>From Date</td>
+                            <td><input type="date" class="text-box" id="FromDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" /></td>
+                            <td>From Date</td>
+                            <td><input type="date" class="text-box" id="ToDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" /></td>
+                        </tr>
+                        <tr>
+                            <td>Invoice Number</td>
+                            <td><input type="text" class="text-box" id="InvoiceNumber" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <fieldset>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Pending">Pending <i class="fa fa-square pending"></i>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Received">Received <i class="fa fa-square recieved"></i>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Partial">Partial Recieved <i class="fa fa-square processed"></i>
+                                    </label>
+
+                                </fieldset>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <button class="btn btn-primary btn-sm">Show</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br />
+
+                    <div class="col-md-12" id="lstAcknowledgement">
+                        @Html.Partial("~/Areas/MedicalStore/Views/BranchTransactionMStore/_lstAcknowledgement.cshtml", Model)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+        $("input:radio[name=optradio]").on('change', function () {
+
+            var Name = $("input:radio[name=optradio]:checked").val();
+
+            if (Name != null) {
+                var url = "/BranchTransactionMStore/AcknowledgementDetailPartial?Name=" + Name;
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    success: function (obj) {
+                        $("#lstAcknowledgement").empty();
+                        $("#lstAcknowledgement").append(obj);
+                    }
+                });
+            }
+
+
+        })
+
+    </script>
+}

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetPharmacyMortuaryMedicalRecord" targetNamespace="http://tempuri.org/DataSetPharmacyMortuaryMedicalRecord.xsd" xmlns:mstns="http://tempuri.org/DataSetPharmacyMortuaryMedicalRecord.xsd" xmlns="http://tempuri.org/DataSetPharmacyMortuaryMedicalRecord.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetPharmacyMortuaryMedicalRecord" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetPharmacyMortuaryMedicalRecord" msprop:Generator_UserDSName="DataSetPharmacyMortuaryMedicalRecord">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Pharmacy" msprop:Generator_TableClassName="PharmacyDataTable" msprop:Generator_TableVarName="tablePharmacy" msprop:Generator_RowChangedName="PharmacyRowChanged" msprop:Generator_TablePropName="Pharmacy" msprop:Generator_RowDeletingName="PharmacyRowDeleting" msprop:Generator_RowChangingName="PharmacyRowChanging" msprop:Generator_RowEvHandlerName="PharmacyRowChangeEventHandler" msprop:Generator_RowDeletedName="PharmacyRowDeleted" msprop:Generator_RowClassName="PharmacyRow" msprop:Generator_UserTableName="Pharmacy" msprop:Generator_RowEvArgName="PharmacyRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CategoryName" msprop:Generator_ColumnVarNameInTable="columnCategoryName" msprop:Generator_ColumnPropNameInRow="CategoryName" msprop:Generator_ColumnPropNameInTable="CategoryNameColumn" msprop:Generator_UserColumnName="CategoryName" type="xs:string" minOccurs="0" />
+              <xs:element name="NoOfPrescriptions" msprop:Generator_ColumnVarNameInTable="columnNoOfPrescriptions" msprop:Generator_ColumnPropNameInRow="NoOfPrescriptions" msprop:Generator_ColumnPropNameInTable="NoOfPrescriptionsColumn" msprop:Generator_UserColumnName="NoOfPrescriptions" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Mortuary" msprop:Generator_TableClassName="MortuaryDataTable" msprop:Generator_TableVarName="tableMortuary" msprop:Generator_RowChangedName="MortuaryRowChanged" msprop:Generator_TablePropName="Mortuary" msprop:Generator_RowDeletingName="MortuaryRowDeleting" msprop:Generator_RowChangingName="MortuaryRowChanging" msprop:Generator_RowEvHandlerName="MortuaryRowChangeEventHandler" msprop:Generator_RowDeletedName="MortuaryRowDeleted" msprop:Generator_RowClassName="MortuaryRow" msprop:Generator_UserTableName="Mortuary" msprop:Generator_RowEvArgName="MortuaryRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NameOfService" msdata:Caption="CategoryName" msprop:Generator_ColumnVarNameInTable="columnNameOfService" msprop:Generator_ColumnPropNameInRow="NameOfService" msprop:Generator_ColumnPropNameInTable="NameOfServiceColumn" msprop:Generator_UserColumnName="NameOfService" type="xs:string" minOccurs="0" />
+              <xs:element name="Number" msdata:Caption="NoOfPrescriptions" msprop:Generator_ColumnVarNameInTable="columnNumber" msprop:Generator_ColumnPropNameInRow="Number" msprop:Generator_ColumnPropNameInTable="NumberColumn" msprop:Generator_UserColumnName="Number" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MedicalRecordIssued" msprop:Generator_TableClassName="MedicalRecordIssuedDataTable" msprop:Generator_TableVarName="tableMedicalRecordIssued" msprop:Generator_RowChangedName="MedicalRecordIssuedRowChanged" msprop:Generator_TablePropName="MedicalRecordIssued" msprop:Generator_RowDeletingName="MedicalRecordIssuedRowDeleting" msprop:Generator_RowChangingName="MedicalRecordIssuedRowChanging" msprop:Generator_RowEvHandlerName="MedicalRecordIssuedRowChangeEventHandler" msprop:Generator_RowDeletedName="MedicalRecordIssuedRowDeleted" msprop:Generator_RowClassName="MedicalRecordIssuedRow" msprop:Generator_UserTableName="MedicalRecordIssued" msprop:Generator_RowEvArgName="MedicalRecordIssuedRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NameOfService" msdata:Caption="CategoryName" msprop:Generator_ColumnVarNameInTable="columnNameOfService" msprop:Generator_ColumnPropNameInRow="NameOfService" msprop:Generator_ColumnPropNameInTable="NameOfServiceColumn" msprop:Generator_UserColumnName="NameOfService" type="xs:string" minOccurs="0" />
+              <xs:element name="Number" msdata:Caption="NoOfPrescriptions" msprop:Generator_ColumnVarNameInTable="columnNumber" msprop:Generator_ColumnPropNameInRow="Number" msprop:Generator_ColumnPropNameInTable="NumberColumn" msprop:Generator_UserColumnName="Number" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

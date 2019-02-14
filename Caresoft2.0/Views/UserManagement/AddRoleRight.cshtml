@@ -1,0 +1,47 @@
+﻿@using CaresoftHMISDataAccess;
+
+@{
+    ViewBag.Title = "Add Role Functionalities";
+    Layout = "~/Views/Shared/_UserManagementLayout.cshtml";
+
+    ViewBag.roleright = "";
+}
+
+<div class="col-xs-4">
+
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+            <form method="post" class="">
+                <div class="col-xs-12">
+                    <select class="text-box margin-top-bottom-2" style="width:80%;" id="DepartmentId" name="DepartmentId">
+                        <option value="">Select Department </option>
+                            @foreach (var data in (System.Data.Entity.DbSet<CaresoftHMISDataAccess.Department>)ViewBag.UserRoles)
+                            {
+                                if (ViewBag.UserRole == data.Id)
+                                {
+                                    <option selected Value="@data.Id">@data.DepartmentName</option>
+                                }
+                                else
+                                {
+                                    <option Value="@data.Id">@data.DepartmentName</option>
+                                }
+                            }
+                    </select>
+                </div>
+
+                <div class="col-xs-12">
+                    <input style="width:80%;" id="RoleRightName" name="RoleRightName" class="text-box margin-top-bottom-2" type="text" />
+                </div>
+
+                <div class="col-xs-12">
+                    <button id="btnsubmit" type="submit" class="btn btn-sm btn-primary margin-top-bottom-2 ">Add</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>

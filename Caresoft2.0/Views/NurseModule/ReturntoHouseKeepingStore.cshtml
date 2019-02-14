@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Return To House Keeping";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                
+
+                <table class="table-form">
+                    <tr>
+                        <td colspan="2">
+                            <label>Linen Name</label><br />
+                            <input type="text" class="text-box box-xlg" />
+                        </td>
+                        <td>
+                            <label>Qty</label><br />
+                            <input type="number" class="text-box" />
+                        </td>
+                        <td>
+                            <label>Current Stock</label><br />
+                            <input type="text" class="text-box" placeholder="Current Stock" />
+                        </td>
+                        <td>
+                            <br />
+                            <input type="button" class="btn btn-sm btn-primary" value="Ok" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

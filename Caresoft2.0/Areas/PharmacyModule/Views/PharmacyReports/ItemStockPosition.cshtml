@@ -1,0 +1,130 @@
+﻿@using Caresoft2._0.Areas.PharmacyModule.ViewModel
+@model IEnumerable<Caresoft2._0.Areas.PharmacyModule.ViewModel.PharmacyStockPosition>
+
+
+@{
+    ViewBag.Title = "ItemStockPosition";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+}
+
+<style>
+    .text-box {
+        width: 200px;
+        margin-top: 2px;
+    }
+</style>
+
+<div class="col-md-10">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px">
+                <strong> Item Stock Ledger</strong>
+            </p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td>From Date</td>
+                            <td>
+                                <input type="date" class="text-box" value="@DateTime.Now.ToString("yyyy-MM-dd")" id="fromDate" />
+                            </td>
+                            <td>To Date</td>
+                            <td>
+                                <input type="date" class="text-box" value="@DateTime.Now.ToString("yyyy-MM-dd")" id="toDate" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Search Item Name</td>
+                            <td>
+                                <input type="text" class="text-box" value="">
+                            </td>
+                            <td>Batch No</td>
+                            <td>
+                                <select class="text-box">
+                                <option></option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br />
+                    <br />
+                    <div id="lstCurrentStock">
+                        @Html.Partial("~/Areas/PharmacyModule/Views/PharmacyReports/_lstItemStockLedger.cshtml", Model)
+
+                    </div>
+
+                    <a href="@Url.Action("GetItemStockLedgerReport")" class="btn btn-primary">Report</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+    
+<script>
+    $("#fromDate").on('change', function () {
+        var fromDate = $(this).val();
+        var toDate = $("#toDate").val();
+
+        var dates = { fromDate: fromDate, toDate: toDate };
+
+        //console.log(dates);
+        $.ajax({
+            type: "POST",
+            url: "/PharmacyReports/SearchStockByDatesItemStockPosition",
+            data: dates,
+            beforeSend: function () {
+                $(".loader").show();
+            },
+            success: function (obj) {
+                $("#lstCurrentStock").empty();
+                $("#lstCurrentStock").append(obj);
+                $(".loader").hide();
+            },
+            error: function (x, y, z) {
+                console.log(x.responseText);
+                $(".loader").hide();
+                $.notify("An Error Occured with the request", "error")
+            }
+        });
+
+    })
+    
+    $("#toDate").on('change', function () {
+        var fromDate = $("#fromDate").val();
+        var toDate = $("#toDate").val();
+
+        var dates = { fromDate: fromDate, toDate: toDate };
+
+        //console.log(dates);
+        $.ajax({
+            type: "POST",
+            url: "/PharmacyReports/SearchStockByDatesItemStockPosition",
+            data: dates,
+            beforeSend: function () {
+                $(".loader").show();
+            },
+            success: function (obj) {
+                $("#lstCurrentStock").empty();
+                $("#lstCurrentStock").append(obj);
+                $(".loader").hide();
+            },
+            error: function (x, y, z) {
+                console.log(x.responseText);
+                $(".loader").hide();
+                $.notify("An Error Occured with the request", "error")
+            }
+        });
+
+    })
+
+</script>    
+    
+}

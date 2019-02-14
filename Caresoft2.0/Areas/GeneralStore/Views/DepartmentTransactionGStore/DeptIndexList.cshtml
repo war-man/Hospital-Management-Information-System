@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.DeptIndentList>
+@{
+    ViewBag.Title = "DeptIndexList";
+    Layout = "~/Areas/GeneralStore/Views/Shared/_LayoutGeneralStore.cshtml";
+}
+
+
+
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px"> <strong>Department Indent List</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table-form">
+                        <tr>
+                            <td>From Date</td>
+                            <td><input type="date" class="text-box" id="FromDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" /></td>
+                            <td>To Date</td>
+                            <td><input type="date" class="text-box" id="ToDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+
+                                <label class="radio-inline">
+                                    <input type="radio" name="optradio" value="pending">Pending
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="optradio" value="partial">Partial Processed
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="optradio" value="processed">Processed
+                                </label>
+
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm">Search</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br />
+                    <br />
+
+                    <div class="col-md-12" id="lstRequestsCssd">
+                        @Html.Partial("~/Areas/MedicalStore/Views/DepartmentTransactionMStore/_lstDeptIndex.cshtml", Model)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+
+
+        $("input:radio[name=optradio]").on('change', function () {
+
+            var Name = $("input:radio[name=optradio]:checked").val();
+
+            if (Name != null) {
+                var url = "/DepartmentTransactionMStore/DeptIndexList?Name=" + Name;
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    success: function (obj) {
+                        $("#lstRequestsCssd").empty();
+                        $("#lstRequestsCssd").append(obj);
+                    }
+                });
+            }
+
+
+        })
+    </script>
+}
+

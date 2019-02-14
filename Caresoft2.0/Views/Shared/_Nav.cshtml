@@ -1,0 +1,789 @@
+﻿<table class="table-top-menu" width="100%">
+    <tr style="background-color:#C1D8F9">
+        <td>
+            |Setup <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            |Patient Demographic Master <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("PatientMainCategory", "Master")">|Patient Main Category</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("PatientCategory", "Master")">|Patient Category</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("Initial", "Master")">|Initial Master</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|Country/County/Village</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            |Account Master Billing <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("department", "Master")">|Services Departments</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("Create", "Services")">|Services Master</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("Create", "ServicesPrices")">|Service Prices</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("WardTypePricing", "ServicesPrices")">|Ward Type Pricing</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|Rate Type</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            |EMR Master <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("DiseaseMaster", "Master")">|Disease Master</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("Immunizations", "Master")">|Immunization Master</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("index", "SystemExamCategories")">|System Examination Categories</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("index", "SystemExamParticulars")">|System Examination Particulars</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("index", "MedicalHistoryQuestions")">|Medical History</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("index", "FamilyMedicalHistoryQuestions")">|Family Medical History</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("FreeForm", "Master")">|Other Heart Disease Risk Factor</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td>
+                            |Ward Management <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("Buildings", "Wards")">|Building Master</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("Floors", "Wards")">|Floor Master</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("Categories", "Wards")">|Ward Category</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("WardsMaster", "Wards")">|Ward Master</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("BedsMaster", "Wards")">|Beds Master</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("DischargeSummaryHeading", "Wards")">|Dischage Summary Heading</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("IpdDischargeSummaryFormat", "Wards")">|Dischage Summary Heading Format</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td>
+                            |Corporate/Insurance Company Master <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("index", "Companies")">|Companies</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("create", "Tariffs")">|Tariff Master</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("create", "ServicesPrices")">|Award Master</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>
+            |Registration <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("index", "Registration")">
+                            | Patient Registration
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("PatientsList", "Registration")">
+                            | Patient List
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("DirectLab", "Registration")">
+                            | Direct Lab Registration
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            |Cancel Registration
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>
+            |OPD<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr><td data-href="@Url.Action("PatientsList", "Registration")">|OPD Registration</td></tr>
+                    <tr><td data-href="@Url.Action("opdlist", "NurseModule")">|Nurse EMR</td></tr>
+                    <tr><td data-href="@Url.Action("opdlist", "emr")">|Outpatient Queue</td></tr>
+                </table>
+            </div>
+        </td>
+        <td>|Casualty<i class="fa fa-caret-down"></i></td>
+        <td>
+            |IPD<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr><td data-href="@Url.Action("index", "IPD")">|IPD Dashboard</td></tr>
+                    <tr><td data-href="@Url.Action("IPDRegister", "IPD")">|IPD Register</td></tr>
+                    <tr><td data-href="@Url.Action("AdmitRecommended", "IPD")">|Admit Recommended Patient</td></tr>
+                    <tr><td>|Cancel Admission</td></tr>
+                    <tr><td data-href="@Url.Action("DischargeRecommended", "IPD")">|Discharge Recommended Patient</td></tr>
+                    <tr><td>|Discharge Patient List</td></tr>
+                </table>
+            </div>
+        </td>
+        <td>
+            |Invoicing<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            | Debtor Invoicing <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr><td data-href="@Url.Action("FinalizepatientInvoice", "Invoicing" )">|Finalize patient Invoice</td></tr>
+
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr><td data-href="@Url.Action("index", "PatientClaims")">|Submit Patient Claim</td></tr>
+                    <tr><td data-href="@Url.Action("SanctionInsurance", "PatientClaims")">|Sanction Insuarance</td></tr>
+                    <tr><td data-href="@Url.Action("AdmitRecommended", "PatientClaims")">|Genarate Insurance Company </td></tr>
+
+                </table>
+            </div>
+        </td>
+
+        @*<td>
+            |Invoicing<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            | Debtor Invoicing <i class="fa fa-caret-right"></i>
+                            <table class="sidekick-table" width="100%">
+                                <tr><td data-href="@Url.Action("FinalizepatientInvoice", "Invoicing" )">|Finalize patient Invoice</td></tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                    <tr><td data-href="@Url.Action("index", "PatientClaims")">|Submit Patient Claim</td></tr>
+                    <tr><td data-href="@Url.Action("SanctionInsurance", "PatientClaims")">|Sanction Insuarance</td></tr>
+                    <tr><td data-href="@Url.Action("AdmitRecommended", "PatientClaims")">|Genarate Insurance Company </td></tr>
+
+                </table>
+            </div>
+        </td>*@
+        <td>
+            |Billing<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            | OPD Bill <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("BillingQueue", "Billing")">Billing Queue</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("index", "Billing", new { type = "o"})">|OPD Billing</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|OPD Bill Refund Receipt</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|View Closed OPD Bill</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | IPD Bill <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("IPDBillingList", "Billing")">|IPD Billing</td>
+                                    </tr>
+                                    @*<tr>
+                                        <td data-href="@Url.Action("AdvancedPayment", "Billing")">
+                                            |Advanced Payment
+                                        </td>
+                                    </tr>*@
+
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            |Shift Operations <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+
+                                    <tr>
+                                        <td data-href="@Url.Action("CloseShift", "Billing")">|Close</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|Suspend</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("Shift", "Reports")">|Shift Details</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("Waiver", "Billing")">
+                            |Waiver and Exemption
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("Adjustment", "Billing")">
+                            |Bill Adjustment
+                        </td>
+                    </tr>
+                    <tr>
+                        <td @*data-href="@Url.Action("Refund", "Billing")"*@>
+                            |Refund <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="dropdown-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("Refund", "Billing")">
+                                            | Initiate Refund
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("RefundsList", "Billing")">
+                                            | Remit Confirmed Refunds
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>|Admin<i class="fa fa-caret-down"></i></td>
+
+
+        @*From Dan*@
+
+        <td>
+            |Accounting<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            | A/C Receivables <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td>
+                                            |Debtor Transactions <i class="fa fa-caret-right"></i>
+                                            <div class="sidekick-table-holder">
+                                                <table class="sidekick-table" width="100%">
+                                                    <tr>
+                                                        <td data-href="@Url.Action("CreditTransfer", "Home", new { Area = "Accounting" })">
+                                                            | Credit Transfer
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-href="@Url.Action("MiscDebtors", "Home", new { Area = "Accounting" })">
+                                                            | Misc Debtors
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-href="@Url.Action("MergeSchemeAccounts", "Home", new { Area = "Accounting" })">
+                                                            | Merge Scheme Accounts
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-href="@Url.Action("ChangePayer", "Home", new { Area = "Accounting" })">
+                                                            | Change Payer
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-href="@Url.Action("ChargeInterest", "Home", new { Area = "Accounting" })">
+                                                            | Charge Interest
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            | Returned Claims <i class="fa fa-caret-right"></i>
+                                                            <div class="sidekick-table-holder">
+                                                                <table class="sidekick-table" width="100%">
+                                                                    <tr>
+                                                                        <td data-href="@Url.Action("ReturnedClaims", "Home", new { Area = "Accounting" })">
+                                                                            | Retuned Claims
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td data-href="@Url.Action("ResubmittClaims", "Home", new { Area = "Accounting" })">
+                                                                            | Resubmitt Claims
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("AllocateSchemeInvoices", "Home", new { Area = "Accounting" })">
+                                            | Allocate Scheme Invoices
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("AllocateInvoicePartly", "Home", new { Area = "Accounting" })">
+                                            | Allocate Invoice Partly
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("AllocateInvoicebyPayer", "Home", new { Area = "Accounting" })">
+                                            | Allocate by Payer
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("AllocationDocExcempted", "Home", new { Area = "Accounting" })">
+                                            | Allocation Doc Excempted
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("AllocationWithoutCredits", "Home", new { Area = "Accounting" })">
+                                            | Allocation Without Credits
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("AutomatedWriteoffs", "Home", new { Area = "Accounting" })">
+                                            | Automated WriteOffs
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("AllocateDoctorsInvoices", "Home", new { Area = "Accounting" })">
+                                            | Allocate Doctor's Bills
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("ReviseAllocation", "Home", new { Area = "Accounting" })">
+                                            | Revise Allocation
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Debtors Provision <i class="fa fa-caret-right"></i>
+                                            <div class="sidekick-table-holder">
+                                                <table class="sidekick-table" width="100%">
+                                                    <tr>
+                                                        <td data-href="@Url.Action("Provision", "Home", new { Area = "Accounting" })">
+                                                            | Provisions
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-href="@Url.Action("ProvisionsPerDebtors", "Home", new { Area = "Accounting" })">
+                                                            | Provisions Per Debtors
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | A/C Payables <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("EnterBills", "Home", new { Area = "Accounting" })">
+                                            | Enter Bills
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("LinkGMToCreditors", "Home", new { Area = "Accounting" })">
+                                            | Link GM to Creditors
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("DebitNotes", "Home", new { Area = "Accounting" })">
+                                            | Debit Notes
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("ApproveBills", "Home", new { Area = "Accounting" })">
+                                            | Approve Bills
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("CreditorsAllocation", "Home", new { Area = "Accounting" })">
+                                            | Creditors Allocation
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("DoctorsLedger", "Home", new { Area = "Accounting" })">
+                                            | Doctors Ledger
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("MiscCreditors", "Home", new { Area = "Accounting" })">
+                            | Misc Creditors
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("Journal", "Home", new { Area = "Accounting" })">
+                            | Journal
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ProjectJournals", "Home", new { Area = "Accounting" })">
+                            | Project Journals
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Write Offs <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("WriteOffsDebits", "Home", new { Area = "Accounting" })">
+                                            | Write Offs Debits
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("WriteOffsCredits", "Home", new { Area = "Accounting" })">
+                                            | Write Offs Credits
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("MergeGLAcc", "Home", new { Area = "Accounting" })">
+                            | Merge GL Acc
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AuditAccounts", "Home", new { Area = "Accounting" })">
+                            | Audit Accounts
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+
+        <td>
+            |Financial<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("TotalShiftReport", "Home", new { Area = "Finance" })">
+                            | Total Shift Report
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ReconcileCash", "Home", new { Area = "Finance" })">
+                            | Cash point Reconciliaiton
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("Banking", "Home", new { Area = "Finance" })">
+                            | Banking
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ConfirmBanking", "Home", new { Area = "Finance" })">
+                            | confirm Banking
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("BankReconciliation", "Home", new { Area = "Finance" })">
+                            | Bank Reconciliation
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("BankCharges", "Home", new { Area = "Finance" })">
+                            | Bank Charges
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("DirectBanking", "Home", new { Area = "Finance" })">
+                            | Direct Banking
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            |Payment <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder inverse-dropdown">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("Payments", "Home", new { Area = "Finance" })">
+                                            | Payment
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("LumpsumPayments", "Home", new { Area = "Finance" })">
+                                            | Lumpsum Payment
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("Cosultants", "Home", new { Area = "Finance" })">
+                                            | Consultants
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("PaymentsAdjustment", "Home", new { Area = "Finance" })">
+                                            | Payment Adjustment
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            |Petty Cash <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder inverse-dropdown">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("RaiseVoucher", "Home", new { Area = "Finance" })">
+                                            | Raise Voucher
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("ApproveVoucher", "Home", new { Area = "Finance" })">
+                                            | Approve Voucher
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("PettyPayments", "Home", new { Area = "Finance" })">
+                                            | Petty Cash Payment
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("DirectNGOPayments", "Home", new { Area = "Finance" })">
+                                            | Direct NGO Petty Cash Payments
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("DirectCashtPayments", "Home", new { Area = "Finance" })">
+                                            | Direct Cash Payments
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("PettyCashAdjustment", "Home", new { Area = "Finance" })">
+                                            | Petty Cash Adjustment
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+
+        @*End From Dan*@
+
+        <td>
+            |Reports<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            |IPD Reports <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder inverse-dropdown">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td>|Admitted Patients</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|Shifted Patients</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|Discharged Patients </td>
+                                    </tr>
+                                    <tr>
+                                        <td>|IPD Advanced Collection Report</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|Admission Cancel Report</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|Patients In Hospital As On Report</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|IPD Bill Summary Report</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            |OPD Reports<i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder inverse-dropdown">
+                                <table class="sidekick-table" width="100%">
+
+                                    <tr>
+                                        <td>|OPD Patient Information</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|OPD Patient Diagnosis</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|Diagnosis Summary</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|OPD Summary</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|OPD Tally Sheet</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            |Accounts <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder inverse-dropdown">
+                                <table class="sidekick-table" width="100%">
+
+                                    <tr>
+                                        <td data-href="@Url.Action("Index", "Reports" )">Finance</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td data-href="@Url.Action("Jpayments", "Reports")">Jambo Pay - Received</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td data-href="@Url.Action("ShiftCombined", "Reports" )">|Cashier's Combined Shift Report</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td data-href="@Url.Action("Shift", "Reports")">|Cashier's Shift Report</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("ShiftTotals", "Reports")">|Shift Totals Report</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("ReceiptList", "Reports")">|Receipt List</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td data-href="@Url.Action("DepartmentalRevenue", "Reports")">|Department Wise Report</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("DepartmentalWorkloadAgainstRevenue", "Reports")">|Departmental Workload Against Revenue</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|Discount Summary Report</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("WaiverSummaryReport", "Reports")">| Waiver Summary Report</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|Corporate Company Report</td>
+                                    </tr>
+                                    <tr>
+                                        <td>|Refund Summary Report</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="/caresoftreports/homereports/moh505">
+                            |MOH Reports@*<i class="fa fa-caret-right"></i>*@
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+
+
+
+    </tr>
+
+</table>
+
+
+

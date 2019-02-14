@@ -1,0 +1,588 @@
+﻿@using CaresoftHMISDataAccess;
+@{
+    ViewBag.Title = "Home Page";
+
+
+    ViewBag.WideView = true;
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel glass shadow">
+        <div class="panel-heading">
+            New Child Register
+        </div>
+        <div class="panel-body">
+
+            <form method="post" action="/Home/AddNutritionChildRegister">
+                <div class="col-md-12 col-sm-12 create-new-account">
+
+                    <div class="row">
+                        <input type="hidden" name="OPDID" value="3" />
+                        <div class="col-md-2">
+                            Service Point
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <select class="form-control text-box" name="ServicePoint">
+                                        <option>Test Data 1</option>
+                                        <option>Test Data 2</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            Visit Date
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input type="date" class="form-control text-box" name="VisitDate" id="theDate">
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-2">
+                            Visit Type
+                            <div class="input-group">
+                                <div class="form-line">
+
+                                    <select class="form-control text-box" name="VisitType">
+                                        <option>Test Data 1</option>
+                                        <option>Test Data 2</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            Patient No.
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input type="number" class="form-control text-box" name="PatientNo">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            Patient Name.
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input type="text" name="PatientName" class="form-control text-box">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            Age
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input type="number" class="form-control text-box" name="age">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            Gender
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <select class="form-control text-box" name="gender">
+                                        <option>Select Gender</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            Linked OVC
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <select class="form-control text-box" name="LinkedOVC">
+                                        <option>Select OVC</option>
+                                        <option>Test Data 1</option>
+                                        <option>Test Data 2</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            Patient category
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <select class="form-control text-box" name="PatientCategory">
+                                        <option>Select category</option>
+                                        <option>Test Data 1</option>
+                                        <option>Test Data 2</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+
+                    </div>
+
+
+
+                    <br />
+
+
+
+                    <div class="row">
+                        <fieldset>
+                            <legend>&nbsp; ASSESMENT & NUTRITION DIAGNOSIS &nbsp;</legend>
+                            <div class="col-md-2">
+                                Weight (kg)
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box" name="Weight">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                Height for Age
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box" name="HeightforAge">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                Edema
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <select class="form-control text-box" name="edema">
+                                            <option>Select Edema</option>
+                                            <option>Test Data 1</option>
+                                            <option>Test Data 2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                Weight for Hieght
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box" name="WeightForHeight">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                Height/Length(cm)
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box" name="HeightLength">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                BMI
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box" name="bmi">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                MUAC
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box" name="muac">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                BMIz
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box" name="bmiz">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                Nutrition Status
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <select class="form-control text-box" name="NutritionStatus">
+                                            <option>Select Status</option>
+                                            <option>Test Data 1</option>
+                                            <option>Test Data 2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-2">
+                                Serostatus
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <select class="form-control text-box" name="Serostatus">
+                                            <option>Select Serostatus</option>
+                                            <option>Test Data 1</option>
+                                            <option>Test Data 2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                SAM/MAM Clients
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <select class="form-control text-box" name="SamMamClients">
+                                            <option>Select SAM/MAM</option>
+                                            <option>Test Data 1</option>
+                                            <option>Test Data 2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                On ARVs
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <select class="form-control text-box" name="OnARVs">
+                                            <option>Select </option>
+                                            <option>Test Data 1</option>
+                                            <option>Test Data 2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-3">
+                                Co-existing conditions
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box" name="CoexistingConditions">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                Anaemia
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <select class="form-control text-box" name="Anaemia">
+                                            <option>Select</option>
+                                            <option>Test Data 1</option>
+                                            <option>Test Data 2</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-2">
+                                Metabolic Disorders
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box" name="MetabolicDisorders">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                Allergies & intolerance
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box" name="AllergiesIntolerance">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                CD 4 Count
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <select class="form-control text-box" name="CD4Count">
+                                            <option>Select</option>
+                                            <option>Test Data 1</option>
+                                            <option>Test Data 2</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                Food Secure
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <select class="form-control text-box" name="FoodSecure">
+                                            <option>Select</option>
+                                            <option>Test Data 1</option>
+                                            <option>Test Data 2</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <fieldset>
+                            <legend>&nbsp; FEEDING PRACTICE &nbsp;</legend>
+
+
+
+
+                            <div class="col-md-6">
+                                First 0 - 6 Months
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <select class="form-control text-box" name="First0to6Months">
+                                            <option>Select</option>
+                                            <option>Test Data 1</option>
+                                            <option>Test Data 2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                6 - 12 Months
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <select class="form-control text-box" name="Sixto12Months">
+                                            <option>Select </option>
+                                            <option>Test Data 1</option>
+                                            <option>Test Data 2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </fieldset>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <fieldset>
+                            <legend>&nbsp; NUTRITION COUNSELLING &nbsp;</legend>
+
+
+
+
+                            <div class="col-md-6">
+                                Maternal Nutrition
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <select class="form-control text-box" name="maternalNutrition">
+                                            <option>Select</option>
+                                            <option>Test Data 1</option>
+                                            <option>Test Data 2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                Critical Nutrition Practices
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control text-box" name="CriticalNutritionPractices" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </fieldset>
+                    </div>
+
+
+                    <br>
+                    <div class="row">
+                        <fieldset>
+                            <legend>&nbsp; PRESCRIBED NUTRITION SUPPORT &nbsp;</legend>
+
+
+
+
+                            <div class="col-md-4">
+                                Therapeutic Foods
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box" name="TherapeuticFoods" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                Supplemental Foods
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box" name="SupplementalFoods" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                Micronutrients
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box" name="Micronutrients" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </fieldset>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <fieldset>
+                            <legend>&nbsp; OUTCOMES & REFERRALS &nbsp;</legend>
+
+
+
+
+                            <div class="col-md-6">
+                                Outcome for revisiting SAM/MAM client
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box text-box" name="OutcomeClient" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                Referrals and transfers
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control text-box" name="ReferralsandTransfers" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                TCA Date
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="date" class="form-control text-box" name="TCADate" id="currentDate" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                Designation
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <select type="date" class="form-control text-box" name="Designation">
+                                            <option>Select Designation</option>
+                                            <option>Test Data 1</option>
+                                            <option>Test Data 2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                Initials
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control text-box" name="Initials" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+
+                    <div class="row">
+
+
+
+                        <input type="submit" value="submit" class="btn-upper btn btn-primary checkout-page-button" />
+
+                    </div>
+
+                    <br />
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+
+</div>
+
+@section scripts{
+    <script>
+
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+
+
+        $(document).ready(function () {
+            var date = new Date();
+
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+
+            if (month < 10) month = "0" + month;
+            if (day < 10) day = "0" + day;
+
+            var today = year + "-" + month + "-" + day;
+            $("#theDate").attr("value", today);
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var date = new Date();
+
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+
+            if (month < 10) month = "0" + month;
+            if (day < 10) day = "0" + day;
+
+            var today = year + "-" + month + "-" + day;
+            $("#currentDate").attr("value", today);
+        });
+
+    </script>
+
+}
+

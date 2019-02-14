@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Journal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+}
+
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Journal
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="Date" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                   &nbsp; Transaction Type:
+                                </td>
+                                <td>
+                                    <select name="TransactionType" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                  &nbsp; Journal No:
+                                </td>
+                                <td>
+                                    <input name="JournalNo" class="text-box margin-top-bottom-2" style="width:100%" type="number" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <input type="radio" name="radio" value="CashBook" /> CashBook &nbsp;
+                        <input type="radio" name="radio" value="Creditors" /> Creditors &nbsp;
+                        <input type="radio" name="radio" value="Debtors" /> Debtors &nbsp;
+                        <input type="radio" name="radio" value="Consultansts" /> Consultants &nbsp;
+                        <input type="radio" name="radio" value="Receipts" /> Receipts &nbsp;
+                        <input type="radio" name="radio" value="PettyCash" /> Petty Cash &nbsp;
+                        <input type="radio" name="radio" value="PatientAcc" /> Patient A/C &nbsp;
+                        <input type="radio" name="radio" value="GLAcc" /> Other GL A/C &nbsp;
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <table class="table table-data-pathology table-condensed">
+                            <tr>
+                                <th>Patient No</th>
+                                <th>Patient Name</th>
+                                <th>Reason</th>
+                                <th>Debit</th>
+                                <th>Credit</th>
+                                <th>A/C Code</th>
+                                <th>A/C Description</th>
+                            </tr>
+                            <tbody style="background-color: white">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Post Entries to GL</button>
+                        <button type="reset" class="btn btn-default margin-top-bottom-2">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,153 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Company>
+@using Caresoft2._0.Areas.PharmacyModule.Reports.DrugWiseReport
+
+@{
+    ViewBag.Title = "DrugWiseReport";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+}
+
+
+<style>
+    .text-box {
+        width: 200px;
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+</style>
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px">
+                <strong> Drug Wise Summary</strong>
+            </p>
+        </div>
+        <div class="panel-body">
+            <form method="get" id="form0" action="@Url.Action("GetDrugWiseReport","PharmacyReports")">
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table-form">
+                            <tr>
+                                <td>From Date</td>
+                                <td>
+                                    <input type="date" class="text-box" name="FromDate" id="FromDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                </td>
+                                <td>To Date</td>
+                                <td>
+                                    <input type="date" class="text-box" name="ToDate" id="ToDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> Drug Name</td>
+                                <td>
+                                    <input type="text" class="text-box" id="name" autocomplete="off">
+                                    <input type="hidden" name="DrugId" id="DrugId"/>
+                                </td>
+                                <td>Insurance Scheme</td>
+                                <td>
+                                    <select class="text-box" name="insuaranceCompany" id="insuaranceCompany">
+                                        <option value=0>All</option>
+                                        @foreach (var item in Model)
+                                        {
+                                            <option value="@item.Id">@item.CompanyName</option>
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" class="btn btn-primary" value="Generate Report" />
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br />
+                        <br />
+                        <div id="lstCurrentStock">
+                            @Html.Partial("~/Areas/PharmacyModule/Views/PharmacyReports/_DrugWiseReport.cshtml", new List<DrugWiseViewModel>())
+
+                        </div>
+                        @*<input type="submit" class="btn btn-primary" value="Generate Report" />*@
+                        @*<a href="@Url.Action("GetDrugWiseReport")" class="btn btn-primary">Report</a>*@
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    
+    <script>
+        $("#name").autocomplete({
+            source: function (request, response) {
+                $('#DrugId').val("");
+                $.ajax({
+                    url: "@Url.Action("SearchDrugbyName", "PharmacyReports")",
+                    dataType: "json",
+                    data: { name: $('#name').val() },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Name, value: item.Name, selectedId: item.Id};
+                        }));
+                    }
+                });
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                showNotification("An Error Occured, try again later", "danger", true);
+            },
+            minLength: 2,
+            select: function (event, ui) {
+                $('#DrugId').val(ui.item.selectedId);
+                console.log(ui.item.selectedId);
+                GetData();
+            }
+        });
+
+        $("#FromDate").on('change', function () {
+            GetData();
+        });
+
+        $("#ToDate").on('change', function () {
+            GetData();
+        });
+
+        $("#insuaranceCompany").on('change', function () {
+            GetData();
+        });
+
+
+
+
+        function GetData()
+        {
+            var data = $("#form0").serializeObject();
+            console.log(data);
+            var url = "@Url.Action("DrugWisePartialView", "PharmacyReports",new { Area = "PharmacyModule" })";
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                data:data,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+
+                    $("#lstCurrentStock").empty();
+                    $("#lstCurrentStock").append(obj);
+                    $(".loader").hide();
+
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("Error Occured while saving data", "error");
+                }
+            });
+        }
+
+    </script>
+}
+

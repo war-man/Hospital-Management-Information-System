@@ -1,0 +1,289 @@
+﻿@model CaresoftHMISDataAccess.BillPayment
+
+@{
+    var opdRegister = Model.OpdRegister;
+    var patient = new CaresoftHMISDataAccess.Patient();
+    var bp = Model;
+
+    if (opdRegister != null)
+    {
+        patient = opdRegister.Patient;
+    }
+
+    if (ViewBag.EntireBill != null)
+    {
+        opdRegister = (CaresoftHMISDataAccess.OpdRegister)ViewBag.EntireBill;
+        patient = opdRegister.Patient;
+
+
+    }
+
+
+    if (ViewBag.WalkinEntries == null)
+    {
+        if (ViewBag.trans == "entire")
+        {
+            ViewBag.Title = "Receipt:" + opdRegister.BillPayments.First().Id; //first returns the last row in this context
+        }
+        else
+        {
+            ViewBag.Title = "Receipt:" + opdRegister.BillPayments.First().Id; //first returns the last row in this context
+
+        }
+    }
+    else
+    {
+        var walkinMeds = (IEnumerable<Caresoft2._0.Areas.Procurement.Models.Walking>)ViewBag.WalkinEntries;
+
+        ViewBag.Title = "Receipt: Walkin#" + walkinMeds.First().PatientIdentifierId + " " + walkinMeds.First().PatientsName;
+    }
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+    ViewBag.IsPartial = true;
+    ViewBag.Size = "A6";
+
+    var wId = 0;
+
+
+}
+
+<style>
+    .thermal-content {
+        font-family: Arial;
+        font-size: 12px;
+    }
+
+    page[size="A6"] {
+        padding: 0px;
+        margin: -1em !important;
+    }
+</style>
+
+<div class="thermal-content" style="font-weight:bold; margin-left:-1em;">
+    @if (ViewBag.WalkinEntries == null)
+    {
+        
+        <table width="100%" class="gray-hr-bottom table table-condensed">
+            <tr class="thermal-content">
+
+                <td colspan="2">
+                    @patient.Salutation
+                    @patient.FName
+                    @patient.MName
+                    @patient.LName
+                </td>
+
+                <td colspan="2">
+                    @patient.RegNumber<br />
+                    [Age: @(DateTime.Now.Year - patient.DOB.Value.Year) Yrs]
+                </td>
+            </tr>
+            <tr class="thermal-content">
+
+
+                <td>
+                    OPD No. :
+                    @opdRegister.Id
+                </td>
+
+                <td>
+                    OPD Date:
+                    @opdRegister.TimeAdded.Value.ToShortDateString()
+                </td>
+
+                <td>
+                    OPD Time:
+                    @opdRegister.TimeAdded.Value.ToShortTimeString()
+                </td>
+            </tr>
+        </table>
+    }
+
+
+    <table class="table table-condensed "border="1">
+        <thead>
+            <tr class="report-heading">
+                @*<th>No.</th>*@
+
+                <th>Service</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th title="Sub Total">S.Total</th>
+                <th>Award</th>
+                <th>Payable</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var c = 1; var sub = 0.0; var award = 0.0; var st = 0.0; var dt = 0.0;}
+            
+            @if (ViewBag.EntireBill != null)
+            {
+                //****Entire receipt****\\
+                foreach (var item in opdRegister.BillServices)
+                {
+                    <tr class="thermal-content">
+                        @*<td>@c</td>*@
+                        <td>@item.ServiceName</td>
+                        <td>@item.Quatity</td>
+                        <td>@item.Price</td>
+                        <td>@(item.Quatity * item.Price) @{sub += item.Quatity * item.Price; }</td>
+                        <td>@(item.Quatity * item.Award) @{award += (item.Award * item.Quatity); }</td>
+                        <td>@((item.Quatity * item.Price) - (item.Award * item.Quatity) ) @{st += (item.Quatity * item.Price) - (item.Award * item.Quatity); }</td>
+                    </tr>
+                    c++;
+                }
+                foreach (var item in opdRegister.Medications)
+                {
+                    <tr class="thermal-content">
+                        @*<td>@c</td>*@
+                        <td>@item.DrugName</td>
+                        <td>@item.QuantityIssued</td>
+                        <td>@item.UnitPrice</td>
+                        <td>@(item.QuantityIssued * item.UnitPrice) @{sub += (double)(item.QuantityIssued * item.UnitPrice); }</td>
+                        <td>@(item.QuantityIssued * (item.Award ?? 0)) @{award += (double)((item.QuantityIssued * (item.Award ?? 0))); }</td>
+                        <td>@((item.QuantityIssued * item.UnitPrice) - (item.QuantityIssued * (item.Award ?? 0)) )
+                        @{st += ((item.QuantityIssued * item.UnitPrice) - (item.QuantityIssued * (item.Award ?? 0))??0); }</td>
+                    </tr>
+                    c++;
+                }
+            }
+            else
+            {
+               //****Curent receipt****\\
+               foreach (var item in Model.BillServices)
+                {
+                    <tr class="thermal-content">
+                        @*<td>@c</td>*@
+                        <td>@item.ServiceName</td>
+                        <td>@item.Quatity</td>
+                        <td>@item.Price</td>
+                        <td>@(item.Quatity * item.Price) @{sub += item.Quatity * item.Price; }</td>
+                        <td>@(item.Quatity * item.Award) @{award += item.Quatity * item.Award; }</td>
+                        <td>@((item.Quatity * item.Price) - (item.Quatity * item.Award) ) @{st += ((item.Quatity * item.Price) - (item.Quatity *  item.Award));}</td>
+                    </tr>
+                        c++;
+                    }
+                    foreach (var item in Model.Medications)
+                    {
+                    <tr class="thermal-content">
+                        @*<td>@c</td>*@
+                        <td>@item.DrugName</td>
+                        <td>@item.QuantityIssued</td>
+                        <td>@item.UnitPrice</td>
+                        <td>@(item.QuantityIssued * item.UnitPrice) @{sub += (double)(item.QuantityIssued * item.UnitPrice); }</td>
+                        <td>@(item.QuantityIssued * (item.Award ?? 0)) @{award += (double)((item.QuantityIssued * (item.Award ?? 0))); }</td>
+                        <td>@((item.QuantityIssued * item.UnitPrice) - (item.QuantityIssued * (item.Award ?? 0)) )
+                        @{st += ((item.QuantityIssued * item.UnitPrice) - (item.QuantityIssued * (item.Award ?? 0))??0);}</td>
+                    </tr>
+                    c++;
+                }
+            }
+            
+            
+            
+            @if (ViewBag.WalkinEntries != null)
+            {
+                //**Walkin bill**\\
+                var walkinMeds = (IEnumerable<Caresoft2._0.Areas.Procurement.Models.Walking>)ViewBag.WalkinEntries;
+                wId = walkinMeds.First().PatientIdentifierId;
+                foreach (var item in walkinMeds)
+                {
+                <tr class="thermal-content">
+                    @*<td>@c</td>*@
+                    <td>@item.DrugName</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.UnitPrice</td>
+                    <td>@(item.Quantity * item.UnitPrice) @{sub += (double)(item.Quantity * item.UnitPrice); }</td>
+                    <td>0</td>
+                    <td>@((item.Quantity * item.UnitPrice))</td>
+                </tr>
+                    c++;
+                }
+            }
+        </tbody>
+
+          @if (ViewBag.WalkinEntries != null)
+          {
+              //***Walkin footer****\\
+              var walkinMeds = (IEnumerable<Caresoft2._0.Areas.Procurement.Models.Walking>)ViewBag.WalkinEntries;
+                <tfoot>
+                <tr class="report-heading gray-hr-bottom">
+                    <th colspan="2">Total</th>
+                    <th></th>
+                    <th>@sub</th>
+                    <th>@award</th>
+                    <th>@{ var amt = (walkinMeds.Sum(e => e.UnitPrice * e.Quantity) - award);} @amt</th>
+                </tr>
+                <tr class="report-heading">
+                    <td colspan="4"></td>
+                    <td>Paid</td>
+                    <th>@(bp.PaidAmount - bp.AmountFromWallet )</th>
+                </tr>
+                <tr class="report-heading gray-hr-bottom">
+                    <td colspan="4"></td>
+                    <td>Balance</td>
+                    <th>@(bp.PaidAmount - bp.AmountFromWallet - amt)</th>
+                </tr>
+            </tfoot>
+            }
+
+            else
+            {
+                //***Registered patient footer****\\
+            <tfoot>
+            <tr class="report-heading gray-hr-bottom">
+                <th colspan="2">Total</th>
+                <th></th>
+                <th>@sub</th>
+                <th>@award</th>
+                <th>@(st)</th>
+            </tr>
+            <tr class="report-heading">
+                <td colspan="4"></td>
+                <td>Paid</td>
+                @{var paid = 0.0;}
+                @if (ViewBag.EntireBill != null)
+                {
+                    //**Sum of all payments**\\
+                   <th>@{paid = opdRegister.BillPayments.Sum(e => (e.PaidAmount - e.AmountFromWallet));} @paid</th>
+
+                       }
+                       else
+                       {
+                           //**Last paid amount**\\
+                   <th>@{paid = opdRegister.BillPayments.First().PaidAmount - opdRegister.BillPayments.First().AmountFromWallet;}  @paid </th>//first returns the last row in this context
+                }
+            </tr>
+            <tr class="report-heading gray-hr-bottom">
+                <td colspan="4"></td>
+                <td>Balance</td>
+                 <th>@((st) - paid)</th> 
+            </tr>
+                @if (ViewBag.EwalletBalance!=null && ViewBag.EwalletBalance > 0)
+                {
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="3">E Wallet Bal.</td>
+                        <td>@ViewBag.EwalletBalance</td>
+
+                    </tr>
+                }
+        </tfoot>
+        }
+    </table>
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <td>Served By</td>
+            <td>
+                @using(CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities())
+                {
+                    @db.Users.Find(Session["UserId"]).Username
+                }
+            </td>
+        </tr>
+       
+        <tr>
+            <td colspan="2" align="center">We wish you quick recovery!</td>
+        </tr>
+    </table>
+</div>
+  

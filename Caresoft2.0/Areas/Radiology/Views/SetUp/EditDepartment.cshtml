@@ -1,0 +1,81 @@
+﻿@model LabsDataAccess.Department
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Department</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Main_Department, htmlAttributes: new { @class = "control-label col-xs-2" })
+            <div class="col-xs-10">
+                @Html.EditorFor(model => model.Main_Department, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Main_Department, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Department1, htmlAttributes: new { @class = "control-label col-xs-2" })
+            <div class="col-xs-10">
+                @Html.EditorFor(model => model.Department1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Department1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Department_Code, htmlAttributes: new { @class = "control-label col-xs-2" })
+            <div class="col-xs-10">
+                @Html.EditorFor(model => model.Department_Code, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Department_Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Modality, htmlAttributes: new { @class = "control-label col-xs-2" })
+            <div class="col-xs-10">
+                @Html.EditorFor(model => model.Modality, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Modality, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Department_Order_No, htmlAttributes: new { @class = "control-label col-xs-2" })
+            <div class="col-xs-10">
+                @Html.EditorFor(model => model.Department_Order_No, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Department_Order_No, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Remark, htmlAttributes: new { @class = "control-label col-xs-2" })
+            <div class="col-xs-10">
+                @Html.EditorFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Profile_Department, htmlAttributes: new { @class = "control-label col-xs-2" })
+            <div class="col-xs-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Profile_Department)
+                    @Html.ValidationMessageFor(model => model.Profile_Department, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

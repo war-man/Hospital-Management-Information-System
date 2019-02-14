@@ -1,0 +1,206 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Patient>
+    @using Caresoft2._0.Utils;
+<table class="table table-data table-hover table-condensed">
+    <tr>
+        <th>
+            Registration
+        </th>
+        <th>Edit</th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegNumber)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.MainCategory)
+        </th>*@
+
+        <th>
+            @Html.DisplayNameFor(model => model.Salutation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            Age
+        </th>
+
+        <th>
+            Mobile
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.HomeAddress)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.NationalId)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BloodGroup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Religion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaritalStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegTime)
+        </th>
+        <th>
+            Registered By
+        </th>
+
+
+    </tr>
+
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+        <tr data-patient-id="@item.Id">
+            <td>
+                @if (ViewBag.QueuType != null && ViewBag.QueuType == "OPD")
+                {
+                    if (item.OpdRegisters.Count() > 0
+                        && item.OpdRegisters.OrderByDescending(e => e.Id).First().Status != "draft"
+                        && item.OpdRegisters.OrderByDescending(e => e.Id).First().Date.Date == DateTime.Today)
+                    {
+                        var todaysOpd = item.OpdRegisters.OrderByDescending(e => e.Id).First();
+                        <button type="button" class="call-modal-form btn btn-xs btn-success"
+                                data-action="@Url.Action("OPDRegistration", "Registration", new { id = todaysOpd.Id, mode = "Edit" })"
+                                data-callback="opdRegistrationCallBack">
+                            Edit OPD
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="call-modal-form btn btn-xs btn-primary"
+                                data-action="@Url.Action("OPDRegistration", "Registration",
+            new { id = item.Id, QueueType = "OPD" })" data-callback="opdRegistrationCallBack">
+                            OPD
+                        </button>
+                    }
+                }
+                else if (ViewBag.QueuType != null && ViewBag.QueuType == "Casualty")
+                {
+                    <button class="call-modal-form btn btn-xs btn-primary"
+                            data-action="@Url.Action("OPDRegistration", "Registration",
+                new { id = item.Id, QueueType = "Casualty" })" data-callback="opdRegistrationCallBack">
+                        Casualty
+                    </button>
+                }
+                else if (ViewBag.QueuType != null && ViewBag.QueuType == "Lab")
+                {
+                    <button class="call-modal-form btn btn-xs btn-primary"
+                            data-action="@Url.Action("InvestigationForm", "EMR", new { id = item.Id, idType = "PatientId" })"
+                            data-callback="investigationModalListener">
+                        Direct Lab
+                    </button>
+                }
+
+
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegNumber)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.MainCategory)
+        </td>*@
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Salutation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @if (item.DOB != null)
+                {
+                    @item.DOB.Value.ToString("dd MMM yyyy")
+                }
+            </td>
+            <td>
+                @{
+                    var age = "";
+
+                }
+                @if (item.DOB != null)
+                {
+                    age = new AgeCalculator().CalculateYourAge(item.DOB.Value);
+                }
+                @age
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeAddress)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NationalId)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BloodGroup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Religion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaritalStatus)
+            </td>
+            <td>
+                @if (item.RegDate != null)
+                {
+                    @item.RegDate.Value.ToString("dd MMM yyyy")
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Username)
+            </td>
+
+
+        </tr>
+        }
+    </tbody>
+
+</table>

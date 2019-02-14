@@ -1,0 +1,208 @@
+﻿@using CaresoftHMISDataAccess;
+@{
+    ViewBag.Title = "Index";
+
+    ViewBag.WideView = true;
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<style>
+    .modal-dialog {
+        width: 70%;
+        height: auto;
+    }
+
+   
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary caresoft-panel glass shadow">
+            <div class="panel-heading">
+                Diet Chart
+            </div>
+            <div class="panel-body">
+                @using (@Html.BeginForm("AddNutritiondiet", "Home", FormMethod.Post))               
+                {
+                    <div class="col-md-12 col-sm-12 create-new-account">
+                        <!-- <h4 class="checkout-subtitle">Initialnutrition Screening and Assesment Form </h4> -->
+                        <!-- <p class="text title-tag-line"></p> -->
+
+                        <table class="table table-data-pathology">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="row">
+                                            <br />
+
+
+
+                                            <input hidden type="number" name="OPDIPDID" id="OPDIPDID" value="@ViewBag.OpdNo">
+                                            <input hidden type="number" name="user_id" id="user_id" value="@Session["UserId"]">
+
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="info-title" for="full_name">Start Date <span><font color="red"><b>*</b></font></span></label>
+                                                    <span id='message_full_name'></span>
+                                                    <input type="date" class="form-control text-box  text-input" name="start_date" id="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="info-title" for="full_name">Start Time <span><font color="red"><b>*</b></font></span></label>
+                                                    <span id='message_full_name'></span>
+                                                    <input type="Time" class="form-control text-box  text-input" name="start_time" id="time" value="@DateTime.Now.ToString("hh:mm:ss")">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="info-title" for="full_name">End Date <span><font color="red"><b>*</b></font></span></label>
+                                                    <span id='message_full_name'></span>
+                                                    <input type="date" class="form-control text-box  text-input" name="end_date" id="time" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="info-title" for="full_name">End Time <span><font color="red"><b>*</b></font></span></label>
+                                                    <span id='message_full_name'></span>
+                                                    <input type="Time" class="form-control text-box  text-input" name="end_time" id="time" value="@DateTime.Now.ToString("hh:mm:ss")">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="info-title" for="full_name">Format List <span><font color="red"><b></b></font></span></label>
+                                                    <span id='message_full_name'></span>
+                                                    <select class="form-control text-box  text-input" name="end_time" id="meal_time">
+                                                        <option>Select Format list</option>
+                                                        <option>mm</option>
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <br />
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-data-pathology table-condensed ">
+                            <tr>
+                                <th>Meal Time</th>
+                                <th>Item Name</th>
+                                <th>Quantity(ml/grm)</th>
+                                <th>Format Id</th>
+
+                            </tr>
+
+                            <tbody style="background:white">
+                                @if (((List<MealType>)ViewBag.MealTime).Count == 0)
+                                {
+                                    <tr>
+                                        <td colspan="4" class="text-center"><strong>Nothing To Display</strong></td>
+                                    </tr>
+                                }
+                                @foreach (var mt in (List<MealType>)ViewBag.MealTime)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            <select class="form-control text-box  text-input" name="item_name" id="food_items">
+                                                <option value="0"> Select Items Name</option>
+
+                                                @foreach (var item in (List<MealType>)ViewBag.MealTime)
+                                                {
+                                                    <option value="@item.id"> @item.meal_type</option>
+                                                }
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="form-control text-box" name="item_name" id="food_items">
+                                                <option>Select Items Name</option>
+                                                @foreach (var item in (List<ItemName>)ViewBag.ItemName)
+                                                {
+                                                    <option value="@item.id"> @item.item_name</option>
+                                                }
+
+
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+
+                                                    <input type="text" class="form-control text-box  text-input" name="quantity" id="quantity">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-box  text-input" name="format_id" id="format_id">
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+
+
+                        </table>
+
+                        <div class="row">
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="info-title" for="full_name">Format Name <span><font color="red"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <input type="text" class="form-control text-box  text-input" name="format_name" id="format_name">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="info-title" for="full_name">Total Calories <span><font color="red"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <input type="text" class="form-control text-box  text-input" name="total_calories" id="total_calories">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="info-title" for="full_name">
+                                        Required Calories <span><font color="red"><b></b></font></span>
+                                    </label>
+                                    <span id='message_full_name'></span>
+                                    <input type="text" class="form-control text-box  text-input" name="required_calories" id="required_calories">
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <button type="submit" id="submitDietChart" class="btn-upper btn btn-primary checkout-page-button">Save</button>
+
+                        <button type="reset" class="btn-upper btn btn-primary checkout-page-button">Clear</button>
+
+                        <button type="" class="btn-upper btn btn-primary checkout-page-button">Report</button>
+
+
+
+                    </div>
+
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/nutrition.js"></script>
+
+
+

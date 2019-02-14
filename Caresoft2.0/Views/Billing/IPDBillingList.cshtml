@@ -1,0 +1,66 @@
+﻿@{
+    if (ViewBag.Mode != "AJAX")
+    {
+        ViewBag.Title = "Bill Patient Selection";
+        ViewBag.ShowTopMenu = true;
+    }
+    else
+    {
+        //no layout for ajax calls, just return plain data
+    }
+}
+
+
+@model IEnumerable<CaresoftHMISDataAccess.OpdRegister>
+<div class="col-sm-8 col-sm-offset-2">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading">
+            In Paient Billing List
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <legend>Filter Results</legend>
+                <table class="table-controls" width="100%">
+                    <tbody>
+                        <tr>
+
+                            <td>
+                                <label for="quick-search">Quick Search</label>
+                            </td>
+                        </tr>
+                        <tr>
+
+
+                            <td>
+                                <input type="search" class="text-box" id="SearchText" placeholder="Search">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            <div id="ipd_results" style="overflow:auto;">
+                @Html.Partial("FilterIpdList", Model)
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $("#SearchText").keyup(function () {
+            var stext = $(this).val();
+            console.log(stext);
+            $.ajax({
+                url: "@Url.Action("FilterIpdList", "Billing")/?search=" + stext,
+                success: function (data) {
+                    console.log(data);
+                    $("#ipd_results").html(data);
+                },
+                error: function (e, x, r) {
+                    console.log(e.responseText)
+                }
+            });
+        })
+    </script>
+}

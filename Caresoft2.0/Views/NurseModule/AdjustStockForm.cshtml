@@ -1,0 +1,69 @@
+﻿
+<div class="panel panel-primary  shadow glass caresoft-panel" style="margin-bottom:-1em;">
+    <div class="panel-heading caresoft-panel">
+        Adjust Stock
+    </div>
+    <div class="panel-body">
+       <table class="table-form">
+           <tr>
+               <td class="text-box">
+                   <label><input type="radio" name="RequestType" value="Surplus" /> Surplus</label>
+                   <label><input type="radio" name="RequestType" value="Deficit" checked /> Deficit</label>
+                   <label><input type="radio" name="RequestType" value="Damage" checked /> Damage</label>
+               </td>
+           </tr>
+           <tr>
+               <td>
+                   <label>Item Description</label>
+                   <select class="text-box box-xlg">
+                       <option>Selec Drug Name</option>
+                   </select>
+               </td>
+               <td>
+                   <label>Batch</label><br />
+                   <select class="text-box box-lg">
+                       <option>Select</option>
+                   </select>
+               </td>
+               <td>
+                   <label>Curernt Stock</label><br />
+                   <input type="number" class="text-box box-xs" style="width:75px"  />
+               </td>
+               <td>
+                   <label>Cost</label><br />
+                   <input type="number" class="text-box" style="width:75px" />
+               </td>
+               <td>
+                   <label>Adjustment</label><br />
+                   <input type="text" class="text-box box-xs" style="width:75px"  />
+               </td>
+               <td>
+                   <br />
+                   <button class="btn btn-sm btn-primary" type="button">OK</button>
+               </td>
+           </tr>
+       </table>
+        <table class="table table-data table-condensed">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Batch No</th>
+                    <th>Current Stock</th>
+                    <th>Cost</th>
+                    <th>Adjusted Quantity</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white">
+                <tr>
+                    <td colspan="6" align="center">
+                        <label>No data at the moment</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-sm btn-primary" type="button">Save</button>
+        <button class="btn btn-sm btn-primary" type="button">New</button>
+        <button class="btn btn-sm btn-primary" type="button">Report</button>
+    </div>
+</div>

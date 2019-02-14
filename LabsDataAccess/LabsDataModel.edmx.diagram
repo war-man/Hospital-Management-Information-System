@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5cd6327ea7264540b0701a30b74d0b8a" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="CareSoftLabsModel.DepartmentAssignment" Width="1.5" PointX="3" PointY="15.375" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.Department" Width="1.5" PointX="0.75" PointY="27.875" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.Gender" Width="1.5" PointX="0.75" PointY="35.625" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.Heading" Width="1.5" PointX="5.25" PointY="65.75" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.InterpretationEntry" Width="1.5" PointX="5.25" PointY="34.25" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.LabOptionHtmlType" Width="1.5" PointX="6" PointY="46.875" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.LabTest" Width="1.5" PointX="3" PointY="25.375" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.LabTestsResultsOption" Width="1.5" PointX="8.25" PointY="32.5" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.MachineDetail" Width="1.5" PointX="8.25" PointY="23.25" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.Machine" Width="1.5" PointX="0.75" PointY="32.5" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.MainDepartment" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.NormalValue" Width="1.5" PointX="10.5" PointY="42.25" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.PanicValue" Width="1.5" PointX="7.5" PointY="41.25" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.Parameter" Width="1.5" PointX="5.25" PointY="57.625" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.PathKeyValuePair" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.Period" Width="1.5" PointX="5.25" PointY="42.5" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.Profile" Width="1.5" PointX="3" PointY="42.625" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.ReasonMaster" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.Sample" Width="1.5" PointX="0.75" PointY="24.625" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.ShortForm" Width="1.5" PointX="5.25" PointY="62.375" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.StandardOperative_Procedures" Width="1.5" PointX="5.25" PointY="54.5" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.Status" Width="1.5" PointX="3" PointY="35" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.Test_Turn_Around_Times" Width="1.5" PointX="8.25" PointY="27.875" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.User_Department" Width="1.5" PointX="6" PointY="28.625" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.UserType" Width="1.5" PointX="0.75" PointY="15.875" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.VialMaster" Width="1.5" PointX="6" PointY="18.625" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.WorkOrderPosition" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.WorkOrder" Width="1.5" PointX="3" PointY="19.375" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.WorkOrderTestParameter" Width="1.5" PointX="7.5" PointY="37.5" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.WorkOrderTest" Width="1.5" PointX="5.25" PointY="22.25" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.LabTestForMOH505Report" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.SearchPatientView" Width="1.5" PointX="4.75" PointY="5.75" />
+        <EntityTypeShape EntityType="CareSoftLabsModel.SearchPatientView_" Width="1.5" PointX="6.75" PointY="0.75" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_DepartmentAssignments_UserType" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_User_Department_DepartmentAssignments" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_WorkOrderTests_DepartmentAssignments" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_LabTests_Departments" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_MachineDetails_Departments" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_Profile_Departments" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_User_Department_Departments" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_LabTests_Gender" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_NormalValues_Gender" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_PanicValue_Gender" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_Heading_LabTests" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_InterpretationEntry_LabTests" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_InterpretationEntry_Profile" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_LabTestsResultsOptions_LabOptionHtmlTypes" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_LabTests_Machines" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_LabTests_Sample" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_LabTestsResultsOptions_LabTests" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_MachineDetails_LabTests" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_NormalValues_LabTests" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_PanicValue_LabTests" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_Parameter_LabTests" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_ShortForm_LabTests" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_StandardOperative_Procedure_LabTests" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_Test_Turn_Around_Time_LabTests" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_WorkOrderTests_LabTests" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_MachineDetails_Machine" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_NormalValues_Parameter" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_NormalValues_Period" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_PanicValue_Parameter" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_PanicValue_Period" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_WorkOrderTestParameters_Parameter" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_WorkOrder_Status" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_WorkOrderTests_Status" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_Test_Turn_Around_Time_VialMaster" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_WorkOrderTests_WorkOrder1" />
+        <AssociationConnector Association="CareSoftLabsModel.FK_WorkOrderTestParameters_WorkOrderTests" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

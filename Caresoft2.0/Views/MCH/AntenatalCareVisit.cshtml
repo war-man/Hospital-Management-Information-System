@@ -1,0 +1,179 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Antenatal Care Clinic Visit";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>Antenatal Care Clinic Visit</p>
+    </div>
+    <div class="panel-body">
+        <form id="antenatal_care_form"  method="post" action="@Url.Action("SaveAntenatalProfile", "mch")">
+        <table class="table-form">
+            <tr>
+                <td>
+                    <label>Date</label>
+                </td>
+                <td>
+                    <input type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" class="text-box" />
+                </td>
+                <td>
+                    <label>Wt</label>
+                </td>
+                <td>
+                    <input type="text" class="text-box" />
+                </td>
+                <td>
+                    <label>BP</label>
+                </td>
+                <td>
+                    <input type="text" class="text-box" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <fieldset>
+                        <legend>Urine</legend>
+                        <table class="table-form">
+                            <tr>
+                                <td>
+                                    <label>
+                                        Protein
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box" />
+                                </td>
+                                <td>
+                                    <label>
+                                        Sugar
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box" />
+                                </td>
+                                <td>
+                                    <label>
+                                        Acetone
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box" />
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6">
+                    <fieldset style="margin-bottom:1em;">
+                        <legend>Maturity Asessment</legend>
+                        <table class="table-form">
+                            <tr>
+                                <td>
+                                    <label>
+                                        AOG
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box" />
+                                </td>
+                                <td>
+                                    <label>
+                                        USS
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box" />
+                                </td>
+                                <td>
+                                    <label>
+                                        FHt
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box" />
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Adema</label>
+                </td>
+                <td>
+                    <input type="text" class="text-box box-lg" />
+                </td>
+                <td>
+                    <label>Present Engagement</label>
+                </td>
+                <td>
+                    <input type="text" class="text-box" />
+                </td>
+                <td>
+                    <label>Hgb</label>
+                </td>
+                <td>
+                    <input type="text" class="text-box" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Comment/Return Visit</label>
+                </td>
+                <td>
+                    <textarea class="text-box box-lg"></textarea>
+                </td>
+                
+            </tr>
+        </table>
+        <div>
+            <button class="btn btn-sm btn-primary" type="submit">Save</button>
+            <button class="btn btn-sm btn-primary" type="reset">Clear</button>
+            <button class="btn btn-sm btn-primary" type="button">Report</button>
+        </div>
+        </form>
+        <div id="antenata_log" class="marg-top-16px">
+            @Html.Partial("AntenatalCareLog")
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+@section scripts{
+    <script>
+      
+
+        
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+
+       
+    </script>
+}
+
+

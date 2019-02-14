@@ -1,0 +1,190 @@
+﻿@model PagedList.IPagedList<CaresoftHMISDataAccess.PatientAppointment>
+@using PagedList.Mvc;
+
+@if (ViewBag.IsMain != null && ViewBag.IsMain == true)
+{
+    {
+        ViewBag.Title = "ViewAppointment";
+        Layout = "~/Areas/Appointments/Views/Shared/_Layout.cshtml";
+    }
+    <div class="col-md-12">
+        <div class="col-md-2">
+            @Html.Partial("~/Areas/Appointments/Views/Shared/_SideNav.cshtml")
+        </div>
+        <div class="col-md-7">
+            <div class="panel panel-primary caresoft-panel">
+                <div class="panel-heading">
+                    View Appointment
+                </div>
+                <div class="panel-body">
+                    <table style="width:80%;">
+                        <tr>
+                            <td>
+                                Speciality
+                            </td>
+                            <td>
+                                <input style="width:80%;" style="width:80%;" list="Speciality" class="text-box marg-top-6px" name="Speciality" />
+                                <datalist id="Speciality">
+                                    <option value="Select Speciality"></option>
+                                </datalist>
+                            </td>
+                            <td>
+                                Doctor:
+                            </td>
+                            <td>
+                                <input style="width:80%;" list="Doctor" class="text-box marg-top-6px" name="Doctor" />
+                                <datalist id="Doctor">
+                                    <option value="Select Doctor"></option>
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                From Date:
+                            </td>
+                            <td>
+                                <input style="width:80%;" type="date" class="text-box marg-top-6px" name="From Date" />
+                            </td>
+                            <td>
+                                To Date:
+                            </td>
+                            <td>
+                                <input style="width:80%;" type="date" class="text-box marg-top-6px" name="To Date" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Reminder Status:
+                            </td>
+                            <td>
+                                <label class="radio-inline"><input type="radio" name="Pending" checked>pending</label>
+                                <label class="radio-inline"><input type="radio" name="Rescheduled" checked>Rescheduled</label>
+                                <br />
+                                <label class="radio-inline"><input type="radio" name="Confirmed" checked>Confirmed</label>
+                                <label class="radio-inline"><input type="radio" name="Canceled" checked>Canceled</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Patient First Name:
+                            </td>
+                            <td>
+                                <input style="width:80%;" type="text" class="text-box marg-top-6px" name="patient-F_Name" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Appointment Status:
+                            </td>
+                            <td>
+                                <input style="width:80%;" list="AppointmentStatus" class="text-box marg-top-6px" name="AppointmentStatus" />
+                                <datalist id="AppointmentStatus">
+                                    <option value="Please Select Status"></option>
+                                    <option value="Appointment Attended"></option>
+                                    <option value="Appointment Not Attended"></option>
+                                </datalist>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button type="submit" class="btn btn-sm btn-primary" name="Search">Search</button>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+else
+{
+    <table style="width:80%;">
+        <tr>
+            <td>
+                Speciality
+            </td>
+            <td>
+                <input style="width:80%;" style="width:80%;" list="Speciality" class="text-box marg-top-6px" name="Speciality" />
+                <datalist id="Speciality">
+                    <option value="Select Speciality"></option>
+                </datalist>
+            </td>
+            <td>
+                Doctor:
+            </td>
+            <td>
+                <input style="width:80%;" list="Doctor" class="text-box marg-top-6px" name="Doctor" />
+                <datalist id="Doctor">
+                    <option value="Select Doctor"></option>
+                </datalist>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                From Date:
+            </td>
+            <td>
+                <input style="width:80%;" type="date" class="text-box marg-top-6px" name="From Date" />
+            </td>
+            <td>
+                To Date:
+            </td>
+            <td>
+                <input style="width:80%;" type="date" class="text-box marg-top-6px" name="To Date" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Reminder Status:
+            </td>
+            <td>
+                <label class="radio-inline"><input type="radio" name="Pending" checked>pending</label>
+                <label class="radio-inline"><input type="radio" name="Rescheduled" checked>Rescheduled</label>
+                <br />
+                <label class="radio-inline"><input type="radio" name="Confirmed" checked>Confirmed</label>
+                <label class="radio-inline"><input type="radio" name="Canceled" checked>Canceled</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Patient First Name:
+            </td>
+            <td>
+                <input style="width:80%;" type="text" class="text-box marg-top-6px" name="patient-F_Name" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Appointment Status:
+            </td>
+            <td>
+                <input style="width:80%;" list="AppointmentStatus" class="text-box marg-top-6px" name="AppointmentStatus" />
+                <datalist id="AppointmentStatus">
+                    <option value="Please Select Status"></option>
+                    <option value="Appointment Attended"></option>
+                    <option value="Appointment Not Attended"></option>
+                </datalist>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit" class="btn btn-sm btn-primary" name="Search">Search</button>
+            </td>
+        </tr>
+
+    </table>
+}
+
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

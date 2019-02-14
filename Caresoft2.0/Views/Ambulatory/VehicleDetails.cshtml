@@ -1,0 +1,68 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.AmbulanceMaster>
+
+<table id="servicesTable" class="table table-data-pathology table-condensed">
+
+    <thead>
+        <tr>
+            <th>Ambulance Type</th>
+            <th>
+                Vehicle number
+            </th>
+            <th>
+                Vehicle Name
+            </th>
+
+            <th>
+                Vehicle Type
+            </th>
+            <th>
+                Description
+            </th>
+            <th>Net Weight</th>
+            <th>Power</th>
+            <th> Status </th>
+        </tr>
+        <tr>
+            <th></th>
+
+            <th>
+                <input style="width:80%;" onkeyup="searchFunction()" placeholder="Search" id="Search" name="Search" class="text-box" />
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @if (Model == null)
+        {
+            <tr>
+                <td colspan="7">No data to display</td>
+            </tr>
+        }
+        else
+        {
+
+            foreach (var a in Model.OrderByDescending(a => a.Id))
+            {
+                <tr style="background-color:chartreuse;">
+                    <td>@a.AmbulanceType</td>
+                    <td>@a.VehicleNumber</td>
+                    <td>@a.VehicleName</td>
+                    <td>@a.VehicleType</td>
+                    <td>@a.Description</td>
+                    <td>@a.NetWeight</td>
+                    <td>@a.Power</td>
+
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+

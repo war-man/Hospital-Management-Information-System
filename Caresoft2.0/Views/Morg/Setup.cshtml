@@ -1,0 +1,144 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.MorgColdroom>
+@{
+    ViewBag.Title = "Setup";
+    Layout = "~/Views/Morg/_MorgLayout.cshtml";
+}
+
+<table class="table-form">
+    <tr>
+        <td valign="top">
+            <fieldset>
+                <legend>Cold Rooms</legend>
+                <form id="form_create_cold_room" action="CreateColdRoom" method="post">
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                <label for="ColdRoomName">Room Name</label>
+                            </td>
+                            <td>
+                                <input type="text" name="ColdRoomName" class="text-box" required id="ColdRoomName" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="AuthorizedCabinets">Authorized Cabinets</label>
+                            </td>
+                            <td>
+                                <input type="number" min="1" name="AuthorizedCabinets" id="AuthorizedCabinets" class="text-box" />
+                            </td>
+                        </tr>
+                    </table>
+                    <label>
+                        <input type="checkbox" name="AutoCreateCabs" id="AutoCreateCabs" value="1" onclick="changeRequiredForAuthorizedCabs(this)" /> Auto Create Cabinets for this Room
+                    </label><br />
+                    <input type="submit" value="Add" class="btn btn-sm btn-primary" />
+                </form>
+                <table class="table-form table-data table-condensed marg-top-16px table-bordered">
+                    <tr>
+                        <th></th>
+                        <th>Room Name</th>
+                        <th>Authorized Cabinets</th>
+                        <th>Actual Cabinets</th>
+                        <th>Occupied</th>
+                        <th>Vacant</th>
+                    </tr>
+                    <tbody class="bg-white">
+                        @foreach(var room in Model)
+                        {
+                        <tr>
+                            <td></td>
+                            <td>@room.ColdRoomName</td>
+                            <td>@room.AuthorizedCabinets</td>
+                            <td>@room.MorgCabinets.Count()</td>
+                            <td>@{var occ = room.MorgCabinets.Where(e => e.MorgAdmissions!=null && e.MorgAdmissions
+                                  .Where(a => a.Released==null || !a.Released.Value).Count() > 0).Count();} @occ
+                            </td>
+                            <td>@(room.MorgCabinets.Count() - occ)</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </fieldset>
+        </td>
+        <td valign="top">
+            <fieldset>
+                <legend>Cabinets</legend>
+                <form id="form_add_cabinet">
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                <label for="ColdRoomId">Cold Room</label>
+                            </td>
+                            <td>
+                                <select class="text-box box-lg" required id="ColdRoomId" name="ColdRoomId">
+                                    @ViewBag.SelectedRoom
+                                    @foreach(var r in Model){
+                                        <option value="@r.Id">@r.ColdRoomName</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="CabinetName">Cabinet Name/No</label>
+                            </td>
+                            <td>
+                                <input type="text" class="text-box box-lg" required id="CabinetName" name="CabinetName">
+                                 
+                            </td>
+                        </tr>
+                    </table>
+                     <input type="submit" value="Add" class="btn btn-sm btn-primary" />
+                </form>
+                 <table class="table-form table-data table-condensed marg-top-16px table-bordered">
+                    <tr>
+                        <th></th>
+                        <th>Cabinet Name</th>
+                        <th>Cold Room</th>
+                        <th>Status</th>
+                    </tr>
+                    <tbody class="bg-white">
+                        @foreach (var room in Model)
+                        {
+                            foreach(var cab in room.MorgCabinets)
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td>@cab.CabinetName</td>
+                                    <td>@room.ColdRoomName</td>
+                                    <td>
+                                        @if (cab.MorgAdmissions != null && cab.MorgAdmissions.Where(e => e.Released == null).Count() > 0)
+                                        {
+                                            <text>Occupied</text>
+                                        }
+                                        else {
+                                            <text>Vacant</text>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </fieldset>
+        </td>
+    </tr>
+</table>
+
+
+@section scripts{
+<script>
+    function changeRequiredForAuthorizedCabs(cb) {
+        if ($(cb).is(":checked")) {
+            $("#AuthorizedCabinets").attr('required', '');
+            markRequiredFields();
+        } else {
+            $("#AuthorizedCabinets").removeAttr('required');
+            $("#AuthorizedCabinets").removeClass('asterisk');
+            $("label[for=AuthorizedCabinets] span").remove();
+        }
+       
+    }
+</script>    
+    
+}

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.PharmacyRequestedItems>
+
+@{
+    ViewBag.Title = "IssueToMedical";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+    var PharmReqId = Model.FirstOrDefault().PhamarcyRequestsId;
+    bool EnableIssue = true;
+
+    if (Model.All(p => p.IsIssued == true))
+    {
+        EnableIssue = false;
+    }
+    else
+    {
+        EnableIssue = true;
+    }
+}
+
+<div class="col-md-8">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px">
+                <strong>Issue Items to department</strong>
+            </p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td>From Date</td>
+                            <td>
+                                <input type="date" class="text-box" id="FromDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </td>
+                            <td>To Date</td>
+                            <td>
+                                <input type="date" class="text-box" id="ToDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </td>
+                        </tr>
+
+                    </table>
+                    <br />
+                    
+                    <div class="pathology " style="background:white;" id="lstPharmacyItems">
+
+                        @Html.Partial("~/Areas/PharmacyModule/Views/PharmacyMaster/_RequestedItemsList.cshtml", Model)
+
+                    </div>
+                   
+                    <div class="col-md-12">
+                        @if (EnableIssue == true)
+                        {
+                            <a href="@Url.Action("IssueItemsToDepartment","DepartmentTransactionMStore",new { Id=PharmReqId,Area="MedicalStore" })" class="btn btn-primary btn-sm pull-right">Issue Items</a>
+                        }
+                        else
+                        {
+                            <a  class="btn btn-primary btn-sm pull-right disabled">Issue Items</a>
+                        }
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

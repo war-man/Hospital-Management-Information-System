@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Issue Voucher";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                <table class="table-form">
+                    <tr>
+                        <td>
+                            <label>Issue Voucher No	</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-lg" placeholder="Voucher No"/>
+                        </td>
+                        <td>
+                            <label>Data</label>
+                        </td>
+                        <td>
+                            <input type="date" class="text-box box-lg" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Issue To</label>
+                        </td>
+                        <td>
+                            <select class="text-box box-lg">
+                                <option>Nurse Station</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>Nurse Station</label>
+                        </td>
+                        <td>
+                            <select class="text-box box-lg">
+                                <option>Nurse Station Name</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-box" >
+                            <label><input type="radio" name="NameType" value="Composition Name" /> Composition Name</label>
+                            <label><input type="radio" name="NameType" value="Brand Name" checked/> Brand Name</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Item Description</label>
+                            <select class="text-box box-xlg">
+                                <option>Select Item Name</option>
+                            </select>
+                        </td>
+                        <td>
+                            Batch No<br />
+                            <input type="text" class="text-box box-xs" style="width:75px" />
+                        </td>
+                        <td>
+                            Rate<br />
+                            <input type="text" class="text-box box-xs" style="width:75px" />
+                        </td>
+                        <td>
+                            Issue Quantity<br />
+                            <input type="text" class="text-box box-xs" style="width:75px" />
+                        </td>
+                        <td>
+                            Current Stock<br />
+                            <input type="text" class="text-box box-xs" style="width:75px" />
+                        </td>
+                        <td>
+                            Expiry Date<br />
+                            <input type="date" class="text-box box-lg" />
+                        </td>
+                        <td>
+                            <input type="button" class="btn btn-primary bnt-sm" value="OK" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="table-data table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Edit</th>
+                            <th>Item Name</th>
+                            <th>Batch No</th>
+                            <th>Rate</th>
+                            <th>Unit</th>
+                            <th>Amount</th>
+                            <th>Current Stock</th>
+                            <th>Exp_Date</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr>
+                            <td colspan="9" align="center">
+                                <label>No data to display</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="button" class="btn btn-primary bnt-sm" value="Save" />
+                <input type="button" class="btn btn-primary bnt-sm" value="Add New" />
+            </div>
+        </div>
+    </div>
+</div>

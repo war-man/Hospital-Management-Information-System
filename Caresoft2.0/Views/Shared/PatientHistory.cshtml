@@ -1,0 +1,452 @@
+﻿<div class="modal fade " id="patientHistory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: block;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="panel panel-primary glass">
+                    <div class="panel-heading custom-navbar">
+                        <p>OPD Patient History</p>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="nav nav-pills">
+                            <li class="active"><a data-toggle="pill" href="#medHisto">Medical History</a></li>
+                            <li class=""><a data-toggle="pill" href="#famMedHist">Family Medical History</a></li>
+                            <li class=""><a data-toggle="pill" href="#otherRisk">Other Heart Disease Risk Factor</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+
+                            <div id="medHisto" class="tab-pane fade active in">
+                                <fieldset style="height:30em; overflow-y:scroll; overflow-x:hidden;">
+                                    <p><b>Check those questions to which your answer is Yes(Leave others blank)</b></p>
+
+                                    <table class="table table-bordered table-condensed">
+                                        <thead class="bg-primary">
+                                            <tr>
+                                                <th>Select</th>
+                                                <th>Past Medical History</th>
+                                                <th>Comment</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td align="center" colspan="3">No data to display</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="row marg-top-16px">
+                                        <div class="col-xs-3">
+                                            <label for="commentMedHisto">Comments: </label>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <textarea id="commentMedHisto" name="commentMedHisto" style="width:100%;"></textarea>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                            </div>
+                            <div id="famMedHist" class="tab-pane fade">
+                                <fieldset style="height:30em; overflow-y:scroll; overflow-x:hidden;">
+                                    <p><b>Father</b></p>
+                                    <input type="checkbox" checked="" value="fatherIsAlive"> Alive
+                                    &nbsp; &nbsp; &nbsp; &nbsp;
+                                    <label for="fatherCurrentAge">Current Age: </label>
+                                    <input type="number" class="text-box">
+
+                                    <fieldset style="width:auto" class="marg-top-16px">
+                                        <legend>My father's general health is:</legend>
+                                        <input type="radio" checked="" value="Excellent"> Excellent
+                                        <input type="radio" value="Good"> Good
+                                        <input type="radio" value="Fair"> Fair
+                                        <input type="radio" value="Poor"> Poor
+                                    </fieldset>
+
+                                    <p class="marg-top-16px"><b>Mother</b></p>
+                                    <input type="checkbox" checked="" value="motherIsAlive"> Alive
+                                    &nbsp; &nbsp; &nbsp; &nbsp;
+                                    <label for="motherCurrentAge">Current Age: </label>
+                                    <input type="number" class="text-box">
+
+                                    <fieldset style="width:auto" class="marg-top-16px">
+                                        <legend>My mother's general health is:</legend>
+                                        <input type="radio" checked="" value="Excellent"> Excellent
+                                        <input type="radio" value="Good"> Good
+                                        <input type="radio" value="Fair"> Fair
+                                        <input type="radio" value="Poor"> Poor
+                                    </fieldset>
+
+                                    <p class="marg-top-16px"><b>Siblings</b></p>
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <label for="numOfBros">Number of brothers</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" style="width:50px" class="text-box" id="numOfBros" name="numOfBros">
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label for="numOfSis">Number of sisters</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" style="width:50px" class="text-box" id="numOfSis" name="numOfSis">
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label for="ageRange">Age Range</label>
+                                        </div>
+                                        <div class="col-xs-1 o">
+                                            <input type="number" style="width:50px" class="text-box" id="ageRange" name="ageRange">
+                                        </div>
+                                    </div>
+
+                                    <div class="row marg-top-16px">
+                                        <div class="col-xs-3">
+                                            <label for="healthProblem">Health Problem: </label>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <textarea id="healthProblem" name="healthProblem" style="width:100%;"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <p><b>Familial Diseases:</b></p>
+                                    <p>Have you or your blood relatives had any of the following(Include grandparents,aunts and uncles but exclude cousins relatives by marriage and half-relatives)?</p>
+
+                                    <table class="table table-bordered table-condensed">
+                                        <thead class="bg-primary">
+                                            <tr>
+                                                <th>Select</th>
+                                                <th>Family Medical History</th>
+                                                <th>Comment</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td align="center" colspan="3">No data to display</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                    <div class="row marg-top-16px">
+                                        <div class="col-xs-3">
+                                            <label for="commentsFamMedhistory">Comments: </label>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <textarea id="commentsFamMedhistory" name="commentsFamMedhistory" style="width:100%;"></textarea>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+
+                            </div>
+                            <div id="otherRisk" class="tab-pane fade">
+                                <fieldset style="height:30em; overflow-y:scroll; overflow-x:hidden;">
+                                    <p><b>Smoking</b></p>
+                                    <p>Have you ever smoked cigarettes, cigar or pipe?</p>
+                                    <input type="radio" name="smoked" value="Yes">  Yes
+                                    <input type="radio" name="smoked" checked="" value="No">  No
+                                    <p>(If no, skip to diet section)</p>
+                                    <p>
+                                        If you did or now smoke cigarettes how many per day?
+                                        <input type="number" style="width:50px;" name="cigarettesPerDay">
+                                        &nbsp; &nbsp; Age started <input type="number" style="width:50px;" name="ageStartedCigarettesPerDay">
+                                    </p>
+
+                                    <p>
+                                        If you did or now smoke cigars how many per day?
+                                        <input type="number" style="width:50px;" name="cigarsPerDay">
+                                        &nbsp; &nbsp; Age started <input type="number" style="width:50px;" name="ageStartedCigarsPerDay">
+                                    </p>
+                                    <p>
+                                        If you did or now smoke pipe  how many pipefuls per day?
+                                        <input type="number" style="width:50px;" name="pipesPerDay">
+                                        &nbsp; &nbsp; Age started <input type="number" style="width:50px;" name="ageStartedPipePerDay">
+                                    </p>
+
+                                    <div class="row marg-top-2px">
+                                        <div class="col-xs-8">
+                                            <label for="whenStoppedSmoking">If you have stopped smoking when was it?</label>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input type="text" class="text-box" id="whenStoppedSmoking" name="whenStoppedSmoking">
+                                        </div>
+                                    </div>
+
+                                    <div class="row marg-top-2px">
+                                        <div class="col-xs-8">
+                                            <label for="howLongDidYouStart">If you now smoke how long ago did you start?</label>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input type="text" class="text-box" id="howLongDidYouStart" name="howLongDidYouStart">
+                                        </div>
+                                    </div>
+                                    <p><b>Diet</b></p>
+
+                                    <div class="row marg-top-2px">
+                                        <div class="col-xs-8">
+                                            <label for="goodWeight">What do you consider a good weight for yourself?</label>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input type="text" class="text-box" id="goodWeight" name="goodWeight">
+                                        </div>
+                                    </div>
+
+                                    <div class="row marg-top-2px">
+                                        <div class="col-xs-8">
+                                            <label for="highestWeight">What is the most you have ever weighted(including when pregnant)?</label>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input type="text" class="text-box" id="highestWeight" name="highestWeight">
+                                        </div>
+                                    </div>
+
+                                    <div class="row marg-top-2px">
+                                        <div class="col-xs-8">
+                                            <label for="howOldWerYou">How old were you?</label>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input type="number" class="text-box" id="howOldWerYou" name="howOldWerYou">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row marg-top-2px">
+                                        <div class="col-xs-8">
+                                            <label for="currentWeight">My current weight is:</label>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input type="number" class="text-box" id="currentWeight" name="howOldWerYou">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row marg-top-2px">
+                                        <div class="col-xs-8">
+                                            <label for="oneYearAgoWeight">One year ago my weight was</label>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input type="number" class="text-box" id="oneYearAgoWeight" name="oneYearAgoWeight">
+                                        </div>
+                                    </div>
+
+                                    <div class="row marg-top-2px">
+                                        <div class="col-xs-8">
+                                            <label for="atAge21Weight">At age 21 my weight was</label>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input type="number" class="text-box" id="atAge21Weight" name="atAge21Weight">
+                                        </div>
+                                    </div>
+
+                                    <div class="row marg-top-2px">
+                                        <div class="col-xs-8">
+                                            <label for="numOfMealsPerDay">Number of meals you usually eat per day</label>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input type="number" class="text-box" id="numOfMealsPerDay" name="numOfMealsPerDay">
+                                        </div>
+                                    </div>
+
+                                    <p class="marg-top-2px">
+                                        Number of times per week you usually eat the following
+                                    </p>
+                                    <div class="row marg-top-2px">
+                                        <div class="col-xs-1">
+                                            <label for="beef">Beef</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="beef" name="beef" class="text-box" style="width:50px">
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <label for="fish">Fish</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="fish" name="fish" class="text-box" style="width:50px">
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <label for="desserts">Desserts</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="desserts" name="desserts" class="text-box" style="width:50px">
+                                        </div>
+                                    </div>
+
+                                    <div class="row marg-top-2px">
+                                        <div class="col-xs-1">
+                                            <label for="pork">Pork</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="pork" name="pork" class="text-box" style="width:50px">
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <label for="fowl">Fowl</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="fowl" name="fowl" class="text-box" style="width:50px">
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <label for=""></label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="" name="" class="text-box" style="width:50px">
+                                        </div>
+                                    </div>
+
+                                    <p class="marg-top-16px">
+                                        Number of servings(cups,glasses or containers)per week you usually consume of:
+                                    </p>
+
+                                    <div class="row marg-top-2px">
+                                        <div class="col-xs-2">
+                                            <label for="homoWholeMilk">Homogenized (whole)milk</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="homoWholeMilk" name="homoWholeMilk" class="text-box" style="width:50px">
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label for="buttermilk">Buttermilk</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="buttermilk" name="buttermilk" class="text-box" style="width:50px">
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label for="skimNonfatMilk">Skim(nonfat)milk	</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="skimNonfatMilk" name="skimNonfatMilk" class="text-box" style="width:50px">
+                                        </div>
+                                    </div>
+
+                                    <div class="row marg-top-2px">
+                                        <div class="col-xs-2">
+                                            <label for="lowFatMilk2">2%(low-fat)milk</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="lowFatMilk2" name="lowFatMilk2" class="text-box" style="width:50px">
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label for="lowFatMilk1">1%(low-fat)milk	</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="lowFatMilk1" name="lowFatMilk1" class="text-box" style="width:50px">
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label for="coffee">Coffee</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="coffee" name="coffee" class="text-box" style="width:50px">
+                                        </div>
+                                    </div>
+
+                                    <div class="row marg-top-2px">
+                                        <div class="col-xs-2">
+                                            <label for="tea">Tea(iced or not)</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="tea" name="tea" class="text-box" style="width:50px">
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label for="sodas">Regular or diet sodas</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="sodas" name="sodas" class="text-box" style="width:50px">
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label for="water">Glasses of water</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <input type="number" id="water" name="water" class="text-box" style="width:50px">
+                                        </div>
+                                    </div>
+
+                                    <fieldset>
+                                        <legend>Do you ever drinkalcoholic beverages?</legend>
+                                        <input type="radio" name="drinkAlcohol" value="Yes"> Yes
+                                        <input type="radio" checked="" name="drinkAlcohol" value="No"> No
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>If, yes what is your approximate intake of these beverages?</legend>
+                                        <input type="radio" checked="" name="approxIntakeAlcohol" value="null">
+                                        <input type="radio" name="approxIntakeAlcohol" value="occasional"> Occasional
+                                        <input type="radio" name="approxIntakeAlcohol" value="often"> Often
+                                        &nbsp; &nbsp;
+                                        <label for="howOften">
+                                            If often &nbsp;
+                                        </label><input type="number" id="howOften" name="howOften" class="text-box" style="width:50px">
+                                        &nbsp; Per week
+                                        <p class="marg-top-16px"><b>Wine</b></p>
+                                        <input type="radio" checked="" name="approxIntakeWIne" value="null">
+                                        <input type="radio" name="approxIntakeWIne" value="occasional"> Occasional
+                                        <input type="radio" name="approxIntakeWIne" value="often"> Often
+                                        &nbsp; &nbsp;
+                                        <label for="howOftenWine">
+                                            If often &nbsp;
+                                        </label><input type="number" id="howOftenWine" name="howOftenWine" class="text-box" style="width:50px">
+                                        &nbsp; Per week
+
+                                        <p class="marg-top-16px"><b>Hard Liquor</b></p>
+                                        <input type="radio" checked="" name="approxIntakeHardLiquor" value="null">
+                                        <input type="radio" name="approxIntakeHardLiquor" value="occasional"> Occasional
+                                        <input type="radio" name="approxIntakeHardLiquor" value="often"> Often
+                                        &nbsp; &nbsp;
+                                        <label for="howOftenHardLiquor">
+                                            If often &nbsp;
+                                        </label><input type="number" id="howOftenHardLiquor" name="howOftenHardLiquor" class="text-box" style="width:50px">
+                                        &nbsp; Per week
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>At any time in the past,were you a heavy drinker(Consumption of six ounces of hard liquor per day or more)?</legend>
+                                        <input type="radio" name="everHeavyDrinker" value="Yes">  Yes
+                                        <input type="radio" name="everHeavyDrinker" checked="" value="No">  No
+                                        <p><b>Comments</b></p>
+                                        <textarea id="heavyDrinkerComment" name="heavyDrinkerComment" style="width:85%;"></textarea>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>Do you usually use oil or margarine in place of high cholesterol shortening or butter?</legend>
+                                        <input type="radio" name="useOil" value="Yes">  Yes
+                                        <input type="radio" name="useOil" checked="" value="No">  No
+
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>Do you usually add salt at the table?</legend>
+                                        <input type="radio" name="ubstainFromExcessSugar" value="Yes">  Yes
+                                        <input type="radio" name="ubstainFromExcessSugar" checked="" value="No">  No
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>Do you eat different on weekends as compared to weekdays?</legend>
+                                        <input type="radio" name="eatDifferentOnWeekends" value="Yes">  Yes
+                                        <input type="radio" name="eatDifferentOnWeekends" checked="" value="No">  No
+                                    </fieldset>
+
+
+                                    <p class="marg-top-16px"><b>Comments</b></p>
+                                    <textarea id="otherHeartDiseaseRiskFactor" name="otherHeartDiseaseRiskFactor" style="width:85%;"></textarea>
+
+                                </fieldset>
+
+                            </div>
+
+                            <div class="row marg-top-16px">
+                                <div class="col-xs-6">
+                                    <button type="button" class="btn btn-block btn-primary btn-sm">Save</button>
+                                </div>
+                                <div class="col-xs-6">
+                                    <button type="button" class="btn btn-block btn-primary btn-sm">Add History</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

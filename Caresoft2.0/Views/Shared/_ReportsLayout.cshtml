@@ -1,0 +1,38 @@
+﻿
+
+@{
+    ViewBag.ShowTopMenu = true;
+    if(ViewBag.IsPartial !=null && ViewBag.IsPartial)
+    {
+        //no parent layout and report params 
+
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        Html.Partial("~/Views/Reports/ReportParams.cshtml");
+    }
+
+    var rHeader = "_DefaultReportsHeader";
+    if (ViewBag.ReportHeader != null)
+    {
+        rHeader = ViewBag.ReportHeader;
+    }
+}
+<style>
+   
+</style>
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="pull-right">
+            <button class="btn btn-sm btn-primary" onclick="$('page').print()">Print</button>
+            <a href="/reports" class="btn btn-sm btn-danger">Close</a>
+        </div>
+        <page size="@ViewBag.Size" orientation="@ViewBag.Orientation" style="height:auto !important">
+            <div class="panel-body">
+                @Html.Partial(rHeader)
+                @RenderBody()
+            </div>
+        </page>
+    </div>
+</div>

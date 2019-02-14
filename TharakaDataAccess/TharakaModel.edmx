@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TharakaDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AddressBook">
+          <Key>
+            <PropertyRef Name="Srno" />
+            <PropertyRef Name="companyid" />
+          </Key>
+          <Property Name="Srno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PePatID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="250" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="250" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Fathername" Type="nvarchar" MaxLength="250" />
+          <Property Name="sex" Type="nvarchar" MaxLength="6" />
+          <Property Name="Age" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="PinCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="TelO" Type="nvarchar" MaxLength="50" />
+          <Property Name="TelR" Type="nvarchar" MaxLength="50" />
+          <Property Name="BloodGroup" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="Religion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Caste" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Reg_fees" Type="float" />
+          <Property Name="DoctorIncharge" Type="nvarchar" MaxLength="4000" />
+          <Property Name="EntryDate" Type="datetime" />
+          <Property Name="Kin" Type="nvarchar" MaxLength="50" />
+          <Property Name="MRDno" Type="nvarchar" MaxLength="50" />
+          <Property Name="PolicyNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="PatientCode" Type="int" />
+          <Property Name="PatientSubType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ref_doctor" Type="nvarchar" MaxLength="50" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" />
+          <Property Name="FinancialYearID" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="20" />
+          <Property Name="Dateofdischarge" Type="datetime" />
+          <Property Name="VillegeName" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="MedicoLegal" Type="bit" />
+          <Property Name="BroughtbyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PoliceName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MLCNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Initial" Type="char" MaxLength="10" />
+          <Property Name="Picture1" Type="image" />
+          <Property Name="state" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="country" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="admited" Type="bit" />
+          <Property Name="companyid" Type="int" Nullable="false" />
+          <Property Name="ageflag" Type="nvarchar" MaxLength="50" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="100" />
+          <Property Name="Appointment_Id" Type="int" />
+          <Property Name="barcode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pusername" Type="varchar" MaxLength="50" />
+          <Property Name="Ppassword" Type="varchar" MaxLength="50" />
+          <Property Name="pusertype" Type="varchar" MaxLength="50" />
+          <Property Name="UsersType" Type="varchar" MaxLength="50" />
+          <Property Name="EmpId" Type="int" />
+          <Property Name="EmpRelation" Type="nvarchar" MaxLength="50" />
+          <Property Name="CorpCompId" Type="int" />
+          <Property Name="CorpEmpId" Type="nvarchar" MaxLength="20" />
+          <Property Name="ModeOfPay" Type="nvarchar" MaxLength="50" />
+          <Property Name="Death" Type="bit" />
+          <Property Name="CardNo" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TokenNo" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Relation" Type="nvarchar" MaxLength="50" />
+          <Property Name="CardHolder" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dispensary" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeptId" Type="int" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsDental" Type="bit" />
+          <Property Name="MaritalStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="DemographyRemark" Type="nvarchar" MaxLength="2500" />
+          <Property Name="RegExpireDate" Type="date" />
+          <Property Name="PAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="PPinCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="PCity" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="PMobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="PTelO" Type="nvarchar" MaxLength="50" />
+          <Property Name="PTelR" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pcountry" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Pstate" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="PVillegeName" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NationalId" Type="nvarchar" MaxLength="50" />
+          <Property Name="NationalIdType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChkSosChild" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'embutown_webhms.dbo.users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="USERID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="50" />
+          <Property Name="PASSWD" Type="varchar" MaxLength="50" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="DEPT" Type="varchar" MaxLength="50" />
+          <Property Name="roomid" Type="int" />
+          <Property Name="PHONE" Type="varchar" MaxLength="15" />
+          <Property Name="MOBILE" Type="varchar" MaxLength="15" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="secu_que" Type="nvarchar" MaxLength="500" />
+          <Property Name="secu_ans" Type="nvarchar" MaxLength="500" />
+          <Property Name="companyid" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="mastmodeid" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="pno" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="ActiveInactive" Type="bit" />
+          <Property Name="Adminmodule" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'embutown_webhms.dbo.view_servicechartter' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_servicechartter">
+          <Key>
+            <PropertyRef Name="groups" />
+            <PropertyRef Name="Particular" />
+            <PropertyRef Name="groupid" />
+          </Key>
+          <Property Name="groups" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Particular" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="rate" Type="float" />
+          <Property Name="RateTypeID" Type="int" />
+          <Property Name="groupid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TharakaDataModelStoreContainer">
+          <EntitySet Name="AddressBook" EntityType="Self.AddressBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [users].[USERID] AS [USERID], 
+    [users].[USERNAME] AS [USERNAME], 
+    [users].[PASSWD] AS [PASSWD], 
+    [users].[EMAIL] AS [EMAIL], 
+    [users].[DEPT] AS [DEPT], 
+    [users].[roomid] AS [roomid], 
+    [users].[PHONE] AS [PHONE], 
+    [users].[MOBILE] AS [MOBILE], 
+    [users].[Type] AS [Type], 
+    [users].[secu_que] AS [secu_que], 
+    [users].[secu_ans] AS [secu_ans], 
+    [users].[companyid] AS [companyid], 
+    [users].[mastmodeid] AS [mastmodeid], 
+    [users].[pno] AS [pno], 
+    [users].[ExpiryDate] AS [ExpiryDate], 
+    [users].[ActiveInactive] AS [ActiveInactive], 
+    [users].[Adminmodule] AS [Adminmodule]
+    FROM [dbo].[users] AS [users]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_servicechartter" EntityType="Self.view_servicechartter" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_servicechartter].[groups] AS [groups], 
+    [view_servicechartter].[Particular] AS [Particular], 
+    [view_servicechartter].[rate] AS [rate], 
+    [view_servicechartter].[RateTypeID] AS [RateTypeID], 
+    [view_servicechartter].[groupid] AS [groupid]
+    FROM [dbo].[view_servicechartter] AS [view_servicechartter]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TharakaDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AddressBook">
+          <Key>
+            <PropertyRef Name="Srno" />
+            <PropertyRef Name="companyid" />
+          </Key>
+          <Property Name="Srno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PePatID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Fathername" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="sex" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TelO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TelR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BloodGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="Religion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Caste" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Reg_fees" Type="Double" />
+          <Property Name="DoctorIncharge" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
+          <Property Name="Kin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MRDno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PolicyNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="PatientCode" Type="Int32" />
+          <Property Name="PatientSubType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ref_doctor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FinancialYearID" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Dateofdischarge" Type="DateTime" Precision="3" />
+          <Property Name="VillegeName" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MedicoLegal" Type="Boolean" />
+          <Property Name="BroughtbyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PoliceName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MLCNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Initial" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Picture1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="state" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="country" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="admited" Type="Boolean" />
+          <Property Name="companyid" Type="Int32" Nullable="false" />
+          <Property Name="ageflag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Appointment_Id" Type="Int32" />
+          <Property Name="barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pusername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ppassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pusertype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UsersType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpId" Type="Int32" />
+          <Property Name="EmpRelation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CorpCompId" Type="Int32" />
+          <Property Name="CorpEmpId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ModeOfPay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Death" Type="Boolean" />
+          <Property Name="CardNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TokenNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Relation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CardHolder" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dispensary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeptId" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsDental" Type="Boolean" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DemographyRemark" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Name="RegExpireDate" Type="DateTime" Precision="0" />
+          <Property Name="PAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PPinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PCity" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PTelO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PTelR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pcountry" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Pstate" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PVillegeName" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NationalId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NationalIdType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChkSosChild" Type="Int32" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="USERID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DEPT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="roomid" Type="Int32" />
+          <Property Name="PHONE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="MOBILE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="secu_que" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="secu_ans" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="companyid" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="mastmodeid" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="pno" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="ActiveInactive" Type="Boolean" />
+          <Property Name="Adminmodule" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="TharakaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AddressBooks" EntityType="Self.AddressBook" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="view_servicechartter" EntityType="TharakaDataModel.view_servicechartter" />
+        </EntityContainer>
+        <EntityType Name="view_servicechartter">
+          <Key>
+            <PropertyRef Name="groups" />
+            <PropertyRef Name="Particular" />
+            <PropertyRef Name="groupid" />
+          </Key>
+          <Property Name="groups" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Particular" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="rate" Type="Double" />
+          <Property Name="RateTypeID" Type="Int32" />
+          <Property Name="groupid" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TharakaDataModelStoreContainer" CdmEntityContainer="TharakaEntities">
+          <EntitySetMapping Name="AddressBooks">
+            <EntityTypeMapping TypeName="TharakaDataModel.AddressBook">
+              <MappingFragment StoreEntitySet="AddressBook">
+                <ScalarProperty Name="Srno" ColumnName="Srno" />
+                <ScalarProperty Name="PePatID" ColumnName="PePatID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Fathername" ColumnName="Fathername" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="TelO" ColumnName="TelO" />
+                <ScalarProperty Name="TelR" ColumnName="TelR" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Religion" ColumnName="Religion" />
+                <ScalarProperty Name="Caste" ColumnName="Caste" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Reg_fees" ColumnName="Reg_fees" />
+                <ScalarProperty Name="DoctorIncharge" ColumnName="DoctorIncharge" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="Kin" ColumnName="Kin" />
+                <ScalarProperty Name="MRDno" ColumnName="MRDno" />
+                <ScalarProperty Name="PolicyNo" ColumnName="PolicyNo" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="PatientCode" ColumnName="PatientCode" />
+                <ScalarProperty Name="PatientSubType" ColumnName="PatientSubType" />
+                <ScalarProperty Name="Ref_doctor" ColumnName="Ref_doctor" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="FinancialYearID" ColumnName="FinancialYearID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="Dateofdischarge" ColumnName="Dateofdischarge" />
+                <ScalarProperty Name="VillegeName" ColumnName="VillegeName" />
+                <ScalarProperty Name="MedicoLegal" ColumnName="MedicoLegal" />
+                <ScalarProperty Name="BroughtbyName" ColumnName="BroughtbyName" />
+                <ScalarProperty Name="PoliceName" ColumnName="PoliceName" />
+                <ScalarProperty Name="MLCNo" ColumnName="MLCNo" />
+                <ScalarProperty Name="Initial" ColumnName="Initial" />
+                <ScalarProperty Name="Picture1" ColumnName="Picture1" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="admited" ColumnName="admited" />
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="ageflag" ColumnName="ageflag" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Appointment_Id" ColumnName="Appointment_Id" />
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+                <ScalarProperty Name="Pusername" ColumnName="Pusername" />
+                <ScalarProperty Name="Ppassword" ColumnName="Ppassword" />
+                <ScalarProperty Name="pusertype" ColumnName="pusertype" />
+                <ScalarProperty Name="UsersType" ColumnName="UsersType" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="EmpRelation" ColumnName="EmpRelation" />
+                <ScalarProperty Name="CorpCompId" ColumnName="CorpCompId" />
+                <ScalarProperty Name="CorpEmpId" ColumnName="CorpEmpId" />
+                <ScalarProperty Name="ModeOfPay" ColumnName="ModeOfPay" />
+                <ScalarProperty Name="Death" ColumnName="Death" />
+                <ScalarProperty Name="CardNo" ColumnName="CardNo" />
+                <ScalarProperty Name="TokenNo" ColumnName="TokenNo" />
+                <ScalarProperty Name="Relation" ColumnName="Relation" />
+                <ScalarProperty Name="CardHolder" ColumnName="CardHolder" />
+                <ScalarProperty Name="Dispensary" ColumnName="Dispensary" />
+                <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="IsDental" ColumnName="IsDental" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="DemographyRemark" ColumnName="DemographyRemark" />
+                <ScalarProperty Name="RegExpireDate" ColumnName="RegExpireDate" />
+                <ScalarProperty Name="PAddress" ColumnName="PAddress" />
+                <ScalarProperty Name="PPinCode" ColumnName="PPinCode" />
+                <ScalarProperty Name="PCity" ColumnName="PCity" />
+                <ScalarProperty Name="PMobile" ColumnName="PMobile" />
+                <ScalarProperty Name="PTelO" ColumnName="PTelO" />
+                <ScalarProperty Name="PTelR" ColumnName="PTelR" />
+                <ScalarProperty Name="Pcountry" ColumnName="Pcountry" />
+                <ScalarProperty Name="Pstate" ColumnName="Pstate" />
+                <ScalarProperty Name="PVillegeName" ColumnName="PVillegeName" />
+                <ScalarProperty Name="NationalId" ColumnName="NationalId" />
+                <ScalarProperty Name="NationalIdType" ColumnName="NationalIdType" />
+                <ScalarProperty Name="ChkSosChild" ColumnName="ChkSosChild" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="TharakaDataModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PASSWD" ColumnName="PASSWD" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="DEPT" ColumnName="DEPT" />
+                <ScalarProperty Name="roomid" ColumnName="roomid" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="MOBILE" ColumnName="MOBILE" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="secu_que" ColumnName="secu_que" />
+                <ScalarProperty Name="secu_ans" ColumnName="secu_ans" />
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="mastmodeid" ColumnName="mastmodeid" />
+                <ScalarProperty Name="pno" ColumnName="pno" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="ActiveInactive" ColumnName="ActiveInactive" />
+                <ScalarProperty Name="Adminmodule" ColumnName="Adminmodule" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_servicechartter">
+            <EntityTypeMapping TypeName="TharakaDataModel.view_servicechartter">
+              <MappingFragment StoreEntitySet="view_servicechartter">
+                <ScalarProperty Name="groupid" ColumnName="groupid" />
+                <ScalarProperty Name="RateTypeID" ColumnName="RateTypeID" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="Particular" ColumnName="Particular" />
+                <ScalarProperty Name="groups" ColumnName="groups" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

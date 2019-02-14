@@ -1,0 +1,497 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    ViewBag.WideView = true;
+    ViewBag.Title = " Cornea Clinic";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+
+}
+
+<style>
+    .box-sm{
+        width:130px;
+    }
+
+    .box-xs{
+        width:50px;
+    }
+</style>
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading">
+        Cornea Clinic
+    </div>
+    <div class="panel-body">
+        <form id="cornea_clinic_form">
+            <fieldset>
+                <table class="table-form">
+                    <tr>
+                        <td>
+                            <label for="EntryDate">Entry Date</label>
+                        </td>
+                        <td>
+                            <input type="date" class="text-box box-sm" required name="EntryDate" id="EntryDate"
+                                   value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                            <input type="hidden" name="OPDNo" value="@ViewBag.OPDNo">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Presenting Complaints</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-sm" name="PresentingComplaints">
+                        </td>
+
+                        <td>
+                            <label>Duration</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-sm" name="Duration">
+                        </td>
+
+                        <td>
+                            <label>H/O Exanthematous Fever</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-sm" name="HOExanthematousFever">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Redness</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-sm" name="Redness">
+                        </td>
+
+                        <td>
+                            <label>Pain</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-sm" name="Pain">
+                        </td>
+
+                        <td>
+                            <label>H/O Usage of CL</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-sm" name="HOUsageOfCL">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Discharge</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-sm" name="Discharge">
+                        </td>
+
+                        <td>
+                            <label>Pat Attacks</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-sm" name="PatAttacks">
+                        </td>
+
+                        <td>
+                            <label>H/O Surgery</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-sm" name="HOSurgery">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Treatment H/O Systemic</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-sm" name="TreatmentHOSystemic">
+                        </td>
+
+                        <td>
+                            <label>Local</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-sm" name="Local">
+                        </td>
+
+                        <td>
+                            <label>Family H/O</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-sm" name="HOSurgery">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <div class="row marg-top-2px">
+                <div class="col-sm-4">
+                    <fieldset>
+                        <table class="table-form">
+                            <tr>
+                                <td></td>
+                                <th>Right</th>
+                                <th>Left</th>
+                            </tr>
+                            <tr>
+                                <td>VA</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="VARight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="VALeft" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Corrected VA</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="CorrectedVARight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="CorrectedVALeft" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Conjunctiva</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="ConjunctivaRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="ConjunctivaLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Adnexa</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="AdnexaRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="AdnexaLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Anterior Chambers</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="AnteriorChambersRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="AnteriorChambersLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>IRIS</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="IRISRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="IRISLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>LENS</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="LENSRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="LENSLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Vitreous</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="VitreousRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="VitreousLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Fundus</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="FundusRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="FundusLeft" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>IOP</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="IOPRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="IOPLeft" />
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </div>
+                <div class="col-sm-4">
+                    <fieldset>
+                        <table class="table-form">
+                            <tr>
+                                <td></td>
+                                <th>Right</th>
+                                <th>Left</th>
+                            </tr>
+                            <tr>
+                                <td>Ulcer Size</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="UlcerSizeRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="UlcerSizeLeft" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Ulcer Depth</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="UlcerDepthRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="UlcerDepthLeft" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Opacity N</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="OpacityNRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="OpacityNLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Opacity L</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="OpacityLRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="OpacityLLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Sup</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="SupRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="SupLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Deep</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="DeepRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="DeepLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Adherant</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="AdherantRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="AdherantLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Depth Opacity</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="DepthOpacityRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="DepthOpacityLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Corneal Sensation</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="CornealSensationRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="CornealSensationLeft" />
+                                </td>
+                            </tr>
+
+                        </table>
+                    </fieldset>
+                </div>
+                <div class="col-sm-4">
+                    <fieldset>
+                        <table class="table-form">
+                            <tr>
+                                <td></td>
+                                <th>Right</th>
+                                <th>Left</th>
+                            </tr>
+                            <tr>
+                                <td>Schimer Test</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="SchimerTestRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="SchimerTestLeft" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>km</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="kmRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="kmLeft" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>C.Scraping Grams</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="CScrapingGramsRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="CScrapingGramsLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>KOH</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="KOHRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="KOHLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Culture</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="CultureRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="CultureLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>C.Staining Fluorescence</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="CStainingFluorescenceRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="CStainingFluorescenceLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Rose Bengal</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="RoseBengalRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="RoseBengalLeft" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Lissamine</td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="LissamineRight" />
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xs" name="LissamineLeft" />
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="marg-top-2px">
+                <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+                <input type="reset" class="btn btn-sm btn-primary" value="clear" />
+            </div>
+        </form>
+
+    </div>
+    <div class="panel-footer">
+        <div class="form-group scrollable-table-container" id="cornea-clinic-log">
+           
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var logContainer = $('#cornea-clinic-log');
+        markRequiredFields();
+        
+        getRecentInfo();
+
+        getCorneaLog();
+
+        function getCorneaLog() {
+            var containerWidth = logContainer.width();
+            $.ajax({
+                type: "GET",
+                url: "/EMR/CorneaClinic/"+@Model.OpdRegister.Id+"?log=true",
+                success: function (result) {
+                    logContainer.html(result);
+                    logContainer.css("width", containerWidth);
+                }
+            });
+        }
+
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+               
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+        $("#cornea_clinic_form").submit(function (e) {
+            e.preventDefault();
+
+            var data = $(this).serializeObject();
+            $(".loader").show();
+
+            $.ajax({
+                type: "POST",
+                url: "/EMR/SaveCorneaEntry/",
+                data:data,
+                success: function (result) {
+                    $(".loader").hide();
+                    showNotification(result.Message, result.Status, true);
+                    window.location.href = "/emr/consultation/"+@ViewBag.OPDNo;
+                },
+                error: function (e, x, r) {
+                    $(".loader").hide();
+                }
+            });
+
+        })
+    </script>
+}

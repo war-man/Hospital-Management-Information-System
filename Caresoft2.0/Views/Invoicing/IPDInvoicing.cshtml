@@ -1,0 +1,224 @@
+﻿@using CaresoftHMISDataAccess;
+
+<table class="marg-top-16px" width="100%">
+    <tbody>
+        <tr>
+            <td colspan="4" valign="top">
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <td valign="top">Admission Date</td>
+                            <td valign="top"><input style="width:80%" type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" name="AdmissionDate" class="text-box margin-top-bottom-2" /></td>
+                            <td valign="top">Discharge Date</td>
+                            <td valign="top"><input style="width:80%" type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" name="DischargeDate" class="text-box margin-top-bottom-2" /></td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Patient Number</td>
+                            <td valign="top"><input style="width:80%" id="PatientNumber" name="PatientNumber" class="text-box margin-top-bottom-2" /></td>
+                            <td valign="top">Leave Date</td>
+                            <td valign="top"><input style="width:80%" type="date" name="LeaveDate" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="text-box margin-top-bottom-2" /></td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Visit Number</td>
+                            <td valign="top"><input readonly type="number" style="width:80%" id="OPDNumber" name="OPDNumber" class="text-box margin-top-bottom-2" /></td>
+                            <td rowspan="3" colspan="2">
+                                <br />
+                                <div style="width:90%; overflow:auto; height:100px">
+
+
+                                    <!-- Editable table -->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div id="table_editable" class="table-editable">
+
+                                                <table id="insuranceTables" class="table table-condensed table-data-pathology text-center">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th class="text-center">A/C No</th>
+                                                            <th class="text-center">INSURANCE</th>
+                                                            <th class="text-center">AMT</th>
+                                                            <th>
+
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody style="background:White;" id="insuranceTablesBody">
+                                                        <tr>
+                                                            <td></td>
+                                                            <td class="pt-3-half insurance-acc_no" contenteditable="false"></td>
+                                                            <td class="pt-3-half insurance-name" contenteditable="true"></td>
+                                                            <td class="pt-3-half insurance-amount" contenteditable="false"></td>
+                                                            <td>
+                                                            </td>
+
+                                                        </tr>
+                                                        @*<tr>
+                                                            <td class="pt-3-half acc_no" contenteditable="false">23/OI</td>
+                                                            <td class="pt-3-half name" contenteditable="true">NHIF</td>
+                                                            <td class="pt-3-half amount" contenteditable="false"></td>
+                                                            <td>
+                                                                <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-xs my-0">Remove</button></span>
+                                                            </td>
+                                                        </tr>*@
+
+                                                    </tbody>
+                                                    <!-- This is our clonable table line -->
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Editable table -->
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Patient Name</td>
+                            <td valign="top"><input readonly style="width:80%" id="PatientName" name="PatientName" class="text-box margin-top-bottom-2" /></td>
+
+                        </tr>
+                        <tr>
+                            <td valign="top">Scheme Name</td>
+                            <td valign="top"><input readonly style="width:80%" id="TarrifName" name="TarrifName" class="text-box margin-top-bottom-2" /></td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br />
+
+                <div  width="95%" id="billingTable">
+                    <table class="table table-condensed table-responsive table-data-pathology bg-white" style="background-color:white">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Gross</th>
+                                <th>Discount</th>
+                                <th>Disc Amt</th>
+                                <th>Net Amt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="5"> No Data To Display</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </td>
+            <td colspan="2" valign="top">
+                <fieldset>
+
+                    <div class="col-md-12">
+                        <table width="100%">
+                            <tbody>
+                                <tr style="padding:5px;">
+                                    <td></td>
+                                    <td>
+                                        <input type="radio" name="NHIFRebate" value="preAuth" class="NHIFRebate text-box margin-top-bottom-2" /> Pre-Auth
+                                        <input type="radio" name="NHIFRebate" value="Yes" class="NHIFRebate text-box margin-top-bottom-2" /> NHIF Rebate
+                                    </td>
+                                </tr>
+                                <tr style="padding:5px;">
+                                    <td></td>
+                                    <td>
+                                        <input type="radio" checked name="NHIFRebate" value="No" class=" NHIFRebate text-box margin-top-bottom-2" /> No HNIF Rebate
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">HNIF Category</td>
+                                    <td valign="top">
+                                        <select disabled style="width:60%" class="text-box" id="nhif-category">
+
+                                            <option>Select Category</option>
+                                            @foreach (var cat in (List<Rebate>)ViewBag.NHIFRebates)
+                                            {
+                                                <option id="@cat.Id" data-perday="@cat.PerDay" value="@cat.Amount">@cat.RebateName</option>
+
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">No of Days</td>
+                                    <td valign="top"><input type="" readonly style="width:60%" id="NoOfDays" name="NoOfDays" class="text-box margin-top-bottom-2" /></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">Claim No</td>
+                                    <td valign="top"><input name="ClaimNo" readonly style="width:60%" class="text-box margin-top-bottom-2" /></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">Card No</td>
+                                    <td valign="top"><input name="CardNo" style="width:60%" class="text-box margin-top-bottom-2" /></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">Pay Mode</td>
+                                    <td valign="top"><input name="PayMode" readonly style="width:60%" class="text-box margin-top-bottom-2" /></td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+
+                <br />
+
+                <fieldset>
+                    <div class="col-md-12">
+                        <table width="100%">
+                            <tbody>
+                                <tr>
+                                    <td valign="top">Amount To Award</td>
+                                    <td valign="top"><input name="AmountToAward" id="AmountToAward" class="text-box margin-top-bottom-2" /></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">Total Bill</td>
+                                    <td valign="top"><input name="TotalBill" id="TotalBill" readonly class="text-box margin-top-bottom-2" /></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">Discount Amount</td>
+                                    <td valign="top"><input name="DiscountAmount" id="DiscountAmount" readonly class="text-box margin-top-bottom-2" /></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">Total Deposits</td>
+                                    <td valign="top"><input name="TotalDeposits" id="TotalDeposits" readonly class="text-box margin-top-bottom-2" /></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">Total TotalAwarded</td>
+                                    <td valign="top"><input name="TotalAwarded" value="0" id="TotalAwarded" readonly class="text-box margin-top-bottom-2" /></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">NHIF Rebate</td>
+                                    <td valign="top"><input name="NHIFRebate" id="NHIFRebate" readonly class="text-box margin-top-bottom-2" /></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">NHIF Diff</td>
+                                    <td valign="top"><input name="NHIFDiff" id="NHIFDiff" readonly class="text-box margin-top-bottom-2" /></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">Net Value</td>
+                                    <td valign="top"><input name="NetValue" id="NetValue" readonly class="text-box margin-top-bottom-2" /></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">Refund</td>
+                                    <td valign="top"><input name="Refund" id="Refund" readonly class="text-box margin-top-bottom-2" /></td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </fieldset>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

@@ -1,0 +1,106 @@
+﻿@model LabsDataAccess.Test_Turn_Around_Times
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Test_Turn_Around_Times</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Test)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Test)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TTAT_Days)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TTAT_Days)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TTAT_Hours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TTAT_Hours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RDD_Days)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RDD_Days)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RDD_Hours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RDD_Hours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vial_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vial_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.srno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.srno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.srno1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.srno1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedUtc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedUtc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentRadPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartmentRadPath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,574 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var myProfile = new CaresoftHMISDataAccess.RenalDialysisInfo();
+
+    if (Model.OpdRegister.RenalDialysisInfoes != null)
+    {
+        myProfile = Model.OpdRegister.RenalDialysisInfoes
+            .OrderByDescending(e => e.Id).FirstOrDefault();
+    }
+
+    var relationships = (List<CaresoftHMISDataAccess.Relationship>)ViewBag.Relationships;
+    var maritals = (List<CaresoftHMISDataAccess.MaritalStatu>)ViewBag.Maritals;
+
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Patient Details";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>Patient Details</p>
+    </div>
+    <style>
+        input.box-sm {
+            width: 120px
+        }
+    </style>
+    <div class="panel-body">
+        <form id="maternal_profile" method="post" action="@Url.Action("SaveDialysisInfo", "RenalHaemodialysis")">
+            <input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+            <fieldset>
+
+                <table class="table-form marg-top-16px">
+
+
+
+                    <tr>
+                        <td>
+                            <label>
+                                Time
+                            </label>
+                        </td>
+                        <td>
+                            <input type="time" name="Time" class="text-box box-lg" required />
+                        </td>
+
+
+                    </tr>
+
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label for="BP">
+                                B/P
+                            </label>
+                        </td>
+                        <td>
+                            <input name="BP" required type="text" class="text-box box-lg" />
+                        </td>
+                        <td>
+                            <label>
+                                Pulse
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" name="Pulse" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>
+                                Temp
+                            </label>
+                        </td>
+                        <td>
+                            <input type="number" name="Temp" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>BFR</label>
+                        </td>
+                        <td>
+                            <input type="text" name="BFR" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>TMP</label>
+                        </td>
+                        <td>
+                            <input type="text" name="TMP" class="text-box box-lg" required />
+                        </td>
+
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label>UF</label>
+                        </td>
+                        <td>
+                            <input type="text" name="UF" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>VP</label>
+                        </td>
+                        <td>
+                            <input type="text" name="VP" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>DP</label>
+                        </td>
+                        <td>
+                            <input type="text" name="DP" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>DR</label>
+                        </td>
+                        <td>
+                            <input type="text" name="DR" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>Dial Temp</label>
+                        </td>
+                        <td>
+                            <input type="text" name="DialTemp" class="text-box box-lg" required />
+                        </td>
+
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+
+
+                    <tr>
+                        <td>
+                            <label>Heparin</label>
+                        </td>
+                        <td>
+                            <input type="text" name="Heparin" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>Pro. sulp</label>
+                        </td>
+                        <td>
+                            <input type="text" name="ProSulp" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>Fluids</label>
+                        </td>
+                        <td>
+                            <input type="number" name="Fluids" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>Coag Time</label>
+                        </td>
+                        <td>
+                            <input type="time" name="CoagTime" class="text-box box-lg" required />
+                        </td>
+
+                    </tr>
+
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label>Comments</label>
+                        </td>
+                        <td>
+                            <textarea type="text" name="Comments" class="text-box box-lg" required> </textarea>
+                        </td>
+
+
+                    </tr>
+
+
+
+
+                </table>
+                <input type="submit" class="btn btn-sm btn-primary " value="Save" />
+
+                @Html.ActionLink("Continue", "PostDialysisObservation", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+@style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+
+                @Html.ActionLink("Previous", "MachineChecks", new { id = @Model.OpdRegister.Id }, new
+           {
+               @class = "btn btn-primary btn-sm",
+               @style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"
+           })
+
+
+
+            </fieldset>
+
+        </form>
+        <div>
+            @Html.Partial("DialysisInfoList", Model.OpdRegister.RenalDialysisInfoes)
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+    </script>
+}
+
+
+
+
+
+
+
+
+<!--
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Style the close button */
+        .topright {
+            float: right;
+            cursor: pointer;
+            font-size: 28px;
+        }
+
+            .topright:hover {
+                color: red;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="modal-content">
+        <div class="modal-body">
+
+
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'DialysisInfo')" id="defaultOpen">Dialysis</button>
+
+
+            </div>
+
+            <div id="DialysisInfo" class="tabcontent">
+                <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                <form id="maternal_profile" method="post" action="v@Url.Action("SaveDialysisInfo", "RenalHaemodialysis")">
+                    <input type="hidden" name="OPDNo" value="v@Model.OpdRegister.Id" />
+                    <fieldset>
+
+                        <table class="table-form marg-top-16px">
+
+
+
+                            <tr>
+                                <td>
+                                    <label>
+                                        Staff Setting Machine
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="text" name="Staff" class="text-box box-lg" required />
+                                </td>
+
+
+                            </tr>
+
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <tr>
+                                <td>
+                                    <label for="BP">
+                                        B/P
+                                    </label>
+                                </td>
+                                <td>
+                                    <input name="BP" required type="text" class="text-box box-lg" />
+                                </td>
+                                <td>
+                                    <label>
+                                        Pulse
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="text" name="Pulse" class="text-box box-lg" required />
+                                </td>
+                                <td>
+                                    <label>
+                                        Temp
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="number" name="Temp" class="text-box box-lg" required />
+                                </td>
+                                <td>
+                                    <label>BFR</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="BFR" class="text-box box-lg" required />
+                                </td>
+                                <td>
+                                    <label>TMP</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="TMP" class="text-box box-lg" required />
+                                </td>
+
+                            </tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <tr>
+                                <td>
+                                    <label>UF</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="UF" class="text-box box-lg" required />
+                                </td>
+                                <td>
+                                    <label>VP</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="VP" class="text-box box-lg" required />
+                                </td>
+                                <td>
+                                    <label>DP</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="DP" class="text-box box-lg" required />
+                                </td>
+                                <td>
+                                    <label>DR</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="DR" class="text-box box-lg" required />
+                                </td>
+                                <td>
+                                    <label>Dial Temp</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="DialTemp" class="text-box box-lg" required />
+                                </td>
+
+                            </tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+
+
+
+                            <tr>
+                                <td>
+                                    <label>Heparin</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="Heparin" class="text-box box-lg" required />
+                                </td>
+                                <td>
+                                    <label>Pro. sulp</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="ProSulp" class="text-box box-lg" required />
+                                </td>
+                                <td>
+                                    <label>Fluids</label>
+                                </td>
+                                <td>
+                                    <input type="number" name="Fluids" class="text-box box-lg" required />
+                                </td>
+                                <td>
+                                    <label>Coag Time</label>
+                                </td>
+                                <td>
+                                    <input type="time" name="CoagTime" class="text-box box-lg" required />
+                                </td>
+
+                            </tr>
+
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <tr>
+                                <td>
+                                    <label>Comments</label>
+                                </td>
+                                <td>
+                                    <textarea type="time" name="Comments" class="text-box box-lg" required> </textarea>
+                                </td>
+
+
+                            </tr>
+
+
+
+
+                        </table>
+                        <input type="submit" class="btn btn-sm btn-primary " value="Save" />
+
+
+                    </fieldset>
+
+                </form>
+
+            </div>
+
+            <div id=" PostDialysisObservation" class="tab-content">
+                <span onclick="this.parentElement.style.display = 'none'" class="topright">&times</span>
+                <form id="maternal_profile" method="post" action="*@@Url.Action("SavePostDialysisObservation", "RenalHaemodialysis")">
+                    <input type="hidden" name="OPDNo" value="8@Model.OpdRegister.Id" />
+                    <fieldset>
+
+                        <table class="table-form marg-top-16px">
+
+
+
+                            <tr>
+
+                            <tr>
+                                <td>
+                                    <label for="BP">
+                                        B/P
+                                    </label>
+                                </td>
+                                <td>
+                                    <input name="BP" required type="text" class="text-box box-lg" />
+                                </td>
+                                <td>
+                                    <label>
+                                        Pulse
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="text" name="Pulse" class="text-box box-lg" required />
+                                </td>
+                                <td>
+                                    <label>
+                                        Temp
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="number" name="Temp" class="text-box box-lg" required />
+                                </td>
+
+
+                            </tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <tr>
+                                <td>
+                                    <label>
+                                        Temp
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="number" name="Temp" class="text-box box-lg" required />
+                                </td>
+                                <td>
+                                    <label>
+                                        Respiration
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="text" name="Respiration" class="text-box box-lg" required />
+                                </td>
+
+                            </tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+
+
+                            <tr>
+                                <td>
+                                    <label>Remarks</label>
+                                </td>
+                                <td>
+                                    <textarea type="text" name="Remarks" class="text-box box-lg" required> </textarea>
+                                </td>
+
+
+                            </tr>
+
+
+
+
+                        </table>
+                        <input type="submit" class="btn btn-sm btn-primary " value="Save" />
+
+
+                    </fieldset>
+
+                </form>
+
+            </div>
+            <script>
+                function openTab(evt, tabName) {
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }
+                    tablinks = document.getElementsByClassName("tablinks");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" active", "");
+                    }
+                    document.getElementById(tabName).style.display = "block";
+                    evt.currentTarget.className += " active";
+                }
+
+                // Get the element with id="defaultOpen" and click on it
+                document.getElementById("defaultOpen").click();
+            </script>
+            </div>
+        </div>
+
+</body>
+</html> -->

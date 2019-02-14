@@ -1,0 +1,87 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.AdmissionRecommendation>
+@{
+    ViewBag.showTopMenu = true;
+    ViewBag.Title = "Admit Recommended";
+}
+
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                <table class="table-form">
+                    <tr>
+                        <td><label>From Date</label></td>
+                        <td>
+                            <input type="date" class="text-box box-lg" />
+                        </td>
+                        <td><label>To Date</label></td>
+                        <td>
+                            <input type="date" class="text-box box-lg" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Room Category</label></td>
+                        <td>
+                            <select class="text-box box-lg">
+
+                            </select>
+                        </td>
+                        <td><label>Barcode</label></td>
+                        <td>
+                            <input type="text" class="text-box box-lg" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Reg Number</label></td>
+                        <td>
+                            <input type="text" class="text-box box-lg" />
+                        </td>
+                        <td><label>Name</label></td>
+                        <td>
+                            <input type="text" class="text-box box-lg" />
+                        </td>
+                    </tr>
+                </table>
+                <div id="ipd-list" class="scrollable-table-container">
+                    @Html.Partial("AdmitRecommendedList", Model)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+<script>
+</script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

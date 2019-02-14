@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.Dose>
+
+<table class="table table-data-pathology table-condensed" style="background:white;">
+    <tr>
+        <th>Edit</th>
+        <th>Dose</th>
+        <th>Quantity</th>
+        <th>Description</th>
+        <th>Standard Time</th>
+        <th>Delete</th>
+    </tr>
+
+    @if(Model == null || Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="6" class="text-center">No data</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Ajax.ActionLink("Edit", "EditDose", "MedicalStoreMaster", new { id = item.Id }, new AjaxOptions
+               {
+                   UpdateTargetId = "modal-content",
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   LoadingElementId = "loadingElement",
+                   OnSuccess = "$('#modal-forms-holder').modal('show');"
+
+               }, new {@class="btn btn-xs btn-primary" })
+                    @*<button class="btn btn-sm btn-primary btn-xs btnDelete">Edit</button>*@
+                </td>
+                <td>@item.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Description</td>
+                <td>@item.StandardTime</td>
+                <td><button class="btn btn-sm btn-primary btn-xs btnDelete">Delete</button></td>
+            </tr>
+        }
+    }
+
+</table>

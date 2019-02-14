@@ -1,0 +1,89 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.RenalDialysisOrder>
+
+
+@{
+
+}
+
+
+
+
+
+<table class="table table-caresoft table-condensed">
+    <thead>
+        <tr>
+            <td style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"> <b><i>OPD No</i></b></td>
+            <td></td>
+            <td></td>
+            <th style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"><b><i>User</i></b></th>
+            <td></td>
+            <td></td>
+            <th style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"><b><i>Date Of Visit</i></b></th>
+
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+        <tr>
+            <td>@a.OPDNo</td>
+            <td></td>
+            <td></td>
+            <td>@a.UserId</td>
+            <td></td>
+            <td></td>
+            <td style="color:crimson">@a.DateAdded</td>
+
+
+        </tr>
+        }
+
+    </tbody>
+    <td>&nbsp;</td>
+
+
+
+    <thead>
+        <tr>
+            <th>Treatment Time</th>
+            <th>Priming</th>
+            <th>Dialysis Solution</th>
+            <td> Dialyzer</td>
+            <td>Bath K</td>
+            <td>Membarane Type</td>
+            <td>Heparinization</td>
+            
+
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+        <tr style="background-color:chartreuse">
+
+            <td>@a.TreatmentTime</td>
+            <td>@a.Priming</td>
+            <td>@a.DialysisSolution</td>
+            <td>@a.Dialyzer</td>
+            <td>@a.BathK</td>
+            <td>@a.MembraneType</td>
+            <td>@a.Heparinization</td>
+
+
+
+
+        </tr>
+        }
+
+    </tbody>
+
+
+
+
+
+
+</table>

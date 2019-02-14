@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.InvoiceDetail>
+
+@{ 
+    double grandTotal = 0;
+}
+
+<div class="row" style="overflow-y:scroll; max-height:250px;">
+    <div class="col-md-12">
+        <table class="table table-data table-condensed table-bordered">
+            <thead>
+                <tr style="text-align:center">
+                    <th>Item Name</th>
+                    <th>Batch No</th>
+                    <th>Per</th>
+                    <th style="text-align:center">New CR</th>
+                    <th style="text-align:center">Quantity</th>
+                    <th style="text-align:center">Total Amount</th>
+                    <th>Exp Date</th>
+                    <th>Vat Amount</th>
+                    <th>Discount</th>
+                    <th>Free Quantity</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody style="background-color:ghostwhite;">
+                @if (Model.Count() > 0)
+                {
+
+                    foreach (var item in Model)
+                    {
+                    
+                        <tr>
+                            <td>@item.Item</td>
+                            <td>@item.BatchNo</td>
+                            <td>@item.per</td>
+                            <td style="text-align:center">@item.CostPrice.ToString("N2")</td>
+                            <td style="text-align:center">@item.Units</td>
+                            <td style="text-align:center">@item.Amount.ToString("N2")</td>
+                            <td>@item.ExpDate</td>
+                            <td>@item.VatAmt</td>
+                            <td>@item.Discount</td>
+                            <td>@item.FreeQty</td>
+
+                            <td><i class="fa fa-edit" data-value="@item.Id"></i></td>
+                            <td><i class="fa fa-trash" data-value="@item.Id"></i></td>
+
+
+                        </tr>
+                    
+                }
+
+            }
+            else
+            {
+                <tr><td colspan="12" style="text-align:center"> No Items Added to the invoice</td></tr>
+            }
+                </tbody>
+
+            </table>
+        @{
+            grandTotal = (Model.Sum(p => p.Amount) + Model.Sum(p => p.VatAmt) - Model.Sum(p => p.Discount));
+        }
+        @*<input type="hidden"
+               id="totalsValues"
+               data-linetotals="@lineTotals"
+               data-discounttotals="@discountTotals"
+               data-vattotals="@vat_cstTotal"
+               data-grandtotal="@grandTotal" />*@
+
+        <input type="hidden"
+               id="totalsValues"
+               data-linetotals="@Model.Sum(p=>p.Amount)"
+               data-discounttotals="@Model.Sum(p=>p.Discount)"
+               data-vattotals="@Model.Sum(p=>p.VatAmt)"
+               data-grandtotal="@grandTotal" />
+    </div>
+
+</div>

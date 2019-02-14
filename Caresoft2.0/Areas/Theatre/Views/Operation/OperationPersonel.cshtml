@@ -1,0 +1,110 @@
+﻿@model CaresoftHMISDataAccess.TheatrePatientBioData
+@using CaresoftHMISDataAccess;
+
+<fieldset>
+    <legend> <h5><b> Operation Personel </b> </h5> </legend>
+
+
+    @using (Ajax.BeginForm("PatientPreparation", "Registration", new AjaxOptions
+    {
+        OnFailure = "$('#message').text()",
+        OnSuccess = "getresult2",
+        LoadingElementId = "LoadingElement"
+    }))
+    {
+        @Html.AntiForgeryToken()
+
+        <p id="message"></p>
+        <form id="patientPreparationForm">
+            <div class="">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="col-md-6">
+                    <div>
+                        <fieldset style="padding: 10px;">
+                            <legend> <h5><b> Surgeon Registration </b> </h5> </legend>
+                            <section id="SelectedSurgeon"></section>
+                            <div>
+                                @foreach (var i in Model.TheatreOperationPersonels.Where(e => e.TheatreDesignation.DesignationName.Contains("Surgeon")))
+                                {
+                                    <strong>
+                                        @Html.DisplayFor(e => @i.User1.Employee.Designation.DesignationName)
+                                        @Html.DisplayFor(e => @i.User1.Employee.FName)
+                                        @Html.DisplayFor(e => @i.User1.Employee.OtherName)
+                                    </strong>
+                                    <span style="font-style:italic; width:100%">( @i.TheatreDesignation.DesignationName )</span>
+
+                                }
+
+                            </div>
+                        </fieldset>
+
+                        <fieldset style="padding: 10px;">
+                            <legend> <h5><b> Anaesthesists </b> </h5> </legend>
+                            <section id="SelectedAnaesthesists"></section>
+                            <div>
+                                @foreach (var i in Model.TheatreOperationPersonels.Where(e => e.TheatreDesignation.DesignationName.Contains("Anaesthesist")))
+                                {
+                                    <strong>
+                                        @Html.DisplayFor(e => @i.User1.Employee.Designation.DesignationName)
+                                        @Html.DisplayFor(e => @i.User1.Employee.FName)
+                                        @Html.DisplayFor(e => @i.User1.Employee.OtherName)
+                                    </strong>
+                                    <span style="font-style:italic; width:100%">( @i.TheatreDesignation.DesignationName )</span>
+
+                                }
+
+                            </div>
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div>
+                        <fieldset style="padding: 10px;">
+                            <legend> <h5><b> Scrub Nurses </b> </h5> </legend>
+                            <section id="SelectedScrubNurses"></section>
+                            <div>
+                                @foreach (var i in Model.TheatreOperationPersonels.Where(e => e.TheatreDesignation.DesignationName.Contains("Scrub Nurse")))
+                                {
+                                    <strong>
+                                        @Html.DisplayFor(e => @i.User1.Employee.Designation.DesignationName)
+                                        @Html.DisplayFor(e => @i.User1.Employee.FName)
+                                        @Html.DisplayFor(e => @i.User1.Employee.OtherName)
+                                    </strong>
+                                    <span style="font-style:italic; width:100%">( @i.TheatreDesignation.DesignationName )</span>
+                                }
+                            </div>
+                        </fieldset>
+
+                        <fieldset style="padding: 10px;">
+                            <legend> <h5><b> Circulatory Nurses </b> </h5> </legend>
+                            <section id="SelectedCirculatoryNurses"></section>
+                            <div>
+                                @foreach (var i in Model.TheatreOperationPersonels.Where(e => e.TheatreDesignation.DesignationName.Contains("Circulatory Nurse")))
+                                {
+                                    <strong>
+                                        @Html.DisplayFor(e => @i.User1.Employee.Designation.DesignationName)
+                                        @Html.DisplayFor(e => @i.User1.Employee.FName)
+                                        @Html.DisplayFor(e => @i.User1.Employee.OtherName)
+                                    </strong>
+                                    <span style="font-style:italic; width:100%">( @i.TheatreDesignation.DesignationName )</span>
+                                }
+                            </div>
+                        </fieldset>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-12">
+                <button id="savePatientPreparation" type="button" class="btn btn-sm btn-primary marg-top-6px"> Save </button>
+            </div>
+        </form>
+    }
+
+</fieldset>
+
+

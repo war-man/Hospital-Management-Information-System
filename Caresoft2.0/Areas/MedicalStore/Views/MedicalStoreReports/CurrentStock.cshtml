@@ -1,0 +1,172 @@
+﻿  
+
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.ItemMaster>
+
+
+@{
+    var cr = "";
+    var ido = "";
+
+    if (ViewBag.CurrentStockFilter != null)
+    {
+        cr = "checked";
+    }
+
+    if (ViewBag.IsDonor != null && ViewBag.IsDonor)
+    {
+        ido = "checked";
+
+    }
+
+    string currentStockFilter = "";
+
+    if (ViewBag.CurrentStockFilter != null)
+    {
+        currentStockFilter = (string)ViewBag.CurrentStockFilter;
+    }
+    else
+    {
+        currentStockFilter = null;
+    }
+
+    ViewBag.Title = "Current Stock";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+}
+
+<style>
+    .text-box {
+        width: 200px;
+        margin-top: 2px;
+    }
+</style>
+
+<div class="col-md-10">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading">
+            <strong> Current Stock </strong>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    @using (Html.BeginForm(new { id = "" }))
+                    {
+                        <table class="">
+                            <tr>
+                                <td>Search Item &nbsp;&nbsp;</td>
+                                <td>
+                                    &nbsp;&nbsp;<input type="text" name="ItemName" id="ItemName" class="margin-top-bottom-2 text-box" autocomplete="off" value="@ViewBag.ItemName" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Current Stock</label></td>
+                                <td colspan="2">
+                                    &nbsp;
+                                    <select class="text-box" name="CurrentStockFilter">
+                                        @if (ViewBag.CurrentStockFilter != null)
+                                        {
+                                            var CurrentStockFilter = (string)ViewBag.CurrentStockFilter;
+
+                                            if (CurrentStockFilter.Equals("greater"))
+                                            {
+                                                <option value="all">All</option>
+                                                <option value="greater" selected>Greater than 0</option>
+                                                <option value="less">is equal to 0</option>
+                                            }
+                                            else if (CurrentStockFilter.Equals("less"))
+                                            {
+                                                <option value="all">All</option>
+                                                <option value="greater">Greater than 0</option>
+                                                <option value="less" selected>is equal to 0</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="all">All</option>
+                                                <option value="greater">Greater than 0</option>
+                                                <option value="less">is equal to 0</option>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <option value="all">All</option>
+                                            <option value="greater">Greater than 0</option>
+                                            <option value="less">is equal to 0</option>
+                                        }
+
+                                    </select>
+                                    @*<input name="CurrentStockFilter" @cr value="true" type="checkbox" class="margin-top-bottom-2 " /> Current Stock = 0*@
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input name="IsDonor" @ido value="true" type="checkbox" class="margin-top-bottom-2 " /> Is Donor
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input name="ItemId" type="text" hidden id="ItemId" class="margin-top-bottom-2 text-box" value="@ViewBag.ItemId" />
+
+                                    <button id="btnSubmit" type="submit" class="btn btn-sm btn-primary">Search</button>
+
+                                </td>
+
+
+                                <td>
+                                    <a href="@Url.Action("GetCurrentStockReport", new { ItemName = @ViewBag.ItemName, CurrentStockFilter = currentStockFilter, IsDonor = ViewBag.IsDonor })" class="btn btn-primary btn-sm">Generate Current Stock Report</a>
+
+                                </td>
+                            </tr>
+                        </table>
+                    }
+
+
+
+                    <div id="lstCurrentStock">
+                        <br />
+                        @Html.Partial("~/Areas/PharmacyModule/Views/PharmacyReports/_lstCurrentStock.cshtml", Model)
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        $("#ItemName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    type: 'GET',
+                    url: "@Url.Action("SearchItemFilter", "MedicalStoreReports", new { Area= "MedicalStore" })",
+                    data: { search: $("#ItemName").val(), filter : "" },
+                    success: function (data) {
+
+                        console.log(data);
+                        response($.map(data, function (item) {
+                            return { label: item.ItemName, value: item.ItemName, selectedId: item.Id };
+                        }));
+                    }
+                });
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                showNotification("An Error Occured, try again later", "danger", true);
+            },
+            minLength: 2,
+            select: function (event, ui) {
+                $('#ItemName').val(ui.item.label);
+                $('#ItemId').val(ui.item.selectedId);
+                $("#btnSubmit").trigger("click");
+                console.log(ui.item.selectedId);
+            }
+        });
+
+        function DisplaySelectedItem(id) {
+
+        }
+    </script>
+}

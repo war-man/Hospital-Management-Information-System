@@ -1,0 +1,129 @@
+﻿@model IEnumerable<int>
+
+@{
+    ViewBag.Title = "ApproveProvisionalPO";
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+}
+
+<style>
+    .text-box{
+        width:200px;
+    }
+    .table table-form tr{
+     height:10px;   
+    }
+
+</style>
+
+<div>
+    <div class="col-md-10">
+        <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+            <div class="panel-heading custom-navbar">
+                <p style="color:black;margin-left:10px;"><strong>Approve Provisional Purchase Order</strong></p>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table-form">
+                            <tr>
+                                <td>Provisional PO No</td>
+                                <td>
+                                    <select class="text-box" id="SelectId">
+                                        <option>Select Provisional PO</option>
+                                        @foreach(var item in Model)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                    Supplier Name
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box" id="supplierName" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>From Date</td>
+                                <td><input type="date" class="text-box" id="FromDate" /></td>
+                                <td>To Date</td>
+                                <td><input type="date" class="text-box" id="ToDate" /></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="button" class="btn btn-primary btn-sm" id="BtnShow" value="Show"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Approved</td>
+                                <td>Disapproved</td>
+                            </tr>
+                        </table>
+                      
+                    </div>
+                    <hr/>
+                    <div class="row" id="ApprovedProvisionalPO">
+                        <div class="col-md-10 col-md-offset-1">
+                            <hr />
+                            <table class="table table-data">
+                                <tr>
+                                    <th>Accepted Provisional PO</th>
+                                    <th>Supplier Name</th>
+                                    <th>Total Items</th>
+                                    <th>Total Quantity</th>
+                                    <th>Total Amount</th>
+                                    <th>Approve</th>
+                                    <th>DisApprove</th>
+                                    <th>Details</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"> No Data To display</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+       
+        $("#BtnShow").click(function () {
+            var Id = $("#SelectId").val();
+            var FromDate = $("#FromDate").val();
+            var ToDate = $("#ToDate").val();
+
+            var model = { id: Id, FromDate: FromDate, ToDate: ToDate };
+            var ApprovedProvisionalPO = $("#ApprovedProvisionalPO");
+           
+            $.ajax({
+                type: 'POST',
+                url: '/ProcurementPurchase/ApproveProvisionalPO',
+                data:model,
+                success: function (obj) {
+                    console.log(obj);
+                    ApprovedProvisionalPO.empty();
+                    ApprovedProvisionalPO.append(obj);
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                }
+            })
+
+        })
+
+        var model = "";
+        function InitializeVariables() {
+           
+           
+        }
+
+    </script>
+    
+    }

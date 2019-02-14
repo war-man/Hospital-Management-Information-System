@@ -1,0 +1,202 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    ViewBag.WideView = true;
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+    ViewBag.OpdNo = Model.OpdRegister.Id;
+
+    var particulars = (List<CaresoftHMISDataAccess.SystemExamParticular>)ViewBag.SystemParticulars;
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>System Examination</p>
+    </div>
+    <div class="panel-body">
+         <fieldset>
+            <legend>Filter Categories</legend>
+            <label style="float:right">
+                <label>
+                    <input type="radio" id="CheckAll" name="ShowAllCats" value="Check" @*checked*@ /> Show All Categories
+                </label>
+                <label>
+                    <input type="radio" id="UnCheckAll" name="ShowAllCats" value="Uncheck" /> Hide All Categories
+                </label>
+            </label><br />
+            @foreach (var cat2 in Model.SystemExamCategories)
+            {
+                <label>
+                    <input type="checkbox" value="cat-@cat2.Id" @*checked*@ 
+                            data-entry-id="@cat2.Id"
+                            class="cat-filters" /> @cat2.CategoryName
+                </label>
+            }
+        </fieldset>
+        <form id="systemic_examination_form">
+            <input type="hidden" name="OPDNo" id="OPDNo" value="@ViewBag.OpdNo" />
+           
+            <fieldset class="marg-top-2px" id="sytmeic_particulars">
+           @foreach (var cat in Model.SystemExamCategories)
+           {
+               <div id="entry-@cat.Id" class="form_group collapse">
+                    <b><em>@cat.CategoryName</em></b>
+                   <table class="table table-condensed table-bordered">
+                       <thead class="bg-primary">
+                           <tr>
+                               <th>Particular</th>
+                               <th>Normal Abnormal</th>
+                               <th>Abnormal Findings In Details</th>
+                           </tr>
+                       </thead>
+                       <tbody class="bg-white">
+                           @foreach (var part in particulars.Where(e=>e.CategoryId == cat.Id))
+                           {
+                               <tr class="particular-entry" id="@part.Id">
+                                   <td class="particular_name">@part.ParticularName</td>
+                                   <td>
+                                       <fieldset>
+                                           <input type="radio" name="Particular@(part.Id)" value="Normal" id="Normal@(part.Id)" /> <label for="Normal@(part.Id)">Normal</label>
+                                           <input type="radio" name="Particular@(part.Id)" value="Abnormal" id="Abnormal@(part.Id)" /> <label for="Abnormal@(part.Id)">Abnormal</label>
+                                           <br />
+                                           <input checked type="radio" name="Particular@(part.Id)" value="Not Examined" id="NotExaamined@(part.Id)" /> <label for="NotExaamined@(part.Id)">Not Examined</label>
+                                       </fieldset>
+                                   </td>
+                                   <td>
+                                       <textarea class="text-box findings"  id="AbnormalFindingsInDetail@(part.Id)" name="AbnormalFindingsInDetail@(part.Id)"></textarea>
+                                   </td>
+                               </tr>
+                           }
+                       </tbody>
+                   </table>
+               </div>
+              
+            }
+        </fieldset>
+            <div class="form-group marg-top-6px">
+                <input type="submit" id="save-system-exam" value="Save" class="btn btn-primary">
+            </div>
+        </form>
+        
+
+    </div>
+    
+</div>
+
+@section scripts{
+
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+
+        function filterSystemicCategories() {
+            $(".cat-filters").each(function () {
+                var id = $(this).data("entry-id");
+         
+                if ($(this).is(":checked")) {
+                    $("#entry-" + id).fadeIn();
+                    $("#UnCheckAll").prop('checked', false);
+                } else {
+                    $("#entry-" + id).fadeOut();
+                    $("#CheckAll").prop('checked', false);
+                }
+            })
+        }
+
+
+        $(".cat-filters").each(function () {
+            $(this).click(function () {
+                filterSystemicCategories();
+            })
+        })
+
+        $("input[name=ShowAllCats]").change(function () {
+            var x = $(this).val();
+
+            if (x === "Check") {
+                $(".cat-filters").each(function () {
+                    $(this).prop("checked", true);
+                })
+            } else{
+                $(".cat-filters").each(function () {
+                    $(this).prop("checked", false);
+                })
+            }
+
+            filterSystemicCategories();
+        })
+
+        $("#systemic_examination_form").submit(function (e) {
+            e.preventDefault();
+            var data = [];
+            $(".form_group").each(function () {
+                
+                if ($(this).css("display")==="block") {
+                    console.log(1);
+                    $($(this).find(".particular-entry")).each(function () {
+                        var tr = $(this);
+                        var particularId = tr.prop("id");
+                        var particularQuiz = tr.find(".particular_name").text().trim();
+                        var normalAbnormal = tr.find("input:radio[name=Particular" + particularId + "]:checked").val();
+                        var findings = tr.find(".findings").val();
+
+                        var entry = {
+                            "ParticularId": particularId,
+                            "ParticularQuiz": particularQuiz,
+                            "NormalAbnormal": normalAbnormal,
+                            "Findings": findings
+                        }
+
+                        data.push(entry);
+
+                    });
+                }
+            })
+
+            if (data.length < 1) {
+                showNotification("Please select at least one category and fill in before proceeding.", "warning", true);
+                return false;
+            }
+            
+           
+            $(".loader").show();
+            $.ajax({
+                type: "POST",
+                data: {
+                    "OPDNo": $("#OPDNo").val(),
+                    "SystemicResult": data
+                },
+                url: "/EMR/SaveSystemicExam/",
+                success: function (res) {
+                    $(".loader").hide();
+                    showNotification(res.Message, res.Status, true);
+
+                    if (res.Status === "success") {
+                        $("#systemic_examination_form")[0].reset();
+                    }
+
+                },
+                error: function (e, x, r) {
+                    $(".loader").hide();
+                    showNotification("An error occured.", "danger", true);
+                    console.log(e.responseText)
+                }
+            });
+
+
+            
+        })
+
+    </script>
+   
+}

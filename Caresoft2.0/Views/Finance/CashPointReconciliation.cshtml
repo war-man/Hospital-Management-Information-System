@@ -1,0 +1,187 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.User>
+@{
+    ViewBag.Title = "Cash Point Reconciliation";
+    ViewBag.ShowTopMenu = true;
+}
+
+<div class="col-sm-8 col-sm-offset-2">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+            <form id="CashPointRecForm">
+                <fieldset>
+                    <legend>Select Shift No.</legend>
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                <label>Cash Point</label>
+                            </td>
+                            <td>
+                                <select class="text-box box-lg" id="User" name="UserId">
+                                    <option>--Select</option>
+                                    @foreach (var user in Model)
+                                    {
+                                        <option value="@user.Id">@user.Username</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                <label>Start Date</label>
+                            </td>
+                            <td>
+                                <input type="text" readonly id="sDate" />
+                            </td>
+                            <td rowspan="2">
+                                <label>Duration</label><br>
+                                <input  id="duraion" readonly />
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Shift No.</label>
+                            </td>
+                            <td>
+                                <select class="text-box box-lg" id="Shift" name="ShiftId">
+                                    <option>--Select</option>
+                                </select>
+                            </td>
+                            <td>
+                                <label>End Date</label>
+                            </td>
+                            <td>
+                                <input type="text" readonly id="eDate"/>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+                <table class="table table-data table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Payment Mode</th>
+                            <th>Amount</th>
+                            <th>Actual Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cash</td>
+                            <td>
+                                <input type="text" id="shift-amount-cash" class="text-box box-sm" readonly />
+                            </td>
+                            <td>
+                                <input type="number" id="actual-amount-cash" name="ActualAmountCash"  class="text-box box-sm" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Cheque</td>
+                            <td>
+                                <input type="text" id="shift-amount-cheque" class="text-box box-sm" readonly />
+                            </td>
+                            <td>
+                                <input type="number" id="actual-amount-cheque" name="ActualAmountCheque" class="text-box box-sm" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <button type="reset" class="btn btn-default">Clear</button>
+                    <button type="button" id="btn-save-reconciliation" class="btn btn-primary bn-sm">Save</button>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#User").change(function () {
+            var user = $(this).val();
+            $("#CashPointRecForm")[0].reset();
+            $(this).find("option[value=" + user + "]").prop("selected", true);
+            if ($.isNumeric(user)) {
+                getThisUserShifts(user);
+            }
+        });
+
+        function getThisUserShifts(user) {
+            var url = "@Url.Action("ShiftsList", "Finance", new { id = -1})";
+
+            url = url.replace("-1", user);
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (result) {
+                    $('#Shift').html(result);
+                }
+            });
+        }
+
+        $('#Shift').change(function () {
+            var shift = $(this).val();
+            var user = $("#User").val();
+            $("#CashPointRecForm")[0].reset();
+            $(this).find("option[value=" + shift + "]").prop("selected", true);
+            $("#User").find("option[value=" + user + "]").prop("selected", true);
+
+            if ($.isNumeric(shift)) {
+                getShiftDetails(shift);
+            }
+        });
+
+        function getShiftDetails(shift) {
+            var url = "@Url.Action("ShiftDetails", "Finance", new { id = -1})";
+
+            url = url.replace("-1", shift);
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (result) {
+                    $("#sDate").val(result.STime);
+                    if (!result.Open) {
+                        $("#eDate").val(result.ETime);
+                    } else {
+                        $("#eDate").val("Open");
+                    }
+
+                    $("#shift-amount-cash").val(result.Amounts.Cash);
+                    $("#shift-amount-cheque").val(result.Amounts.Cheques);
+                    $("#duraion").val(result.Duration.Hours + " hrs " + result.Duration.Minutes + " Min " + result.Duration.Seconds + " s");
+
+                }
+            });
+        }
+
+        $("#btn-save-reconciliation").click(function () {
+            
+            var data = $("#CashPointRecForm").serialize();
+            if ($.isNumeric($("#User").val())) {
+                var ok = confirm("Caution before finalizing reconciliation\n\nAre the amounts okay?");
+                if (!ok) {
+                    return false;
+                }
+                $(".loader").show();
+                $.ajax({
+                    type: "POST",
+                    data:data,
+                    url: "@Url.Action("PostReconciliation", "Finance")",
+                    success: function (result) {
+                        var user = $("#User").val();
+                        $("#CashPointRecForm")[0].reset();
+                        $("#User").find("option[value=" + user + "]").prop("selected", true);
+                        getThisUserShifts(user);
+                        $(".loader").hide();
+                    },
+                    error: function (xhr, thrownError, c) {
+                        console.log(xhr.responseText);
+                        $(".loader").hide();
+                    }
+                });
+            }
+        });
+    </script>
+}

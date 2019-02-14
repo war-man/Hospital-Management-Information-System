@@ -1,0 +1,157 @@
+﻿@model IEnumerable<LabsDataAccess.SearchPatientView>
+@using CaresoftHMISDataAccess;
+
+
+@{
+    CaresoftHMISEntities db_main = new CaresoftHMISEntities();
+    var WorkOrder = Model.OrderByDescending(f => f.LabNumber).GroupBy(e => e.LabNumber);
+
+    var rHeader = "_DefaultReportsHeader";
+    if (ViewBag.ReportHeader != null)
+    {
+        rHeader = ViewBag.ReportHeader;
+    }
+}
+
+<div class="pull-right">
+    <button class="btn btn-sm btn-warning" title="Print Report" onclick="$('page').print()"><i class="fa fa-print"></i></button>
+    &nbsp;
+    <button class="btn btn-sm btn-danger" title="Download PDF Report"><i class="fa fa-file-pdf-o"></i></button>
+    &nbsp;
+    <button class="btn btn-sm btn-success" title="Export to Excel"><i class="fa fa-file-excel-o"></i></button>
+</div>
+<page size="@ViewBag.Size" orientation="@ViewBag.Orientation">
+    <div class="panel-body" style="background:white">
+        @Html.Partial(rHeader)
+
+
+        <table id="myTable" class="table table-condensed table-bordered">
+            <thead class="bg-primary">
+                <tr>
+                    <th>Reg No</th>
+                    <th>Lab No</th>
+                    <th>OPD No</th>
+
+                    <th>IPD No</th>
+                    <th>Name</th>
+
+                    <th>Doctor</th>
+                    <th>Test Name</th>
+                    <th>Bill Amount</th>
+                    <th>Paid</th>
+
+                    <th>Insurance</th>
+                    <th>Discount</th>
+                    <th>Total Paid</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+
+            @{ 
+                var Total_bill_Amount = Model.Sum(e => e.BillPrice);
+                var Total_bill_Paid = Model.Where(e => e.BillPaid).Sum(e => e.BillPrice);
+                var Total_Insuarance_Amount = Model.Sum(e => e.InsuranceGrant);
+                var Total_Discount_Amount = Model.Sum(e => e.Discount);
+                var Total_bill_Balance = Total_bill_Amount - Total_bill_Paid;
+            }
+
+            @foreach (var wo in WorkOrder)
+            {      
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => wo.FirstOrDefault().PatientRegNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => wo.FirstOrDefault().LabNumber)
+                    </td>
+                    <td>
+                        @if (wo.FirstOrDefault().OPDType == ("OPD"))
+                        {@Html.DisplayFor(modelItem => wo.FirstOrDefault().OPDNo);
+                    }
+                    </td>
+                    <td>
+                        @if (wo.FirstOrDefault().OPDType == ("IPD"))
+                        {
+                            @Html.DisplayFor(modelItem => wo.FirstOrDefault().OPDNo);
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => wo.FirstOrDefault().PatientSalutation) @Html.DisplayFor(modelItem => wo.FirstOrDefault().PatientFName)  @Html.DisplayFor(modelItem => wo.FirstOrDefault().PatientMName)  @Html.DisplayFor(modelItem => wo.FirstOrDefault().PatientLName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => wo.FirstOrDefault().DoctorUsername)
+                    </td>
+                    <td>
+                        @foreach (var item in wo)
+                        {
+                            @Html.DisplayFor(modelItem => item.LabTest) @: ,
+                        }
+                    </td>
+                    <td>
+                        @{
+                            var total_price = wo.Sum(e => e.BillPrice);
+                        }
+                        @Html.DisplayFor(modelItem => total_price)
+                    </td>
+                    <td>
+                        @if (wo.All(e => e.BillPaid))
+                        {
+
+                            @Html.DisplayName("Paid")
+                        }
+                        else
+                        {
+                            @Html.DisplayName("Not Paid")
+                        }
+                    </td>
+                    <td>
+                        @{
+                            var total_Award = wo.Sum(e => e.InsuranceGrant);
+                        }
+                        @Html.DisplayFor(modelItem => total_Award)
+                    </td>
+                    <td>
+                        @{
+                            var discount = wo.Sum(e => e.Discount);
+                        }
+                        @Html.DisplayFor(modelItem => discount)
+                    </td>
+                    <td>
+                        @{
+                            var total_price_paid = wo.Where(f => f.BillPaid).Sum(e => e.BillPrice);
+                        }
+                        @Html.DisplayFor(modelItem => total_price_paid)
+                    </td>
+                    <td>
+
+                        @{
+                            var total_paid = wo.Sum(e => e.InsuranceGrant) + wo.Sum(e => e.Discount) + wo.Where(f => f.BillPaid == true).Sum(e => e.BillPrice);
+                            var balance = wo.Sum(e => e.BillPrice) - total_paid;
+                        }
+
+                        @Html.DisplayFor(modelItem => balance)
+                    </td>
+                </tr>
+            }
+
+                <tfoot>
+                    <tr style="border-top:2px solid blue; border-bottom:2px solid blue;">
+                        <td colspan="7">Total</td>
+                        <td>@Total_bill_Amount</td>
+                        <td></td>
+
+                        <td>@Total_Insuarance_Amount</td>
+                        <td>@Total_Discount_Amount</td>
+                        <td>@Total_bill_Paid</td>
+                        <td>@Total_bill_Balance</td>
+                    </tr>
+                </tfoot>
+                
+
+
+
+        </table>
+
+    </div>
+</page>
+

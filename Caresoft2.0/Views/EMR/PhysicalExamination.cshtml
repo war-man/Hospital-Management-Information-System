@@ -1,0 +1,289 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    ViewBag.WideView = true;
+    ViewBag.IsNurse = true;
+    ViewBag.Title = "Physical Examination";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+       <p>Physical Examination </p>
+    </div>
+    <div class="panel-body">
+
+        <style>
+            input{
+                margin-bottom:.3em;
+            }
+
+        </style>
+        <form id="physical-examination-form" method="post" action="@Url.Action("PostPhysicalExamination", "EMR")">
+            <input type="hidden" name="PatientId" value="@Model.Patient.Id" />
+            <input type="hidden" name="RegNumber" value="@Model.Patient.RegNumber" />
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="Temperature">Temperature(C)</label>
+                <div class="col-sm-9">
+                    <input class="text-box text-box single-line"  id="Temperature" name="Temperature" type="number" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="Pulse">Pulse(P/Mn)</label>
+                <div class="col-sm-9">
+                    <input class="text-box text-box single-line"  id="Pulse" name="Pulse" type="number" value="">
+
+                    &nbsp;<input type="checkbox" id="cb_emergency" class="cb_for_input_text" 
+                                   data-textbox="Emergency" data-value="1" >
+                    <input type="hidden" name="Emergency" id="Emergency" />
+                    <label for="emergency">Tick if emergency treatment </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="RespiratoryRate">Respiratory Rate(P/Mn)</label>
+                <div class="col-sm-9">
+                    <input class="text-box text-box single-line"  id="RespiratoryRate" name="RespiratoryRate" type="number" value="">
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="col-xs-6">
+                    <small>Blood Pressure</small><br>
+                    SYSTOLIC 120-139(MmHg):
+                </div>
+                <div class="col-xs-6">
+                    <small>Blood Pressure</small><br>
+                    DIASTOLIC 80-89(MmHg):
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <label class="control-label col-sm-3" for="BPSYSTOLICSSitting">Sitting</label>
+                <div class="col-sm-3">
+                    <input class="text-box text-box single-line"  id="BPSYSTOLICSSitting" name="BPSYSTOLICSSitting" type="number" value="">
+                </div>
+
+                <label class="control-label col-sm-3" for="BPDIASTOLICSSitting">Sitting</label>
+                <div class="col-sm-3">
+                    <input class="text-box text-box single-line"  id="BPDIASTOLICSSitting" name="BPDIASTOLICSSitting" type="number" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+
+                <label class="control-label col-sm-3" for="BPSDIASTOLICSupine">Supine</label>
+                <div class="col-sm-3">
+                    <input class="text-box text-box single-line"  id="BPSDIASTOLICSupine" name="SupineBPSDIASTOLICSupine" type="number" value="">
+                </div>
+                <label class="control-label col-sm-3" for="BPSYSTOLICSupine">Supine</label>
+                <div class="col-sm-3">
+                    <input class="text-box text-box single-line"  id="BPSYSTOLICSupine" name="BPSYSTOLICSupine" type="number" value="">
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="HipRation">Hip Ration(cm)</label>
+                <div class="col-sm-9">
+                    <input class="text-box text-box single-line"  id="HipRation" name="HipRation" type="number" value="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="Height">Height(m)</label>
+                <div class="col-sm-9">
+                    <input class="text-box text-box single-line"  data-val="true" data-val-number="The field Height(m) must be a number." data-val-="The Height(m) field is ." id="Height" name="Height" type="number" value="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="Weight">Weight(Kgs)</label>
+                <div class="col-sm-3">
+                    <input class="text-box text-box single-line"  data-val="true" data-val-number="The field Weight(Kgs) must be a number." data-val-="The Weight(Kgs) field is ." id="Weight" name="Weight" type="number" value="">
+                </div>
+                <label class="control-label col-sm-3" for="TargetWeight">Target Weight(Kgs)</label>
+                <div class="col-sm-3">
+                    <input class="text-box text-box single-line"  data-val="true" data-val-number="The field Target Weight(Kgs) must be a number." data-val-="The Target Weight(Kgs) field is ." id="TargetWeight" name="TargetWeight" type="number" value="">
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="TargetBMI">Target BMI(Kg/m2)</label>
+                <div class="col-sm-9">
+                    <input class="text-box text-box single-line"  data-val="true" data-val-number="The field Target BMI(Kg/m2) must be a number." data-val-="The Target BMI(Kg/m2) field is ." id="TargetBMI" name="TargetBMI" type="number" readonly value="0">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="MUAC">MUAC(cm)</label>
+                <div class="col-sm-3">
+                    <input class="text-box text-box single-line"  data-val="true" data-val-number="The field MUAC(cm) must be a number." data-val-="The MUAC(cm) field is ." id="MUAC" name="MUAC" type="number" value="">
+                </div>
+
+                <label class="control-label col-sm-3" for="HeadCircumfrence">Head Circumfrence(Kgs)</label>
+                <div class="col-sm-3">
+                    <input class="text-box text-box single-line"  data-val="true" data-val-number="The field Head Circumfrence(Kgs) must be a number." data-val-="The Head Circumfrence(Kgs) field is ." id="HeadCircumfrence" name="HeadCircumfrence" type="number" value="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="Notes">Notes</label>
+                <div class="col-sm-9">
+                    <textarea class="text-box box-xlg"  id="Notes" name="Notes"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="Date">Date</label>
+                <div class="col-sm-9">
+                    <input class="text-box text-box single-line"  data-val="true" data-val-date="The field Date must be a date." data-val-="The Date field is ." id="Date" name="Date" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="pull-right">
+                        @if (ViewBag.IsIPD != null && ViewBag.IsIPD)
+                        {
+                        <label>
+                            @*<input type="checkbox" class="cb_for_input_text"
+                                   data-textbox="RecommendDischarge" data-value="1" /> Recommend Discharge
+                            <input type="hidden" name="RecommendDischarge" id="RecommendDischarge" />*@
+
+                            <input type="button" class="btn btn-sm btn-primary call-modal-form" id="btn_recommend_discharge" 
+                                   data-action="@Url.Action("RecommendDischargeForm", "EMR", new { id = ViewBag.OpdNo })" 
+                                    data-callback="dischargeRecommendationFormListener" value="Recommend Discharge" 
+                                   @if (Model.OpdRegister.DischargeRecommendations.FirstOrDefault(
+                                                               e => e.Status.ToLower().Trim().Equals("pending")) != null)
+                                    {
+                                       <text>disabled</text>
+                                    }
+                                   />
+                        </label>
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" 
+                                    data-action="@Url.Action("ProcedureForm", "EMR", new { id = ViewBag.OpdNo })" 
+                                    data-callback="procedureFormModalListener">Procedure</button>
+                            <a class="btn btn-sm btn-primary" href="@Url.Action("consultation", "emr", new { Id = ViewBag.OpdNo})">EMR</a>
+                                   }
+                    </div>
+                    
+                    <input type="submit" id="save-physical-exam" value="Save" class="btn btn-primary btn-sm">
+                </div>
+            </div>
+        </form>
+
+
+        
+
+    </div>
+    
+
+    <div class="panel-footer">
+        <div class="form-group scrollable-table-container" id="physical-exam-results-log">
+        </div>
+    </div>
+    
+</div>
+
+@section scripts{
+    <script>
+        var logContainer = $('#physical-exam-results-log');
+        getRecentInfo();
+
+        $.ajax({
+            type: "GET",
+            url: "/EMR/OPDMiniList/",
+           
+            success: function (result) {
+                $('#list').html(result);
+            }
+        });
+
+        function getLog() {
+
+            var containerWidth = logContainer.width();
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetPhysicalExamination/" +@Model.Patient.Id,
+                success: function (result) {
+                    logContainer.html(result);
+                    logContainer.css("width", containerWidth);
+                }
+            });
+        }
+
+
+        $("#physical-examination-form").submit(function (e) {
+            e.preventDefault();
+            var data = $(this).serialize();
+            
+            console.log(data);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("PostPhysicalExamination", "EMR")",
+                data: data,
+                success: function (result) {
+                    $("#physical-examination-form")[0].reset();
+                    getRecentInfo();
+                    logContainer.html(result);
+                }
+            });
+        });
+
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+               
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                    getLog();
+                }
+            });
+        }
+
+
+        function calcBMI() {
+            var BMI = 0;
+            var w = parseFloat($("#Weight").val());
+            var h = parseFloat($("#Height").val());
+            if (h > 0 && w> 0) {
+                BMI = w / (h * h);
+            }
+
+            $("#TargetBMI").val(BMI.toFixed(2));
+        }
+
+        $("#Weight").change(function () {
+            calcBMI();
+        });
+
+        $("#Weight").keyup(function () {
+            calcBMI();
+        });
+
+        $("#Height").change(function () {
+            calcBMI();
+        });
+
+        $("#Height").keyup(function () {
+            calcBMI();
+        });
+
+        
+
+        
+    </script>
+}

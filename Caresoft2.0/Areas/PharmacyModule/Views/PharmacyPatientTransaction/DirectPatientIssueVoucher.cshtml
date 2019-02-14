@@ -1,0 +1,1500 @@
+﻿@model Caresoft2._0.Areas.MedicalStore.ViewModels.SimulationData
+@{
+    ViewBag.Title = "DirectPatientIssueVoucher";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+
+
+
+    ViewBag.itemIssued = Model.SimulationPatientIssueVoucher.ItemIssued.ToString();
+
+
+
+    DateTime dateIssued = new DateTime();
+
+    if (Model.SimulationPatientIssueVoucher.PatientsName != null)
+    {
+        dateIssued = (DateTime)Model.SimulationPatientIssueVoucher.DateIssued;
+    }
+
+    var model = Model.LstSimulationTreatment;
+    bool EnableIssueButton = true;
+
+    if (model.All(p => p.isIssued == true))
+    {
+        EnableIssueButton = false;
+    }
+    else
+    {
+        if (model.Any(p => p.isIssued == true))
+        {
+            EnableIssueButton = false;
+        }
+        else
+        {
+            if (model.All(p => p.isPaid == true))
+            {
+                EnableIssueButton = true;
+            }
+            else
+            {
+                if (model.Any(p => p.isPaid == true))
+                {
+                    EnableIssueButton = true;
+                }
+                else
+                {
+                    if (model.Any(p => p.Available == true))
+                    {
+                        EnableIssueButton = false;
+                    }
+                    else
+                    {
+                        EnableIssueButton = false;
+                    }
+                }
+            }
+        }
+    }
+
+    if (model.All(p => p.DrugIsNotInHospitalDataBase == true))
+    {
+        EnableIssueButton = true;
+    }
+
+    if (Model.LstSimulationTreatment.Count() == 0)
+    {
+        EnableIssueButton = false;
+    }
+
+    if (model.Any(p => !p.isIssued && p.isPaid))
+    {
+        EnableIssueButton = true;
+    }
+}
+
+<style>
+    .text-box {
+        margin: 3px;
+        width: 150px;
+    }
+
+    .texboxform {
+        min-width: 80px;
+        width: 95%;
+        margin: 2px;
+    }
+
+    .faUnavailable {
+        color: purple;
+    }
+
+    .panel {
+        margin-bottom: 0px;
+    }
+</style>
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading">
+            Patient Issue Drugs
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    @if (Model.SimulationPatientIssueVoucher.PatientsName != null)
+                    {
+
+
+
+                        <table width="100%" >
+                            <tr>
+                                <td>Patient Type</td>
+                                <td colspan="10">
+                                    <div id="type">
+                                        <fieldset>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="OPD ">OPD
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="IPD">IPD
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="HIV">HIV
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="ClinicalNo">ClinicalNo
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>Issue Voucher Number</td>
+                                <td>&nbsp; <input type="text" class="text-box" disabled /> 
+                                           <input type="hidden" value="@Model.SimulationPatientIssueVoucher.Id" id="SimulationPatientIssueVoucherId" disabled />
+                                </td>
+                                <td>&nbsp; &nbsp; Reg No</td>
+                                <td>&nbsp; <input id="ReggNoo" type="text" class="text-box" value="@Model.SimulationPatientIssueVoucher.Regno" disabled /></td>
+                                <td>&nbsp; &nbsp;  Patient Name</td>
+                                <td>&nbsp; <input type="text" class="text-box" value="@Model.opdRegister.Patient.FName @Model.opdRegister.Patient.LName"  disabled /></td>
+                                <td>&nbsp; &nbsp; Age</td>
+                                <td>&nbsp;<input type="text" class="text-box" value="@Model.SimulationPatientIssueVoucher.Age" disabled /></td>
+                                </tr>
+
+                            <tr>
+                                <td>&nbsp; &nbsp; Sex</td>
+                                <td>&nbsp; <input type="text" class="text-box" value="@Model.SimulationPatientIssueVoucher.Gender" disabled /></td>
+
+                                <td>Doctor Name</td>
+                                <td>&nbsp; <input type="text" class="text-box" value="@Model.SimulationPatientIssueVoucher.DoctorsName" disabled /></td>
+                                <td>
+                                    Treatment Date
+                                </td>
+                                <td>
+
+                                    &nbsp; <input type="date" class="text-box" id="date" value="@dateIssued.ToString("yyyy-MM-dd")" />
+                                </td>
+
+                                <td>
+                                    Patient Bar Code
+                                </td>
+                                <td>
+                                    &nbsp; <input type="text" class="text-box" id="PatientBarCode" />
+                                </td>
+                              
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    &nbsp; &nbsp; Date
+                                </td>
+                                <td>
+                                    &nbsp; <input type="date" class="text-box" id="date" />
+                                </td>
+                                <td>&nbsp; &nbsp; Allergy</td>
+                                <td>&nbsp; <textarea type="text" class="text-box"></textarea></td>
+                                <td>
+                                    &nbsp; &nbsp; Note
+                                </td>
+                                <td>&nbsp; <textarea type="text" class="text-box"></textarea></td>
+
+
+                            </tr>
+                        </table>
+                    }
+                    else
+                    {
+                        <table width="100%">
+                            <tr>
+                                <td>Patient Type</td>
+                                <td colspan="10">
+                                    <div id="type">
+                                        <fieldset>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="OPD ">OPD
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="IPD">IPD
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="HIV">HIV
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="ClinicalNo">ClinicalNo
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td>Issue Voucher Number</td>
+                                <td>&nbsp; <input type="text" class="text-box" /></td>
+                                <td>&nbsp; &nbsp; Reg No</td>
+                                <td>&nbsp; <input type="text" class="text-box" /></td>
+                                <td>&nbsp; &nbsp;  Patient Name</td>
+                                <td>&nbsp; <input type="text" id="patientName" class="text-box" /></td>
+                                <td>&nbsp; &nbsp; Age</td>
+                                <td>&nbsp; <input type="text" class="text-box" /></td>
+                                <td>&nbsp; &nbsp; Sex</td>
+                                <td>&nbsp; <input type="text" class="text-box" /></td>
+                            </tr>
+
+                            <tr>
+
+                                <td>Doctor Name</td>
+                                <td>&nbsp; <input type="text" class="text-box" /></td>
+
+                                <td>&nbsp; &nbsp; Address</td>
+                                <td>&nbsp; <textarea type="text" class="text-box"></textarea></td>
+                                <td>&nbsp; &nbsp; Allergy</td>
+                                <td>&nbsp; &nbsp; <textarea type="text" class="text-box"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Patient Bar Code
+                                </td>
+                                <td>
+                                    &nbsp; <input type="text" class="text-box" id="PatientBarCode" />
+                                </td>
+                                <td>
+                                    &nbsp; &nbsp; Date
+                                </td>
+                                <td valign="top">
+                                    &nbsp; <input type="date" class="text-box" id="date" />
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                    <br />
+
+                    <div>
+
+                        <table width="70%">
+                            <tr>
+                                <td><b>Drug Code</b></td>
+                                <td>
+                                    <input style="width:90%" type="text" class="text-box" style="" />
+                                </td>
+                                <td><b>Composition Name</b></td>
+                                <td>
+                                    <input type="text" id="GenericName" class="text-box" style="width:90%" autocomplete="off" placeholder="Enter Drug Composition Name to Search" />
+                                    <div class="text-box suggestions collapse" id="ItemNameListGeneric" style="width:500px">
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="text-box" style="width:100%" id="SelectBrandName">
+                                        <option selected>Select Brand Name</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Brand Name</b></td>
+                                <td colspan="4">
+                                    <input type="text" id="name" class="text-box" style=" width: 100%" autocomplete="off" placeholder="Enter Drug Name to Search" />
+                                    <div class="text-box suggestions collapse" id="ItemNameList" style="width:500px">
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <br />
+                    <div class="col-md-12">
+                        <form id="addnewData">
+                            <table>
+                                <tr>
+                                    <td>Batch No</td>
+                                    <td>Rate</td>
+                                    <td>Days</td>
+                                    <td>Dose</td>
+                                    <td>Issue Qty</td>
+                                    <td>Current Stock</td>
+                                    <td>Exp Date</td>
+                                    <td>Dose Description</td>
+                                    <td>Note</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select style="width:100px" class=" text-box texboxform" id="BatchNoSelect">
+                                            <option>Select Batch</option>
+                                        </select>
+
+                                        <input hidden type="text" readonly id="BatchNo" class="text-box texboxform" />
+                                        <input hidden id="ItemMasterId" />
+                                    </td>
+
+                                    <td><input type="text" class="text-box texboxform" id="Rate" disabled /></td>
+                                    <td><input type="text" class="text-box texboxform" id="Days" /></td>
+                                    <td>
+                                        <select class="text-box texboxform" id="Dose">
+                                            @if (ViewBag.Doses != null)
+                                            {
+                                                foreach (var item in ViewBag.Doses)
+                                                {
+                                                    <option value="@item.Id" data-quantity="@item.Quantity">@item.Name</option>
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                <option>Select</option>
+                                            }
+
+                                        </select>
+                                    </td>
+                                    <td><input type="text" class="text-box texboxform" id="IssueQty" /></td>
+                                    <td><input type="text" class="text-box texboxform" id="CurrentStock" disabled /></td>
+                                    <td>
+                                        @*<select class="text-box texboxform" id="ExpiryDate">
+                                <option>Select</option>
+                            </select>*@
+                                        <input type="text" disabled id="ExpiryDate" class="text-box texboxform" />
+                                    </td>
+
+                                    <td><textarea type="text" class="text-box texboxform" id="DoseDescription"></textarea></td>
+                                    <td><textarea type="text" class="text-box texboxform" id="Notes"></textarea></td>
+                                    @if (ViewBag.WalkInPatient == true)
+                                    {
+                                        <td><button type="button" class="btn btn-primary btn-sm" id="btnSaveTreatmentWalkIn">Add</button></td>
+                                    }
+                                    else
+                                    {
+                                        <td><button type="button" class="btn btn-primary btn-sm" id="btnSaveTreatment">OK</button></td>
+                                    }
+
+
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <label> Drugs Not Available in our store &nbsp; </label><i class="fa fa-square faUnavailable"> </i>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </form>
+                    </div>
+                    <hr />
+
+                    <div id="lstTreatment">
+                        @Html.Partial("~/Areas/MedicalStore/Views/PatientTransactionMStore/_DirectPatientsIssueVoucherLst.cshtml",
+                       Model.LstSimulationTreatment)
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <table>
+                            @if (ViewBag.WalkInPatient == true)
+                            {
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm" id="SaveWalkInPatient" style="margin-bottom:5px">Save Walk In Details</button>
+                                    </td>
+                                </tr>
+                            }
+
+                            <tr>
+                                <td>
+                                    @if (EnableIssueButton == false && @Model.opdRegister !=null && !@Model.opdRegister.IsIPD 
+                                        && @Model.opdRegister.Tariff.TariffName.Equals("Cash"))
+                                    {
+                                        <a class="btn btn-primary btn-sm disabled">Issue Items</a>
+                                    }
+                                    else
+                                    {
+
+                                        <a class="btn btn-primary btn-sm" href="@Url.Action("IssueItems","PharmacyPatientTransaction",new { Id = Model.SimulationPatientIssueVoucher.Id })">Issue Items</a>
+
+                                    }
+
+
+                                    <button class="btn btn-primary btn-sm" id="AddNewVoucher">Add New</button>
+                                    <button class="btn btn-primary btn-sm">Issue Items & Report</button>
+                                    <button class="btn btn-primary btn-sm">Label Printing</button>
+                                    <button class="btn btn-primary btn-sm">View Drug Location </button>
+                                </td>
+                            </tr>
+                        </table>
+
+                        @if (Model.LstSimulationTreatment.Count > 0)
+                        {
+                            if (Model.LstSimulationTreatment.All(p => p.isIssued == true))
+                            {
+                                <div class="collapse">
+                                    <div class="panel panel-primary caresoft-panel" style="margin-top:10px" id="issuedItemsMessage">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <div class="panel-heading custom-navbar">
+                                                <p style="color:black ; margin-left:5px"> <strong> Issued Items Message</strong></p>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="">
+                                                    This items have already been issued
+                                                    <input type="hidden" id="issuedItemsMessageSaved" value="true" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section scripts{
+
+    <script>
+
+        $("#name").autocomplete({
+            source: function (request, response) {
+
+                $("#BatchNo").val("");
+                $("#Rate").val("");
+                $("#CurrentStock").val("");
+                $("#ItemMasterId").val("");
+                $("#ExpiryDate").val("");
+
+                $.ajax({
+                    url: "@Url.Action("SearchDrugbyName", "PharmacyPatientTransaction")",
+                    dataType: "json",
+                    data: { name: $('#name').val() },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item, value: item, selectedId: item };
+                        }));
+                    }
+                });
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                showNotification("An Error Occured, try again later", "danger", true);
+            },
+            minLength: 2,
+            select: function (event, ui) {
+                $('#ItemMasterId').val(ui.item.selectedId);
+                GetBatchNumbers(ui.item.selectedId);
+                console.log(ui.item.selectedId);
+            }
+        });
+
+        //On key up to populate the div containing drug names
+        //$("#name").keyup(function () {
+
+        //    var itemName = $("#name").val();
+        //    var itemList = $("#ItemNameList");
+
+
+        //    if (itemName.length < 1) {
+
+        //        itemList.fadeOut();
+        //    }
+        //    else {
+
+        //        var nam = { name: itemName };
+
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: '/PharmacyPatientTransaction/SearchDrugbyName',
+        //            data: nam,
+        //            success: function (obj) {
+        //                //console.log(obj);
+        //                //create an array to store the values searched
+        //                var item = [];
+        //                //loop through all the items and push then into the array variable
+
+        //                $.each(obj, function (key, value) {
+        //                    var string = '<p class="searchedItems" data-value="' + value + '">' + value + '</p>';
+        //                    item.push(string);
+
+        //                })
+
+        //                // empty the div element
+        //                $("#ItemNameList").empty();
+
+        //                var items = item.join("");
+        //                itemList.append(items);
+        //                itemList.fadeIn();
+
+        //                $(".searchedItems").each(function () {
+        //                    $(this).click(function () {
+        //                        var val = $(this).data("value");
+        //                        $("#name").val(val);
+        //                        $("#ItemNameList").fadeOut();
+        //                        $("#ItemNameList").empty();
+        //                        GetBatchNumbers(val);
+        //                    })
+        //                });
+
+
+        //            },
+        //            error: function (e, x, y) {
+        //                console.log(e.responseText);
+        //            }
+        //        })
+
+        //    }
+
+        //})
+
+        var objj = null;
+
+        function GetBatchNumbers(name) {
+            var itemMasterData = null;
+            var SelectedBatchNo = null;
+            if (name.length > 1) {
+                $('.loader').show();
+                console.log(name);
+
+                var url = "/PharmacyPatientTransaction/SearchItemSortingWithBatch?name=" + name;
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    success: function (obj) {
+                        $('.loader').fadeOut();
+
+                        console.log(obj);
+
+                        $('#BatchNoSelect')
+                            .find('option')
+                            .remove()
+                            .end()
+                            .append('<option value="Select Batch">Select Batch</option>')
+                            .val('whatever')
+                            ;
+                       
+                        if (obj == "Null") {
+                            alert("That Drug is not added to our database");
+
+                        }
+                        else {
+                            objj = obj;
+
+                            $.each(objj, function (i, item) {
+                                $('#BatchNoSelect').append($('<option>', {
+                                    value: item.BatchNo,
+                                    text: item.BatchNo
+                                }));
+                            });
+                        }
+                    },
+                    error: function (x, y, z) {
+                        $('.loader').fadeOut();
+
+                        console.log(x.responseText);
+                    }
+                });
+            }
+            else {
+                alert("Something missing");
+            }
+        }
+
+        $("#BatchNoSelect").change(function () {
+
+            $("#BatchNo").val("");
+            $("#Rate").val("");
+            $("#CurrentStock").val("");
+            $("#ItemMasterId").val("");
+            $("#ExpiryDate").val("");
+
+            var data = objj.find(x => x.BatchNo == $(this).find(':selected').text());
+
+            $("#BatchNo").val(data.BatchNo);
+            $("#Rate").val(data.SellingPrice);
+            $("#CurrentStock").val(data.CurrentStock);
+            $("#ItemMasterId").val(data.Id);
+            $("#ExpiryDate").val(data.ExpiryDate);
+        });
+
+        $("#btnSaveTreatment").click(function () {
+
+            qty = $("#name");
+            if (!qty.val().trim()) {
+                qty.notify("Select Brand Name");
+
+                return false;
+            }
+
+            qty = $("#BatchNo");
+            if (!qty.val().trim()) {
+                qty.notify("Select Batch");
+
+                return false;
+            }
+
+            qty = $("#ItemMasterId");
+            if (!qty.val().trim()) {
+                $("#name").notify("Select Brand Name");
+
+                return false;
+            }
+
+            var qty = $("#Days");
+            if (!qty.val().trim()) {
+                qty.notify("Enter No. of Days");
+                return false;
+
+            }
+
+            qty = $("#IssueQty");
+            if (!qty.val().trim()) {
+                qty.notify("Enter Quantity");
+
+                return false;
+            }
+
+            if (parseInt($("#IssueQty").val().trim()) > parseInt($("#CurrentStock").val().trim())) {
+                $("#IssueQty").notify("CurrentStock cant be less than Issue Quantity ");
+
+                return false;
+            }
+
+            qty = $("#CurrentStock");
+            if (!qty.val().trim() || qty.val() < 1) {
+                qty.notify("Pleas adjust stock before you prescribe");
+
+                return false;
+            }
+
+            qty = $("#Rate");
+            if (parseInt(qty.val().trim()) < 1) {
+                qty.notify("The Prices haven't been set yet");
+                return false;
+            }
+            
+            var BatchNo = $("#BatchNo").val();
+            var Rate = $("#Rate").val();
+            var Dose = $("#Dose").val();
+            var IssueQty = $("#IssueQty").val();
+            var CurrentStock = $("#CurrentStock").val();
+            var DoseDescription = $("#DoseDescription").val();
+            var Notes = $("#Notes").val();
+            var SimulationPatientIssueVoucherId = $("#SimulationPatientIssueVoucherId").val();
+            var Days = $("#Days").val();
+            var ItemMasterId = $("#ItemMasterId").val();
+            var Amount = Rate * IssueQty;
+
+            var model = {
+                SimulationPatientIssueVoucherId: SimulationPatientIssueVoucherId,
+                ItemMasterId: ItemMasterId,
+                BatchNo: BatchNo,
+                Rate: Rate,
+                Dose: Dose,
+                IssueQty: IssueQty,
+                units: IssueQty,
+                Description: DoseDescription,
+                Notes: Notes,
+                NoOfDays: Days,
+                Amount: Amount
+
+            }
+
+            var simulationTreatment = model;
+
+            //console.log(model);
+
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyPatientTransaction/SaveTreatmentData",
+                data: simulationTreatment,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    $("#lstTreatment").empty();
+                    $("#lstTreatment").append(obj);
+                    $.notify("Save Successful", "success");
+                    $(".loader").hide();
+
+                    $("#addnewData")[0].reset();  
+                    AddAvailabilityCheckBoxListener();
+                    btnEditDrug();
+                    btnDeleteDrug();
+
+                    location.reload();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $.notify("An Error occured while saving medication", "error");
+                    $(".loader").hide();
+                }
+
+            });
+
+        });
+
+        $("#btnSaveTreatmentWalkIn").click(function () {
+
+           
+            qty = $("#name");
+            if (!qty.val().trim()) {
+                qty.notify("Select Brand Name");
+
+                return false;
+            }
+
+            qty = $("#BatchNo");
+            if (!qty.val().trim()) {
+                qty.notify("Select Batch");
+
+                return false;
+            }
+
+            qty = $("#ItemMasterId");
+            if (!qty.val().trim()) {
+                $("#name").notify("Select Brand Name");
+
+                return false;
+            }
+
+            var qty = $("#Days");
+            if (!qty.val().trim()) {
+                qty.notify("Enter No. of Days");
+                return false;
+
+            }
+
+            qty = $("#IssueQty");
+            if (!qty.val().trim()) {
+                qty.notify("Enter Quantity");
+
+                return false;
+            }
+
+            if (parseInt($("#IssueQty").val().trim()) > parseInt($("#CurrentStock").val().trim())) {
+                $("#IssueQty").notify("CurrentStock cant be less than Issue Quantity ");
+
+                return false;
+            }
+
+            qty = $("#CurrentStock");
+            if (!qty.val().trim() || qty.val() < 1) {
+                qty.notify("Pleas adjust stock before you prescribe");
+
+                return false;
+            }
+
+            qty = $("#Rate");
+            if (parseInt(qty.val().trim()) < 1) {
+                qty.notify("The Prices haven't been set yet");
+                return false;
+            }
+
+            var BatchNo = $("#BatchNo").val();
+            var Rate = $("#Rate").val();
+            var Dose = $("#Dose").val();
+            var IssueQty = $("#IssueQty").val();
+            var CurrentStock = $("#CurrentStock").val();
+            var DoseDescription = $("#DoseDescription").val();
+            var Notes = $("#Notes").val();
+            //var SimulationPatientIssueVoucherId = $("#SimulationPatientIssueVoucherId").val();
+            var Days = $("#Days").val();
+            var ItemMasterId = $("#ItemMasterId").val();
+            var Amount = Rate * IssueQty;
+
+            var model = {
+
+                ItemMasterId: ItemMasterId,
+                BatchNo: BatchNo,
+                Rate: Rate,
+                Dose: Dose,
+                IssueQty: IssueQty,
+                units: IssueQty,
+                Description: DoseDescription,
+                Notes: Notes,
+                NoOfDays: Days,
+                Amount: Amount
+
+            }
+
+            var simulationTreatment = model;
+
+            //console.log(model);
+
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyPatientTransaction/AddTreatmentDataWalkIn",
+                data: simulationTreatment,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    $("#lstTreatment").empty();
+                    $("#lstTreatment").append(obj);
+                    $.notify("Save Successful", "success");
+                    $(".loader").hide();
+                    btnEditDrug();
+                    btnDeleteDrug();
+                    $('#addnewData')[0].reset();
+
+                    location.reload();
+
+
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $.notify("An Error occured while saving medication", "error");
+                    $(".loader").hide();
+                }
+
+
+            });
+
+        });
+
+        $("#SaveWalkInPatient").click(function () {
+
+            if (($('#patientName').val()).length == 0) {
+                $('#patientName').notify("Please Fill the Name", "error");
+            } else {
+                $.ajax({
+                    url: "/PharmacyPatientTransaction/SaveDrugsForWalkInPatient",
+                    data: { PatientName: $('#patientName').val() },
+                    beforeSend: function () {
+                        $(".loader").show();
+                    },
+                    success: function (obj) {
+                        $("#lstTreatment").empty();
+                        $("#lstTreatment").append(obj);
+                        $.notify("Save Successful", "success");
+                        $(".loader").hide();
+
+                        $('#patientName').val('');
+
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                        $.notify("An Error occured while saving medication", "error");
+                        $(".loader").hide();
+                    },
+                    complete: function () {
+                        var TheBillingUserId = $("#TheBillingUserId").text();
+                        $("#WalkInMessageBox").val(TheBillingUserId);
+                        var obj = $("#MessageForWalkin").html();
+                        //$.notify("Billing Id For the Walk In is #" + TheBillingUserId, "success");
+                        $("#modal-content").html(obj);
+                        $("#modal-forms-holder").modal('show');
+                    }
+                });
+
+            }
+
+        })
+
+        $("#GenericName").keyup(function () {
+
+            var itemName = $("#GenericName").val();
+            var itemList = $("#ItemNameListGeneric");
+
+            if (itemName.length < 1) {
+
+                itemList.fadeOut();
+            }
+            else {
+
+                var nam = { name: itemName };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/PharmacyPatientTransaction/SearchDrugByComposition',
+                    data: nam,
+                    success: function (obj) {
+                        console.log(obj);
+                        //create an array to store the values searched
+                        var item = [];
+                        //loop through all the items and push then into the array variable
+
+
+                        $.each(obj, function (key, value) {
+                            var string = '<p class="searchedItems" data-composition="' + value.Name + '" data-value="' + value.Id + '">' + value.Name + '</p>';
+                            item.push(string);
+
+                        })
+
+                        // empty the div element
+                        $("#ItemNameListGeneric").empty();
+
+                        var items = item.join("");
+                        itemList.append(items);
+                        itemList.fadeIn();
+
+                        $(".searchedItems").each(function () {
+                            $(this).click(function () {
+                                var val = $(this).data("value");
+                                var compName = $(this).data("composition");
+                                $("#GenericName").val(compName);
+                                $("#ItemNameListGeneric").fadeOut();
+                                $("#ItemNameListGeneric").empty();
+                                GetDrugNames(val);
+                            })
+                        });
+
+
+                    },
+                    error: function (e, x, y) {
+                        console.log(e.responseText);
+                    }
+                })
+
+            }
+
+        })
+
+        function GetDrugNames(name) {
+            var itemMasterData = null;
+            var SelectedBatchNo = null;
+            if (name != null) {
+
+
+                var url = "/PharmacyPatientTransaction/SearchDrugNamesUsingCompositionId?Id=" + name;
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    success: function (obj) {
+
+                        console.log(obj);
+
+                        if (obj.length > 1) {
+
+                            $("#SelectBrandName").empty();
+                            var select = document.getElementById("SelectBrandName");
+                            var option = document.createElement("option");
+                            option.text = "--Select Drug Brand Name --";
+
+                            select.add(option);
+
+                            $.each(obj, function (key, value) {
+                                var select = document.getElementById("SelectBrandName");
+                                var option = document.createElement("option");
+                                option.text = value.Name;
+                                //option.value = value.Id;
+                                select.add(option);
+                            })
+                        }
+                        else {
+                            $("#SelectBrandName").empty();
+                            $.notify("No drugs have this composition name", "warning");
+                        }
+
+
+
+
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                    }
+                });
+            }
+        }
+
+        $("#SelectBrandName").on('change', function () {
+            GetBatchNumbers($(this).val());
+
+        });
+
+        $(".checkbox").change(function () {
+            if (this.checked) {
+                //Do stuff
+                var dataId = $(this).data("id");
+                var url = "/PharmacyPatientTransaction/MarkDrugInMedicationAsAvailable?Id=" + dataId;
+                var selectedCheckbox = $(this);
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    beforeSend: function () {
+                        $(".loader").show();
+                    },
+                    success: function (obj) {
+
+                        //console.log(obj);
+
+                        //here two partial views can be returned
+                        //so i check one id in one of the partial view to know if its the one returned
+                        //if it contains the id then its that view
+                        //otherwise if it doesnt its the other partial view returned
+                        //the first one is the list of tab
+
+                        if (obj == "null") {
+                            $.notify("Error,Current stock of that Drug is zero, Kindly adjust stocks before you can issue the drug", "error");
+                            selectedCheckbox.prop('checked', false);
+                        } else if (obj == -1) {
+                            $.notify("Error, This drug has expired...", "error");
+                            selectedCheckbox.prop('checked', false);
+                        }
+                        else
+                        {
+                            $("#modal-content").empty();
+                            $("#modal-content").append(obj);
+                            var medId = $("#MedicationId").val();
+                            if (medId != null) {
+
+                                $("#modal-forms-holder").modal('show');
+                            }
+                            else {
+                                $("#lstTreatment").empty();
+                                $("#lstTreatment").append(obj);
+                                $.notify("Save Successful", "success");
+                                
+                            }
+
+                            AddAvailabilityCheckBoxListener();
+                            btnEditDrug();
+                            btnDeleteDrug();
+                            location.reload();
+                            
+
+                        }
+
+                        
+
+                        //if (obj == "null")
+                        //{
+                        //    $.notify("Current Stock is less than required Quantity", "danger");
+                        //    selectedCheckbox.prop('checked', false);
+                        //}
+                        //else
+                        //{
+                        //    $("#lstTreatment").empty();
+                        //    $("#lstTreatment").append(obj);
+                        //    $.notify("Save Successful", "success");
+                        //    AddAvailabilityCheckBoxListener();
+                        //}
+
+                        $(".loader").hide();
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                        $(".loader").hide();
+                        $.notify("Error Occured while saving data", "error");
+                    }
+                });
+            }
+            else if (this.checked != true) {
+                var dataId = $(this).data("id");
+                var url = "/PharmacyPatientTransaction/MarkDrugInMedicationAsAvailable?Id=" + dataId + "&&notAvailable=true";
+                var selectedCheckbox = $(this);
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    beforeSend: function () {
+                        $(".loader").show();
+                    },
+                    success: function (obj) {
+
+                        $("#modal-content").empty();
+                        $("#modal-content").append(obj);
+                        var medId = $("#MedicationId").val();
+                        if (medId != null) {
+
+                            $("#modal-forms-holder").modal('show');
+                        }
+                        else {
+                            $("#lstTreatment").empty();
+                            $("#lstTreatment").append(obj);
+                            $.notify("Save Successful", "success");
+                            AddAvailabilityCheckBoxListener();
+                            btnEditDrug();
+                            btnDeleteDrug();
+                            location.reload();
+                        }
+
+                        $(".loader").hide();
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                        $(".loader").hide();
+                        $.notify("Error Occured while saving data", "error");
+                    }
+                });
+            }
+        });
+
+        function AddAvailabilityCheckBoxListener() {
+            $(".checkbox").unbind('change');
+
+            $(".checkbox").change(function () {
+                if (this.checked) {
+                    //Do stuff
+                    var dataId = $(this).data("id");
+                    var url = "/PharmacyPatientTransaction/MarkDrugInMedicationAsAvailable?Id=" + dataId;
+
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        beforeSend: function () {
+                            $(".loader").show();
+                        },
+                        success: function (obj) {
+                            $("#lstTreatment").empty();
+                            $("#lstTreatment").append(obj);
+                            $.notify("Save Successful", "success");
+                            $(".loader").hide();
+
+                        },
+                        error: function (x, y, z) {
+                            console.log(x.responseText);
+                            $(".loader").hide();
+                            $.notify("Error Occured while saving data", "error");
+                        }
+                    });
+                }
+            });
+        }
+
+        $("#Days").keyup(function () {
+
+            var days = $(this).val();
+            var dose = $("#Dose option:selected").data('quantity');
+            var issueQuantity = days * dose;
+            $("#IssueQty").val(issueQuantity);
+
+
+        });
+
+        $("#Dose").on('change', function () {
+            var days = $("#Days").val();
+            var dose = $(this).find("option:selected").data('quantity');
+
+            var issueQuantity = days * dose;
+            $("#IssueQty").val(issueQuantity);
+
+        })
+
+        function btnEditDrug() {
+            $(".btnEditDrug").unbind();
+            $(".btnEditDrug").click(function () {
+
+                var Id = $(this).data("id");
+
+                console.log("the id is ", Id);
+
+                var url = "/PharmacyPatientTransaction/EditIssuedDrugs?Id=" + Id;
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    beforeSend: function () {
+                        $(".loader").show();
+                    },
+                    success: function (obj) {
+                        $(".loader").hide();
+                        $("#modal-content").empty();
+                        $("#modal-content").append(obj);
+                        $("#modal-forms-holder").modal('show');
+                        EditFieldCheckTextOnChange();
+
+                    },
+                    error: function (x, y, z) {
+                        $(".loader").hide();
+                        console.log(x.responseText);
+                        $.notify("Error occured", "error");
+                    }
+
+                });
+
+
+
+            })
+        }
+
+        $(window).on('load', function () {
+            btnEditDrug();
+            btnDeleteDrug();
+            ShowThatDrugsAreIssued();
+
+        })
+
+        function EditFieldCheckTextOnChange() {
+
+            $("#EditDays").keyup(function () {
+                var doseQuantity = $("#DoseValue").val();
+                var EditedDays = $("#EditDays").val();
+                var editedUnits = doseQuantity * EditedDays;
+                var EditRate = $("#EditRate").val();
+                $("#EditUnits").val(editedUnits);
+                var amount = editedUnits * EditRate;
+
+                $("#EditAmount").val(amount);
+
+
+            });
+
+            $("#DoseValue").on("change",function () {
+                var doseQuantity = $("#DoseValue").val();
+                var EditedDays = $("#EditDays").val();
+                var editedUnits = doseQuantity * EditedDays;
+                var EditRate = $("#EditRate").val();
+                $("#EditUnits").val(editedUnits);
+                var amount = editedUnits * EditRate;
+                $("#EditAmount").val(amount);
+            });
+        }
+
+        $("#btnSaveEditedDrug").click(function () {
+            var Id = $("#MedicationId").val();
+            var Rate = $("#EditRate").val();
+            var IssueQty = $("#EditUnits").val();
+            var DoseDescription = $("#EditDescription").val();
+            var Days = $("#EditDays").val();
+            var Amount = Rate * IssueQty;
+
+            var Frequency = $("#DoseValue option:selected").text();
+
+
+            //var BatchNo = $("#BatchNo").val();
+            //var ItemMasterId = $("#ItemMasterId").val();
+            //var SimulationPatientIssueVoucherId = $("#SimulationPatientIssueVoucherId").val();
+            //var Notes = $("#Notes").val();
+            //var CurrentStock = $("#CurrentStock").val();
+            //var Dose = $("#Dose").val();
+
+            var model = {
+                Id: Id,
+                UnitPrice: Rate,
+                Quantity: IssueQty,
+                Day: Days,
+                Notes: Notes,
+                Subtotal: Amount,
+                Frequency: Frequency
+            }
+
+            console.log(model);
+
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyPatientTransaction/SaveEditedDrug",
+                data: model,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    $("#lstTreatment").empty();
+                    $("#lstTreatment").append(obj);
+                    $.notify("Save Successful", "success");
+                    $(".loader").hide();
+                    $("#modal-forms-holder").modal('hide');
+                    btnEditDrug();
+                    btnDeleteDrug();
+                    AddAvailabilityCheckBoxListener();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $.notify("An Error occured while saving medication", "error");
+                    $(".loader").hide();
+                    $("#modal-forms-holder").modal('hide');
+                }
+
+            });
+        })
+
+        function btnSaveEditedDrug() {
+
+            var Id = $("#MedicationId").val();
+            var Rate = $("#EditRate").val();
+            var IssueQty = $("#EditUnits").val();
+            var DoseDescription = $("#EditDescription").val();
+            var Days = $("#EditDays").val();
+            var Amount = Rate * IssueQty;
+            var Frequency = $("#DoseValue option:selected").text();
+
+
+            //var BatchNo = $("#BatchNo").val();
+            //var ItemMasterId = $("#ItemMasterId").val();
+            //var SimulationPatientIssueVoucherId = $("#SimulationPatientIssueVoucherId").val();
+            //var Notes = $("#Notes").val();
+            //var CurrentStock = $("#CurrentStock").val();
+            //var Dose = $("#Dose").val();
+
+            var model = {
+                Id: Id,
+                UnitPrice: Rate,
+                Quantity: IssueQty,
+                Day: Days,
+                Subtotal: Amount,
+                Frequency: Frequency
+            }
+
+            //console.log(model);
+
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyPatientTransaction/SaveEditedDrug",
+                data: model,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    //console.log(obj);
+                    $("#lstTreatment").empty();
+                    $("#lstTreatment").append(obj);
+                    $.notify("Save Successful", "success");
+                    $(".loader").hide();
+                    $("#modal-forms-holder").modal('hide');
+                    btnEditDrug();
+                    btnDeleteDrug();
+                    AddAvailabilityCheckBoxListener();
+                    EditFieldCheckTextOnChange();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $.notify("An Error occured while saving medication", "error");
+                    $(".loader").hide();
+                    $("#modal-forms-holder").modal('hide');
+                }
+
+            });
+
+
+        }
+
+        //Delete Drug from Medication
+        function btnDeleteDrug() {
+            $(".btnDelete").unbind();
+            $(".btnDelete").click(function () {
+
+                var Id = $(this).data("id");
+
+                //console.log("the id is ", Id);
+                var url = "/" + Id;
+
+                if ($('#ReggNoo').val() == undefined) {
+                    url = "/PharmacyPatientTransaction/RemoveTreatmentDataWalkIn?Id=" + $(this).parent().parent().index();
+                } else {
+                    var url = "/PharmacyPatientTransaction/DeleteIssuedDrugs?Id=" + Id;
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    beforeSend: function () {
+                        $(".loader").show();
+                    },
+                    success: function (obj) {
+
+                        if (obj == 1) {
+                            location.reload();
+                            return false;
+                        }
+
+                        $(".loader").hide();
+                        $("#modal-content").empty();
+                        $("#modal-content").append(obj);
+                        $("#modal-forms-holder").modal('show');
+
+                        
+                    },
+                    error: function (x, y, z) {
+                        $(".loader").hide();
+                        console.log(x.responseText);
+                        $.notify("Error occured", "error");
+                    }
+
+                });
+
+
+
+            })
+        }
+
+        function DeleteConfirmed() {
+
+            var Id = $("#MedicationId").val();
+
+            //console.log("the id is ", Id);
+
+            var url = "/PharmacyPatientTransaction/DeleteConfirmed?Id=" + Id;
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    $("#lstTreatment").empty();
+                    $("#lstTreatment").append(obj);
+                    $.notify("Save Successful", "success");
+                    $(".loader").hide();
+                    $("#modal-forms-holder").modal('hide');
+                    btnEditDrug();
+                    btnDeleteDrug();
+                    AddAvailabilityCheckBoxListener();
+
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $.notify("An Error occured while saving medication", "error");
+                    $(".loader").hide();
+                    $("#modal-forms-holder").modal('hide');
+                    btnEditDrug();
+                    btnDeleteDrug();
+                    AddAvailabilityCheckBoxListener();
+                }
+
+            });
+
+        }
+
+        function ConfirmToIssueLessDrugs() {
+
+
+
+            var dataId = $("#MedicationId").val();
+            var url = "/PharmacyPatientTransaction/ConfirmIssueLessDrugQuantity?Id=" + dataId;
+            var selectedCheckbox = $(this);
+            $.ajax({
+                type: "POST",
+                url: url,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    $("#lstTreatment").empty();
+                    $("#lstTreatment").append(obj);
+                    $.notify("Save Successful", "success");
+                    $("#modal-forms-holder").modal('hide');
+                    $(".loader").hide();
+                    btnEditDrug();
+                    btnDeleteDrug();
+                    AddAvailabilityCheckBoxListener();
+
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("Error Occured while saving data", "error");
+                    btnEditDrug();
+                    btnDeleteDrug();
+                    AddAvailabilityCheckBoxListener();
+
+                }
+            });
+
+        }
+
+        $("#AddNewVoucher").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyPatientTransaction/SomethingToBeReturned",
+                success: function (obj) {
+                    console.log(obj);
+                }
+            });
+        })
+
+        function ShowThatDrugsAreIssued() {
+
+            var obj = $("#issuedItemsMessage").html();
+            var item = $("#issuedItemsMessageSaved").val();
+            var paid = $("#issuedItemsPaidFor").val();
+
+            if (item) {
+                $("#modal-content").html(obj);
+                $("#modal-forms-holder").modal('show');
+            }
+
+            if (paid) {
+                $("#modal-content").html(obj);
+                $("#modal-forms-holder").modal('show');
+            }
+
+
+
+
+        }
+
+    </script>
+
+}
+

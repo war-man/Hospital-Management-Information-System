@@ -1,0 +1,121 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.RenalMachineCheck>
+
+
+@{
+
+}
+
+
+
+
+
+<table class="table table-caresoft table-condensed">
+    <thead>
+        <tr>
+            <td style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"> <b><i>OPD No</i></b></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"><b><i>User</i></b></th>
+            <td></td>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"><b><i>Date Of Visit</i></b></th>
+
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+        <tr>
+            <td>@a.OPDNo</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>@a.UserId</td>
+            <td></td>
+            
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="color:crimson">@a.DateAdded</td>
+
+
+        </tr>
+        }
+
+    </tbody>
+    <td>&nbsp;</td>
+
+
+
+    <thead>
+        <tr>
+            <th>Staff Setting Machine</th>
+            <th>Blood Leak </th>
+            <th>Air Detect </th>
+            <td> Temp</td>
+            <td>Conductivity</td>
+            <td>Dialysis p.</td>
+            <td>TMP ON</td>
+            <td>Rej.Rate</td>
+            <td>Time Due</td>
+            <td>Initiating Nurse</td>
+            <td>No. Clamps</td>
+            <td>Time Off</td>
+            <td>TerminatingNurse</td>
+            <td>FinalClamps</td>
+
+
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+        <tr style="background-color:chartreuse">
+
+            <td>@a.Staff</td>
+            <td>@a.BloodLeak</td>
+            <td>@a.AirDetect</td>
+            <td>@a.Temperature</td>
+            <td>@a.Conductivity</td>
+            <td>@a.DialysisP</td>
+            <td>@a.TMP</td>
+            <td>@a.RejRAte</td>
+            <td>@a.TimeDue</td>
+            <td>@a.InitiatingNurse</td>
+            <td>@a.InitialClamps</td>
+            <td>@a.TimeOff</td>
+            <td>@a.TerminatingNurse</td>
+            <td>@a.FinalClamps</td>
+
+
+
+
+
+        </tr>
+        }
+
+    </tbody>
+
+
+
+
+
+
+</table>
+

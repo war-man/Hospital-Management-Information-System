@@ -1,0 +1,38 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Tariff>
+
+
+    <table class="table table-data table-condensed">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TariffName)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Company.CompanyName)
+            </th>
+            <th></th>
+        </tr>
+    
+        <tbody class="bg-white">
+            @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TariffName)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.CompanyName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+               
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+}
+        </tbody>
+   
+    
+    </table>
+

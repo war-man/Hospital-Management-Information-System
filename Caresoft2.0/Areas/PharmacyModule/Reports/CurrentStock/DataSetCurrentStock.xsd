@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CurrentStock" targetNamespace="http://tempuri.org/CurrentStock.xsd" xmlns:mstns="http://tempuri.org/CurrentStock.xsd" xmlns="http://tempuri.org/CurrentStock.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CurrentStock" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CurrentStock" msprop:Generator_UserDSName="CurrentStock">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ItemMasterItem" msprop:Generator_TableClassName="ItemMasterItemDataTable" msprop:Generator_TableVarName="tableItemMasterItem" msprop:Generator_TablePropName="ItemMasterItem" msprop:Generator_RowDeletingName="ItemMasterItemRowDeleting" msprop:Generator_RowChangingName="ItemMasterItemRowChanging" msprop:Generator_RowEvHandlerName="ItemMasterItemRowChangeEventHandler" msprop:Generator_RowDeletedName="ItemMasterItemRowDeleted" msprop:Generator_UserTableName="ItemMasterItem" msprop:Generator_RowChangedName="ItemMasterItemRowChanged" msprop:Generator_RowEvArgName="ItemMasterItemRowChangeEvent" msprop:Generator_RowClassName="ItemMasterItemRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BatchNo" msprop:Generator_ColumnVarNameInTable="columnBatchNo" msprop:Generator_ColumnPropNameInRow="BatchNo" msprop:Generator_ColumnPropNameInTable="BatchNoColumn" msprop:Generator_UserColumnName="BatchNo" type="xs:string" minOccurs="0" />
+              <xs:element name="ItemName" msprop:Generator_ColumnVarNameInTable="columnItemName" msprop:Generator_ColumnPropNameInRow="ItemName" msprop:Generator_ColumnPropNameInTable="ItemNameColumn" msprop:Generator_UserColumnName="ItemName" type="xs:string" minOccurs="0" />
+              <xs:element name="CurrentStock" msprop:Generator_ColumnVarNameInTable="columnCurrentStock" msprop:Generator_ColumnPropNameInRow="CurrentStock" msprop:Generator_ColumnPropNameInTable="CurrentStockColumn" msprop:Generator_UserColumnName="CurrentStock" type="xs:int" minOccurs="0" />
+              <xs:element name="ExpiryDate" msprop:Generator_ColumnVarNameInTable="columnExpiryDate" msprop:Generator_ColumnPropNameInRow="ExpiryDate" msprop:Generator_ColumnPropNameInTable="ExpiryDateColumn" msprop:Generator_UserColumnName="ExpiryDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ReOrderLevel" msprop:Generator_ColumnVarNameInTable="columnReOrderLevel" msprop:Generator_ColumnPropNameInRow="ReOrderLevel" msprop:Generator_ColumnPropNameInTable="ReOrderLevelColumn" msprop:Generator_UserColumnName="ReOrderLevel" type="xs:int" minOccurs="0" />
+              <xs:element name="CostPrice" msprop:Generator_ColumnVarNameInTable="columnCostPrice" msprop:Generator_ColumnPropNameInRow="CostPrice" msprop:Generator_ColumnPropNameInTable="CostPriceColumn" msprop:Generator_UserColumnName="CostPrice" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

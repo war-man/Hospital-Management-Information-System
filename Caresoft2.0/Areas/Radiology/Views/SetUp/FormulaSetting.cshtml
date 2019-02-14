@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.ShowTopMenu = true;
+    ViewBag.Title = "Formula Settings";
+    Layout = ViewBag.Layout;
+}
+
+<div class="col-xs-10 col-xs-offset-1">
+
+    <br />
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading" style="height:40px ; ">
+            @ViewBag.Title
+        </div>
+
+        <div class="panel-body">
+            <table class="table-condensed" style="width:100%">
+
+                <thead style="white-space:nowrap">
+                    <tr>
+                        <th style=" width: 20%; ">Headings Titles and Fields	</th>
+                        <th style=" width: 20%; ">Tests</th>
+                        <th style=" width: 20%; ">Parameters</th>
+                        <th style=" width: 40%; ">
+                            Input First Half Of Formula
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="Headings-Titles-And-Fields Radiology-border" style="height:300px; padding-top:10px; background:white; overflow:auto;">
+
+
+                                @foreach (LabsDataAccess.Department m in ViewBag.Departments)
+                                {
+                                    <label style="width:100%; padding-right:10px; padding-left:10px" class="form-check-label" for="dep@m.Id">
+                                        <input type="checkbox" class="form-check-input" name="dep@m.Id" id="dep@m.Id" identity ="@m.Id">  &nbsp; @m.Department1
+                                    </label>
+                                }
+
+                            </div>
+                        </td>
+                        <td>
+                            <div class="Radiology-border" style="height:300px; background:white; padding-top:10px; overflow-x:auto;">
+                               <div id="Tests">
+
+                               </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="Radiology-border" style="height:300px; background:white; overflow:auto; padding:10px">
+                                <div id="Params">
+
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="" style="height:300px; overflow:auto; padding:10px">
+                                <input class="text-box" id="" name="" />
+                                <p>
+                                    <b> Select Second Half Of Formula From List</b>
+                                </p>
+                                <div class="Radiology-border" style="height:100px; background:white; overflow:auto">
+
+                                </div>
+                                <br />
+                                <div class="Radiology-border" style="height:100px; overflow:auto">
+
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    
+    <script>
+        $('.Headings-Titles-And-Fields');
+
+        $('input[type=checkbox]').each(function () {
+            $(this).change(function () {
+                if ($(this).is(':checked')) {
+                    getDepartmentTests($(this).attr('identity'));
+                } else {
+                    return confirm("Are you sure?");
+                }
+            });
+        });
+
+        function getDepartmentTests(id) {
+
+            $.get("/SetUp/getDepartmentTests/" + id, function (data, status) {
+
+                $('#Tests').append(data);
+                setTestsOnClicks();
+
+            });
+
+        }
+
+        function setTestsOnClicks() {
+
+            $('.TestsCheckbox').each(function () {
+
+                $(this).change(function () {
+                    $(this).unbind();
+                    if ($(this).is(':checked')) {
+                        getTestParameters($(this).attr('identity'));
+                    } else {
+                        return confirm("Are you sure?");
+                    }
+                });
+            });
+
+        }
+
+
+        function getTestParameters(id) {
+            $.get("/SetUp/getTestParameters/" + id, function (data, status) {
+
+                $('#Params').append(data);
+                setParamsCheckBoxes();
+                //alert("Data: " + data + "\nStatus: " + status);
+            });
+        }
+
+        function setParamsCheckBoxes(){
+           
+            $('.ParamsCheckbox').each(function () {
+
+                $(this).change(function () {
+                    $(this).unbind();
+                    if ($(this).is(':checked')) {
+                       // getTestParameters($(this).attr('identity'));
+                    } else {
+                        return confirm("Are you sure?");
+                    }
+                });
+            });
+        }
+    </script>
+
+}

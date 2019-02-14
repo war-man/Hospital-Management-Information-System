@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.ProvisionalPOItemsDetail>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class=" table table-data">
+            <tr>
+                <th>
+                    Edit
+                </th>
+                <th>
+                    Drug Name
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Delete
+                </th>
+            </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><button value="@item.Id"  class="btn btn-sm btnEdit">Edit</button></td>
+                        <td>@item.Drug.Name</td>
+                        <td>@item.Quantity</td>
+                        <td></td>
+                    </tr>
+                }
+         
+            </table>
+        </div>
+</div>
+

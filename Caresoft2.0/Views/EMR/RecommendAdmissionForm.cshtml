@@ -1,0 +1,114 @@
+﻿@model CaresoftHMISDataAccess.OpdRegister
+    @{ var pat = Model.Patient; }
+<div class="panel panel-primary shadow glass caresoft-panel" style="margin-bottom:-1em;">
+    <div class="panel-heading ">
+        Admission
+        <input type="hidden"id="Stage" value="@ViewBag.Stage" />
+    </div>
+    <div class="panel-body">
+        <fieldset>
+            <legend>
+                Patient Details
+            </legend>
+            <table class="table-form">
+                <tr>
+                    <td>
+                        <sample>Reg Number</sample>
+                    </td>
+                    <td>
+                        <input type="text" readonly class="text-box box-lg" value="@pat.RegNumber" />
+                    </td>
+                    <td>
+                        <sample>Name</sample>
+                    </td>
+                    <td>
+                        <input type="text" readonly class="text-box box-lg" value="@pat.Salutation @pat.FName @pat.MName" />
+                    </td>
+                    <td>
+                        <sample>Age[Gender]</sample>
+                    </td>
+                    <td>
+                        @{ var age = DateTime.Today.Year - pat.DOB.Value.Year;
+                            var unit = "Yr";
+
+                            if (age < 1)
+                            {
+                                age = DateTime.Today.Month - pat.DOB.Value.Month;
+                                unit = "M";
+                            }
+
+                            if (age < 1)
+                            {
+                                age = DateTime.Today.Day - pat.DOB.Value.Day;
+                                unit = "D";
+                            }
+                         }
+                        <input type="text" readonly class="text-box box-lg" value="@age @unit [@pat.Gender]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Home Address</label>
+                    </td>
+                    <td>
+                        <input type="text" readonly class="text-box box-lg" value="@pat.HomeAddress" />
+                    </td>
+                    <td>
+                        <label>Mobile</label>
+                    </td>
+                    <td>
+                        <input type="text" readonly class="text-box box-lg" value="@pat.Mobile" />
+                    </td>
+                    
+                </tr>
+            </table>
+        </fieldset>
+        <table class="table-form">
+            <tr>
+                <td width="50%" style="padding-right:.5em;">
+                    <fieldset>
+                        <legend>Doctors Admission Note</legend>
+                        <form id="form_recommend_admission">
+                            <input type="hidden" value="@Model.Id" name="OPDNo" />
+                            <textarea @if (ViewBag.Stage == "final"){<text>readonly</text>} class="text-box box-xlg" style="min-height:145px" required name="AdmissionNotes">@if (Model.AdmissionRecommendations.Count() > 0) {@Html.DisplayFor(model => model.AdmissionRecommendations.Where(e => e.Status == "Pending").Last().AdmissionNotes)}</textarea>
+                           @if (ViewBag.Stage == "final")
+                           {
+                               //
+                           }
+                           else
+                           {
+                                <button class="btn btn-sm btn-primary">Save</button>
+                           }
+                        </form>
+                    </fieldset>
+                </td>
+                <td width="50%" valign="top" style="padding-left:.5em;">
+                    <fieldset @if (ViewBag.Stage != "final") { <text>class="collapse"</text>}>
+                        <legend>Bed Placement</legend>
+                        <table class="table-form" >
+                            <tr>
+                                <td>
+                                    <label>Ward Category</label><br />
+                                    <select class="text-box box-lg" name="WardCategory" id="WardCategory" required onchange="getMyWards(this)"></select>
+                                </td>
+                                <td>
+                                    <label>Ward</label><br />
+                                    <select class="text-box box-lg" name="Ward" id="Ward" required onchange="getMyBeds(this)"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Bed</label><br />
+                                    <select class="text-box box-lg" name="Bed" id="Bed" required></select>
+                                </td>
+                            </tr>
+                        </table>
+                        <button class="btn btn-sm btn-primary pull-right">Admit</button>
+                    </fieldset>
+                </td>
+            </tr>
+        </table>
+    </div>
+ </div>
+        
+

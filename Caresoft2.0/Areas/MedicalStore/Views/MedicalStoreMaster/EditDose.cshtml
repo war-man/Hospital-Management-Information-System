@@ -1,0 +1,86 @@
+﻿@model Caresoft2._0.Areas.Procurement.Models.Dose
+
+@{
+    ViewBag.Title = "Edit Dose";
+}
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel ">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+            <fieldset style="padding: 10px;">
+                @using (Ajax.BeginForm("EditDose", "MedicalStoreMaster", new { }, new AjaxOptions
+                {
+                    HttpMethod="POST",
+                    OnSuccess = "",
+                    OnComplete = "",
+                    UpdateTargetId = "response",
+                    LoadingElementId = "loadingElement",
+                    OnFailure = "showNotification('An Error Occured', 'danger', 'true')"
+                }, new { }))
+                {
+                    @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group">
+                       <div class="col-md-2"></div>
+                        <div class="col-md-10">
+                            <strong style="color:blue"  id="response"></strong>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "text-box" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "text-box" } })
+                            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StandardTime, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.StandardTime, new { htmlAttributes = new { @class = "text-box" } })
+                            @Html.ValidationMessageFor(model => model.StandardTime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "text-box" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-primary btn-sm" />
+                        </div>
+                    </div>
+                </div>
+                }
+
+            </fieldset>
+        </div>        
+
+    </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

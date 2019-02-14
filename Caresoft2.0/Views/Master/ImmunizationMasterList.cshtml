@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.ImmunizationMaster>
+<table class="table-data table table-condensed">
+    <tr>
+        <th></th>
+        <th>Category</th>
+        <th>Type</th>
+        <th>Name</th>
+        <th>L.Age</th>
+        <th>U.Age</th>
+        <th>Flag</th>
+        <th>BWMYT</th>
+        <th></th>
+    </tr>
+    <tbody class="bg-white">
+        @foreach (var en in Model)
+    {
+        <tr id="immunization-@en.Id">
+            <td>
+                <label>Edit</label>
+            </td>
+            <td >
+                @en.ImmunizationCategory.ImmunizationCategoryName
+            </td>
+            <td>
+                @en.ImmunizationType
+            </td>
+            <td class="name">
+                @en.ImmunizationName
+            </td>
+            <td>
+                @en.LowerAgeInMonths
+            </td>
+            <td>
+                @en.UpperAgeInMonth
+            </td>
+            <td>
+                @en.VaccineFlag
+            </td>
+            <td>@en.BWMYType</td>
+            <td><button class="btn btn-xs btn-primary" onclick="deleteMe(@en.Id, this);">Delete</button></td>
+        </tr>
+}
+    </tbody>
+    
+</table>

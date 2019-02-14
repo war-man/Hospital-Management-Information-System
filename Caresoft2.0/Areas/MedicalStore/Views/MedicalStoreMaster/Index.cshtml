@@ -1,0 +1,160 @@
+﻿@model Caresoft2._0.Areas.MedicalStore.ViewModels.ExpiryNreorderItems
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+}
+
+<style>
+    .modalexpiry {
+        position: fixed;
+        top: 35%;
+        left: 25%;
+        transform: translate(-50%, -50%);
+        overflow-y: scroll;
+      
+    }
+
+    .modalReorder {
+        position: fixed;
+        top: 35%;
+        left: 75%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+    }
+
+   
+</style>
+
+
+<div id="ModalReorder" class="modal fade modalReorder " role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+           
+            <div class="modal-body">
+
+                <div class="panel panel-primary caresoft-panel ">
+                    <div class="panel-heading">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <b>Items to be Re-ordered</b>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-data-pathology">
+                            <tr>
+                                <th>Batch NO</th>
+                                <th>Item Name</th>
+                                <th>Reorder Level</th>
+                                <th>Current Stock</th>
+                                <th>Location</th>
+                            </tr>
+                            @if (Model.ReorderItems.Count > 0)
+                            {
+                                foreach (var item in Model.ReorderItems)
+                                {
+                                    <tr>
+                                        <td>@item.BatchNo</td>
+                                        <td>@item.ItemName</td>
+                                        <td>@item.ReorderLevel</td>
+                                        <td>@item.CurrentStock</td>
+                                        <td>Medical Store</td>
+                                    </tr>
+                                }
+
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td class="text-center"  colspan="5">
+                                        No data to display
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+
+                        <button class="btn btn-primary btn-sm">Export to Excel</button>
+                        <button class="btn btn-primary btn-sm" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+          
+        </div>
+
+    </div>
+</div>
+
+<div id="ModalExpiry" class="modal fade modalexpiry" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+           
+            <div class="modal-body">
+                <div class="panel panel-primary caresoft-panel ">
+                    <div class="panel-heading">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <b>Expired Items</b>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-data-pathology">
+                            <tr>
+                                <th>Batch NO</th>
+                                <th>Item Name</th>
+                                <th>Current Stock</th>
+                                <th>Expiry Date</th>
+                                <th>Location</th>
+                            </tr>
+                            @if (Model.ExpiryItems.Count > 0)
+                            {
+                                foreach (var item in Model.ExpiryItems)
+                                {
+                                    var exprydate = (DateTime)item.ExpiryDate;
+                                    <tr>
+                                        <td>@item.BatchNo</td>
+                                        <td>@item.ItemName</td>
+                                        <td>@item.CurrentStock</td>
+                                        <td>@exprydate.ToString("dd-MMM-yyyy")</td>
+                                        <td>Medical Store</td>
+                                    </tr>
+                                }
+
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td class="text-center" colspan="5">
+                                        No data to display
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+
+                        <button class="btn btn-primary btn-sm">Export to Excel</button>
+                        <button class="btn btn-primary btn-sm" data-dismiss="modal">Close</button>
+                    </div>
+                   
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+
+    <script>
+        $(window).on('load', function () {
+            $('#ModalExpiry').modal('show');
+
+            $('#ModalReorder').modal('show');
+        })
+
+
+    </script>
+
+}

@@ -1,0 +1,56 @@
+﻿
+@{
+    if(ViewBag.IsAjax != null && ViewBag.IsAjax)
+    {
+        //no layout
+    }
+    else
+    {
+        ViewBag.Title = "Assign Nurse Station To Nurse";
+        Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+    }
+
+}
+
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                <table class="table-form">
+                    <tr>
+                        <td>Select Nurse Station</td>
+                        <td>
+                            <select class="text-box">
+                                <option>--Select Station Name</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="text-box">
+                                <option>-User</option>
+                            </select>
+                            <button class="btn btn-sm btn-primary" type="button">Add</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <table class="table table-data table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Edit</th>
+                                        <th>Block Name</th>
+                                        <th>Nurse Name</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,300 @@
+﻿@model Caresoft2._0.CustomData.AdmissionFormData
+<div class="panel panel-primary  shadow glass caresoft-panel" style="margin-bottom:-1em;">
+    <div class="panel-heading caresoft-panel">
+        IPD Admit Patients
+    </div>
+    <div class="panel-body">
+
+        <ul class="nav nav-pills">
+            <li class="active top-tab"><a data-toggle="pill" href="#ipd-registration-tab">IPD Registration</a></li>
+            <li class="top-tab"><a class="not-allowed" href="#insurance-details">Insurance Details</a></li>
+            <li class="top-tab"><a class="not-allowed" href="#corporate-details">Corporate Details</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="ipd-registration-tab" class="tab-pane fade in active">
+                <fieldset>
+                    <form id="ipd-adminssion-form">
+                        <table class="table-form">
+                            <tr>
+                                <td></td>
+                                <td colspan="3">
+                                    <label class="text-danger">
+                                        @Model.Bed.HSWard.HSFloor.HSBuilding.BuildingName,
+                                        @Model.Bed.HSWard.HSFloor.FloorName,  Ward: @Model.Bed.HSWard.WardName Bed Name: @Model.Bed.BedName
+                                    </label>
+                                    <input type="hidden" name="BedId" value="@Model.Bed.Id" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>RegNo</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-lg" required id="RegNumber" />
+                                </td>
+                                <td>
+                                    <label>Patient Name</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-lg" id="PatientName" required />
+                                    <input type="hidden" id="PatientId" name="PatientId" />
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label>Doctor Incharge</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-lg" name="ConsultantDoctor" id="ConsultantDoctor" required />
+                                </td>
+                                <td>
+                                    <label>Reference Doctor</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-lg" name="ReferringDoctor" id="ReferringDoctor" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Date</label>
+                                </td>
+                                <td>
+                                    <input type="date" name="AdmissionDate" class="text-box box-lg" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+                                </td>
+                                <td>
+                                    <label>Time</label>
+                                </td>
+                                <td>
+                                    <input type="time" name="AdmissionTime" class="text-box box-lg" value="@DateTime.Now.ToString("HH:mm")" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Patient Main Category</td>
+                                <td>
+                                    <select id="PatientCategory" class="text-box box-lg" required>
+                                        @foreach (var cat in Model.PatientMainCategories)
+                                        {
+                                            <option value="@cat.Id">@cat.CompanyTypeName</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>Patient Category</td>
+                                <td>
+                                    <select id="PatientType" class="text-box box-lg" required>
+                                        @foreach (var Company in (List<CaresoftHMISDataAccess.Company>)ViewBag.Companies)
+                                        {
+                                            <option class="@Company.Id" value="@Company.Id">@Company.CompanyName</option>
+                                        }
+                                    </select>
+                                    <input type="hidden" name="TariffId" id="TariffId" value="@Model.PatientMainCategories.FirstOrDefault().Companies.FirstOrDefault().Tariffs.FirstOrDefault(e=>e.TariffName.ToLower().Equals("cash")).Id" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label><input type="checkbox" name="UniversalPrecaution" /> Universal Precaution</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+                                    @*<input type="button" class="btn btn-sm btn-primary" value="Insurance" />*@
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </fieldset>
+            </div>
+
+            <div id="insurance-details" class="tab-pane fade">
+                <fieldset>
+                    <form id="insurance-details-form">
+                        <table width="100%" class="table-form">
+                            <tr>
+                                <td>
+                                    Select XML File
+                                </td>
+                                <td>
+                                    <input type="file" name="xmlfile" class="text-box btn-primary box-xlg" />
+                                </td>
+                                <td align="left">
+                                    <button class="btn btn-sm btn-primary" type="button">Upload</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Insurance Company Name</label>
+                                </td>
+                                <td>
+                                    <select type="text" id="InsuranceCompanyName" name="InsuranceCompanyName" class="text-box box-lg">
+                                        @{ var insurances = ((List<CaresoftHMISDataAccess.CompanyType>)ViewBag.CompanyTypes)
+                                                  .FirstOrDefault(e => e.CompanyTypeName.ToLower()
+                                                      .Trim().Equals("insurance")); }
+                                        @if (insurances != null)
+                                        {
+                                            foreach (var patCat in insurances.Companies)
+                                            {
+                                                <option data-pat-cat-id="@patCat.Id">@patCat.CompanyName</option>
+                                            }
+                                        }
+
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="MemberNo">Member No</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="MemberNo" id="MemberNo" required class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Member/Patient Relationship</label>
+                                </td>
+                                <td>
+                                    <select id="MemberPatientRelationship" name="MemberPatientRelationShip" class="text-box box-lg">
+                                        <option>Self</option>
+                                        @foreach (var rel in (List<CaresoftHMISDataAccess.Relationship>)ViewBag.RelationshipsOptions)
+                                        {
+                                            <option>@rel.RelationshipName</option>
+                                        }
+
+                                    </select>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <input type="text" name="OPDNo" id="IPDNo" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="MemberFirstName">Member First Name</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="MemberFirstName" class="text-box box-lg insurance-owner" id="MemberFirstName" value="" required />
+                                </td>
+                                <td>
+                                    <label>Member Middle Name</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="MemberMiddleName" class="text-box box-lg insurance-owner" id="MemberMiddleName" value="" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="MemberLastName">Member Last Name</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="MemberLastName" class="text-box box-lg insurance-owner" id="MemberLastName" value="" required />
+                                </td>
+                                <td>
+                                    <label for="MobileNumber">Member Phone Number</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="MemberPhoneNumber" class="text-box box-lg insurance-owner" id="MobileNumber" required value="" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="CardNo">Card No</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="CardNo" id="CardNo" required class="text-box box-lg" />
+                                </td>
+                                <td>
+                                    <label>Validity Up To</label>
+                                </td>
+                                <td>
+                                    <input type="date" name="ExpiryDate" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="Tariff">Scheme</label>
+                                </td>
+                                <td>
+                                    <select id="Tariff" name="SchemeId" class="text-box box-lg" required>
+                                        <option>Select</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label>Sum Assured</label>
+                                </td>
+                                <td>
+                                    <input type="number" name="SumAssured" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    @*<button class="btn btn-default btn-sm" type="button" onclick='$("#insurance-details-modal").modal("hide");'>Cancel</button>*@
+                                    <button class="btn btn-primary btn-sm" id="btn-save-insuance-details" type="button">Save Insurance Details</button>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </fieldset>
+            </div>
+
+            <div id="corporate-details" class="tab-pane fade">
+                <fieldset>
+                    <form id="corporate-details-form">
+                        <table width="100%" class="table-form">
+
+                            <tr>
+                                <td>
+                                    <label for="corporateCompanyName">Corporate Company Name</label>
+                                </td>
+                                <td>
+                                    <select type="text" id="corporateCompanyName" name="corporateCompanyName" class="text-box box-lg" required>
+                                        @*@{ var corporates =
+                                                     Model.MainCategories.FirstOrDefault(e => e.CompanyTypeName.ToLower()
+                                                     .Trim().Equals("corporate")); }
+                                            @if (corporates != null)
+                                            {
+                                                foreach (var patCat in corporates.Companies)
+                                                {
+                                                    <option data-pat-cat-id="@patCat.Id">@patCat.CompanyName</option>
+                                                }
+                                            }*@
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="CorporateMemberNo">ID No</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="CorporateMemberNo" id="CorporateMemberNo" required class="text-box box-lg" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label for="Tariff">Corporate/Exemption Type</label>
+                                </td>
+                                <td>
+                                    <select id="CorporateTariff" name="CorporateTariff" class="text-box box-lg" required>
+                                        <option>Select</option>
+                                    </select>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    @*<button class="btn btn-default btn-sm" type="button" onclick='$("#insurance-details-modal").modal("hide");'>Cancel</button>*@
+                                    <button class="btn btn-primary btn-sm" id="btn-save-corporate-details" type="submit">Save Corporate Details</button>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+
+    </div>
+</div>
+

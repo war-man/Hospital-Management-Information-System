@@ -1,0 +1,935 @@
+﻿@model Caresoft2._0.CustomData.OPDBillingFormData
+@{
+    ViewBag.ShowTopMenu = true;
+    ViewBag.isIPDBill = Model.OpdRegister.IsIPD;
+
+
+}
+
+<div class="col-xs-8 col-sm-offset-2">
+    <div class="panel panel-primary caresoft-panel ">
+        <div class="panel-heading">
+
+            Bill
+            <div class="pull-right">
+                @Html.Partial("BiometricIdBtn")
+            </div>
+
+        </div>
+        <div class="panel-body">
+            <label>Shift No: </label> @Model.Shift
+
+            <div id="bill-form">
+                @Html.Partial("BillingForm", Model)
+            </div>
+
+            <fieldset class="marg-top-16px">
+                <form id="BillPaymentForm">
+                    <input type="hidden" name="OPDNo" id="OPDNo" value="@Model.OpdRegister.Id" />
+                    <input type="hidden" name="BilledEntries" id="BilledEntries" value="" />
+                    <input type="hidden" name="BilledMedications" id="BilledMedications" value="" />
+                    <input type="hidden" name="ReceiptNo" id="ReceiptNo" value="" />
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                <input type="radio" name="Currency" value="Primary" id="PrimaryCurrency" checked />
+                                <label for="PrimaryCurrency">In Primary Currency <b>(KSH)</b></label>
+
+                                <label for="PaymentModeId">Payment Mode</label>
+                                <select class="text-box box-lg" id="PaymentModeId" name="PaymentModeId">
+                                    @foreach (var mode in Model.PaymentModes)
+                                    {
+                                        <option value="@mode.Id">@mode.PaymentModeName</option>
+                                    }
+                                </select>
+                                <table>
+                                    <tr>
+                                        <td>Bill Amount</td>
+                                        <td><input type="text" class="text-box box-lg" name="BillAmount" id="BillAmount" readonly /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Discount%/Amt</td>
+                                        <td>
+                                            <fieldset>
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <label for="PercentDiscount">Per</label>
+                                                            <input type="radio" name="DiscountUnit" value="Percent" id="PercentDiscount" />
+                                                        </td>
+                                                        <td>
+                                                            <label for="AmountDiscount">Amt</label>
+                                                            <input type="radio" name="DiscountUnit" value="Amount" id="AmountDiscount" checked />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="Discount" id="Discount" size="4" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </fieldset>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reason For Discount</td>
+                                        <td><select class="text-box box-lg"></select></td>
+                                    </tr>
+                                    <tr class="collapse">
+                                        <td>Received Amount</td>
+                                        <td><input type="text" class="text-box box-lg" name="ReceivedAmount" id="ReceivedAmount" /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Awarded Amount</td>
+                                        <td><input type="text" class="text-box box-lg" name="AwardedAmount" id="AwardedAmount" readonly /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Discount Amount</td>
+                                        <td><input type="text" class="text-box box-lg" name="DiscountAmount" id="DiscountAmount" readonly /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Paid Amount</td>
+                                        <td><input type="number" class="text-box box-lg" name="PaidAmount" id="PaidAmount" min="0" /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Balance</td>
+                                        <td><input type="number" class="text-box box-lg" name="Balance" id="Balance" readonly /> </td>
+                                    </tr>
+                                    <tr class="hidden">
+                                        <td>JPay Balance</td>
+                                        <td><input type="number" class="text-box box-lg " name="JPayBalance" id="JPayBalance" readonly /> </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <div class="custom-hr"></div>
+                    <label class="collapse">Reason for Balance </label><select class="text-box box-lg collapse"></select>
+
+                    <input type="text" readonly class="text-box box-lg" name="AmountFromWallet" id="AmountFromWallet" placeholder="Amount From Wallet" />
+                    <input type="checkbox" id="TransferFromEWallet" disabled onclick="transferFromEwallet(this)" />
+                    <label for="TransferFromEWallet" style="color:gray">Transfer From E-Wallet (Available Amt: <span class="money" id="ewallet_balance">0</span>)</label>
+                    @if (Model.PaymentModes.Any(f => f.PaymentModeName.Equals("Jambo Pay")))
+                    {
+                        <b style="color:darkblue">&nbsp; &nbsp; &nbsp; &nbsp; Jambo Pay (Available Amt: <span class="money" id="available_balance">@Model.OpdRegister.JPayments.Sum(e => e.Amount)</span>)</b>
+                        <button onclick="location.reload()" class="btn btn-xs btn-primary" type="button">Refresh Jpay</button>
+
+                    }
+                    <div class="custom-hr"></div>
+                    <input type="hidden" name="PatientType" id="PatientType" value="@if (Model.OpdRegister.IsIPD) {<text>IPD</text>} else {<text>OPD</text> }" />
+                    <button type="button" class="btn btn-primary btn-sm" id="btn-save-bill-payment">Save</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="getReceiptDataForPrint('ThermalReceipt', 'entire')" id="btn-print-receipt-thermal">Print Receipt</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="getReceiptDataForPrint('A4Receipt', 'entire')" id="btn-print-receipt-A4">Print A4 Receipt</button>
+                    <a href="/Billing/BillingQueue" class="btn btn-default btn-sm">Cancel</a>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary btn-sm" disabled id="btn-insurance-claim" onclick="prepareInsuranceInvoice()">Insurance Claim</button>
+                        @if (Model.OpdRegister.IsIPD)
+                        {
+                            <a href="@Url.Action("IpdInvoice", "Billing", new { id = Model.OpdRegister.Id, type = "ipdinvoice" })" class="btn btn-primary btn-sm">Invoice for IPD</a>
+                        }
+                    </div>
+
+                </form>
+            </fieldset>
+
+        </div>
+    </div>
+</div>
+<div class="" id="receipt-content">
+
+</div>
+
+@section scripts{
+    <script>
+        sessionStorage.BillAdjusted = false;
+        $(window).on('beforeunload', function () {
+            if (sessionStorage.BillAdjusted === 'true') {
+                return 'Are you sure you want to leave?\nThere are unsaved bill adjustment.';
+            }
+        });
+        activateInsuranceInvoiceButton();
+        function activateInsuranceInvoiceButton() {
+            var sumAward = parseFloat($("#sum_award").val()) || 0;
+
+            if (sumAward > 0) {
+                $("#btn-insurance-claim").prop("disabled", false);
+            } else {
+                $("#btn-insurance-claim").prop("disabled", true);
+            }
+        }
+
+        function prepareInsuranceInvoice() {
+            $(".loader").show();
+            var opd = $("#OPDNo").val();
+            $.ajax({
+                url: '@Url.Action("InsuranceInvoice", "Reports")/' + opd,
+                success: function (res) {
+                    $(".loader").hide();
+                    $("#receipt-content").html(res);
+                    moneyfy();
+                    $("page").print();
+                    $("#receipt-content").html("");
+                },
+                error: function (e, x, r) {
+                    $(".loader").hide();
+                    console.log(e.responseText);
+                }
+            })
+        }
+
+        fileModeChangeListener();
+        function fileModeChangeListener() {
+            $("input[name=fileMode]").change(function () {
+                var selected = $(this).val();
+                if (selected === "WalkIn") {
+                    $("tr#patientDetails th").each(function () {
+                        $(this).text("");
+                        $(this).attr("contenteditable", true);
+                        $("#SearchBill").val("");
+                        $("#SearchBill").css("background", "#ccc");
+                        $("#SearchBill").attr("readonly", true);
+                        $(this).addClass("editable-td");
+                    });
+                } else {
+                    $("tr#patientDetails th").each(function () {
+                        $(this).text("");
+                        $(this).attr("contenteditable", false);
+                        $("#SearchBill").removeAttr("readonly");
+                        $("#SearchBill").css("background", "#fff");
+                        $(this).removeClass("editable-td");
+                    });
+                }
+            });
+        }
+
+        enableAutocompleteOnSearch();
+        function enableAutocompleteOnSearch() {
+             $("#SearchBill").autocomplete({
+                source: function (req, res) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("OPDRegisterJson", "Billing")",
+
+                        data: { search: $("#SearchBill").val() },
+
+                        success: function (data) {
+                            res($.map(data, function (item) {
+                                return { label: item.Name, value: item.Id };
+                            }));
+                        },
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                    });
+                }
+            });
+
+            $("#SearchBill").on("autocompleteselect", function (event, ui) {
+                var opdNo = ui.item.value;
+                getBillItems(opdNo);
+            });
+        }
+        function getBillItems(opdNo) {
+            var type = "";
+            if (opdNo == 0) {
+                type = "walkin";
+                /*walkin id*/
+                opdNo = $("#walkinId").val();
+            }
+            var url = "@Url.Action("LoadBillingForm", "Billing")/" + opdNo + "?type=" + type;
+            $(".loader").show();
+            $.ajax({
+                type: "POST",
+                url: url,
+                success: function (result) {
+                    $(".loader").hide();
+                    $("#bill-form").html(result);
+                    $("#SearchBill").val("");
+                    $("#OPDNo").val(opdNo);
+                    adjustBill();
+                    enableAutocompleteOnSearch();
+                    fileModeChangeListener();
+                    callBackFunctions();
+                    updateEwallet();
+
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+        }
+        updateEwallet();
+
+        function updateEwallet() {
+            var bal = parseFloat($("#LiveEwallet").val()) || 0;
+            if (bal > 0) {
+                $("label[for=TransferFromEWallet]").css({ "color": "darkgreen" });
+                $("#TransferFromEWallet").prop("disabled", false);
+                $("#ewallet_balance").text(bal);
+                $("#ewallet_balance").removeClass("moneyfied");
+                moneyfy();
+            } else {
+                //disable
+                $("label[for=TransferFromEWallet]").css({ "color": "gray" });
+                $("#TransferFromEWallet").prop("disabled", true);
+                $("#ewallet_balance").text(bal);
+                $("#ewallet_balance").removeClass("moneyfied");
+                moneyfy();
+            }
+        }
+
+        function transferFromEwallet(obj) {
+         var transfer = 0;
+
+            if ($(obj).is(":checked")) {
+                var balance = $("#BillAmount").val();
+                var wallet = $("#LiveEwallet").val();
+                console.log("wallet" + wallet);
+                transfer = wallet - balance;
+                if (transfer < 0) {
+                    transfer = wallet;
+                } else {
+                    transfer = balance;
+                }
+                console.log("transfer"+transfer);
+                $("#AmountFromWallet").val(transfer);
+                $("#PaidAmount").prop("readonly", true);
+                $("#IPDAvailbleAmount").prop("readonly", true);
+
+            } else {
+                $("#AmountFromWallet").val("");
+                $("#PaidAmount").prop("readonly", false);
+                $("#IPDAvailbleAmount").prop("readonly", false);
+
+            }
+
+            $("#IPDAvailbleAmount").val($("#AmountFromWallet").val());
+            $("#IPDAvailbleAmount").trigger("keyup");
+            allocateAvailableAmount(true); //silently to avoid RangeError due to infinite recursion
+        }
+
+        callBackFunctions();
+
+        function callBackFunctions() {
+            moneyfy();
+            updateBillAmount();
+
+            $(".billed-medication").each(function () {
+                $(this).unbind();
+                $(this).click(function () {
+                    updateBillAmount();
+                });
+            })
+
+            $(".billed").each(function () {
+                $(this).unbind();
+                $(this).click(function () {
+                    updateBillAmount();
+                });
+            })
+
+            $("#search-service").autocomplete({
+                source: function (req, res) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("SearchService", "Billing")",
+                        dataType: "json",
+                        data: { search: $("#search-service").val() },
+
+                        success: function (data) {
+                            res($.map(data, function (item) {
+                                return { label: item.Name, value: item.Name, id:item.Id };
+                            }));
+                        },
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                    });
+                }
+            });
+
+            $("#search-service").on("autocompleteselect", function (event, ui) {
+                var ServceId = ui.item.id;
+
+                $(".loader").show();
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("AddServiceToBill", "Billing")",
+                    data: { "ServiceId": ServceId, "OPDNo": $("#OPDNo").val()},
+                    success: function (result) {
+                        $(".loader").hide();
+                        console.log(result);
+                        $("#new-service-qty").text(1);
+                        $("#new-service-price").add($("#new-service-subtotal")).text(result.Price);
+                        $("#new-service-award").text(result.Award);
+                        $("#new-service-payable").text(result.Price - result.Award);
+                        $("#hidden-service-id").val(ServceId);
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        $(".loader").hide();
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            });
+
+            $("#new-service-qty,#new-service-price,#new-service-award").keyup(function (e) {
+                var qty = parseFloat($("#new-service-qty").text()) ||0;
+                if (!$.isNumeric(qty)) {
+                    qty = 0;
+                }
+                var sub = qty * parseFloat($("#new-service-price").text()) || 0;
+
+                $("#new-service-subtotal").text(sub);
+                $("#new-service-payable").text(sub - (parseFloat($("#new-service-award").text() || 0)));
+
+            }).keypress(function (e) {
+                if (e.keyCode === 13 || e.keyCode === 9) {
+                    $("#btn-add-service-to-bill").trigger("click");
+                }
+            });
+
+            $("#btn-add-service-to-bill").click(function () {
+                addServiceToBill();
+            }).focus(function () {
+                addServiceToBill();
+            });
+        }
+
+        function addServiceToBill() {
+            var data = {
+                "ServiceId": $("#hidden-service-id").val(),
+                "Quantity": $("#new-service-qty").text(),
+                "OPDNo": $("#OPDNo").val(),
+                "AwardAmount": $("#new-service-award").text(),
+                "PayableAmount": $("#new-service-payable").text(),
+                "View":"BillingForm"
+            }
+
+
+            $(".loader").show();
+            $.ajax({
+                type: "POST",
+                url:"@Url.Action("EnterBillService", "Registration")",
+
+                data: data,
+                success: function (result) {
+                    $(".loader").hide();
+                    $("#bill-form").html(result);
+                    updateBillAmount();
+                    callBackFunctions();
+                    adjustBill();
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+
+        }
+
+
+
+        function updateBillAmount() {
+            var payable = 0;
+            var award = 0;
+            $("#BilledEntries").val("");
+            var serviceEntries = "";
+            var chargesCons = 0; var chargesLab = 0; var chargesXray = 0; var chargesDrugs = 0; var chargesProc = 0; var chargesPack = 0;
+
+            $("input.billed").each(function () {
+
+                if ($(this).is(":checked")) {
+                    var entryId = $(this).attr("data-billservice-id");
+                    serviceEntries += entryId + ",";
+                    payable += parseFloat($("#service-payable-" + entryId).text()) || 0;
+
+                    //award += parseFloat($("#service-award-" + entryId).text()) || 0;
+                    award += (parseFloat($("#service-award-" + entryId).text())) *
+                        parseFloat(($("#service-award-" + entryId).siblings("td.quantity")).text()) || 0;
+                }
+            });
+
+            $("#BilledEntries").val(serviceEntries);
+
+            $("#BilledMedications").val("");
+            var medicationEntries = "";
+            $("input.billed-medication").each(function () {
+
+                if ($(this).is(":checked")) {
+                    var entryId = $(this).data("drug-id");
+                    medicationEntries += entryId + ",";
+                    payable += parseFloat($("#drug-payable-" + entryId).text()) || 0;
+                    //award += parseFloat($("#drug-award-" + entryId).text()) || 0;
+                    award += (parseFloat($("#drug-award-" + entryId).text())) *
+                        parseFloat(($("#drug-award-" + entryId).siblings("td.quantity")).text()) || 0;
+
+                }
+            });
+            $("#BilledMedications").val(medicationEntries);
+
+            $("#BillAmount").val(payable);
+            $("#Balance").val($("#BillAmount").val() - $("#PaidAmount").val() );
+            $("#AwardedAmount").val(award);
+
+            $("#sum-award").text("Sum = " + award);
+            $("#sum-payable").text("Sum = " + payable);
+
+        }
+
+        $("#PaidAmount").on('keyup change', function () {
+            var amount = $(this).val().trim();
+            if ($("#PatientType").val().trim() === "IPD") {
+                $("#IPDAvailbleAmount").val(amount);
+                allocateAvailableAmount(true); //silently to avoid RangeError due to infinite recursion
+            }
+            var balance = $("#BillAmount").val();
+            if ($.isNumeric(amount)) {
+                balance = $("#BillAmount").val() - amount;
+            }
+            $("#Balance").val(balance);
+
+            attemptEnableSaveButton();
+        });
+
+        $("#PaymentModeId").change(function () {
+            var mode = $(this).find("option:selected").text();
+            $("#PaidAmount").val(""); 
+            $("#JPayBalance").val("");
+            $("#JPayBalance").parent().parent().addClass("hidden");
+
+
+            if (mode == 'Jambo Pay') {
+
+                $("#JPayBalance").parent().parent().removeClass("hidden");
+
+                $(".loader").show();
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("GetJPayments", "Billing")?' + "&id=" + $("#OPDNo").val(),
+                    success: function (result) {
+                        $(".loader").hide();
+
+
+                        var BillAmount = $("#Balance").val();
+                        var BillDifference = BillAmount - result;
+                        if (BillDifference > 0) {
+                            $("#PaidAmount").val(result); 
+                            $("#JPayBalance").val(0);
+
+                        } else {
+                            $("#PaidAmount").val(BillAmount);
+                            $("#JPayBalance").val(result - BillAmount);
+
+                        }
+                        $("#PaidAmount").trigger("keyup");
+
+                    },
+                    error: function (xhr, status) {
+                        $(".loader").hide();
+                    }
+                });
+
+            } else if (mode !== 'Cash') {
+
+                $(".loader").show();
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("PaymentModeForm", "Billing")?mode=' + mode + "&id=" + $("#OPDNo").val(),
+                    success: function (result) {
+                        $(".loader").hide();
+                        $("#modal-content").html(result);
+                        preventModalBackdrop('modal-forms-holder');
+                        addClosingButton('modal-forms-holder');
+                        validateTelFields();
+                        $('#modal-forms-holder').modal('show');
+                        mpesaFormListener();
+
+                    },
+                    error: function (xhr, status) {
+                        $(".loader").hide();
+                    }
+                });
+            }  
+
+        });
+
+        function savePayment(print) {
+            var patType = $("#PatientType").val().trim();
+            var partPays = [];
+
+             var data = $("#BillPaymentForm").serializeObject();
+
+                if ((data.PaidAmount === "" || data.PaidAmount == "0") && data.BillAmount>0 ) {
+                    showNotification("Enter Paid Amount", "info", true);
+                    return false;
+                }
+
+            if (patType === "IPD") {
+                $(".allocated").each(function () {
+                    var serviceId = null; var medId = null;
+                    var tr = $(this).parent().parent();
+                    var type = tr.data("service-type");
+                    var entryId = tr.data("entry-id");
+                    var allocated = $(tr.find(".allocated-amount")).text();
+                    if (type === "drugs") {
+                        medId = entryId;
+                    } else {
+                        serviceId = entryId;
+                    }
+                    var partPay = {
+                        "BillServiceId": serviceId,
+                        "MedicationId": medId,
+                        "AllocatedAmount": allocated,
+                        "BillPaymentNo": 0
+                    };
+                    if (partPay.AllocatedAmount > 0) {
+                        partPays.push(partPay);
+                    }
+
+                });
+            } else {
+                //No zero receipts for OPD
+                if (data.BilledEntries.trim() === "" && data.BilledMedications.trim() === "") {
+                    showNotification("There is nothing to bill.", "warning", true);
+                    return false;
+                }
+            }
+
+
+                $(".loader").show();
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("BillPayment", "Billing")",
+                    data: { "BillData": data, "PatialPayments": partPays, PaymentMode: $('#PaymentModeId').val()},
+                    success: function (result) {
+                        $(".loader").hide();
+                        if (typeof (result) !== "object") {
+                            return false;
+                        }
+
+                        $("#ReceiptNo").val(result.ReceiptNo);
+                        if (print) {
+                            getReceiptDataForPrint('ThermalReceipt');
+                        }
+                        var opdNo = $("#OPDNo").val();
+                        $("#BillPaymentForm")[0].reset();
+                        $("#OPDNo").val(opdNo);
+                        //reload bill items
+                        getBillItems(opdNo);
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        $(".loader").hide();
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+        }
+
+        $("#btn-save-bill-payment").click(function () {
+            var bal = parseFloat($("#Balance").val()) || 0;
+
+            if (bal < 0 && @Model.OpdRegister.IsIPD.ToString().ToLower() == "true") {
+                if (!confirm('You are about to send extra payment cash to e-Wallet. Click OK to proceed or else click No')) {
+                    // do delete item
+                    return null;
+                }
+            }
+            if (bal <= 0 || $("#PatientType").val()==="IPD") {
+                var payMode = $("#PaymentModeId option:selected").text();
+                if (payMode.toLowerCase() === "mpesa") {
+                    var ids = $("#TransactionId").val();
+                    $.ajax({
+                        method: "POST",
+                        data: { "Ids": ids },
+                        url: "@Url.Action("StrackOutIds", "Billing")",
+                        success: function (res) {
+                            console.log(res);
+                            res = JSON.parse(res);
+                            console.log(res);
+                            if (res.Status) {
+                                savePayment(true);
+                            } else {
+                                showNotification(res.Message, "warning", true);
+                            }
+                        },
+                        error: function (e, x, r) {
+                            console.log(e.responseText);
+                            showNotification("There was an error while finalizing the payment. Contact Support team.", "error", false);
+                        }
+                    });
+                } else {
+                    savePayment(true);
+                }
+            } else {
+                showNotification("Please pay full amount to proceed!", "info", true);
+            }
+        });
+
+        function getReceiptDataForPrint(printOutSize, trans='') {
+            var receiptNo = $("#ReceiptNo").val().trim();
+            var opdNo = $("#OPDNo").val();
+            if (opdNo == 0) {
+                trans = "walkin";
+                /*walkin id*/
+                opdNo = $("#walkinId").val();
+            }
+            if (receiptNo == "" && trans == '') {
+                showNotification("Unable to print at the moment. Please make a payment and try again.", "warning", true);
+                return false;
+            }
+            var url = "@Url.Action("Receipt", "Reports", new { id = -1, size= -2})";
+            url = url.replace("-1", receiptNo);
+            url = url.replace("-2", printOutSize);
+            if (trans === 'entire' || trans==="walkin" ) {
+                url = "@Url.Action("Receipt", "Reports")/" + opdNo + "?size=" + printOutSize + "&trans=" + trans;
+            }
+            $(".loader").show();
+            $.ajax({
+                    type: "POST",
+                    url: url,
+                    success: function (result) {
+                        $(".loader").hide();
+                        $("#receipt-content").html(result);
+                        $("page").print();
+                        $("#receipt-content").html("");
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        $(".loader").hide();
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+            });
+        }
+
+
+        function allocateAvailableAmount(silently) {
+            var amount = parseFloat($("#IPDAvailbleAmount").val()) || 0;
+            $("#PaidAmount").val(amount);
+            if (typeof (silently) === "undefined") {
+                $("#PaidAmount").trigger("keyup");
+            }
+
+            $(".allocated").each(function () {
+                var tr = $(this).parent().parent();
+                var payable = parseFloat(tr.find("td.payable-amount").text()) || 0;
+                var allocated = 0;
+                var balance = payable;
+                if ($(this).is(":checked")) {
+                    if ((amount - payable) >= 0) {
+                        allocated = payable;
+                    } else if ((amount - payable) < 0) {
+                        allocated = amount;
+                    }
+                    amount -= allocated;
+                    balance -= allocated;
+                }
+                tr.find("td.allocated-amount").text(allocated);
+                tr.find("td.balance-amount").text(balance);
+            })
+            if ((amount) > 0) {
+                $("#unallocated").text("Unallocated " + amount);
+            } else {
+                $("#unallocated").text("");
+            }
+
+        }
+
+        adjustBill();
+        function adjustBill() {
+
+            var tr;
+
+            //Total Award change
+            $(".bill-adjuster-total").each(function () {
+                $(this).keyup(function () {
+
+                    if (sessionStorage.BillAdjusted === 'false') {
+                        sessionStorage.BillAdjusted = true;
+                        $("#btn-save-adjustment").prop("disabled", false);
+                        $("#btn-save-bill-payment").prop("disabled", true);
+                    }
+
+                    tr = $(this).parent();
+                    var awardtotal = parseFloat(tr.find(".award-total").text()) || 0;
+                    var qty = parseFloat(tr.find(".quantity").text()) || 0;
+                    var price = parseFloat(tr.find(".price").text()) || 0;
+
+                    var award = (awardtotal / qty);
+                    tr.find(".award").text(award);
+
+                    var subtotal = ((qty) * (price)).toFixed(0);
+
+                    var payable = (subtotal - awardtotal).toFixed(0);
+                    tr.find(".payable-amount").text(parseFloat(payable) || 0);
+
+                });
+                updateBillAmount();
+            });
+
+            $(".bill-adjuster").each(function () {
+                $(this).unbind();
+                $(this).keyup(function () {
+                    if (sessionStorage.BillAdjusted === 'false') {
+                        sessionStorage.BillAdjusted = true;
+                        $("#btn-save-adjustment").prop("disabled", false);
+                        $("#btn-save-bill-payment").prop("disabled", true);
+                    }
+                    tr = $(this).parent();
+
+                    var qty = parseFloat(tr.find(".quantity").text())||0;
+                    var price = parseFloat(tr.find(".price").text())||0;
+                    var award = parseFloat(tr.find(".award").text())||0;
+
+                    tr.find(".award-total").text(award * qty);
+
+                    var subtotal = ((qty) * (price)).toFixed(0);
+                    tr.find(".subtotal").text(subtotal);
+
+                    var payable = (subtotal- (award * qty)).toFixed(0);
+
+                    if ((parseFloat(payable) || 0) < 0) {
+                        tr.find(".award").parent().notify("Sorry! Award cannot be greater than Price!", "error");
+                    }
+                    tr.find(".payable-amount").text(parseFloat(payable) || 0);
+                    console.log(payable);
+
+                    updateBillAmount();
+                });
+            })
+        }
+
+        function sendAdjustRequest() {
+            if (sessionStorage.BillAdjusted === "false") {
+                return false;
+            }
+            $(".loader").show();
+            var items = [];
+            $("#provisional-bill-services tbody tr").each(function () {
+                var tr = $(this);
+
+                if (!tr.hasClass("paid")) {
+                    var quantity = parseFloat(tr.find(".quantity").text());
+                    var price = parseFloat(tr.find(".price").text());
+                    var award = parseFloat(tr.find(".award").text())||0;
+                    var entryType = tr.data("service-type");
+                    var entryId = tr.data("entry-id");
+
+                    if (award > price) {
+                        $(".loader").hide();
+                        $("#btn-save-adjustment").notify("Sorry! Some awards are greater than actual prices. Please fix before saving.", "error");
+                        return false;
+                    }
+
+                    var entry = {
+                        "EntryType": entryType,
+                        "EntryId": entryId,
+                        "Quantity": quantity,
+                        "Award": award,
+                        "Price": price
+                    };
+
+                    items.push(entry);
+
+
+
+                }
+            });
+            if (items.length <1) {
+                $(".loader").hide();
+                return false;
+            }
+            $.ajax({
+                data: { "Adjustments": items },
+                url: "@Url.Action("SaveBillAdjustment", "Billing")",
+                method: "POST",
+                success: function (res) {
+                    $(".loader").hide();
+                    showNotification("Bill Adjusted Successfully!", "success", true);
+                    $("#btn-save-adjustment").prop("disabled", true);
+                    $("#btn-save-bill-payment").prop("disabled", false);
+                    sessionStorage.BillAdjusted = false;
+                    updateBillAmount();
+                    console.log(res);
+
+                },
+                error: function (e, x, r) {
+                    $(".loader").hide();
+                    console.log(e.responseText);
+                }
+            })
+        }
+
+        function mpesaFormListener() {
+
+            $("#mpesa-payment").submit(function (e) {
+                $(".loader").show();
+
+                e.preventDefault();
+
+                var data = $(this).serializeObject();
+
+                data.MSISDN = data.prefix + data.mobile;
+
+
+                $.ajax({
+                    url: '@Url.Action("MPesaGetWay","Billing")',
+                    data: { 'businessNo': '600180', 'msisdn': data.MSISDN },
+                    success: function (data, textStatus) {
+                        $(".loader").hide();
+                        data = JSON.parse(data);
+                        console.log(data);
+
+                        if (data.Status === "Success") {
+
+
+                            var amount = data.AmountPaid;
+
+                            $("#MpesaAmount").val(amount);
+                            var transId = "";
+
+                            $.each(data.PayemntIds, function (k, v) {
+
+                                if ((k + 1) == (data.PayemntIds).length) {
+                                    transId += v;
+                                } else {
+                                    transId += v + ", ";
+                                }
+
+                            });
+                            var bill = parseFloat($("#BillAmount").val()) || 0;
+
+                            $("#TransactionId").val(transId);
+
+                                $("#PaidAmount").val(amount);
+                                $("#PaidAmount").trigger("keyup");
+                                $("#btn-save-bill-payment").trigger("click");
+                                $('#modal-forms-holder').modal('hide');
+
+                        } else {
+                            showNotification("Unconfirmed Payment", "info", true);
+                        }
+
+                    },
+                    error: function (e, x, r) {
+                        $(".loader").hide();
+                        showNotification("Mpesa Gateway is currently unavailable", "warning", true);
+                        console.log(e.responseText)
+                    }
+                });
+
+            });
+        }
+
+
+        function attemptEnableSaveButton() {
+            console.log();
+        }
+
+
+    </script>
+}

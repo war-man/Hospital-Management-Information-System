@@ -1,0 +1,717 @@
+﻿
+
+@{
+    ViewBag.Title = "House Keeping";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="min-height:75vh; background: url('http://kiambucounty.quanta-his.com/Images/Master/image.jpg');">
+    <div class="col-md-2">
+
+        <div class="panel caresoft-panel panel-primary">
+            <div class="panel-heading">
+
+            </div>
+
+            <div class="panel-body">
+                <div class="list-group">
+
+                    <a href="#" class="list-group-item active"><i class="fa fa-key"></i> <span>HouseKeeper Panel</span></a>
+                    <a href="#" class="list-group-item" data-toggle="modal" data-target="#cleanup-request"><i class="fa fa-credit-card"></i> <span>Cleanup Master</span></a>
+                    <a href="#" class="list-group-item" data-toggle="modal" data-target="#loundry-request"><i class="fa fa-question-circle"></i> <span>Laundry Master</span></a>
+                    <a href="#" class="list-group-item" data-toggle="modal" data-target="#cssd-request"><i class="fa fa-arrow-circle-o-left"></i> <span>CSSD</span></a>
+                    <a href="#" class="list-group-item"><i class="fa fa-book"></i> <span>HouseKeeper Entry</span></a>
+                    <a href="#" class="list-group-item"><i class="fa fa-compass"></i> <span>Waiting Queue</span></a>
+
+                </div>
+
+            </div>
+            <div class="modal fade" id="cleanup-request" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="width:850px;">
+                    <div class="modal-content">
+
+                        <div class="panel panel-primary caresoft-panel">
+                            <div class="panel-heading">
+                                Cleanep Request Management
+                            </div>
+                            <div class="panel-body">
+
+                                <div id="cleanup-request" class="right-element">
+                                    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                                    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                                    <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                                    <script src="~/Scripts/bootstrap.min.js"></script>
+                                    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                                    <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+
+
+
+
+
+                                    <script type="text/javascript">
+                                        jQuery(document).ready(function ($) {
+                                            //  var table = $('#dataTable').DataTable();
+                                            $('#dataTable').DataTable({
+                                                "ajax": {
+                                                    "url": "/NurseModule/GetCleanupRequest",
+                                                    "type": "GET",
+                                                    "datatype": "json",
+                                                    "dataSrc": ""
+                                                },
+                                                "columns": [
+                                                    { "data": "Id" },
+                                                    { "data": "RequestBuilding" },
+                                                    { "data": "RequestFloor" },
+                                                    { "data": "RequestArea" },
+
+                                                    { "data": "BedNo" },
+                                                    { "data": "Remarks" },
+
+
+                                                    {
+                                                        "data": function (data, type, row) {
+                                                            if (data["Approval"] == "0") {
+
+                                                                return "<span class='glyphicon glyphicon-remove'> Pending </span >  <input type='button' value='Approve' class='btnEdit sfBtn sfPrimaryBtn sfLocale' />"
+
+
+                                                            }
+                                                            else if (data["Approval"] == "1" && data["Status"] == "1") {
+                                                                return "<span class='glyphicon glyphicon-ok'> Processing</span > "
+                                                            }
+
+                                                            else if (data["Approval"] == "1" && data["Status"] == "0") {
+
+                                                                return "Completed"
+                                                            }
+
+
+
+                                                        }
+
+                                                    },
+
+                                                    {
+                                                        'data': function (data, type, row, meta) {
+                                                            var id = $(this).closest('tr').find('td').eq(0).text();
+
+                                                            if (data["Status"] == "1" && data["Approval"] == "1") {
+                                                                return '<input type="button" value="Confirm" class="btnComplete sfBtn sfPrimaryBtn sfLocale" />';
+
+                                                            } else if (data["Status"] == "1" && data["Approval"] == "0") {
+
+                                                                return 'Not Approved';
+
+
+                                                            } else if (data["Status"] == "0") {
+                                                                return 'Completed';
+                                                            }
+                                                        }
+                                                    }
+
+                                                ],
+                                                "createdRow": function (row, data, dataIndex) {
+                                                    if (data["Approval"] == "0") {
+                                                        $(row).css("background-color", "Red");
+
+                                                    }
+                                                    else if (data["Approval"] == "1" && data["Status"] == "1") {
+                                                        $(row).css("background-color", "Yellow");
+                                                    }
+                                                    else if (data["Status"] == "0") {
+                                                        $(row).css("background-color", "Green");
+                                                        $(row).css("color", "white");
+                                                    }
+                                                },
+
+
+
+                                            });
+                                            var table = $('#dataTable').DataTable();
+                                            $('.dataTable').on('click', 'tbody tr', function () {
+                                                console.log('API row values : ', table.row(this).data());
+
+                                                $('.nav-tabs a[href="#assign-amb"]').tab('show');
+                                                // alert();
+
+                                            })
+
+
+                                            $("#dataTable tbody").on("click", ".btnEdit", function () {
+                                                var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                                // alert(id);
+                                                //alert($(this).text());
+                                                //alert();
+                                                $.ajax({
+                                                    data: { id: id },
+                                                    url: '/NurseModule/ApproveCleanup',
+                                                    type: 'POST',
+                                                    success: function (data) {
+                                                        alert("Cleanup Approved");
+                                                    }
+                                                });
+                                            });
+                                            $("#dataTable tbody").on("click", ".btnComplete", function () {
+                                                var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                                // alert(id);
+                                                //alert($(this).text());
+                                                //alert();
+                                                $.ajax({
+                                                    data: { id: id },
+                                                    url: '/NurseModule/ApproveConfirmation',
+                                                    type: 'POST',
+                                                    success: function (data) {
+                                                        alert(data);
+                                                    }
+                                                });
+                                            });
+
+                                        });
+
+
+
+
+
+
+
+                                    </script>
+
+
+                                    <h4 class="text-center text-uppercase"> Cleanup Request Master</h4>
+                                    <div id="dataTable_wrapper"></div>
+
+                                    <ul class="legend" style="float:right;">
+                                        <li><span class="Pending"></span> <strong>Pending</strong></li>
+                                        <li><span class="Processing"></span> <strong>Processing</strong></li>
+                                        <li><span class="Completed"></span> <strong>Completed</strong></li>
+
+                                    </ul>
+
+                                    <style>
+
+                                        .legend {
+                                            list-style: none;
+                                        }
+
+                                            .legend li {
+                                                float: left;
+                                                margin-right: 10px;
+                                            }
+
+                                            .legend span {
+                                                border: 1px solid #ccc;
+                                                float: left;
+                                                width: 12px;
+                                                height: 12px;
+                                                margin: 2px;
+                                            }
+                                            /* your colors */
+                                            .legend .Pending {
+                                                background-color: red;
+                                            }
+
+                                            .legend .Processing {
+                                                background-color: yellow;
+                                            }
+
+                                            .legend .Completed {
+                                                background-color: green;
+                                            }
+                                    </style>
+                                    <table id="dataTable" class="table table-data-pathology table-condensed">
+
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Building Name</th>
+                                                <th>Floor No</th>
+                                                <th>Ward No</th>
+                                                <th>Bed No</th>
+                                                <th>Request Type</th>
+                                                <th>Approval</th>
+                                                <th>Status</th>
+
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="loundry-request" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="width:800px;">
+                    <div class="modal-content">
+
+                        <div class="panel panel-primary caresoft-panel">
+                            <div class="panel-heading">
+                                Cleanep Request Management
+                            </div>
+                            <div class="panel-body">
+
+                                <div id="cleanup-request" class="right-element">
+                                    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                                    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                                    <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                                    <script src="~/Scripts/bootstrap.min.js"></script>
+                                    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                                    <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+
+
+
+
+
+                                    <script type="text/javascript">
+                                        jQuery(document).ready(function ($) {
+                                            //  var table = $('#dataTable').DataTable();
+                                            $('#loundryTable').DataTable({
+                                                "ajax": {
+                                                    "url": "/NurseModule/GetLinenRequest",
+                                                    "type": "GET",
+                                                    "datatype": "json",
+                                                    "dataSrc": ""
+                                                },
+                                                "columns": [
+                                                    { "data": "Id" },
+                                                    { "data": "LinenName" },
+                                                    { "data": "RequestQuantity" },
+                                                    { "data": "LType" },
+
+
+
+                                                    {
+                                                        "data": function (data, type, row) {
+                                                            if (data["Status"] == "0") {
+
+                                                                return "<span class='glyphicon glyphicon-remove'> Pending </span >  <input type='button' value='Approve' class='btnEdit sfBtn sfPrimaryBtn sfLocale' />"
+
+
+                                                            }
+                                                            else if (data["Approval"] == "0" && data["Status"] == "1") {
+                                                                return "<span class='glyphicon glyphicon-ok'> Not Delivered </span > "
+                                                            }
+
+                                                            else if (data["Approval"] == "1" && data["Status"] == "1") {
+
+                                                                return "Delivered"
+                                                            }
+
+
+
+                                                        }
+
+                                                    },
+
+                                                    {
+                                                        'data': function (data, type, row, meta) {
+                                                            var id = $(this).closest('tr').find('td').eq(0).text();
+
+                                                            if (data["Status"] == "1" && data["Approval"] == "0") {
+                                                                return 'Nurse Confirmation';
+
+                                                            } else if (data["Status"] == "0" && data["Approval"] == "0") {
+
+                                                                return 'Not Approved';
+
+
+                                                            } else if (data["Approval"] == "1") {
+                                                                return 'Delivered';
+                                                            }
+                                                        }
+                                                    }
+
+                                                ],
+                                                "createdRow": function (row, data, dataIndex) {
+                                                    if (data["Status"] == "0") {
+                                                        $(row).css("background-color", "Red");
+
+                                                    }
+                                                    else if (data["Approval"] == "0" && data["Status"] == "1") {
+                                                        $(row).css("background-color", "Yellow");
+                                                    }
+                                                    else if (data["Approval"] == "1") {
+                                                        $(row).css("background-color", "Green");
+                                                        $(row).css("color", "white");
+                                                    }
+                                                },
+
+
+
+                                            });
+                                            var table = $('#loundryTable').DataTable();
+                                            $('.loundryTable').on('click', 'tbody tr', function () {
+                                                console.log('API row values : ', table.row(this).data());
+
+                                                $('.nav-tabs a[href="#assign-amb"]').tab('show');
+                                                // alert();
+
+                                            })
+
+
+                                            $("#loundryTable tbody").on("click", ".btnEdit", function () {
+                                                var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                                // alert(id);
+                                                //alert($(this).text());
+                                                //alert();
+                                                $.ajax({
+                                                    data: { id: id },
+                                                    url: '/NurseModule/ApproveLinenRequest',
+                                                    type: 'POST',
+                                                    success: function (data) {
+                                                        alert("Cleanup Approved");
+                                                    }
+                                                });
+                                            });
+                                            $("#loundryTable tbody").on("click", ".btnComplete", function () {
+                                                var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                                // alert(id);
+                                                //alert($(this).text());
+                                                //alert();
+                                                $.ajax({
+                                                    data: { id: id },
+                                                    url: '/NurseModule/ConfirmDelivey',
+                                                    type: 'POST',
+                                                    success: function (data) {
+                                                        alert(data);
+                                                    }
+                                                });
+                                            });
+
+                                        });
+
+
+
+
+
+
+
+                                    </script>
+
+
+                                    <h4 class="text-center text-uppercase"> Cleanup Request Master</h4>
+                                    <div id="dataTable_wrapper"></div>
+
+                                    <ul class="legend" style="float:right;">
+                                        <li><span class="Pending"></span> <strong>Pending</strong></li>
+                                        <li><span class="Processing"></span> <strong>Processing</strong></li>
+                                        <li><span class="Completed"></span> <strong>Completed</strong></li>
+
+                                    </ul>
+
+                                    <style>
+
+                                        .legend {
+                                            list-style: none;
+                                        }
+
+                                            .legend li {
+                                                float: left;
+                                                margin-right: 10px;
+                                            }
+
+                                            .legend span {
+                                                border: 1px solid #ccc;
+                                                float: left;
+                                                width: 12px;
+                                                height: 12px;
+                                                margin: 2px;
+                                            }
+                                            /* your colors */
+                                            .legend .Pending {
+                                                background-color: red;
+                                            }
+
+                                            .legend .Processing {
+                                                background-color: yellow;
+                                            }
+
+                                            .legend .Completed {
+                                                background-color: green;
+                                            }
+                                    </style>
+                                    <table id="loundryTable" class="table table-data-pathology table-condensed">
+
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Request Name</th>
+                                                <th>Quantity</th>
+                                                <th>Request Type</th>
+                                                <th>Status</th>
+                                                <th>Confirm Delivery</th>
+
+
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="cssd-request" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="width:1000px;">
+                    <div class="modal-content">
+
+                        <div class="panel panel-primary caresoft-panel">
+                            <div class="panel-heading">
+                                CSSD Request Management
+                            </div>
+                            <div class="panel-body">
+
+                                <div id="cssd-request" class="right-element">
+                                    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                                    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                                    <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                                    <script src="~/Scripts/bootstrap.min.js"></script>
+                                    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                                    <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+
+
+
+
+
+                                    <script type="text/javascript">
+
+                                        jQuery(document).ready(function ($) {
+                                            //  var table = $('#dataTable').DataTable();
+                                            $('#cssdTable').DataTable({
+                                                "ajax": {
+                                                    "url": "/NurseModule/GetCSSDRequest",
+                                                    "type": "GET",
+                                                    "datatype": "json",
+                                                    "dataSrc": ""
+                                                },
+                                                "columns": [
+                                                    { "data": "Id" },
+                                                    
+                                                    {
+                                                        'data': 'RequiredDate', 'render': function (data) {
+                                                            return moment(data).format(' MMMM d, YYYY ');
+                                                        }
+                                                    },
+                                                    {
+                                                        'data': 'RequiredTime', 'render': function (data, type, row) {
+                                                            return moment(data).format('h:mm:ss a');
+                                                        }
+
+                                                    },
+
+                                                   
+                                                    { "data": "RequestType" },
+                                                    { "data": "RequestItem" },
+                                                    { "data": "Quantity" },
+                                                    { "data": "Remarks" },
+
+
+
+
+                                                    {
+                                                        "data": function (data, type, row) {
+                                                            if (data["Approval"] == "0") {
+
+                                                                return "<span class='glyphicon glyphicon-remove'> Pending </span >  <input type='button' value='Approve' class='btnEdit sfBtn sfPrimaryBtn sfLocale' />"
+
+
+                                                            }
+                                                            else if (data["Status"] == "0" && data["Approval"] == "1") {
+                                                                return "<span class='glyphicon glyphicon-ok'> Not Delivered </span > "
+                                                            }
+
+                                                            else if (data["Approval"] == "1" && data["Status"] == "1") {
+
+                                                                return "Delivered"
+                                                            }
+
+
+
+                                                        }
+
+                                                    },
+
+                                                    {
+                                                        'data': function (data, type, row, meta) {
+                                                            var id = $(this).closest('tr').find('td').eq(0).text();
+
+                                                            if (data["Approval"] == "1" && data["Status"] == "0") {
+                                                                return 'Nurse Confirmation';
+
+                                                            } else if (data["Status"] == "0" && data["Approval"] == "0") {
+
+                                                                return 'Not Approved';
+
+
+                                                            } else if (data["Status"] == "1") {
+                                                                return 'Delivered';
+                                                            }
+                                                        }
+                                                    }
+
+                                                ],
+                                                "createdRow": function (row, data, dataIndex) {
+                                                    if (data["Approval"] == "0") {
+                                                        $(row).css("background-color", "Red");
+
+                                                    }
+                                                    else if (data["Approval"] == "1" && data["Status"] == "0") {
+                                                        $(row).css("background-color", "Yellow");
+                                                    }
+                                                    else if (data["Status"] == "1") {
+                                                        $(row).css("background-color", "Green");
+                                                        $(row).css("color", "white");
+                                                    }
+                                                },
+
+
+
+                                            });
+                                            
+                                            var table = $('#cssdTable').DataTable();
+                                            $('.cssdTable').on('click', 'tbody tr', function () {
+                                                console.log('API row values : ', table.row(this).data());
+
+                                                $('.nav-tabs a[href="#assign-amb"]').tab('show');
+                                                // alert();
+
+                                            })
+
+
+                                            $("#cssdTable tbody").on("click", ".btnEdit", function () {
+                                                var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                                // alert(id);
+                                                //alert($(this).text());
+                                                //alert();
+                                                $.ajax({
+                                                    data: { id: id },
+                                                    url: '/NurseModule/ApproveCSSDDelivey',
+                                                    type: 'POST',
+                                                    success: function (data) {
+                                                        alert("Cleanup Approved");
+                                                    }
+                                                });
+                                            });
+                                            $("#cssdTable tbody").on("click", ".btnComplete", function () {
+                                                var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                                // alert(id);
+                                                //alert($(this).text());
+                                                //alert();
+                                                $.ajax({
+                                                    data: { id: id },
+                                                    url: '/NurseModule/ConfirmCSSDDelivey',
+                                                    type: 'POST',
+                                                    success: function (data) {
+                                                        alert(data);
+                                                    }
+                                                });
+                                            });
+
+                                        });
+
+
+
+
+
+
+
+                                    </script>
+
+
+                                    <h4 class="text-center text-uppercase"> CSSD Request Master</h4>
+                                    <div id="dataTable_wrapper"></div>
+
+                                    <ul class="legend" style="float:right;">
+                                        <li><span class="Pending"></span> <strong>Pending</strong></li>
+                                        <li><span class="Processing"></span> <strong>Processing</strong></li>
+                                        <li><span class="Completed"></span> <strong>Completed</strong></li>
+
+                                    </ul>
+
+                                    <style>
+
+                                        .legend {
+                                            list-style: none;
+                                        }
+
+                                            .legend li {
+                                                float: left;
+                                                margin-right: 10px;
+                                            }
+
+                                            .legend span {
+                                                border: 1px solid #ccc;
+                                                float: left;
+                                                width: 12px;
+                                                height: 12px;
+                                                margin: 2px;
+                                            }
+                                            /* your colors */
+                                            .legend .Pending {
+                                                background-color: red;
+                                            }
+
+                                            .legend .Processing {
+                                                background-color: yellow;
+                                            }
+
+                                            .legend .Completed {
+                                                background-color: green;
+                                            }
+                                    </style>
+                                    <table id="cssdTable" class="table table-data-pathology table-condensed">
+
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Required Date</th>
+                                                <th>Required Time</th>
+                                                <th>Request Type</th>
+                                                <th> Request Item</th>
+                                                <th> Quantity</th>
+                                                <th>Remarks</th>
+                                                <th>Status</th>
+                                                <th>Confirm Delivery</th>
+
+
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

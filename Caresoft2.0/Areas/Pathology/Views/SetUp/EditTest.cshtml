@@ -1,0 +1,245 @@
+﻿@model LabsDataAccess.LabTest
+
+<div class="col-xs-8 col-xs-offset-2">
+
+    <br />
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading" style="height:40px ; ">
+            <h5 style="font-weight:bold">Add Test</h5>
+        </div>
+
+        <div class="panel-body">
+            <div class="alert alert-danger" role="alert">
+                <strong></strong> <a href="#" id="Message" class="alert-link">Attend the Following</a>
+            </div>
+
+            @using (Ajax.BeginForm("EditTest", "Setup", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = "Message",
+                OnSuccess = "$('#UniversalModal').modal('hide');",
+                LoadingElementId = "loadingElement",
+            }))
+            {
+
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal" style="padding-left:10%">
+
+                
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Department, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+
+                        @Html.DropDownListFor(model => model.Department, ViewBag.Department as IEnumerable<SelectListItem>, "Select Department", new { @class = "text-box box-lg", @required = true, @style = "width:60%" })
+                        @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Test Name", htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        @Html.EditorFor(model => model.Test, new { htmlAttributes = new { @class = "", style = "width:60%", @required = true } })
+                        @Html.ValidationMessageFor(model => model.Test, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Test_Code, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        @Html.EditorFor(model => model.Test_Code, new { htmlAttributes = new { @class = "", style = "width:60%", @required = true } })
+                        @Html.ValidationMessageFor(model => model.Test_Code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Order_Number, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        @Html.EditorFor(model => model.Order_Number, new { htmlAttributes = new { @class = "", style = "width:60%" } })
+                        @Html.ValidationMessageFor(model => model.Order_Number, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Test_Method, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        @Html.EditorFor(model => model.Test_Method, new { htmlAttributes = new { @class = "", style = "width:60%" } })
+                        @Html.ValidationMessageFor(model => model.Test_Method, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ICD10, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        @Html.EditorFor(model => model.ICD10, new { htmlAttributes = new { @class = "", style = "width:60%" } })
+                        @Html.ValidationMessageFor(model => model.ICD10, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.HCPCS_Code, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        @Html.EditorFor(model => model.HCPCS_Code, new { htmlAttributes = new { @class = "", style = "width:60%" } })
+                        @Html.ValidationMessageFor(model => model.HCPCS_Code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CPT_Code, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        @Html.EditorFor(model => model.CPT_Code, new { htmlAttributes = new { @class = "", style = "width:60%" } })
+                        @Html.ValidationMessageFor(model => model.CPT_Code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Machine_Name, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-7">
+                                @Html.DropDownListFor(model => model.Machine_Name, ViewBag.Machine as IEnumerable<SelectListItem>, "Select Machine", htmlAttributes: new { @class = "text-box", style = "width:100%" })
+                            </div>
+                            <div class="col-xs-5">
+                                @Ajax.ActionLink("Add Machine", "MachineMaster", new AjaxOptions
+                    {
+                        UpdateTargetId = "UniversalModal2View",
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "GET",
+                        LoadingElementId = "loadingElement",
+                        OnSuccess = "$('#UniversalModal2').modal('show');"
+                    })
+                                <a href="EditParameter"> <img class="del-icon" src="~/Content/icons/add-icon.png" , target="_blank" /> </a>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Machine_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title_Machine_Name, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        @Html.EditorFor(model => model.Title_Machine_Name, new { htmlAttributes = new { @class = "", style = "width:60%" } })
+                        @Html.ValidationMessageFor(model => model.Title_Machine_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sample_Type, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        @Html.DropDownListFor(model => model.Sample_Type, ViewBag.Sample as IEnumerable<SelectListItem>, "Select Sample Type", new { @class = "text-box box-lg", @style = "width:60%" })
+                        @Html.ValidationMessageFor(model => model.Sample_Type, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Shot_Form, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        @Html.EditorFor(model => model.Shot_Form, new { htmlAttributes = new { @class = "", style = "width:60%" } })
+                        @Html.ValidationMessageFor(model => model.Shot_Form, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Preparation_Time, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        @Html.EditorFor(model => model.Preparation_Time, new { htmlAttributes = new { @class = "", style = "width:60%" } })
+                        @Html.ValidationMessageFor(model => model.Preparation_Time, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Specific_Instruction_For_Preparation, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        @Html.EditorFor(model => model.Specific_Instruction_For_Preparation, new { htmlAttributes = new { @class = "", style = "width:60%" } })
+                        @Html.ValidationMessageFor(model => model.Specific_Instruction_For_Preparation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        @Html.DropDownListFor(model => model.Sex, ViewBag.Gender as IEnumerable<SelectListItem>, "Select Gender", new { @class = "text-box box-lg", @style = "width:60%" })
+                        @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Attach_Graph, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Attach_Graph)
+                            @Html.ValidationMessageFor(model => model.Attach_Graph, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Update_All, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Update_All)
+                            @Html.ValidationMessageFor(model => model.Update_All, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsHide, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsHide)
+                            @Html.ValidationMessageFor(model => model.IsHide, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GlocusePP, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.GlocusePP)
+                            @Html.ValidationMessageFor(model => model.GlocusePP, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" id="ParameterRadioButtonContainer">
+                    @Html.LabelFor(model => model.Parameter, htmlAttributes: new { @class = " col-xs-3" })
+                    <div class="col-xs-9">
+                        <label>
+                            @Html.RadioButtonFor(model => model.Parameter, false,
+new { @class = "", id = "" })
+                            <span>Single</span>
+                        </label>
+
+                        <label>
+                            @Html.RadioButtonFor(model => model.Parameter, true,
+new { @class = "", id = "" })
+                            <span>
+                                Multiple
+                            </span>
+                        </label>
+
+
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-offset-3 col-xs-9">
+
+                        <input type="submit" value="Edit" class="btn btn-sm btn-primary" />
+                        <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Back</button>
+                    </div>
+
+
+                </div>
+            </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+

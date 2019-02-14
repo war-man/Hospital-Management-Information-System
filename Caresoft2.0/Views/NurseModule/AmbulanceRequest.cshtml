@@ -1,0 +1,158 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-primary shadow glass caresoft-panel" style="margin-bottom:-1em;">
+        <div class="panel-heading ">
+            Ambulance Request
+        </div>
+        <div class="panel-body">
+            <ul class="nav nav-pills">
+                <li class="active top-tab"><a data-toggle="pill" href="#work-order-tab">Ambulance Request</a></li>
+
+            </ul>
+            <div class="tab-content">
+                <div id="work-order-tab" class="tab-pane fade in active">
+                    <fieldset>
+                        <form id="ipd-adminssion-form">
+
+                            <table width="100%">
+                                <tr>
+                                    <td>
+                                        <label>RegNo</label>
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Patient.RegNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                    <td>
+                                        <label>Patient Name</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box box-lg" id="PatientName" required />
+                                        <input type="hidden" id="PatientId" name="PatientId" />
+                                    </td>
+
+                                </tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <tr>
+                                    <td>
+                                        <label>Requesting Nurse</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box box-lg" name="ConsultantDoctor" id="ConsultantDoctor" required />
+                                    </td>
+
+                                </tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <tr>
+                                    <td>
+                                        <label>Date</label>
+                                    </td>
+                                    <td>
+                                        <input type="date" name="AdmissionDate" class="text-box box-lg" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+                                    </td>
+                                    <td>
+
+                                </tr>
+
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+
+
+                                <tr>
+                                    <td>Search Service From</td>
+                                    <td class="td-value">
+
+                                        <input type="radio" name="search-from" id="lab" value="Ambulatory" checked />
+                                        <label for="lab">Ambulatory</label>
+                                    </td>
+                                    <td colspan="2">
+                                        <input type="text" class="text-box box-xlg" placeholder="Search Route" id="SearchTest" />
+                                    </td>
+                                    <td></td>
+                                    <td class="td-value" colspan="2"></td>
+                                </tr>
+                            </table>
+
+
+
+                            <fieldset>
+
+                                <legend>Selected Ambulance Service</legend>
+                                <table class="table table-data table-condensed" id="table-selected-tests">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Service Code</th>
+                                            <th>Service Name</th>
+                                            <th>Rate</th>
+                                            <th>Awarded</th>
+                                            <th>Payable</th>
+                                            <th>Department</th>
+                                            <th>Status</th>
+                                            <th>Order Priority</th>
+                                            <th>Doctor</th>
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </fieldset>
+                            @*
+                                <fieldset>
+
+                                    <legend>Add Notes </legend>
+                                    <textarea id="DoctorNotes" class="text-box" style="width:100%; height:100px;"></textarea>
+                                </fieldset>
+                            *@
+                            <div class="row marg-top-2px">
+                                <div class="col-xs-12">
+                                    <button class="btn btn-primary btn-sm" id="btn-submit-workorder" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#RegNumber").autocomplete({
+                source: function (request, response) {
+                    alert();
+                    $.ajax({
+                        url: "/NurseModule/SearchPatient",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.RegNumber, value: item.RegNumber };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "", results: ""
+
+                }
+
+            });
+
+        })
+    </script>
+
+
+}

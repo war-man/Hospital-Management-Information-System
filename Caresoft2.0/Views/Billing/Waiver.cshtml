@@ -1,0 +1,313 @@
+﻿
+@{
+    ViewBag.Title = "Waiver & Exemption";
+    ViewBag.ShowTopMenu = true;
+
+    var reasons = (IEnumerable<CaresoftHMISDataAccess.WaiverReason>)ViewBag.ReasonsForWaiver;
+}
+<div class="col-xs-8 col-sm-offset-2">
+    <div class="panel panel-primary caresoft-panel ">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+            <form id="waiver-form">
+                <fieldset>
+                    <legend>Patient Details</legend>
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                <label for="RegNo">Reg No</label>
+                            </td>
+                            <td>
+                                <input type="text" class="text-box box-lg" id="RegNo" name="RegNo" required/>
+                            </td>
+                            <td>
+                                <label for="PatName">Patient Name</label>
+                            </td>
+                            <td>
+                                <input type="text" class="text-box box-lg" id="PatName" name="PatName" required/>
+                            </td>
+                            <td>
+                                <label for="OPDIPDNo">OPD/IPD No</label>
+                            </td>
+                            <td>
+                                <input type="text" class="text-box box-lg" name="OPDIPDNo" readonly id="OPDIPDNo" required />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Main Category</label>
+                            </td>
+                            <td>
+                                <input type="text" class="text-box box-lg" readonly id="MainCat" />
+                            </td>
+                            <td>
+                                <label>Patient Category</label>
+                            </td>
+                            <td>
+                                <input type="text" class="text-box box-lg" readonly id="PatCat" />
+                            </td>
+
+                        </tr>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <h5 style="color:red">
+                        Enter Amount to Waive
+                        <input type="number" min="1" class="text-box box-lg" style="text-align:right;" required id="EnteredAmount" />
+                    </h5>
+                    <fieldset @*class="inscroll"*@ id="waiver-table-holder" style="min-height:120px"></fieldset>
+
+                    <label><input type="checkbox" id="exempt" onclick="exemptTheBill()" />Exempt the bill?</label>
+                    <table>
+                        <tr>
+                            <td>
+                                <h5 style="color:red">
+                                    Bill Amount
+                                    <input type="number" min="1" class="text-box box-lg" style="text-align:right;" readonly id="BillAmount" />
+                                </h5>
+                            </td>
+                            <td>
+                                <h5 style="color:teal">
+                                    Exempted or Waived Amount
+                                    <input type="number" min="1" class="text-box box-lg" style="text-align:right;" readonly id="AmountWaived"  name="AmountWaived" />
+                                </h5>
+                            </td>
+                            <td>
+                                <h5 style="color:yellowgreen">
+                                    Amount to Pay
+                                    <input type="number" min="1" class="text-box box-lg" style="text-align:right;" readonly id="AmountToPay" />
+                                </h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <label for="ReasonForWaiver">Reason for waiver/Exemption</label>
+                                <select class="text-box box-lg" required id="ReasonForWaiver" name="ReasonForWaiver">
+                                    <option></option>
+                                    @if (reasons != null)
+                                    {
+                                        foreach(var r in reasons)
+                                        {
+                                            <option>@r.Reason</option>
+                                        }
+                                    }
+                                </select>
+                                <label for="WaiverNote">Note</label>
+                                <input type="text" class="text-box text-box-lg" id="WaiverNote" name="WaiverNote">
+                            </td>
+                            
+                        </tr>
+                    </table>
+                </fieldset>
+                <div class="marg-top-6px">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Save" />
+                    <input type="reset" class="btn btn-primary btn-sm" value="Cancel" id="reset-form" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#RegNo").add("#PatName").autocomplete({
+          
+            source: function (req, res) {
+               
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("BillsForWaiver", "Billing")",
+
+                        data: { search: req.term },
+                   
+                        success: function (data) {
+                            res($.map(data, function (item) {
+                                return { label: item.RegNumber + " " + item.Name, value: item.Name, OPDIPDNo: item.Id, RegNumber: item.RegNumber };
+                            }));
+                        },
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            showNotification("An Error Occured", "danger", true);
+                            console.log(xmlhttprequest.responseText);
+                        }
+                    });
+            }
+        });
+
+        $("#RegNo").add("#PatName").on("autocompleteselect", function (event, ui) {
+            $("#OPDIPDNo").val(ui.item.OPDIPDNo);
+            loadMyBill(ui.item);
+        });
+        loadMyBill();
+        function loadMyBill() {
+
+            var IPDNo = $("#OPDIPDNo").val();
+            if (IPDNo === "") {
+                return false;
+            }
+            $(".loader").show();
+
+            $.ajax({
+                url: "@Url.Action("LoadIPDBill", "Billing")/" + IPDNo,
+                success: function (res) {
+                   
+                    if (typeof (res) === "object") {
+                        showNotification(res.message, res.status, true);
+                        $(".loader").hide();
+                        return false;
+
+                    }
+                    $("#waiver-table-holder").html(res);
+                    var billAmount = 0;
+                    $("td.balance").each(function () {
+                        
+                        var bal = parseFloat($(this).text()) || 0;
+
+                        billAmount += bal;
+                    })
+                    $("#BillAmount").val(billAmount);
+                    allocateAmountToWaive();
+                    $(".loader").hide();
+                    getPatDetails(IPDNo);
+                   
+                },
+                error: function (e, x, r) {
+                    showNotification("An Error Occured", "danger", true);
+                    console.log(e.responseText);
+                    $(".loader").hide();
+                    
+                }
+            })
+
+            
+
+            
+        }
+
+        function getPatDetails(IPDNo) {
+            $(".loader").show();
+            $.ajax({
+                url: "@Url.Action("PatDetails", "Registration")/" + IPDNo,
+                success: function (res) {
+                    $(".loader").hide();
+                    $("#RegNo").val(res.RegNumber);  
+                    $("#PatName").val(res.PatName);
+                    $("#MainCat").val(res.MainCat);
+                    $("#PatCat").val(res.PatCat);
+                },
+                error: function (e, x, r) {
+                    showNotification("An Error Occured", "danger", true);
+                    console.log(e.responseText);
+                    $(".loader").hide();
+                    
+                }
+            })
+        }
+
+        $("#EnteredAmount").on("keyup change", function () {
+            allocateAmountToWaive();
+        });
+
+       
+
+        function allocateAmountToWaive() {
+            var amount = parseFloat( $("#EnteredAmount").val()) ||0;
+            var totalWaive = 0;
+            $(".waive").each(function () {
+                var tr = $(this).parent().parent();
+                var waived = 0;
+                if ($(this).is(":checked")) {
+                    var type = tr.data("entry-type");
+                    var balance = parseFloat(tr.find(".balance").text()) || 0;
+                    if ((amount - balance) >= 0) {
+                        waived = balance;
+                    } else if ((amount - balance) < 0) {
+                        waived = amount;
+                    }
+                    amount -= waived;
+                    totalWaive += parseFloat(waived) || 0;
+                }
+                
+                tr.find(".waived-amount").text(waived);
+            })
+
+            $("#AmountWaived").val(totalWaive);
+            var topay = $("#BillAmount").val() - totalWaive;
+            $("#AmountToPay").val(parseFloat(topay) || 0);
+        }
+
+        $("#reset-form").click(function () {
+            $("#waiver-table-holder").html("");
+        });
+
+
+        $("#waiver-form").submit(function (e) {
+            e.preventDefault();
+            var data = $(this).serializeObject();
+
+          
+
+            if (!isValidForm($(this))) {
+                return false;
+            } 
+
+            if (!(parseFloat(data.AmountWaived) || 0 )> 0) {
+                return false;
+            } else {
+                console.log(data.AmountWaived)
+            }
+            $(".loader").show();
+            var waivedServices = [];
+
+            $("td.waived-amount").each(function () {
+                var tr = $(this).parent();
+                var waivedAmount = parseFloat($(this).text()) || 0;
+                if (waivedAmount > 0) {
+                    var serViceId = tr.data("entry-id");
+                    var serviceType = tr.data("entry-type");
+
+                    var waivedService = {
+                        "ServiceId": serViceId,
+                        "ServiceType": serviceType,
+                        "WaivedAmount": waivedAmount
+                    };
+
+                    waivedServices.push(waivedService);
+                    
+                }
+            })
+
+            var finalData = {
+                "Waiver": data,
+                "WaivedServices": waivedServices
+            }
+            $.ajax({
+                method: "post",
+                url: "@Url.Action("SaveWaiver", "Billing")",
+                data: finalData,
+                success: function (res) {
+                    $(".loader").hide();
+                    showNotification(res.message, res.status, true);
+                },
+                error: function (e, x, r) {
+                    $(".loader").hide();
+                    showNotification("An error occured!", "danger", true);
+                }
+            })
+        });
+
+        function exemptTheBill() {
+            if ($("#exempt").is(":checked")) {
+                var billAmount = parseFloat($("#BillAmount").val()) || 0;
+                $("#EnteredAmount").val(billAmount);
+                $(".waive").each(function () {
+                    $(this).prop("checked", true);
+                });
+                $("#EnteredAmount").trigger("keyup");
+            }
+            
+        }
+    </script>
+}

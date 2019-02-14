@@ -1,0 +1,88 @@
+﻿@model IEnumerable<LabsDataAccess.NormalValue>
+
+<table class="table table-bordered table-condensed table-data table-fixed table-header-fixed" >
+    <thead class="bg-primary">
+        <tr class="table-primary">
+            <th>
+                Test
+            </th>
+            <th>
+                Test Code
+            </th>
+            <th>
+                Parameter
+            </th>
+            <th>
+                Parameter Code
+            </th>
+            <th>
+                Gender
+            </th>
+            <th>
+                Lower
+            </th>
+            <th>
+                Upper
+            </th>
+            <th>
+                Unit
+            </th>
+            <th>
+                Normal Range
+            </th>
+            <th>
+                Lower Range
+            </th>
+            <th>
+                Upper Range
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody style="height:30vh; overflow:auto">
+
+        @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabTest.Test)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabTest.Test_Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parameter1.Parameter_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parameter1.Parameter_Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender1.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lower_Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Upper_Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LowerRange)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpperRange)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "", new { id = item.Id }, new { @class = "edit", data_Id = item.Id }) |
+                @Html.ActionLink("Delete", "", new { id = item.Id }, new { @class = "delete", data_Id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+       
+
+</table>

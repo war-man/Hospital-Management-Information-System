@@ -1,0 +1,67 @@
+﻿@model CaresoftHMISDataAccess.UserRole
+@{ 
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/_UserManagementLayout.cshtml";
+
+}
+<div class="col-xs-8">
+    <div class="panel panel-primary caresoft-panel" >
+        <div class="panel-heading">
+            Edit Role
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm(FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="">
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RoleName, "Role Name", htmlAttributes: new {@class = "control-label col-xs-3" })
+                        <div class="col-xs-8">
+                            @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @style = "width:80%", @class = "text-box   margin-top-bottom-2" } })
+                            @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RoleDescription, "Role Description", htmlAttributes: new { @class = "control-label col-xs-3" })
+                        <div class="col-xs-8">
+                            @Html.EditorFor(model => model.RoleDescription, new { htmlAttributes = new { @style="width:80%",  @class = "text-box   margin-top-bottom-2" } })
+                            @Html.ValidationMessageFor(model => model.RoleDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DepartmentId, "Departments", htmlAttributes: new { @class = "control-label col-xs-3" })
+                        <div class="col-xs-8">
+                            @Html.DropDownList("DepartmentId", new SelectList(ViewBag.Departments, "Id", "DepartmentName"), new {@style="width:80%",  @class = "text-box margin-top-bottom-2" })
+                            @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LandingPage, "Landing Page", htmlAttributes: new { @class = "control-label col-xs-3" })
+                        <div class="col-xs-8">
+                            @Html.EditorFor(model => model.LandingPage, new { htmlAttributes = new { @style="width:80%",  @class = "text-box   margin-top-bottom-2" } })
+                            @Html.ValidationMessageFor(model => model.LandingPage, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-8">
+                            <input type="submit" value="Save" class="btn btn-primary btn-sm" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

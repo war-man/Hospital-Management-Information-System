@@ -1,0 +1,75 @@
+﻿@model IEnumerable<LabsDataAccess.WorkOrder>
+@using CaresoftHMISDataAccess;
+@using LabsDataAccess;
+
+@{
+    /**/
+
+    CaresoftHMISEntities db_main = new CaresoftHMISEntities();
+    CareSoftLabsEntities db = new CareSoftLabsEntities();
+
+
+}
+<table class="table table-bordered table-condensed">
+    <thead class="bg-primary">
+        <tr class="table-primary">
+            <th>
+                @Html.DisplayName("Reagent Name")
+            </th>
+            <th>
+                @Html.DisplayName("Patient Name")
+            </th>
+            <th>
+                @Html.DisplayName("Doc Name")
+            </th>
+            <th>
+                @Html.DisplayName("Test Name")
+            </th>
+            <th>
+                @Html.DisplayName("Test User")
+            </th>
+        </tr>
+    </thead>
+    <tbody style="background:white;">
+
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="5" class="text-center" style="color:gray;">
+                    No data to display
+                </td>
+            </tr>
+            return;
+        }
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            int LabDoctor = 0;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OPDNo)
+                </td>
+                <td>
+                    @{var Pat = db_main.OpdRegisters.Find(item.OPDNo);}
+                    @Html.DisplayName(Pat.Patient.FName + " " + Pat.Patient.MName + " " + Pat.Patient.LName)
+                </td>
+                <td>
+                    @{var Doc = db_main.Users.Find(item.Doctor);}
+                    @Html.DisplayName(Doc.Employee.FName + " " + Doc.Employee.OtherName)
+                </td>
+                <td>
+                    @foreach (var test in item.WorkOrderTests)
+                    {
+                        @test.Doctor;
+                        @Html.DisplayName(test.LabTest.Test_Code) @: ,
+                    }
+                </td>
+                <td>
+
+                    @{var TestUser = db.DepartmentAssignments.Find(9);}
+                    @Html.DisplayName(TestUser.UserName)
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

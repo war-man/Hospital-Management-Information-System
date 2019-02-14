@@ -1,0 +1,32 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-12" style="padding-top:5em;">
+            <div class="panel panel-primary caresoft-panel">
+                <div class="panel-heading">
+                    EMR Modules
+                </div>
+                <div class="panel-body">
+                    <table class="table-dashboard-icons">
+                        <tr>
+                            <td data-href="Appointments">
+                                <img src="~/Content/icons/appointment.jpg" />
+                                <p style="font-family: Tahoma; font-size:11px; font-weight:400;">Appointment</p>
+                            </td>
+                            <td data-href="@{if (ViewBag.IsNurse != null && ViewBag.IsNurse)
+                                { <text>NurseModule/opdlist</text>}
+                                else { <text>emr/OpdList</text> }
+                                }">
+                                <img src="~/Content/icons/OPD.jpg" />
+                                <p style="font-family: Tahoma; font-size:11px; font-weight:400;">OPD</p>
+                            </td>
+                            <td data-href="IPD/IPDRegister">
+                                <img src="~/Content/icons/ipd.jpg" />
+                                <p style="font-family: Tahoma; font-size:11px; font-weight:400;">IPD</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

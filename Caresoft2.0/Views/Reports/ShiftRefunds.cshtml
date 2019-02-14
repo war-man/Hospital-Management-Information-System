@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Refund>
+
+<table class="table-bordered table-condensed">
+    <tr class="report-title">
+        <td colspan="5" class="text-center">
+            <strong> REFUNDS </strong> 
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Shift Id
+        </th>
+        <th>
+            Username
+        </th>
+        <th>
+            Reason For Refund
+        </th>
+        <th>
+            Remitted At
+        </th>
+        <th>
+            Refunded Amount
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Shift.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReasonForRefund)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RemittedAt)
+        </td>
+        <td class="money">
+            @Html.DisplayFor(modelItem => item.RefundedAmount)
+        </td>
+    </tr>
+    }
+
+    <tr>
+        <td class="report-title" colspan="4"> <strong>TOTAL</strong> </td>
+        <td class="money text-danger">@Model.Sum(e => e.RefundedAmount)</td>
+    </tr>
+</table>

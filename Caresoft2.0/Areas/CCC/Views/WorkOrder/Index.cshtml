@@ -1,0 +1,102 @@
+﻿
+@{
+    Layout = "~/Areas/HIV/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="col-md-2">
+
+
+    </div>
+</div>
+
+<div class="panel panel-primary caresoft-panel glass shadow">
+    <div class="panel-heading">
+        Work Order
+    </div>
+</div>
+<div class="panel-body"></div>
+<form method="get">
+    <div class="col-md-12"></div>
+    <div class="form-group"></div>
+    <table>
+        <tbody>
+            <tr>
+                <td>From Date</td>
+                <td><input class="text-box marg-top-6px" style="width: 140px;margin-right:50px; margin-left:15px;margin-bottom:15px;" type="date" id="datepicker" /></td>
+
+                <td>To Date</td>
+                <td><input class="text-box marg-top-6px" style="width:140px; margin-left:20px;margin-bottom:15px;" type="date" id="datepicker" /></td>
+
+
+            </tr>
+            <tr>
+                <td>Patient Regno/Name</td>
+                <td><input class="text-box marg-top-6px" style="width:140px; margin-right:50px; margin-left:15px;margin-bottom:15px;" type="text" id="normal" /></td>
+
+                <td>Last Name </td>
+                <td><input class="text-box marg-top-6px" style="width:140px; margin-left:20px; margin-bottom:15px;" type="text" id="normal" /></td>
+            </tr>
+            <tr>
+                <td>HIV No </td>
+                <td><input class="text-box marg-top-6px" style="width:140px; margin-right:50px; margin-left:15px;margin-bottom:15px;" type="text" id="normal" /></td>
+
+                <td>Barcode </td>
+                <td><input class="text-box marg-top-6px" style="width:140px; margin-left:20px;margin-bottom:15px;" type="text" id="normal" /></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+    <br /> <br />
+    <input id="Button1" class="btn btn-sm btn-primary" style="margin-left:175px; margin-bottom:15px;" type="submit" value="Search" />
+    <div><input id="Checkbox1" style="margin-left:175px;margin-top:10px;margin-bottom:15px;" type="checkbox" /> <label>Close Bill</label></div>
+    
+    <table class="table table-data table-bordered table-condensed">
+        <tr>
+            <th>Select</th>
+            <th>Hiv No</th>
+            <th>Reg No</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>OPD Date</th>
+            <th>Reference Doctor</th>
+            <th>Diagnosis</th>
+            <th>Doctor Incharge</th>
+
+        </tr>
+        <tr>
+            <td>
+                <input type="text" />
+            </td>
+            <td>
+                <input name="HIVNo" class="text-box marg-top-6px" />
+            </td>
+            <td>
+                <input name="RegNo" class="text-box marg-top-6px" />
+            </td>
+            <td>
+                <input name="Name" class="text-box marg-top-6px" />
+            </td>
+            <td>
+                <input name="Department" class="text-box marg-top-6px" />
+            </td>
+            <td>
+                <input name="OPDDate" class="text-box marg-top-6px" />
+            </td>
+            <td>
+                <input name="ReferenceDoctor" class="text-box marg-top-6px" />
+            </td>
+            <td>
+                <input name="Diagnosis" class="text-box marg-top-6px" />
+            </td>
+            <td>
+                <input name="DoctorIncharge" class="text-box marg-top-6px" />
+            </td>
+
+        </tr>
+    </table>
+</form>
+
+

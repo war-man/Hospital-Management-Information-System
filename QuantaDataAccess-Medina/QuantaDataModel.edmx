@@ -1,0 +1,671 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QauntaDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="billtransaction">
+          <Key>
+            <PropertyRef Name="srno" />
+            <PropertyRef Name="Companyid" />
+          </Key>
+          <Property Name="srno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="billno" Type="int" />
+          <Property Name="pepatid" Type="nvarchar" MaxLength="20" />
+          <Property Name="recdate" Type="datetime" />
+          <Property Name="amount" Type="float" />
+          <Property Name="opdno" Type="int" />
+          <Property Name="ipdno" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="opdflag" Type="bit" />
+          <Property Name="ipdflag" Type="bit" />
+          <Property Name="lab_type_flag" Type="varchar" MaxLength="50" />
+          <Property Name="FinancialYearId" Type="int" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tranno" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CloseBill" Type="bit" />
+          <Property Name="ReceiptNo" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="username" Type="varchar" MaxLength="20" />
+          <Property Name="Companyid" Type="int" Nullable="false" />
+          <Property Name="AccFlag" Type="bit" />
+          <Property Name="shift" Type="nvarchar" MaxLength="50" />
+          <Property Name="cancel_amt" Type="int" />
+          <Property Name="reason_c" Type="nvarchar" MaxLength="50" />
+          <Property Name="regfees" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Credit" Type="bit" />
+          <Property Name="Cash" Type="bit" />
+          <Property Name="Cheque" Type="bit" />
+          <Property Name="DD" Type="bit" />
+          <Property Name="ChequeNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChequeDate" Type="datetime" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DDNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="DDDate" Type="datetime" />
+          <Property Name="DDBankName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DDAmount" Type="float" />
+          <Property Name="CashAmount" Type="float" />
+          <Property Name="ChequeAmount" Type="float" />
+          <Property Name="CCPersonName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="cccomm" Type="float" />
+          <Property Name="cccommamount" Type="float" />
+          <Property Name="CCExpireDate" Type="datetime" />
+          <Property Name="CCCompany" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCAmount" Type="float" />
+          <Property Name="ChequeStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="advancepaidincurrency" Type="float" />
+          <Property Name="secondryCurrency" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="corp_compid" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="corp_transno" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="cur_rate" Type="float" />
+          <Property Name="Isdental" Type="bit" />
+          <Property Name="reason_forRefund" Type="nvarchar" MaxLength="250" />
+          <Property Name="Mmobileno" Type="varchar" MaxLength="12" />
+          <Property Name="MidCardno" Type="varchar" MaxLength="12" />
+          <Property Name="Mtransactionid" Type="varchar" MaxLength="12" />
+          <Property Name="Mamount" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Mmcommision" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Mpesa" Type="bit" />
+          <Property Name="MPesatransactiondate" Type="varchar" MaxLength="10" />
+          <Property Name="Labflag" Type="bit" />
+          <Property Name="Labno" Type="int" />
+          <Property Name="PName" Type="varchar" MaxLength="100" />
+          <Property Name="PNameAddress" Type="varchar" MaxLength="500" />
+          <Property Name="billdiscount" Type="float" />
+          <Property Name="LabRefno" Type="nvarchar" MaxLength="100" />
+          <Property Name="CurrentFinancialyearid" Type="int" />
+          <Property Name="ConsulantId" Type="int" />
+          <Property Name="HivNo" Type="int" />
+          <Property Name="TransTypeId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'embutown_webhms.dbo.users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="USERID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="50" />
+          <Property Name="PASSWD" Type="varchar" MaxLength="50" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="DEPT" Type="varchar" MaxLength="50" />
+          <Property Name="roomid" Type="int" />
+          <Property Name="PHONE" Type="varchar" MaxLength="15" />
+          <Property Name="MOBILE" Type="varchar" MaxLength="15" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="secu_que" Type="nvarchar" MaxLength="500" />
+          <Property Name="secu_ans" Type="nvarchar" MaxLength="500" />
+          <Property Name="companyid" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="mastmodeid" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="pno" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="ActiveInactive" Type="bit" />
+          <Property Name="Adminmodule" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'embutown_webhms.dbo.Vw_sakuda' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Vw_sakuda">
+          <Key>
+            <PropertyRef Name="srno" />
+            <PropertyRef Name="Companyid" />
+            <PropertyRef Name="newReceiptNo" />
+          </Key>
+          <Property Name="srno" Type="int" Nullable="false" />
+          <Property Name="billno" Type="int" />
+          <Property Name="pepatid" Type="nvarchar" MaxLength="20" />
+          <Property Name="recdate" Type="datetime" />
+          <Property Name="amount" Type="float" />
+          <Property Name="opdno" Type="int" />
+          <Property Name="ipdno" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="opdflag" Type="bit" />
+          <Property Name="ipdflag" Type="bit" />
+          <Property Name="lab_type_flag" Type="varchar" MaxLength="50" />
+          <Property Name="FinancialYearId" Type="int" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tranno" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CloseBill" Type="bit" />
+          <Property Name="ReceiptNo" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="username" Type="varchar" MaxLength="20" />
+          <Property Name="Companyid" Type="int" Nullable="false" />
+          <Property Name="AccFlag" Type="bit" />
+          <Property Name="shift" Type="nvarchar" MaxLength="50" />
+          <Property Name="cancel_amt" Type="int" />
+          <Property Name="reason_c" Type="nvarchar" MaxLength="50" />
+          <Property Name="regfees" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Credit" Type="bit" />
+          <Property Name="Cash" Type="bit" />
+          <Property Name="Cheque" Type="bit" />
+          <Property Name="DD" Type="bit" />
+          <Property Name="ChequeNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChequeDate" Type="datetime" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DDNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="DDDate" Type="datetime" />
+          <Property Name="DDBankName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DDAmount" Type="float" />
+          <Property Name="CashAmount" Type="float" />
+          <Property Name="ChequeAmount" Type="float" />
+          <Property Name="CCPersonName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="cccomm" Type="float" />
+          <Property Name="cccommamount" Type="float" />
+          <Property Name="CCExpireDate" Type="datetime" />
+          <Property Name="CCCompany" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCAmount" Type="float" />
+          <Property Name="ChequeStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="advancepaidincurrency" Type="float" />
+          <Property Name="secondryCurrency" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="corp_compid" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="corp_transno" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="cur_rate" Type="float" />
+          <Property Name="Isdental" Type="bit" />
+          <Property Name="reason_forRefund" Type="nvarchar" MaxLength="250" />
+          <Property Name="Mmobileno" Type="varchar" MaxLength="12" />
+          <Property Name="MidCardno" Type="varchar" MaxLength="12" />
+          <Property Name="Mtransactionid" Type="varchar" MaxLength="12" />
+          <Property Name="Mamount" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Mmcommision" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Mpesa" Type="bit" />
+          <Property Name="MPesatransactiondate" Type="varchar" MaxLength="10" />
+          <Property Name="Labflag" Type="bit" />
+          <Property Name="Labno" Type="int" />
+          <Property Name="PName" Type="varchar" MaxLength="100" />
+          <Property Name="PNameAddress" Type="varchar" MaxLength="500" />
+          <Property Name="billdiscount" Type="float" />
+          <Property Name="LabRefno" Type="nvarchar" MaxLength="100" />
+          <Property Name="CurrentFinancialyearid" Type="int" />
+          <Property Name="ConsulantId" Type="int" />
+          <Property Name="HivNo" Type="int" />
+          <Property Name="TransTypeId" Type="int" />
+          <Property Name="newReceiptNo" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Symbol" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityContainer Name="QauntaDataModelStoreContainer">
+          <EntitySet Name="billtransaction" EntityType="Self.billtransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [users].[USERID] AS [USERID], 
+    [users].[USERNAME] AS [USERNAME], 
+    [users].[PASSWD] AS [PASSWD], 
+    [users].[EMAIL] AS [EMAIL], 
+    [users].[DEPT] AS [DEPT], 
+    [users].[roomid] AS [roomid], 
+    [users].[PHONE] AS [PHONE], 
+    [users].[MOBILE] AS [MOBILE], 
+    [users].[Type] AS [Type], 
+    [users].[secu_que] AS [secu_que], 
+    [users].[secu_ans] AS [secu_ans], 
+    [users].[companyid] AS [companyid], 
+    [users].[mastmodeid] AS [mastmodeid], 
+    [users].[pno] AS [pno], 
+    [users].[ExpiryDate] AS [ExpiryDate], 
+    [users].[ActiveInactive] AS [ActiveInactive], 
+    [users].[Adminmodule] AS [Adminmodule]
+    FROM [dbo].[users] AS [users]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Vw_sakuda" EntityType="Self.Vw_sakuda" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vw_sakuda].[srno] AS [srno], 
+    [Vw_sakuda].[billno] AS [billno], 
+    [Vw_sakuda].[pepatid] AS [pepatid], 
+    [Vw_sakuda].[recdate] AS [recdate], 
+    [Vw_sakuda].[amount] AS [amount], 
+    [Vw_sakuda].[opdno] AS [opdno], 
+    [Vw_sakuda].[ipdno] AS [ipdno], 
+    [Vw_sakuda].[Type] AS [Type], 
+    [Vw_sakuda].[opdflag] AS [opdflag], 
+    [Vw_sakuda].[ipdflag] AS [ipdflag], 
+    [Vw_sakuda].[lab_type_flag] AS [lab_type_flag], 
+    [Vw_sakuda].[FinancialYearId] AS [FinancialYearId], 
+    [Vw_sakuda].[TransactionType] AS [TransactionType], 
+    [Vw_sakuda].[Tranno] AS [Tranno], 
+    [Vw_sakuda].[CloseBill] AS [CloseBill], 
+    [Vw_sakuda].[ReceiptNo] AS [ReceiptNo], 
+    [Vw_sakuda].[username] AS [username], 
+    [Vw_sakuda].[Companyid] AS [Companyid], 
+    [Vw_sakuda].[AccFlag] AS [AccFlag], 
+    [Vw_sakuda].[shift] AS [shift], 
+    [Vw_sakuda].[cancel_amt] AS [cancel_amt], 
+    [Vw_sakuda].[reason_c] AS [reason_c], 
+    [Vw_sakuda].[regfees] AS [regfees], 
+    [Vw_sakuda].[Credit] AS [Credit], 
+    [Vw_sakuda].[Cash] AS [Cash], 
+    [Vw_sakuda].[Cheque] AS [Cheque], 
+    [Vw_sakuda].[DD] AS [DD], 
+    [Vw_sakuda].[ChequeNo] AS [ChequeNo], 
+    [Vw_sakuda].[ChequeDate] AS [ChequeDate], 
+    [Vw_sakuda].[BankName] AS [BankName], 
+    [Vw_sakuda].[DDNo] AS [DDNo], 
+    [Vw_sakuda].[DDDate] AS [DDDate], 
+    [Vw_sakuda].[DDBankName] AS [DDBankName], 
+    [Vw_sakuda].[DDAmount] AS [DDAmount], 
+    [Vw_sakuda].[CashAmount] AS [CashAmount], 
+    [Vw_sakuda].[ChequeAmount] AS [ChequeAmount], 
+    [Vw_sakuda].[CCPersonName] AS [CCPersonName], 
+    [Vw_sakuda].[CCNo] AS [CCNo], 
+    [Vw_sakuda].[cccomm] AS [cccomm], 
+    [Vw_sakuda].[cccommamount] AS [cccommamount], 
+    [Vw_sakuda].[CCExpireDate] AS [CCExpireDate], 
+    [Vw_sakuda].[CCCompany] AS [CCCompany], 
+    [Vw_sakuda].[CCAmount] AS [CCAmount], 
+    [Vw_sakuda].[ChequeStatus] AS [ChequeStatus], 
+    [Vw_sakuda].[advancepaidincurrency] AS [advancepaidincurrency], 
+    [Vw_sakuda].[secondryCurrency] AS [secondryCurrency], 
+    [Vw_sakuda].[corp_compid] AS [corp_compid], 
+    [Vw_sakuda].[corp_transno] AS [corp_transno], 
+    [Vw_sakuda].[cur_rate] AS [cur_rate], 
+    [Vw_sakuda].[Isdental] AS [Isdental], 
+    [Vw_sakuda].[reason_forRefund] AS [reason_forRefund], 
+    [Vw_sakuda].[Mmobileno] AS [Mmobileno], 
+    [Vw_sakuda].[MidCardno] AS [MidCardno], 
+    [Vw_sakuda].[Mtransactionid] AS [Mtransactionid], 
+    [Vw_sakuda].[Mamount] AS [Mamount], 
+    [Vw_sakuda].[Mmcommision] AS [Mmcommision], 
+    [Vw_sakuda].[Mpesa] AS [Mpesa], 
+    [Vw_sakuda].[MPesatransactiondate] AS [MPesatransactiondate], 
+    [Vw_sakuda].[Labflag] AS [Labflag], 
+    [Vw_sakuda].[Labno] AS [Labno], 
+    [Vw_sakuda].[PName] AS [PName], 
+    [Vw_sakuda].[PNameAddress] AS [PNameAddress], 
+    [Vw_sakuda].[billdiscount] AS [billdiscount], 
+    [Vw_sakuda].[LabRefno] AS [LabRefno], 
+    [Vw_sakuda].[CurrentFinancialyearid] AS [CurrentFinancialyearid], 
+    [Vw_sakuda].[ConsulantId] AS [ConsulantId], 
+    [Vw_sakuda].[HivNo] AS [HivNo], 
+    [Vw_sakuda].[TransTypeId] AS [TransTypeId], 
+    [Vw_sakuda].[newReceiptNo] AS [newReceiptNo], 
+    [Vw_sakuda].[Symbol] AS [Symbol], 
+    [Vw_sakuda].[name] AS [name]
+    FROM [dbo].[Vw_sakuda] AS [Vw_sakuda]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QauntaDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="billtransaction">
+          <Key>
+            <PropertyRef Name="srno" />
+            <PropertyRef Name="Companyid" />
+          </Key>
+          <Property Name="srno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="billno" Type="Int32" />
+          <Property Name="pepatid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="recdate" Type="DateTime" Precision="3" />
+          <Property Name="amount" Type="Double" />
+          <Property Name="opdno" Type="Int32" />
+          <Property Name="ipdno" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="opdflag" Type="Boolean" />
+          <Property Name="ipdflag" Type="Boolean" />
+          <Property Name="lab_type_flag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FinancialYearId" Type="Int32" />
+          <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tranno" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CloseBill" Type="Boolean" />
+          <Property Name="ReceiptNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Companyid" Type="Int32" Nullable="false" />
+          <Property Name="AccFlag" Type="Boolean" />
+          <Property Name="shift" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cancel_amt" Type="Int32" />
+          <Property Name="reason_c" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="regfees" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Credit" Type="Boolean" />
+          <Property Name="Cash" Type="Boolean" />
+          <Property Name="Cheque" Type="Boolean" />
+          <Property Name="DD" Type="Boolean" />
+          <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+          <Property Name="BankName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DDNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DDDate" Type="DateTime" Precision="3" />
+          <Property Name="DDBankName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DDAmount" Type="Double" />
+          <Property Name="CashAmount" Type="Double" />
+          <Property Name="ChequeAmount" Type="Double" />
+          <Property Name="CCPersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cccomm" Type="Double" />
+          <Property Name="cccommamount" Type="Double" />
+          <Property Name="CCExpireDate" Type="DateTime" Precision="3" />
+          <Property Name="CCCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCAmount" Type="Double" />
+          <Property Name="ChequeStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="advancepaidincurrency" Type="Double" />
+          <Property Name="secondryCurrency" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="corp_compid" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="corp_transno" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="cur_rate" Type="Double" />
+          <Property Name="Isdental" Type="Boolean" />
+          <Property Name="reason_forRefund" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Mmobileno" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="MidCardno" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Mtransactionid" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Mamount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Mmcommision" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Mpesa" Type="Boolean" />
+          <Property Name="MPesatransactiondate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Labflag" Type="Boolean" />
+          <Property Name="Labno" Type="Int32" />
+          <Property Name="PName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PNameAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="billdiscount" Type="Double" />
+          <Property Name="LabRefno" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentFinancialyearid" Type="Int32" />
+          <Property Name="ConsulantId" Type="Int32" />
+          <Property Name="HivNo" Type="Int32" />
+          <Property Name="TransTypeId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="USERID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DEPT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="roomid" Type="Int32" />
+          <Property Name="PHONE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="MOBILE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="secu_que" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="secu_ans" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="companyid" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="mastmodeid" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="pno" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="ActiveInactive" Type="Boolean" />
+          <Property Name="Adminmodule" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="QuantaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="billtransactions" EntityType="Self.billtransaction" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="Vw_sakuda" EntityType="QauntaDataModel.Vw_sakuda" />
+        </EntityContainer>
+        <EntityType Name="Vw_sakuda">
+          <Key>
+            <PropertyRef Name="srno" />
+            <PropertyRef Name="Companyid" />
+            <PropertyRef Name="newReceiptNo" />
+          </Key>
+          <Property Name="srno" Type="Int32" Nullable="false" />
+          <Property Name="billno" Type="Int32" />
+          <Property Name="pepatid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="recdate" Type="DateTime" Precision="3" />
+          <Property Name="amount" Type="Double" />
+          <Property Name="opdno" Type="Int32" />
+          <Property Name="ipdno" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="opdflag" Type="Boolean" />
+          <Property Name="ipdflag" Type="Boolean" />
+          <Property Name="lab_type_flag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FinancialYearId" Type="Int32" />
+          <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tranno" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CloseBill" Type="Boolean" />
+          <Property Name="ReceiptNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Companyid" Type="Int32" Nullable="false" />
+          <Property Name="AccFlag" Type="Boolean" />
+          <Property Name="shift" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cancel_amt" Type="Int32" />
+          <Property Name="reason_c" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="regfees" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Credit" Type="Boolean" />
+          <Property Name="Cash" Type="Boolean" />
+          <Property Name="Cheque" Type="Boolean" />
+          <Property Name="DD" Type="Boolean" />
+          <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+          <Property Name="BankName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DDNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DDDate" Type="DateTime" Precision="3" />
+          <Property Name="DDBankName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DDAmount" Type="Double" />
+          <Property Name="CashAmount" Type="Double" />
+          <Property Name="ChequeAmount" Type="Double" />
+          <Property Name="CCPersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cccomm" Type="Double" />
+          <Property Name="cccommamount" Type="Double" />
+          <Property Name="CCExpireDate" Type="DateTime" Precision="3" />
+          <Property Name="CCCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCAmount" Type="Double" />
+          <Property Name="ChequeStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="advancepaidincurrency" Type="Double" />
+          <Property Name="secondryCurrency" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="corp_compid" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="corp_transno" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="cur_rate" Type="Double" />
+          <Property Name="Isdental" Type="Boolean" />
+          <Property Name="reason_forRefund" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Mmobileno" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="MidCardno" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Mtransactionid" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Mamount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Mmcommision" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Mpesa" Type="Boolean" />
+          <Property Name="MPesatransactiondate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Labflag" Type="Boolean" />
+          <Property Name="Labno" Type="Int32" />
+          <Property Name="PName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PNameAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="billdiscount" Type="Double" />
+          <Property Name="LabRefno" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentFinancialyearid" Type="Int32" />
+          <Property Name="ConsulantId" Type="Int32" />
+          <Property Name="HivNo" Type="Int32" />
+          <Property Name="TransTypeId" Type="Int32" />
+          <Property Name="newReceiptNo" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Symbol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QauntaDataModelStoreContainer" CdmEntityContainer="QuantaEntities">
+          <EntitySetMapping Name="billtransactions">
+            <EntityTypeMapping TypeName="QauntaDataModel.billtransaction">
+              <MappingFragment StoreEntitySet="billtransaction">
+                <ScalarProperty Name="srno" ColumnName="srno" />
+                <ScalarProperty Name="billno" ColumnName="billno" />
+                <ScalarProperty Name="pepatid" ColumnName="pepatid" />
+                <ScalarProperty Name="recdate" ColumnName="recdate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="opdno" ColumnName="opdno" />
+                <ScalarProperty Name="ipdno" ColumnName="ipdno" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="opdflag" ColumnName="opdflag" />
+                <ScalarProperty Name="ipdflag" ColumnName="ipdflag" />
+                <ScalarProperty Name="lab_type_flag" ColumnName="lab_type_flag" />
+                <ScalarProperty Name="FinancialYearId" ColumnName="FinancialYearId" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="Tranno" ColumnName="Tranno" />
+                <ScalarProperty Name="CloseBill" ColumnName="CloseBill" />
+                <ScalarProperty Name="ReceiptNo" ColumnName="ReceiptNo" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="Companyid" ColumnName="Companyid" />
+                <ScalarProperty Name="AccFlag" ColumnName="AccFlag" />
+                <ScalarProperty Name="shift" ColumnName="shift" />
+                <ScalarProperty Name="cancel_amt" ColumnName="cancel_amt" />
+                <ScalarProperty Name="reason_c" ColumnName="reason_c" />
+                <ScalarProperty Name="regfees" ColumnName="regfees" />
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="Cash" ColumnName="Cash" />
+                <ScalarProperty Name="Cheque" ColumnName="Cheque" />
+                <ScalarProperty Name="DD" ColumnName="DD" />
+                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="DDNo" ColumnName="DDNo" />
+                <ScalarProperty Name="DDDate" ColumnName="DDDate" />
+                <ScalarProperty Name="DDBankName" ColumnName="DDBankName" />
+                <ScalarProperty Name="DDAmount" ColumnName="DDAmount" />
+                <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+                <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+                <ScalarProperty Name="CCPersonName" ColumnName="CCPersonName" />
+                <ScalarProperty Name="CCNo" ColumnName="CCNo" />
+                <ScalarProperty Name="cccomm" ColumnName="cccomm" />
+                <ScalarProperty Name="cccommamount" ColumnName="cccommamount" />
+                <ScalarProperty Name="CCExpireDate" ColumnName="CCExpireDate" />
+                <ScalarProperty Name="CCCompany" ColumnName="CCCompany" />
+                <ScalarProperty Name="CCAmount" ColumnName="CCAmount" />
+                <ScalarProperty Name="ChequeStatus" ColumnName="ChequeStatus" />
+                <ScalarProperty Name="advancepaidincurrency" ColumnName="advancepaidincurrency" />
+                <ScalarProperty Name="secondryCurrency" ColumnName="secondryCurrency" />
+                <ScalarProperty Name="corp_compid" ColumnName="corp_compid" />
+                <ScalarProperty Name="corp_transno" ColumnName="corp_transno" />
+                <ScalarProperty Name="cur_rate" ColumnName="cur_rate" />
+                <ScalarProperty Name="Isdental" ColumnName="Isdental" />
+                <ScalarProperty Name="reason_forRefund" ColumnName="reason_forRefund" />
+                <ScalarProperty Name="Mmobileno" ColumnName="Mmobileno" />
+                <ScalarProperty Name="MidCardno" ColumnName="MidCardno" />
+                <ScalarProperty Name="Mtransactionid" ColumnName="Mtransactionid" />
+                <ScalarProperty Name="Mamount" ColumnName="Mamount" />
+                <ScalarProperty Name="Mmcommision" ColumnName="Mmcommision" />
+                <ScalarProperty Name="Mpesa" ColumnName="Mpesa" />
+                <ScalarProperty Name="MPesatransactiondate" ColumnName="MPesatransactiondate" />
+                <ScalarProperty Name="Labflag" ColumnName="Labflag" />
+                <ScalarProperty Name="Labno" ColumnName="Labno" />
+                <ScalarProperty Name="PName" ColumnName="PName" />
+                <ScalarProperty Name="PNameAddress" ColumnName="PNameAddress" />
+                <ScalarProperty Name="billdiscount" ColumnName="billdiscount" />
+                <ScalarProperty Name="LabRefno" ColumnName="LabRefno" />
+                <ScalarProperty Name="CurrentFinancialyearid" ColumnName="CurrentFinancialyearid" />
+                <ScalarProperty Name="ConsulantId" ColumnName="ConsulantId" />
+                <ScalarProperty Name="HivNo" ColumnName="HivNo" />
+                <ScalarProperty Name="TransTypeId" ColumnName="TransTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="QauntaDataModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PASSWD" ColumnName="PASSWD" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="DEPT" ColumnName="DEPT" />
+                <ScalarProperty Name="roomid" ColumnName="roomid" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="MOBILE" ColumnName="MOBILE" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="secu_que" ColumnName="secu_que" />
+                <ScalarProperty Name="secu_ans" ColumnName="secu_ans" />
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="mastmodeid" ColumnName="mastmodeid" />
+                <ScalarProperty Name="pno" ColumnName="pno" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="ActiveInactive" ColumnName="ActiveInactive" />
+                <ScalarProperty Name="Adminmodule" ColumnName="Adminmodule" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vw_sakuda">
+            <EntityTypeMapping TypeName="QauntaDataModel.Vw_sakuda">
+              <MappingFragment StoreEntitySet="Vw_sakuda">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="newReceiptNo" ColumnName="newReceiptNo" />
+                <ScalarProperty Name="TransTypeId" ColumnName="TransTypeId" />
+                <ScalarProperty Name="HivNo" ColumnName="HivNo" />
+                <ScalarProperty Name="ConsulantId" ColumnName="ConsulantId" />
+                <ScalarProperty Name="CurrentFinancialyearid" ColumnName="CurrentFinancialyearid" />
+                <ScalarProperty Name="LabRefno" ColumnName="LabRefno" />
+                <ScalarProperty Name="billdiscount" ColumnName="billdiscount" />
+                <ScalarProperty Name="PNameAddress" ColumnName="PNameAddress" />
+                <ScalarProperty Name="PName" ColumnName="PName" />
+                <ScalarProperty Name="Labno" ColumnName="Labno" />
+                <ScalarProperty Name="Labflag" ColumnName="Labflag" />
+                <ScalarProperty Name="MPesatransactiondate" ColumnName="MPesatransactiondate" />
+                <ScalarProperty Name="Mpesa" ColumnName="Mpesa" />
+                <ScalarProperty Name="Mmcommision" ColumnName="Mmcommision" />
+                <ScalarProperty Name="Mamount" ColumnName="Mamount" />
+                <ScalarProperty Name="Mtransactionid" ColumnName="Mtransactionid" />
+                <ScalarProperty Name="MidCardno" ColumnName="MidCardno" />
+                <ScalarProperty Name="Mmobileno" ColumnName="Mmobileno" />
+                <ScalarProperty Name="reason_forRefund" ColumnName="reason_forRefund" />
+                <ScalarProperty Name="Isdental" ColumnName="Isdental" />
+                <ScalarProperty Name="cur_rate" ColumnName="cur_rate" />
+                <ScalarProperty Name="corp_transno" ColumnName="corp_transno" />
+                <ScalarProperty Name="corp_compid" ColumnName="corp_compid" />
+                <ScalarProperty Name="secondryCurrency" ColumnName="secondryCurrency" />
+                <ScalarProperty Name="advancepaidincurrency" ColumnName="advancepaidincurrency" />
+                <ScalarProperty Name="ChequeStatus" ColumnName="ChequeStatus" />
+                <ScalarProperty Name="CCAmount" ColumnName="CCAmount" />
+                <ScalarProperty Name="CCCompany" ColumnName="CCCompany" />
+                <ScalarProperty Name="CCExpireDate" ColumnName="CCExpireDate" />
+                <ScalarProperty Name="cccommamount" ColumnName="cccommamount" />
+                <ScalarProperty Name="cccomm" ColumnName="cccomm" />
+                <ScalarProperty Name="CCNo" ColumnName="CCNo" />
+                <ScalarProperty Name="CCPersonName" ColumnName="CCPersonName" />
+                <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+                <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+                <ScalarProperty Name="DDAmount" ColumnName="DDAmount" />
+                <ScalarProperty Name="DDBankName" ColumnName="DDBankName" />
+                <ScalarProperty Name="DDDate" ColumnName="DDDate" />
+                <ScalarProperty Name="DDNo" ColumnName="DDNo" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
+                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+                <ScalarProperty Name="DD" ColumnName="DD" />
+                <ScalarProperty Name="Cheque" ColumnName="Cheque" />
+                <ScalarProperty Name="Cash" ColumnName="Cash" />
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="regfees" ColumnName="regfees" />
+                <ScalarProperty Name="reason_c" ColumnName="reason_c" />
+                <ScalarProperty Name="cancel_amt" ColumnName="cancel_amt" />
+                <ScalarProperty Name="shift" ColumnName="shift" />
+                <ScalarProperty Name="AccFlag" ColumnName="AccFlag" />
+                <ScalarProperty Name="Companyid" ColumnName="Companyid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="ReceiptNo" ColumnName="ReceiptNo" />
+                <ScalarProperty Name="CloseBill" ColumnName="CloseBill" />
+                <ScalarProperty Name="Tranno" ColumnName="Tranno" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="FinancialYearId" ColumnName="FinancialYearId" />
+                <ScalarProperty Name="lab_type_flag" ColumnName="lab_type_flag" />
+                <ScalarProperty Name="ipdflag" ColumnName="ipdflag" />
+                <ScalarProperty Name="opdflag" ColumnName="opdflag" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ipdno" ColumnName="ipdno" />
+                <ScalarProperty Name="opdno" ColumnName="opdno" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="recdate" ColumnName="recdate" />
+                <ScalarProperty Name="pepatid" ColumnName="pepatid" />
+                <ScalarProperty Name="billno" ColumnName="billno" />
+                <ScalarProperty Name="srno" ColumnName="srno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

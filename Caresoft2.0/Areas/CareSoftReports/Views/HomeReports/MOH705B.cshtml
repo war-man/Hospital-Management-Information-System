@@ -1,0 +1,62 @@
+﻿
+@{
+                /**/
+
+                ViewBag.Title = "MOH705B";
+                Layout = "~/Areas/CareSoftReports/Views/Shared/_LayoutReports.cshtml";
+                ViewBag.ReportName = "MOH 705 B";
+}
+
+<div class="col-sm-6 col-sm-offset-3">
+    <div class="panel panel-primary glass caresoft-panel">
+        <div class="panel-heading">
+            <h4>@ViewBag.ReportName</h4>
+            Set report parameters and click generate.
+        </div>
+        <div class="panel-body">
+            <form name="ReportFilter" method="get" action="@Url.Action("GetMOH705BReport","HomeReports",new { Area="CareSoftReports"})">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label> Select Year</label>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="text-box form-control" name="Year" required style="margin:2px">
+                            <option></option>
+                            <option value=2018>2018</option>
+                            <option value=2019>2019</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label> Select Month</label>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="text-box form-control" required name="selectMonth" style="margin:2px">
+                            <option></option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <button type="submit" class="btn btn-primary btn-sm ">Download 705 B Report</button>
+                </div>
+            </form>
+
+
+            @if (ViewBag.DatesNotSet != null)
+            {
+                <p class="label label-danger">Please Select the requred dates</p>
+            }
+        </div>
+    </div>
+</div>

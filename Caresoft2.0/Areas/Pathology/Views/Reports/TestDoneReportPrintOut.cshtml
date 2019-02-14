@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LabsDataAccess.WorkOrderTest>
+
+@{
+
+    ViewBag.Title = "Test Done Report";
+    Layout = "~/Areas/Pathology/Views/Shared/_ReportsLayout.cshtml";
+    var groups = Model.GroupBy(x => x.Test);
+
+}
+<table class="" width="100%">
+    <thead>
+        <tr  style="border-top:solid 2px red; border-bottom:solid 2px red; padding:5px;">
+            <th>Select</th>
+            <th>Test Code</th>
+            <th>Test Name</th>
+            <th>How Many Test Selected</th>
+        </tr>
+    </thead>
+    <tbody style="border-top:solid 2px red; background:White;">
+
+        @foreach (var item in groups)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.First().Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.First().LabTest.Test_Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.First().LabTest.Test)
+                </td>
+                <td>
+                    @Html.DisplayName(item.Count().ToString())
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

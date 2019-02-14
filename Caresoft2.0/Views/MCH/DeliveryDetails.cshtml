@@ -1,0 +1,91 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.MCHDelivery>
+
+
+@{
+
+}
+<table class="table table-caresoft table-condensed">
+    <thead>
+        <tr>
+
+            <td style="color:fuchsia">OPD No</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+
+            <th style="color:fuchsia">User</th>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+            <th style="color:fuchsia; font-family:Calibri; font:16px">Date Of Visit</th>
+
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+        <tr>
+            <td>@a.OPDNo</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+            <td>@a.UserId</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td style="color:crimson">@a.DateAdded</td>
+
+
+        </tr>
+        }
+
+    </tbody>
+
+    <td>&nbsp;</td>
+    <thead>
+        <tr>
+            <th>HIV Tested</th>
+            <th>HIV Reacttivity</th>
+            <th>Mode Of Delivery</th>
+            <th>Date Of Delivery</th>
+            <th>Blood Loss</th>
+            <th>Condition of Mother</th>
+            <th>Baby VITK</th>
+            <th>Birth Weight</th>
+            <th>Birth Length</th>
+            <th>Place of Delivery</th>
+            <th>Conducted By</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+            <tr style="background-color:chartreuse">
+                <td>@a.HIVTested</td>
+                <td>@a.HIVReactivity</td>
+                <td>@a.ModeOfDelivery</td>
+                <td>@a.DateOfDelivery</td>
+                <td>@a.BloodLoss</td>
+                <td>@a.ConditionOfMother</td>
+                <td>@a.BabyVITK</td>
+                <td>@a.BirthWeight</td>
+                <td>@a.BirthWeight</td>
+                <td>@a.PlaceOfDelivery</td>
+                <td>@a.ConductedBy</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+    

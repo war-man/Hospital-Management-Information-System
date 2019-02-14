@@ -1,0 +1,1370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0CC6F8B6-39B1-499C-8F55-EE60EA2B069A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QuantaLabsDataAccess</RootNamespace>
+    <AssemblyName>QuantaLabsDataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="adduser.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="alert.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssignSign.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuditTrial.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoRegNo.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bc2800_machine.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillTransaction.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bill_setting.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BioChemisrty_Interface.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bioname_machine.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bom_Details.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bom_Main.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bom_Unitwise.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashCreditMain.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWiseTest.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Coll_receipt.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Column3.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyWIncomeReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contactInformation.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ContactinformationTemp.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contact_test.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="culture.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CytoSpeciman.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DailyTest.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dailytest1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DailyTestsTlcode.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DamageFilm.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DamageFilmNUsedEquipment.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatewDoctorAmount.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatewDoctorAmountAlter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DDDDDD.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DefaultCountSet.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeptpartmentWIncomeReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DetailTestReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="drCodeAuto.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="drnametable.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dtproperty.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dt_getpropertiesbyid_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dt_getpropertiesbyid_u_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EnglishToSpanish.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Expens.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FillDropDownHisto_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FormulaTbl.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetLabEmailDetails_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetTlcodeWithTests_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Group.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GroupName_Master.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Group_details.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="haemogram.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Haem_agape.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Heading.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Headings_n.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Headings_n_Company.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Help_TestMaster.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HistoCytoOldReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Histopathalogy_Future.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="histopatho.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="histopathology.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HistoPathoPic.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HistoSpeciman.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HospitalBillMaster.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="initial.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="initial_Company.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMaster.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LedgerMaster.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LedgerTransaction.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="machinemaster.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mail.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Makebill.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Makebill_Details.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MemoView.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MenuItem.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderSheetAllHeading.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderSheetAllHeadingAlter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OutSourceLabMaster.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OutSourceLabWiseRate.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientWReagentReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientWReagentReportAlter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pat_Info_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pepatid_multiplereg.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pic_Printing.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="printstatu.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="printsticker.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROFILE.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="profile_result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PSCItemMaster.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PSCItemMasterAlter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PSCItemMasterView.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PSCItemMasterView1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_SpecialNote.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuantaDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuantaDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuantaDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuantaDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuantaDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ratetype_master.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReasonMaster.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reciept.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reg_code1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RejectedTest.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportExpDate.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportParam.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSetting1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTransectionBelowReorderLevel.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Report_setting.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptPatientWiseDateWiseTestGraph.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptPatientWiseDateWiseTestGraph11.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptSampleStatu.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptSampleStatusAlter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptTestWorkSheet.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_AllColl_CenterCompliment.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_AllColl_CenterCompliment1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_AllTechCompliment.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_AllTechCompliment1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_Coll_Center_income.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_Coll_Center_income1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_Coll_Center_incomeAlter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_ContactInformation.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_DrCompliment.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_DrCompliment1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_DrCompliment2.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_drnametable.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_Expenses.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_Form3c.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_GetPatientInfoByHeading.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_GetPatientInfoByHeading1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_Histo_Cry.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_MakeBill.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_MakeBillIncome.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_MakeBillIncome1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_PatientOutStandingBalance.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_PatientOutStandingBalance1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_PrintBarCode.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_PrintSticker.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_PrintStickerDoctor.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_ReportTransaction.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_ReportTransaction1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_SpecialCharges.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_TestcodeTestname.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_TestRate.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_TestRate_Groupwise.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_testresult.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_testresultDC.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_testresultMG.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_testresult_plt.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_testresult_rbc.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_testresult_wbc.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_Titles.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_TmpSch.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_ViewCompWPatientDaily.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_ViewCompWPatientDailyAlter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_ViewDeptWPatientDaily.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rpt_ViewDeptWPatientDailyAlter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sample.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SampleMaster.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shortform.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="shsview.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="signature.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SignatureLeft.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SingnatureRight.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SiteGraph1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SOPMaster.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spCheckAlradyExist_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpecialNote.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Special_Charges_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_contactinformationByDOF_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_contactinformationByRegDOF_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_contactinformationByRegIopd_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_ContactInformationTLCodeByRegIopd_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_ContactInformationTLCode_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_FillItemDescription_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_FillTestforReagentconsumption_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_FillTest_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_getAllDataPSC_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_getAllTest_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetBOM_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_GetCollectionName_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_getCurrentFinancialYear_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetDamageFilm_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_getDeptCompNameMainDeptWise_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_getDeptCompName_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_GetDispatchedDataFromTo_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_GetDispatchedData_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_gethcode_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_getHeadings_MIS_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_getHeadings_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_getLabSubParticular_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetLabTestList_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetPaitentTestResultforChart_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_GetPatientNameByPrefixWithPePatid_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_GetPrintedDataFromTo_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetRejectTestForDoctor_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetRejectTestForUser_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_getSelectByCollCen_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_getSelectByName_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_getSelectByTech_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetStatus_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_GetTestName_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetTestsForFilm_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_getTitleByHcode_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_getTitle_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_getTlcodeByRegnoIOPDHCode_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetTurnAroundTimeByName_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetTurnAroundTimeByRegNo_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_GetUndispatchedData_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_loadvialmaster_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_MonthlyCollCenterDetail_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_PrintStatusTableExist_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ratemaster_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SampleWiseTest_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SearchCodeFromformulaTable_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_UpdateContactinformation_Accession_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_UpdateContactinformation_SampleCollect_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_vialtype_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemConstant.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="system_M.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCompanyAddress.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblDeptCompMaster.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLevel1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLevel1b.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblLog.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbllogin.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMarquee.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblNormalValue.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSlideDesc.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblTextMemo.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUserAuthority.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblWardDeptMaster.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Panicvalue.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TempTestResultFormat.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TEMPVIEWTestFormat.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Temp_storetests_Format.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Temp_Transaction.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Test.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestByOutsourceLab.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestNameDetail.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestReagent.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="testresult.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="testturntime.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestWIncomeReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestWIncomeReportAlter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Test_n.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Title.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Titles_n.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Titles_n_Company.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Title_Heading.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction1View.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction1ViewAlter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateContactinformation_LabCid_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_bindpivotgriddata_Android_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_bindpivotgriddata_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_editorgetTextMemoResult_Android_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_editorgetTextMemoResult_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_FillComboForOutSourceLab_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_FillForLab_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Filltitlename_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_GetAllNormalValues_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_GetAllNormValues_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_GetAllPanicValues_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_GetAllPanValues_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_GetAllProfileDept_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_GetAllProfileTests_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_GetAllSampleTypes_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_GetAllShortForms_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_getAllTests_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_GetFilmQty_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_getHeadingName_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_GetHeadingsDetails_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_getHeadings_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_GetHeading_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_GetLabProfile_TestName_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_GetOutSourceLabRecords_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_GetOutSourceLabTestWithRate_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_GetOutSource_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_GetPaitentTestResultforChart_Android_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_GetPrintstatusreport_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_GetTestbyHeading_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_getTestName_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_getTitleByHcode1_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_getTitleByHcode_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_GetTitlesByCompany_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_GetTitlesByTestName_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_GetTitlesByTLCodes_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usp_HistoCytoOldReports_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_perticular_BillIPDLabCharges_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_SelectAuthorizeDoctor_Result.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vialtypemaster.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW2.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW3.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWCollCenter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewComprehRpt.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCOMPVSBillAmount.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCOMPVSBillAmountAlter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCOMPVsBillAmountMonth.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCompVsPatientDaily.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewContactinformationTLCode.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDeptVSBillAmount.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDeptVSBillAmountAlter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDeptVsBillAmountMonth.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDeptVsPatientDaily.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDiagnosisPicReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDiagnosisReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewGTTRpt.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPatientDiagnosi.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewShowMemo.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewTechnician.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewTestreagent.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUserAuthorityHeading.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUserAuthorityTest.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUserAuthorityTitle.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_BindRediologyTreeNode.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_DispatchNew.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_ReturnCollCenterAmount.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_ReturnTechAmount.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_SearchPatients_RADIOLOGY.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vtest.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwNormalValue.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_Abnormal.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_Abnormal_19_06_2014.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_Accession.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_AccessionSampleCollected.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_Accession_Old.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_AncMontlyReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_AuthorisingList.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_BloodbankMontlyReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_ComputerWIncomeReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_Concatetest.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_ContactDoctor.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_ContactInfo.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_ContactInformation.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_ContactInformationTLCode.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_counttlcodeforBOMNew.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_Culture.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_DailyWorkSheet.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_DailyWorkSheet1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_DateRadiologyTest.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_deptwisetestreport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_DoubleColumn.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_FindTurnAroundTime.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_FindTurnAroundTime_3_7_2014.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_ForBlankReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_ForDeletePatient.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_GetAllTests.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_GetConsumption.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_GetConsumptions.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_getGrideReciptDetails.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_getInvestigationforclaim.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_GroupByLabcode.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_GroupByLabcode1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_GroupByLabcode2.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_GroupByLabcode_New.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_GroupByLabcode_New1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_GroupByLabcode_New1ReportNo.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_GroupByLabcode_New_20082013.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_GroupByLabcode_tech.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_GroupByLabcode_techReportNo.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_GTT.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_HealthUnitLabCP.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_HealthUnitLabHM.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_HealthUnitLabIM.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_HealthUnitLabMI.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_HealthUnitLabPA.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_HealthUnitLabSE.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_HivMontlyReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_HLPDsk_LabDetails.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_Investigation.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_InvestigationDetails.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_Machindetails.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_MainPateintSearch.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_MakeBillView.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_MakeBillView1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_MemoField.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_MemoField1.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_MemoField2.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_NoFieldMemo.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_OtherHMontlyReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_OutsourceLabReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_Panic.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_PateintGraphReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_PatientInvestiHelpDesk.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_PatientSearchByCatagary.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_PatientSearchByCatagary11.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_PatientSearchDepartment.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_PatientSearchHeading.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_PendingReportList.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_PrintSamples.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_RadiologyDoctor.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_RadiologyTest.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_ReagentDetails.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_referbydoctor.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_ReportDownloading.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_ReportExpDateAlter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_ReportTransactionAlter.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_ReportTransectionBelowReorderLevel.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_RptRejectTestReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_Rpt_LabCGHScode.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_Rpt_MonthlyTestContainer.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_rpt_PathalogyPatientWise.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_Rpt_PathoLogyCount.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_rpt_PathologyCount_PatientWise.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_rpt_PatientWiseRate.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_Rpt_RadioLogyCount.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_rpt_RadiologyCount_PatientWise.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_searchPatient.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_SearchPatientByFnLnRgn.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_SearchPatientByHospital.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_searchPatientTest.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_TbMontlyReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_TempPatientCategory.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_TempPatientHospital.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_TempViewPatientDeptRpt.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_TempViewRpt.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_TempViewRptHospital.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_TestNameTestCode.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_TestTestCodeForGraphicalMIS.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_TestTurnAroundTime.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_TestValueSearch.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_TitleTlCodeForGraphicalMIS.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_TurnAroundDifference.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_TurnarroundDiffRegister.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_VCTMonthlyReport.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_TestValueSearch.cs">
+      <DependentUpon>QuantaDataModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="QuantaDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QuantaDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="QuantaDataModel.edmx.diagram">
+      <DependentUpon>QuantaDataModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="QuantaDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuantaDataModel.Context.cs</LastGenOutput>
+      <DependentUpon>QuantaDataModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="QuantaDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuantaDataModel.edmx</DependentUpon>
+      <LastGenOutput>QuantaDataModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "AutomatedWriteoffs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+}
+
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Automated WriteOffs
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Begin Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="BeginDate" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp;  End Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="EndDate" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Account Narration:
+                                </td>
+                                <td>
+                                    <select name="AccountNarration" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    &nbsp; Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="Date" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Other Details:
+                                </td>
+                                <td>
+                                    <input name="OtherDetails" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp;  GI Code:
+                                </td>
+                                <td>
+                                    <input name="GICode" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="radio" name="DebitCredit" value="Debit" /> Debits
+                                </td>
+                                <td>
+                                    <input type="radio" name="DebitCredit" value="Credits" /> Credits
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="Compute" value="Compute" /> Compute
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Limit Set Per Invoice/Receipt:
+                                </td>
+                                <td>
+                                    <input type="number" class="text-box margin-top-bottom-2" style="width:100%" readonly />
+                                </td>
+                                <td>
+                                    Amount:
+                                </td>
+                                <td>
+                                    <input type="number" class="text-box margin-top-bottom-2" style="width:100%" readonly />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    &nbsp;
+                    <div class="col-md-12">
+                        <table class="table table-data-pathology table-condensed">
+                            <tr>
+                                <th>Date</th>
+                                <th>Invoice No</th>
+                                <th>Patient No</th>
+                                <th>Invoice Amount</th>
+                                <th>Amount to WriteOff</th>
+                                <th>Balance</th>
+                                <th>Boolean</th>
+                            </tr>
+                            <tbody style="background-color: white">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <input type="checkbox" name="Boolean" value="Boolean" style="width:100%" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Ok</button>
+                        <button type="reset" class="btn btn-default margin-top-bottom-2">Clear</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

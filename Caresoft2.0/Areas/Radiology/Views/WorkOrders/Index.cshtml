@@ -1,0 +1,101 @@
+﻿@model LabsDataAccess.WorkOrder
+@using CaresoftHMISDataAccess;
+
+@{
+    ViewBag.ShowTopMenu = true;
+    ViewBag.Title = "Add Parameter";
+    Layout = "~/Areas/Radiology/Views/Shared/_LayoutRadiology.cshtml";
+
+    var OPD = (OpdRegister)ViewBag.OPD;
+
+    int main_department_id = ViewBag.main_department_id;
+    var TestDepartments = @Model.WorkOrderTests.Where(e => e.LabTest.DepartmentRadPath == main_department_id).GroupBy(x => x.LabTest.Department1.Department1);
+
+}
+
+<div class="col-xs-6 col-xs-offset-3">
+
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading">
+            Print Report
+        </div>
+        <div class="panel-body">
+            <table style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Lab No : @Model.Id</th>
+                        <th>Name :  @OPD.Patient.Salutation @OPD.Patient.FName @OPD.Patient.LName</th>
+                        <th>Age : @OPD.Patient.DOB</th>
+                        <th>Gender :  @OPD.Patient.Gender</th>
+                    </tr>
+                    <tr>
+                        <th>Insurance Company : @OPD.Tariff.Company.CompanyName</th>
+                        <th>Scheme : @OPD.Tariff.TariffName</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <br />
+            <div class="">
+                @foreach (var dep in TestDepartments)
+                {
+                <div class="col-xs-4">
+                    
+                    <img data-toggle="collapse" onclick="showColapsableIcon()" data-target="#dep@(dep.First().LabTest.Department)" style="height:15px;" id="dep@dep.First().LabTest.Department"
+                         src="/Content/icons/treeviewicons/button-open.png" aria-expanded="true"> @dep.First().LabTest.Department1.Department1
+                        <div id="dep@(dep.First().LabTest.Department)" class="container">
+                            @foreach (var test in Model.WorkOrderTests.Where(x => x.LabTest.Department == dep.First().LabTest.Department))
+                            {
+                                <div class="form-check">
+                                    <input type="checkbox" checked="checked" class="form-check-input" id="test@test.LabTest.Id">
+                                    <label class="form-check-label" for="test@test.LabTest.Id" id="@test.LabTest.Id">@test.LabTest.Test</label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    }
+            </div>
+            <br />
+            <br />
+            <div class="col-xs-12">
+                <div>
+                    <br />
+                    <table align="center">
+                        <thead>
+                            <tr>
+                                <th style="padding:2px;">
+                                    @Ajax.ActionLink("Print Report", "LabResults", "WorkOrders", new { id = @Model.Id }, new AjaxOptions {
+                                       UpdateTargetId = "UniversalModalView",
+                                       InsertionMode = InsertionMode.Replace,
+                                       HttpMethod = "GET",
+                                       LoadingElementId = "loadingElement",
+                                       OnSuccess = "$('#UniversalModal').modal('show');"
+                               }, new { @class = "btn btn-sm btn-primary btn-block" })
+                                </th>
+                                <th style="padding:2px;">@Ajax.ActionLink("Back", "LabResults", "WorkOrders", new { id = @Model.OPDNo }, new AjaxOptions { }, new { @class = "btn btn-sm btn-primary btn-block" })</thstyle="margin:1px;">
+                                <th style="padding:2px;">@Ajax.ActionLink("Haemogram with Histogram", "LabResults", "WorkOrders", new { id = @Model.OPDNo }, new AjaxOptions { }, new { @class = "btn btn-sm btn-primary btn-block" })</thstyle="margin:1px;">
+                            </tr>
+                            <tr>
+                                <th style="padding:2px;">@Ajax.ActionLink("Report Email to Doctor", "LabResults", "WorkOrders", new { id = @Model.OPDNo }, new AjaxOptions { }, new { @class = "btn btn-sm btn-primary btn-block" })</th>
+                                <th style="padding:2px;">@Ajax.ActionLink("Report Email to Patient", "LabResults", "WorkOrders", new { id = @Model.OPDNo }, new AjaxOptions { }, new { @class = "btn btn-sm btn-primary btn-block" })</th>
+                                <th style="padding:2px;"> @Ajax.ActionLink("Send Report By SMS", "LabResults", "WorkOrders", new { id = @Model.OPDNo }, new AjaxOptions { }, new { @class = "btn btn-sm btn-primary btn-block" })</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+
+    <script>
+        function showColapsableIcon() {
+            alert($(this).attr());
+        }
+    </script>
+}

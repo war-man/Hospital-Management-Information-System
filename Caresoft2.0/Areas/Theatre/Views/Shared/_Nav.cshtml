@@ -1,0 +1,427 @@
+﻿
+<style>
+    
+</style>
+<table class="table-top-menu" width="100%">
+    <tr style="background-color:#C1D8F9">
+        <td width="15%">
+            |Registration <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            | Register Biodata <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("Index", "Registration" )">
+                                            | Register Patient Bio Data
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action(" EditUser", "SetUp" )">
+                                            | Edit Patient Bio Data
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            |Test Master <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+
+                                    <tr>
+                                        <td data-href="@Url.Action(" AddDepartment", "SetUp" )">
+                                            | Add/Edit Department
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action(" TestMaster", "SetUp" )">
+                                            | Add/Edit Test
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action(" ProfileMaster", "SetUp" )">
+                                            | Add/Edit Profile
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action(" NormalValues", "SetUp" )">
+                                            | Add/Edit Normal Values
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action(" PanicValues", "SetUp" )">
+                                            | Add/Edit Panic Values
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action(" SampleMaster", "SetUp" )">
+                                            | Speciment Master
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action(" InterpretationEntry", "SetUp" )">
+                                            | Interpretation Entry
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action(" ReasonMaster", "SetUp" )">
+                                            | Reason Master
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>| Sample Type Wise Test</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action(" ShortFormMaster", "SetUp" )">
+                                            | Add/Edit Short Form
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action(" FormulaSetting", "SetUp" )">
+                                            | Formula Settings
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action(" MachineDetails", "SetUp" )">
+                                            | Machine Details
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action(" SOPMaster", "SetUp" )">
+                                            | SOP Entry
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action(" VialTypeMaster", "SetUp" )">
+                                            | Vial Type Master
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action(" TestTurnAroundTime", "SetUp" )">
+                                            | Test Turn Around Time
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                </table>
+            </div>
+        </td>
+
+
+
+        <td width="15%">
+            |Request <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            <td>
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#nurse-request" id="ambulancebtn">
+                                            | View Nurse Request </button>
+                                        </td>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </td>
+        <td width="30%"></td>
+        <td width="30%"></td>
+    </tr>
+</table>
+<div id="chenge-password-modal" class="modal fade" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Change Password</h4>
+            </div>
+            <div class="modal-body">
+                <form id="change-password-form">
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Current Password" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="New Password" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Repeat Password" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Change Password</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="nurse-request" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width:900px;" role="document">
+        <div class="modal-content">
+            <div class="panel panel-primary caresoft-panel">
+                <div class="panel-heading">
+                    Nurse Request
+                </div>
+                <div class="panel-body">
+                    <div id="cssd-request" class="right-element">
+                        <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                        <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+                        <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                        <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                        <script src="~/Scripts/bootstrap.min.js"></script>
+                        
+                        <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+                        <script src="~/Scripts/moment.js"></script>
+
+                        <link href="~/Content/Css/JQueryUI/themes/base/jquery-ui.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <script type="text/javascript">
+
+                            jQuery(document).ready(function ($) {
+                                $('#nurse-request').on('shown.bs.modal', function () {
+                                    //  var table = $('#dataTable').DataTable();
+                                    $('#cssdTable').DataTable({
+                                        "ajax": {
+                                            "url": "/Theatre/Registration/GetTheatreRequest",
+                                            "type": "GET",
+                                            "datatype": "json",
+                                            "dataSrc": ""
+                                        },
+                                        "columns": [
+                                            { "data": "Id" },
+                                            { "data": "OPDNo" },
+                                            { "data": "RequestingNurse" },
+                                            { "data": "ServiceName" },
+                                            { "data": "Department" },
+
+                                            {
+                                                'data': 'AddedOn', 'render': function (data) {
+                                                    return moment(data).format(' MMMM d, YYYY : h:mm:ss a ');
+                                                }
+                                            },
+
+
+
+
+
+                                            {
+                                                "data": function (data, type, row) {
+                                                    if (data["Assigned"] == "0") {
+
+                                                        return "<span class='glyphicon glyphicon-remove'> Pending </span >  <input type='button' value='Received' class='btnEdit sfBtn sfPrimaryBtn sfLocale' />"
+
+
+                                                    }
+                                                    else if (data["Assigned"] == "1") {
+
+                                                        return "Request Received"
+                                                    }
+
+
+
+                                                }
+
+                                            },
+
+
+
+                                        ],
+                                        "createdRow": function (row, data, dataIndex) {
+                                            if (data["Assigned"] == "0") {
+                                                $(row).css("background-color", "Red");
+                                                $(row).css("color", "white");
+
+                                            }
+                                            else if (data["Assigned"] == "1") {
+                                                $(row).css("background-color", "Green");
+                                                $(row).css("color", "white");
+//$(row).css("color", "white");///
+                                            }
+                                        },
+                                        
+
+
+                                    });
+
+                                    var table = $('#cssdTable').DataTable();
+                                    $('.cssdTable').on('click', 'tbody tr', function () {
+                                        console.log('API row values : ', table.row(this).data());
+
+                                        $('.nav-tabs a[href="#assign-amb"]').tab('show');
+                                        // alert();
+
+                                    })
+
+
+                                    $("#cssdTable tbody").on("click", ".btnEdit", function () {
+                                        var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                        // alert(id);
+                                        //alert($(this).text());
+                                        //alert();
+                                        $.ajax({
+                                            data: { id: id },
+                                            url: '/Theatre/Registration/ConfirmTheatre',
+                                            type: 'POST',
+                                            success: function (data) {
+                                                alert("Request Confirmed");
+                                            }
+                                        });
+                                    });
+
+                                    $("#IRegNumber").autocomplete({
+
+                                        source: function (request, res) {
+
+
+                                            $.ajax({
+
+                                                type: "POST",
+                                                url: "@Url.Action("SearchPatient", "NurseModule")",
+
+                                                dataType: "json",
+                                                data: { Prefix: request.term },
+
+
+                                                data: { search: $("#IRegNumber").val() },
+                                                success: function (data) {
+                                                    res($.map(data, function (item) {
+                                                        return {
+                                                            label: item.RegNumber + "(" + item.Name + ")" + "( Visit Date : " + item.OpdDate + ")",
+                                                            value: item.RegNumber,
+                                                            OpdId: item.OpdId,
+                                                            patientId: item.PatientId, name: item.Name, FName: item.FName, MName: item.MName
+                                                            , LName: item.LNames
+                                                        };
+                                                    }));
+                                                },
+
+                                                error: function (xmlhttprequest, textstatus, errorthrown) {
+                                                    console.log(errorthrown, "danger")
+                                                    console.log(xmlhttprequest.responseText);
+                                                }
+
+                                            });
+                                        },
+
+                                        messages: {
+                                            noResults: "", results: ""
+
+                                        }
+
+                                    });
+
+                                    $("#IRegNumber").on("autocompleteselect", function (event, ui) {
+                                        $("#RPatientName").val(ui.item.name);
+                                        $("#PatientId").val(ui.item.patientId);
+                                        $("#OpdNum").val(ui.item.OpdId);
+
+
+
+                                        console.log(ui);
+
+
+                                    });
+
+                                });
+
+
+
+
+                            });
+
+
+                        </script>
+
+
+                        <h4 class="text-center text-uppercase"> Theatre request</h4>
+                        <div id="dataTable_wrapper"></div>
+
+                        <ul class="legend" style="float:right;">
+                            <li><span class="Pending"></span> <strong>Not Received</strong></li>
+
+                            <li><span class="Completed"></span> <strong>Received</strong></li>
+
+                        </ul>
+
+                        <style>
+
+                            .legend {
+                                list-style: none;
+                            }
+
+                                .legend li {
+                                    float: left;
+                                    margin-right: 10px;
+                                }
+
+                                .legend span {
+                                    border: 1px solid #ccc;
+                                    float: left;
+                                    width: 12px;
+                                    height: 12px;
+                                    margin: 2px;
+                                }
+                                /* your colors */
+                                .legend .Pending {
+                                    background-color: red;
+                                }
+
+
+                                .legend .Completed {
+                                    background-color: green;
+                                }
+                        </style>
+                        <table id="cssdTable" class="table table-data-pathology table-condensed">
+
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>OPDNo</th>
+                                    <th>Requesting Nurse</th>
+                                    <th>Service name</th>
+                                    <th> Department</th>
+                                    <th>Requested date</th>
+                                    <th> Confirm Request</th>
+
+
+
+
+                                </tr>
+                            </thead>
+                        </table>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

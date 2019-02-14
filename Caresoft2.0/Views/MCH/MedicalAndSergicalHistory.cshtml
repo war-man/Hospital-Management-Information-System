@@ -1,0 +1,153 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Medical And Sergical History";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>@ViewBag.Title</p>
+    </div>
+    <style>
+        input.box-sm{
+            width:120px
+        }
+    </style>
+    <div class="panel-body">
+        <fieldset>
+            <form action="@Url.Action("SaveMedicalAndSergicalHistory", "mch")" method="post">
+               <input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+                <table class="table-form">
+                    <tr>
+                        <td>
+                            <label>Sergical Operation - Specify</label>
+
+                        </td>
+                        <td colspan="2">
+                            <input type="text" class="text-box box-xlg" name="SergicalOperation" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Diabetes </label>
+
+                        </td>
+                        <td>
+                            <label>
+                                <input type="radio" name="Diabetes" value="Yes" /> Yes
+                            </label>
+                            <label>
+                                <input type="radio" name="Diabetes" value="No" /> No
+                            </label>
+                        </td>
+                        <td>
+                            <label>Hypertension </label>
+
+                        </td>
+                        <td>
+                            <label>
+                                <input type="radio" name="Hypertension" value="Yes" /> Yes
+                            </label>
+                            <label>
+                                <input type="radio" name="Hypertension" value="No" /> No
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Blood Transfusion </label>
+
+                        </td>
+                        <td>
+                            <input type="text" name="BloodTransfusion" class="text-box" required />
+                        </td>
+                        <td>
+                            <label>Tuberculosis </label>
+
+                        </td>
+                        <td>
+                            <input type="text" name="Tuberculosis" class="text-box" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Drug Allergy </label>
+
+                        </td>
+                        <td>
+                            <input type="text" name="DrugAllergy" class="text-box" required />
+                        </td>
+                        <td>
+                            <label>Other </label>
+
+                        </td>
+                        <td>
+                            <input type="text" name="Other" class="text-box" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Family History:
+                            <label>Twins</label>
+
+                        </td>
+                        <td>
+                            <input type="text" name="FamilyTwinsHistory" class="text-box" required />
+                        </td>
+                        <td>
+                            <label>Tuberculosis </label>
+
+                        </td>
+                        <td>
+                            <input type="text" name="FamilyTuberculosisHistory" class="text-box" required />
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="marg-top-16px">
+                    <button class="btn btn-sm btn-primary" type="submit">Save</button>
+                    @Html.ActionLink("Continue", "PreviousPregnancy", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+@style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+                    &nbsp;
+                    &nbsp;
+                    @Html.ActionLink("Previous", "MaternalProfile", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+         @style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+
+                </div>
+            </form>
+           
+           
+        </fieldset>
+        <div>
+            @Html.Partial("MedicalAndSergicalHistoryList", Model.OpdRegister.MCHMedicalAndSergicalHistories)
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+    </script>
+}
+
+

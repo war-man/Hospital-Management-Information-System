@@ -1,0 +1,87 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.RenalPostDialysisObservation>
+
+
+@{
+
+}
+
+
+
+
+
+<table class="table table-caresoft table-condensed">
+    <thead>
+        <tr>
+            <td style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"> <b><i>OPD No</i></b></td>
+            <td></td>
+           
+            <th style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"><b><i>User</i></b></th>
+           
+            <td></td>
+            <th style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"><b><i>Date Of Visit</i></b></th>
+
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+            <tr>
+                <td>@a.OPDNo</td>
+                <td></td>
+                
+                <td>@a.UserId</td>
+                <td></td>
+               
+                <td style="color:crimson">@a.DateAdded</td>
+
+
+            </tr>
+        }
+
+    </tbody>
+    <td>&nbsp;</td>
+
+
+
+    <thead>
+        <tr>
+            <th>BP</th>
+            <th>Pulse</th>
+            <th>Temp</th>
+            <td> Respiration</td>
+            <td>Remarks</td>
+
+
+
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+            <tr style="background-color:chartreuse">
+
+                <td>@a.BP</td>
+                <td>@a.Pulse</td>
+                <td>@a.Temp</td>
+                <td>@a.Respiration</td>
+                <td>@a.Remarks</td>
+
+
+
+
+            </tr>
+        }
+
+    </tbody>
+
+
+
+
+
+
+</table>
+

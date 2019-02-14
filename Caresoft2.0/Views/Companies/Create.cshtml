@@ -1,0 +1,116 @@
+﻿@model Caresoft2._0.CustomData.CompaniesData
+@{
+    ViewBag.FormName = "Company Master ";
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+    ViewBag.Wide = true;
+}
+
+
+
+@using (Html.BeginForm("Create", "Companies")) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="row">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="col-xs-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Company.CompanyName, htmlAttributes: new { @class = "control-label col-sm-4" })
+            <div class="col-sm-8 marg-top-2px">
+                @Html.EditorFor(model => model.Company.CompanyName, new { htmlAttributes = new { @class = "text-box box-lg" } })
+                @Html.ValidationMessageFor(model => model.Company.CompanyName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Company.CompanyType, "CompanyType", htmlAttributes: new { @class = "control-label col-sm-4" })
+            <div class="col-sm-8 marg-top-2px">
+                @*@Html.DropDownList("CompanyType", null, htmlAttributes: new { @class = "text-box box-lg" })*@
+                <select class="text-box box-lg" name="Company.CompanyTypeId">
+                    @foreach (var type in ViewBag.CompanyType)
+                    {
+                        <option value="@type.Id">@type.CompanyTypeName</option>
+                    }
+                </select>
+               <a href="@Url.Action("PatientMainCategory", "master")">Add</a>
+                @Html.ValidationMessageFor(model => model.Company.CompanyType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Company.Address, htmlAttributes: new { @class = "control-label col-sm-4" })
+            <div class="col-sm-8 marg-top-2px">
+                @Html.EditorFor(model => model.Company.Address, new { htmlAttributes = new { @class = "text-box box-lg" } })
+                @Html.ValidationMessageFor(model => model.Company.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Company.Country, htmlAttributes: new { @class = "control-label col-sm-4" })
+            <div class="col-sm-8 marg-top-2px">
+                @Html.EditorFor(model => model.Company.Country, new { htmlAttributes = new { @class = "text-box box-lg" } })
+                @Html.ValidationMessageFor(model => model.Company.Country, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Company.Email, htmlAttributes: new { @class = "control-label col-sm-4" })
+            <div class="col-sm-8 marg-top-2px">
+                @Html.EditorFor(model => model.Company.Email, new { htmlAttributes = new { @class = "text-box box-lg" } })
+                @Html.ValidationMessageFor(model => model.Company.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Company.Mobile, htmlAttributes: new { @class = "control-label col-sm-4" })
+            <div class="col-sm-8 marg-top-2px">
+                @Html.EditorFor(model => model.Company.Mobile, new { htmlAttributes = new { @class = "text-box box-lg" } })
+                @Html.ValidationMessageFor(model => model.Company.Mobile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Company.ContactPersonName, htmlAttributes: new { @class = "control-label col-sm-4" })
+            <div class="col-sm-8 marg-top-2px">
+                @Html.EditorFor(model => model.Company.ContactPersonName, new { htmlAttributes = new { @class = "text-box box-lg" } })
+                @Html.ValidationMessageFor(model => model.Company.ContactPersonName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Company.ContactPersonMobile, htmlAttributes: new { @class = "control-label col-sm-4" })
+            <div class="col-sm-8 marg-top-2px">
+                @Html.EditorFor(model => model.Company.ContactPersonMobile, new { htmlAttributes = new { @class = "text-box box-lg" } })
+                @Html.ValidationMessageFor(model => model.Company.ContactPersonMobile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Company.DateAdded, htmlAttributes: new { @class = "control-label col-sm-4" })
+            <div class="col-sm-8 marg-top-2px">
+                @Html.EditorFor(model => model.Company.DateAdded, new { htmlAttributes = new { @class = "text-box box-lg" } })
+                @Html.ValidationMessageFor(model => model.Company.DateAdded, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    </div>
+
+
+
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-8 marg-top-2px">
+            <input type="submit" value="Create" class="btn btn-primary btn-sm" />
+        </div>
+    </div>
+</div>
+}
+
+<div class="marg-top-2px">
+    @Html.Partial("Index", Model.Companies)
+</div>

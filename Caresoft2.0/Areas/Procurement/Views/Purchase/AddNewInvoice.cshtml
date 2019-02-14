@@ -1,0 +1,268 @@
+﻿
+@{
+    ViewBag.Title = "AddNewInvoice";
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+}
+
+<style>
+    .table-form tr{
+        height:30px;
+    }
+
+   
+</style>
+
+
+<div class="">
+    <div class="col-md-12">
+        <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+            <div class="panel-heading custom-navbar">
+                <p style="color:black">Add New Invoice</p>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content" id="reg-form-holder">
+                    <table class="table-form">
+                        <tr>
+                            <td>Supplier Type</td>
+                            <td>
+
+                                <div id="type">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="OPD">General Supplier
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="IPD">Donor Supplier
+                                    </label>
+                                </div>
+                            </td>
+                            <td>Select Financial Year</td>
+                            <td>
+                                <select style="width:175px" class="text-box">
+                                    <option></option>
+                                </select>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>PO No.</td>
+                            <td>
+                                <select style="width:175px" class="text-box">
+                                    <option></option>
+                                </select>
+                            </td>
+                            <td>PO Date</td>
+                            <td>
+                                <input type="datetime" class="text-box" style="width:175px" />
+                            </td>
+                            <td>Invoice Date</td>
+                            <td>
+                                <input type="date" class="text-box" style="width:175px" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Invoice No</td>
+                            <td><input type="text" class="text-box" id="Description" /> </td>
+                            <td>Supplier Name</td>
+                            <td><input type="text" class="text-box" id="Description" /> </td>
+                        </tr>
+                        <tr>
+                            <td>Temp Invoice No.</td>
+                            <td><input type="text" class="text-box" id="Description" /> </td>
+                        </tr>
+
+                            <tr><td><h4>Invoice Details </h4></td> </tr>
+                            <tr>
+                                <td>Item</td>
+                                <td><input type="text" class="text-box" id="Description" /> </td>
+                                <td>Batch No</td>
+                                <td><input type="text" class="text-box" id="Description" /> </td>
+                                <td>Units Per Case</td>
+                                <td><input type="text" class="text-box" id="Description" /> </td>
+
+                            </tr>
+                            <tr>
+                                <td>No of Pack</td>
+                                <td><input type="text" class="text-box" id="Description" /> </td>
+                                <td>Units</td>
+                                <td><input type="text" class="text-box" id="Description" /> </td>
+                                <td>Per</td>
+                                <td><input type="text" class="text-box" id="Description" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Cost per price </td>
+                                <td><input type="text" class="text-box" id="Description" /> </td>
+                                <td>Amount</td>
+                                <td><input type="text" class="text-box" id="Description" /> </td>
+                                <td>Free Units</td>
+                                <td><input type="text" class="text-box" id="Description" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Cost per pack</td>
+                                <td><input type="text" class="text-box" id="Description" /> </td>
+                                <td>Mgf Date</td>
+                                <td><input type="datetime" class="text-box" id="Description" /> </td>
+                                <td>Expiry Status</td>
+                                <td>
+                                    <select style="width:175px" class="text-box">
+                                        <option></option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mgf Company</td>
+                                <td><input type="text" class="text-box" id="Description" /> </td>
+                                <td>MRP/Pack</td>
+                                <td><input type="datetime" class="text-box" id="Description" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Discount</td>
+                                <td>
+
+                                    <div id="type">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio" value="OPD">Amt
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio" value="IPD">Per
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>VAT/CST</td>
+                                <td>
+
+                                    <div id="type">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio" value="OPD">GST
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio" value="IPD">CST
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>VAT/CST on</td>
+                                <td>
+                                    <select style="width:175px" class="text-box">
+                                        <option>Select Value</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="datetime" class="text-box" id="Description" /> </td>
+                                <td></td>
+                                <td></td>
+                                <td>VAT/CST(%)</td>
+                                <td><input type="datetime" class="text-box" id="Description" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Freight Charges</td>
+                                <td><input type="text" class="text-box" id="Description" /> </td>
+                                <td>Packing Charges</td>
+                                <td><input type="text" class="text-box" id="Description" /> </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="button" class="btn btn-primary btn-sm" id="BtnOk" value="OK" />
+                                </td>
+                            </tr>
+                        </table>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <table class="table table-data">
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Batch No</th>
+                                    <th>Per</th>
+                                    <th>New CR</th>
+                                    <th>Quantity</th>
+                                    <th>Total Amount</th>
+                                    <th>Exp Date</th>
+                                    <th>Vat Amount</th>
+                                    <th>Discount</th>
+                                    <th>Free Quantity</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                <tbody>
+                                    @if (ViewBag.Data != null)
+                    {
+
+                        foreach (var item in ViewBag.Data)
+                        {
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+        }
+
+    }
+    else
+    {
+                <tr><td colspan="12"> No Data to Display</td></tr>
+}
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                    <label class="label label-danger">(*) Marked Fields are Mandatory</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input type="button" value="Save" class="btn btn-sm btn-primary" />
+                                    <input type="button" value="Add New" class="btn btn-sm btn-primary" />
+                                    <input type="button" value="Report" class="btn btn-sm btn-primary" />
+                                </div>
+                                <div class="col-md-8 text-box">
+                                    <p><label class="label label-default">Primary Currency</label></p>
+                                    <table  class="table-form">
+                                        <tr>
+                                            <td style="padding:5px">Amount</td>
+                                            <td><input type="text" class="text-box" style="width:100px" /></td>
+                                            <td>VAT/CST</td>
+                                            <td><input type="text" class="text-box" style="width:100px" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:5px">Cash Discount</td>
+                                            <td><input type="text" class="text-box" style="width:100px" /></td>
+                                            <td>Total Amount</td>
+                                            <td><input type="text" class="text-box" style="width:100px" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:5px">Other</td>
+                                            <td><input type="text" class="text-box" style="width:100px" /></td>
+                                            <td>Amount Page</td>
+                                            <td><input type="text" class="text-box" style="width:100px" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:5px">Balance</td>
+                                            <td><input type="text" class="text-box" style="width:100px" /></td>
+                                            <td>Grand Total</td>
+                                            <td><input type="text" class="text-box" style="width:100px" /></td>
+                                        </tr>
+
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

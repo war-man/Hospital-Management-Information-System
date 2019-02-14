@@ -1,0 +1,36 @@
+﻿@model IEnumerable<LabsDataAccess.WorkOrderTest>
+
+@{
+    var groups = Model.GroupBy(x => x.Test);
+}
+
+<table class="table table-bordered table-condensed table-data table-fixed table-header-fixed">
+    <thead class="bg-primary">
+        <tr class="table-primary">
+            <th>Select</th>
+            <th>Test Code</th>
+            <th>Test Name</th>
+            <th>How Many Test Selected</th>
+        </tr>
+    </thead>
+    <tbody style="background:White;">
+
+        @foreach (var item in groups)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.First().Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.First().LabTest.Test_Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.First().LabTest.Test)
+                </td>
+                <td>
+                    @Html.DisplayName(item.Count().ToString())
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

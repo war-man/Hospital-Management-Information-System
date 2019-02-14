@@ -1,0 +1,81 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Complaint>
+
+<table class="table table-data">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ComplaintDate)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.PatientId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.OPDNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChiefComplaints)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Since)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SinceUnit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TreatmentTaken)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProvisionalDiagnostic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HistoryOfPresentIllness)
+        </th>
+        <th>
+            Timestamp
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.ComplaintDate.ToShortDateString()
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.PatientId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.OPDNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChiefComplaints)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Since)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SinceUnit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TreatmentTaken)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProvisionalDiagnostic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HistoryOfPresentIllness)
+        </td>
+        <td>
+            @item.Timestap
+        </td>
+    </tr>
+}
+
+</table>

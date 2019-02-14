@@ -1,0 +1,74 @@
+﻿@model CaresoftHMISDataAccess.MorgAdmission
+@{
+
+
+    var rooms = (IEnumerable<CaresoftHMISDataAccess.MorgColdroom>)ViewBag.ColdRooms;
+}
+<div class="col-sm-6" style="margin-top:10em; margin-left:20em;">
+    <div class="panel panel-primary shadow glass caresoft-panel" style="margin-bottom:-1em;">
+        <div class="panel-heading">
+            Set Storage Details
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <legend>Deceased Details</legend>
+                <table class="table-form">
+                    <tr>
+                        <td>Serial No.</td>
+                        <td>@Model.Id.ToString().PadLeft(4, '0')</td>
+                    </tr>
+                <tr>
+                    <td>Deceased Name</td>
+                    <td>
+                    @if (Model.RegNumber != null)
+                    {
+                        <text>(@Model.RegNumber)</text>
+                    }<br />
+                    @Model.DeceasedName</td>
+                </tr>
+                <tr>
+                    <td>Age [Gender]</td>
+                    <td>
+                    @Model.Age [@Model.Gender]</td>
+                </tr>
+            </table>
+            </fieldset>
+            <fieldset>
+                <legend>Storage Details</legend>
+                <form id="form_save_cold_room_details">
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                <label for="ColdRoomId">Cold Room</label>
+                            </td>
+                            <td>
+                                <select class="text-box box-lg" required>
+                                    @foreach(var r in rooms)
+                                    {
+                                        <option @r.Id>@r.ColdRoomName</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="ColdRoomId" >Cold Room</label>
+                            </td>
+                            <td>
+                                <select class="text-box box-lg" name="CabinetId">
+                                    @foreach(var c in rooms.FirstOrDefault().MorgCabinets.Where(e=>e.MorgAdmissions.Count()<1))
+                                    {
+                                        <option value="@c.Id">@c.CabinetName</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="Save" class="btn btn-sm btn-primary" />
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>
+

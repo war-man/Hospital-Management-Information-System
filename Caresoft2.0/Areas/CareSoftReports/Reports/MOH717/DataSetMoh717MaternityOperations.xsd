@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetMoh717Maternity" targetNamespace="http://tempuri.org/DataSetMoh717Maternity.xsd" xmlns:mstns="http://tempuri.org/DataSetMoh717Maternity.xsd" xmlns="http://tempuri.org/DataSetMoh717Maternity.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetMoh717Maternity" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetMoh717Maternity" msprop:Generator_UserDSName="DataSetMoh717Maternity">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Maternity" msprop:Generator_TableClassName="MaternityDataTable" msprop:Generator_TableVarName="tableMaternity" msprop:Generator_TablePropName="Maternity" msprop:Generator_RowDeletingName="MaternityRowDeleting" msprop:Generator_RowChangingName="MaternityRowChanging" msprop:Generator_RowEvHandlerName="MaternityRowChangeEventHandler" msprop:Generator_RowDeletedName="MaternityRowDeleted" msprop:Generator_UserTableName="Maternity" msprop:Generator_RowChangedName="MaternityRowChanged" msprop:Generator_RowEvArgName="MaternityRowChangeEvent" msprop:Generator_RowClassName="MaternityRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NameOfService" msprop:Generator_ColumnVarNameInTable="columnNameOfService" msprop:Generator_ColumnPropNameInRow="NameOfService" msprop:Generator_ColumnPropNameInTable="NameOfServiceColumn" msprop:Generator_UserColumnName="NameOfService" type="xs:string" minOccurs="0" />
+              <xs:element name="Number" msprop:Generator_ColumnVarNameInTable="columnNumber" msprop:Generator_ColumnPropNameInRow="Number" msprop:Generator_ColumnPropNameInTable="NumberColumn" msprop:Generator_UserColumnName="Number" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Operation" msprop:Generator_TableClassName="OperationDataTable" msprop:Generator_TableVarName="tableOperation" msprop:Generator_TablePropName="Operation" msprop:Generator_RowDeletingName="OperationRowDeleting" msprop:Generator_RowChangingName="OperationRowChanging" msprop:Generator_RowEvHandlerName="OperationRowChangeEventHandler" msprop:Generator_RowDeletedName="OperationRowDeleted" msprop:Generator_UserTableName="Operation" msprop:Generator_RowChangedName="OperationRowChanged" msprop:Generator_RowEvArgName="OperationRowChangeEvent" msprop:Generator_RowClassName="OperationRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NameOfService" msprop:Generator_ColumnVarNameInTable="columnNameOfService" msprop:Generator_ColumnPropNameInRow="NameOfService" msprop:Generator_ColumnPropNameInTable="NameOfServiceColumn" msprop:Generator_UserColumnName="NameOfService" type="xs:string" minOccurs="0" />
+              <xs:element name="NumberBooked" msprop:Generator_ColumnVarNameInTable="columnNumberBooked" msprop:Generator_ColumnPropNameInRow="NumberBooked" msprop:Generator_ColumnPropNameInTable="NumberBookedColumn" msprop:Generator_UserColumnName="NumberBooked" type="xs:int" minOccurs="0" />
+              <xs:element name="NumberOperated" msprop:Generator_ColumnVarNameInTable="columnNumberOperated" msprop:Generator_ColumnPropNameInRow="NumberOperated" msprop:Generator_ColumnPropNameInTable="NumberOperatedColumn" msprop:Generator_UserColumnName="NumberOperated" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

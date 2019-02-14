@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Assign Driver";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                <form id="family-planning" method="post" action="@Url.Action("SaveAssignDriver", "NurseModule")">
+                    <table class="table-form">
+
+                        <tr>
+                            <td>
+                                <label>Ambulance Type</label><br />
+                            <td>
+                                <input type="text" name="AmbulanceType" id="AmbulanceType" required />
+                            </td>
+                        </tr>
+                        <td> &nbsp;</td>
+                        <td> &nbsp;</td>
+                        <td> &nbsp;</td>
+                        <tr>
+
+                            <td>
+                                <label>Vehicle Name</label>
+                            </td>
+                            <td>
+                                <input type="text" name="VehicleName" id="VehicleName" required />
+                            </td>
+                            <td>
+                                <label>Vehicle Number</label>
+                            </td>
+                            <td>
+                                <input type="number" name="VehicleNumber" id="VehicleNumber" required />
+                            </td>
+                        </tr>
+                        <td> &nbsp;</td>
+                        <td> &nbsp;</td>
+                        <td> &nbsp;</td>
+                        <tr>
+                            <td>
+                                <label>Driver Name</label>
+                            </td>
+                            <td>
+                                <input type="text" name="Power" id="Power" required />
+                            </td>
+
+                        </tr>
+                        <td> &nbsp;</td>
+                        <td> &nbsp;</td>
+                        <td> &nbsp;</td>
+                        <tr>
+                            <td>
+                                <label>From</label>
+                            </td>
+                            <td>
+                                <input type="date" name="FromDate" id="FromDate" required />
+                            </td>
+
+                            <td>
+                                <label>To </label>
+                            </td>
+                            <td>
+                                <input type="date" name="ToDate" id="ToDate" required />
+                            </td>
+                        </tr>
+
+
+                    </table>
+
+                    <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit" name="btnSubmit">Save</button>
+                    <button type="reset" class="btn btn-sm btn-primary">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section scripts{
+
+
+
+
+
+
+
+
+
+    <script>
+
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/",
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+    </script>
+}
+

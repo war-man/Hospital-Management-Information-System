@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.FreeForm>
+@{
+    ViewBag.Title = "Free Form";
+    ViewBag.FormName = "Free Forms";
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+    ViewBag.Wide = true;
+}
+
+<div class="row">
+    <div class="col-sm-3">
+        
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#newFreeFormModal">New Form</button>
+            <select id="FreeFormId" name="FreeFormId" class="text-box box-lg">
+                <option>--Select Form</option>
+                @foreach (var form in Model)
+            {
+                    <option value="@form.Id">@form.FreeFormName</option>
+                }
+            </select>
+ 
+    </div>
+    <div class="col-sm-10" id="free-form-area"></div>
+</div>
+
+
+<!-- Modal -->
+<div id="newFreeFormModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">New Free Form</h4>
+            </div>
+            <div class="modal-body">
+                
+                @using(Ajax.BeginForm("CreateFreeForm", new AjaxOptions
+                   {
+                       HttpMethod = "POST",
+                       LoadingElementId = "loadingElement",
+                       UpdateTargetId = "FreeFormId",
+                       InsertionMode = InsertionMode.Replace
+                   })){
+                    <form>
+                        <label>
+                            Form Name
+                        </label>
+                        <input type="text" class="text-box box-xlg" name="FreeFormName" />
+                    </form>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save-free-form">Save</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#save-free-form").click(function () {
+            $("#form0").submit();
+        });
+    </script>
+}

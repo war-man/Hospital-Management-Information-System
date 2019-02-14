@@ -1,0 +1,138 @@
+﻿@model LabsDataAccess.Sample
+@{
+    ViewBag.Title = "Sample Master";
+    ViewBag.ShowTopMenu = true;
+    Layout = ViewBag.Layout;
+
+}
+
+<div class="col-xs-4 col-xs-offset-4">
+
+    <br />
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading" style="height:40px ; ">
+            <h5 style="font-weight:bold">@ViewBag.Title</h5>
+        </div>
+
+        <div class="panel-body">
+            @using (Ajax.BeginForm("SampleMaster", "Labs", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "SampleMasterlist",
+        OnSuccess = "clearAppFields(); onClicks()",
+        LoadingElementId = "loadingElement",
+    }, new { id = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sample_Type, htmlAttributes: new { @class = "col-xs-3" })
+                <div class="col-xs-9">
+                    @Html.ValidationMessageFor(model => model.Sample_Type, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Sample_Type, new { htmlAttributes = new { @class = "", @required = "required" } })
+                    <input type="number" id="Id" name="Id" value="0" hidden />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-offset-3 col-xs-9">
+                    <input type="submit" id="add" value="Save" class="btn btn-primary btn-sm" />
+                    <input type="reset" value="Reset" id="btnreset" class="btn btn-primary btn-sm" />
+
+                </div>
+            </div>
+        </div>
+
+}
+            <div id="SampleMasterlist"></div>
+
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+        $(function () {
+            getSampleListData();
+        });
+
+        function getSampleListData() {
+            RequestFormLoaderShow();
+            $.ajax({
+                url: "/Pathology/SetUp/SampleMasterList/", success: function (result) {
+                    RequestFormLoaderHide();
+                    $('#SampleMasterlist').html(result);
+                    onClicks();
+
+
+                }, error: function () {
+                    RequestFormLoaderHide();
+
+                }
+            });
+        }
+
+        function onClicks() {
+            $('.edit').each(function () {
+
+                $(this).click(function (e) {
+                    $("#add").val('Update');
+
+                    $("#Id").val($(this).attr("data-Id"));
+                    $("#Sample_Type").val($(this).attr("sample"));
+                    e.preventDefault();
+                });
+
+            });
+
+            $('.delete').each(function () {
+
+                $(this).click(function (e) {
+                    e.preventDefault();
+
+                    var r = confirm("Are  you sure you want to delete " + $(this).attr('sample') + " !");
+                    if (r == true) {
+                        deleteSample($(this).attr("data-Id"));
+                    }
+
+                });
+
+            });
+        }
+       
+        $('#btnreset').click(function () {
+            clearAppFields();
+        });
+
+        function clearAppFields() {
+            $('#form').trigger("reset");
+            $('#General').text("");
+            $('#Id').text("0");
+            $("#add").val("Save");
+        }
+
+        function deleteSample(id) {
+            RequestFormLoaderShow();
+            $.ajax({
+                url: "/Pathology/SetUp/DeleteSample/" + id, success: function (result) {
+                    RequestFormLoaderHide();
+                    if (result == 0) {
+                        alert('An error Occured');
+                    } else {
+                        $('#SampleMasterlist').html(result);
+                    }
+
+                }, error: function () {
+                    RequestFormLoaderHide();
+
+                }
+            });
+        }
+    </script>
+
+}

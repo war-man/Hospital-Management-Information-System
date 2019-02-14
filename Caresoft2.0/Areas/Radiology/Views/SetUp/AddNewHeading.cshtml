@@ -1,0 +1,74 @@
+﻿@model LabsDataAccess.Heading
+
+
+@{
+    ViewBag.ShowTopMenu = true;
+    ViewBag.Title = "Add Parameter";
+    Layout = ViewBag.Layout;
+}
+
+<div class="col-xs-4 col-xs-offset-4">
+
+    <br />
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading" style="height:40px ; ">
+            <h5 style="font-weight:bold">Add New Heading</h5>
+        </div>
+
+        <div class="panel-body">
+
+            @using (Ajax.BeginForm("AddNewHeading", "SetUp", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = "Message",
+                OnSuccess = "$('#UniversalModal2').modal('hide');",
+                OnBegin = "RequestFormLoaderShow",
+                OnComplete = "RequestFormLoaderHide",
+            }))
+            {
+        @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                
+                <p id="Message" style="padding:5px; border:solid">
+                    <strong> Test Name : </strong> @ViewBag.LabTests.Test <br />
+                    <strong> * </strong> Attend the Following
+                </p>
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group hidden">
+                    @Html.Label("Lab Test", htmlAttributes: new { @class = "control-label col-xs-3" })
+                    <div class="col-xs-8">
+                        @Html.Editor("LabTest", new { htmlAttributes = new { @class = "text-box", Value = ViewBag.LabTests.Id, @required = "required" } })
+                        @Html.ValidationMessage("LabTest", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Heading", htmlAttributes: new { @class = "control-label col-xs-3" })
+                    <div class="col-xs-8">
+                        @Html.EditorFor(model => model.Heading1, new { htmlAttributes = new { @class = "text-box", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.Heading1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Heading_Order, htmlAttributes: new { @class = "control-label col-xs-3" })
+                    <div class="col-xs-8">
+                        @Html.EditorFor(model => model.Heading_Order, new { htmlAttributes = new { @class = "text-box" } })
+                        @Html.ValidationMessageFor(model => model.Heading_Order, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-8">
+                        <input type="submit" value="Save" class="btn btn-primary btn-sm" />
+                        <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+}
+        </div>
+    </div>
+</div>
+         

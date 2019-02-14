@@ -1,0 +1,159 @@
+﻿@{
+    ViewBag.Title = "Finance";
+}
+
+<div>
+    <div class="menu-list">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Finance
+            </div>
+            <div class="panel-body">
+                <table>
+                    <tr>
+                        <td>
+                            <a href="~/Finance/Home/ReconcileCash">
+                                <img src="~/Content/icons/dashboard/Reconcile Cash Point.png" class="finance-navigation-menu" />
+                                <p>Reconciliation Cash Point</p>
+
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="~/Finance/Home/TotalShiftReport">
+                                <img src="~/Content/icons/dashboard/ShiftReport.png" class="finance-navigation-menu" />
+                                <p>Total Shift Report</p>
+
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="~/Finance/Home/Banking">
+                                <img src="~/Content/icons/dashboard/Bankin.jpg" class="finance-navigation-menu" />
+                                <p>Banking</p>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="~/Finance/Home/ConfirmBanking">
+                                <img src="~/Content/icons/dashboard/Bank Reconciliation.png" class="finance-navigation-menu" />
+                                <p>Confirm Banking</p>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="~/Finance/Home/BankReconciliation">
+                                <img src="~/Content/icons/dashboard/banking.png" class="finance-navigation-menu" />
+                                <p>Bank Reconciliation</p>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="~/Finance/Home/BankCharges">
+                                <img src="~/Content/icons/dashboard/Charges.png" class="finance-navigation-menu" />
+                                <p>Bank Charges</p>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="~/Finance/Home/DirectBanking">
+                                <img src="~/Content/icons/dashboard/Confirm Banking.png" class="finance-navigation-menu" />
+                                <p>Direct Banking</p>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                <a class="collapsible" >
+                    <img src="~/Content/icons/dashboard/Payment.jpg" />
+                    <p>Payment</p>
+                </a>
+                <div class="content">
+                    <ul>
+                        <li class="">
+                            <a href="~/Finance/Home/Payments">
+                                <p>Payments</p>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="~/Finance/Home/LumpsumPayments">
+                                <p>Lumpsum Payments</p>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="~/Finance/Home/Cosultants">
+                                <p>Consultants</p>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="~/Finance/Home/PaymentsAdjustment">
+                                <p>Payment Adjustment</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <a class="collapsible">
+                    <img src="~/Content/icons/dashboard/Bank Reconciliation.png" />
+                <p>Petty Cash</p>
+                </a>
+                <div class="content">
+                    <ul class="">
+                        <li class="">
+                            <a href="~/Finance/Home/RaiseVoucher">
+                                <p>Raise Voucher</p>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="~/Finance/Home/ApproveVoucher">
+                                <p>Approve Voucher</p>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="~/Finance/Home/PettyPayments">
+                                <p>Petty Cash Payment</p>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="~/Finance/Home/DirectNGOPayments">
+                                <p>Direct NGO Petty Cash Payment</p>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="~/Finance/Home/DirectCashtPayments">
+                                <p>Direct Cash Payment</p>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="~/Finance/Home/PettyCashAdjustment">
+                                <p>Petty Cash Adjustment</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>

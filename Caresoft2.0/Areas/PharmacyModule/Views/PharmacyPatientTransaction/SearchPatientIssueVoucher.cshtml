@@ -1,0 +1,279 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.SimulationPatientIssueVoucher>
+
+@{
+    ViewBag.Title = "SearchPatientIssueVoucher";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+}
+
+<style>
+    .text-box {
+        width: 200px;
+        margin: 1px;
+    }
+
+    .faNotPaid {
+        color: red;
+    }
+
+    .fapaid {
+        color: green;
+    }
+
+    .fapartiallypaid {
+        color: yellow;
+    }
+
+    .faFromDoctor {
+        color: blue;
+    }
+</style>
+
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading ">
+            Search Patient Voucher
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-7">
+                        <table class="table-form">
+                            @*<tr>
+                                    <td><label>Patient Type</label></td>
+                                    <td colspan="2">
+                                        <div id="type" style="overflow-wrap:break-word;">
+                                            <fieldset >
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="optradio" value="OPD ">OPD
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="optradio" value="IPD">IPD
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="optradio" value="HIV">HIV
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="optradio" value="ClinicalNo">ClinicalNo
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="optradio" value="All">All
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    </td>
+                                </tr>*@
+                            <tr>
+
+                                <td><label>From Date</label></td>
+                                @{ 
+                                    var StartDate = ViewBag.StartDate;
+                                    var ToDate = ViewBag.ToDate;
+
+                                    if (StartDate == null)
+                                    {
+                                        StartDate = DateTime.Now;
+                                    }
+
+
+                                    if (ToDate == null)
+                                    {
+                                        ToDate = DateTime.Now;
+                                    }
+                                }
+                                <td> <input type="date" class="text-box" id="fromDate" value="@StartDate.ToString("yyyy-MM-dd")" /></td>
+                                <td><label>To Date</label></td>
+                                <td> <input type="date" class="text-box" id="toDate" value="@ToDate.ToString("yyyy-MM-dd")" /></td>
+                            </tr>
+                            <tr>
+                                <td><label>Search Patient:</label></td>
+                                <td><input type="text" class="text-box" id="patientsearch" /></td>
+
+                                <td><label>Patient Reg No:</label></td>
+                                <td><input type="text" disabled class="text-box" id="patientRegNo" /></td>
+
+                            </tr>
+                            <tr>
+                                <td><label>OPD/IPD No:</label></td>
+                                <td><input type="number" id="ipd_opdNumber" class="text-box" /></td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <a href="@Url.Action("DirectPatientIssueVoucher","PharmacyPatientTransaction")" class="btn btn-sm btn-primary">Direct Voucher</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label> Paid &nbsp; </label><i class="fa fa-square fapaid"> </i> &nbsp;  &nbsp;
+                                    <label> Partially Paid &nbsp; </label><i class="fa fa-square fapartiallypaid"> </i> &nbsp;  &nbsp;
+                                    <label> Not Paid </label> <i class="fa fa-square faNotPaid"> </i>&nbsp;  &nbsp;
+                                    <label> From Doctor </label> <i class="fa fa-square faFromDoctor"> </i>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="col-md-12" id="InvoiceList">
+                        @Html.Partial("~/Areas/PharmacyModule/Views/PharmacyPatientTransaction/_SearchPatientVoucher.cshtml", Model)
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+
+    <script>
+
+        $("#fromDate").on('change', function () {
+            var fromDate = $(this).val();
+            var toDate = $("#toDate").val();
+
+            var dates = { fromDate: fromDate, toDate: toDate };
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("SearchByDatesInvoice", "PharmacyPatientTransaction")",
+                data: dates,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+
+        })
+
+        $("#toDate").on('change', function () {
+            var fromDate = $("#fromDate").val();
+            var toDate = $(this).val();
+
+            var dates = { fromDate: fromDate, toDate: toDate };
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("SearchByDatesInvoice", "PharmacyPatientTransaction")",
+                data: dates,
+                beforeSend: function () {
+                    $(".loader").show();
+
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+
+        })
+
+        $("#patientsearch").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "@Url.Action("SearchPatient", "PharmacyPatientTransaction")",
+                dataType: "json",
+                data: { search: $("#patientsearch").val() },
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return {
+                            label: item.Name + '| REG NO : ' + item.RegNumber + '| ID NO : ' + item.NationalId,
+                            value: item.Name, RegNumber: item.RegNumber
+                        };
+                    }));
+                }
+            });
+        },
+        error: function (xmlhttprequest, textstatus, errorthrown) {
+            showNotification("An Error Occured, try again later", "danger", true);
+        },
+        minLength: 1,
+        select: function (event, ui) {
+            $("#patientRegNo").val(ui.item.RegNumber);
+            SearchMedicationByPatientRegNo();
+
+            console.log(ui.item.selectedId);
+        }
+        });
+
+
+        function SearchMedicationByPatientRegNo() {
+            var regNo = $("#patientRegNo").val();
+
+            var url = "/PharmacyPatientTransaction/SearchMedicationByPatientRegNo?regNo=" + regNo;
+            $(".loader").show();
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: url,
+                beforeSend: function () {
+                    //$(".loader").show();
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+        }
+        $("#patientRegNo").keyup(function () {
+            SearchMedicationByPatientRegNo();
+        })
+
+        $("#ipd_opdNumber").keyup(function () {
+            var regNo = $("#ipd_opdNumber").val();
+
+            var url = "/PharmacyPatientTransaction/SearchPatientByOpdOrIpdNumber?OpdNo=" + regNo;
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: url,
+                beforeSend: function () {
+                    //$(".loader").show();
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+        });
+
+    </script>
+
+}

@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "UserRolesAndRights";
+    Layout = "~/Areas/CareSoftReports/Views/Shared/_LayoutReports.cshtml";
+    ViewBag.ReportName = ViewBag.Title; 
+}
+
+
+<style>
+    .text-box {
+        width: 200px;
+    }
+</style>
+<div class="col-sm-6 col-md-offset-3">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading">
+            @ViewBag.ReportName
+        </div>
+        <div class="panel-body">
+            <form name="ReportFilter" id="ReportFilter" method="get" action="@Url.Action("GetUserRolesAndRightsReport","HomeReports",new {Area="CareSoftReports"})">
+
+                @*<div class="col-md-12">
+                    <br />
+                    <div id="Department" class="form-inline">
+                        <label class="">Select Download Format</label>
+                        <select name="Format" id="dept" class="text-box">
+                            <option>PDF</option>
+                            <option>EXCEL</option>
+
+                        </select>
+                    </div>
+                </div>*@
+                <div class="col-md-12">
+                    <br />
+                    <button type="submit" class="btn btn-primary btn-sm" id="btnDownloadReport">Download User Management Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+
+    </script>
+
+}
+
+
+
+
+

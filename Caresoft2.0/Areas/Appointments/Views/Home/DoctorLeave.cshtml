@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "DoctorLeave";
+    Layout = "~/Areas/Appointments/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Appointments/Views/Shared/_SideNav.cshtml")
+</div>
+<div class="col-md-6">
+    <div class="panel panel-primary caresoft-panel glass shadow">
+        <div class="panel-heading">
+            Set Leave(Set Doctor Leave)
+        </div>
+        <div class="panel-body">
+            <form method="post" action="/Home/DoctorLeave">
+                <fieldset>
+                    <legend>Select Doctor</legend>
+                    Speciality:<input list="SelectDept" class="text-box marg-top-6px" name="SelectDept" />
+                    <datalist id="SelectDept">
+                        <option value="Select Dept"></option>
+                        <option value="Admin Office"></option>
+                        <option value="CASUALTY"></option>
+                        <option value="DENTAL OPD"></option>
+                        <option value="E.N.T."></option>
+                        <option value="GENERAL SURGERY"></option>
+                        <option value="GYNAE $ OBST"></option>
+                        <option value="Medical Officer"></option>
+                        <option value="MEDICINE"></option>
+                        <option value="NURSES"></option>
+                        <option value="OPHTHALMOLOGY"></option>
+                        <option value="Opthalmo Surgery"></option>
+                        <option value="PEADIATRIC"></option>
+                    </datalist>
+                    Doctor:<input list="Doctor" class="text-box marg-top-6px" name="Doctor" />
+                    <datalist id="Doctor">
+                        <option value="Select Doctor"></option>
+                    </datalist>
+                </fieldset>
+                <br />
+                <fieldset>
+                    <legend>Doctor Leave Setting</legend>
+                    <table>
+                        <tr>
+                            <td>
+                                Type:
+                            </td>
+                            <td>
+                                <fieldset>
+                                    <input type="radio" name="type" /> Full Day
+                                    <input type="radio" name="type" /> Half Day
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Shift:
+                            </td>
+                            <td>
+                                <input list="shift" class="text-box marg-top-6px" name="shift" />
+                                <datalist id="shift">
+                                    <option value="Select Shift"></option>
+                                    <option value="General"></option>
+                                    <option value="Morning"></option>
+                                    <option value="Evening"></option>
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                From Date:
+                            </td>
+                            <td>
+                                <input type="date" class="text-box marg-top-6px" name="From date" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                To date:
+                            </td>
+                            <td>
+                                <input type="date" class="text-box marg-top-6px" name="To date" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+                <br />
+                <input class="btn btn-sm btn-primary" type="submit" name="Save">
+            </form>
+        </div>
+    </div>
+</div>

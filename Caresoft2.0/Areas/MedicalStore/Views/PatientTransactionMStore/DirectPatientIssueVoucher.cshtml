@@ -1,0 +1,615 @@
+﻿@model Caresoft2._0.Areas.MedicalStore.ViewModels.SimulationData
+@{
+    ViewBag.Title = "DirectPatientIssueVoucher";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+
+    if (Model.SimulationPatientIssueVoucher.ItemIssued != null)
+    {
+        ViewBag.itemIssued = Model.SimulationPatientIssueVoucher.ItemIssued.ToString();
+    }
+    
+   }
+
+    
+
+<style>
+    .text-box {
+        margin: 3px;
+        width: 200px;
+    }
+
+    .texboxform {
+        width: 100px;
+        margin: 5px;
+    }
+</style>
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px"> <strong> Search Patient Voucher</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    @if (Model != null)
+                    {
+                        <table class="table-form">
+                            <tr>
+                                <td>Patient Type</td>
+                                <td>
+                                    <div id="type">
+                                        <fieldset>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="OPD ">OPD
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="IPD">IPD
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="HIV">HIV
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="ClinicalNo">ClinicalNo
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                </td>
+                                <td>
+                                    Patient Bar Code
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box" id="PatientBarCode" />
+                                </td>
+                                <td>
+                                    Date
+                                </td>
+                                <td>
+                                    <input type="date" class="text-box" id="date" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Issue Voucher Number</td>
+                                <td><input type="text" class="text-box" /></td>
+                                <td>Age</td>
+                                <td><input type="text" class="text-box" value="@Model.SimulationPatientIssueVoucher.Age" /></td>
+                            </tr>
+                            <tr>
+                                <td>Reg No</td>
+                                <td><input type="text" class="text-box" value="@Model.SimulationPatientIssueVoucher.Regno" /></td>
+                                <td>Sex</td>
+                                <td><input type="text" class="text-box" value="@Model.SimulationPatientIssueVoucher.Gender" /></td>
+                                <td>Allergy</td>
+                            </tr>
+                            <tr>
+                                <td>Patient Name</td>
+                                <td><input type="text" class="text-box" value="@Model.SimulationPatientIssueVoucher.PatientsName" /></td>
+                                <td><input type="hidden" value="@Model.SimulationPatientIssueVoucher.Id" id="SimulationPatientIssueVoucherId" /></td>
+                                <td>Address</td>
+                                <td><textarea type="text" class="text-box"></textarea></td>
+                                <td><textarea type="text" class="text-box"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>Doctor Name</td>
+                                <td><input type="text" class="text-box" /></td>
+                            </tr>
+                        </table>
+                    }
+                    else
+                    {
+                        <table class="table-form">
+                            <tr>
+                                <td>Patient Type</td>
+                                <td>
+                                    <div id="type">
+                                        <fieldset>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="OPD ">OPD
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="IPD">IPD
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="HIV">HIV
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="ClinicalNo">ClinicalNo
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                </td>
+                                <td>
+                                    Patient Bar Code
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box" id="PatientBarCode" />
+                                </td>
+                                <td>
+                                    Date
+                                </td>
+                                <td>
+                                    <input type="date" class="text-box" id="date" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Issue Voucher Number</td>
+                                <td><input type="text" class="text-box" /></td>
+                                <td>Age</td>
+                                <td><input type="text" class="text-box" /></td>
+                            </tr>
+                            <tr>
+                                <td>Reg No</td>
+                                <td><input type="text" class="text-box" /></td>
+                                <td>Sex</td>
+                                <td><input type="text" class="text-box" /></td>
+                                <td>Allergy</td>
+                            </tr>
+                            <tr>
+                                <td>Patient Name</td>
+                                <td><input type="text" class="text-box" /></td>
+                                <td>Address</td>
+                                <td><textarea type="text" class="text-box"></textarea></td>
+                                <td><textarea type="text" class="text-box"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>Doctor Name</td>
+                                <td><input type="text" class="text-box" /></td>
+                            </tr>
+                        </table>
+                    }
+
+                    <hr />
+                    <div class="col-md-6">
+
+                        <table class="table-form">
+                            <tr>
+                                <td><b>Composition Name</b></td>
+                                <td><b>Drug Code</b></td>
+                                <td><input type="text" class="text-box" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <input type="text" id="name" class="text-box" style="width:500px"  autocomplete="off" placeholder="Enter Item Name to Select" />
+                                    <div class="text-box suggestions collapse" id="ItemNameList">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <select class="text-box" style="width:500px">
+                                        <option></option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Brand Name</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <select class="text-box">
+                                        <option></option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br />
+                    <div class="col-md-12">
+
+
+                        <table>
+                            <tr>
+                                <td>Batch No</td>
+                                <td>Rate</td>
+                                <td>Days</td>
+                                <td>Dose</td>
+                                <td>Issue Qty</td>
+                                <td>Current Stock</td>
+                                <td>Exp Date</td>
+                                <td>Dose Description</td>
+                                <td>Note</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select class=" text-box texboxform" id="BatchNo">
+                                        <option></option>
+                                    </select>
+                                    <input type="hidden" id="ItemMasterId" />
+                                </td>
+                                
+                                <td><input type="text" class="text-box texboxform" id="Rate" /></td>
+                                <td><input type="text" class="text-box texboxform" id="Days" /></td>
+                                <td>
+                                    <select class="text-box texboxform" id="Dose">
+                                        @if (ViewBag.Dose != null)
+                                        {
+                                            foreach (var item in ViewBag.Dose)
+                                            {
+                                              <option value="@item.Id">@item.Name</option>
+                                            }
+
+                                            }
+                                            else
+                                            {
+                                              <option>Select</option>
+                                            }
+                                       
+                                    </select>
+                                </td>
+                                <td><input type="text" class="text-box texboxform" id="IssueQty" /></td>
+                                <td><input type="text" class="text-box texboxform" id="CurrentStock" /></td>
+                                <td>
+                                    <select class="text-box texboxform" id="ExpiryDate">
+                                        <option>Select</option>
+                                    </select>
+                                </td>
+
+                                <td><textarea type="text" class="text-box texboxform" id="DoseDescription"></textarea></td>
+                                <td><textarea type="text" class="text-box texboxform" id="Notes"></textarea></td>
+                                <td><button class="btn btn-primary btn-sm" id="btnSaveTreatment">OK</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <hr />
+
+                    <div id="lstTreatment">
+                        @Html.Partial("~/Areas/MedicalStore/Views/PatientTransactionMStore/_DirectPatientsIssueVoucherLst.cshtml", Model.LstSimulationTreatment)
+                    </div>
+                   
+                </div>
+                <div class="col-md-12">
+                    @if(Model.SimulationPatientIssueVoucher==null)
+                    {
+                         <table>
+                        <tr>
+                            <td>
+                                <label class="radio-inline">
+                                    <input type="radio" name="optradio" value="PrimaryCurrency">Primary Currency
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="optradio" value="SecondaryCurrency">Secondary Currency
+                                </label>
+
+                                <select>
+                                    <option>Select Currency</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <fieldset>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Cash">Cash
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Cheque">Cheque
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="CreditCard">Credit Card
+                                    </label>
+                                </fieldset>
+                                <input type="checkbox" /> Transfer From Deposit (Total Amt:0)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Amount Paid <input type="text" class="text-box" /></td>
+                        </tr>
+                    </table>
+
+                    <br />
+                    <div class="col-md-12">
+                        <div class="col-md-7">
+                            <label>
+                                Primary Currency
+                            </label>
+                            <table class="table-form">
+                                <tr>
+                                    <td>
+                                        Total Amount
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box" />
+                                    </td>
+                                    <td>
+                                        Discount Type
+                                    </td>
+                                    <td>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio" value="Amount">Amount
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio" value="Per">Per%
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Amount Received
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box" />
+                                    </td>
+                                    <td>
+                                        Discount
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Deposited Amt
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box" />
+                                    </td>
+                                    <td>
+                                        Refund
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">Pay Amount</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-5">
+                            <table>
+                                <tr>
+                                    <td>
+                                        Due Amount
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Amount Paid
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Discount
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Balance
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            <div>
+                                <table class="table-form">
+                                    <tr>
+                                        <td>Note</td>
+                                        <td><textarea class="text-box"></textarea></td>
+                                    </tr>
+                                </table>
+                                <hr />
+
+                            </div>
+                        </div>
+                    </div>
+                    }
+                   
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    @if (ViewBag.itemIssued == "True")
+    {
+                                <a class="btn btn-primary btn-sm" disabled href="@Url.Action("IssueItems","PatientTransactionMStore",new { Id = Model.SimulationPatientIssueVoucher.Id })">Issue Items</a>
+}
+else
+{
+                                <a class="btn btn-primary btn-sm" href="@Url.Action("IssueItems","PatientTransactionMStore",new { Id = Model.SimulationPatientIssueVoucher.Id })">Issue Items</a>
+
+}
+
+
+                                    <button class="btn btn-primary btn-sm">Add New</button>
+                                    <button class="btn btn-primary btn-sm">Issue Items & Report</button>
+                                    <button class="btn btn-primary btn-sm">Label Printing</button>
+                                    <button class="btn btn-primary btn-sm">View Drug Location </button>
+                                </td>
+                            </tr>
+                        </table>
+
+                        @if(ViewBag.itemIssued == "True")
+                        {
+                        <div class="alert alert-info alert-dismissible" role="alert" style="margin-top:5px;">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong> This Items have already been issued. </strong>
+                        </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+ 
+  <script>
+      //On key up to populate the div containing CategoryList
+      $("#name").keyup(function () {
+
+          var itemName = $("#name").val();
+          var itemList = $("#ItemNameList");
+
+
+          if (itemName.length < 1) {
+
+              itemList.fadeOut();
+          }
+          else {
+
+              var nam = { name: itemName };
+
+              $.ajax({
+                  type: 'POST',
+                  url: '/MinorMasterProcurement/SearchItemList',
+                  data: nam,
+                  success: function (obj) {
+                      //console.log(obj);
+                      //create an array to store the values searched 
+                      var item = [];
+                      //loop through all the items and push then into the array variable
+
+                      $.each(obj, function (key, value) {
+                          var string = '<p class="searchedItems" data-value="' + value + '">' + value + '</p>';
+                          item.push(string);
+
+                      })
+
+                      // empty the div element
+                      $("#ItemNameList").empty();
+
+                      var items = item.join("");
+                      itemList.append(items);
+                      itemList.fadeIn();
+
+                      $(".searchedItems").each(function () {
+                          $(this).click(function () {
+                              var val = $(this).data("value");
+                              $("#name").val(val);
+                              $("#ItemNameList").fadeOut();
+                              $("#ItemNameList").empty();
+                              GetBatchNumbers(val);
+                          })
+                      });
+
+
+                  },
+                  error: function (e, x, y) {
+                      console.log(e.responseText);
+                  }
+              })
+
+          }
+
+      })
+
+      function GetBatchNumbers(name)
+      {
+          var itemMasterData = null;
+          var SelectedBatchNo = null;
+          if (name != null) {
+              
+
+              var url = "/ProcurementPurchase/SearchItemName";
+              $.ajax({
+                  type: "GET",
+                  url: url,
+                  data: { name: name },
+
+                  success: function (obj) {
+                      itemMasterData = obj;
+
+                      $("#BatchNo").empty();
+                      var select = document.getElementById("BatchNo");
+                      var option = document.createElement("option");
+                      option.text = "--SELECT--";
+                      select.add(option);
+
+                      $.each(itemMasterData, function (key, value) {
+                       
+                          var option = document.createElement("option");
+                          option.text = value.BatchNo;
+                          select.add(option);
+                          
+                      })
+
+                      $("#BatchNo").on('change', function () {
+                          SelectedBatchNo = $(this).val();
+
+                          $.each(itemMasterData, function (key, value) {
+                              if (value.BatchNo == SelectedBatchNo) {
+                                  $("#Rate").val(value.SellingPriceUnit);
+                                  $("#CurrentStock").val(value.CurrentStock);
+                                  $("#ItemMasterId").val(value.Id);
+                                  
+                              }
+
+                          });
+                      });
+
+                  },
+                  error: function (x, y, z) {
+                      console.log(x.responseText);
+                  }
+              });
+          }
+      }
+
+      
+
+      $("#btnSaveTreatment").click(function () {
+          var BatchNo = $("#BatchNo").val();
+          var Rate = $("#Rate").val();
+          var Dose = $("#Dose").val();
+          var IssueQty = $("#IssueQty").val();
+          var CurrentStock = $("#CurrentStock").val();
+          var DoseDescription = $("#DoseDescription").val();
+          var Notes = $("#Notes").val();
+          var SimulationPatientIssueVoucherId = $("#SimulationPatientIssueVoucherId").val();
+          var Days = $("#Days").val();
+          var ItemMasterId = $("#ItemMasterId").val();
+          var Amount = Rate * IssueQty;
+
+          var model = {
+              SimulationPatientIssueVoucherId: SimulationPatientIssueVoucherId,
+              ItemMasterId: ItemMasterId,
+              BatchNo: BatchNo,
+              Rate: Rate,
+              Dose: Dose,
+              IssueQty: IssueQty,
+              units: IssueQty,
+              Description: DoseDescription,
+              Notes: Notes,
+              NoOfDays: Days,
+              Amount: Amount
+
+          }
+
+          var simulationTreatment = model;
+
+          //console.log(model);
+
+          $.ajax({
+              type: "POST",
+              url: "",
+              data: simulationTreatment,
+              success: function (obj) {
+                  $("#lstTreatment").empty();
+                  $("#lstTreatment").append(obj);
+              }
+          });
+
+      });
+      
+
+  </script>
+
+}

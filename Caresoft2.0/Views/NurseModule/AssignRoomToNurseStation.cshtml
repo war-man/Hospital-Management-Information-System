@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Assign Room To Nurse Station";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                <form>
+                    <table class="table-form">
+                        <tr>
+                            <td><label>Type</label></td>
+                            <td>
+                                <fieldset class="box-lg">
+                                    <label>
+                                        <input type="radio" name="type" value="OPD" /> OPD
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="type" value="IPD" /> IPD
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="type" value="OT" /> OT
+                                    </label>
+                                </fieldset>
+                               
+                            </td>
+                            
+                            
+                        </tr>
+                        <tr>
+                            <td><label>Station Name</label></td>
+                            <td>
+                                <select class="text-box box-lg" name="chamberNumber" id="chamberNumber">
+                                    <option>Select</option>
+                                </select>
+                            </td>
+                            
+                         </tr>
+                        <tr>
+                            <td><label>Room No</label></td>
+                            <td>
+                                <select class="text-box box-lg" name="chamberNumber" id="chamberNumber">
+                                    <option>Select</option>
+                                </select>
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td><label>Description</label></td>
+                            <td>
+                                <textarea class="text-box box-lg"></textarea>
+                            </td>
+                            <td colspan="2">
+                                <input type="button" class="btn btn-sm btn-primary" value="Save" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+                <table class="table table-data table-condensed marg-top-16px">
+                    <thead>
+                        <tr>
+                            <th>BLock Name</th>
+                            <th>Room No</th>
+                            <th>Description</th>
+                            <th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

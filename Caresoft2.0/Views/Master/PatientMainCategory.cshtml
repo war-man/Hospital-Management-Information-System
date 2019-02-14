@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.CompanyType>
+@{
+    ViewBag.Title = "Patient Main Category";
+    ViewBag.FormName = ViewBag.Title;
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+}
+<form action="@Url.Action("PatientMainCategory", "master")" method="post">
+    <table class="table-form">
+        <tr>
+            <td><label for="CompanyTypeName">Patient Main Type</label></td>
+            <td>
+                <input type="text" class="text-box" name="CompanyTypeName" id="CompanyTypeName" required/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="right">
+                <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+                <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+            </td>
+        </tr>
+    </table>
+</form>
+<table class="table table-condensed table-data">
+    <thead>
+        <tr>
+            <th>Edit</th>
+            <th>Patient Main Type</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @foreach(var type in Model)
+        {
+        <tr>
+            <td>
+                <label>Edit</label>
+            </td>
+            <td>@type.CompanyTypeName</td>
+
+            <td>
+                <form action="/master/deletePatientMainCategory" method="get">
+                    <input type="hidden" name="id" value="@type.Id" />
+                    <button type="submit" class="btn btn-xs">Delete</button>
+                </form>
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

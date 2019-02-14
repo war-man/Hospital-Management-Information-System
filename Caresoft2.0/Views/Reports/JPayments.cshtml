@@ -1,0 +1,98 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.JPayment>
+
+@{
+    ViewBag.Title = "Jambo Payments";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<br />
+<div>
+    <b style="color:#0BA0E1">From : </b> @(ViewBag.SDate.ToString("yyyy-MM-dd")) <b style="color:#0BA0E1"> To : </b>  @(ViewBag.EDate.ToString("yyyy-MM-dd"))
+</div>
+<br />
+
+<table style="background-color:white;" class="table table-condensed">
+    <thead>
+        <tr class="report-title gray-hr-bottom">
+            <th>
+                Transaction Id
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payer)
+            </th>
+
+            <th>
+                Patient Name
+            </th>
+            <th>
+                Patient Visit No | Reg No
+            </th>
+            <th>
+                JPay UserId
+            </th>
+            <th>
+                Date Received
+            </th>
+            <th class="text-right">
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th></th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.Where(e => e.Amount > 0))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payer)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.OPDNo) |
+                    @Html.DisplayFor(modelItem => item.OpdRegister.Patient.RegNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpdRegister.Patient.FName)
+                    @Html.DisplayFor(modelItem => item.OpdRegister.Patient.LName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JPayUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateAdded)
+                </td>
+                <td class="money">
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td></td>
+            </tr>
+        }
+
+    </tbody>
+
+
+    <tfoot>
+        <tr style="border-top:2px groove #ccc; color:#0ba0e1!important">
+            <th colspan="6">Total Received</th>
+            <th class="money">@Model.Where(e => e.Amount > 0).Sum(f => f.Amount)</th>
+        </tr>
+
+        <tr style="color:#0ba0e1!important">
+            <th colspan="6">Total Spent</th>
+            <th class="money">@(Model.Where(e => e.Amount < 0).Sum(f => f.Amount) * -1)</th>
+        </tr>
+
+        <tr style="border-bottom:2px groove #ccc; color:#0ba0e1!important">
+            <th colspan="6">Balance</th>
+            <th class="money">@(Model.Where(e => e.Amount > 0).Sum(f => f.Amount) + Model.Where(e => e.Amount < 0).Sum(f => f.Amount))</th>
+        </tr>
+    </tfoot>
+</table>

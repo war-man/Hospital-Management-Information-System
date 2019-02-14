@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.MCHClinicalNote>
+
+
+@{
+
+}
+
+<table class="table table-caresoft table-condensed">
+    <thead>
+        <tr>
+            <td style="color:fuchsia">OPD No</td>
+
+
+
+            <th style="color:fuchsia">User</th>
+
+
+            <th style="color:fuchsia; font-family:Calibri; font:16px">Date Of Visit</th>
+
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+            <tr>
+                <td>@a.OPDNo</td>
+ 
+
+                <td>@a.UserId</td>
+ 
+                <td style="color:crimson">@a.DateAdded</td>
+
+
+            </tr>
+        }
+
+    </tbody>
+
+    <td>&nbsp;</td>
+    <thead>
+        <tr>
+            <td>&nbsp;</td>
+            <th>Date</th>
+            <th>Clinical Notes</th>
+
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+        <tr style="background-color:chartreuse" ; text-decoration-color:navy">
+            <td>&nbsp;</td>
+            <td>@a.Date</td>
+            <td>@a.ClinicalNotes</td>
+
+
+        </tr>
+        }
+
+    </tbody>
+
+</table>
+
+
+

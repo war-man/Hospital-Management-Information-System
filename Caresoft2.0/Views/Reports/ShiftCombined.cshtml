@@ -1,0 +1,296 @@
+﻿@model List<Caresoft2._0.CustomData.ShiftReportData>
+@using CaresoftHMISDataAccess
+@{
+    ViewBag.Title = "CASHIER'S SHIFT REPORT";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+    ViewBag.Size = "A4";
+
+    var refundsList = (List<CaresoftHMISDataAccess.Refund>)ViewBag.ShiftRefunds;
+
+
+    var StartDate = ViewBag.StartDate.ToString("yyyy-MM-dd");
+    var EndDate = ViewBag.EndDate.ToString("yyyy-MM-dd");
+
+
+}
+
+<br />
+<div class="container" style="width:100%; padding:10px; background:  var(--primary-color)">
+    <form method="post" class="hidden-print">
+        <strong style="color:white">&nbsp;Start Date&nbsp; : &nbsp;</strong><input id="StartDate" name="StartDate" type="date" value="@StartDate" />
+        <strong style="color:white">&nbsp;End Date&nbsp; : &nbsp;</strong><input id="EndDate" name="EndDate" type="date" value="@EndDate" />
+        <strong style="color:white">&nbsp;Select Cashier&nbsp; : &nbsp;</strong>
+        <select class="text-box" id="User" name="User">
+            <option></option>
+
+            @foreach (var cashier in ViewBag.Cashiers)
+            {
+                var selected = "";
+
+                if (@cashier.Id == ViewBag.SelectedCashiers) { selected = "selected"; }
+                <option @selected value="@cashier.Id"> @cashier.Username</option>
+
+            }
+        </select>
+
+        <button type="submit" class="btn btn-xs btn-primary ">Filter</button>
+        <button type="reset" class="btn btn-xs btn-primary ">Reset</button>
+    </form>
+</div>
+
+@foreach (var item in Model)
+{
+<p> <strong><h3>@item.Shift.User.Username</h3></strong></p>
+    <table width="100%">
+        <tr class="gray-hr-bottom">
+            <td> Cashier: @item.Shift.User.Username</td>
+            <td>Shift No.: @item.Shift.Id</td>
+            <td>Start time.: @item.Shift.StartTime</td>
+
+            <td align="right">
+                Status: @if (item.Shift.Endtime == null)
+                {<text>Open</text> }
+            else
+            { <text>Closed at </text>@item.Shift.Endtime}
+            </td>
+        </tr>
+    </table>
+    <table class="table table-condensed">
+        <thead>
+            <tr class="report-title gray-hr-bottom">
+                <th>No.</th>
+                <th title="Receipt No">R.No</th>
+                <th>Date Time</th>
+                <th>Payer</th>
+                <th>Cash</th>
+                <th>Cheque</th>
+                <th>ccard</th>
+                <th>MPesa</th>
+                @if (ViewBag.Jpay == true)
+                {
+                    <th>Jpay</th>
+                }
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var totalJpay = item.Shift.BillPayments.Where(f => f.PaymentMode.PaymentModeName.Equals("Jambo Pay")).Sum(e => e.PaidAmount);
+
+                var x = 1; var totalcash = 0.0; var totalcheque = 0.0; var totalccard = 0.0; var totalMpesa = 0.0; var grandTotal = 0.0;}
+
+            @foreach (var BP in item.Shift.BillPayments.Where(e => e.WalkinId == null && e.OPDNo != null))
+            {
+            <tr>
+                <td>@x</td>
+                <td>@BP.Id</td>
+                <td>@BP.DateAdded</td>
+                <td>
+                    @BP.OpdRegister.Patient.Salutation
+                    @BP.OpdRegister.Patient.FName
+                    @BP.OpdRegister.Patient.MName
+                    @BP.OpdRegister.Patient.LName
+                </td>
+                <td class="money">
+                    @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cash"))
+                    {
+                        <text>@(BP.PaidAmount - BP.AmountFromWallet)  </text> totalcash += (BP.PaidAmount - BP.AmountFromWallet);
+                    }
+                    else
+                    { <text>0.0</text>}
+                </td>
+
+                <td class="money">
+                    @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cheque"))
+                    {
+                        <text>@(BP.PaidAmount - BP.AmountFromWallet) </text> totalcheque += (BP.PaidAmount - BP.AmountFromWallet);
+                    }
+                    else
+                    { <text>0.0</text>}
+                </td>
+                <td class="money">
+                    @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("ccard"))
+                    {<text>@(BP.PaidAmount - BP.AmountFromWallet) </text> totalccard += (BP.PaidAmount - BP.AmountFromWallet);
+                }
+                else
+                { <text>0.0</text>}
+                </td>
+                <td class="money">
+                    @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("mpesa"))
+                    {<text>@(BP.PaidAmount - BP.AmountFromWallet) </text> totalMpesa += (BP.PaidAmount - BP.AmountFromWallet);
+                }
+                else
+                { <text>0.0</text>}
+                </td>
+
+                @if (ViewBag.Jpay == true)
+                {
+                    <td class="money">
+                        @if (BP.PaymentMode.PaymentModeName.Trim().Equals("Jambo Pay")) {
+                            @BP.PaidAmount
+                        }
+                    </td>
+                }
+            <td class="money">@(BP.PaidAmount - BP.AmountFromWallet)  </td>
+            </tr>
+                grandTotal += (BP.PaidAmount - BP.AmountFromWallet);
+                x++;
+            }
+
+            @* Pharmacy walkin payments *@
+            @if (item.Shift.BillPayments.Where(e => e.WalkinId != null).ToList().Count() > 0)
+            {
+                foreach (var BP in item.Shift.BillPayments.Where(e => e.WalkinId != null))
+                {
+                <tr>
+                    <td>@x</td>
+                    <td>@BP.Id</td>
+                    <td>@BP.DateAdded</td>
+                    <td>
+                        Walkin #@(BP.WalkinId)
+                    </td>
+                    <td class="money">
+                        @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cash"))
+                        {
+                            <text>@(BP.PaidAmount - BP.AmountFromWallet) </text> totalcash += (BP.PaidAmount - BP.AmountFromWallet);
+                        }
+                        else
+                        { <text>0.0</text>}
+                    </td>
+
+                    <td class="money">
+                        @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cheque"))
+                        {
+                            <text>@(BP.PaidAmount - BP.AmountFromWallet) </text> totalcheque += (BP.PaidAmount - BP.AmountFromWallet);
+                        }
+                        else
+                        { <text>0.0</text>}
+                    </td>
+                    <td class="money">
+                        @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("ccard"))
+                        {<text>@(BP.PaidAmount - BP.AmountFromWallet) </text> totalccard += (BP.PaidAmount - BP.AmountFromWallet);
+                    }
+                    else
+                    { <text>0.0</text>}
+                    </td>
+                    <td class="money">
+                        @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("mpesa"))
+                        {<text>@(BP.PaidAmount - BP.AmountFromWallet) </text> totalMpesa += (BP.PaidAmount - BP.AmountFromWallet);
+                    }
+                    else
+                    { <text>0.0</text>}
+                    </td>
+                    @if (ViewBag.Jpay == true)
+                    {
+                        <th>Jpay</th>
+                    }
+                    <td class="money">@(BP.PaidAmount - BP.AmountFromWallet)  </td>
+                </tr>
+                    grandTotal += (BP.PaidAmount - BP.AmountFromWallet);
+                    x++;
+                }
+            }
+
+        </tbody>
+        <tfoot>
+            <tr style="border-bottom:2px groove #ccc">
+                <th colspan="4">Total</th>
+                <th class="money">@totalcash</th>
+                <th class="money">@totalcheque</th>
+                <th class="money">@totalccard</th>
+                <th class="money">@totalMpesa</th>
+                @if (ViewBag.Jpay == true)
+                {
+                    <th class="money">@totalJpay</th>
+                }
+                <th class="money">@grandTotal</th>
+            </tr>
+
+            <tr style="border-bottom:2px groove #ccc">
+                <th colspan="8">Refunds</th>
+                @if (ViewBag.Jpay == true)
+                {
+                    <th class="money"></th>
+                }
+                <th class="money text-danger">@refundsList.Sum(e => e.RefundedAmount)</th>
+            </tr>
+
+            <tr style="border-bottom:2px groove #ccc">
+                <th colspan="8">Total after Refunds</th>
+                @if (ViewBag.Jpay == true)
+                {
+                    <th class="money"></th>
+                }
+                @{
+                    var gTotal = grandTotal - refundsList.Sum(e => e.RefundedAmount);
+                }
+                <th class="money text-success">@gTotal</th>
+            </tr>
+
+
+        </tfoot>
+    </table>
+
+    <table width="100%">
+        <tbody>
+            <tr>
+                <td>
+                    <table class="table-bordered table-condensed">
+                        <tr>
+                            <th colspan="2" class="report-title">SHIFT BREAKDOWN SUMMARY</th>
+                        </tr>
+                        <tr>
+                            <td>Consultation</td>
+                            <td class="money" align="right">@item.Consultation</td>
+                        </tr>
+                        <tr>
+                            <td>XRAY</td>
+                            <td class="money" align="right">@item.Xray</td>
+                        </tr>
+                        <tr>
+                            <td>Lab</td>
+                            <td class="money" align="right">@item.Labs</td>
+                        </tr>
+                        <tr>
+                            <td>Drugs</td>
+                            <td class="money" align="right">@item.Drugs</td>
+                        </tr>
+                        <tr>
+                            <td>Procedures</td>
+                            <td class="money" align="right">@item.Procedure</td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td style="text-decoration:underline" align="right" class="money">@(item.Procedure + item.Drugs + item.Labs + item.Xray + item.Consultation )</td>
+                        </tr>
+                    </table>
+
+                </td>
+                <td valign="top">
+                    @Html.Partial("ShiftRefunds", refundsList)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+
+    <hr />
+
+    <br />
+}
+
+<table width="100%" class="marg-top-16px">
+    <tr>
+        <td>RECEIVED FROM:________________________</td>
+        <td>BANKED BY:________________________</td>
+        <td>Date: ___/___/_____</td>
+        <td>Time: _______</td>
+    </tr>
+    <tr>
+        <td>RECEIVED BY:________________________</td>
+        <td>SIGN:________________________</td>
+        <td>Date: ___/___/_____</td>
+        <td>Time: _______</td>
+    </tr>
+</table>

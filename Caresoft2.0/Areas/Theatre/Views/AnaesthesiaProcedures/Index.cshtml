@@ -1,0 +1,214 @@
+﻿@model CaresoftHMISDataAccess.TheatrePatientBioData
+@using CaresoftHMISDataAccess;
+
+
+<div class="col-md-6">
+    <fieldset>
+        <legend> <h5><b> Anaesthetic Record </b> </h5> </legend>
+        <div class="col-md-12">
+
+            <fieldset>
+                <legend> <h5><b> XXXXXXXXXXX </b> </h5> </legend>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Id, "Type Of Premed", htmlAttributes: new { @class = "col-md-4" })
+                        <div class="col-md-8">
+                            <input name="TypeOfPremed" class=" text-box margin-top-bottom-2 margin-top-bottom-2" style="width:100%" />
+                            @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Id, "Weight", htmlAttributes: new { @class = "col-md-4" })
+                        <div class="col-md-8">
+                            <input name="Weight" class=" text-box margin-top-bottom-2" style="width:100%" type="number" />
+                            @Html.ValidationMessage("Weight", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Id, "Height", htmlAttributes: new { @class = "col-md-4" })
+                        <div class="col-md-8">
+                            <input name="Height" class=" text-box margin-top-bottom-2" style="width:100%" type="number" />
+                            @Html.ValidationMessage("Height", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Id, "Induction Notes / Time", htmlAttributes: new { @class = "col-md-4" })
+                        <div class="col-md-8">
+                            <textarea name="InductionNotes" class=" text-box margin-top-bottom-2" style="width:100%; height:50px;"></textarea>
+                            <input name="Time" class=" text-box margin-top-bottom-2" style="width:100%" type="time" value="@DateTime.Now.ToString("hh:mm")" />
+                            @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend> <h5><b> AIRWAY </b> </h5> </legend>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Id, "Indicate Airway", htmlAttributes: new { @class = "col-md-4" })
+                    <div class="col-md-8">
+
+                        @{
+                            var anaestheticCheck = new List<String>
+                                ();
+                            anaestheticCheck.Add("OralNasophangeAllRBlind");
+                            anaestheticCheck.Add("Nasotrachial");
+                            anaestheticCheck.Add("Endobronchial");
+                            foreach (var data in anaestheticCheck)
+                            {
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="@data">
+                                    <label class="form-check-label" for="@data">
+                                        @data
+                                    </label>
+                                </div>
+                            }
+                        }
+                        @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend> <h5><b> Mode Of Anaesthesia </b> </h5> </legend>
+                <div class="col-md-12">
+                    <table width="100%">
+                        <tbody>
+                            <tr>
+                                <td>Mode of Anaesthesia</td>
+                                <td>
+                                    <div class="form-check">
+                                        <select class="text-box" name="ModeOfAnaesthesia">
+                                            <option>Select Mode of Anaesthesia</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend> <h5><b> Symbols </b> </h5> </legend>
+
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.Id, "Pulse", htmlAttributes: new { @class = "col-md-2" })</td>
+                            <td>
+                                <input name="Pulse" class=" text-box margin-top-bottom-2" style="width:95%" type="number" />
+                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                            </td>
+
+                            <td>
+                                @Html.LabelFor(model => model.Id, "Anaesthesia", htmlAttributes: new { @class = "col-md-2" })
+                            </td>
+                            <td>
+                                <input name="Anaesthesia" class=" text-box margin-top-bottom-2" style="width:95%" />                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(model => model.Id, "S.Surgery", htmlAttributes: new { @class = "col-md-2" })
+                            </td>
+                            <td>
+                                <input name="Surgery" class=" text-box margin-top-bottom-2" style="width:95%" type="number" />
+                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                            </td>
+
+                            <td>
+                                @Html.LabelFor(model => model.Id, "BP", htmlAttributes: new { @class = "col-md-2" })
+                            </td>
+                            <td>
+                                <input name="BP" class=" text-box margin-top-bottom-2" style="width:95%" type="number" />
+                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(model => model.Id, "O:Respiration", htmlAttributes: new { @class = "col-md-2" })
+                            </td>
+                            <td>
+                                <input name="Respiration" class=" text-box margin-top-bottom-2" style="width:95%" />
+                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend> <h5><b>  </b> </h5> </legend>
+
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.Id, "Barbiturates", htmlAttributes: new { @class = "col-md-12" })</td>
+                            <td>
+                                <input name="Barbiturates" class=" text-box margin-top-bottom-2" style="width:95%" type="number" />
+                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(model => model.Id, "Muscle Relaxants", htmlAttributes: new { @class = "col-md-12" })
+                            </td>
+                            <td>
+                                <input name="MuscleRelaxants" class=" text-box margin-top-bottom-2" style="width:95%" />
+                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(model => model.Id, "Method Rf Relaxants", htmlAttributes: new { @class = "col-md-12" })
+                            </td>
+                            <td>
+                                <input name="MethodRfRelaxants" class=" text-box margin-top-bottom-2" style="width:95%" type="number" />
+                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                @Html.LabelFor(model => model.Id, "NO", htmlAttributes: new { @class = "col-md-4" })
+                            </td>
+                            <td>
+                                <input name="No" class=" text-box margin-top-bottom-2" style="width:95%" type="number" />
+                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                @Html.LabelFor(model => model.Id, "Holothang", htmlAttributes: new { @class = "col-md-4" })
+                            </td>
+                            <td>
+                                <input name="Holothang" class=" text-box margin-top-bottom-2" style="width:95%" />
+                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+
+        </div>
+
+    </fieldset>
+</div>
+
+<div class="col-md-6">
+    @Html.Partial("~/Areas/Theatre/Views/Operation/PatientInformation.cshtml", Model)
+</div>

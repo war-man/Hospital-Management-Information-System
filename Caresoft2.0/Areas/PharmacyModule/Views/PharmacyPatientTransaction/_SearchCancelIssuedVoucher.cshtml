@@ -1,0 +1,95 @@
+﻿@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.SimulationPatientIssueVoucher>
+@using PagedList.Mvc;
+
+<br />
+<table class="table table-data table-bordered table-condensed" style="background-color:ghostwhite;">
+    <tr>
+        <th>
+            Voucher No
+        </th>
+        <th>
+            Patient Name
+        </th>
+        <th>
+            Total Amount
+        </th>
+        <th>
+            Cancel
+        </th>
+    </tr>
+    @if (Model.Count() < 1)
+    {
+        <tr>
+            <td colspan="5" style="text-align:center;font-style:oblique;">No data to display</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            //var noOfItemsInTheTreatement = item.SimulationTreatment.Count();
+            //var checkIfPartialCancelled = 0;
+
+            //foreach (var Item in item.SimulationTreatment)
+            //{
+            //    if (Item.ItemRefund > 0)
+            //    {
+            //        checkIfPartialCancelled += 1;
+            //    }
+            //}
+
+
+
+
+            @*if (checkIfPartialCancelled == 0)
+            {
+                <tr style="background-color:rgba(222,255,0,0.5)">
+                    <td>@item.VoucherNumber</td>
+                    <td>@item.PatientsName</td>
+                    <td>@item.SimulationTreatment.Sum(p => p.Amount)</td>
+                    <td>
+                        <a href="@Url.Action("CancelIssuedVoucher","PharmacyPatientTransaction",new { Id=item.Id})" class="btn btn-xs btn-primary">Select</a>
+                    </td>
+                </tr>
+
+            }
+            else if (checkIfPartialCancelled < noOfItemsInTheTreatement)
+            {
+
+                <tr style="background-color:rgba(64,224,208,0.5)">
+                    <td>@item.VoucherNumber</td>
+                    <td>@item.PatientsName</td>
+                    <td>@item.SimulationTreatment.Sum(p => p.Amount)</td>
+                    <td>
+                        <a href="@Url.Action("CancelIssuedVoucher","PharmacyPatientTransaction",new { Id=item.Id})" class="btn btn-sm btn-primary">Cancel</a>
+                    </td>
+                </tr>
+            }
+            else
+            {}*@
+                <tr>
+                    <td>@item.VoucherNumber</td>
+                    <td>@item.PatientsName</td>
+                    <td>@Model.Where(p=>p.Opd == item.Opd).Sum(p => p.totalAmount)</td>
+                    <td>
+                        <a href="@Url.Action("CancelIssuedVoucher","PharmacyPatientTransaction",new { Id=item.Opd,Area= "PharmacyModule"})" class="btn btn-xs btn-primary">Cancel</a>
+                    </td>
+                </tr>
+            
+
+
+        }
+    }
+
+</table>
+<button class="btn btn-primary btn-sm pull-left">Report</button>
+
+<div class="col-md-7 col-md-offset-1">
+    <div class="col-md-12">
+        @Html.PagedListPager(Model, page => Url.Action("SearchPatientIssueVoucher", "PharmacyPatientTransaction", new { page, Area = "PharmacyModule" }))
+    </div>
+    <div class="col-md-12">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+    </div>
+</div>

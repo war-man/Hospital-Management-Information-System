@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "ApproveVoucher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Finance/Views/Shared/_LeftNavigation.cshtml")
+</div>
+<div class="col-md-9">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Approve voucher
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Balance B/F
+                                </td>
+                                <td>
+                                    <input type="number" name="BalanceBF" id="BalanceBF" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Expensed Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="ExpensedAmt" id="ExpensedAmt" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                  &nbsp;  Total Commited Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="TotalCommitedAmt" id="TotalCommitedAmt" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Advances Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="AdvanceAmount" id="AdvanceAmount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                   &nbsp; Balance Available:
+                                </td>
+                                <td>
+                                    <input type="number" name="BalanceAvailable" id="BalanceAvailable" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table table-data-pathology table-condensed marg-top-16px">
+                            <tr>
+                                <th>Req no</th>
+                                <th>Department</th>
+                                <th>Requisitioner</th>
+                                <th>Payee</th>
+                                <th>Purpose</th>
+                                <th>Date Required</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Approve</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="number" name="ReqNo" id="ReqNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input type="text" name="Department" id="Department" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input name="Requisitioner" id="Requisitioner" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input name="Payee" id="Payee" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input name="Purpose" id="Purpose" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input type="date" name="DateRequied" id="DateRequied" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input type="number" name="Amount" id="Amount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input type="text" name="Status" id="Status" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="Approve" value="Approve" id="Approve" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <button type="submit" name="Ok" class="btn btn-primary bn-sm">Ok</button>
+                    <button type="reset">Clear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,151 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var myProfile = new CaresoftHMISDataAccess.RenalDialysisOrder();
+
+    if (Model.OpdRegister.RenalDialysisOrders != null)
+    {
+        myProfile = Model.OpdRegister.RenalDialysisOrders
+            .OrderByDescending(e => e.Id).FirstOrDefault();
+    }
+
+    var relationships = (List<CaresoftHMISDataAccess.Relationship>)ViewBag.Relationships;
+    var maritals = (List<CaresoftHMISDataAccess.MaritalStatu>)ViewBag.Maritals;
+
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Dialysis Order";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>Dialysis Order (First Visit)</p>
+    </div>
+    <style>
+        input.box-sm {
+            width: 120px
+        }
+    </style>
+    <div class="panel-body">
+        <form id="maternal_profile" method="post" action="@Url.Action("SaveDialysisOrder", "RenalHaemodialysis")">
+            <input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+            <fieldset>
+
+                <table class="table-form marg-top-16px">
+                    <tr>
+                        <td>
+                            <label for="Date">
+                                Treatment Time
+                            </label>
+                        </td>
+                        <td>
+                            <input name="TreatmentTime" required type="time" class="text-box box-lg" />
+                        </td>
+                        <td>
+                            <label>
+                                Priming
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" name="Priming" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>
+                                Dialysis solution
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" name="DialysisSolution" class="text-box box-lg" required />
+                        </td>
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label>Dialyzer</label>
+                        </td>
+                        <td>
+                            <input type="text" name="Dialyzer" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>Bath K+</label>
+                        </td>
+                        <td>
+                            <input type="text" name="BathK" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>Membrane Type</label>
+                        </td>
+                        <td>
+                            <input type="text" name="MembraneType" class="text-box box-lg" required />
+                        </td>
+
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+                    <tr>
+                        <td>
+                            <label>
+                                Heparinization (Loading Dose)
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" name="Heparinization" class="text-box box-lg" required />
+                        </td>
+
+
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+
+
+                </table>
+                <input type="submit" class="btn btn-sm btn-primary " value="Save" />
+
+                @Html.ActionLink("Continue", "MachineChecks", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+               @style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+
+                @Html.ActionLink("Previous", "PatientProfile", new { id = @Model.OpdRegister.Id }, new
+           {
+               @class = "btn btn-primary btn-sm",
+               @style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"
+           })
+
+
+
+            </fieldset>
+
+        </form>
+
+        <div>
+            @Html.Partial("DialysisOrdersList", Model.OpdRegister.RenalDialysisOrders)
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+    </script>
+}

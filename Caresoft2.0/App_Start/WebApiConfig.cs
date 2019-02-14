@@ -19,6 +19,11 @@ namespace Caresoft2._0
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            
+            /*TO return JSON formated data only*/
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            /*TO ident JSON formated data neatly*/
+            config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
         }
     }
 }

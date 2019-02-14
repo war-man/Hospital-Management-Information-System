@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "RequestService";
+    Layout = "~/Areas/PatientModule/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel-body panel panel-primary">
+    <div class="col-md-4">
+        <form>
+            <div class="form-group">
+                <label for="Service">Service</label>
+                <select name="Service" id="Service" class="form-control margin-top">
+                    <option value="Meal">Meal</option>
+                    <option value="Laundry">Laundry</option>
+                    <option value="HouseKeeping">House Keeping</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="MealType">Select Meal</label>
+                <select name="MealType" class="form-control margin-top" id="MealType">
+                    <option value="1">Standard Meal</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="HouseKeeping">Select Linen</label>
+                <select name="ServiceType" class="form-control margin-top" id="HouseKeeping">
+                    <option value="1">Bed Cover</option>
+                    <option value="2">Patient Clothes</option>
+                    <option value="3">Bandage</option>
+                    <option value="4">Others</option>
+                </select>
+                <input type="text" name="Others" class="form-control margin-top" placeholder="Specify Others....." />
+            </div>
+            <div class="form-group">
+                <label for="Qty">Quantity</label>
+                <input name="Quantity" type="number" class="form-control margin-top" id="Qty" />
+            </div>
+            <div>
+                <input type="submit" class="btn btn-primary " />
+                <input type="reset" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-12 margin-top">
+        <table class="table table-data table-condensed margin-top">
+            <thead>
+                <tr>
+                    <th>Linen Name</th>
+                    <th>Qty</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white">
+                <tr>
+                    <td colspan="3" align="center">
+                        <label>No data at the moment</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>   
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        function CheckColors(val) {
+            var element = document.getElementById('linen-type');
+            if (val == 'Select Type' || val == 'others')
+                element.style.display = 'block';
+            else
+                element.style.display = 'none';
+        }
+
+    </script>
+}

@@ -1,0 +1,214 @@
+﻿
+@{
+    ViewBag.Title = "Appointment";
+    Layout = "~/Areas/PatientModule/Views/Shared/_Layout.cshtml";
+    var patientList = (List<PatientModule.Models.Patient>)ViewBag.PatientAppointment;
+    var Speciality = (List<PatientModule.Models.Department>)ViewBag.Speciality;
+    //var docs = (List<CaresoftHMISDataAccess.DoctorsSchedule>)ViewBag.DoctorsReturn;
+}
+<div class="panel panel-primary panel-body">
+    <br />
+    <ul id="myNavTabs" class="nav nav-tabs">
+        <li role="presentation" class="active">
+            <a data-toggle="pill" href="#Bookings">Set Appointment</a>
+        </li>
+        <li role="presentation">
+            <a data-toggle="pill" href="#Anaesthesia">View Appointment</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="Bookings">
+            <form method="post" action="/Home/PatientAppointment" name="PatientAppointment">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select name="AppointmentType" id="AppointmentType" class="form-control margin-top" style="width:100%">
+                            <option value="OPD">OPD</option>
+                            <option value="IPD">IPD</option>
+                            <option value="Lap">Lab Appointment</option>
+                            <option value="Dental">Dental</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input style="width:100%" name="RegNumber" id="RegNo" class="form-control margin-top" placeholder="Enter Reg No...." />
+                    </div>
+                    <div class="form-group">
+                        <label for="DOA">Date of Appointment</label>
+                        <input style="width:100%;" type="date" id="DOA" name=" DateOfAppointment" class="form-control margin-top" placeholder="Appointment Date..." />
+                    </div>
+                    <div class="form-group">
+                        <input style="width:100%;" id="FirstName" name="FirstName" class="form-control margin-top" placeholder="First Name......" />
+                    </div>
+                    <div class="form-group">
+                        <input style="width:100%;" id="LName" type="text" name="LName" class="form-control margin-top" placeholder="Last Name......" />
+                    </div>
+                    <div class="form-group">
+                        <label for="DateOfBirth">Date of Birth:</label>
+                        <input style="width:100%;" id="DateofBirth" type="date" name="DateofBirth" class="form-control margin-top" placeholder="Date of Birth...." />
+                    </div>
+                    <div class="form-group">
+                        <textarea style="width:100%;" type="text" class="form-control margin-top" name="Explanation" placeholder="Explanation......"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input style="width:100%;" id="HomeAddress" type="text" name="HomeAddress" class="form-control margin-top" placeholder="Address...." />
+                    </div>
+                    <div class="form-group">
+                        <input style="width:100%;" id="Mobile" type="tel" name="Mobile" class="form-control margin-top" placeholder="Mobile No....." />
+                    </div>
+                    <div class="form-group">
+                        <label for="Speciality">Speciality</label>
+                        <select name="Speciality" class="form-control margin-top" id="Speciality">
+                            @foreach (var speciality in Speciality.Where(e => e.IsMedical != null && e.IsMedical.ToLower() == "yes"))
+                            {
+                                <option value="@speciality.DepartmentName">@speciality.DepartmentName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="DoctorsList">Doctor</label>
+                        <select style="width:100%" id="DoctorsList" class="form-control margin-top" name="Doctor"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="AppointmentTime">Appointment Time</label>
+                        <input style="width:100%;" type="time" id="Time" name="AppointmentTime" class="form-control margin-top" placeholder="Appointment time....." />
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <button class="btn btn-sm btn-primary" type="submit" name="SET_APPOINTMENT">Set Appointment</button>
+                    <button type="reset" class="btn btn-sm btn-primary">Clear</button>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane" id="Anaesthesia">
+            <form method="post" action="/Home/ViewAppointment">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Speciality">Speciality</label>
+                        <select style="width:100%;" class="form-control margin-top" name="Speciality"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Doctor">Doctor</label>
+                        <select style="width:100%;" class="form-control margin-top" name="Doctor"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="FromDate">From Date</label>
+                        <input style="width:100%;" id="FromDate" type="date" class="form-control margin-top" name="FromDate" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="ToDate">To Date</label>
+                        <input style="width:100%;" type="date" id="ToDate" class="form-control margin-top" name="To Date" />
+                    </div>
+                    <div class="form-group">
+                        <label class="radio-inline"><input type="radio" name="Pending">pending</label>
+                        <label class="radio-inline"><input type="radio" name="Rescheduled">Rescheduled</label>
+                        <br />
+                        <label class="radio-inline"><input type="radio" name="Confirmed">Confirmed</label>
+                        <label class="radio-inline"><input type="radio" name="Canceled">Canceled</label>
+                    </div>
+                    <div class="form-group">
+                        <input style="width:100%;" type="text" class="form-control margin-top" name="FName" placeholder="First Name......" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Status">Appointment Status</label>
+                        <select style="width:100%;" id="Status" class="form-control margin-top" name="AppointmentStatus">
+                            <option value="AppointmentAttended">Appointment Attended</option>
+                            <option value="AppointmentNotAttended">Appointment Not Attended</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <button type="submit" class="btn btn-sm btn-primary" name="Search">Search</button>
+                    <button type="reset" class="btn btn-sm btn-primary">Clear</button>
+                </div>
+            </form>
+            <br />
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+
+        $("#RegNo").autocomplete({
+            source: function (req, res) {
+                $.ajax({
+                    type: "GET",
+                    //url: "searchSOPTests?id=" + $("#Department").val() + "&search=" + $("#TestName").val(),
+                    url: "/Appointments/Home/SearchPatient",
+                    dataType: "json",
+                    data: { searchString: $("#RegNo").val() },
+
+                    success: function (data) {
+                        //console.log(data);
+
+                        res($.map(data, function (item) {
+                            return { label: item, value: item, Id: item };
+                        }));
+                    },
+
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+
+            }, select: function (event, ui) {
+                //alert(ui.item.value)
+                $.ajax({
+                    type: "GET",
+                    url: "/Appointments/Home/getpatientdetails",
+                    data: { RegNo: ui.item.value },
+
+                    success: function (data) {
+
+                        console.log(data);
+                        $("#FirstName").val(data.FName);
+                        $("#MName").val(data.MName);
+                        $("#LName").val(data.LName);
+                        $("#DateofBirth").val(data.DOB);
+                        $("#HomeAddress").val(data.HomeAddress);
+                        $("#Mobile").val(data.Mobile);
+
+
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                    }
+
+                });
+            }
+
+        });
+
+        $(".GetDocsOnChange").change(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Appointments/Home/getDoctors",
+                data: { doa: $("#DOA").val(), time: $("#Time").val() },
+
+                success: function (data) {
+                    console.log(data);
+                    var options = $("#DoctorsList");
+                    $('#DoctorsList')
+                        .empty()
+                        .append('<option selected="selected" value="0">Select Doctor</option>')
+                        ;
+
+                    $.each(data, function (key, val) {
+                        options.append(new Option(val.Name, val.Id));
+                    });
+
+
+                },
+
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+        });
+
+    </script>
+}

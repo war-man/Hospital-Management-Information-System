@@ -1,0 +1,194 @@
+﻿
+<table class="table-top-menu" width="100%">
+    <tr style="background-color:#C1D8F9">
+        <td></td>
+        <td></td>
+     
+        <td width="200px">
+            | Master <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("SupplierMaster", "ProcurementMaster")">
+                            | Supplier Master
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ManufacturingCompany", "ProcurementMaster")">
+                            | Manufacture Company
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ItemMaster", "ProcurementMaster")">
+                            | Item Master
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | Edit/Search Item
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td width="200px">
+            | Purchase <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("AddProvisionalPo", "ProcurementPurchase")">
+                            | Add New Provisional PO
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AcceptProvisionalPo", "ProcurementPurchase")">
+                            | Accept Provisional Purchase Order
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("CompareAcceptedProvisionalPO", "ProcurementPurchase")">
+                            | Compare Provisional Purchase Order
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ApproveProvisionalPO", "ProcurementPurchase")">
+                            | Approve Accepted Provisional PO
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("CreatePurchaseOrder", "ProcurementPurchase")">
+                            | Add New Purchase Order
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | Purchase Order Tracking
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | Approve PO
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AddNewInvoice", "ProcurementPurchase")">
+                            | Add New Invoice
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("EditInvoice", "ProcurementPurchase")">
+                            | Edit/Search Invoice
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ApproveInvoice", "ProcurementPurchase")">
+                            | Approve Invoice
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("GenerateInvoiceNumber", "ProcurementPurchase")">
+                            | Generate Invoice Number
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("StockAdjustment", "ProcurementPurchase")">
+                            | Stock Adjustment
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("InvoicePayement", "ProcurementPurchase")">
+                            | Invoice Payment
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("GRNReturn", "ProcurementPurchase")">
+                            | GRN Return
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            |Issue to Nurse
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td width="200px">
+            | Report  <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | Stock Ledger
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | Current Stock
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | Stock Taking
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | Payment Register
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | Suppliers Purchase
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | Purchase Return Report
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    @*<tr id="setup-drop-down" class="tr-dropdown">
+            <td>
+                <table class="dropdown-table">
+                    <tr>
+                        <td>Account Master Billing &nbsp;<i class="fa fa-caret-right"></i></td>
+                        <td>
+                            <table class="dropdown-table side-kick-table">
+                                <tr>
+                                    <td>Departments</td>
+                                </tr>
+                                <tr>
+                                    <td>Services</td>
+                                </tr>
+                                <tr>
+                                    <td>Tariffs</td>
+                                </tr>
+                                <tr>
+                                    <td>Tariff Pricing</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Company Master</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>*@
+</table>
+
+
+
+
+
+
+

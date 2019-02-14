@@ -1,0 +1,59 @@
+﻿
+@{
+    var cls = "col-sm-8 col-sm-offset-2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Nav = "~/Views/Shared/_NavMorgModule.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+    if(ViewBag.LayoutClass != null)
+    {
+        cls = ViewBag.LayoutClass;
+    }
+}
+
+<div class="row">
+    <div class="@cls">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    @RenderSection("scripts", required: false)
+<script>
+    function setMorgCabListener() {
+        $("#form_save_cold_room_details").submit(function (e) {
+            e.preventDefault();
+            var data = $(this).serializeObject();
+            $(".loader").show();
+            $.ajax({
+                
+                url: "@Url.Action("SetCabinetDetails", "Morg")",
+                method: "post",
+                data: data,
+                success: function (res) {
+                    $(".loader").hide();
+                    showNotification(res.Message, res.Status, true);
+                    if (res.Status==="success") {
+                        var tr = $("#entry-" + data.Id);
+                        tr.find(".storage-details").text(res.StorageDetails)
+                        $("#modal-forms-holder").modal("hide");
+                    }
+                },
+                error: function (e, x, r) {
+                    $(".loader").hide();
+                    showNotification("An error occured!", "danger", true)
+                }
+            })
+        })
+    }
+</script>
+}
+

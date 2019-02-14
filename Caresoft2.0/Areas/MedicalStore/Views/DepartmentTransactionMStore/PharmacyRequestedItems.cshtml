@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.PharmacyRequestedItems>
+
+@{
+    ViewBag.Title = "View Pending Request";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+}
+
+<div class="col-md-8">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading">
+            Phamarcy Request
+        </div>
+        <div class="panel-body" >
+            <table class="table table-caresoft table-data-pathology" style="background:white;">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            @Html.DisplayName("Item Name")
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.ItemMasterId)
+                        </th>
+                        <th>
+                            @Html.DisplayName("Required Quantity")
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsIssued)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CurrentStock)
+                        </th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @if (item.IsIssued == null || item.IsIssued == false)
+                                {
+                                    @Html.ActionLink("Issue", "IssueItemsToDepartment", new { Id = item.Id }, new { @class = "btn btn-xs btn-primary" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("View Issued", "IssueItemsToDepartment", new {}, new { @class = "btn btn-xs btn-success disabled" })
+                                }
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ItemName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ItemMasterId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RequiredQuantity)
+                            </td>
+                            <td>
+                                @{
+                                    var IsIssued = false;
+                                    if (item.IsIssued != null) { IsIssued = item.IsIssued.Value; }
+                                }
+                                @Html.DisplayFor(modelItem => IsIssued)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CurrentStock)
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>

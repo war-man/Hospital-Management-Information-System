@@ -1,0 +1,86 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.MCHMaternalProfile>
+
+@{ 
+
+}
+
+<table class="table table-caresoft table-condensed">
+    <thead >
+        <tr>
+            <td>&nbsp;</td>
+            <td style="color:fuchsia">OPD No</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+
+            <th style="color:fuchsia">User</th>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+            <th style="color:fuchsia; font-family:Calibri; font:16px">Date Of Visit</th>
+
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+        <tr>
+            <td>&nbsp;</td>
+            <td>@a.OPDNo</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+            <td>@a.UserId</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td style="color:crimson">@a.DateAdded</td>
+
+
+        </tr>
+        }
+
+    </tbody>
+
+    <td>&nbsp;</td>
+
+
+    <thead>
+        <tr>
+            <th>ANC NO</th>
+            <th>Gravida</th>
+            <th>Weight</th>
+            <th>L.M.P</th>
+            <th>Education</th>
+            <th>Parity</th>
+            <th>EDD</th>
+            <th>Telephone</th>
+            <th>Next Of Kin</th>
+            <th>address</th>
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @foreach (var b in Model.OrderByDescending(b => b.Id))
+        {
+            <tr style="background-color:chartreuse">
+                <td>@b.Address</td>
+                <td>@b.Gravida</td>
+                <td>@b.Weight</td>
+                <td>@b.LMP</td>
+                <td>@b.Education</td>
+                <td>@b.Parity</td>
+                <td>@b.EDD</td>
+                <td>@b.Telephone</td>
+                <td>@b.NextOfKin</td>
+                <td>@b.Address</td>
+            </tr>
+        }
+    </tbody>
+</table>
+  

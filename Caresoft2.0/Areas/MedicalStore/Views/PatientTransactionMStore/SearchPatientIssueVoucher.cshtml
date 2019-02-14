@@ -1,0 +1,103 @@
+﻿@model List<Caresoft2._0.Areas.Procurement.Models.SimulationPatientIssueVoucher>
+
+@{
+    ViewBag.Title = "SearchPatientIssueVoucher";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+}
+
+<div class="col-md-10">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px"> <strong> Search Patient Voucher</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td>Patient Type</td>
+                            <td>
+                                <div id="type">
+                                    <fieldset>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio" value="OPD ">OPD
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio" value="IPD">IPD
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio" value="HIV">HIV
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio" value="ClinicalNo">ClinicalNo
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio" value="All">All
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </td>
+
+                            <td>From Date</td>
+                            <td> <input type="date" class="text-box" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" /></td>
+                            <td>To Date</td>
+                            <td> <input type="date" class="text-box" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" /></td>
+                        </tr>
+                        <tr>
+                            <td>Patient Reg No:</td>
+                            <td><input type="text" class="text-box" /></td>
+
+                        </tr>
+                        <tr>
+                            <td>OPD/IPD No:</td>
+                            <td><input type="text" class="text-box" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn btn-sm btn-primary">Search</button>
+                                <a href="@Url.Action("DirectPatientIssueVoucher","PatientTransactionMStore")" class="btn btn-sm btn-primary" >Direct Voucher</a>
+                            </td>
+                        </tr>
+
+                    </table>
+                   <br/>
+                    <table class="table table-data">
+                        <tr>
+                            <th>Select</th>
+                            <th>Reg No</th>
+                            <th>OPD</th>
+                            <th>IPD</th>
+                            <th>HIV No</th>
+                            <th>Patients Name</th>
+                            <th>Transaction ID</th>
+                        </tr>
+                        @if(Model==null)
+                        {
+                            <tr>
+                                <td colspan="7">No data to display</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var item in Model)
+                            {
+                            <tr>
+                                <td><a href="@Url.Action("DirectPatientIssueVoucher",new { Id = item.Id})" class="btn btn-sm btn-primary">Select</a></td>
+                                <td>@item.Regno</td>
+                                <td>@item.Opd</td>
+                                <td>@item.Ipd</td>
+                                <td>@item.HivNo</td>
+                                <td>@item.PatientsName</td>
+                                <td>@item.TransactionId</td>
+                            </tr>
+                            }
+                           
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

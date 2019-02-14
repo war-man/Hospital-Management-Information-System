@@ -1,0 +1,131 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Shift>
+@{
+    int num = 0;
+    double Gross = 0;
+    double waiver = 0;
+    double refunds = 0;
+    ViewBag.Title = "TotalShiftReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Finance/Views/Shared/_LeftNavigation.cshtml")
+</div>
+
+<div class="col-md-10">
+
+    <div class="panel panel-primary caresoft-panel glass">
+        <div class="panel-heading">
+            Total Shift Report
+        </div>
+        <div class="panel-body">
+            <form style="overflow:auto">
+                <table>
+                    <tr>
+                        <td>
+                            Begin Date:
+                        </td>
+                        <td>
+                            <input type="date" name="BeginDate" id="BeginDate" class="text-box margin-top-bottom-2" style="width:100%" />
+                        </td>
+                        <td>
+                           &nbsp; End Date:
+                        </td>
+                        <td>
+                            <input type="date" name="EndDate" id="End" class="text-box margin-top-bottom-2" style="width:100%" />
+                        </td>
+                    </tr>
+                </table>
+                <div class="col-md-12 marg-top-16px">
+                    <table class="table table-data-pathology table-condensed" id="Cheque">
+                        <tr>
+                            <th>Index</th>
+                            <th>Shif tNo</th>
+                            <th>Cashier</th>
+                            <th>Receipts</th>
+                            <th>Gross Income</th>
+                            <th>Waiver</th>
+                            <th>Refund</th>
+                            <th>Net Amt(KSH)</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Status</th>
+                        </tr>
+                        <tbody style="background-color: white">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td hidden>
+                                        @(Gross += item.BillPayments.Sum(e => e.PaidAmount))
+                                        @(waiver += item.User.Waivers.Sum(e => e.AmountWaived))
+                                        @(refunds += item.User.Refunds.Sum(e => e.RefundedAmount))
+                                    </td>
+                                    <td>@(num += 1)</td>
+                                    <td>@item.Id</td>
+                                    <td>@item.User.Username</td>
+                                    <td></td>
+                                    <td>@item.BillPayments.Sum(e => e.PaidAmount)</td>
+                                    <td>@item.User.Waivers.Sum(e => e.AmountWaived)</td>
+                                    <td>@item.User.Refunds.Sum(e => e.RefundedAmount)</td>
+                                    <td>@(item.BillPayments.Sum(e => e.PaidAmount) - item.User.Waivers.Sum(e => e.AmountWaived) + item.User.Refunds.Sum(e => e.RefundedAmount))</td>
+                                    <td>@item.StartTime</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+                <br />
+                <table>
+                    <tr>
+                        <td>
+                            Gross Total(Cash):
+                        </td>
+                        <td>
+                            <input type="number" class="text-box margin-top-bottom-2" name="GrossTotal" id="GrossTotal" style="width:100%" readonly />
+                        </td>
+                        <td>
+                            &nbsp; Total(Waivers):
+                        </td>
+                        <td>
+                            <input type="number" class="text-box margin-top-bottom-2" name="TotalWaivers" id="TotalWaivers" style="width:100%" readonly />
+                        </td>
+                        <td>
+                            &nbsp;  Total Refunds:
+                        </td>
+                        <td>
+                            <input type="number" class="text-box margin-top-bottom-2" name="TotalRefunds" id="TotalRefunds" style="width:100%" readonly />
+                        </td>
+                        <td>
+                            &nbsp; Net Amount:
+                        </td>
+                        <td>
+                            <input type="number" class="text-box margin-top-bottom-2" name="NetAmount1" id="NetAmount1" style="width:100%" readonly />
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <button type="button" name="ReconcileShift" class="btn btn-default">Reconcile Shift(s)</button>
+                <button type="reset" name="RefreshReport" id="RefreshReport" class="btn btn-default">Refresh report</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#GrossTotal").val(@Gross);
+            $("#TotalRefunds").val(@refunds);
+            $("#TotalWaivers").val(@waiver);
+            $("#NetAmount1").val(@(Gross - (refunds + waiver)));
+        });
+    </script>
+}

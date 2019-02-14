@@ -1,0 +1,265 @@
+﻿@{
+    ViewBag.Title = "Banking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var banks = (List<CaresoftHMISDataAccess.FinanceBank>)ViewBag.Banks;
+    ViewBag.ShowTopMenu = true;
+
+
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Finance/Views/Shared/_LeftNavigation.cshtml")
+</div>
+<div class="col-md-6">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Banking
+            </div>
+            <div class="panel-body">
+                <form id="BankingForm">
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    From:
+                                </td>
+                                <td>
+                                    <input type="date" class="text-box margin-top-bottom-2" name="FromDate" style="width:100%" id="FromDate" required/>
+                                </td>
+                                <td>
+                                   &nbsp; To:
+                                </td>
+                                <td>
+                                    <input type="date" class="text-box margin-top-bottom-2" name="ToDate" style="width:100%" id="ToDate" required/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    &nbsp;
+                    <div class="col-md-12">
+                        <table class="table table-data-pathology table-condensed">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%">Method</th>
+                                    <th style="width:10%">Amount</th>
+                                    <th style="width:10%">Amount to bank</th>
+                                </tr>
+                            </thead>
+                            <tbody id="TBody" style="background-color:white">
+                                <tr>
+                                    <td>
+                                        Cash
+                                    </td>
+                                    <td>
+                                        <input type="number" readonly class="text-box margin-top-bottom-2" id="Cash" />
+                                    </td>
+                                    <td>
+                                        <input type="number" name="CashAmountToBank" class="text-box margin-top-bottom-2 AmountToBank"  required/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Mpesa
+                                    </td>
+                                    <td>
+                                        <input type="number" readonly class="text-box margin-top-bottom-2"  id="Mpesa" />
+                                    </td>
+                                    <td>
+                                        <input type="number" name="MpesaAmountToBank" class="text-box margin-top-bottom-2 AmountToBank"  required/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table table-data-pathology table-condensed">
+                            <tbody id="Cheque">
+                                <tr>
+                                    <th>Cheque No</th>
+                                    <th>Cheque Amount</th>
+                                    <th>Reconcile?</th>
+                                </tr>
+                                <tr class='reaconcileTr'>
+                                    <td>
+                                        <input type="number" class="text-box box-sm margin-top-bottom-2 chqNo" />
+                                    </td>
+                                    <td>
+                                        <input type="number" class="text-box margin-top-bottom-2" readonly value="0" />
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="banking" class="banking" style="width:100%"/> 
+                                    </td>
+                                    <td>
+                                        <button type="button" id="add1">+</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Account Name:
+                                </td>
+                                <td>
+                                    <input list="AccNo" name="GIName" class="text-box margin-top-bottom-2" style="width:100%" id="GIName" required/>
+                                    <datalist id="AccNo">
+                                        @foreach (var bank in banks)
+                                        {
+                                            <option value="@bank.GIName"></option>
+
+                                        }
+                                    </datalist>
+                                </td>
+                                <td>
+                                    Acc No:
+                                </td>
+                                <td>
+                                    <input type="text" name="AccNo" class="text-box margin-top-bottom-2" style="width:100%" id="AccNumber"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Branch:
+                                </td>
+                                <td>
+                                    <input type="text" name="Branch" class="text-box margin-top-bottom-2" style="width:100%" id="Branch" />
+                                </td>
+                                <td>
+                                    Total Amount:
+                                </td>
+                                <td>
+                                    <input type="number" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                        <input type="hidden" id="ChequeNumbers" name="ChequeNumbers" />
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" name="Save" value="Save" class="btn btn-primary bn-sm" id="BankingButton">Save</button>
+                        <button type="reset" value="Clear" name="clear">Clear</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="User" value="1" />
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#GIName").autocomplete({
+                source: function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Finance/Home/getBankDetails",
+
+                        data: { GIName: $("#GIName").val() },
+
+                        success: function (data) {
+
+                            $("#AccNumber").val(data.AccNo);
+                            $("#Branch").val(data.Branch)
+                        },
+
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                    });
+
+                }, select: function (event, ui) {
+
+                }
+
+            });
+            $(document).ready(function () {
+                $("#add1").click(function () {
+                    var markup = "<tr class='reaconcileTr'>"
+                        + '<td class="ChequeNo">'
+                        + '<input type="number" id="" class="text-box box-sm margin-top-bottom-2 chqNo" />'
+                        + '</td>'
+                        + '<td>'
+                        + '<input type="number" id="" class="text-box margin-top-bottom-2" readonly value="0"/>'
+                        + '</td>'
+                        + '<td>'
+                        + '<input type="checkbox" name="banking" class="banking" style="width:100%"/>  '
+                        + '</td>'
+                        + "</tr>";
+                    $("#Cheque").append(markup);
+                });
+            });
+
+        });
+
+
+        $("#BankingButton").click(function () {
+            var ChequeNu = "";
+            $(".reaconcileTr").each(function () {
+                var a = $(this).children().children('.banking');
+                if (a.is(':checked')) {
+
+                    var parent = $(this).children().children('.chqNo');
+                    ChequeNu += parent.val() + ", ";
+                }
+                else {
+                }
+            })
+
+            $("#ChequeNumbers").val(ChequeNu);
+            console.log(ChequeNu);
+
+            var data = $("#BankingForm").serialize();
+
+            if ($.isNumeric($("#User").val())) {
+                var ok = confirm("Caution before finalizing Banking\n\nAre the amounts okay?");
+                if (!ok) {
+                    return false;
+                }
+                $(".loader").show();
+                $.ajax({
+                    type: "POST",
+                    data: data,
+                    url: "/Finance/Home/PostBanking",
+                    success: function (result) {
+                        $("#BankingForm")[0].reset();
+                        $(".loader").hide();
+                    },
+                    error: function (xhr, thrownError, c) {
+                        console.log(xhr.responseText);
+                        $(".loader").hide();
+                    }
+                });
+            }
+        });
+
+
+        $("#ToDate").change(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Finance/Home/getTotals",
+                data: { FromDate: $("#FromDate").val(), ToDate: $("#ToDate").val() },
+                success: function (obj) {
+                    console.log(obj.cash);
+                    console.log(obj.mpesa);
+                    $("#Cash").val(obj.cash);
+                    $("#Mpesa").val(obj.mpesa);
+
+                },
+                error: function () {
+                }
+            });
+
+
+        });
+
+    </script>
+
+
+}
+

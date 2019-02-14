@@ -1,0 +1,127 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.MfgCo>
+
+@{
+    ViewBag.Title = "Manufacturing Company";
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+}
+
+<style>
+    .table > tbody + tbody {
+        background-color: white;
+    }
+
+    .formrequired {
+        color: red;
+        font-size: 18px;
+    }
+</style>
+<div>
+    <div class="col-md-8">
+        <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+            <div class="panel-heading">
+                Manufacturing Company
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-7">
+                        <form autocomplete="off">
+                            <table class="">
+                                <tr>
+                                    <td>Mfg Company Name</td>
+                                    <td>
+                                        <input name="Name" type="text" id="MfgName" class="text-box" /> <span class="formrequired">*</span>
+                                    </td>
+                                    <td>
+                                        <div id="result">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <input type="button" class="btn btn-sm btn-primary" value="Save" id="btnSave" />
+                                        <input type="button" class="btn btn-sm btn-primary" value="Clear" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+
+
+                    </div>
+
+
+                    <div class="" id="MgfCoList">
+                        <hr />
+                        @Html.Partial("_MfgCoList", Model)
+                    </div>
+                    <div id="pagination" class="col-md-12">
+                        <br />
+                        <div class="col-md-6 col-offset-3">
+                            <div class="pagination">
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                                of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("ManufacturingCompany", new { page }))
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+    $("#btnSave").click(function () {
+        var Name = $("#MfgName").val();
+
+        if ($("#MfgName").val().length > 0) {
+            $("#btnSave").attr("disabled", true);
+            var model = { Name: Name }
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ManufacturingCompany", "ProcurementMaster")',
+                data: model,
+                success: function (obj) {
+                    var mgfList = $("#MgfCoList");
+                    mgfList.empty();
+                    mgfList.append(obj);
+                    $("#result").notify("Record Saved Successfully", "success");
+                    $("#MfgName").val("");
+                    $("#btnSave").attr("disabled", false);
+
+                },
+                error: function () {
+                    console.log("an error occured");
+                    $("#result").notify("Error Occured While saving this entry", "error");
+                    $("#btnSave").attr("disabled", false);
+                }
+
+            });
+
+        }
+        else {
+
+            $("#MfgName").notify("Please Enter name", {position:'right'},"error");
+
+            }
+
+        });
+
+    </script>
+
+}
+
+

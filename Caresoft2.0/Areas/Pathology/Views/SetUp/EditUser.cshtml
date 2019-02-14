@@ -1,0 +1,85 @@
+﻿@model IEnumerable<LabsDataAccess.DepartmentAssignment>
+
+
+@{
+    ViewBag.Title = "Add New User";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Areas/Pathology/Views/Shared/_LayoutPathology.cshtml";
+}
+
+<div class="col-xs-offset-2 col-xs-8 CustomLabel">
+    <div class="panel panel-primary caresoft-panel">
+
+        <div class="panel-heading">
+            Edit Lab User
+        </div>
+        <div class="panel-body">
+
+            @using (Html.BeginForm(Html.BeginForm("EditUser", "SetUp", FormMethod.Get, null)))
+    {
+        <div class="form-group">
+            @Html.Label("Select User Type", htmlAttributes: new { @class = "col-xs-2" })
+            <div class="">
+                @Html.DropDownList("user_type", new SelectList(ViewBag.UserType, "Id", "UserType1"), new { @class = "text-box box-lg" })
+                <button value="List" type="submit" class="btn btn-sm btn-primary ">List</button>
+            </div>
+        </div>
+
+
+}
+
+            <div style="background:white;" class=" pathology-border">
+                <table class="table table-condensed table-bordered table-data-pathology" >
+                    <thead class="bg-primary">
+                        <tr class="table-primary">
+                            <th>Edit</th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.User)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserType)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.User_Department)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SingatureImage)
+                            </th>
+                        </tr>
+                    </thead>
+                        @foreach (var item in Model)
+                        {
+                            <tr style="background:#ffffff;">
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserType1.UserType1)
+                                </td>
+                                <td>
+                                    @foreach (var ud in item.User_Department)
+                                    {
+                                        @ud.Department1.Department1 @:,
+                                    }
+                                </td>
+                                <td>
+                                    <img height="20px;" src="~/Areas/Pathology/Images/Signatures/@item.SingatureImage" alt="@item.UserName">
+                                </td>
+
+                            </tr>
+                        }
+
+                </table>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>

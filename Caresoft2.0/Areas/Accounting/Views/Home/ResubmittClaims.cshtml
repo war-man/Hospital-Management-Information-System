@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "ResubmittClaims";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-2">
+</div>
+<div class="col-md-6">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Resubmitt Claims
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                            <table>
+                                <tr>
+                                    <td>
+                                        Invoice No:
+                                    </td>
+                                    <td>
+                                        <select name="InvoiceNo" class="text-box margin-top-bottom-2" style="width:100%">
+                                            <option>--Select--</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        &nbsp; Scheme Name:
+                                    </td>
+                                    <td>
+                                        <select name="SchemeName" class="text-box margin-top-bottom-2" style="width:100%">
+                                            <option>--Select--</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Patient Name:
+                                    </td>
+                                    <td>
+                                        <input name="PatienName" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                    <td>
+                                        &nbsp; Inv Date:
+                                    </td>
+                                    <td>
+                                        <input name="InvDate" type="date" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Patient No:
+                                    </td>
+                                    <td>
+                                        <input name="PatientNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                    <td>
+                                        &nbsp; Account No:
+                                    </td>
+                                    <td>
+                                        <input type="number" name="AccNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Debit:
+                                    </td>
+                                    <td>
+                                        <input name="Debit" class="text-box margin-top-bottom-2" style="width:100%" type="number" />
+                                    </td>
+                                    <td>
+                                        &nbsp; Balance:
+                                    </td>
+                                    <td>
+                                        <input type="number" name="Balance" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Action Taken:
+                                    </td>
+                                    <td>
+                                        <input name="ActionTaken" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                    <td>
+                                        &nbsp; Original Dis No:
+                                    </td>
+                                    <td>
+                                        <input name="DisNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                            </table>
+                    </div>
+                    &nbsp;
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Ok</button>
+                        <button type="reset" class="btn btn-default margin-top-bottom-2">Refresh</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

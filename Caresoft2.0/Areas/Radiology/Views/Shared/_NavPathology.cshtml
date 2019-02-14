@@ -1,0 +1,467 @@
+﻿
+<style>
+    
+</style>
+<table class="table-top-menu" width="100%">
+    <tr style="background-color:#C1D8F9">
+        <td>
+            |Admin <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            |Assign Department <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("AssignNewDepartment", "SetUp")">
+                                            | Assign New Department
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("EditUser", "SetUp")">
+                                            | Edit Department
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            |Test Master <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+
+                                    <tr>
+                                        <td data-href="@Url.Action("AddDepartment", "SetUp")">
+                                            | Add/Edit Department
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("TestMaster", "SetUp")">
+                                            | Add/Edit Test
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("ProfileMaster", "SetUp")">
+                                            | Add/Edit Profile
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("NormalValues", "SetUp")">
+                                            | Add/Edit Normal Values
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("PanicValues", "SetUp")">
+                                            | Add/Edit Panic Values
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("SampleMaster", "SetUp")">
+                                            | Speciment Master
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("InterpretationEntry", "SetUp")">
+                                            | Interpretation Entry
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("ReasonMaster", "SetUp")">
+                                            | Reason Master
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>| Sample Type Wise Test</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("ShortFormMaster", "SetUp")">
+                                            | Add/Edit Short Form
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("FormulaSetting", "SetUp")">
+                                            | Formula Settings
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("MachineDetails", "SetUp")">
+                                            | Machine Details
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("SOPMaster", "SetUp")">
+                                            | SOP Entry
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("VialTypeMaster", "SetUp")">
+                                            | Vial Type Master
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("TestTurnAroundTime", "SetUp")">
+                                            | Test Turn Around Time
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            |Outsource Lab Master <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td>| Add/Edit Outsource Lab Master </td>
+                                    </tr>
+                                    <tr>
+                                        <td>| Add/Edit Outsource Test/Rate</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            |Admin <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("MarqueeMaster", "SetUp")">
+                                            | Add/Edit Marquee
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("MarqueeMaster", "SetUp")">
+                                            | Audit Trail
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("MarqueeMaster", "SetUp")">
+                                            | Delete Patient Details
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("MarqueeMaster", "SetUp")">
+                                            | Report Setting
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("MarqueeMaster", "SetUp")">
+                                            | Setting
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>
+            |Patient Reg <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("index", "Registration")">
+                            | Test Status
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | View Dispatch Status
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Patient Wise Graph
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Reports Download/Printing
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Turn Around Time
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>
+            |Accession<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("SampleCollection", "SampleCollection")">
+                            | Queue
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("SampleCollection", "Accession")">
+                            | Specimen Collection
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("Rejectedsamples", "Accession")">
+                            | Rejected Sample
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+        </td>
+
+        <td>
+            |Patient Result<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("Index","TestResultsEntry")">
+                            | Test Result Entry
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AbnormalResults","TestResultsEntry")">
+                            | Abnomal Result
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("PanicResults","TestResultsEntry")">
+                            | Panic Result
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+        </td>
+
+        <td>
+            |Inventory<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("index", "Registration")">
+                            | Reagent/Item Unit Entry
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Bill Of Material <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td>| Add New Entry</td>
+                                    </tr>
+                                    <tr>
+                                        <td>| Edit Entry</td>
+                                    </tr>                                    
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Update Inventory
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Add Consumption Manually
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Current Stock
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+        </td>
+        <td>
+            |Search Patient<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("SearchPatient", "Reports")">
+                            | Go
+                        </td>
+                    </tr>                  
+
+                </table>
+            </div>
+
+        </td>
+        <td>
+            |Report<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("index", "Reports")">
+                            | Ref.Doctor Report
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("NormalRangeReport", "Reports")">
+                            | Normal Range Report
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("TestDoneReport", "Reports")">
+                            | Test Done Report
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("index", "Reports")">
+                            | Stock ledger
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("index", "Registration")">
+                            | Item Stock ledger
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("TestTurnAroundTime", "Reports")">
+                            | Test Turn Around Time Report
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("index", "Reports")">
+                            | Pending Report List
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AuthorisedPatient", "Reports")">
+                            | Authorising List
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("index", "Reports")">
+                            | Outsource Lab Report
+                        </td>
+                    </tr>
+
+
+                </table>
+            </div>
+
+        </td>
+    </tr>
+    @*<tr id="setup-drop-down" class="tr-dropdown">
+        <td>
+            <table class="dropdown-table">
+                <tr>
+                    <td>Account Master Billing &nbsp;<i class="fa fa-caret-right"></i></td>
+                    <td>
+                        <table class="dropdown-table side-kick-table">
+                            <tr>
+                                <td>Departments</td>
+                            </tr>
+                            <tr>
+                                <td>Services</td>
+                            </tr>
+                            <tr>
+                                <td>Tariffs</td>
+                            </tr>
+                            <tr>
+                                <td>Tariff Pricing</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Company Master</td>
+                </tr>
+            </table>
+        </td>
+    </tr>*@
+</table>
+
+
+@*<div class="navbar navbar-caresoft ">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Caresoft 2.0", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Setup <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <a class="test" tabindex="-1" href="#">Account Master(Billing)<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="@Url.Action("Department", "Master")">Revenue Departments</a></li>
+                                <li><a tabindex="-1" href="@Url.Action("Service", "Master")">Services</a></li>
+                                <li><a tabindex="-1" href="@Url.Action("Create", "Tariffs")">Tariffs</a></li>
+                                <li><a tabindex="-1" href="@Url.Action("Create", "ServicesPrices")">Tariff Pricing</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="test" tabindex="-1" href="#">Insurance and Corporate Company Master<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="@Url.Action("InsuranceCompany", "Master")">Insurance Company</a></li>
+                                <li><a tabindex="-1" href="@Url.Action("InsuranceScheme", "Master")">Scheme Master</a></li>
+                                <li><a tabindex="-1" href="@Url.Action("InsuranceAward", "Master")">Insurance Award Master</a></li>
+                                <li><a tabindex="-1" href="#">Corporate Company</a></li>
+                                <li><a tabindex="-1" href="#">Organisation and Insurance Entitlement</a></li>
+                                <li class="dropdown-submenu">
+                                        <a class="test" href="#">Another dropdown <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">3rd level dropdown</a></li>
+                                            <li><a href="#">3rd level dropdown</a></li>
+                                        </ul>
+                                    </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="@Url.Action("Employee", "Master")">User Management</span></a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>@Html.ActionLink("Dashboard", "Index", "Home", new { area = "" }, null)</li>
+                <li>@Html.ActionLink("Billing", "Index", "Billing", new { area = "" }, null)</li>
+                <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown-toggle" data-toggle="dropdown"><a href="#"><span class="glyphicon glyphicon-user"></span> Hello, <span id="logged-in-user-name">@ViewBag.Username</span> <i class="caret"></i> </a></li>
+                <ul class="dropdown-menu">
+                    <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-key"></i> Change Password</a></li>
+                    <li><a href="@Url.Action("Logout", "Login")"><i class="fa fa-power-off"></i> Logout</a></li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+    
+
+</div>*@
+
+
+
+
+
+
+
+

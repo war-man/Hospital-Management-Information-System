@@ -1,0 +1,107 @@
+﻿@using LabsDataAccess
+
+@{
+    ViewBag.Title = "Normal Range Wise Report";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Areas/Pathology/Views/Shared/_LayoutPathology.cshtml";
+
+}
+
+<div class="col-xs-offset-4 col-xs-4" id="view">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+                
+
+                @using (Ajax.BeginForm("NormalRangeReportList", "Reports", new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET",
+                    UpdateTargetId = "UniversalModalView",
+                    OnSuccess = "$('#UniversalModal').modal('show');",
+                    LoadingElementId = "loadingElement",
+                }))
+                {
+
+                    <div class="row">
+                        <div class="form-group col-xs-10">
+                            @Html.Label("Select Department", htmlAttributes: new { @class = "col-xs-4" })
+                            <div class="col-xs-8">
+                                @Html.DropDownList("Department", new SelectList(ViewBag.Department, "Id", "Department1"),
+                        "Select Department", new  { @class = "text-box", style = "width:100%", @requred= "requred" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-xs-10">
+                            @Html.Label("Test Name	", htmlAttributes: new { @class = "col-xs-4" })
+                            <div class="col-xs-8">
+                                @Html.DropDownList("Test", new SelectList(ViewBag.Tests, "Id", "Test"),
+                                               "Select Test", new  { @class = "text-box", style = "width:100%", @requred = "requred" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xs-10">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <button id="btnReport" disabled class="btn btn-sm btn-primary" >Report</button>
+                        </div>
+                    </div>
+                }
+
+
+            <div id="report" class="form-group col-xs-12">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+        $("#Department").change(function () {
+            $('#btnReport').prop('disabled', true);
+
+            $.get("NormalRangeTestList?Dep=" + $(this).val(), function (data) {
+                console.log(data);
+                $('#Test').find('option')
+                    .remove()
+                    .end()
+                    .append($('<option>', {
+                        value: 0,
+                        text: 'Select Test'
+                    }))
+                     .append($('<option>', {
+                        value: -1,
+                        text: 'All'
+                    }));
+
+                $.each(data, function (i, item) {
+                    $('#Test').append($('<option>', {
+                        value: item.Id,
+                        text: item.TestName
+                    }));
+                });
+
+            });
+        });
+
+
+        $("#Test").change(function () {
+            if ($(this).val() != 0) {
+                $('#btnReport').removeProp('disabled');
+            } else {
+                $('#btnReport').prop('disabled', true);
+
+            }
+        });
+
+       
+    </script>
+}

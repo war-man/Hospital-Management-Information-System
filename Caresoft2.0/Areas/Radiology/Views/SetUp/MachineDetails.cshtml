@@ -1,0 +1,106 @@
+﻿@model IEnumerable<LabsDataAccess.MachineDetail>
+
+@{
+    ViewBag.Title = "Machine Details";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Areas/Radiology/Views/Shared/_LayoutRadiology.cshtml";
+}
+
+<div class="col-xs-10 col-xs-offset-1">
+
+    <br />
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading" style="height:40px ; ">
+            <h5 style="font-weight:bold">Add New Heading</h5>
+        </div>
+        <div class="panel-body">
+            <table class="form" style="width:100%;">
+                <tbody>
+                    <tr>
+                        <td style="padding:5px; float:right; font-weight:bold"> Machine Name </td>
+                        <td>
+                            <select name="MachineName" style="width:200px" class="text-box">
+                                @foreach (LabsDataAccess.Machine m in ViewBag.MachineName)
+                                {
+                                    <option value="@m.Id">@m.Machine_Name</option>
+                                }
+                            </select>
+                        </td>
+
+                        <td style="padding:5px; float:right; font-weight:bold"> Tlcode </td>
+                        <td>
+                            <input style="width:200px" name="Tlcode" class="text-box" />
+                        </td>
+
+                        <td style="padding:5px; float:right; font-weight:bold"> Test Name </td>
+                        <td>
+                            <select name="TestName" style="width:200px" class="text-box">
+                                @foreach (LabsDataAccess.LabTest m in ViewBag.TestName)
+                                {
+                                    <option value="@m.Id">@m.Test</option>
+                                }
+                            </select>
+                        </td>
+
+                        <td> </td>
+                        <td>
+                            <button type="submit" class="btn btn-sm btn-primary">List</button>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+
+            <div class="">
+                <table class=" Radiology-bordertable table-condensed table-data-Radiology table-bordered" style="width:100%; background:white;">
+                    <thead>
+                        <tr>
+                            <th>TlCode</th>
+                            <th>Test Name</th>
+                            <th>Type</th>
+                            <th>Parameter Name</th>
+                            <th>Machine Name</th>
+
+                        </tr>
+                    </thead>
+                    <tbody style="max-height:200px; overflow:auto; background:white;">
+                        @if (Model.ToList().Count > 0)
+                        {
+                            foreach (var i in Model)
+                            {
+                                <tr>
+                                    <td>@i.Title</td>
+                                    <td>@i.Department1.Department1</td>
+                                    <td></td>
+                                    <td>@i.Department1.Department1</td>
+                                    <td>@i.Machine1.Machine_Name</td>
+
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                        <td colspan="5" class="text-center">
+                            No data to display
+                        </td>
+                    }
+                        </tbody>
+                    </table>
+
+                </div>
+                <br />
+
+                @Ajax.ActionLink("Add/BioName", "AddMachineDetails", null, new AjaxOptions
+                {
+                    UpdateTargetId = "UniversalModalView",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET",
+                    LoadingElementId = "loadingElement",
+                    OnSuccess = "$('#UniversalModal').modal('show');"
+                }, new { @class = "btn btn-sm btn-primary" })
+
+            </div>
+        </div>
+    </div>
+

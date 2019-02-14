@@ -1,31 +1,205 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model IEnumerable<CaresoftHMISDataAccess.DashboardIcon>
+
+@{
+    Layout = "~/Views/Shared/_DashboardIcons.cshtml";
+
+    var ChangePasswordRequest = false;
+    var ChangePasswordRequestLock = false;
+    var ChangePasswordRequestMessage = "";
+
+    if (Session["ChangePasswordRequest"] != null)
+    {
+        ChangePasswordRequest = (Boolean)Session["ChangePasswordRequest"];
+        ChangePasswordRequestMessage = (string)Session["ChangePasswordRequestMessage"];
+
+    }
+
+    if (Session["ChangePasswordRequestLock"] != null)
+    {
+        ChangePasswordRequestLock = (Boolean)Session["ChangePasswordRequestLock"];
+    }
+
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+@*@foreach (var item in Model)
+    {
+        <div class="col-sm-2">
+            <a href="/@Html.DisplayFor(modelItem => item.Action)">
+                <div class="panel text-center dashboard-icon">
+                    <img src="~/Content/icons/dashboard/@(Html.DisplayFor(modelItem => item.Icon)).png" />
+                    <p>@Html.DisplayFor(modelItem => item.Text)</p>
+                </div>
+            </a>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+        </div>
+
+    }*@
+
+@if ((bool)Session["IsDebugMode"])
+{
+<b>
+    <p style="font-size:16" class="cm-strong text-danger text-center">
+        This is an Evaluation Solution. It is not in anyway supposed  to be used in commercial puposes.
+        <br /> Offenders Will be prosecuted. Visit <a href="http://softcom.co.ke/"> softcom.co.ke </a>
+    </p>
+</b>
+}
+
+@if (ChangePasswordRequest)
+{
+    <h5 class="bg-danger" style="padding:10px; color:white; background:red; border:1px solid black; border-radius:100px;"><strong> @ChangePasswordRequestMessage </strong></h5>
+}
+
+@if (!ChangePasswordRequestLock)
+{
+
+    <table class="table-dashboard-icons">
+        <tr>
+
+            <td data-href="hms">
+                <img src="~/Content/icons/dashboard/HMS.png" />
+                <p>HMIS</p>
+            </td>
+            <td data-href="Pathology">
+                <img src="~/Content/icons/dashboard/pathology-lab.png" />
+                <p>Pathology</p>
+            </td>
+            <td data-href="Radiology">
+                <img src="~/Content/icons/dashboard/radiology.png" />
+                <p>Radiology</p>
+            </td>
+
+            <td data-href="Theatre">
+                <img src="~/Content/icons/dashboard/OT.png" />
+                <p>Theatre</p>
+            </td>
+
+            <td data-href="/UserManagement/">
+                <img src="~/Content/icons/dashboard/user-management.png" />
+                <p>User Management</p>
+            </td>
+        </tr>
+
+        <tr>
+            <td data-href="FixedAssets">
+                <img src="~/Content/icons/dashboard/Inventory.png" />
+                <p>
+                    Inventory (Fixed<br />Assets)
+                </p>
+            </td>
+            <td data-href="@Url.Action("Index","NurseModule")">
+                <img src="~/Content/icons/dashboard/Nurse.png" />
+                <p>Nurse Module</p>
+            </td>
+            <td data-href="HISTOCYTO">
+                <img src="~/Content/icons/dashboard/pathology-lab1.png" />
+                <p>Histo/Cyto</p>
+            </td>
+
+            <td>
+                <img src="~/Content/icons/dashboard/help_desk.png" />
+                <p>Help Desk</p>
+            </td>
+            <td data-href="emr">
+                <img src="~/Content/icons/dashboard/consultant-module.png" />
+                <p>EMR</p>
+            </td>
+
+        </tr>
+
+
+        <tr>
+            <td data-href="Procurement">
+                <img src="~/Content/icons/dashboard/procurement.png" />
+                <p>Procurememnt</p>
+            </td>
+            <td data-href="/generalstore/mastergstore">
+                <img src="~/Content/icons/dashboard/general_store.png" />
+                <p>
+                    General Store
+                </p>
+            </td>
+            <td data-href="/medicalstore/medicalstoremaster">
+                <img src="~/Content/icons/dashboard/Inventory1.png" />
+                <p>Medical Store</p>
+            </td>
+            <td data-href="/pharmacyModule">
+                <img src="~/Content/icons/dashboard/Pharmacy.png" />
+                <p>Pharmacy</p>
+            </td>
+            <td data-href="misreports">
+                <img src="~/Content/icons/dashboard/MIS-reports.png" />
+                <p>MIS Reports</p>
+            </td>
+
+
+        </tr>
+        <tr>
+
+            <td data-href="Finance">
+                <img src="~/Content/icons/dashboard/Financial-Account.png" />
+                <p>Finance/Accounting</p>
+            </td>
+
+            
+            <td data-href="PatientModule">
+                <img src="~/Content/icons/dashboard/payroll.png" />
+                <p>Patient Module</p>
+            </td>
+
+            <td>
+                <img src="~/Content/icons/dashboard/HIV.png" />
+                <p>CCC</p>
+            </td>
+
+            <td data-href="/morg">
+                <img src="~/Content/icons/dashboard/Mortuary.png" />
+                <p>Mortuary</p>
+            </td>
+
+            <td data-href="/bloodbank">
+                <img src="~/Content/icons/dashboard/bloodbank.png" />
+                <p>Blood Bank</p>
+            </td>
+        </tr>
+
+        <tr>
+
+            <td data-href="#">
+                <img src="~/Content/icons/dashboard/kitchen.png" />
+                <p>Kitchen</p>
+            </td>
+
+            <td data-href="#">
+                <img src="~/Content/icons/dashboard/CSSD.png" />
+                <p>CSSD</p>
+            </td>
+
+            <td data-href="#">
+                <img src="~/Content/icons/dashboard/report.png" />
+                <p>Graph Report</p>
+            </td>
+
+            <td data-href="#">
+                <img src="~/Content/icons/dashboard/report.png" />
+                <p>Dynamic Query</p>
+            </td>
+
+            <td data-href="#">
+                <img src="~/Content/icons/dashboard/Central_Store.png" />
+                <p>Central Store</p>
+            </td>
+        </tr>
+
+        <tr>
+            <td data-href="HR">
+                <img src="~/Content/icons/dashboard/payroll.png" />
+                <p>HR & Payroll</p>
+            </td>
+        </tr>
+    </table>
+
+
+}
+
+<p style="font-size:13px; float:right; padding:10px; color:#0099FF; font-family: Tahoma; white-space:normal"><strong>Caresoft v@{ <span>@Session["Version"]</span>}</strong></p>

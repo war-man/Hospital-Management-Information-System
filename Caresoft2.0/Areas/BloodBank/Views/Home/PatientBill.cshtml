@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "PatientBill";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-10 col-lg-offset-1">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Prepare Bill
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Bill No:
+                                </td>
+                                <td>
+                                    <input type="number" name="BillNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp;  Billing Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="BillingDate" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Issue No:
+                                </td>
+                                <td>
+                                    <input type="number" name="IssueNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Patient Id:
+                                </td>
+                                <td>
+                                    <input type="number" name="PatientNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Name:
+                                </td>
+                                <td>
+                                    <input class="text-box margin-top-bottom-2" name="Name" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Concession Type:
+                                </td>
+                                <td>
+                                    <select name="ConcessionType" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table table-data-pathology table-condensed">
+                            <tr>
+                                <th>Description</th>
+                                <th>Blood Bag</th>
+                                <th>CMR No</th>
+                                <th>Charges</th>
+                                <th>Bag Deposit</th>
+                                <th>Transfer Charges</th>
+                                <th>Other Charges</th>
+                                <th>VBDC/RBD No</th>
+                                <th>IFC/VIFC</th>
+                                <th>Less Concession</th>
+                                <th>Total</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input name="BagDeposit" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input name="TransferCharges" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input name="OtherCharges" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input name="VBDC_RBD" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input name="IFC_VIFC" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input name="LessConcession" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input type="number" name="Total" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Advance Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="AdvanceAmount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Voluntary/Replacement Discount(Rs.):
+                                </td>
+                                <td>
+                                    <input type="number" name="VoluntatyDiscount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Concession:
+                                </td>
+                                <td>
+                                    <input type="number" name="Concession" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Balance Amount:
+                                </td>
+                                <td>
+                                    <input type="number" class="text-box margin-top-bottom-2" name="BalanceAmount" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <button type="submit" class="btn btn-primary btn-sm bn-sm">Save</button>
+                        <button type="reset" class="">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

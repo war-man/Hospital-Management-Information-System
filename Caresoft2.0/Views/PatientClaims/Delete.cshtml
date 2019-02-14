@@ -1,0 +1,64 @@
+﻿@model CaresoftHMISDataAccess.PatientClaim
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PatientClaim</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClaimNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClaimNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrunchId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrunchId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpdRegister.Department)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpdRegister.Department)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Username)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

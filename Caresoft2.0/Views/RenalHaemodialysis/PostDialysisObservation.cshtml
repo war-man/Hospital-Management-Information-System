@@ -1,0 +1,141 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var myProfile = new CaresoftHMISDataAccess.RenalPostDialysisObservation();
+
+    if (Model.OpdRegister.RenalPostDialysisObservations != null)
+    {
+        myProfile = Model.OpdRegister.RenalPostDialysisObservations
+            .OrderByDescending(e => e.Id).FirstOrDefault();
+    }
+
+    var relationships = (List<CaresoftHMISDataAccess.Relationship>)ViewBag.Relationships;
+    var maritals = (List<CaresoftHMISDataAccess.MaritalStatu>)ViewBag.Maritals;
+
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Post Dialysis Observation";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>Post Dialysis Observation </p>
+    </div>
+    <style>
+        input.box-sm {
+            width: 120px
+        }
+    </style>
+    <div class="panel-body">
+        <form id="maternal_profile" method="post" action="@Url.Action("SavePostDialysisObservation", "RenalHaemodialysis")">
+            <input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+            <fieldset>
+
+                <table class="table-form marg-top-16px">
+
+
+
+                    <tr>
+
+                    <tr>
+                        <td>
+                            <label for="BP">
+                                B/P
+                            </label>
+                        </td>
+                        <td>
+                            <input name="BP" required type="text" class="text-box box-lg" />
+                        </td>
+                        <td>
+                            <label>
+                                Pulse
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" name="Pulse" class="text-box box-lg" required />
+                        </td>
+
+
+
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label>
+                                Temp
+                            </label>
+                        </td>
+                        <td>
+                            <input type="number" name="Temp" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>
+                                Respiration
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" name="Respiration" class="text-box box-lg" required />
+                        </td>
+
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+
+                    <tr>
+                        <td>
+                            <label>Remarks</label>
+                        </td>
+                        <td>
+                            <textarea type="text" name="Remarks" class="text-box box-lg" required> </textarea>
+                        </td>
+
+
+                    </tr>
+
+
+
+
+                </table>
+                <input type="submit" class="btn btn-sm btn-primary " value="Save" />
+                @Html.ActionLink("Previous", "DialysisInfo", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+@style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+
+
+
+            </fieldset>
+
+        </form>
+
+
+        <div>
+            @Html.Partial("PostDialysisObservatioList", Model.OpdRegister.RenalPostDialysisObservations)
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+    </script>
+}

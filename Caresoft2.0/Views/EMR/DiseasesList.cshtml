@@ -1,0 +1,6 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Disease>
+
+@foreach (var disease in Model)
+{
+    <label><input type="checkbox" value="A@(disease.CodeMOH705_A) B@(disease.CodeMOH705_B)  - @disease.DiseaseName" />A@(disease.CodeMOH705_A) B@(disease.CodeMOH705_B) -  @disease.DiseaseName</label><br />
+}

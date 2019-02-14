@@ -1,0 +1,310 @@
+﻿@model Caresoft2._0.Areas.Procurement.ViewModel.ProvisionalPurchaseOrderViewModel
+@{
+    ViewBag.Title = "AddProvisionalPo";
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+}
+
+<style>
+    .table-form tr {
+        height: 50px;
+    }
+
+    .text-box {
+        width: 200px;
+    }
+
+    .btnN {
+        margin-left: 5px;
+    }
+</style>
+
+<div>
+    <div class="col-md-12">
+        <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+            <div class="panel-heading custom-navbar">
+                <p style="color:black;margin-left:10px;"><strong>Provisional Purchase Order</strong></p>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table-form">
+                            <tr>
+                                <td>Supplier Type</td>
+                                <td>
+                                    <div id="SupplierType">
+                                        <fieldset>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="General Supplier">General Supplier
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="Donor Supplier">Donor Supplier
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Provisional PO No </td>
+                                <td></td>
+                                <td>Provisional PO Date</td>
+                                <td><input type="date" class="text-box" id="ProvisionalPODate" value="@DateTime.Now.ToString("yyyy-MM-dd")" /></td>
+                            </tr>
+                            <tr>
+                                <td>Select Suppliers</td>
+                                <td>
+                                    <div id="suppliers" class="text-box" style="overflow:scroll; width:200px; height:100px;">
+                                        @foreach (var item in Model.Suppliers)
+                                        {
+
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value="@item.Supplier_Code">@item.Supplier_Name</label>
+                                            </div>
+                                        }
+                                    </div>
+                                </td>
+                                <td>
+                                    Description
+                                </td>
+                                <td>
+                                    <textarea cols="4" rows="5" class="text-box" id="Description"></textarea>
+                                </td>
+                            </tr>
+
+                            <tr><td colspan="3"><strong>Provisional PO Items Detail</strong></td></tr>
+                            <tr>
+                                <td>Item Desc</td>
+                                <td>
+                                    <input type="text" id="itemName" class="text-box" />
+                                    <div class="text-box suggestions collapse" id="ItemNameList">
+                                    </div>
+                                </td>
+                                <td>Quantity</td>
+                                <td>
+                                    <div class="form-inline">
+                                        <input id="Quantity" type="number" class="text-box" />
+                                        <input type="button" class="btn btn-primary btn-sm" style="width:50px;margin-top:0px;" value="OK" id="btnOk" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="TblProvisional">
+                    @Html.Partial("_ProvisionalPurchaseList", Model.ProvisionalPOItemsDetail)
+                </div>
+             
+                <div class="row btnN">
+                    <input type="button" class="btn btn-primary btn-sm" value="Save" id="BtnSave" />
+                    <input type="button" class="btn btn-primary btn-sm" value="Clear" id="" />
+                    <a href="/ProcurementPurchase/ProvisionalPOReport" class="btn btn-primary btn-sm">Report</a>
+                    <input type="button" class="btn btn-primary btn-sm" value="Excel Report" id="" />
+                </div>
+                <div id="result">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+<script>
+
+    $(document).ready(function () {
+        $(".btnEdit").each(function () {
+            $(this).click(function () {
+                alert($(this).val());
+            });
+        })
+
+    })
+
+        $("#btnOk").click(function () {
+
+            InitializeVariables();
+
+            var addNewPO = {
+                provisionalPurchaseOrder: provisionalPurchaseOrder,
+                suppliers: suppliers,
+                provisionalPOItemsDetail: provisionalPOItemsDetail
+            }
+            $.ajax({
+                type: 'POST',
+                url: '/ProcurementPurchase/AddProvisionalPO/',
+                data: addNewPO,
+                success: function (obj) {
+
+                    ShowSuccessfulResult();
+                    ClearTextBoxes();
+                    var TblProvisional = $("#TblProvisional");
+                    TblProvisional.empty();
+                    TblProvisional.append(obj);
+
+                    $(".btnEdit").each(function () {
+                        $(this).click(function () {
+                            alert($(this).val());
+                        });
+                    })
+                },
+                error: function (x, y, z) {
+
+                    console.log(x.responseText);
+                }
+
+            })
+        });
+
+        //create an empty array
+        var suppliers = [];
+        var provisionalPurchaseOrder = null;
+        var provisionalPOItemsDetail = null;
+
+
+        function InitializeVariables() {
+            var _supplierType = $("input[name=optradio]").val();
+            var _ProvisionalPODate = $("#ProvisionalPODate").val();
+            var _suppliers = suppliers;
+            var _Description = $("#Description").val();
+            var _ItemMasterId = $("#itemName").attr("name");
+            var _quantity = $("#Quantity").val();
+
+            $(':checkbox:checked').each(function (i) {
+                var data = $(this).val();
+                suppliers[i] = data;
+            });
+
+            provisionalPurchaseOrder = {
+                SupplierType: _supplierType,
+                Date: _ProvisionalPODate,
+                Description: _Description
+            }
+
+            provisionalPOItemsDetail = {
+                DrugId: _ItemMasterId,
+                Quantity: _quantity
+            }
+
+        }
+
+        $("#itemName").keyup(function () {
+            var itemName = $("#itemName").val();
+            var itemList = $("#ItemNameList");
+
+
+            if (itemName.length < 1) {
+
+                itemList.fadeOut();
+            }
+            else {
+
+                var nam = { name: itemName };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/ProcurementPurchase/SearchItemList',
+                    data: nam,
+                    success: function (obj) {
+                        console.log(obj);
+                        //create an array to store the values searched
+                        var item = [];
+                        //loop through all the items and push then into the array variable
+
+                        $.each(obj, function (key, value) {
+                            var string = '<p class="searchedItems"  name="' + value.Id + '"  data-value="' + value.Name + '">' + value.Name + '</p>';
+                            item.push(string);
+
+                        })
+
+                        // empty the div element
+                        $("#ItemNameList").empty();
+
+                        var items = item.join("");
+                        itemList.append(items);
+                        itemList.fadeIn();
+
+                        $(".searchedItems").each(function () {
+                            $(this).click(function () {
+                                var val = $(this).data("value");
+                                var id = $(this).attr("name");
+                                $("#itemName").val(val);
+                                $("#itemName").attr('name', id);
+                                $("#ItemNameList").fadeOut();
+                                $("#ItemNameList").empty();
+                            })
+                        });
+
+
+                    },
+                    error: function (e, x, y) {
+                        console.log(e.responseText);
+                    }
+                })
+
+            }
+
+        })
+
+        function ShowSuccessfulResult() {
+            var result = $("#result");
+            var string = '<div class="alert alert-success">' +
+                '<strong>Successful!</strong> Added Successfully.' +
+                ' </div >';
+                result.empty();
+                result.append(string);
+                result.fadeTo(2000, 1000).slideUp(500, function () {
+                    result.slideUp(500);
+                    result.empty();
+            })
+        }
+
+        function ClearTextBoxes() {
+            $("#itemName").val("");
+            $("#Quantity").val("");
+
+        }
+
+        function PopulateTable(obj) {
+
+            var tableDrugs = $("#tableDrugs");
+
+            var finalString = "";
+
+            $.each(obj, function (key, value) {
+
+                var string = "<tr><td></td>";
+                var Name = "<td>" + value.Name + "</td>";
+                var quantity = "<td>" + value.Quantity + "</td>";
+                var string2 = "<td></td></tr>";
+                var semiFinalString = string + Name + quantity + string2 + " ";
+                finalString += semiFinalString;
+            })
+
+            tableDrugs.empty();
+            tableDrugs.html(finalString); 
+        }
+
+
+    $("#BtnSave").click(function () {
+        console.log("Saved");
+
+        $.ajax({
+            type: 'POST',
+            url: '/ProcurementPurchase/CompleteProvisionalPo',
+            success: function (obj) {
+                //console.log(obj);
+                $("#TblProvisional").empty();
+                $("#TblProvisional").append(obj);
+            },
+            error: function (x, y, z) {
+
+                console.log(x.responseText);
+            }
+        })
+
+    });
+        
+
+</script>
+    }
+

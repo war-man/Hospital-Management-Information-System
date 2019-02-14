@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetMoh717" targetNamespace="http://tempuri.org/DataSetMoh717.xsd" xmlns:mstns="http://tempuri.org/DataSetMoh717.xsd" xmlns="http://tempuri.org/DataSetMoh717.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetMoh717" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetMoh717" msprop:Generator_UserDSName="DataSetMoh717">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="OutPatientService" msprop:Generator_TableClassName="OutPatientServiceDataTable" msprop:Generator_TableVarName="tableOutPatientService" msprop:Generator_RowChangedName="OutPatientServiceRowChanged" msprop:Generator_TablePropName="OutPatientService" msprop:Generator_RowDeletingName="OutPatientServiceRowDeleting" msprop:Generator_RowChangingName="OutPatientServiceRowChanging" msprop:Generator_RowEvHandlerName="OutPatientServiceRowChangeEventHandler" msprop:Generator_RowDeletedName="OutPatientServiceRowDeleted" msprop:Generator_RowClassName="OutPatientServiceRow" msprop:Generator_UserTableName="OutPatientService" msprop:Generator_RowEvArgName="OutPatientServiceRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="NewAttendances" msprop:Generator_ColumnVarNameInTable="columnNewAttendances" msprop:Generator_ColumnPropNameInRow="NewAttendances" msprop:Generator_ColumnPropNameInTable="NewAttendancesColumn" msprop:Generator_UserColumnName="NewAttendances" type="xs:int" minOccurs="0" />
+              <xs:element name="ReAttendances" msprop:Generator_ColumnVarNameInTable="columnReAttendances" msprop:Generator_ColumnPropNameInRow="ReAttendances" msprop:Generator_ColumnPropNameInTable="ReAttendancesColumn" msprop:Generator_UserColumnName="ReAttendances" type="xs:int" minOccurs="0" />
+              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

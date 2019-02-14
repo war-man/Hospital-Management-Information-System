@@ -1,0 +1,120 @@
+﻿@model LabsDataAccess.WorkOrder
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>WorkOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OPDNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPDNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPDType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPDType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BillPaid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BillPaid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Doctor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Doctor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LabNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LabNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PathNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PathNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowInSpecimentResultEnty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShowInSpecimentResultEnty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowInSpecimentCollection)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShowInSpecimentCollection)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Financial_Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Financial_Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedUtc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedUtc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentRadPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartmentRadPath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.StatusValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.StatusValue)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

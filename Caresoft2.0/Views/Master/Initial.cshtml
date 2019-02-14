@@ -1,0 +1,81 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Salutation>
+@{
+    ViewBag.Title = "Initial Master";
+    ViewBag.FormName = ViewBag.Title;
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+}
+<form action="@Url.Action("Initial", "master")" method="post">
+    <table class="table-form">
+        <tr>
+            <td><label for="SalutationName">Initial Name</label></td>
+            <td>
+                <input type="text" class="text-box box-lg" name="SalutationName" id="SalutationName" required />
+            </td>
+        </tr>
+        <tr>
+            <td><label for="Gender">Gender</label></td>
+            <td>
+                <select class="text-box box-lg" name="Gender" id="Gender">
+                    @if (ViewBag.SelectedGender != null)
+                     {
+                        <option>@ViewBag.SelectedGender</option>
+                     }
+                    <option>Both</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Available to	</label></td>
+            <td>
+                <label>
+                    <input type="checkbox" name="Patient" @if (ViewBag.Patient != null) { <text> checked</text> } /> Patient
+                </label>
+                <label>
+                    <input type="checkbox" name="Employee" @if (ViewBag.EMployee != null) { <text> checked</text> } /> Employee
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="right">
+                <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+                <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+            </td>
+        </tr>
+    </table>
+</form>
+<table class="table table-condensed table-data">
+    <thead>
+        <tr>
+            <th>Edit</th>
+            <th>Initial Name</th>
+            <th>Gender</th>
+            <th>Patient</th>
+            <th>Employee</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @foreach(var sal in Model)
+        {
+        <tr>
+            <td>
+                <label>Edit</label>
+            </td>
+            <td>@sal.SalutationName</td>
+            <td>@sal.Gender</td>
+            <td align="center">
+                <input type="checkbox" name="Patient"  @if (sal.Patient) { <text> checked</text> } disabled />
+            </td>
+            <td align="center">
+                <input type="checkbox" name="Patient"  @if (sal.Employee) { <text> checked</text> } disabled />
+            </td>
+            <td>
+                <label>Delete</label>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

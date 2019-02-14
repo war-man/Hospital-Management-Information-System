@@ -1,0 +1,249 @@
+﻿
+@{
+    ViewBag.Title = "PatientRequisition";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-8 col-lg-offset-2">
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Patient Requisition
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Patient Id:
+                                </td>
+                                <td>
+                                    <input type="number" name="PatientId" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Patient Name:
+                                </td>
+                                <td>
+                                    <select name="Salutation" class="text-box margin-top-bottom-2">
+                                        <option>Mr</option>
+                                        <option>Mrs</option>
+                                        <option>Miss</option>
+                                    </select>
+                                </td>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input name="PatientName" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Date of Birth:
+                                </td>
+                                <td>
+                                    <input type="date" name="DOB" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Sex:
+                                </td>
+                                <td>
+                                    <input type="radio" value="Male" name="Sex" /> Male
+                                    <input type="radio" value="Female" name="Sex" /> Female
+                                </td>
+                                <td>
+                                  &nbsp;  Age:
+                                </td>
+                                <td>
+                                    <input type="number" name="Age" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Address:
+                                </td>
+                                <td>
+                                    <input name="Address" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Phone No:
+                                </td>
+                                <td>
+                                    <input type="tel" name="PhoneNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr>
+                                <td colspan="5">
+                                    <strong style="color:red">Kindly identify the patient properly, take sample and label properly, most fatal reactions are due to sampling errors.</strong>
+                                </td>
+                            </tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr>
+                                <td>
+                                    Hospital:
+                                </td>
+                                <td>
+                                    <select name="Hospital" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    &nbsp; Room/Ward:
+                                </td>
+                                <td>
+                                    <input type="number" name="RoomWard" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Doctor/Consultant:
+                                </td>
+                                <td>
+                                    <select name="Doctor" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    &nbsp; Diagnosis:
+                                </td>
+                                <td>
+                                    <input name="Diagnosis" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Indication For Transfusion:
+                                </td>
+                                <td>
+                                    <select name="TransfusionIndication" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    &nbsp;  Urine Albumin:
+                                </td>
+                                <td>
+                                    <input name="UrineAlbumin" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    HB in GM %:
+                                </td>
+                                <td>
+                                    <input type="number" name="HB" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Other Relevant Investigation:
+                                </td>
+                                <td>
+                                    <input name="RelevantInvestigation" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Blood Group:
+                                </td>
+                                <td>
+                                    <select name="BloodGroup" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"><strong style="color:deepskyblue">History of Previous Whole Blood or Component Transfusion</strong></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Number of Transfusions Given:
+                                </td>
+                                <td>
+                                    <input type="number" name="TransfusionsGiven" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Approximate Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="ApproximateDate" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Nature of Reaction if any:
+                                </td>
+                                <td>
+                                    <textarea name="Reaction" class="text-box margin-top-bottom-2" style="width:100%"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong style="color:deepskyblue">History of Pregnacies(If Applicable)</strong></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Number of Pregnancies:
+                                </td>
+                                <td>
+                                    <input type="number" name="PregnanciesNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp;  Number of Miscarriages:
+                                </td>
+                                <td>
+                                    <input type="number" class="text-box margin-top-bottom-2" style="width:100%" name="MiscarriageNo" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Haemolytic Disease of New Born:
+                                </td>
+                                <td>
+                                    <input name="HaemolyticDiseaseofNewBorn" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                        <table class="table table-data-pathology table-condensed">
+                            <tr>
+                                <th>Select Componet</th>
+                                <th>Quantity(In Unit)</th>
+                                <th>Date of Required</th>
+                                <th>Time of Required</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select name="Component" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number" name="Quantity" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input type="date" name="DateRequired" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <input type="time" name="TimeRequired" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    <button id="Add" type="button">+</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <button type="submit" class="btn btn-primary btn-sm bn-sm">Save</button>
+                        <button type="reset" class="">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

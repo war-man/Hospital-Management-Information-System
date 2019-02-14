@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Employee REPORT";
+    Layout = "~/Views/Shared/_UserManagementLayout.cshtml";
+
+}
+
+<h2>Employee Information Reports</h2>
+
+
+
+<a class="btn btn-primary btn-sm" href="@Url.Action("ActiveUsers")">Get Active Users Report</a>
+<a class="btn btn-primary btn-sm" href="@Url.Action("GetUserRolesAndRightsReport","UserManagement")">Get User Roles And Rights Report</a>
+<a class="btn btn-primary btn-sm" href="@Url.Action("AllEmployeesReport","UserManagement")">All Employees Report</a>
+<a class="btn btn-primary btn-sm" href="@Url.Action("EmployeeByDept","UserManagement")">Sort Employee By Dept Report</a>

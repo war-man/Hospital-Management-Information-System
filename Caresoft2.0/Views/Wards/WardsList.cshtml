@@ -1,0 +1,30 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HSWard>
+<table class="table table-data table-condensed" id="wards-table">
+    <thead>
+        <tr>
+            <th>Edit</th>
+            <th>Ward Name</th>
+            <th>Actual Beds</th>
+            <th>Authorized Beds</th>
+            <th>Ward Category</th>
+            <th>Building Name</th>
+            <th>Floor Name</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @foreach(var ward in Model)
+        {
+            <tr>
+                <td><label>Edit</label></td>
+                <td>@ward.WardName</td>
+                <td>@ward.HSBeds.Count()</td>
+                <td>@ward.AuthorizedBeds</td>
+                <td>@ward.HSWardCategory.WardCategoryName</td>
+                <td>@ward.HSFloor.HSBuilding.BuildingName</td>
+                <td>@ward.HSFloor.FloorName</td>
+                <td><label>Delete</label></td>
+            </tr>
+        }
+    </tbody>
+</table>

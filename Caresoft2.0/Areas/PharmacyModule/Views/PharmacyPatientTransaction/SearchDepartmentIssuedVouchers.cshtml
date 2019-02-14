@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.DepartmentVoucher>
+
+@{
+    ViewBag.Title = "Search Department Issued Vouchers";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+}
+
+
+
+
+<style>
+    .text-box {
+
+    }
+</style>
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px"> <strong>  Search Voucher</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                Item Name
+                            </td>
+                            <td><input type="text" class="text-box" id="ItemName" /></td>
+                        </tr>
+                        <tr>
+                            <td>From Date</td>
+                            <td><input type="date" class="text-box" id="FromDate" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" /></td>
+                            <td>To Date</td>
+                            <td><input type="date" class="text-box" id="ToDate" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" /></td>
+                        </tr>
+                        <tr>
+                            <td>Generic Drug </td>
+                            <td><input type="text" class="text-box" id="GenericDrug" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><button class="btn btn-primary btn-sm">Search</button></td>
+                        </tr>
+                    </table>
+
+                    <br />
+                    <br />
+                    <div class="col-md-12">
+                        @Html.Partial("~/Areas/MedicalStore/Views/DepartmentTransactionMStore/_lstSearchIssueVoucher.cshtml", Model)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

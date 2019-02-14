@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "MergeGLAcc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+}
+
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Merge GL Accounts
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <fieldset class="col-md-6">
+                            <legend>From</legend>
+                            <table>
+                                <tr>
+                                    <td>
+                                        Account No:
+                                    </td>
+                                    <td>
+                                        <input type="number" name="AccNoFrom" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Account Name:
+                                    </td>
+                                    <td>
+                                        <input name="AccNameFrom" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                        <fieldset class="col-md-6">
+                            <legend>To</legend>
+                            <table>
+                                <tr>
+                                    <td>
+                                        Account No:
+                                    </td>
+                                    <td>
+                                        <input type="number" name="AccNoTo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Account Name:
+                                    </td>
+                                    <td>
+                                        <input name="AccNameTo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Change</button>
+                        <button type="reset" class="btn btn-default margin-top-bottom-2">Clear</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

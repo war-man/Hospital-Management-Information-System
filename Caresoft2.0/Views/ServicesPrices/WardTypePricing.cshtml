@@ -1,0 +1,91 @@
+﻿@model Caresoft2._0.CustomData.WardTypeChargesData
+@{
+    ViewBag.Title = "IPD Ward Type Charges";
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+    ViewBag.FormName = ViewBag.Title;
+    ViewBag.WardCatId = Model.WardCategories.First().Id;
+
+}
+
+<table class="table-form">
+    <tr>
+        <td>
+            <label>Ward Type</label>
+        </td>
+        <td>
+            <select class="text-box box-lg" name="WardCategoryId" id="WardCategoryId">
+                @foreach (var cat in Model.WardCategories)
+                {
+                    <option value="@cat.Id">@cat.WardCategoryName</option>
+                }
+            </select>
+            <label id="pleaseWait" class="collapse"><em>Please wait...</em></label>
+            
+        </td>
+        @*<td>
+            <button class="btn btn-sm btn-primary">All</button>
+        </td>*@
+    </tr>
+</table>
+<div id="ipd-services-list">
+    @Html.Partial("IPDPriceList", Model.IPDServices)
+</div>
+<button class="btn btn-sm btn-primary" id="update-prices">
+    Update
+</button>
+
+@section scripts{
+    <script>
+        $("#WardCategoryId").change(function () {
+            changeWardType()
+        });
+        function changeWardType() {
+
+            var vatId = $("#WardCategoryId").val();
+            $("#pleaseWait").show();
+            $.ajax({
+                url: '@Url.Action("WardTypePriceList", "ServicesPrices")/' + vatId,
+                success: function (result) {
+                    $("#ipd-services-list").html(result);
+                    $("#pleaseWait").hide();
+                },
+                error: function (e, f, g) {
+                    console.log(e.responseText);
+                    $("#pleaseWait").hide();
+                }
+            });
+        }
+
+        $("#update-prices").click(function () {
+            $("#pleaseWait").show();
+            var wardCatId = $("#WardCategoryId").val();
+            var items = $("#price-list tbody tr");
+            var data = [];
+            $.each(items, function (i, v) {
+                var serviceId = $(v).data("service-id");
+                var price = $("#service-price-" + serviceId).text().trim();
+                var entry = {
+                    "ServiceId": serviceId, "WardCategoryId": wardCatId, "Price": price
+                };
+                data.push(entry)
+            });
+            console.log(data);
+            $.ajax({
+                url: '@Url.Action("UpdateWardTypePrices", "ServicesPrices")',
+                method: 'post',
+                data: {"Items":data},
+                success: function (result) {
+                    $("#pleaseWait").hide();
+                    showNotification(result, "success", true);
+                },
+                error: function (e, f, g) {
+                    console.log(e.responseText);
+                    $("#pleaseWait").hide();
+                    showNotification("Unable to update prices. Check console for error details", "danger", true);
+                }
+            });
+
+
+        });
+    </script>
+}

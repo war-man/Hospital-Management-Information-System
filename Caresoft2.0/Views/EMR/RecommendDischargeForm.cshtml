@@ -1,0 +1,52 @@
+﻿@model CaresoftHMISDataAccess.OpdRegister
+
+<div class="panel panel-primary  shadow glass caresoft-panel" style="margin-bottom:-1em;">
+    <div class="panel-heading caresoft-panel">
+        Recommend Discharge
+    </div>
+    <div class="panel-body">
+        <div class="row marg-top-2px">
+            <div class="col-xs-12">
+                <h4>Recommend Discharge for </h4>
+                <h3>
+                    @Model.Patient.Salutation
+                    @Model.Patient.FName
+                    @Model.Patient.MName
+                    @Model.Patient.LName
+                    |
+                    @Model.Patient.RegNumber
+                </h3>
+                <form>
+                    <input type="hidden" name="IpdNo" value="@Model.Id" />                   
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                <label>Date</label>
+                            </td>
+                            <td>
+                                <input name ="date" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" class="text-box box-lg" />
+                            </td>
+                            <td rowspan="2">
+                                <label>Remarks</label>
+                            </td>
+                            <td rowspan="2">
+                                <textarea name="Remarks" class="text-box"></textarea>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Time</label>
+                            </td>
+                            <td>
+                                <input type="time" name="time" value="@DateTime.Now.ToString("HH:mm")" class="text-box box-lg" />
+                            </td>
+                        </tr>
+                    </table>
+                    <button class="btn btn-sm btn-primary" type="submit">Save</button>
+                    <button class="btn btn-sm btn-primary" type="button" data-dismiss="modal">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

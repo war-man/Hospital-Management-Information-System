@@ -1,0 +1,60 @@
+﻿@model Caresoft2._0.CustomData.DepartmentalRevenueData
+@using System.Globalization 
+@{
+    ViewBag.Title = "Departmental Revenue From : 01-Jan-2018 To: 31-Dec-2018";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+    ViewBag.Size = "A4";
+}
+
+@if (Model.BillServices.Count() > 0)
+{
+    if (Model.Departments.Count() > 0)
+    {
+     <table class="table table-condensed">
+        <thead>
+            <tr class="report-title gray-hr-bottom">
+                <th>No.</th>
+                @*<th>Department ID</th>*@
+                <th>Department Name</th>
+                <th align="right"><b>Amount</b></th>
+                <th align="right"><b>Running Amt</b></th>
+            </tr>
+        </thead>
+        <tbody>
+        @{var dc = 1; var runningAmt = 0.0;}
+        @foreach (var dept in Model.Departments)
+        {
+            <tr>
+                <td>@dc</td>
+                @*<td>@dept.Id</td>*@
+                <td>@dept.DepartmentName</td>
+                <td >@{var amt = Model.BillServices.Where(e => e.DepartmentId.Equals(dept.Id) && e.Paid).Sum(e => (e.Quatity * e.Price));} @amt</td>
+                @{ runningAmt += amt;}
+                <td >@runningAmt</td>
+            </tr>
+            
+            dc++;
+        }
+        </tbody>
+         <tfoot>
+             <tr class="report-title gray-hr-bottom" >
+                 <th colspan="3">
+                     Total
+                 </th>
+                 <th align="right">
+                     @(runningAmt.ToString("C2", CultureInfo.CreateSpecificCulture("sw-KE")))
+                 </th>
+             </tr>
+         </tfoot>
+    </table>
+                
+    }
+    else
+    {
+    <h4>No Departments Data Found!</h4>
+    }
+    }
+    else
+    {
+    <h4>No Revenue Data Found!</h4>
+    }

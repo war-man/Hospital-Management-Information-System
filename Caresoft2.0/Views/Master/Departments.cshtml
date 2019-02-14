@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Department>
+
+
+<table class="table table-data table-condensed">
+    <tr>
+        <th>
+           Department Name
+        </th>
+       
+        <th>
+            Department Type
+        </th>
+        <th>
+            Is Medical
+        </th>
+        <th></th>
+    </tr>
+    <tbody class="bg-white">
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentType1.DepartmnetType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsMedical)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

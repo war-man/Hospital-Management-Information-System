@@ -1,0 +1,638 @@
+﻿
+@{
+    ViewBag.Title = "Billing";
+    ViewBag.ShowTopMenu = true;
+}
+<!-- Button trigger modal -->
+<button type="button" id="btn-start-shift" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#startShiftModal">
+    Start Shift
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="startShiftModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">Start Shift</h4>
+                <div id="message"></div>
+            </div>
+            <div class="modal-body">
+                <form id="shiftStartForm">
+                    <div class="form-group">
+                        <label for="email">Username:</label>
+                        <input type="text" class="form-control" name="Username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" name="Password" placeholder="Password">
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="dismiss-login-modal">Close</button>
+                <button type="button" class="btn btn-primary" id="login-user">Proceed</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div id="view_port"></div>
+    
+
+
+@section scripts {
+
+    <script>
+
+        getMyBill(135);
+
+        if (typeof(sessionStorage.authToken) != "undefined") {
+            getShiftNo();
+        } else {
+            startNewShift();
+        }
+
+        function startNewShift() {
+            $("#btn-start-shift").trigger("click");
+        }
+
+
+        $("#login-user").on("click", function () {
+            clearMessage();
+            var data = $("#shiftStartForm").serializeObject();
+            sendRequest("POST", "/api/users/login", data);
+            //console.log(data);
+        });
+
+
+        function sendRequest(method, url, data) {
+            $(".loader").show();
+            $.ajax({
+                type: method,
+                url: url,
+                data: data,
+                datatype: "json",
+                success: function (result) {
+                    //do something
+                    $(".loader").hide();
+                    console.log(result);
+
+                    sessionStorage.authToken = result;
+                    $("#dismiss-login-modal").trigger("click");
+                    getShiftNo();
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    showMessage(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+                
+            });
+        }
+
+        function clearMessage() {
+            $("#message").text("");
+            $("#message").removeClass("text-danger");
+            $("#message").removeClass("text-info");
+            $("#message").removeClass("text-success");
+            $("#message").removeClass("text-warning");
+        }
+
+        function showMessage(message, color) {
+            $("#message").text(message);
+            $("#message").addClass("text-" + color);
+        }
+
+        function getShiftNo() {
+            $("#btn-start-shift").addClass("collapse");
+            var authToken = sessionStorage.authToken;
+            $.ajax({
+                type: "GET",
+                url: host+"/api/shifts/UserShift",
+                datatype: "json",
+                headers: {
+                    "authToken": authToken
+                },
+                success: function (result) {
+                    //do something
+                    $(".loader").hide();
+                    console.log(result);
+                    getBillingForm();
+                    $("#dismiss-login-modal").trigger("click");
+                    
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    showMessage(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+                
+            });
+
+        }
+        
+        function getBillingForm() {
+            $(".loader").show();
+            var authToken = sessionStorage.authToken;
+            $.ajax({
+                type: "GET",
+                url:  host+"/Billing/BillingForm",
+                datatype: "json",
+                headers: {
+                    "authToken": authToken
+                },
+                success: function (result) {
+                    //do something
+                    $(".loader").hide();
+                    $("#view_port").html(result);
+                    billingFormControllsListeners();
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    showMessage(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+                
+            });
+        }
+
+        function endShift() {
+            $(".loader").show();
+            var authToken = sessionStorage.authToken;
+            $.ajax({
+                type: "PUT",
+                url:  host+"/api/shifts/EndUserShift",
+                datatype: "json",
+                headers: {
+                    "authToken": authToken
+                },
+                success: function (result) {
+                    sessionStorage.removeItem("authToken");
+                    location.reload();
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    showMessage(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+
+        }
+
+        
+        function billingFormControllsListeners() {
+            $("#close-shift").click(function () {
+                endShift();
+            });
+
+            $(".searchable").each(function () {
+                
+                $(this).on("keyup", function () {
+                    var searchBy = $(this).attr("id");
+                    var searchText = $(this).val();
+                    if ($("#search-radio-btn").is(":checked")) {
+                        //quick search
+                        if (searchBy === "ReceiptNo") {
+                            //get actual bill
+                        } else {
+                            //search patient
+                            searchPatient(searchBy, searchText, getMyBill);
+                        }
+                    } else {
+                        //walk in
+                        
+                    }
+                });
+            });
+
+            $("#NewService").on("keyup", function () {
+                var searchText = $(this).val();
+                searchServices(searchText);
+            });
+
+            $("#addService").click(function () {
+                var obj = {
+                    "ServiceName": $("#NewService").val(),
+                    "Id": sessionStorage.currentServiceId,
+                    "Quantity": $("#qty").text(),
+                    "UnitPrice": $("#price").text(),
+                    "Subtotal": $("#subTotal").text()
+                };
+
+                appendChargeableItem(obj, true);
+                $("#NewService").val(""); $("#qty").text(""); sessionStorage.currentServiceId = ""; $("#price").text(""); $("#subTotal").text("");
+            });
+
+            $("td").on('keydown', '#trigger-add-new', function (e) {
+                var keyCode = e.keyCode || e.which;
+
+                if (keyCode == 9) {
+                    //tab key
+                    $("#addService").trigger("click");
+                }
+            });
+
+            $("#excemption").change(function () {
+                if (this.checked) {
+                    //whole amount excempted
+                    $("#moneyPaid").val("0.0"); 
+                    $("#change").val("0.0");
+                    $("#waiver").val("0.0");
+                    
+                    $("#waivedAmt").val("0.0");
+                    $("#waiver").prop('disabled', true);
+                    $("#moneyPaid").prop('disabled', true);
+
+                    $("input:radio[name='waiverUnit']").each(function (i) {
+                        this.checked = false;
+                    });
+                    
+                } else {
+                    $("#waiver").prop('disabled', false);
+                    $("#moneyPaid").prop('disabled', false);
+                }
+
+                updatePayable();
+            });
+
+            $("#waiver").on("keyup", function () {
+                var waiver = $(this).val();
+                if (waiver.length > 0) {
+                                     
+                    if ($("#percent-unit").is(":checked")) {
+                        //okay, let go
+                    } else {
+                        //nothing might be checked, so 
+                        $("#amount-unit").prop("checked", true);
+                    }
+                    
+                } else {
+                    $("input:radio[name='waiverUnit']").each(function (i) {
+                        this.checked = false;
+                    });
+                    $("#waivedAmt").val("0.0");
+                }
+
+                updatePayable();
+                
+            });
+
+            $("input:radio[name='waiverUnit']").change(function (i) {
+                updatePayable();
+            });
+
+            $("#moneyPaid").on("keyup", function () {
+                var paid = parseFloat($(this).val());
+                var payable = parseFloat($("#payable").val());
+                $("#change").val(paid - payable);
+
+            });
+
+            $("#postReceiptData").click(function () {
+                postReceiptData();
+
+            });
+        }
+
+        function postReceiptData() {
+            $(".loader").show();
+            var waiverUnit = "";
+            var boolException = false;
+
+            if ($("#excemption").is(":checked")) {
+                boolException = true;
+            } 
+            if ($("#percent-unit").is(":checked")) {
+                waiverUnit = "Percent";
+            } else if ($("#amount-unit").is(":checked")) {
+                waiverUnit = "Amount";
+            }
+
+            var data = {
+                "PatientId": sessionStorage.currentPatientId,
+                "ShiftNo": $("#shiftNo").val(),
+                "Received": $("#moneyPaid").val(),
+                "TotalChargeable": $("#amtKsh").val(),
+                "Waiver": $("#waiver").val(),
+                "WaiverUnit": waiverUnit,
+                "Payable": $("#payable").val() ,
+                "Change": $("#change").val(),
+                "PaymentMode": $("#paymentMode").val(),
+                "WaiverNumber": $("#waiverNo").val(), 
+                "Exception": boolException, 
+                "ReasonForException": null,
+                "Currency": $("#currency").val(), 
+                "PaidBy": null,
+                "Status": "Paid",
+                
+            }
+
+            $.ajax({
+                type: "PUT",
+                url:  host+"/api/Bills/" + sessionStorage.billNo,
+                datatype: "json",
+                data:data,
+                headers: {
+                    "authToken": sessionStorage.authToken
+                },
+                success: function (result) {
+                    alert(result);
+                    $(".loader").hide();
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    showMessage(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+        }
+
+        function updatePayable() {
+            if ($("#percent-unit").is(":checked")) {
+                $("#waivedAmt").val((parseFloat($("#waiver").val()) / 100) * $("#amtKsh").val());
+            } else if ($("#amount-unit").is(":checked")) {
+                $("#waivedAmt").val((parseFloat($("#waiver").val())));
+            }
+
+            if ($("#excemption").is(":checked")) {
+                $("#payable").val("0.0");
+            } else {
+                $("#payable").val((parseFloat($("#amtKsh").val()) - parseFloat($("#waivedAmt").val())));
+            }
+            $("#moneyPaid").trigger("keyup");
+        }
+
+        function getMyBill(receiptNo) {
+            $(".loader").show();
+            var searchBy = "";
+            if (typeof (receiptNo) === "undefined") {
+                var patId = sessionStorage.currentPatientId;
+                var authToken = sessionStorage.authToken;
+                searchBy = "PatientNo";
+                searchText = patId;
+                
+            } else {
+                searchBy = "ReceiptNo";
+                searchText = receiptNo;
+            }
+
+            $.ajax({
+                type: "POST",
+                url:  host+"/api/bills/search",
+                datatype: "json",
+                data: {
+                    "SearchText": searchText,
+                    "SearchBy": searchBy
+                },
+                headers: {
+                    "authToken": authToken
+                },
+                success: function (result) {
+                    $(".loader").hide();
+                    var billNo = window.location;
+                    $("#ReceiptNo").val(billNo);
+                  
+                    sessionStorage.billNo = billNo;
+                    console.log(result);
+                    $("#chargeable-services tbody").html("");
+                    for (var x = 0; x < result.length; x++) {
+                        var obj = result[x]; 
+                        appendChargeableItem(obj, false);
+                    }
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    showMessage(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+
+        }
+
+        function appendChargeableItem(obj, addToDb) {
+            var billNo = sessionStorage.billNo;
+            if (typeof (billNo) === "undefined") {
+                billNo = 0;
+            }
+
+            var data = {
+                "BillNo": billNo,
+                "PatientId": sessionStorage.currentPatientId,
+                "ServiceId": obj.Id,
+                "ServiceName": obj.ServiceName,
+                "UnitPrice": obj.UnitPrice,
+                "Quantity": obj.Quantity,
+                "Subtotal": obj.Subtotal,
+                "Status": "Unpaid",
+                "TimePaid": null
+            }
+
+            if (addToDb) {
+                $.ajax({
+                    type: "POST",
+                    url:  host+"/api/Chargeables/",
+                    datatype: "json",
+                    headers: {
+                        "authToken": sessionStorage.authToken
+                    },
+                    data: data,
+                    success: function (result) {
+                        console.log(result);
+                        sessionStorage.billNo = result.billNo;
+                        $("#ReceiptNo").val(result.billNo);
+                        var entry = '<tr class="bill-item-row" id="item' + result.Id + '">' +
+                            '<td>' + obj.ServiceName + '</td>' +
+                            '<td id="qty' + obj.Id + '" align="center">' + obj.Quantity + '</td>' +
+                            '<td id="price' + obj.Id + '" align="right">' + obj.UnitPrice + '</td>' +
+                            '<td class="bill-item-subtotal" id="subTotal' + obj.Id + '" align="right">' + obj.Subtotal + '</td>' +
+                            '<td></td>' + //gl account
+                            '<td align="center">' +
+                            '<input type="checkbox" checked />' +
+                            '</td>' +
+                            '<td align="center">' +
+                            '<i class="fa fa-remove"></i>' +
+                            '</td>' +
+                            '</tr>';
+
+                        $("#chargeable-services tbody").append(entry);
+
+                        $("#NewService").focus();
+                        recalculateTotalAmount();
+                        updatePayable();
+
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(xmlhttprequest.responseText);
+                    }
+
+                });
+            } else {
+                var entry = '<tr class="bill-item-row" id="item' + obj.Id + '">' +
+                    '<td>' + obj.ServiceName + '</td>' +
+                    '<td id="qty' + obj.Id + '" align="center">' + obj.Quantity + '</td>' +
+                    '<td id="price' + obj.Id + '" align="right">' + obj.UnitPrice + '</td>' +
+                    '<td class="bill-item-subtotal" id="subTotal' + obj.Id + '" align="right">' + obj.Subtotal + '</td>' +
+                    '<td></td>' + //gl account
+                    '<td align="center">' +
+                    '<input type="checkbox" checked />' +
+                    '</td>' +
+                    '<td align="center">' +
+                    '<i class="fa fa-remove"></i>' +
+                    '</td>' +
+                    '</tr>';
+
+                $("#chargeable-services tbody").append(entry);
+
+                $("#NewService").focus();
+                recalculateTotalAmount();
+                updatePayable();
+            }
+  
+        }
+
+        function recalculateTotalAmount() {
+            var total = 0;
+            $(".bill-item-subtotal").each(function () {
+               
+                var thisSubTotal = parseFloat($(this).text());
+                total += thisSubTotal;
+                $("#amtKsh").val(total);
+
+            });
+        }
+
+        function listenSuggestionItemClicks(input, obj, callback) {
+            sessionStorage.ReceiptNo = 0;
+            
+
+            $(".suggestion-item").each(function () {
+                $(this).click(function () {
+                    var clicked = $(this).text();
+                    var patId = obj.Id;
+                    sessionStorage.currentPatientId = patId;
+                    $("#PatientNo").val(patId);
+                    $("#patCat").val(obj.MainCategory);
+
+                    $("#" + input).val(clicked);
+                    $("#" + input + "-list").addClass("collapse");
+
+                    callback();
+                });
+            });
+        }
+
+        function searchPatient(input, searchText, callback) {
+            var authToken = sessionStorage.authToken;
+            $.ajax({
+                type: "POST",
+                url:  host+"/api/patients/search",
+                datatype: "json",
+                data: {
+                    "SearchText": searchText,
+                    "SearchBy": input
+                },
+                headers: {
+                    "authToken": authToken
+                },
+                success: function (result) {
+                    var suggestions = $("#" + input + "-list");
+                    //do something
+                    $(".loader").hide();
+                    if (result.length > 0) {
+                        suggestions.text("");
+                        suggestions.removeClass("collapse");
+                        var obj = {};
+                        $.each(result, function () {
+                            console.log($(this)[0]);
+                            obj = $(this)[0];
+                            var patName = obj.salutation + " " + obj.FName + " " + obj.MName + " " + obj.LName;
+                            var patId = obj.Id;
+                            suggestions.append("<p class=\"suggestion-item\">" + patName + "</p>");
+                        });
+                        listenSuggestionItemClicks(input, obj, callback);
+                        
+                        
+                    } else {
+                        suggestions.addClass("collapse");
+                    }
+
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    showMessage(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+
+            });
+
+        }
+
+        function searchServices(searchText) {
+            $.ajax({
+                type: "POST",
+                url:  host+"/api/services/search/",
+                datatype: "json",
+                headers: {
+                    "authToken": sessionStorage.authToken
+                },
+                data:{"SearchText": searchText},
+                success: function (result) {
+                    //do something
+                    $("#NewService-list").html("");
+                    if (result.length > 0) {
+                        for (var x = 0; x < result.length; x++) {
+                            var item = '<p class="add-service" id="' + result[x].Id + '" title="' + result[x].PricePerUnit+'">' + result[x].ServiceName + '</p>';
+                            $("#NewService-list").append(item);
+                        }
+                        $("#NewService-list").show();
+                        onServiceClickListeners();
+                    } else {
+                        $("#NewService-list").hide();
+                    }
+                    
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    console.log(xmlhttprequest.responseText);
+                }
+
+            });
+        }
+
+        function onServiceClickListeners() {
+            $(".add-service").each(function () {
+                var item = $(this);
+                $(this).on("click", function () {
+                    var serviceName = item.text();
+                    var serviceId = item.attr("id");
+                    var price = item.attr("title");
+                    sessionStorage.currentServiceId = serviceId;
+
+                    $("#NewService").val(serviceName);
+                    $("#qty").text(1);
+                    $("#price").text(price);
+                    $("#subTotal").text(price);
+
+                    $("#NewService-list").hide();   
+                });
+            });
+
+            $("#qty").on("keyup", function () {
+                var qty = parseFloat($(this).text());
+                var price = parseFloat($("#price").text());
+
+                var subtotal = qty * price;
+                $("#subTotal").text(subtotal);
+            });
+ 
+        }
+    </script>
+}
+

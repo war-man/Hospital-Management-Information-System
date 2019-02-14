@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.BillGroup>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupOrderNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dental)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsRegistration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HealthPackage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsProcedure)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupOrderNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dental)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsRegistration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HealthPackage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsProcedure)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

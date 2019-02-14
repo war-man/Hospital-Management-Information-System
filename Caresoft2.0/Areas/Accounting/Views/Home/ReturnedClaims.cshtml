@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "ReturnedClaims";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-2">
+</div>
+<div class="col-md-6">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Returned Invoices
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <table>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                <input type="checkbox" name="DisputedRejected" value="Disputed" /> Disputed
+                                &nbsp;
+                                <input type="checkbox" name="DisputedRejected" value="Rejected" /> Rejected
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Invoice No:
+                            </td>
+                            <td>
+                                <select name="InvoiceNo" class="text-box margin-top-bottom-2" style="width:100%">
+                                    <option>--Select--</option>
+                                </select>
+                            </td>
+                            <td>
+                                &nbsp; Scheme Name:
+                            </td>
+                            <td>
+                                <select name="SchemeName" class="text-box margin-top-bottom-2" style="width:100%">
+                                    <option>--Select--</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Patient Name:
+                            </td>
+                            <td>
+                                <input name="PatienName" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                            <td>
+                                &nbsp; Inv Date:
+                            </td>
+                            <td>
+                                <input name="InvDate" type="date" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Patient No:
+                            </td>
+                            <td>
+                                <input name="PatientNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                            <td>
+                                &nbsp;  Account No:
+                            </td>
+                            <td>
+                                <input type="number" name="AccNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Debit:
+                            </td>
+                            <td>
+                                <input name="Debit" class="text-box margin-top-bottom-2" style="width:100%" type="number" />
+                            </td>
+                            <td>
+                                &nbsp; Balance:
+                            </td>
+                            <td>
+                                <input type="number" name="Balance" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Reason:
+                            </td>
+                            <td>
+                                <select name="Reason" class="text-box margin-top-bottom-2" style="width:100%">
+                                    <option>--Select--</option>
+                                </select>
+                            </td>
+                            <td>
+                                &nbsp; Date Returned:
+                            </td>
+                            <td>
+                                <input type="date" name="ReturnedDate" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Action Required:
+                            </td>
+                            <td>
+                                <input name="ActionRequired" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                            <td>
+                                &nbsp; Date Received:
+                            </td>
+                            <td>
+                                <input type="date" name="DateReceived" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                UnderWritter:
+                            </td>
+                            <td>
+                                <input name="Underwritter" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                            <td>
+                                &nbsp;  Doc No:
+                            </td>
+                            <td>
+                                <input type="number" name="DocNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                &nbsp;
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Ok</button>
+                    <button type="reset" class="btn btn-default margin-top-bottom-2">Refresh</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

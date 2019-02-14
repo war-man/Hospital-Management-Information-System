@@ -1,0 +1,61 @@
+﻿@model Caresoft2._0.CustomData.ShiftReportData
+@{
+    ViewBag.Title = "RECEIPTS LIST From : 01-Jan-2018 To: 31-Dec-2018";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+    ViewBag.Size = "A4";
+   
+}
+asdfasd
+@if (Model.Shifts.Sum(e=>e.BillPayments.Count()) > 0)
+{
+    <table class="table table-condensed">
+        <thead>
+            <tr class="report-title gray-hr-bottom">
+                <th>No.</th>
+                <th>Date</th>
+                <th>Receipt No</th>
+                <th>Payer</th>
+                <th>Cashier</th>
+                <th>Mode</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody class="gray-hr-bottom">
+            @{var x = 1;
+            }
+            @foreach (var shift in Model.Shifts)
+            {
+                foreach (var rcpt in shift.BillPayments)
+                {
+                    <tr>
+                        <td>@x</td>
+                        <td>@rcpt.DateAdded</td>
+                        <td>@rcpt.Id</td>
+                        <td>
+                            @Html.DisplayFor(model => rcpt.OpdRegister.Patient.Salutation)
+                            @Html.DisplayFor(model => rcpt.OpdRegister.Patient.FName)
+                            @Html.DisplayFor(model => rcpt.OpdRegister.Patient.MName)
+                            @Html.DisplayFor(model => rcpt.OpdRegister.Patient.LName)
+                            
+                        </td>
+                        <td>@shift.User.Username</td>
+                        <td>@rcpt.PaymentMode.PaymentModeName</td>
+                        <td class="money">@rcpt.BillAmount</td>
+                    </tr>
+                    x++;
+                }
+
+            }
+        </tbody>
+        <tfoot>
+            <tr class="report-title gray-hr-bottom">
+                <th colspan="6">Total</th>
+                <th class="money">@Model.Shifts.Sum(e=>e.BillPayments.Sum(ba=>ba.PaidAmount))</th>
+            </tr>
+        </tfoot>
+    </table>
+}
+else
+{
+    <h4>No Receipts Data Found!</h4>
+}

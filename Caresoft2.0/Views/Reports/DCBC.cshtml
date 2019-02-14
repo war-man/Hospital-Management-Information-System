@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Caresoft2._0.CustomData.DCBCReportData>
+@{
+    ViewBag.Title = "Daily Collection (By Cashier) ";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+    ViewBag.Size = "A4";
+    var ram = 0.0;
+
+    //var shiftGroups = Model.GroupBy(e=>e.ShiftId).ToList();
+
+
+
+    var tCash = 0.0; var tr = 0; var tchq = 0.0; var tref = 0.0;
+
+}
+
+<p>From @ViewBag.StartDate to  @ViewBag.EndDate</p>
+<table class="table table-condensed" border="1">
+    <thead>
+        <tr class="report-title gray-hr-bottom">
+
+            <th>Cashier</th>
+            <th>Receipts</th>
+            <th>Cash</th>
+            <th>Cheques</th>
+            <th>Refunds</th>
+            <th>Net Amount</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entry in Model.GroupBy(e=>e.User))
+        {
+            <tr>
+                <td>@entry.First().User</td>
+                <td align="center">@entry.Count()</td>
+                <td class="money">@entry.Sum(e=>e.Cash)</td>
+                <td class="money">@entry.Sum(e => e.Cheque)</td>
+                <td class="money">@entry.Sum(e => e.Refund)</td>
+                <td class="money">@(entry.Sum(e => e.Cash) + entry.Sum(e => e.Cheque) - entry.Sum(e => e.Refund))</td>
+                <td>@entry.Last().Status</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr class="report-title gray-hr-bottom">
+
+            <td>Totals</td>
+            <td align="center">@Model.Count()</td>
+            <td class="money">@Model.Sum(e=>e.Cash)</td>
+            <td class="money">@Model.Sum(e => e.Cheque)</td>
+            <td class="money">@Model.Sum(e => e.Refund)</td>
+            <td class="money">@(Model.Sum(e => e.Cash) + Model.Sum(e => e.Cheque) - Model.Sum(e => e.Refund))</td>
+            <td></td>
+        </tr>
+    </tfoot>
+    @*<tbod>
+            @foreach (var sg in shiftGroups)
+            {
+
+            <tr>
+                <td>@sg.FirstOrDefault().Shift.User.Username</td>
+                <td align="center">@{ var r = sg.Count(); tr += r;}  @r</td>
+                <td class="money">
+                    @{var cashPays = sg.Where(e => e.PaymentMode.PaymentModeName.ToLower().Trim() == "cash");
+                        var cash = cashPays.Sum(e => e.PaidAmount) + cashPays.Where(e => e.Balance < 0).Sum(e => e.Balance);
+                     }
+
+                    @{ tCash += cash; } @cash
+                </td>
+                <td class="money">
+                    @{var cheque = sg.Where(e => e.PaymentMode.PaymentModeName.ToLower().Trim() == "cheque").Sum(e => e.PaidAmount);}
+                    @{ tchq += cheque; } @cheque
+                </td>
+                <td class="money">
+                    @{ var refund = 0; tref += refund;} @refund
+                </td>
+                <td class="money">
+                   @(cash + cheque -refund)
+                </td>
+                <td>
+                    @if (sg.FirstOrDefault().Shift.User.Username=="")
+                    {
+                        <tex>Open</tex>
+                    }
+                    else {
+                         <tex>Closed</tex>
+                    }
+                </td>
+            </tr>
+            }
+        </tbod>
+        <tfoot>
+            <tr class="report-title gray-hr-bottom">
+
+                <td>Totals</td>
+                <td align="center">@tr</td>
+                <td class="money">@tCash</td>
+                <td class="money">@tchq</td>
+                <td class="money">@tref</td>
+                <td class="money">@(tCash +tchq - tref)</td>
+                <td></td>
+            </tr>
+        </tfoot>*@
+</table>

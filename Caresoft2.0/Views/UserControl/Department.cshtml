@@ -1,0 +1,152 @@
+﻿@model Caresoft2._0.CustomData.DepartmentsData
+
+@{
+    ViewBag.Title = "Department";
+    Layout = "~/Views/Shared/_UserControl.cshtml";
+
+    AjaxOptions ajaxOptions = new AjaxOptions
+    {
+        OnBegin = "OnBeginMethod",
+        OnComplete = "OnCompleteMethod",
+        OnFailure = "OnFailureMethod",
+        OnSuccess = "OnSuccessMethod",
+
+    };
+}
+
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-primary" style="margin-top:10px">
+            <div class="panel-heading custom-navbar">
+                <p>Department Master</p>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content" id="reg-form-holder">
+                    <div id="addDept" class="tab-pane fade in active">
+                        @*<form name="patient-personal-details-form" id="patient-personal-details-form">*@
+
+                            @using (Ajax.BeginForm("CreateDepartment", ajaxOptions))
+                             {
+                        <table class="table-form">
+                            <tr>
+                                <td>
+                                    <label for="mainDepartment">
+                                        Main Department
+                                    </label>
+                                </td>
+
+                                <td>
+                                    <select id="MainDepartment" name="MainDepartment" class="text-box box-lg">
+                                        @foreach (var departmentType in Model.DepartmentTypeList)
+                {
+                        <option data-main-cat-id="@departmentType.Id">@departmentType.DepartmnetType.ToString()</option>
+}
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label for="DName">Dept Name</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box" name="DName" id="DName" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="FollowUp">FollowUp Days</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-lg" name="follow up" id="followup" />
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td></td>
+                                <td>
+                                    <button type="submit" id="save-btn" title="Save" class="btn btn-primary">Save</button>
+                                    <button type="button" id="Cancel-btn" title="Cancel" class="btn btn-primary">Cancel</button>
+                                    <label id="lableAjaxSatatus" class="alert-warning"></label>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                             }
+
+                                
+                    @*</form>*@
+                   
+               
+                <div>
+                    <table class="table table-data table-bordered table-sm" style="margin-top:10px">
+                        <thead>
+                            <tr>
+                                <th>Edit</th>
+                                <th>Dept Name</th>
+                                <th>FollowUp Days</th>
+                                <th>Delete</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color:#94b6e8">
+                                <td></td>
+                                <td><input type="text" class="text-box text-large" /> </td>
+                                <td><input type="text" class="text-box text-large" /> </td>
+                                <td></td>
+
+                            </tr>
+
+                            @foreach (var department in Model.Departments)
+                            {
+                                <tr>
+                                    <td><a href="Edit">Edit</a></td>
+                                    <td>@department.DepartmentName.ToString()</td>
+                                    <td></td>
+                                    <td>
+                                        <img src="~/Content/icons/delete.png" class="img" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    Page 1
+                                </td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts{
+
+  
+
+    <script>
+        function OnBeginMethod() {
+            $("lableAjaxSatatus").text("Loading ...");
+        }
+        function OnFailureMethod() {
+            $("lableAjaxSatatus").text("Failure ...");
+        }
+        function OnSuccessMethod() {
+            $("lableAjaxSatatus").text("Successful ...");
+        }
+        function OnCompleteMethod() {
+            $("lableAjaxSatatus").text("Complete ...");
+        }
+    </script>
+}

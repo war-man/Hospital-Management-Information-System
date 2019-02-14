@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "DonorWiseSupplierReport";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+}
+
+<style>
+    .text-box {
+        width: 200px;
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+</style>
+
+<div class="col-md-8">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px">
+                <strong>Donor Wise Supplier Report</strong>
+            </p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td>From Date</td>
+                            <td>
+                                <input type="date" class="text-box" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </td>
+                            <td>To Date</td>
+                            <td>
+                                <input type="date" class="text-box" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Supplier Type
+                            </td>
+                            <td>
+                                <fieldset class="text-box"  style="width:">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="General Supplier">General Supplier
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Donor Supplier">Donor Supplier
+                                    </label>
+                                </fieldset>
+                            </td>
+                            <td>
+                                Item Desc
+                            </td>
+                            <td>
+                                <select class="text-box">
+                                    <option>
+                                        Select Item
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Supplier
+                            </td>
+                            <td>
+                                <select class="text-box">
+                                    <option>
+                                        Select Supplier
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <a href="@Url.Action("GetDonorWiseSupplierReport")" class="btn btn-primary btn-sm">Report</a>
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

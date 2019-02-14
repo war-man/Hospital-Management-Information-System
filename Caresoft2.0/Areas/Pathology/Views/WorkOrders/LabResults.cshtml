@@ -1,0 +1,322 @@
+﻿
+@model LabsDataAccess.WorkOrder
+@using CaresoftHMISDataAccess;
+@using System.Data.Entity;
+
+@{
+
+    ViewBag.Title = "Patient Report";
+
+    Layout = "~/Areas/Pathology/Views/Shared/_ReportsLayout.cshtml";
+
+    var OPD = (OpdRegister)ViewBag.OPD;
+    var users = (DbSet<User>)ViewBag.Users;
+
+    var age_years = 0;
+    var age_months = 0;
+    var age_days = 0;
+
+    int main_department_id = ViewBag.main_department_id;
+    var TestDepartments = @Model.WorkOrderTests.Where(e => e.LabTest.DepartmentRadPath == main_department_id).GroupBy(x => x.LabTest.Department1.Department1);
+
+}
+
+<div style="border-bottom:solid 1px red;">
+    <table class="table-condensed" width="100%">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <td>: @OPD.Patient.Salutation @OPD.Patient.FName @OPD.Patient.LName </td>
+                <th>Reg No.</th>
+                <td>: @OPD.Patient.RegNumber</td>
+            </tr>
+            <tr>
+                <th>Age & Gender</th>
+                <td>
+                    :   @{
+                        if (OPD.Patient.DOB != null)
+                        {
+                            DateTime dob = ((DateTime)OPD.Patient.DOB);
+
+                            DateTime today = DateTime.Today;
+
+                            int months = today.Month - dob.Month;
+                            int years = today.Year - dob.Year;
+
+                            if (today.Day < dob.Day)
+                            {
+                                months--;
+                            }
+
+                            if (months < 0)
+                            {
+                                years--;
+                                months += 12;
+                            }
+
+                            int days = (today - dob.AddMonths((years * 12) + months)).Days;
+
+
+                            age_years = years;
+                            age_months = months;
+                            age_days = days;
+
+                            if (age_years != 0)
+                            {
+                                <span>@age_years </span> @: Years
+                            }
+                            else if (@age_months != 0)
+                            {
+                                <span>@age_months </span> @: Months
+                            }
+                            else
+                            {
+                                <span>@age_days </span> @: Days
+                            }
+
+                        }
+
+                    } / @OPD.Patient.Gender
+                </td>
+
+                <th>Path No</th>
+                <td>: @Model.Id</td>
+            </tr>
+            <tr>
+                <th>Referring Doctor</th>
+                <td>: @users.Find(Model.Doctor).Employee.FName @users.Find(Model.Doctor).Employee.OtherName ( @users.Find(Model.Doctor).Username ) </td>
+                <th>Sample Draw Date</th>
+                <td>: </td>
+            </tr>
+            <tr>
+                <th>Referring Cust./Lab</th>
+                <td>: </td>
+                <th>Report Date</th>
+                <td>: @DateTime.Now.ToString("dd/MM/yyyy hh:mm")</td>
+            </tr>
+        </thead>
+    </table>
+
+</div>
+
+<br />
+
+<div>
+    <table width="100%" class="table-condensed">
+
+        @foreach (var dep in TestDepartments)
+        {
+            <thead>
+                <tr style="border:solid 2px black;">
+                    <th class="text-center" colspan="4">@dep.First().LabTest.Department1.Department1</th>
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <th><u>DESCRIPTION</u></th>
+                    <th><u>VALUE OBSERVED</u></th>
+                    <th><u>UNITS</u></th>
+                    <th><u>REFERENCE RANGE</u></th>
+                </tr>
+            </thead>
+
+            foreach (var test in Model.WorkOrderTests.Where(e => e.LabTest.Department == dep.First().LabTest.Department && e.Status1.StatusValue == "Authorized"))
+            {
+                var Normal_range = @test.LabTest.NormalValues.FirstOrDefault();
+            <tbody>
+                @if (test.LabTest.Parameter)
+                {
+
+                    <tr>
+                        <th>@test.LabTest.Test</th>
+                    </tr>
+
+                    foreach (var par in test.WorkOrderTestParameters)
+                    {
+
+                        var Par_Normal_range = test.LabTest.NormalValues.Where(e => e.Parameter == par.Parameter);
+                        if (OPD.Patient.Gender == "M")
+                        {
+                            Par_Normal_range = Par_Normal_range.Where(e => e.Gender1.Type == "Male" || e.Gender1.Type == "All");
+                        }
+                        else if (OPD.Patient.Gender == "F")
+                        {
+                            Par_Normal_range = Par_Normal_range.Where(e => e.Gender1.Type == "Female" || e.Gender1.Type == "All");
+                        }
+                        else
+                        {
+                            Par_Normal_range = Par_Normal_range.Where(e => e.Gender1.Type == "All");
+                        }
+
+
+                        if (age_years != 0)
+                        {
+                            Par_Normal_range = Par_Normal_range.Where(e => e.Test == @test.LabTest.Id && e.Period.Days == "Years" && (age_years > e.Lower_Age && age_years <= e.Upper_Age));
+                        }
+                        else if (age_months != 0)
+                        {
+                            Par_Normal_range = Par_Normal_range.Where(e => e.Test == @test.LabTest.Id && e.Period.Days == "Months" && (age_months > e.Lower_Age && age_months <= e.Upper_Age));
+                        }
+                        else
+                        {
+                            Par_Normal_range = Par_Normal_range.Where(e => e.Test == @test.LabTest.Id && e.Period.Days == "Days" && (age_days > e.Lower_Age && age_days <= e.Upper_Age));
+                        }
+
+
+                        <tr>
+                            <td style="padding-left: 20px;">@par.Parameter1.Parameter_Name</td>
+                            <td>
+                                @{
+                                    float i = 0;
+                                    float.TryParse(par.Results.Trim(), out i);
+                                }
+
+
+                                @if (Par_Normal_range.Count() != 0 && i >= 0)
+                                {
+                                    if (Par_Normal_range.First().LowerRange <= i && Par_Normal_range.First().UpperRange >= i)
+                                    {
+                                        @par.Results
+                                    }
+                                    else
+                                    {
+                                        <span style="border-bottom:solid 1px red!important; color:#C9302C!important; font-weight:bold">
+                                            @par.Results
+                                        </span>
+                                    }
+                                }
+                                else
+                                {
+                                    @par.Results
+                                }
+                            </td>
+                            <td>
+                                @if (Par_Normal_range.Count() != 0)
+                                {@Html.DisplayName(@Par_Normal_range.First().Unit)}
+                            </td>
+                            <td>
+                                @if (Par_Normal_range.Count() != 0)
+                                {
+                                    <span>@Par_Normal_range.First().LowerRange - @Par_Normal_range.First().UpperRange</span>
+
+                                    @*<span>@Html.DisplayName(Par_Normal_range.First().LowerRange.ToString()) - @Html.DisplayName(Par_Normal_range.First().UpperRange.ToString())</span>*@
+                                }
+                            </td>
+                        </tr>
+
+                        if (par.Image != null && par.Image.Length > 0)
+                        {
+                            <tr>
+                                <td colspan="4">
+                                    <a target="_blank" href="~/Areas/Radiology/Images/Results/@par.Image">Attached Document</a><br />
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                }
+                else
+                {
+                    var Normalrange = test.LabTest.NormalValues.Where(e => e.Test == @test.LabTest.Id);
+                    if (OPD.Patient.Gender == "M")
+                    {
+                        Normalrange = Normalrange.Where(e => e.Gender1.Type == "Male" || e.Gender1.Type == "All");
+                    }
+                    else if (OPD.Patient.Gender == "F")
+                    {
+                        Normalrange = Normalrange.Where(e => e.Gender1.Type == "Female" || e.Gender1.Type == "All");
+                    }
+                    else
+                    {
+                        Normalrange = Normalrange.Where(e => e.Gender1.Type == "All");
+                    }
+
+
+                    if (age_years != 0)
+                    {
+                        Normalrange = Normalrange.Where(e => e.Test == @test.LabTest.Id && e.Period.Days == "Years" && (age_years > e.Lower_Age && age_years <= e.Upper_Age));
+                    }
+                    else if (age_months != 0)
+                    {
+                        Normalrange = Normalrange.Where(e => e.Test == @test.LabTest.Id && e.Period.Days == "Months" && (age_months > e.Lower_Age && age_months <= e.Upper_Age));
+                    }
+                    else
+                    {
+                        Normalrange = Normalrange.Where(e => e.Test == @test.LabTest.Id && e.Period.Days == "Days" && (age_days > e.Lower_Age && age_days <= e.Upper_Age));
+                    }
+
+                    <tr>
+                        <th>@test.LabTest.Test</th>
+                        <td>
+                            @{
+                                float i = 0;
+                                float.TryParse(test.Results.Trim(), out i);
+                            }
+
+
+                            @if (Normalrange.Count() != 0 && i >= 0)
+                            {
+                                if (Normalrange.First().LowerRange <= i && Normalrange.First().UpperRange >= i)
+                                {
+                                    @test.Results
+                                }
+                                else
+                                {
+                                    <span style="border-bottom:solid 1px red!important; color:#C9302C!important; font-weight:bold">
+                                        @test.Results
+                                    </span>
+                                }
+                            }
+                            else
+                            {
+                                @test.Results
+                            }
+                        </td>
+                        @*<td>@test.Results</td>*@
+                        <td>
+                            @if (Normalrange.Count() != 0)
+                            {@Html.DisplayName(@Normalrange.First().Unit)}
+                        </td>
+                        <td>
+                            @if (Normalrange.Count() != 0)
+                            {
+                                <span>@Normalrange.First().LowerRange - @Normalrange.First().UpperRange</span>
+
+                                @*<span>@Html.DisplayName(Normalrange.First().LowerRange.ToString()) - @Html.DisplayName(Normalrange.First().UpperRange.ToString())</span>*@
+                            }
+                        </td>
+                    </tr>
+
+                    if (test.Image != null && test.Image.Length > 0)
+                    {
+                        <tr>
+                            <td colspan="4">
+                                <a target="_blank" href="~/Areas/Radiology/Images/Results/@test.Image">Attached Document</a><br />
+                            </td>
+                        </tr>
+                    }
+
+
+                }
+
+                <tr>
+                    <td colspan="4">
+                        <p style="float:right">
+                            <b> &nbsp; &nbsp; &nbsp; Lab Technician :  &nbsp; </b>
+                            <span style="color: red!important">@Html.DisplayFor(e => dep.First().WorkOrder1.WorkOrderTests.FirstOrDefault().DepartmentAssignment.UserName)</span>
+                            <b> &nbsp; &nbsp; &nbsp; Signature : &nbsp; </b>
+                            <img height="50px;" src="~/Areas/Pathology/Images/Signatures/@dep.First().WorkOrder1.WorkOrderTests.FirstOrDefault().DepartmentAssignment.SingatureImage" />
+
+                        </p>
+                    </td>
+                </tr>
+
+            </tbody>
+
+              
+            }
+
+
+        }
+    </table>
+</div>

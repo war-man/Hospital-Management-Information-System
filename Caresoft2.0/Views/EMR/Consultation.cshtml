@@ -1,0 +1,319 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Consultation";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>Chief Complaints Details</p>
+    </div>
+    <div class="panel-body">
+        <form id="chief-complaints-form">
+
+            <input type="hidden" value="@Model.Patient.Id" name="PatientId" />
+            <input type="hidden" value="@Model.OpdRegister.Id" name="OpdIpdNumber" />
+            <input type="hidden" value="1" name="DoctorId" />  @*//TODO: pick form login session*@
+
+            <table class="table-form">
+                <tr>
+                    <td>
+                        <label for="ChiefComplaints">Chief<br />Complaints</label>
+                    </td>
+                    <td>
+                        <input type="text" class="text-box box-xlg" style="height:4em;" name="ChiefComplaints" id="ChiefComplaints" required>
+                    </td>
+                    <td align="right">
+                        <button type="button" class="btn btn-primary btn-sm">Previous Chief Complaints</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="ComplaintDate">Complaint<br />Date</label>
+                    </td>
+                    <td>
+                        <input type="date" class="text-box box-lg" value="@DateTime.Now.ToString("yyyy-MM-dd")" 
+                               name="ComplaintDate" id="ComplaintDate">
+                    </td>
+                    <td rowspan="4">
+                        History of Present Illness
+                        <textarea class="text-box box-xlg" rows="9"  readonly
+                                  name="HistoryOfPresentIllness" id="HistoryOfPresentIllness">@if (Model.OpdRegister.Status.Trim().ToLower().Equals("active"))
+                                  {
+                                      @Html.DisplayFor(modelItem => Model.OpdRegister.Complaints.FirstOrDefault().HistoryOfPresentIllness)
+                                  }</textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="Since">Since</label>
+                    </td>
+                    <td>
+                        <label><input style="width:4em;" type="number" class="text-box" min="1" maxlength="4" name="Since" id="Since"></label>
+                        <label><input type="radio" class="text-box box" name="SinceUnit" value="Hours"> Hours</label>
+                        <label><input type="radio" class="text-box box" name="SinceUnit" value="Days"> Days</label>
+                        <label><input type="radio" class="text-box box" name="SinceUnit" value="Weeks"> Week</label>
+                        <label><input type="radio" class="text-box box" name="SinceUnit" value="Months"> Month</label>
+                        <label><input type="radio" class="text-box box" name="SinceUnit" value="Years"> Years</label>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td><label for="TreatmentTaken">Treatment Taken</label></td>
+                    <td>
+                        <textarea class="text-box box-xlg" name="TreatmentTaken" id="TreatmentTaken"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Note">Clinical Note</label></td>
+                    <td>
+                        <textarea class="text-box box-xlg" id="Note" name="Note"></textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="Outcome">Outcome</label>
+
+                    </td>
+                    <td>
+                        <input type="text" class="text-box box-lg" id="Outcome" name="Outcome">
+                        <label class="pull-right" for="ProvisionalDiagnostic">Provisional Diagnosis</label>
+                    </td>
+                    <td>
+                        &nbsp; <input type="text" class="text-box box-lg" id="ProvisionalDiagnostic" name="ProvisionalDiagnostic">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Chest Condition</label>
+                    </td>
+                    <td>
+                        <label>
+                            Yes <input type="radio" name="ChestCondition" value="Yes" id="YesChestCondition" data-callback="chestConditionFormCallback"
+                                       class="call-modal-form" data-action="@Url.Action("TBScreeningForm", "EMR", new { id = ViewBag.OpdNo })"  />
+                        </label>
+                        <label>No <input type="radio" name="ChestCondition" value="No" id="NoChestCondition" /></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <button type="submit" class="btn btn-sm btn-primary" id="btn-save-chief-complaints">Save</button>
+                        <button type="reset" class="btn btn-sm btn-primary">Cancel</button>
+
+
+                        <div class="text-right" style="float:right">
+
+                            <button type="button" id="btn-investigation" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("InvestigationForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="investigationModalListener">Investigation</button>
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("ProcedureForm", "EMR", new { id = ViewBag.OpdNo })" data-callback="procedureFormModalListener">Procedure</button>
+                            @*<button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("DiagnosisForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="diagnosisFormModalListener">Diagnosis</button>*@
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("DiseaseEntryForm", "EMR", new { id = ViewBag.OpdNo })" data-callback="diseaseEntryModalListener" id="btn-open-diseaseEntry">Diagnosis</button>
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("TreatmentForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="treatmentFormModalListener" data-fallback="callDiseaseEntryForm">Treatment</button>
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("ReferalForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="referalFormModalListener">Referal</button>
+                            @if (Model.OpdRegister.IsIPD)
+                            {
+                                <input type="button" class="btn btn-sm btn-primary call-modal-form" id="btn_recommend_discharge" 
+                                   data-action="@Url.Action("RecommendDischargeForm", "EMR", new { id = ViewBag.OpdNo })" 
+                                    data-callback="dischargeRecommendationFormListener" value="Recommend Discharge" 
+                                   @if (Model.OpdRegister.DischargeRecommendations.FirstOrDefault(
+                                                            e => e.Status.ToLower().Trim().Equals("pending")) != null)
+                                   {
+                                       <text>disabled</text>
+                                   }
+                                   />
+
+                            }
+                            else
+                            {
+                                <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("RecommendAdmissionForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="admissionRecommendationFormFunction" id="btn-recommend-admission">Recommend Admission</button>
+
+                            }
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+    <div class="panel-footer" style="padding:1px;">
+        <div class="scrollable-table-container" id="complaints-log">
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        var logContainer = $('#complaints-log');
+        var containerWidth = logContainer.width();
+
+        function callDiseaseEntryForm() {
+            $("#btn-open-diseaseEntry").trigger("click");
+        }
+
+        $("#chief-complaints-form").on("submit", function (e) {
+            e.preventDefault();
+            if (!isValidForm($(this))) {
+                return false;
+            }
+            var data = $(this).serializeObject();
+            if (typeof (data.ChestCondition) === 'undefined') {
+                showNotification("Indicate if the patient has chest condition", "info", true);
+                return false;
+            }
+
+            if (data.ChestCondition === 'Yes') {
+                data.ChestCondition = true;
+            } else {
+                data.ChestCondition = false;
+            }
+            
+            $.ajax({
+                type: "POST",
+                data: data,
+                url: "@Url.Action("PostComplaint", "EMR")",
+                success: function (result) {
+                    
+                    $('#complaints-log').html(result);
+                    
+                    logContainer.css("width", containerWidth);
+                    $("#chief-complaints-form")[0].reset();
+                },
+                error: function (e, e2, e3) {
+                    console.log(e.responseText);
+                }
+            });
+        });
+
+       
+        getComplaintsList();
+        function getComplaintsList() {
+            $.ajax({
+            type: "GET",
+            url: "/EMR/ComplaintsList/"+@Model.Patient.Id,
+            success: function (result) {
+                $('#complaints-log').html(result);
+                logContainer.css("width", containerWidth);
+            }
+            });
+        }
+        
+
+        
+
+        
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+
+        $("#ChiefComplaints").autocomplete({
+            source: function (req, res) {
+                var st = $("#ChiefComplaints").val();
+
+                st2 = st.replace(/,[^,]+$/, "")
+
+                console.log(st2);
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("SearchRegularComplaints", "EMR")",
+                    
+                    data: { SearchText: st },
+                    success: function (data) {
+                        res($.map(data, function (item) {
+                            return { label: item.RComplaint, value: st2+", "+item.RComplaint };
+                        }));
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            }
+        });
+
+        populateHistoryOfIllness();
+        function populateHistoryOfIllness() {
+            $("#chief-complaints-form").find("input, textarea").each(function () {
+                $(this).on("blur", function () {
+                    var hist = "";
+                    $("#chief-complaints-form").find("input[type=text], input[type=number], textarea, input[type=radio]:checked").each(function () {
+                        if ($(this).val().trim() != "" && $(this).attr("id") !="HistoryOfPresentIllness") {
+                            hist += $(this).attr("name") + " :- " + $(this).val() + "\n";
+                        }
+                    });
+
+                    $("#HistoryOfPresentIllness").val(hist);
+
+
+                });
+            });
+
+        }
+
+       
+
+        if (location.search === "?v=results") {
+            $("#btn-investigation").trigger("click");
+        }
+
+        function confirmDelete(id, obj) {
+            var reason = prompt("Please provide a reason for deleting this record.");
+            if (reason === null) {
+                return false;
+            } 
+            if (reason.trim() === "") {
+                confirmDelete(id);
+            } else {
+                $(".loader").show();
+                $.ajax({
+                    url: "@Url.Action("DeleteComplaint", "EMR")/" + id + "?reason=" + reason,
+                    success: function (data) {
+                        $(".loader").hide();
+                        if (data.Status === "success") {
+                            var tr = $(obj).parent().parent();
+                            tr.fadeOut();
+                        } else {
+                            $(obj).prop("disabled", true)
+                        }
+
+                        showNotification(data.Message, data.Status, true);
+                    },
+                    error: function (e, x, r) {
+                        $(".loader").hide();
+                        showNotification("An Error Occured.", "dangeer", true);
+                    }
+                })
+            }
+
+
+        }
+    </script>
+}
+
+
+@*@Html.Partial("Allergy")
+    @Html.Partial("OutsideTest")
+    @Html.Partial("PatientHistory")
+    @Html.Partial("Procedure")
+    @Html.Partial("SystemExamination")
+    @Html.Partial("TallySheet")
+    @Html.Partial("Toxicity")*@

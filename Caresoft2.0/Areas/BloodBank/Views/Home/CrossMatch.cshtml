@@ -1,0 +1,187 @@
+﻿
+@{
+    ViewBag.Title = "CrossMatch";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-8 col-lg-offset-2">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Cross Match
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Enter Patient ID/Name:
+                                </td>
+                                <td>
+                                    <input name="PatientName" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                  &nbsp;  Patient ID:
+                                </td>
+                                <td>
+                                    <input type="number" name="PatientId" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="Date" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp;  Age:
+                                </td>
+                                <td>
+                                    <input type="number" name="Age" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Time:
+                                </td>
+                                <td>
+                                    <input type="time" name="Time" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Gender
+                                </td>
+                                <td>
+                                    <input type="radio" name="Gender" value="Male" /> Male
+                                    <input type="radio" name="Gender" value="Female" /> &nbsp; Female
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Required Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="RequiredDate" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td></td>
+                                <td>
+                                    <input type="radio" name="Extent" value="Major" /> Major
+                                    <input type="radio" name="Extent"  value="Minor" /> Minor
+                                    <input type="radio" name="Extent" value="Emergency" /> Emergency
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table table-data-pathology table-condensed">
+                            <tr>
+                                <th>Component Required</th>
+                                <th>Required Quantity</th>
+                                <th>Date of Required</th>
+                                <th>Time of Required</th>
+                            </tr>                            
+                        </table>
+                        <table>
+                            <tr>
+                                <td>
+                                    Ref By Hospital:
+                                </td>
+                                <td>
+                                    <input name="HospitalRef" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Medical Officer:
+                                </td>
+                                <td>
+                                    <select name="MedicalOfficer" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    &nbsp; Technian:
+                                </td>
+                                <td>
+                                    <select name="Technician" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Patient Critical History:
+                                </td>
+                                <td>
+                                    <textarea name="PatientHistory" class="text-box margin-top-bottom-2" style="width:100%"></textarea>
+                                </td>
+                                <td>
+                                    &nbsp; Notes:
+                                </td>
+                                <td>
+                                    <textarea name="Notes" class="text-box margin-top-bottom-2" style="width:100%"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Doctor Remarks:
+                                </td>
+                                <td>
+                                    <textarea name="DoctorRemarks" class="text-box margin-top-bottom-2" style="width:100%"></textarea>
+                                </td>
+                                <td>
+                                    &nbsp; Patient Blood Group:
+                                </td>
+                                <td>
+                                    <select name="PatientBloodGroup" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Component Type:
+                                </td>
+                                <td>
+                                    <select name="ComponetType" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    &nbsp; Blood Group:
+                                </td>
+                                <td>
+                                    <select name="BloodGroup" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Blood Bag Number:
+                                </td>
+                                <td>
+                                    <select name="BloodBagNumber" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    &nbsp; Issue No:
+                                </td>
+                                <td>
+                                    <input type="number" name="IssueNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <button type="submit" class="btn btn-primary btn-sm bn-sm">Save</button>
+                        <button type="reset" class="">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

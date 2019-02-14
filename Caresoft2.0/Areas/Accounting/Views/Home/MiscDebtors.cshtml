@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "MiscDebtors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+
+
+<div class="col-md-2">
+</div>
+<div class="col-md-7">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Misc Debits
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <input type="checkbox" name="creditDebit" /> Credits
+                        &nbsp;
+                        <input type="checkbox" name="creditDebit" /> Debits
+                    </div>
+                        
+                    <fieldset>
+                        <legend>Enter Payer Details</legend>
+                        <div class="col-lg-12">
+                            <table>
+                                <tr>
+                                    <td>
+                                        Payer/Category
+                                    </td>
+                                    <td>
+                                        <select name="Payer" class="text-box margin-top-bottom-2" style="width:100%">
+                                            <option>--Select--</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        &nbsp; Date:
+                                    </td>
+                                    <td>
+                                        <input type="date" name="Date" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Scheme Name:
+                                    </td>
+                                    <td>
+                                        <select name="SchemeName" class="text-box margin-top-bottom-2" style="width:100%">
+                                            <option>--Select--</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        &nbsp; Other Details:
+                                    </td>
+                                    <td>
+                                        <input type="text" name="OtherDetails" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Account Narration:
+                                    </td>
+                                    <td>
+                                        <select name="AccNaration" class="text-box margin-top-bottom-2" style="width:100%">
+                                            <option>--Select--</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        &nbsp;  GI Code:
+                                    </td>
+                                    <td>
+                                        <input name="GICode" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Receipt Details</legend>
+                        <div class="col-lg-12">
+                            <table>
+                                <tr>
+                                    <td>
+                                        Drawers Name:
+                                    </td>
+                                    <td>
+                                        <input name="DrawersName" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                    <td>
+                                        &nbsp; Cheque Number:
+                                    </td>
+                                    <td>
+                                        <input type="number" name="ChequeNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Drawers Bank:
+                                    </td>
+                                    <td>
+                                        <input name="DrawersBank" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                    <td>
+                                        &nbsp; Amount:
+                                    </td>
+                                    <td>
+                                        <input type="number" name="Amount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </fieldset>
+                    <br />
+                    <button type="submit" class="btn btn-primary btn-sm bn-sm">Ok</button>
+                    <button type="reset" class="btn btn-default">Clear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

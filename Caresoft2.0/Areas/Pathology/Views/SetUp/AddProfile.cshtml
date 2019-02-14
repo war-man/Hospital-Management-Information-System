@@ -1,0 +1,190 @@
+﻿@model LabsDataAccess.Profile
+
+@{
+    ViewBag.Title = "Add New Profile";
+}
+
+<div class="col-xs-offset-2 col-xs-8 CustomLabel">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading" style="height:40px ; ">
+            <h5 style="font-weight:bold">@ViewBag.Title</h5>
+        </div>
+
+        <div class="panel-body">
+            <div class="a"></div>
+
+           
+            <div style="border: 1px solid var(--primary-dark-color);">
+                <div class="cust_table" style="text-align:left">
+                    <strong id="Message" style="text-align:left">Info! Attend the following</strong>
+                </div>
+
+                <div class="container">
+                    @using (Ajax.BeginForm(null, "SetUp", new { id = "AddProfile" }, new AjaxOptions
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = "Message",
+                OnSuccess = "$('#AddNewProfile').modal('hide'); location.reload();",
+                LoadingElementId = "loadingElement",
+            }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form" id="profile">
+                    <table class="default-table table-bordered cust_table">
+                        <tr class="cust_table">
+                            <th style="" colspan="2">
+                                &nbsp;
+                            </th>
+
+                        </tr>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <tr class="cust_table">
+                                <th class="cust_table">
+                                    @Html.LabelFor(model => model.Group_Name, htmlAttributes: new { @class = "col-xs-2" })
+                                </th>
+                                <th class="cust_table">
+                                    <div class="col-xs-10">
+
+                                        @Html.EditorFor(model => model.Group_Name, new { htmlAttributes = new { @class = "text-box" } })
+                                        @Html.ValidationMessageFor(model => model.Group_Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </th>
+                            </tr>
+
+                        </div>
+                        <div class="form-group">
+                            <tr class="cust_table">
+                                <th class="cust_table">
+                                    @Html.LabelFor(model => model.Group_Code, htmlAttributes: new { @class = "col-xs-2" })
+                                </th>
+                                <th style="">
+                                    <div class="col-xs-10">
+
+                                        @Html.EditorFor(model => model.Group_Code, new { htmlAttributes = new { @class = "text-box", @required = "true" } })
+                                        @Html.ValidationMessageFor(model => model.Group_Code, "", new { @class = "text-danger" })
+                                    </div>
+                                </th>
+                            </tr>
+
+                        </div>
+
+                        <div class="form-group">
+                            <tr class="cust_table">
+                                <th class="cust_table">
+                                    @Html.LabelFor(model => model.Profile_Method, htmlAttributes: new { @class = "col-xs-2" })
+                                </th>
+                                <th style="">
+                                    <div class="col-xs-10">
+
+                                        @Html.EditorFor(model => model.Profile_Method, new { htmlAttributes = new { @class = "text-box", @required = "true" } })
+                                        @Html.ValidationMessageFor(model => model.Profile_Method, "", new { @class = "text-danger" })
+                                    </div>
+                                </th>
+                            </tr>
+
+                        </div>
+
+                        <div class="form-group">
+                            <tr class="cust_table">
+                                <th class="cust_table">
+                                    @Html.LabelFor(model => model.Profile_Department, htmlAttributes: new { @class = "col-xs-2" })
+                                </th>
+                                <th style="">
+                                    <div class="col-xs-10">
+
+                                        @Html.DropDownListFor(model => model.Profile_Department, ViewBag.Profile_Department as IEnumerable<SelectListItem>, "Select Profile Department", new { @class = "text-box box-lg", @required = "true" })
+                                        @Html.ValidationMessageFor(model => model.Profile_Department, "", new { @class = "text-danger" })
+                                    </div>
+                                </th>
+                            </tr>
+
+                        </div>
+
+                        <div class="form-group">
+                            <tr class="cust_table">
+                                <th class="cust_table">
+                                    <span style="color:red">*</span>@Html.Label("Selected_Tests", htmlAttributes: new { @class = "col-xs-2" })
+                                </th>
+                                <th style="">
+                                    <div class="col-xs-10">
+                                        @Html.Editor("Selected_Tests", new { htmlAttributes = new { @class = "text-box", @required = "true", id = "Selected_Tests" } })
+                                        @Html.ValidationMessage("Selected_Tests", "", new { @class = "text-danger" })
+                                    </div>
+                                </th>
+                            </tr>
+
+                        </div>
+
+                        <tr>
+                            <th class="cust_table" style="" colspan="2">
+                                &nbsp;
+                            </th>
+
+                        </tr>
+                    </table>
+
+                    <div class="container" style="padding:20px;">
+
+
+
+                        <div class="row">
+
+                            <div class="col-xs-3">
+                                <p style="font-weight:bold">List Of Titles</p>
+
+                                @foreach (var item in ViewBag.Departments)
+    {
+                            <div class="container" id="rowtests">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="button-group">
+                                            <div data-toggle="collapse" class="collapsed" data-target="#@item.Id">
+                                            <img class="TitlesTreeView" src="~/Content/icons/treeviewicons/button-closed.png" /> @item.Department1</div>
+
+                                            <ul style="list-style: none;" id="@item.Id" class="collapse">
+                                                @foreach (var inneritem in item.LabTests)
+        {
+                                        <li><input type="checkbox" data-check-id="@inneritem.Id" data-parent="@item.Id" />&nbsp;@inneritem.Test</li>
+
+}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+}
+                            </div>
+                            <div class="col-xs-3">
+                                <p style="font-weight:bold">Selected Titles</p>
+
+                                <ul style="list-style: none;" id="selectedtests">
+
+                                    @*<li><a href="#" class="small" data-value="option1" tabIndex="-1"><input type="checkbox" checked="checked" />&nbsp;Selected </a></li>*@
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-0 col-xs-10">
+                            <input class="btn btn-sm btn-primary" id="save" type="submit" value="Save" />
+                            <input class="btn btn-sm btn-primary" type="button" data-dismiss="modal" value="Back" />
+                        </div>
+                    </div>
+                    <br />
+                </div>
+    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+}

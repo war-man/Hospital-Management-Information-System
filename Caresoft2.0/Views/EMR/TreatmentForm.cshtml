@@ -1,0 +1,211 @@
+﻿@model Caresoft2._0.CustomData.TreatmentFormData
+<div class="panel panel-primary shadow glass caresoft-panel" style="margin-bottom:-1em;">
+    <div class="panel-heading ">
+        EMR Treatment
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-pills">
+            <li class="active top-tab"><a data-toggle="pill" href="#treatment">Treatment</a></li>
+            <li class="top-tab"><a data-toggle="pill" href="#previous-treatment">View Previous Treatment</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="treatment" class="tab-pane fade in active">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-xs-3">
+
+                            <label>Adverse Effect & Toxicities</label>
+                            <textarea readonly class="text-box box-lg" style="background:#fff;">@if (Model.Complaint != null) { @Model.Complaint.AET }</textarea>
+                        </div>
+                        <div class="col-xs-3">
+                            <label>Allergies</label>
+                            <textarea id="AllergiesInfo"  class="text-box box-lg" style="background:#fff;">@if (Model.OPDRegister.Patient.PatientAllergies.FirstOrDefault() != null)
+                            { @Model.OPDRegister.Patient.PatientAllergies.OrderByDescending(e=>e.Id).FirstOrDefault().AllergyDescription }</textarea>
+                        </div>
+                        <div class="col-xs-3">
+                            <label>Contraindication</label>
+                            <textarea readonly class="text-box box-lg" style="background:#fff;">@if (Model.Complaint != null) { @Model.Complaint.Contraindication }</textarea>
+                        </div>
+                        <div class="col-xs-3">
+                            <label>	Investigation Requested</label>
+                            <textarea readonly class="text-box box-lg" style="background:#fff;">@if (Model.OPDRegister.BillServices.Where(e=>e.Service.IsLAB || e.Service.IsXRAY) != null) {
+                                foreach (var investigation in Model.OPDRegister.BillServices.Where(e => e.Service.IsLAB || e.Service.IsXRAY)) { @investigation.ServiceName}
+                            } </textarea>
+                        </div>
+                    </div>
+                    <form id="prescription-form">
+                        <input type="hidden" id="entry-mode" value="new" />
+                        <input type="hidden" name="EditMedicatioId" id="EditMedicatioId" />
+                        <input type="hidden" id="OPDNo" name="OPDNo" value="@Model.OPDRegister.Id" />
+                        <table class="table-form">
+                            <tr>
+                                <td>
+                                    <label>Future List</label>
+                                </td>
+                                <td>
+                                    <select class="text-box">
+                                        <option>Select Future Format</option>
+                                    </select>
+                                    <button class="btn btn-primary btn-xs">Future Treatment</button>
+                                </td>
+                            </tr>
+                            @*<tr>
+                                <td>
+                                    <label>Generic Drug</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box" name="GenerericDrug" id="GenericDrug" />
+                                </td>
+                            </tr>*@
+                            <tr>
+                                <td>
+                                    <label>Brand Name</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xlg" name="DrugName" id="BrandName" required />
+                                    <input type="hidden" id="DrugId" name="DrugId" />
+                                    <input type="hidden" name="UnitPrice" id="UnitPrice" />
+                                </td>
+                                <td>
+                                    <label>Current Stock</label>
+                                    <input type="text" readonly id="Instock" name="Instock" />
+                                </td>
+                            </tr>
+                        </table>
+                        <style>
+                            .box-sm {
+                                width: 100%
+                            }
+                        </style>
+                        <table class="table table-form">
+                            <tr style="font-size:12px">
+
+                                <th>Start Date</th>
+                                <th>Routing Admin</th>
+                                <th>Frequency</th>
+                                <th>Day</th>
+                                <th>Approx Cost</th>
+                                <th>End Date</th>
+                                <th>Qty</th>
+                                <th>Notes</th>
+                                <th></th>
+                            </tr>
+
+                            <tr>
+
+                                <td><input type="date" class="text-box box-sm" name="StartDate" id="StartDate" 
+                                           value="@DateTime.Now.ToString("yyyy-MM-dd")" required/></td>
+                                <td>
+                                    @*<input type="text" class="text-box box-sm" name="RoutingAdmin" id="RoutingAdmin">*@
+                                    <select class="text-box box-sm" name="RoutingAdmin" id="RoutingAdmin" required>
+                                        <option></option>
+                                        @foreach (var x in Model.RoutingAdmins)
+                                        {
+                                            <option @*value="@x.Id"*@>@x.RoutingAdminName</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                    @*<input class="text-box box-sm" name="Frequency" id="Frequency" required>*@
+                                    <select class="text-box box-sm" name="Frequency" id="Frequency" required>
+                                        <option></option>
+                                        @foreach (var y in Model.Frequencies)
+                                         {
+                                            <option data-frequency="@y.Id" data-quantity="@y.Quantity">@y.Name</option>
+                                         }
+                                     </select>
+                                </td>
+                                <td><input type="number" class="text-box box-sm" name="Day" id="Day" min="1" required/></td>
+                                <td></td>
+                                <td><input type="date" class="text-box box-sm" id="EndDate" name="EndDate" required /></td>
+                                <td><input type="number" class="text-box box-sm" id="Quantity" name="Quantity" min="0" required/></td>
+                                <td><textarea class="text-box" name="Notes" id="Notes"></textarea></td>
+                                <td><button type="submit" class="btn btn-primary btn-xs" id="btn-add-prescription">OK</button></td>
+                            </tr>
+
+                        </table>
+                    </form>
+                    <div style="margin-top:-2.5em;" class="text-danger">
+                        <h5>
+                        @foreach (var diagno in Model.OPDRegister.PatientDiagnosis)
+                        {
+                            @(diagno.FinalDiagnosis)<text>, </text>
+                        }
+                        </h5>
+
+                    </div>
+                    <table>
+                        <tr>
+                            <td class="color-key" id="EMRunread"></td>
+                            <td><label>Sent</label></td>
+                            <td class="color-key"></td>
+
+                            <td class="color-key" id="EMRRead"></td>
+                            <td><label>Issued</label></td>
+
+                            <td class="color-key"></td>
+                            <td class="color-key" id="EMRUnpaid"></td>
+                            <td><label>Drugs Not Available In Facility</label></td>
+                        </tr>
+                    </table>
+                    <table class="table table-data table-bordered table-condensed">
+                        <thead>
+                            <tr>
+                                <th colspan="7"></th>
+                                <th colspan="2"><b class="text-danger">Total Aprox Cost</b></th>
+                                <th><strong>@Model.OPDRegister.Medications.Where(e => !e.Paid).OrderByDescending(e => e.Id).Sum(e => e.UnitPrice * e.Quantity)</strong></th>
+
+                            </tr>
+                            <tr>
+                                <th>Edit</th>
+                                <th>Drug Name</th>
+                                <th>Frequencies</th>
+                                <th>Day</th>
+                                <th>Qty</th>
+                                <th>Approx Cost</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Notes</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            @foreach (var entry in Model.OPDRegister.Medications.OrderByDescending(e=>e.Id))
+                             {
+                                var issueStatus = "pending";
+                                if (entry.Issued)
+                                {
+                                    issueStatus = "issued";
+                                }
+                            <tr class="@if (entry.DrugId==null){<text>Unpaid</text>} else if (entry.Issued) { <text>Read</text>}else{<text>Unread</text>} " id="drug-@entry.Id">
+                                <td>
+                                    <button onclick="editMedication(@entry.Id)" class="btn btn-xs btn-primary" @if (issueStatus == "issued") { <text> disabled</text>}>Edit</button>
+                                </td>
+                                <td style="white-space:normal">@entry.DrugName</td>
+                                <td>@entry.Frequency</td>
+                                <td align="center">@entry.Day</td>
+                                <td align="center">@entry.Quantity</td>
+                                <td> Ksh. @(entry.Quantity * entry.UnitPrice )</td>
+                                <td>@entry.StartDate.ToShortDateString()</td>
+                                <td>@entry.EndDate.ToShortDateString()</td>
+                                <td>@entry.Notes</td>
+                                <td>
+                                    <button id="delete-@entry.Id" class="btn btn-xs btn-primary" @if (issueStatus == "issued") { <text> disabled</text>} else { <text>onclick="deleteDrugFromMedication(@entry.Id)" </text> }>
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                             }
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+            <div id="previous-treatment" class="tab-pane fade">
+                <fieldset></fieldset>
+            </div>
+        </div>
+    </div>
+ </div>
+        
+

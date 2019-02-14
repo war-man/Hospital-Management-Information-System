@@ -1,0 +1,168 @@
+﻿@model IEnumerable<LabsDataAccess.WorkOrderTest>
+@using CaresoftHMISDataAccess;
+
+@{
+    ViewBag.ShowTopMenu = true;
+
+    //ViewBag.Size = "A4";
+    Layout = "~/Areas/Radiology/Views/Shared/_LayoutRadiology.cshtml";
+    ViewBag.Title = "Test Turn Around Time Report";
+
+    var grouped = Model.GroupBy(p => p.WorkOrder1.OPDNo);
+
+    List<CaresoftHMISDataAccess.OpdRegister> OPDReg = ViewBag.OPDReg;
+    DateTime StartDate = ViewBag.StartDate;
+    DateTime EndDate = ViewBag.EndDate;
+
+    var rHeader = "_DefaultReportsHeader";
+    if (ViewBag.ReportHeader != null)
+    {
+        rHeader = ViewBag.ReportHeader;
+    }
+}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class=" panel-heading">
+
+            <div class="pull-right">
+                <button class="btn btn-sm btn-warning" title="Print Report" onclick="$('page').print()"><i class="fa fa-print"></i></button>
+                &nbsp;
+                <button class="btn btn-sm btn-danger" title="Download PDF Report"><i class="fa fa-file-pdf-o"></i></button>
+                &nbsp;
+                <button class="btn btn-sm btn-success" title="Export to Excel"><i class="fa fa-file-excel-o"></i></button>
+            </div>
+            <form class="">
+                <label title="Start Date">Start Date</label>
+                <input type="date" class="text-box" name="StatDate" id="StatDate" value="@StartDate.ToString("yyyy-MM-dd")" />
+                <label title="End Date">End Date</label>
+                <input type="date" class="text-box" name="EndDate" id="EndDate" value="@EndDate.ToString("yyyy-MM-dd")" />
+                <button type="submit" class="btn btn-sm btn-primary">Preview</button>
+            </form>
+        </div>
+       
+        <page size="@ViewBag.Size" orientation="@ViewBag.Orientation">
+            <div class="panel-body">
+                @Html.Partial(rHeader)
+
+                <table class="table table-condensed table-bordered">
+                    <thead>
+                        <tr>
+
+                            <th rowspan="2" width="25%">
+                                @Html.DisplayName("Patient")
+                            </th>
+                            <th rowspan="2" width="5%">
+                                @Html.DisplayName("Sr. No")
+                            </th>
+                            <th rowspan="2" width="30%">
+                                @Html.DisplayName("Test Name")
+                            </th>
+                            <th rowspan="2" width="20%">
+                                @Html.DisplayName("Time Requested")
+                            </th>
+                            <th rowspan="2" width="20%">
+                                @Html.DisplayName("Time Authorized")
+                            </th>
+                            <th rowspan="2" width="5%">
+                                @Html.DisplayName("Within Range")
+                            </th>
+                            <th colspan="3" width="15%">
+                                @Html.DisplayName("Time Difference")
+                            </th>
+
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayName("Days")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Hours")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Minutes")
+                            </th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var items in grouped)
+                        {
+                            int OPD = (int)items.FirstOrDefault().WorkOrder1.OPDNo;
+                            var reg = OPDReg.FirstOrDefault();
+                        
+                            foreach (var item in items)
+                            {
+
+                        <tr>
+                            @if (item.Id == items.FirstOrDefault().Id)
+                            {
+                            <td rowspan="@items.Count()">
+                                @OPDReg.FirstOrDefault(e => e.Id == OPD).Patient.FName   @OPDReg.FirstOrDefault(e => e.Id == OPD).Patient.LName
+                                @*@:( @reg.Patient.RegNumber )*@
+                            </td>
+
+                            }
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LabTest.Test)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedUtc)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TimeAuthorized)
+                            </td>
+                            <td>
+                                @{TimeSpan dateDif = (TimeSpan)(item.TimeAuthorized - item.CreatedUtc); var color = "";}
+
+                                @if (dateDif > new TimeSpan(1, 12, 23, 62))
+                                {
+                                    @Html.CheckBox("Active", false);
+                                    color = "Red";
+
+                                }
+                                else
+                                {
+                                    @Html.CheckBox("Active", true);
+                                }
+                            </td>
+                            <th style="color: @color">
+                                @Html.DisplayName(dateDif.Days.ToString())
+                            </th>
+                            <th style="color: @color">
+                                @Html.DisplayName(dateDif.Hours.ToString())
+                            </th>
+                            <th style="color: @color">
+                                @Html.DisplayName(dateDif.Minutes.ToString())
+                            </th>
+                        </tr>
+                            }
+
+                         
+                        }
+
+                    </tbody>
+
+                    <tf>
+                        <tr>
+                            <th colspan="9" class="text-center text-success">
+                                Key : "Within Range" column notifies that the test did not delay;
+                            </th>
+                        </tr>
+                    </tf>
+                </table>
+
+            </div>
+        </page>
+    </div>
+</div>

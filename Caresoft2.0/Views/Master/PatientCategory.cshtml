@@ -1,0 +1,76 @@
+﻿@model CaresoftHMISDataAccess.CompanyType
+@{
+    ViewBag.Title = "Patient Category";
+    ViewBag.FormName = ViewBag.Title;
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+}
+<form action="@Url.Action("PatientCategory", "master")" method="post">
+    <table class="table-form">
+        <tr>
+            <td><label for="CompanyTypeId">Patient Main Type</label></td>
+            <td>
+                <select class="text-box box-lg" name="CompanyTypeId" id="CompanyTypeId" required>
+
+                    <option value="@Model.Id">@Model.CompanyTypeName</option>
+
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="CompanyName">Patient Type</label></td>
+            <td>
+                <input type="text" class="text-box box-lg" name="CompanyName" id="CompanyName" required />
+            </td>
+        </tr>
+        <tr>
+            <td><label for="BillServiceCode">Bill Service Code</label></td>
+            <td>
+                <select class="text-box box-lg" name="BillServiceCode" id="BillServiceCode"></select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="right">
+                <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+                <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <span style="color:#FC72D1">*	Only General Patient Category Add From Here</span>
+                <p>To create patient types under other Main Categories, Please <a href="@Url.Action("Index","Companies")">create them as companies</a> and award them accordingly.</p>
+            </td>
+        </tr>
+    </table>
+</form>
+<table class="table table-condensed table-data">
+    <thead>
+        <tr>
+            <th>Edit</th>
+            <th>Patient Main Type</th>
+            <th>Patient Type</th>
+            <th>Bill Service Code</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @foreach (var type in Model.Companies)
+        {
+            <tr>
+                <td>
+                    <label>Edit</label>
+                </td>
+                <td>@Model.CompanyTypeName</td>
+                <td>@type.CompanyName</td>
+                <td>None</td>
+                <td>
+                    <form action="/master/deletePatientCategory" method="get">
+                        <input type="hidden" name="id" value="@type.CompanyTypeId" />
+                        <button type="submit" class="btn btn-xs">Delete</button>
+                    </form>
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

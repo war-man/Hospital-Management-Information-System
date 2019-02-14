@@ -1,0 +1,137 @@
+﻿@model IEnumerable<LabsDataAccess.Parameter>
+
+
+@{
+    ViewBag.ShowTopMenu = true;
+    ViewBag.Title = "Add Parameter";
+    Layout = ViewBag.Layout;
+}
+
+
+
+<div class="col-xs-offset-3 col-xs-6 CustomLabel">
+    <br />
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading" style="height:40px ; ">
+            <h5 style="font-weight:bold">Parameter Master</h5>
+        </div>
+
+        <div class="panel-body">
+            <p>
+                <strong>Test Name : </strong> @ViewBag.LabTests.Test
+            </p>
+
+            <div class="row" style="margin-bottom:5px;">
+                <div class="col-xs-4">
+
+                        @Ajax.ActionLink("Add New Parameter", "AddParameter", new { TestId = @ViewBag.LabTests.Id }, new AjaxOptions
+                   {
+                       LoadingElementId = "loadingElement",
+                       UpdateTargetId = "UniversalModal2View",
+                       InsertionMode = InsertionMode.Replace,
+                       HttpMethod = "GET",
+                       OnSuccess = "$('#UniversalModal2').modal('show');"
+                   }, new { @class = "btn btn-primary btn-sm" })
+                </div>
+
+                <div class="col-xs-4">
+
+                        @Ajax.ActionLink("Add New Heading", "AddNewHeading", new { TestId = @ViewBag.LabTests.Id }, new AjaxOptions
+                   {
+                       UpdateTargetId = "UniversalModal2View",
+                       InsertionMode = InsertionMode.Replace,
+                       HttpMethod = "GET",
+                       LoadingElementId = "loadingElement",
+                       OnSuccess = "$('#UniversalModal2').modal('show');"
+                   }, new { @class = "btn btn-primary btn-sm" })
+                </div>
+
+                <div class="col-xs-4">
+
+                        @Ajax.ActionLink("Add New Space", "AddProfile", null, new AjaxOptions
+                   {
+                       LoadingElementId = "loadingElement",
+                       UpdateTargetId = "UniversalModal2View",
+                       InsertionMode = InsertionMode.Replace,
+                       HttpMethod = "GET",
+                       OnSuccess = "$('#UniversalModal2View').modal('show');"
+                   }, new { @class = "btn btn-primary btn-sm" })
+                </div>
+
+            </div>
+            <div class="cust_border_dark" style="height:300px; overflow-y:auto; background-color:white; ">
+                <table class="table table-bordered table-condensed table-data-Radiology table-fixed">
+                    <thead class="bg-primary">
+                        <tr class="table-primary">
+                            <th>
+                                Edit
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Parameter_Code)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Parameter_Name)
+                            </th>
+                            <th>
+                                Order Number
+                            </th>
+                            <th>
+                                Ticode
+                            </th>
+                            <th>
+                                Delete
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                {
+                        <tr class="table-primary-row">
+                            <td>
+                                @Ajax.ActionLink("Edit", "EditParameter", new { id = @item.Id }, new AjaxOptions
+                           {
+                               UpdateTargetId = "UniversalModal2View",
+                               InsertionMode = InsertionMode.Replace,
+                               HttpMethod = "GET",
+                               LoadingElementId = "loadingElement",
+                               OnSuccess = "$('#UniversalModal2').modal('show');"
+                           })
+                                <a href="EditParameter/@item.Id"> <img class="del-icon" src="~/Content/icons/edit-icon.png" /> </a>
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Parameter_Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Parameter_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Parameter_Order)
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                @Ajax.ActionLink("Delete", "DeleteParameter", new { id = item.Id }, new AjaxOptions
+                           {
+                               UpdateTargetId = "UniversalModal2View",
+                               InsertionMode = InsertionMode.Replace,
+                               HttpMethod = "GET",
+                               LoadingElementId = "loadingElement",
+                               OnSuccess = "$('#UniversalModal2').modal('show');"
+                           })
+                                <a href="DeleteParameter/@item.Id"> <img class="del-icon" src="~/Content/icons/erase_delete.png" /> </a>
+                            </td>
+                        </tr>
+        }
+                    </tbody>
+
+                </table>
+                <br />
+            </div>
+            <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Close</button>
+
+        </div>
+    </div>
+</div>

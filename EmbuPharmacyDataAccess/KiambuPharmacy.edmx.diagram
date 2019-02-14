@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="70415a9aa16e480188d675cd7f720640" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.AcceptedProvisionalPurchaseOrder" Width="1.5" PointX="8" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.AcceptedProvisionalPurchaseOrderItemsDetail" Width="1.5" PointX="10.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.AMCMaster" Width="1.5" PointX="5.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ApprovalRequest" Width="1.5" PointX="7.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.AreaMaster" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.AssignRoomToNurStationDetail" Width="1.5" PointX="15.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.AuditPharmacy" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.BillTransaction" Width="1.5" PointX="24.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.BillTransaction_LF" Width="1.5" PointX="9.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.BillTransDetail" Width="1.5" PointX="17.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.BillTransDetail_LF" Width="1.5" PointX="11.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.BillTransInfo" Width="1.5" PointX="24.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Bom_Details" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Bom_Main" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.BuildingMaster" Width="1.5" PointX="12.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.CleanupRequest" Width="1.5" PointX="24.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.CleanupRequestTransaction" Width="1.5" PointX="27" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.CleanUpSchedule" Width="1.5" PointX="0.75" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.CleanUpTransaction" Width="1.5" PointX="3" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ComplaintMaster" Width="1.5" PointX="21.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.DrugExchanage" Width="1.5" PointX="26.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.DrugMaster" Width="1.5" PointX="26.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.DrugMaster_old" Width="1.5" PointX="17.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.DrugOfferDetail" Width="1.5" PointX="26.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.FloorAreaMaster" Width="1.5" PointX="17.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.FloorMaster" Width="1.5" PointX="15" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.GenericLabDetail" Width="1.5" PointX="26.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.GroupMst" Width="1.5" PointX="26.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.GroupMst_Company" Width="1.5" PointX="5.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.GroupMst_old" Width="1.5" PointX="13.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.HouseKeeperMaster" Width="1.5" PointX="0.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Indent" Width="1.5" PointX="10.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.IndentDetail" Width="1.5" PointX="2.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Installationmaster" Width="1.5" PointX="28.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.InstructionMaster" Width="1.5" PointX="28.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Invoice" Width="1.5" PointX="28.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.InvoiceDetail" Width="1.5" PointX="28.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.InvoiceNumber" Width="1.5" PointX="29.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.InvoiceTransaction" Width="1.5" PointX="30.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.InvoiceTransDetail" Width="1.5" PointX="30.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.IssueToLoundry" Width="1.5" PointX="30.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Item_Transaction" Width="1.5" PointX="4.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ItemMaster" Width="1.5" PointX="6.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ItemMaster_Company" Width="1.5" PointX="13.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ItemMaster_CSSD" Width="1.5" PointX="26.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ItemMaster_M" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ItemMaster_old" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ItemMaster_old2" Width="1.5" PointX="28.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ItemMaster_W" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ItemNomaster" Width="1.5" PointX="31.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ItemStockLedger" Width="1.5" PointX="30.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Labconsumption" Width="1.5" PointX="32.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.LabDetailsAgainstGenericDrug" Width="1.5" PointX="32.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.LocationMaster" Width="1.5" PointX="32.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.LoundryMaster" Width="1.5" PointX="32.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.LoundryReceivedFromWard" Width="1.5" PointX="19.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Manufacturecompanymaster" Width="1.5" PointX="21.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.MessageMaster" Width="1.5" PointX="32.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.NurseReturnLinenToHk" Width="1.5" PointX="32.75" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.NurseStationMaster" Width="1.5" PointX="33.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Operation_Schedule" Width="1.5" PointX="34.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.OT_Schedule" Width="1.5" PointX="34.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.PatientInfo" Width="1.5" PointX="34.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.PMAsssignTo" Width="1.5" PointX="15.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.PMMaterial" Width="1.5" PointX="34.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.PMSchedule" Width="1.5" PointX="34.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.PMTaskSafetyInstruction" Width="1.5" PointX="34.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.PreventiveMiantenance" Width="1.5" PointX="34.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ProvisionalPurchaseOrder" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ProvisionalPurchaseOrderItemsDetail" Width="1.5" PointX="8" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ProvisionalPurchaseOrderSupplierDetail" Width="1.5" PointX="8" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.RateType" Width="1.5" PointX="32.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.RateType_ForAwardAmount" Width="1.5" PointX="34.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Refund_Details" Width="1.5" PointX="22" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Refund_Main" Width="1.5" PointX="19.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.RefundReqFromNurse" Width="1.5" PointX="0.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Reimbursement" Width="1.5" PointX="21.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ReimbursementDetail" Width="1.5" PointX="36.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Report_setting" Width="1.5" PointX="36.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.RequestCSSDDetail" Width="1.5" PointX="22" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.RequestCSSDMain" Width="1.5" PointX="19.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.RequestDeptDetail" Width="1.5" PointX="22" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.RequestDeptMain" Width="1.5" PointX="19.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.RequestForInventory" Width="1.5" PointX="10.75" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.RequestForInventoryDetail" Width="1.5" PointX="13" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.RequestForNewItem" Width="1.5" PointX="36.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.RequestTransDetail" Width="1.5" PointX="36.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ReturnIssueVoucher" Width="1.5" PointX="36.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.RoomMaster" Width="1.5" PointX="36.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ScheduleMaster" Width="1.5" PointX="36.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ServiceMaster" Width="1.5" PointX="36.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.SetDrugLocation" Width="1.5" PointX="2.75" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ShiftMaster" Width="1.5" PointX="17.75" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.StockTaking" Width="1.5" PointX="23.75" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.SupplierMaster" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.sysdiagram" Width="1.5" PointX="25.75" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.tb_CompThemes" Width="1.5" PointX="30.75" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.tb_GenericDrug" Width="1.5" PointX="32.75" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.tb_GenericDrug_old" Width="1.5" PointX="38.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.tb_GenericDrug_old2" Width="1.5" PointX="38.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.tb_MedicineRequirement" Width="1.5" PointX="15" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.tb_MedicineRequirementMain" Width="1.5" PointX="12.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.tb_Themes" Width="1.5" PointX="38.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_AcceptedQty" Width="1.5" PointX="11.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_CellMaster" Width="1.5" PointX="19.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_ChamberMaster" Width="1.5" PointX="38.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_ChamberMasterDetail" Width="1.5" PointX="13.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_ColdChainEquipment" Width="1.5" PointX="38.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_DrugEffectMaster" Width="1.5" PointX="38.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_Error" Width="1.5" PointX="38.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_GRNReturn" Width="1.5" PointX="38.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_IssueItem" Width="1.5" PointX="38.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_IssueItemToPatient" Width="1.5" PointX="38.75" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_IssueSetToPatient" Width="1.5" PointX="40.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_ItemMasterLF" Width="1.5" PointX="4.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_ItemSendToCSSD" Width="1.5" PointX="40.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_MissingItem" Width="1.5" PointX="6.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_MissingSet" Width="1.5" PointX="8.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_PackageDescription" Width="1.5" PointX="40.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_PackageDetail" Width="1.5" PointX="40.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_PackageMaster" Width="1.5" PointX="15.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_Prescription" Width="1.5" PointX="17.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_ReqForItem" Width="1.5" PointX="40.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_RequestForPack" Width="1.5" PointX="22" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_RouteMaster" Width="1.5" PointX="40.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_RowMaster" Width="1.5" PointX="25.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_ShelfDetail" Width="1.5" PointX="22" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_ShelfMaster" Width="1.5" PointX="40.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_SterileItem" Width="1.5" PointX="27.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_SubPack" Width="1.5" PointX="19.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.tbl_SupplierOffer" Width="1.5" PointX="29.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.tbl_Supplierratelist" Width="1.5" PointX="40.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.tbl_Supplierratelist_Tran" Width="1.5" PointX="34.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_VaccinConsumption" Width="1.5" PointX="40.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Temp_ItemStockLedger" Width="1.5" PointX="40.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.TempDeptIndentNurse" Width="1.5" PointX="0.75" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.TempMedicalIndent" Width="1.5" PointX="19.75" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.TmpGetLabconsumption" Width="1.5" PointX="42.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.TmpGetTreatment" Width="1.5" PointX="42.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.TransactionInfo" Width="1.5" PointX="42.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Transaction" Width="1.5" PointX="21.75" PointY="42.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.VatMaster" Width="1.5" PointX="42.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.WardMaster" Width="1.5" PointX="42.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.WorkNameMaster" Width="1.5" PointX="31.75" PointY="42.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.WorkTradeMaster" Width="1.5" PointX="42.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.WorkTypeMaster" Width="1.5" PointX="42.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.BillTransactionold" Width="1.5" PointX="42.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.DrugTypeMaster" Width="1.5" PointX="10.75" PointY="43.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.FinancialYear" Width="1.5" PointX="12.75" PointY="43.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.FP_MethodsMaster" Width="1.5" PointX="33.75" PointY="43.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Returnable_Items" Width="1.5" PointX="35.75" PointY="43.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.ReturnIssueVoucherDetail" Width="1.5" PointX="44.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.TB_StatusMaster" Width="1.5" PointX="44.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_BarCodePrint" Width="1.5" PointX="6.75" PointY="44.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tbl_NurseIndentTemp" Width="1.5" PointX="44.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.TempTable2" Width="1.5" PointX="44.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.TempTable3" Width="1.5" PointX="14.75" PointY="44.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.TempTransaction" Width="1.5" PointX="16.75" PointY="44.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tmp_VaccineReport" Width="1.5" PointX="44.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbuTown_PharmacyEntities.Tmp_VaccRecIss" Width="1.5" PointX="44.75" PointY="22.75" IsExpanded="true" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_AcceptedProvisionalPurchaseOrder_ProvisionalPurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_AcceptedProvisionalPurchaseOrderItemsDetail_AcceptedProvisionalPurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_Indent_AcceptedProvisionalPurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_BillTransDetail_tb_MedicineRequirement" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_FloorAreaMaster_BuildingMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_FloorMaster_BuildingMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_FloorMaster_BuildingMaster1" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_CleanupRequestTransaction_CleanupRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_CleanUpTransaction_CleanUpSchedule" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_FloorAreaMaster_FloorMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_ItemMaster_M_SupplierMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_ItemMaster_SupplierMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_ItemMaster_W_SupplierMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_ProvisionalPurchaseOrderItemsDetail_ProvisionalPurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_ProvisionalPurchaseOrderSupplierDetail_ProvisionalPurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_Refund_Details_Refund_Main" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_RequestCSSDDetail_RequestCSSDMain" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_RequestDeptDetail_RequestDeptMain" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_RequestForInventoryDetail_RequestForInventory" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_tb_MedicineRequirement_tb_MedicineRequirementMain" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_Tbl_ShelfDetail_Tbl_CellMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbuTown_PharmacyEntities.FK_Tbl_RequestForPack_Tbl_SubPack" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

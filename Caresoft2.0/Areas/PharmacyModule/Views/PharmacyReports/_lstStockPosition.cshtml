@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.PharmacyModule.ViewModel.PharmacyStockPosition>
+
+<table class="table table-data table-condensed" style="background-color:ghostwhite;">
+    <tr>
+        <th>Opening Stock</th>
+        <th>Item Name</th>
+        <th>Total Purchase Quantity</th>
+        <th>Total Issue Quantity</th>
+        <th>Current Stock</th>
+        <th>Cost Price</th>
+        <th>Re Order Level</th>
+        <th>Total Amount</th>
+
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr style="background-color:ghostwhite;text-align:center;">
+            <td colspan="8">No data to display</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            var totalAmount = item.CurrentStock * item.CostPrice;
+            <tr>
+                <td>@item.OpeningStock</td>
+                <td>@item.ItemName</td>
+                <td>@item.TotalPurchaseQuantity</td>
+                <td>@item.TotalIssueQuantity</td>
+                <td>@item.CurrentStock</td>
+                <td>@item.CostPrice</td>
+                <td>@item.ReOrderLevel</td>
+                <td>@item.TotalAmountSold.ToString("N2")</td>
+               
+            </tr>
+        }
+    }
+
+</table>

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Service>
+
+
+<table class="table table-data table-condensed" id="price-list">
+    <thead>
+        <tr>
+            <th>Service</th>
+            <th>Default Price</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @foreach(var service in Model)
+        {
+            <tr data-service-id="@service.Id">
+                <td>@service.ServiceName</td>
+                <td>@service.CashPrice</td>
+                <td class="editable-td" contenteditable="true" id="service-price-@service.Id">
+                    @{ var entry = service.WardTypeCharges.FirstOrDefault(e => e.WardCategoryId == (int)ViewBag.WardCatId); }
+                    @if (entry != null)
+                    {
+                        @entry.Price.ToString();
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,291 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.InvoiceDetail>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BatchNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DrugId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Units)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitsPerCase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoOfPack)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.per)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CostPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FreeUnits)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CostPerCasePack)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MfgDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpiryStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MfgCoNm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MRP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatAmt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vat_Cst)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatCstOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VAT_CstPercentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FreightCharges)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PackingCharges)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinancialYearId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FreeQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.supp_vat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CasePackRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPack)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IssueToFlag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StoreFlag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.companyid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrivQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceviedQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceviedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AckFlag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount_Flag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinalInvoiceNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MRPUnit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaxTypeFlag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Satvat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDonor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BatchNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DrugId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Units)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitsPerCase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoOfPack)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.per)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FreeUnits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostPerCasePack)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MfgDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpiryStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MfgCoNm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MRP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatAmt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vat_Cst)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatCstOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VAT_CstPercentage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FreightCharges)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PackingCharges)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinancialYearId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FreeQty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.supp_vat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CasePackRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPack)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IssueToFlag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StoreFlag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.companyid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrivQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceviedQty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceviedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AckFlag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discount_Flag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinalInvoiceNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MRPUnit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaxTypeFlag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Satvat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDonor)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

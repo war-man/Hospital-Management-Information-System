@@ -1,0 +1,539 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HSWardCategory>
+@{
+    ViewBag.showTopMenu = true;
+    ViewBag.Title = "IPD Dashboard";
+}
+
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                IPD Dashboard
+            </div>
+            <div class="panel-body">
+                <table class="table-form">
+                    <tr>
+                        
+                        <td>
+                            <img src="~/Content/icons/ipddashboardicons/admitpatient.png"/>
+                        </td>
+                        <td>
+                            <label>Occupied Bed</label>
+                        </td>
+                       
+                        <td>
+                            <img src="~/Content/icons/ipddashboardicons/shifting1.png"/>
+                        </td>
+                        <td>
+                            <label>Shift</label>
+                        </td>
+                        
+                        <td>
+                            <img src="~/Content/icons/ipddashboardicons/dischargel.png"/>
+                        </td>
+                        <td>
+                            <label>Discharge</label>
+                        </td>
+                        
+                        <td>
+                            <img src="~/Content/icons/ipddashboardicons/bed1_grey.png"/>
+                        </td>
+                        <td>
+                            <label>Cleaning Progress</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        
+                        <td>
+                            <img src="~/Content/icons/ipddashboardicons/bed1.png"/>
+                        </td>
+                        <td>
+                            <label>Un Occupied Bed</label>
+                        </td>
+                        
+                        <td>
+                            <img src="~/Content/icons/ipddashboardicons/hospital_bed1.png"/>
+                        </td>
+                        <td>
+                            <label>Universal Precaution</label>
+                        </td>
+                        
+                        <td>
+                            <img src="~/Content/icons/ipddashboardicons/mother2.jpg"/>
+                        </td>
+                        <td>
+                            <label>Mother With Child</label>
+                        </td>
+                        
+                        <td>
+                            <img src="~/Content/icons/ipddashboardicons/mother3.jpg"/>
+                        </td>
+                        <td>
+                            <label>Mother</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="2">
+                            <input type="text" class="text-box box-xlg" placeholder="Search by RegNo or Name" 
+                                   onkeyup="filterDashboard(this)" id="search_beds" />
+                        </td>
+                        <td>
+                            <input type="button" class="btn btn-sm btn-primary" onclick="showAll()" value="All"/>
+                        </td>
+                    </tr>
+                </table>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-primary caresoft-panel" style="border: 1px solid #044D07;">
+                            <div class="panel-heading text-center" style="background: #044D07; color: #fff">
+                                RoomType:
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    @{ var x = 1;}
+                                    @foreach (var wcat in Model)
+                                    {
+                                        <div class="col-xs-2">
+                                            <label>
+                                                <input type="radio" name="CategoryId" value="@wcat.Id" @if(x==1){<text>checked</text>} /> @wcat.WardCategoryName
+                                            </label>
+                                            <select onchange="filterWards(this)">
+                                                <option>All</option>
+                                                @foreach(var w in wcat.HSWards)
+                                                {
+                                                    <option value="@w.Id">@w.WardName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        x++;
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="alert alert-warning collapse" id="ipd-shifting-alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" onclick="localStorage.isTransit = false;">&times;</a>
+                    <h4>Shifting Patient:<span id="patient-in-transit"></span></h4>
+                </div>
+                <div id="beds-grid">
+                    @Html.Partial("BedsGrid", Model.FirstOrDefault().HSWards.ToList())
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script>
+        localStorage.isTransit = false;
+        function IPDAdmissionFormModalListener() {
+
+            IPDRegModalListenerExtras();
+
+            $("#ipd-adminssion-form").submit(function (e) {
+                e.preventDefault();
+
+                if ($(this).valid()) {
+                    var data = $(this).serialize();
+                    $(".loader").fadeIn();
+
+                    var type = $("#PatientCategory option:selected").text();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "IPD/AdmitPatient?type=" + type,
+                        data: data,
+                        success: function (data) {
+                            $("#IPDNo").val(data.IPDNo);
+                            showNotification("Patient details saved successfully!", "success", true)
+
+                            if (data.Type == "Insurance") {
+                                $("#insurance-details-form").submit();
+                            } else if (data.Type == "Corporate") {
+                                $("#corporate-details-form").submit();
+                            } else {
+                                console.log(data);
+                                location.reload();
+                            }
+                            
+                        },
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            $(".loader").hide();
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                    });
+
+                }
+            });
+
+            $('#btn-save-insuance-details').click(function () {
+                $("#ipd-adminssion-form").submit();
+
+            });
+
+            $("#insurance-details-form").submit(function (e) {
+                
+                e.preventDefault();
+
+                if (!($("#Tariff").val() > 0)) {
+                    showNotification("Please Select Scheme","danger", true);
+                    return null;
+                }
+
+                if ($(this).valid()) {
+                    var data = $(this).serialize();
+
+                    data.OPDNo = $("#IPDNo").val();
+
+                    $(".loader").fadeIn();
+                    $.ajax({
+                        type: "POST",
+                        data: data,
+                        url: "IPD/IPDSaveInsuranceDetails/",
+                        headers: {
+                            "authToken": ""
+                        },
+                        success: function (result) {
+
+                            if (result == 1) {
+                                location.reload();
+                                showNotification("Patient Insurance details saved successfully!", "success", true)
+                            } else {
+                                showNotification("An Error occured!", "danger", false)
+                            }
+
+                            //$("#provisional-bill-items").html(result);
+                            //showNotification("Insurance details saved successfully!", "success", true)
+                            //$("#insurance-details-modal").modal("hide");
+                            console.log(result);
+
+                        },
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            $(".loader").fadeOut();
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                    });
+                }
+      
+
+            });
+
+            $("#RegNumber").autocomplete({
+                source: function (req, res) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("SearchPatient", "IPD")",
+                        dataType: "json",
+                        data: { search: $("#RegNumber").val() },
+                        headers: {
+                            "authToken": ""
+                        },
+                        success: function (data) {
+                            console.log(data);
+
+                            res($.map(data, function (item) {
+                                return {
+                                    label: item.RegNumber + " " + item.Name, value: item.RegNumber,
+                                    patientId: item.PatientId, name: item.Name, FName: item.FName, MName: item.MName
+                                    , LName: item.LName, PhoneNumber: item.PhoneNumber
+                                };
+                            }));
+                        },
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                    });
+                }
+            });
+
+            $("#RegNumber").on("autocompleteselect", function (event, ui) {
+                $("#PatientName").val(ui.item.name);
+                $("#PatientId").val(ui.item.patientId);
+
+                $("#MobileNumber").val(ui.item.PhoneNumber);
+                $("#MemberMiddleName").val(ui.item.MName);
+                $("#MemberLastName").val(ui.item.LName);
+                $("#MemberFirstName").val(ui.item.FName);
+
+                console.log(ui);
+
+
+            });
+
+            $("#ConsultantDoctor").autocomplete({
+                source: function (req, res) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("SearchDoctors", "IPD")",
+                        dataType: "json",
+                        data: { search: $("#ConsultantDoctor").val() },
+                        success: function (data) {
+                            res($.map(data, function (item) {
+                                return { label: item.Name, value: item.Name, doctorId: item.DoctorId };
+                            }));
+                        },
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                    });
+                }
+            });
+        }
+
+
+        bedsGridListener();
+        function bedsGridListener() {
+            $(".call-modal-form").each(function () {
+                $(this).unbind();
+            });
+            if (localStorage.isTransit == 'false') {
+                universalModalCaller();
+            } else {
+                admitIconFunctionChanger();
+            }
+            $(".img-shift-patient").each(function () {
+                $(this).click(function () {
+                    var bedId = $(this).data("bed-id");
+                    var patientName = $("#patient-in-bed-" + bedId).text();
+                    var admissionId = $(this).data("admission-id");
+                    initiateBedShift(patientName, admissionId)
+                });
+            });
+        }
+
+        $("input[name=CategoryId]").change(function () {
+            changeBedsGrid($(this).val());
+        });
+        function changeBedsGrid(catId) {
+            if (typeof (catId) === 'undefined') {
+                catId = $("input[name=CategoryId]:checked").val();
+            }
+            $.ajax({
+                url: '@Url.Action("BedsGrid", "IPD")/' + catId,
+                success: function (result) {
+                    $("#beds-grid").html(result);
+                    bedsGridListener();
+                }
+            });
+        }
+        function initiateBedShift(patientName, admissionId) {
+            showNotification("Shifting Patient: " + patientName, "info", false);
+            localStorage.isTransit = true;
+            localStorage.admissionId = admissionId;
+            $(".call-modal-form").each(function () {
+                $(this).unbind();
+            });
+            admitIconFunctionChanger();
+
+        }
+        function admitIconFunctionChanger() {
+            $(".call-modal-form").each(function () {
+                $(this).click(function () {
+                    var bedId = $(this).data("bed-id");
+                    $.ajax({
+                        url: '@Url.Action("ShiftIPD", "IPD")/',
+                        data: { AdmissionId: localStorage.admissionId, NewBed: bedId },
+                        method: 'post',
+                        success: function (result) {
+                            showNotification(result, 'success', true);
+                            changeBedsGrid();
+                            localStorage.isTransit = false;
+                        }
+                    });
+                });
+            });
+        }
+
+        function filterWards(obj) {
+            var wardId = $(obj).val();
+            if (wardId === "All") {
+                $(".ward-entry").each(function () {
+                    $(this).show();
+                });
+            } else {
+                $(".ward-entry").each(function () {
+                    $(this).hide();
+                    $("#ward-" + wardId).show();
+                });
+            }
+        }
+
+        function autoBedFilter() {
+
+        }
+
+        function dischargeMe(ipdNo, obj) {
+           
+            var bedIcon = $(obj).parent().parent();
+            var patName = $(bedIcon).find(".pat-name").text();
+            var proceed = confirm("Are you sure you want to discharge " + patName + "?");
+            if (!proceed) {
+                return false;
+            }
+            var pat = $(bedIcon).find(".pat-details");
+            
+            var admit_button = $(bedIcon).find(".admit_patient_icons");
+            $(".loader").show();
+
+            $.ajax({
+                method: "get",
+                url: "@Url.Action("FinalizeDischarge", "IPD")/" + ipdNo,
+                success: function (res) {
+                    $(".loader").hide();
+                    showNotification(res.Message, res.Status, true);
+                    if (res.Status === "success") {
+                        pat.remove();
+                        admit_button.show();
+                    }
+                },
+                error: function (e, x, r) {
+                    $(".loader").hide();
+                    console.log(e.responseText);
+                }
+            });
+        }
+
+        function filterDashboard(obj) {
+            var st = $(obj).val().toUpperCase();
+            if (st.length > 0) {
+                //hide vacants
+                $(".bed-icon").each(function () {
+                    if ($(this).find(".pat-details").length < 1) {
+                        $(this).hide();
+                    }
+                })
+            } else {
+                $(".bed-icon").show();
+            }
+            var pats = $(".pat-name");
+            $.each(pats, function (i, v) {
+                var icon = $(v).parent().parent();
+                var patName = $(v).text().toUpperCase();
+                if (patName.indexOf(st) != -1) {
+                    $(icon).fadeIn();
+                } else {
+                    $(icon).fadeOut();
+
+                }
+            });
+        }
+
+        function showAll() {
+            $("#search_beds").val("");
+            $("#search_beds").trigger("keyup");
+        }
+
+
+        //From Kogi
+
+        function IPDRegModalListenerExtras() {     
+
+            $("input[name=regType]").each(function () {
+                $(this).click(function () {
+                    $("#revisit_patient_id").val("0");
+                    var checked_radio = $("input[name=regType]:checked");
+
+                    $(".radio-bound").each(function () {
+                        if ($(this).attr("data-boubd-radio") === checked_radio.val()) {
+                            $(this).prop('disabled', false);
+                        } else {
+                            $(this).prop('disabled', true);
+                        }
+                    })
+
+                });
+            });
+
+            $("#PatientCategory").on("change", function () {
+
+                var mainCatId = $(this).find("option:selected").val();
+
+                var link = '@Url.Action("PatientCategories", "Registration", new { id = "-1" })';
+                link = link.replace("-1", mainCatId);
+                //getPatientcategories
+                $.ajax({
+                    type: "GET",
+                    url: link,
+                    headers: {
+                        "authToken": ""
+                    },
+                    success: function (result) {
+                        $("#PatientType").html(result);
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+
+            });
+
+
+            $("#PatientType").on("change", function () {
+                var id = $("#PatientType option:selected").attr("data-pat-cat-id");
+                var selected = $("#PatientType option:selected").text();
+                $("#InsuranceCompanyName option[data-pat-cat-id=" + id + "]").prop('selected', true);
+                $("#corporateCompanyName option[data-pat-cat-id=" + id + "]").prop('selected', true);
+                var linkInsurance = $("a[href='#insurance-details']");
+                var linkCorporate = $("a[href='#corporate-details']");
+                if ($("#PatientCategory").find("option:selected").text() == "Insurance" && selected !== "Select") {
+                    linkInsurance.attr("data-toggle", "pill");
+                    linkInsurance.removeClass("not-allowed");
+                    linkInsurance.tab("show");
+                } else {
+                    linkInsurance.removeAttr("data-toggle");
+                    linkInsurance.addClass("not-allowed");
+                }
+
+                if ($("#PatientCategory").find("option:selected").text() == "Corporate" && selected !== "Select") {
+                    linkCorporate.attr("data-toggle", "pill");
+                    linkCorporate.removeClass("not-allowed");
+                    linkCorporate.tab("show");
+                } else {
+                    linkCorporate.removeAttr("data-toggle");
+                    linkCorporate.addClass("not-allowed");
+                }
+                getInsuranceSchemes(id);
+
+            });
+
+       
+
+        }
+
+        function getInsuranceSchemes(id) {
+            $.ajax({
+                type: "GET",
+                url: "registration/tariffs/" + id,
+                headers: {
+                    "authToken": ""
+                },
+                success: function (result) {
+                    $("#Tariff").html(result);
+                    console.log(result)
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+
+
+        }
+
+
+        
+       
+    </script>
+}

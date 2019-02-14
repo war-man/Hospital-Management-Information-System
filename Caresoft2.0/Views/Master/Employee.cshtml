@@ -1,0 +1,150 @@
+﻿@model Caresoft2._0.CustomData.EmployeesData
+
+@{
+    ViewBag.Title = "Employee Master";
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+    ViewBag.FormName = "Employee Master";
+    ViewBag.Wide = true;
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <table class="table-form">
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Employee.RollNo, htmlAttributes: new { @class = "control-label " })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Employee.RollNo, new { htmlAttributes = new { @class = "text-box" } })
+                @Html.ValidationMessageFor(model => model.Employee.RollNo, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.Employee.Salutation, htmlAttributes: new { @class = "control-label " })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Employee.Salutation, new { htmlAttributes = new { @class = "text-box" } })
+                @Html.ValidationMessageFor(model => model.Employee.Salutation, "", new { @class = "text-danger" })
+            </td>
+
+            <td>
+                @Html.LabelFor(model => model.Employee.FName, htmlAttributes: new { @class = "control-label " })
+            </td>
+            <td>
+               @Html.EditorFor(model => model.Employee.FName, new { htmlAttributes = new { @class = "text-box" } })
+            @Html.ValidationMessageFor(model => model.Employee.FName, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.Employee.OtherName, htmlAttributes: new { @class = "control-label " })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Employee.OtherName, new { htmlAttributes = new { @class = "text-box" } })
+                @Html.ValidationMessageFor(model => model.Employee.OtherName, "", new { @class = "text-danger" })
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Employee.Gender, htmlAttributes: new { @class = "control-label " })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Employee.Gender, new { htmlAttributes = new { @class = "text-box" } })
+                @Html.ValidationMessageFor(model => model.Employee.Gender, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.Employee.DOB, htmlAttributes: new { @class = "control-label " })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Employee.DOB, new { htmlAttributes = new { @class = "text-box" } })
+                @Html.ValidationMessageFor(model => model.Employee.DOB, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.Employee.IdNo, htmlAttributes: new { @class = "control-label " })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Employee.IdNo, new { htmlAttributes = new { @class = "text-box" } })
+                @Html.ValidationMessageFor(model => model.Employee.IdNo, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.Employee.Mobile, htmlAttributes: new { @class = "control-label " })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Employee.Mobile, new { htmlAttributes = new { @class = "text-box" } })
+                @Html.ValidationMessageFor(model => model.Employee.Mobile, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Employee.Email, htmlAttributes: new { @class = "control-label " })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Employee.Email, new { htmlAttributes = new { @class = "text-box" } })
+                @Html.ValidationMessageFor(model => model.Employee.Email, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.Employee.Designation, htmlAttributes: new { @class = "control-label " })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Employee.Designation, new { htmlAttributes = new { @class = "text-box" } })
+                @Html.ValidationMessageFor(model => model.Employee.Designation, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.Employee.BranchId, htmlAttributes: new { @class = "control-label " })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Employee.BranchId, new { htmlAttributes = new { @class = "text-box" } })
+                @Html.ValidationMessageFor(model => model.Employee.BranchId, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.Employee.DateAdded, htmlAttributes: new { @class = "control-label " })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Employee.DateAdded, new { htmlAttributes = new { @class = "text-box" } })
+                @Html.ValidationMessageFor(model => model.Employee.DateAdded, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8" align="right" id="btn-progress-area">
+                <input type="reset" class="btn btn-default btn-sm" value="Cancel" />
+                <input type="submit" id="ave-employee" class="btn btn-primary btn-sm" value="Save Entry " />
+            </td>
+        </tr>
+
+    </table>
+   <br />
+  
+}
+<div class="form-group" style="width:100%; overflow-x:scroll;">
+    <div id="employees-list">
+        @Html.Partial("Employees", Model.Employess)
+    </div> </div>
+
+    @*@section scripts{
+        <script>
+            $("#save-employee").click(function () {
+                var target = $("#progress");
+                var resetContent = target.html();
+                progressBar(96, target, "Please wait...");
+
+                var data = $("form").serialize();
+                 $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("CreateEmployee", "Master")",
+                    success: function (result) {
+                        target.html(resetContent);
+                        $('#employees-list').html(result);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        target.html(resetContent);
+                       console.log(thrownError);
+
+
+                    }
+                });
+            });
+        </script>
+    }
+    *@

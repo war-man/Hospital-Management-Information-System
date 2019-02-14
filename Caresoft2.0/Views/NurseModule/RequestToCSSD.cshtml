@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Request For Package/Item";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                @using (Ajax.BeginForm("SaveCSSDRequest", "NurseModule", new { }, new AjaxOptions
+                {
+                    LoadingElementId = "loadingElement",
+                    HttpMethod = "POST",
+                    UpdateTargetId = "",
+                    OnFailure = "showNotification('Failed', 'danger', 'false')",
+                    OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                }))
+                {
+                    <form id="cleanup" method="post" action="@Url.Action("SaveCSSDRequest", "NurseModule")">
+                        <table class="table-form">
+                            <tr>
+                                <td>
+                                    <label>Required Date</label>
+                                </td>
+                                <td>
+                                    <input type="date" class="text-box box-lg" name="RequiredDate" />
+                                </td>
+                                <td>
+                                    <label>Required Time</label>
+                                </td>
+                                <td>
+                                    <input type="time" class="text-box box-lg" name="RequiredTime" />
+                                </td>
+                            </tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <tr>
+                                <td>
+                                    <label>Request Type</label>
+                                </td>
+                                <td>
+                                    <input type="number" class="text-box box-lg" name="RequestType" />
+                                </td>
+
+                            </tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+
+
+                            <tr>
+                                <td>
+                                    <label>Select Item/Set</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-lg" name="RequestItem" />
+                                </td>
+                                <td>
+                                    <label>Request Quantity</label>
+                                </td>
+                                <td>
+                                    <input type="number" class="text-box box-lg" name="Quantity" />
+                                </td>
+                            </tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <tr>
+                                <td>
+                                    <label>Remarks</label>
+                                </td>
+                                <td>
+                                    <textarea type="text" class="text-box box-lg" name="Remarks"> </textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <div>
+                            <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+                            <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+                        </div>
+
+                        </form>
+
+                        }
+
+
+                </div>
+        </div>
+    </div>
+</div>

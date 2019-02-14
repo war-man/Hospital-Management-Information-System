@@ -1,0 +1,77 @@
+﻿@model Caresoft2._0.Areas.CareSoftReports.ViewModels.DepartmentsAndServiceGroups
+@{
+    ViewBag.Title = "Services And Prices";
+    Layout = "~/Areas/CareSoftReports/Views/Shared/_LayoutReports.cshtml";
+    ViewBag.ReportName = ViewBag.Title;
+}
+
+
+<style>
+    .text-box {
+        width: 200px;
+    }
+</style>
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading">
+            @ViewBag.ReportName
+        </div>
+        <div class="panel-body">
+            <form name="ReportFilter" id="ReportFilter" method="get" action="@Url.Action("GetServicesAndPricesReport","MISReports",new {Area="CareSoftReports"})">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Select Department</p>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="text-box" name="department">
+                                    <option value="0">All Departments</option>
+                                    @foreach (var item in Model.Departments)
+                                    {
+                                        <option value="@item.Id">@item.DepartmentName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <p>Select Service Group</p>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="text-box" name="serviceGroup">
+                                <option value="0">All Service Groups</option>
+                                @foreach (var item in Model.ServiceGroups)
+                                {
+                                    <option value="@item.Id">@item.ServiceGroupName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-md-12">
+                    <br />
+                    <button type="submit" class="btn btn-primary btn-sm" id="btnDownloadReport">Download Services and Prices Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+
+    </script>
+
+}
+
+
+
+
+

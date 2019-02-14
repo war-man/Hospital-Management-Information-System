@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.OpdRegister>
+
+@{var db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+    var default_consultation_service_name = db.KeyValuePairs.FirstOrDefault(e => e.Key_.ToLower().Trim()
+    == "default_consultation_service_name").Value.ToLower().Trim();
+}
+
+@foreach (var item in Model.Where(e => !e.IsIPD && e.BillServices.Any(b => b.ServiceName.
+      ToLower().Contains("consultation") || b.ServiceName.Trim().ToLower()== default_consultation_service_name)).OrderByDescending(e => e.Id))
+{
+    var paid = item.BillServices.FirstOrDefault(e => e.Service.ServiceName.Trim().ToLower()==
+    default_consultation_service_name || e.ServiceName.
+      ToLower().Contains("consultation")).Paid;
+    if (!paid && item.Status != "Emergency")
+    {
+        item.Status = "Unpaid";
+    }
+    else if (item.Complaints.FirstOrDefault() != null)
+    {
+        item.Status = "Read";
+    }
+    else
+    {
+        if (item.Status != "Emergency")
+        {
+            item.Status = "Unread";
+        }
+    }
+    <tr class="change-current-patient @item.Status">
+        <td>
+            <a @if (paid || item.Status.Trim().Equals("Emergency") || item.Status.Trim().Equals("Read")) { <text> href="./@item.Id" </text> }> @Html.DisplayFor(modelItem => item.Id)</a>
+        </td>
+        <td>
+            <a @if (paid || item.Status.Trim().Equals("Emergency") || item.Status.Trim().Equals("Read")) { <text> href="./@item.Id" </text> }>
+                @item.Patient.RegNumber <br />
+                @item.Patient.Salutation @item.Patient.FName @item.Patient.MName @item.Patient.LName
+            </a>
+        </td>
+    </tr>
+
+}
+
+@if (Model.Count() < 1)
+{
+    <tr>
+        <td colspan="2" align="center"><em>No data found</em></td>
+    </tr>
+}
+
+
+
+
+
+
+

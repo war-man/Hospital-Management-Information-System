@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.MedicationRefund>
+
+@{
+    ViewBag.Title = "ItemRefund";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+}
+
+<style>
+    .text-box {
+        margin: 5px;
+        width: 200px;
+    }
+
+</style>
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px"> <strong> Item Refund </strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="">
+                <div class="col-md-12" style="padding-bottom:10px">
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                From Date
+                            </td>
+                            <td>
+                                <input type="date" class="text-box" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </td>
+                            <td>
+                                To Date
+                            </td>
+                            <td>
+                                <input type="date" class="text-box" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Voucher No
+                            </td>
+                            <td>
+                                <input type="text" class="text-box" />
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">Show</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
+                <table class="table table-data table-condensed" style="background-color:ghostwhite; padding-top:10px;">
+                    <tr>
+                        <th>
+                            Voucher No
+                        </th>
+                        <th>
+                            Item Name
+                        </th>
+                        <th>
+                            Batch No
+                        </th>
+                        <th>
+                            Refund Date
+                        </th>
+                        <th>
+                            Refund Qty
+                        </th>
+                        <th>
+                            Refund Amount
+                        </th>
+                    </tr>
+                    @if (Model.Count() < 1)
+                        {
+                        <tr>
+                            <td colspan="5">No data to display</td>
+                        </tr>
+                    }
+                        else
+                        {
+                            foreach (var item in Model)
+                            {
+                               
+                                <tr>
+                                    <td>@item.VoucherNo</td>
+                                    <td>@item.ItemMaster.ItemName</td>
+                                    <td>@item.ItemMaster.BatchNo</td>
+                                    <td>@item.RefundDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@item.RefundQty</td>
+                                    <td>@item.RefundAmount</td>
+                                </tr>
+                            }
+                        }
+
+
+                    
+                </table>
+                <div class="col-md-12">
+                    <button class="btn btn-primary btn-sm">Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

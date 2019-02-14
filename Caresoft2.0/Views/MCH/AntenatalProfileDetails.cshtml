@@ -1,0 +1,84 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.MCHAntenatalProfile>
+
+
+@{
+
+}
+
+<table class="table table-caresoft table-condensed">
+    <thead>
+        <tr>
+            <td style="color:fuchsia">OPD No</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+
+            <th style="color:fuchsia">User</th>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+            <th style="color:fuchsia; font-family:Calibri; font:16px">Date Of Visit</th>
+
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+            <tr>
+                <td>@a.OPDNo</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+                <td>@a.UserId</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td style="color:crimson">@a.DateAdded</td>
+
+
+            </tr>
+        }
+
+    </tbody>
+
+    <td>&nbsp;</td>
+
+    <thead>
+        <tr>
+            <th>Hb</th>
+            <th>Rhesus</th>
+            <th>TD Screening</th>
+            <th>IPT Date</th>
+            <th>Blood Group</th>
+            <th>Serology</th>
+            <th>Next Visit</th>
+            <th>HIV</th>
+            <th>Urinalysis</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+            <tr style="background-color:chartreuse">
+                <td>@a.Hb</td>
+                <td>@a.Rhesus</td>
+                <td>@a.TDScreening</td>
+                <td>@a.IPTIsoniazidDateGiven</td>
+                <td>@a.BloodGroup</td>
+                <td>@a.Serology</td>
+                <td>@a.NextVisit</td>
+                <td>@a.Hb</td>
+                <td>@a.Urinalysis</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+

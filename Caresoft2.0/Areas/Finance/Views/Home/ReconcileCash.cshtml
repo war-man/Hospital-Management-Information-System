@@ -1,0 +1,265 @@
+﻿
+@{
+    ViewBag.Title = "ReconcileCash";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Finance/Views/Shared/_LeftNavigation.cshtml")
+</div>
+
+﻿@model IEnumerable<CaresoftHMISDataAccess.User>
+@{
+    ViewBag.Title = "Cash Point Reconciliation";
+}
+
+<div class="col-md-7">
+    <div class="panel panel-primary caresoft-panel glass">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+            <form id="CashPointRecForm">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                <label>Cash Point</label>
+                            </td>
+                            <td>
+                                <select class="text-box box-lg" id="User" name="UserId" style="width:100%" required>
+                                    <option>--Select</option>
+                                    @foreach (var user in Model)
+                                    {
+                                        <option value="@user.Id">@user.Username</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                               &nbsp; <label>Start Date</label>
+                            </td>
+                            <td>
+                                <input type="text" readonly id="sDate" />
+                            </td>
+                            <td rowspan="2">
+                                <label>Duration</label><br>
+                                <input id="duraion" readonly />
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Shift No.</label>
+                            </td>
+                            <td>
+                                <select class="text-box box-lg" id="Shift" name="ShiftId" style="width:100%" required>
+                                    <option>--Select</option>
+                                </select>
+                            </td>
+                            <td>
+                              &nbsp;  <label>End Date</label>
+                            </td>
+                            <td>
+                                <input type="text" readonly id="eDate" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-12 marg-top-16px">
+                    <table class="table table-data-pathology table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Payment Mode</th>
+                                <th>Amount</th>
+                                <th>Actual Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cash</td>
+                                <td>
+                                    <input type="text" id="shift-amount-cash" class="text-box box-sm" readonly />
+                                </td>
+                                <td>
+                                    <input type="number" id="actual-amount-cash" name="ActualAmountCash" class="text-box box-sm" required/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Mpesa:
+                                </td>
+                                <td>
+                                    <input type="number" name="MpesaAmount" id="Mpesa" class="text-box box-sm" readonly />
+                                </td>
+                                <td>
+                                    <input type="number" id="ActualMpesa" name="MpesaActualAmount" class="text-box box-sm" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-md-12 marg-top-16px">
+                    <table class="table table-data-pathology table-condensed">                        
+                        <tr>
+                            <th>Cheque No.</th>
+                            <th>Cheque Amount</th>
+                            <th>Reconcile?</th>
+                        </tr>
+                        <tbody id="TBody">
+                            <tr class="reaconcileTr">
+                                <td class="ChequeNo">
+                                    <input type="number" name="ChequeNo" id="" class="text-box box-sm margin-top-bottom-2 chqNo" />
+                                </td>
+                                <td>
+                                    <input type="number" name="ChequeAmount" id="" class="text-box margin-top-bottom-2" readonly value="0" />
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="Reconcile" class="Reconcile" style="width:100%" />
+                                </td>
+                                <td hidden>
+                                    <input type="hidden" name="ActualAmountCheque" value="0" />
+                                </td>
+                                <td>
+                                    <button type="button" id="add">+</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <input type="hidden" name="ChequeNumbers" id="ChequeNumbers" />                
+                <div class="col-md-12 marg-top-16px">
+                    <button type="submit" id="btn-save-reconciliation" class="btn btn-primary bn-sm margin-top-bottom-2">Save</button>
+                    <button type="reset" class="btn btn-default">Clear</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $("#User").change(function () {
+            var user = $(this).val();
+            $("#CashPointRecForm")[0].reset();
+            $(this).find("option[value=" + user + "]").prop("selected", true);
+            if ($.isNumeric(user)) {
+                getThisUserShifts(user);
+            }
+        });
+
+        function getThisUserShifts(user) {
+            var url = '@Url.Action("ShiftsList", "Home", new { id = -1, @Area = "Finance" })';
+
+            url = url.replace("-1", user);
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (result) {
+                    $('#Shift').html(result);
+                }
+            });
+        }
+
+        $('#Shift').change(function () {
+            var shift = $(this).val();
+            var user = $("#User").val();
+            $("#CashPointRecForm")[0].reset();
+            $(this).find("option[value=" + shift + "]").prop("selected", true);
+            $("#User").find("option[value=" + user + "]").prop("selected", true);
+
+            if ($.isNumeric(shift)) {
+                getShiftDetails(shift);
+            }
+        });
+
+        function getShiftDetails(shift) {
+            var url = '@Url.Action("ShiftDetails", "Home", new { id = -1, @Area = "Finance" })';
+
+            url = url.replace("-1", shift);
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (result) {
+                    $("#sDate").val(result.STime);
+                    if (!result.Open) {
+                        $("#eDate").val(result.ETime);
+                    } else {
+                        $("#eDate").val("Open");
+                    }
+
+                    $("#shift-amount-cash").val(result.Amounts.Cash);
+                    $("#shift-amount-cheque").val(result.Amounts.Cheques);
+                    $("#duraion").val(result.Duration.Hours + " hrs " + result.Duration.Minutes + " Min " + result.Duration.Seconds + " s");
+
+                }
+            });
+        }
+        $("#btn-save-reconciliation").click(function () {
+            var ChequeNu = "";
+            $(".reaconcileTr").each(function () {
+                var a = $(this).children().children('.Reconcile');             
+                if (a.is(':checked')) {
+                    
+                    var parent = $(this).children().children('.chqNo');
+                    ChequeNu += parent.val() + ",";
+
+                }
+                else {
+                }
+
+            })
+
+            $("#ChequeNumbers").val(ChequeNu);
+            var data = $("#CashPointRecForm").serialize();           
+
+            if ($.isNumeric($("#User").val())) {
+                var ok = confirm("Caution before finalizing reconciliation\n\nAre the amounts okay?");
+                if (!ok) {
+                    return false;
+                }
+                $(".loader").show();
+                $.ajax({
+                    type: "POST",
+                    data:data,
+                    url: "@Url.Action("PostReconciliation", "Home", new { id = -1, @Area = "Finance" })",
+                    success: function (result) {
+                        var user = $("#User").val();
+                        $("#CashPointRecForm")[0].reset();
+                        $("#User").find("option[value=" + user + "]").prop("selected", true);
+                        getThisUserShifts(user);
+                        $(".loader").hide();
+                    },
+                    error: function (xhr, thrownError, c) {
+                        console.log(xhr.responseText);
+                        $(".loader").hide();
+                    }
+                });
+            }
+        });
+
+
+        $(document).ready(function () {
+            $("#add").click(function () {
+                var markup = '<tr class="reaconcileTr">'
+                    
+                    + "<td class='ChequeNo'>"
+                    + '<input type="number" name="ChequeNo" id="" class="text-box box-sm margin-top-bottom-2 chqNo" />'                    
+                    + '<td>'
+                    + '<input type="number" name="ChequeAmount" id="" class="text-box margin-top-bottom-2" readonly value="0"/>'
+                    + '</td>'
+                    + '<td>'
+                    + '&nbsp; <input type="checkbox" name="Reconcile" class="Reconcile" style="width:100%" />'
+                    + '</td>'
+                    + "</tr>";
+                $("#TBody").append(markup);
+            });
+        });
+        
+
+
+    </script>
+}

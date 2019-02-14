@@ -1,0 +1,86 @@
+﻿@model IEnumerable<int>
+@{
+    ViewBag.Title = "CompareAcceptedProvisionalPO";
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+}
+
+<div>
+    <div class="col-md-8">
+        <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+            <div class="panel-heading custom-navbar">
+                <p style="color:black;margin-left:10px;"><strong>Compare Provisional Purchase Order</strong></p>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table-form">
+                            <tr>
+                            <td>Provisional PO No</td>
+                            <td>
+                                <select id="ProvisionalPONo" class="text-box">
+                                <option>Select Provisional PO</option>
+                                    @foreach (var item in Model)
+                                    {
+                                      <option value="@item">@item</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm">Compare</button>
+                                <a href="/ProcurementPurchase/CompareAcceptedProvisionalPOReport" class="btn btn-primary btn-sm">Show Excel Format</a>
+
+                            </td>
+                            </tr>
+                        </table>
+                        <hr/>
+                        <div id="ListComparePO">
+                            <table class="table table-data" style="background-color:ghostwhite;">
+                                <tr>
+                                    <td></td>
+                                    <th>Cost/Unit</th>
+                                    <th>Total Cost</th>
+                                </tr>
+                                <tr>
+                                    <th>Grand Total</th>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+</div>
+
+
+
+@section scripts{
+    
+    <script>
+        $("#ProvisionalPONo").on('change', function () {
+
+            var id = $(this).val();
+            
+            
+            if (id != null)
+            {
+                var url = "/ProcurementPurchase/CompareAcceptedProvisionalPO?Id=" + id;
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    success: function (obj) {
+
+                        $("#ListComparePO").empty();
+                        $("#ListComparePO").append(obj);
+                    },
+                    error: function (x,y,z) {
+
+                        console.log(x.responseText);
+                    }
+                })
+            }
+        })
+    </script>
+    }

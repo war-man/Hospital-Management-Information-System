@@ -1,0 +1,129 @@
+﻿
+    @{
+        //var myProfile = new CaresoftHMISDataAccess.MCHMaternalProfile();
+        var building = (List<CaresoftHMISDataAccess.HSBuilding>)ViewBag.Buildings;
+        var floors = (List<CaresoftHMISDataAccess.HSFloor>)ViewBag.Floors;
+        var wards = (List<CaresoftHMISDataAccess.HSWard>)ViewBag.Wards;
+        var beds = (List<CaresoftHMISDataAccess.HSBed>)ViewBag.Beds;
+        ViewBag.Title = "Cleanup Request";
+        Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+    }
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="panel panel-primary caresoft-panel">
+                <div class="panel-heading">
+                    @ViewBag.Title
+                </div>
+                <div class="panel-body">
+                    @using (Ajax.BeginForm("SaveCleanupRequest", "NurseModule", new { }, new AjaxOptions
+                    {
+                        LoadingElementId = "loadingElement",
+                        HttpMethod = "POST",
+                        UpdateTargetId = "",
+                        OnFailure = "showNotification('Failed', 'danger', 'false')",
+                        OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                    }))
+                    {
+
+                        <form id="cleanup" method="post" action="@Url.Action("SaveCleanupRequest", "NurseModule")">
+                            <table class="table-form">
+                                <tr>
+                                    <td>
+                                        <label>Building name</label>
+                                    </td>
+                                    <td>
+                                        <select class="text-box box-lg" name="RequestBuilding">
+                                            <option>Select Building</option>
+                                            @foreach (var r in building)
+                                            {
+                                                <option>@r.BuildingName</option>
+                                            }
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <label>Floor Name</label>
+                                    </td>
+                                    <td>
+                                        <select class="text-box box-lg" name="RequestFloor">
+                                            <option>Select Floor</option>
+                                            @foreach (var r in floors)
+                                            {
+                                                <option>@r.FloorName</option>
+                                            }
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <label>Area</label>
+                                    </td>
+                                    <td>
+                                        <select class="text-box box-lg" name="RequestArea">
+                                            <option>Select Area</option>
+                                            @foreach (var r in wards)
+                                            {
+                                                <option>@r.WardName</option>
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                
+
+
+                                <tr>
+                                    <td>
+                                        <label>Remark</label><br />
+                                    <td>
+                                        <textarea class="text-box box-lg" name="Remarks"></textarea>
+                                    </td>
+                                    <td>
+                                        Bed CleanUp  <input type="checkbox" id="isNews" name="isNews" />
+
+                                    </td>
+                                    <td> <select class="text-box box-lg" name="BedNo" id="BedNo" disabled="">
+                                            <option>Select Bed</option>
+                                            @foreach (var r in beds)
+                                            {
+                                                <option>@r.BedName</option>
+                                            }
+                                        </select></td>
+                                </tr>
+                               
+
+                            </table>
+                            <script type="text/javascript">
+                                $('#isNews').change(function () {
+                                    
+                                    
+                                    
+                                    $("#BedNo").prop("disabled", !$(this).is(':checked'));
+                                });
+                            </script>
+                            <div>
+                                <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit" name="btnSubmit">Save</button>
+                                <button type="reset" class="btn btn-sm btn-primary">Cancel</button>
+                            </div>
+                        </form>
+                    }
+                    <table class="table-data table table-condensed marg-top-6px">
+                        <thead>
+                            <tr>
+                                <th>Building</th>
+                                <th>Floor No</th>
+                                <th>Area/Room No</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            <tr>
+                                <td colspan="9" align="center">
+                                    <label>No data to display</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>

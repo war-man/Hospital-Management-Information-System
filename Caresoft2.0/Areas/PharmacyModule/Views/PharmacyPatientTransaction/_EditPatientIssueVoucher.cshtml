@@ -1,0 +1,60 @@
+﻿@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.SimulationPatientIssueVoucher>
+@using PagedList.Mvc;
+<br />
+<table class="table table-data-pathology " style="background-color:ghostwhite;">
+    <tr>
+        <th>Edit</th>
+        <th>Voucher No</th>
+        <th>Issue Date</th>
+        <th>Reg No</th>
+        <th>OPD No</th>
+        <th>HIV No</th>
+        <th>Clinic No</th>
+        <th>Patient Name</th>
+        <th>Total Amount</th>
+        <th>Amount Paid</th>
+        <th>Discount</th>
+        <th>Report</th>
+    </tr>
+    @if (Model.Count() < 1)
+    {
+        <tr style="text-align:center;font-style:italic">
+            <td colspan="11">No data to display</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink("Edit", "DirectPatientIssueVoucher", "PharmacyPatientTransaction", 
+                   new { Id = item.Opd }, new { @class = "btn btn-xs btn-primary" } ) </td>
+                <td>@item.VoucherNumber</td>
+                <td>@item.DateIssued.Value.ToString("dd-MM-yyyy") </td>
+                <td>@item.Regno</td>
+                <td>@item.Opd</td>
+                <td>@item.HivNo</td>
+                <td>@item.ClinicNo</td>
+                <td>@item.PatientsName</td>
+                <td style="text-align:right">@item.totalAmount.ToString("N2")</td>
+                <td style="text-align:right">@item.PaidAmount.ToString("N2")</td>
+                <td style="text-align:right">@item.Discount.ToString("N2")</td>
+                <td><button class="btn btn-primary btn-xs">Report</button></td>
+            </tr>
+        }
+
+    }
+
+</table>
+
+<div class="col-xs-7">
+    <div class="col-xs-12">
+        @Html.PagedListPager(Model, page => Url.Action("EditPatientIssueVoucher", "PharmacyPatientTransaction", new { page, Area = "PharmacyModule" }))
+    </div>
+    <div class="col-xs-12">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+    </div>
+</div>
+
+@* Below is section for direct patient issue voucher*@

@@ -1,0 +1,269 @@
+﻿@model CaresoftHMISDataAccess.OpdRegister
+
+@{
+    var totalpaid = 0.0;
+    var dtotalpaid = 0.0;
+
+}
+@if (ViewBag.Type == "previousInvoices")
+{
+
+    var Invoices = Model.InsuranceInvoices.GroupBy(e => e.id);
+
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading">
+            Previous Invoice Awards
+        </div>
+        <div class="panel-body">
+
+            @foreach (var invoice in Invoices)
+            {
+
+                <div class="panel panel-primary caresoft-panel">
+                    <div class="panel-heading">
+                        Invoice #: @invoice.FirstOrDefault().id Company : @invoice.FirstOrDefault().Company.CompanyName
+                    </div>
+                    <div class="panel-body">
+
+                        <table w id="billservices" width="100%" class=" table-condensed table-data-pathology bg-white" style="background-color:white">
+
+                            <thead>
+                                <tr>
+                                    <th hidden>Id</th>
+                                    <th>Description</th>
+                                    <th>Gross</th>
+                                    <th>Discount</th>
+                                    <th>Disc Amt</th>
+                                    <th>Net Amt</th>
+                                    <th>Allocate</th>
+                                </tr>
+                            </thead>
+
+                            @if (Model.BillServices.Where(e => e.Paid).Count() > 0)
+                            {
+                                <tr><td colspan="6"><b class="text-primary">BILL SERVICES</b></td></tr>
+                            }
+
+                            @foreach (var inv in invoice)
+                            {
+                                foreach (var item in inv.OpdRegister.BillServices.Where(e => e.Paid))
+                                {
+                                    totalpaid = totalpaid + item.InvoiceServiceAllocations.Sum(s => s.AmountAllocated);
+
+                                    <tr>
+                                        <td hidden class="bsid">
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td hidden class="type">Services</td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ServiceName)
+                                        </td>
+                                        <td>
+                                            @((item.Price * item.Quatity) - (item.OpdRegister?.InsuranceInvoices?.FirstOrDefault()?
+                                                                                                                                                                                                                        .InvoiceServiceAllocations.Where(i => i.BillServiceId == item.Service.Id)
+                                                                                                                                                                                                                        .Sum(s => s.AmountAllocated) ?? 0))
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="billamount">
+
+                                            @((item.Price * item.Quatity) -
+                                                                                                                                                                                                            (item.InvoiceServiceAllocations.Sum(s => s.AmountAllocated))
+                                                                                                                                                                                                            - (item.IPDBillPartialPayments.Sum(e => e.AllocatedAmount) + item.WaivedAmount ?? 0))
+                                        </td>
+                                        <td class="allocated">
+                                            @((item.InvoiceServiceAllocations.Sum(s => s.AmountAllocated)))
+                                        </td>
+                                    </tr>
+                                }
+
+
+                                if (inv.OpdRegister.Medications.Where(e => e.Paid).Count() > 0)
+                                {
+                                    <tr><td colspan="6"><b class="text-primary">DRUGS</b></td></tr>
+                                }
+
+                                foreach (var item2 in inv.OpdRegister.Medications.Where(e => e.Paid && e.Available == true))
+                                {
+                                    dtotalpaid = dtotalpaid + (item2.OpdRegister?.InsuranceInvoices?
+                                        .Where(x => x.OpdId == item2.OPDNo).Sum(y => y.InvoiceServiceAllocations.Where(i => i.BillServiceId == item2.DrugId)
+                                       .Sum(f => f.AmountAllocated))) ?? 0;
+
+                                    <tr>
+                                        <td hidden class="bsid">
+                                            @Html.DisplayFor(modelItem => item2.Id)
+                                        </td>
+                                        <td hidden class="type">Medications</td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item2.DrugName)
+                                        </td>
+                                        <td>
+                                            @((item2.UnitPrice * item2.Quantity) - (item2.OpdRegister?.InsuranceInvoices?
+                                                                                                                                                                                        .Where(x => x.OpdId == item2.OPDNo).Sum(y => y.InvoiceServiceAllocations.Where(i => i.BillServiceId == item2.DrugId)
+                                                                                                                                                                                       .Sum(f => f.AmountAllocated))))
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="billamount">
+
+                                            @((item2.UnitPrice * item2.Quantity) - (item2.OpdRegister?.InsuranceInvoices?
+                                                                                                                                                                                        .Where(x => x.OpdId == item2.OPDNo).Sum(y => y.InvoiceServiceAllocations.Where(i => i.BillServiceId == item2.DrugId)
+                                                                                                                                                                                       .Sum(f => f.AmountAllocated)) - (item2.IPDBillPartialPayments?.Sum(e => e.AllocatedAmount) + item2.WaivedAmount ?? 0)))
+                                        </td>
+                                        <td class="allocated">
+                                            @((item2.OpdRegister?.InsuranceInvoices?
+                                                                                                                                                                                        .Where(x => x.OpdId == item2.OPDNo).Sum(y => y.InvoiceServiceAllocations.Where(i => i.BillServiceId == item2.DrugId)
+                                                                                                                                                                                       .Sum(f => f.AmountAllocated))))
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                            <tr>
+                                <td colspan="5"> <strong class="text-primary">Total Pending Bill</strong></td>
+                                <td>
+                                    <strong class="text-primary billbalance">
+                                        @(Model.Medications?.Where(f => f.Available == true).Where(e => e.Paid).Sum(e => e.UnitPrice * e.Quantity) - (dtotalpaid + totalpaid)
+                                                                                                + Model.BillServices.Where(e => e.Paid).Sum(e => e.Price * e.Quatity) - (dtotalpaid + totalpaid))
+                                    </strong>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+}
+else
+{
+    <table id="billservices" width="95%" class=" table-condensed table-data-pathology bg-white" style="background-color:white">
+
+        <thead>
+            <tr>
+                <th hidden>Id</th>
+                <td hidden>Services</td>
+
+                <th>
+                    <input class="selectAll" type="checkbox" />
+                </th>
+
+                <th>Description</th>
+                <th>Gross</th>
+                <th>Discount</th>
+                <th>Disc Amt</th>
+                <th>Net Amt</th>
+                <th>Allocate</th>
+            </tr>
+        </thead>
+
+        @if (Model.BillServices.Where(e => !e.Paid).Count() > 0)
+        {
+            <tr><td colspan="6"><b class="text-primary">BILL SERVICES</b></td></tr>
+        }
+
+          
+        @foreach (var item in Model.BillServices.Where(e => !e.Paid))
+        {
+            totalpaid = totalpaid + item.InvoiceServiceAllocations.Sum(s => s.AmountAllocated);
+
+            <tr>
+                <td hidden class="bsid">
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td hidden class="type">Services</td>
+                <td ><input class="selectService" type="checkbox" /></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceName)
+                </td>
+                <td>
+
+                    @((item.Price * item.Quatity) - (item.IPDBillPartialPayments?.Sum(e => e.AllocatedAmount))
+                - (item.WaivedAmount ?? 0) - (item.OpdRegister?.InsuranceInvoices?.FirstOrDefault()?
+                        .InvoiceServiceAllocations.Where(i => i.BillServiceId == item.Service.Id)
+                        .Sum(s => s.AmountAllocated) ?? 0))
+                </td>
+                <td></td>
+                <td></td>
+                <td class="billamount">
+
+                    @((item.Price * item.Quatity) - (item.InvoiceServiceAllocations.Sum(s => s.AmountAllocated))
+                - (item.IPDBillPartialPayments.Sum(e => e.AllocatedAmount)) - (item.WaivedAmount ?? 0))
+                </td>
+                <td class="allocated">
+                    @((item.InvoiceServiceAllocations.Sum(s => s.AmountAllocated)))
+                </td>
+            </tr>
+        }
+
+
+
+        @if (Model.Medications.Where(e => !e.Paid).Count() > 0)
+        {
+            <tr><td colspan="7"><b class="text-primary">DRUGS</b></td></tr>
+        }
+
+        @foreach (var item2 in Model.Medications.Where(e => !e.Paid && e.Available == true))
+        {
+            dtotalpaid = dtotalpaid + (item2.OpdRegister?.InsuranceInvoices?
+                .Where(x => x.OpdId == item2.OPDNo).Sum(y => y.InvoiceServiceAllocations.Where(i => i.BillServiceId == item2.DrugId)
+               .Sum(f => f.AmountAllocated))) ?? 0;
+
+            <tr>
+                <td hidden class="bsid">
+                    @Html.DisplayFor(modelItem => item2.Id)
+                </td>
+                <td hidden class="type">Medications</td>
+                <td><input class="selectService" type="checkbox" /></td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item2.DrugName)
+                </td>
+                <td>
+                    @((item2.UnitPrice * item2.Quantity) - (item2.IPDBillPartialPayments?.Sum(e => e.AllocatedAmount))-
+                -(item2.WaivedAmount ?? 0) - (item2.OpdRegister?.InsuranceInvoices?
+                        .Where(x => x.OpdId == item2.OPDNo).Sum(y => y.InvoiceServiceAllocations.Where(i => i.BillServiceId == item2.DrugId)
+                        .Sum(f => f.AmountAllocated))))
+                </td>
+                <td></td>
+                <td></td>
+                <td class="billamount">
+
+                    @((item2.UnitPrice * item2.Quantity) - (item2.OpdRegister?.InsuranceInvoices?
+                .Where(x => x.OpdId == item2.OPDNo).Sum(y => y.InvoiceServiceAllocations.Where(i => i.BillServiceId == item2.DrugId)
+                .Sum(f => f.AmountAllocated)) - (item2.IPDBillPartialPayments?.Sum(e => e.AllocatedAmount)) - (item2.WaivedAmount ?? 0)))
+                </td>
+                <td class="allocated">
+                    @((item2.OpdRegister?.InsuranceInvoices?.Where(x => x.OpdId == item2.OPDNo)
+                .Sum(y => y.InvoiceServiceAllocations.Where(i => i.BillServiceId == item2.DrugId).Sum(f => f.AmountAllocated))))
+                </td>
+            </tr>
+        }
+        <tr>
+            @if (ViewBag.Type != "previousInvoices")
+            {
+                <td colspan="6"> <strong class="text-primary">Total Pending Bill</strong></td>
+            }
+            else
+            {
+                <td colspan="5"> <strong class="text-primary">Total Pending Bill</strong></td>
+
+            }
+            <td>
+                <strong class="text-primary billbalance">
+                    @((Model.Medications?.Where(f => f.Available == true).Where(e => !e.Paid).Sum(e => (e.UnitPrice * e.Quantity) - (e.WaivedAmount??0)
+                - (e.IPDBillPartialPayments?.Sum(f => f.AllocatedAmount)))) + Model.BillServices.Where(e => !e.Paid)
+                .Sum(e => (e.Price * e.Quatity) - (e.WaivedAmount??0) - (e.IPDBillPartialPayments?.Sum(f => f.AllocatedAmount))))
+
+                </strong>
+            </td>
+
+        </tr>
+    </table>
+
+}
+

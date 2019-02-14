@@ -1,0 +1,223 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Delivery";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>@ViewBag.Title</p>
+    </div>
+   
+    <div class="panel-body">
+        <form class="delivery" method="post" action="@Url.Action("SaveDelivery", "mch")">
+            <input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+            <table class="table-form">
+                <tr>
+                    <td>
+                        <label>
+                            During of pregnancy <input type="text" name="PregnancyWeek" style="width:40px; border:none; border-bottom:1px solid var(--primary-color); text-align:center;" required />
+                            weeks, HIV tested
+                            <label>
+                                Yes <input type="radio" name="HIVTested" value="Yes" />
+                            </label>
+                            <label> No <input type="radio" name="HIVTested" value="NO" /></label>
+                        </label>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>
+                            If HIV test not done or Negative at ANC, Counseland test;
+                        </label>
+                        <ul style="list-style-type:none">
+                            <li><label>  <input type="radio" name="HIVReactivity" value="Reactive" /> Reactive</label></li>
+                            <li><label>  <input type="radio" name="HIVReactivity" value="NR" /> NR</label></li>
+                            <li><label> <input type="radio" name="HIVReactivity" value="Not Tested" />  Not Tested</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            Mode of delivery
+                        </label>
+                        <input type="text" class="text-box" name="ModeOfDelivery" required />
+                        <label>
+                            Date
+                        </label>
+                        <input type="date" class="text-box" name="DateOfDelivery" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            Blood Loss<br />(Light/Medium/Heavy)
+                        </label>
+                        <input type="text" class="text-box" name="BloodLoss" required />
+                        <label>
+                            Pre-eclampsia
+                        </label>
+                        <input type="text" class="text-box" name="PreEclapsia" required />
+                        <label>
+                            Eclampsia
+                        </label>
+                        <input type="text" class="text-box" name="Eclampsia" required />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>
+                            Obstructed Labour
+                            <label>
+                                Yes <input type="radio" name="ObstractedLabour" value="Yes" required />
+                            </label>
+                            <label> No <input type="radio" name="ObstractedLabour" value="NO" required /></label>
+                        </label>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            Condition of Mother
+                        </label>
+                        <input type="text" class="text-box" name="ConditionOfMother" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <fieldset>
+                            <legend>Apgar score</legend>
+                            <label>1 Min</label> <input type="text" class="text-box" name="ApgarScoreOneMinute" required />
+                            <label>5 Min</label> <input type="text" class="text-box" name="ApgarScoreFiveMinutes" required />
+                            <label>10 Min</label> <input type="text" class="text-box" name="ApgarScoreTenMinutes" required />
+                            <label>
+                                Rescusciation done
+                                <label>Yes <input type="radio" name="RescusciationDone" required /> No <input type="radio" name="RescusciationDone" /> </label>
+                            </label>
+
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="">
+                        Meconium stained liquor (grade) 0,1,2,3 Drugs administered at delivery:  <input type="text" class="text-box" name="MeconiumStainedLiquor" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="">
+                        Mother Oxytocin/Syntocinon:  <label> <input type="checkbox" name="MotherOxytocinHAART" required /> HAART</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="">
+                        <label> <input type="checkbox" name="BabyVITK" /> Baby: Vit K</label>
+                        <label> <input type="checkbox" name="TEO" />TEO</label>
+                        <label> <input type="checkbox" name="CordCare" />Cord care, apply CHX<span style="color:red">**</span> OD for at least 10 days or till the cord drops off</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="">
+                        Baby HIV exposed:NVP prophylaxis<label></label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Birth Weight(in Kgs)</label>
+                        <input type="number" class="text-box" name="BirthWeight" required />
+                        <label>Birth Length (in cm)</label>
+                        <input type="number" class="text-box" name="BirthLength" required />
+
+                    </td>
+                </tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <tr>
+                    <td>
+                        <label>Head Circumference</label>
+                        <input type="text" class="text-box" name="HeadCircumference" required />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Place of delivery</label>
+                        <ul style="list-style-type:none">
+                            <li><label>  <input type="radio" name="PlaceOfDelivery" value="Reactive" /> Health facility</label></li>
+                            <li><label>  <input type="radio" name="PlaceOfDelivery" value="NR" /> Home</label></li>
+                            <li><label> <input type="radio" name="PlaceOfDelivery" value="Not Tested" />  Other (Specify) <input type="text" class="text-box" /></label></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <label>Conducted by:</label>
+                        <ul style="list-style-type:none">
+                            <li><label>  <input type="radio" name="ConductedBy" value="Nurse" required /> Nurse</label></li>
+                            <li><label>  <input type="radio" name="ConductedBy" value="Midwife" required /> Midwife</label></li>
+                            <li><label>  <input type="radio" name="ConductedBy" value="ClinicalOfficer" required /> Clinical Officer</label></li>
+                            <li><label>  <input type="radio" name="ConductedBy" value="Doctor" required /> Doctor</label></li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="ConductedBy" value="Not Tested" />  Other (Specify)
+                                    <input type="text" class="text-box" />
+                                </label>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+            </table>
+            <div class="marg-top-6px">
+                <button class="btn btn-sm btn-primary" id="btn_add_previous_pregnanacy">Save</button>
+                <button class="btn btn-sm btn-primary">Cancel</button>
+                @Html.ActionLink("Continue", "PostNatalExam", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+@style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+                &nbsp;
+                &nbsp;
+                @Html.ActionLink("Previous", "PreventativeServices", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+     @style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+            </div>
+        </form>
+        <div>
+            @Html.Partial("DeliveryDetails", Model.OpdRegister.MCHDeliveries)
+        </div>
+
+
+    </div>
+    
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+
+       
+    </script>
+}
+
+

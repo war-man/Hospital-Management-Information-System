@@ -1,0 +1,37 @@
+﻿
+
+
+<table class="table table-data table-condensed" style="background-color:ghostwhite;">
+    <tr>
+        <th>Select</th>
+        <th>Bill No</th>
+        <th>Patients Name</th>
+        <th>Total Amount</th>
+        <th>Discount</th>
+        <th>Amount Recieved</th>
+        <th>Balance</th>
+
+    </tr>
+        <tr>
+            <td colspan="7" style="text-align:center;font-style:italic">No data to display</td>
+        </tr>
+    
+    @*else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OpeningStock</td>
+                    <td>@item.ClosingStock</td>
+                    <td>@item.Date</td>
+                    <td>@item.ItemName</td>
+                    <td>@item.BatchNo</td>
+                    <td>@item.PurchaseQuantity</td>
+                    <td>@item.IssueQuantity</td>
+                    
+            </tr>
+        }
+    }*@
+
+</table>
+

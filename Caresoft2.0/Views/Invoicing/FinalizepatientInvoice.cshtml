@@ -1,0 +1,664 @@
+﻿
+@{
+    ViewBag.ShowTopMenu = true;
+    ViewBag.Title = "Patient Bill Estimate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-xs-offset-2 col-xs-8 CustomLabel">
+    <div class="panel panel-primary caresoft-panel">
+
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+
+            <ul id="myNavTabs" class="nav nav-tabs">
+                <li role="presentation" class="active"><a data-toggle="pill" href="#Inpatient">Finalize In-patient Bills</a></li>
+                <li role="presentation"><a data-toggle="pill" href="#Outpatient">Finalize Out-patient Bills</a></li>
+            </ul>
+            <br />
+            <div class="pi collapse">
+                <a href="#" style="background-color:azure; color:black" id="previousInvoices" class="bg-amber call-modal-form list-group-item" data-dismiss="modal"
+                   data-action="/Invoicing/IPDServicesOffered?type=previousInvoices&id=" data-callback="">View Previous Invoices</a>
+            </div>
+            <div class="tab-content" style="overflow:auto">
+                <div class="tab-pane active" id="Inpatient">
+
+                    <button type="button" class="editOPD collapse call-modal-form btn btn-xs btn-success"
+                            data-action="@Url.Action("OPDRegistration", "Registration", new { id= 0 , mode = "Edit"  })"
+                            data-callback="editInsuranceOnLoad">
+                        Edit Insurance Details
+                    </button>
+                    <input hidden name="valid" id="valid" />
+                    <input id="CompanyId" />
+
+                    <table width="100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @Html.Partial("IPDInvoicing")
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                </div>
+                <div class="tab-pane" id="Outpatient">
+
+                    <table width="100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <fieldset>
+                                        <legend> <h5><b> Patient Registration </b> </h5> </legend>
+
+                                    </fieldset>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                </div>
+
+            </div>
+
+            @*<button onclick="getAllAllocatedServices()" class="disabled btnFinalizeInvoice btn btn-sm btn-primary">Prepare Invoice</button>*@
+            <button onclick="getAllAllocatedServices('finalize')" disabled class="disabled btnFinalizeInvoice btn btn-sm btn-primary">Finalize Invoice</button>
+
+            <a id="printInvoiceReport" href="#" class="btn btn-primary btn-sm">Print Invoice</a>
+
+        </div>
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+        function editInsuranceOnLoad() {
+            opdRegistrationCallBack();
+            $(".dont_show_on_invoicing").addClass("collapse");
+        }
+
+        function clearFields() {
+            $(".pi").addClass("collapse");
+
+            $('#billingTable').html("...");
+
+            $('.btnFinalizeInvoice').addClass('disabled');
+            $('.btnFinalizeInvoice').attr('disabled', true);
+
+            $("#OPDNumber").val(null);
+            $("#PatientName").val("");
+            $("#TarrifName").val("");
+            $("#TarrifId").val(null);
+            $("#NoOfDays").val(null);
+
+            $("#TotalDeposits").val(0);
+            $("#DiscountAmount").val(0);
+            $("#TotalBill").val(0);
+
+            $("#TotalAwarded").val(0);
+            $("#NetValue").val(0);
+
+            $("#printInvoiceReport").attr("href", "#");
+
+            var IPDServices = $("#previousInvoices").attr("data-action");
+            $("#previousInvoices").attr("data-action", IPDServices);
+
+            $(".pi").addClass("collapse");
+
+            $(".editOPD").addClass("collapse");
+
+        }
+
+        $("#PatientNumber").autocomplete({
+            source: function (request, response) {
+
+                clearFields();
+
+                $.ajax({
+                    type: 'GET',
+                    url: "@Url.Action("SearchPatients")",
+                    dataType: "json",
+                    data: { search: $("#PatientNumber").val()},
+                    success: function (data) {
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.RegNumber + " { " + item.TimeAdded + " } " + item.Name ,
+                                value: item.RegNumber,
+                                Name: item.Name,
+                                PatientId: item.PatientId,
+                                OPD: item.OPD,
+                                SchemeName: item.SchemeName,
+                                SchemeId: item.SchemeId,
+                                TimeAdded: item.TimeAdded,
+                                NoOfDays: item.NoOfDays,
+
+                                TotalAwarded: item.TotalAwarded,
+                                TotalDeposits: item.TotalDeposits,
+                                TotalDiscount: item.TotalDiscount,
+                                TotalBill: item.TotalBill,
+
+
+                            };
+                        }));
+                    }
+                });
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                showNotification("An Error Occured, try again later", "danger", true);
+            },
+            minLength: 2,
+            select: function (event, ui) {
+                $("#OPDNumber").val(ui.item.OPD);
+                $("#PatientName").val(ui.item.Name);
+                $("#TarrifName").val(ui.item.SchemeName);
+                $("#TarrifId").val(ui.item.SchemeId);
+                $("#NoOfDays").val(ui.item.NoOfDays);
+
+                $("#TotalDeposits").val(ui.item.TotalDeposits);
+                $("#DiscountAmount").val(ui.item.TotalDiscount);
+                $("#TotalBill").val(ui.item.TotalBill);
+
+                $("#TotalAwarded").val(ui.item.TotalAwarded);
+                $("#NetValue").val(parseFloat(ui.item.TotalBill) - (parseFloat(ui.item.TotalAwarded)
+                    + parseFloat(ui.item.TotalDeposits) + parseFloat(ui.item.TotalDiscount)));
+
+                if ($("#OPDNumber").val() == "") {
+                    showNotification("Please Select Patient", "danger", true)
+                } else if ($("#CompanyId").val() == "") {
+                    showNotification("Please Select Insurance", "danger", true)
+
+                } else {
+                    $("#printInvoiceReport").attr("href", "/Invoicing/printInvoiceReport/" + $("#OPDNumber").val() + "?CompanyId="
+                        + $("#CompanyId").val());
+                }
+               
+
+                var IPDServices = $("#previousInvoices").attr("data-action") + ui.item.OPD;
+                $("#previousInvoices").attr("data-action", IPDServices);
+
+                $(".pi").removeClass("collapse");
+
+                var actionOpd = '@Url.Action("OPDRegistration", "Registration")/' + ui.item.OPD + "?mode=Edit";
+                $(".editOPD").attr("data-action", actionOpd);
+                $(".editOPD").removeClass("collapse");
+
+                getIPDServicesOffered(ui.item.OPD);
+            }
+        });
+
+        function getIPDServicesOffered(id) {
+            $.ajax({
+            type: 'GET',
+            url: "@Url.Action("IPDServicesOffered")",
+            data: { id: id},
+                success: function (data) {
+
+                    $('#billingTable').html(data);
+
+                    $('.btnFinalizeInvoice').removeClass('disabled');
+                    $('.btnFinalizeInvoice').attr('disabled', false);
+
+                    loadIPDServicesOfferedOnItemClick();
+                }
+        });
+        }
+
+        function loadIPDServicesOfferedOnItemClick() {
+            $(".selectAll").change(function () {
+                var selectAll = $(this).prop('checked');
+
+                $('.selectService').each(function (index, value) {
+                    if (selectAll == true) {
+                        $(this).prop("checked", true);
+                    } else {
+                        $(this).prop("checked", false);
+                    }
+                });
+                allocateToSpicificTests(parseInt($("#AmountToAward").val()));
+
+            });
+
+            $(".selectService").change(function () {
+
+                allocateToSpicificTests(parseInt($("#AmountToAward").val()));
+               
+            });
+        }
+
+        $(".insurance-name").autocomplete({
+            source: function (request, response) {
+                $("#valid").val("");
+
+                if ($('#OPDNumber').val() == "") {        
+                    showNotification("Please select a Patient", "danger", true);
+                    return null;
+                }
+
+            $.ajax({
+                    type: 'GET',
+                    url: "@Url.Action("SearchInsurances")",
+                dataType: "json",
+                data: { search: request.term, VisitNo: parseInt($('#OPDNumber').val()) },
+                success: function (data) {
+                    console.log(data);
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Name ,
+                                value: item.Name,
+                                Id: item.Id,
+                                AccNo: item.AccNo,
+                                valid: item.valid,
+                               
+                            };
+                        }));
+                    }
+                });
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                showNotification("An Error Occured, try again later", "danger", true);
+            },
+            minLength: 2,
+            select: function (event, ui) {
+
+                $(this).val();
+
+                $("#CompanyId").val(ui.item.AccNo);
+                $("#valid").val(ui.item.valid);
+
+                if ($("#OPDNumber").val() == "") {
+                    showNotification("Please Select Patient", "danger", true)
+                } else if ($("#CompanyId").val() == "") {
+                    showNotification("Please Select Insurance", "danger", true)
+
+                } else {
+                    $("#printInvoiceReport").attr("href", "/Invoicing/printInvoiceReport/" + $("#OPDNumber").val() + "?CompanyId="
+                        + $("#CompanyId").val());
+                }
+
+                var tr =
+                    '<tr style = "background: #DDECFE;">' +
+                    '<td class="activeInsurance">' +
+                    '<input class="selectedInsurance" checked name="selectedInsurance" type="radio"></input>' +
+                    '</td>' +
+                    '<td class="pt - 3 - half insurance-acc_no" contenteditable="false"> '
+                    + ui.item.AccNo + ' </td>' +
+                    '<td class="pt - 3 - half insurance-name" contenteditable="false"> '
+                    + ui.item.value + '</td>' +
+                    '<td class="pt - 3 - half insurance-amount" contenteditable="false"> '
+                    + 0 + '</td>' +
+                    '<td>' +
+                    '<span class=""><button type="button" class="btn btn-danger btn-rounded btn-xs tableRemove">Remove</button></span>'
+                    + '</td>' +
+                    '</tr >';
+
+                if (ui.item.valid == false) {
+                    $(".editOPD").click();
+
+                     tr =
+                        '<tr style = "background: #DDECFE;">' +
+                        '<td class="activeInsurance">' +
+                        '<input class="selectedInsurance" checked name="selectedInsurance" type="radio"></input>' +
+                        '</td>' +
+                        '<td class="pt - 3 - half insurance-acc_no" contenteditable="false"> '
+                        + ui.item.AccNo + ' </td>' +
+                        '<td class="pt - 3 - half insurance-name" contenteditable="false"> '
+                        + ui.item.value + '</td>' +
+                        '<td class="pt - 3 - half insurance-amount" contenteditable="false"> '
+                        + 0 + '</td>' +
+                        '<td>' +
+                        '<span class=""><button type="button" class="btn btn-danger btn-rounded btn-xs tableRemove">Remove</button></span>'
+                        + '</td>' +
+                        '</tr >';
+                }
+                
+            
+
+                $("#insuranceTablesBody").prepend(tr);
+
+
+                setUpIsuranceClicks();
+
+                
+            }
+        });
+
+        function setUpIsuranceClicks() {
+            $(".tableRemove").click(function () {
+                $(this).parent().parent().parent().remove();
+            });
+
+            $(".selectedInsurance").click(function () {
+                var CompanyId = $(this).parent().siblings(".insurance-acc_no").text();
+                var VisitNo = $("#OPDNumber").val();
+                $("#CompanyId").val(CompanyId);
+
+                $("#printInvoiceReport").attr("href", "/Invoicing/printInvoiceReport/" + $("#OPDNumber").val() + "?CompanyId="
+                    + $("#CompanyId").val());
+
+                checkIfInsuranceValid(VisitNo, CompanyId);
+
+            });
+
+        }
+
+
+        function checkIfInsuranceValid(VisitNo, CompanyId){
+
+            $.get("checkIfInsuranceValid?VisitNo=" + VisitNo + "&CompanyId=" + CompanyId, function (data, status) {
+
+                if (status == "success") {
+                    $("#valid").val(data);
+
+                    if (data.toLowerCase() == "false") {
+                        $(".editOPD").click();
+                    }
+                } else {
+                    showNotification("An Error Occured", "danger", true);
+                }
+            });
+        }
+
+        $("#AmountToAward").bind("keyup change", function (e) {
+
+            var TotalBill = parseInt($("#TotalBill").val());
+
+            var amoutAwarded = parseInt($(this).val());
+            
+            //var nhifrebate = parseInt($(this).val()) * parseInt($("#NoOfDays").val());
+            //var nhifdiff = parseInt($("#NHIFRebate").val()) - amoutAwarded
+
+            //$("#NHIFRebate").val(nhifrebate);
+            //$("#NHIFDiff").val(TotalBill - nhifrebate);
+            $("#NetValue").val(0);
+            $("#Refund").val();
+            $("#AmountToAward").val(amoutAwarded);
+
+            allocateToSpicificTests(amoutAwarded);
+
+        })
+
+        $('.NHIFRebate').change(function () {
+            if ($(this).val() == "No" || $(this).val() == "preAuth") {
+                $("#AmountToAward").prop("readonly", false);
+
+                $("#nhif-category").attr("disabled", true);
+                $('#nhif-category').find('option:eq(0)').prop('selected', true);
+
+            } else {
+                $("#AmountToAward").prop("readonly", true);
+                $("#AmountToAward").val(0);
+
+                $("#nhif-category").attr("disabled", false); 
+
+            }
+        });
+
+        $('#nhif-category').change(function () {
+            var TotalBill = parseInt($("#TotalBill").val());
+
+            var nhifrebate = parseInt($(this).val());
+
+            var perday = $("#nhif-category option:selected").data('perday');
+
+            if (perday == "True") {
+                var nhifrebate = parseInt($(this).val()) * parseInt($("#NoOfDays").val());
+
+            }
+
+            //var nhifrebate = parseInt($(this).val()) * parseInt($("#NoOfDays").val());
+            var nhifdiff = parseInt($("#NHIFRebate").val()) - nhifrebate
+
+            $("#NHIFRebate").val(nhifrebate);
+            $("#NHIFDiff").val(TotalBill - nhifrebate);
+            $("#NetValue").val(0);
+            $("#Refund").val();
+
+            allocateToSpicificTests(nhifrebate);
+
+        });
+        
+        function allocateToSpicificTests(nhifrebate) {
+            var AmountToAllocate = nhifrebate;
+
+            $('#billservices tr').each(function () {
+                $(this).find('td.allocated').text(0);
+
+                var allocate = $(this).find('.selectService').prop('checked');
+                if (allocate == true) {
+
+                    var BillAmount = $(this).find('td.billamount').text();
+
+                    if (BillAmount != 0) {
+                        if (AmountToAllocate >= BillAmount) {
+
+                            AmountToAllocate = AmountToAllocate - BillAmount;
+                            $(this).find('td.allocated').text(BillAmount);
+                        } else {
+
+                            $(this).find('td.allocated').text(AmountToAllocate);
+                            AmountToAllocate = 0;
+
+
+                        }
+                    }
+
+                }
+               
+            });
+        }
+
+        function getAllAllocatedServices(type) {
+            var myArray = new Array();
+            $('#billservices tr').each(function () {
+
+                var AllocatedAmount = $(this).find('td.allocated').text();
+                var BSID = $(this).find('td.bsid').text();
+                var Type = $(this).find('td.type').text();
+
+                var second_array = {};
+                
+                // Empty array for our use.
+
+                second_array.BSID = parseInt(BSID);
+                second_array.Type = Type;
+                second_array.AllocatedAmount = parseInt(AllocatedAmount);
+
+                myArray.push(second_array);
+
+            });
+
+            
+
+            data = {};
+            data["AllocationArray"] = myArray;
+            data["OPDId"] = parseInt($("#OPDNumber").val());
+            data["NHIFRebate"] = parseInt($("#NHIFRebate").val());
+            data["TotalAmount"] = parseInt($("#NetValue").val());
+            data["NHIFDiff"] = parseInt($("#NHIFDiff").val());
+            data["CompanyId"] = parseInt($("#CompanyId").val());
+
+            if ($("#NHIFRebate").val() == "preAuth") {
+                data["PreOuth"] = true;
+
+            } else {
+                data["PreOuth"] = false;
+
+            }
+
+     
+
+            if (!(parseInt(data.OPDId)>0)) {
+                showNotification('Please Select a Patient', 'danger', true);
+                return;
+
+            }
+
+            if (!(parseInt(data.CompanyId) > 0)) {
+                showNotification('Please Select Insurance Company', 'danger', true);
+                return;
+            }
+
+            if (!(parseInt(data.AllocationArray.length) > 0)) {
+                showNotification('Please Select Insurance Company', 'danger', true);
+                return;
+            }
+
+            if ($("#valid").val() == "false") {
+                showNotification("Please Update User Insurance Details", "danger", false);
+                $(".editOPD").click();
+                return null;
+
+            }
+
+
+            var txt;
+            if (confirm("Finalize Invoice?" )) {
+                txt = "Yes";
+            } else {
+                txt = "No";
+            }
+
+            if (txt == 'Yes') {
+
+                postAllocatedServices(data, type);
+
+            }
+           
+
+
+        }
+
+
+        //Post Allocated Services to DB
+        function postAllocatedServices(data, type) {
+
+            
+            $('.loader').show();
+            var url = "FinalizepatientInvoice?type=" + type;
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: { FinalizepatientInvoice: data},
+                success: function (res) {
+
+                    $('.loader').fadeOut();
+
+                    if (res == 1) {
+                        getIPDServicesOffered(data.OPDId);
+
+                        $('.btnFinalizeInvoice').addClass('disabled');
+                        $('.btnFinalizeInvoice').attr('disabled', false);
+
+                        $('#billservices tr').each(function () {
+
+                            var BillBalance = $('.billbalance').text();
+                            var AllocatedAmount = $(this).find('td.allocated').text();
+                            var BillAmount = $(this).find('td.billamount').text();
+                            var BSID = $(this).find('td.bsid').text();
+
+                            var second_array = {};
+
+                            // Clear 
+                            if (BillAmount != 0) {
+                                $(this).find('td.billamount').text(BillAmount - AllocatedAmount);
+
+                                
+                            }
+                            $('.billbalance').text(BillBalance - AllocatedAmount)
+                            
+
+                        });
+
+
+                        var txt;
+                        if (confirm("Do you want to Print Invoice")) {
+                            txt = "Yes";
+                        } else {
+                            txt = "No";
+                        }
+
+                        if (txt == 'Yes') {
+
+                            window.open(
+                                'printInvoiceReport?id=' + data.OPDId + "&CompanyId=" + $("#CompanyId").val(),
+                                '_self' // <- This is what makes it open in a new window.
+                            );
+
+                        } else {
+
+                        }
+
+
+                    } else {
+                        showNotification('An Error Occured Try again later','danger',true)
+                    }
+                }
+            });
+
+        }
+
+        //Editable Table
+        var $TABLE = $('#table_editable');
+    var $BTN = $('#export-btn');
+    var $EXPORT = $('#export');
+
+    $('.table-add').click(function () {
+        var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
+        $TABLE.find('table').append($clone);
+    });
+
+    $('.table-remove').click(function () {
+        $(this).parent().parent().detach();
+    });
+
+    $('.table-up').click(function () {
+        var $row = $(this).parents('tr');
+        if ($row.index() === 1) return; // Don't go above the header
+        $row.prev().before($row.get(0));
+    });
+
+    $('.table-down').click(function () {
+        var $row = $(this).parents('tr');
+        $row.next().after($row.get(0));
+    });
+
+    // A few jQuery helpers for exporting only
+    jQuery.fn.pop = [].pop;
+    jQuery.fn.shift = [].shift;
+
+    $BTN.click(function () {
+        var $rows = $TABLE.find('tr:not(:hidden)');
+        var headers = [];
+        var data = [];
+
+        // Get the headers (add special header logic here)
+        $($rows.shift()).find('th:not(:empty)').each(function () {
+            headers.push($(this).text().toLowerCase());
+        });
+
+        // Turn all existing rows into a loopable array
+        $rows.each(function () {
+            var $td = $(this).find('td');
+            var h = {};
+
+            // Use the headers from earlier to name our hash keys
+            headers.forEach(function (header, i) {
+                h[header] = $td.eq(i).text();
+            });
+
+            data.push(h);
+        });
+
+        // Output the result
+        $EXPORT.text(JSON.stringify(data));
+    });
+
+    </script>
+
+}

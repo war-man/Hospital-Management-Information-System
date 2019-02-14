@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetUrineAnalysis" targetNamespace="http://tempuri.org/DataSetUrineAnalysis.xsd" xmlns:mstns="http://tempuri.org/DataSetUrineAnalysis.xsd" xmlns="http://tempuri.org/DataSetUrineAnalysis.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetUrineAnalysis" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetUrineAnalysis" msprop:Generator_UserDSName="DataSetUrineAnalysis">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="UrineAnalysis" msprop:Generator_TableClassName="UrineAnalysisDataTable" msprop:Generator_TableVarName="tableUrineAnalysis" msprop:Generator_TablePropName="UrineAnalysis" msprop:Generator_RowDeletingName="UrineAnalysisRowDeleting" msprop:Generator_RowChangingName="UrineAnalysisRowChanging" msprop:Generator_RowEvHandlerName="UrineAnalysisRowChangeEventHandler" msprop:Generator_RowDeletedName="UrineAnalysisRowDeleted" msprop:Generator_UserTableName="UrineAnalysis" msprop:Generator_RowChangedName="UrineAnalysisRowChanged" msprop:Generator_RowEvArgName="UrineAnalysisRowChangeEvent" msprop:Generator_RowClassName="UrineAnalysisRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="GlucoseTotal" msprop:Generator_ColumnVarNameInTable="columnGlucoseTotal" msprop:Generator_ColumnPropNameInRow="GlucoseTotal" msprop:Generator_ColumnPropNameInTable="GlucoseTotalColumn" msprop:Generator_UserColumnName="GlucoseTotal" type="xs:int" minOccurs="0" />
+              <xs:element name="KetonesTotal" msprop:Generator_ColumnVarNameInTable="columnKetonesTotal" msprop:Generator_ColumnPropNameInRow="KetonesTotal" msprop:Generator_ColumnPropNameInTable="KetonesTotalColumn" msprop:Generator_UserColumnName="KetonesTotal" type="xs:int" minOccurs="0" />
+              <xs:element name="ProteinsTotal" msprop:Generator_ColumnVarNameInTable="columnProteinsTotal" msprop:Generator_ColumnPropNameInRow="ProteinsTotal" msprop:Generator_ColumnPropNameInTable="ProteinsTotalColumn" msprop:Generator_UserColumnName="ProteinsTotal" type="xs:int" minOccurs="0" />
+              <xs:element name="PusCellsTotal" msprop:Generator_ColumnVarNameInTable="columnPusCellsTotal" msprop:Generator_ColumnPropNameInRow="PusCellsTotal" msprop:Generator_ColumnPropNameInTable="PusCellsTotalColumn" msprop:Generator_UserColumnName="PusCellsTotal" type="xs:int" minOccurs="0" />
+              <xs:element name="SHaematobiumTotal" msprop:Generator_ColumnVarNameInTable="columnSHaematobiumTotal" msprop:Generator_ColumnPropNameInRow="SHaematobiumTotal" msprop:Generator_ColumnPropNameInTable="SHaematobiumTotalColumn" msprop:Generator_UserColumnName="SHaematobiumTotal" type="xs:int" minOccurs="0" />
+              <xs:element name="TVaginalisTotal" msprop:Generator_ColumnVarNameInTable="columnTVaginalisTotal" msprop:Generator_ColumnPropNameInRow="TVaginalisTotal" msprop:Generator_ColumnPropNameInTable="TVaginalisTotalColumn" msprop:Generator_UserColumnName="TVaginalisTotal" type="xs:int" minOccurs="0" />
+              <xs:element name="YeastCellsTotal" msprop:Generator_ColumnVarNameInTable="columnYeastCellsTotal" msprop:Generator_ColumnPropNameInRow="YeastCellsTotal" msprop:Generator_ColumnPropNameInTable="YeastCellsTotalColumn" msprop:Generator_UserColumnName="YeastCellsTotal" type="xs:int" minOccurs="0" />
+              <xs:element name="BacteriaTotal" msprop:Generator_ColumnVarNameInTable="columnBacteriaTotal" msprop:Generator_ColumnPropNameInRow="BacteriaTotal" msprop:Generator_ColumnPropNameInTable="BacteriaTotalColumn" msprop:Generator_UserColumnName="BacteriaTotal" type="xs:int" minOccurs="0" />
+              <xs:element name="GlucosePositive" msprop:Generator_ColumnVarNameInTable="columnGlucosePositive" msprop:Generator_ColumnPropNameInRow="GlucosePositive" msprop:Generator_ColumnPropNameInTable="GlucosePositiveColumn" msprop:Generator_UserColumnName="GlucosePositive" type="xs:int" minOccurs="0" />
+              <xs:element name="KetonesPositive" msprop:Generator_ColumnVarNameInTable="columnKetonesPositive" msprop:Generator_ColumnPropNameInRow="KetonesPositive" msprop:Generator_ColumnPropNameInTable="KetonesPositiveColumn" msprop:Generator_UserColumnName="KetonesPositive" type="xs:int" minOccurs="0" />
+              <xs:element name="ProteinsPositive" msprop:Generator_ColumnVarNameInTable="columnProteinsPositive" msprop:Generator_ColumnPropNameInRow="ProteinsPositive" msprop:Generator_ColumnPropNameInTable="ProteinsPositiveColumn" msprop:Generator_UserColumnName="ProteinsPositive" type="xs:int" minOccurs="0" />
+              <xs:element name="PusCellsPositive" msprop:Generator_ColumnVarNameInTable="columnPusCellsPositive" msprop:Generator_ColumnPropNameInRow="PusCellsPositive" msprop:Generator_ColumnPropNameInTable="PusCellsPositiveColumn" msprop:Generator_UserColumnName="PusCellsPositive" type="xs:int" minOccurs="0" />
+              <xs:element name="SHaematobiumPositive" msprop:Generator_ColumnVarNameInTable="columnSHaematobiumPositive" msprop:Generator_ColumnPropNameInRow="SHaematobiumPositive" msprop:Generator_ColumnPropNameInTable="SHaematobiumPositiveColumn" msprop:Generator_UserColumnName="SHaematobiumPositive" type="xs:int" minOccurs="0" />
+              <xs:element name="TVaginalisPositive" msprop:Generator_ColumnVarNameInTable="columnTVaginalisPositive" msprop:Generator_ColumnPropNameInRow="TVaginalisPositive" msprop:Generator_ColumnPropNameInTable="TVaginalisPositiveColumn" msprop:Generator_UserColumnName="TVaginalisPositive" type="xs:int" minOccurs="0" />
+              <xs:element name="BacteriaPositive" msprop:Generator_ColumnVarNameInTable="columnBacteriaPositive" msprop:Generator_ColumnPropNameInRow="BacteriaPositive" msprop:Generator_ColumnPropNameInTable="BacteriaPositiveColumn" msprop:Generator_UserColumnName="BacteriaPositive" type="xs:int" minOccurs="0" />
+              <xs:element name="YeastCellPositive" msprop:Generator_ColumnVarNameInTable="columnYeastCellPositive" msprop:Generator_ColumnPropNameInRow="YeastCellPositive" msprop:Generator_ColumnPropNameInTable="YeastCellPositiveColumn" msprop:Generator_UserColumnName="YeastCellPositive" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

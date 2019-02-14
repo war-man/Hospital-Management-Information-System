@@ -1,0 +1,292 @@
+﻿@model CaresoftHMISDataAccess.TheatrePatientBioData
+@using CaresoftHMISDataAccess;
+@{
+    ViewBag.Title = "Theatre Patient Registration";
+
+    var HIVStatus = new List<KeyValuePair>()
+    {
+        new KeyValuePair(){Key_ = "Negative", Value = "Negative"},
+        new KeyValuePair(){Key_ = "Positive", Value = "Positive"},
+    };
+}
+
+<div class="col-md-12">
+    <div class="panel caresoft-panel panel-primary">
+
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+
+            <ul id="myNavTabs" class="nav nav-tabs">
+                <li role="presentation" class="active"><a data-toggle="pill" href="#Bookings">Bookings</a></li>
+                <li role="presentation"><a data-toggle="pill" href="#Anaesthesia">Anaesthesia</a></li>
+                <li role="presentation"><a data-toggle="pill" href="#Procedures">Procedures</a></li>
+                <li role="presentation"><a data-toggle="pill" href="#Recomendation">Doctor History</a></li>
+                <li role="presentation"><a data-toggle="pill" href="#History">History</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="Bookings">
+
+                    <table width="100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <fieldset>
+                                        <legend> <h5><b> Patient Registration </b> </h5> </legend>
+
+                                        @using (Ajax.BeginForm(new AjaxOptions
+                                        {
+                                            OnFailure = "$('#message').text()",
+                                            OnSuccess = "getresult",
+                                            LoadingElementId = "LoadingElement"
+                                        }))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            <p id="message"></p>
+                                            <form id="registerForm">
+                                                <div class="">
+                                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                                    <div class="form-group col-md-12">
+                                                        <div class="pathology-border col-md-4">
+
+                                                            @{
+                                                                var checkedNormal = "";
+                                                                var checkedUrgent = "";
+                                                                var checkedReschedule = "";
+
+
+                                                                if (Model.RegStatus == "Urgent")
+                                                                {
+                                                                    checkedUrgent = "checked";
+                                                                }
+                                                                else if (Model.RegStatus == "Reschedule")
+                                                                {
+                                                                    checkedReschedule = "checked";
+                                                                }
+                                                                else
+                                                                {
+                                                                    checkedNormal = "checked";
+                                                                }
+                                                            }
+                                                            <label class="checkbox-inline margin-top-bottom-5"><input @checkedNormal value="Normal" type="radio" name="RegStatus">Normal</label>
+                                                            <label class="checkbox-inline margin-top-bottom-5"><input @checkedUrgent value="Urgent" type="radio" name="RegStatus">Urgent</label>
+                                                            <label class="checkbox-inline margin-top-bottom-5"><input @checkedReschedule value="Reschedule" type="radio" name="RegStatus">Reschedule</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <p style="float: right">
+                                                                <button type="button" class="btn btn-primary btn-sm">
+                                                                    Total Patients Booked &nbsp; <span id="TotalPatientsBooked" class="badge badge-light">-</span>
+                                                                </button>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Id, "Theatre ID", htmlAttributes: new { @class = "col-md-1" })
+                                                        <div class="col-md-3">
+                                                            @Html.EditorFor(model => model.Id, new { htmlAttributes = new { style = "width:100%", @class = "text-box margin-top-bottom-2", @readonly = "readonly", @Value = Model.Id } })
+                                                            @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.PatientOPDIPD, "OPD / IPD", htmlAttributes: new { @class = "col-md-1" })
+                                                        <div class="col-md-3">
+                                                            @Html.EditorFor(model => model.PatientOPDIPD, new { htmlAttributes = new { style = "width:100%", @class = "text-box margin-top-bottom-2", @readonly = "readonly" } })
+                                                            @Html.ValidationMessageFor(model => model.PatientOPDIPD, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.PatientName, htmlAttributes: new { @class = "col-md-1" })
+                                                        <div class="col-md-3">
+                                                            @Html.EditorFor(model => model.PatientName, new { htmlAttributes = new { style = "width:100%", @class = "text-box margin-top-bottom-2", @readonly = "readonly" } })
+                                                            @Html.ValidationMessageFor(model => model.PatientName, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.InternalRefferal, "InternalRefferal", htmlAttributes: new { @class = "col-md-1" })
+                                                        <div class="col-md-3">
+                                                            
+                                                            @Html.EditorFor(model => model.InternalRefferal, new { htmlAttributes = new { style = "width:100%", @class = "text-box margin-top-bottom-2 hidden", @readonly = "readonly" } })
+                                                            @Html.Editor("InternalRefferalName", new { htmlAttributes = new { style = "width:100%", @class = "text-box margin-top-bottom-2", @readonly = "readonly", @Value= @ViewBag.InternalRefferal } })
+                                                            @Html.ValidationMessageFor(model => model.InternalRefferal, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        @Html.Label("Reg Time", htmlAttributes: new { @class = "col-md-1" })
+                                                        <div class="col-md-3">
+                                                            @Html.EditorFor(model => model.CreatedUTC, new { htmlAttributes = new { style = "width:100%", @class = "text-box margin-top-bottom-2", @readonly = "readonly", @value = DateTime.Now.ToString("yyyy-MM-dd") } })
+                                                            @Html.ValidationMessageFor(model => model.CreatedUTC, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Appoitment", htmlAttributes: new { @class = "col-md-1" })
+                                                        <div class="col-md-3">
+                                                            @{var appDate = DateTime.Now; }
+
+                                                            @if (Model.Id > 0)
+                                                            {
+                                                                appDate = Model.AppointmentDate;
+                                                            }
+                                                            @Html.EditorFor(model => model.AppointmentDate, new
+                                                       {
+                                                           htmlAttributes = new
+                                                           {
+                                                               style = "width:100%",
+                                                               @class = "text-box margin-top-bottom-2",
+                                                               type = "date",
+                                                               Value = appDate.ToString("yyyy-MM-dd")
+                                                           }
+                                                       })
+                                                            @Html.ValidationMessageFor(model => model.AppointmentDate, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        @Html.Label("HIV Status", htmlAttributes: new { @class = "col-md-1" })
+                                                        <div class="col-md-3">
+                                                            @Html.DropDownListFor(model => model.HIV, new SelectList(HIVStatus, "Key_", "Value"),
+        "Select Status", new { style = "width:100%", @class = "text-box margin-top-bottom-2" })
+                                                            @Html.ValidationMessageFor(model => model.HIV, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        @Html.Label("Department", htmlAttributes: new { @class = "col-md-1" })
+                                                        <div class="col-md-3">
+                                                            @Html.DropDownListFor(model => model.DepartmentId, new SelectList(ViewBag.TheatreDepartment, "ID", "DepartmentName"),
+        "Select Department", new { style = "width:100%", @class = "text-box margin-top-bottom-2", type = "date", Value = DateTime.Now.ToString("yyyy-MM-dd") })
+                                                            @Html.ValidationMessageFor(model => model.TheatreDepartment, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+
+                                                    @*<div class="form-group">
+                                                @Html.Label("Start Date", htmlAttributes: new { @class = "col-md-1" })
+                                                <div class="col-md-2">
+                                                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { style = "width:100%", @class = "text-box margin-top-bottom-2", type = "date", Value = DateTime.Now.ToString("yyyy-MM-dd") } })
+                                                    @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.Label("Start Time", htmlAttributes: new { @class = "col-md-1" })
+                                                <div class="col-md-2">
+                                                    @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { style = "width:100%", @class = "text-box margin-top-bottom-2", type = "time" } })
+                                                    @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.Label("End Date", htmlAttributes: new { @class = "col-md-1" })
+                                                <div class="col-md-2">
+                                                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { style = "width:100%", @class = "text-box margin-top-bottom-2", type = "date", Value = DateTime.Now.ToString("yyyy-MM-dd") } })
+                                                    @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.Label("End Time", htmlAttributes: new { @class = "col-md-1" })
+                                                <div class="col-md-2">
+                                                    @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { style = "width:100%", @class = "text-box margin-top-bottom-2", type = "time" } })
+                                                    @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>*@
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-offset-1 col-md-11">
+                                                            @{var submit = "Register"; }
+                                                            @if (Model.Id > 0)
+                                                            {
+                                                                submit = "Update";
+                                                            }
+                                                            <input id="btnSubmitReg" type="submit" value="@submit" class="btn btn-primary btn-sm margin-top-bottom-2" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        }
+                                    </fieldset>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+
+                    @{
+                        var classcollapse = "collapse";
+
+                        if (Model.Id != null && Model.Id > 0)
+                        {
+                            classcollapse = "";
+                        }
+                    }
+                    <span id="PatientPreparation" class="@classcollapse">
+                        @Html.Partial("PatientPreparation")
+                    </span>
+
+                </div>
+                <div class="tab-pane" id="Anaesthesia">
+
+                    <span id="" class="@classcollapse">
+
+                        @try
+                        {
+                            @Html.Partial("~/Areas/Theatre/Views/AnaesthesiaProcedures/Index.cshtml", Model)
+                        }
+                        catch (Exception e)
+                        {
+                        <p>@e.Message </p>
+                        }
+
+                    </span>
+
+                </div>
+                <div class="tab-pane" id="Procedures">
+
+                    <span id="PatientPreparation" class="@classcollapse">
+                        @try
+                        {
+                            @Html.Partial("~/Areas/Theatre/Views/Operation/TheatreProcedures.cshtml", Model)
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+
+                    </span>
+
+                </div>
+                <div class="tab-pane" id="Recomendation">
+
+                    <span id="PatientPreparation" class="@classcollapse">
+                        @try
+                        {
+                            @Html.Partial("PatientPreparation")
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+                    </span>
+
+                </div>
+                <div class="tab-pane" id="History">
+ 
+                    @Html.Action("PatientHistory", "Reports", new { id = ViewBag.Opd })
+
+                </div>
+
+               
+            </div>
+
+        </div>
+    </div>
+</div>

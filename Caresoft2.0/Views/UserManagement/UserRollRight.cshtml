@@ -1,0 +1,356 @@
+﻿@model Caresoft2._0.CustomData.AssignRoleObj
+@{
+    ViewBag.Title = "User Roll Right";
+    Layout = "~/Views/Shared/_UserManagementLayout.cshtml";
+}
+
+<div class="panel panel-primary caresoft-panel">
+    <div class="panel-heading">
+        @ViewBag.Title
+    </div>
+    <div class="panel-body">
+
+        <div id="result" class="col-xs-12">
+
+        </div>
+        <div class="col-xs-3 form-group">
+            <b>Role : &nbsp;</b>
+            <select class="text-box" id="userGroups" style="width:15em;">
+                <option>Select User Group</option>
+                @foreach (var item in Model.userRoles)
+                {
+                    <option LandingPage="@item.LandingPage" value="@item.Id">@item.RoleName</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-xs-3 form-group">
+            <b>Default Page : &nbsp;</b>
+            <input class="text-box" readonly id="LandingPage" value="" />
+        </div>
+
+        <div class="col-xs-6 form-group">
+            <b>Rights Department : &nbsp;</b>
+            <select class="text-box text-danger" disabled id="roleRightsDepartments" style="width:15em;">
+                <option>Select Department</option>
+                @foreach (var item in Model.departments)
+                {
+                    <option value="@item.Id">@item.DepartmentName</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-xs-12">
+            <div class="col-xs-5 form-group">
+                <div class="panel panel-primary caresoft-panel">
+                    <div class="panel-heading">
+                        Role Rights
+                    </div>
+                    <div class="panel-body">
+                        <div id="actionsToBeAdded" style="padding:10px;">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-5 form-group">
+                <b hidden>User Group : : &nbsp;</b>
+                <select style="width:15em;" class="text-box" hidden id="selectingController" disabled>
+                    <option>Select Controller</option>
+                    @foreach (var item in Model.controllers)
+                    {
+                        <option value="@item.ToString()">@item.ToString()</option>
+                    }
+                </select>
+                <div class="panel panel-primary caresoft-panel">
+                    <div class="panel-heading">
+                        Authorized Role Rights
+                    </div>
+                    <div class="panel-body">
+                        <div id="actionsToBeRemoved" style="padding:10px;">
+
+                        </div>
+                    </div>
+                </div>
+
+
+                @*<input type="submit" id="btnSaveData" class="btn btn-primary btn-sm" value="Save Rights" />*@
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+<script>
+        $("#btnSaveData").hide();
+
+    $("#userGroups").on('change', function () {
+        $("#LandingPage").val("");
+        $("#LandingPage").val('/' + $("#userGroups option:selected").attr('LandingPage'));
+
+        $("#roleRightsDepartments").val($("#roleRightsDepartments option:first").val());
+        $("#actionsToBeRemoved").html('');
+        $("#actionsToBeAdded").html('');
+
+        if ($("#userGroups option:selected").text() == "Select User Group") {
+            $("#roleRightsDepartments").prop("disabled", true);
+            $("#roleRightsDepartments").addClass('text-danger');
+        } else {
+            $("#roleRightsDepartments").removeClass('text-danger');
+            $("#roleRightsDepartments").removeProp('disabled');
+        }
+    });
+        $("#roleRightsDepartments").on('change', function () {
+
+            if ($("#userGroups").text() != "Select User Group") {
+                document.getElementById("selectingController").disabled = false;
+                getUserRightsOptions();
+            } else {
+                document.getElementById("selectingController").disabled = true;
+            }
+
+        });
+
+    function getUserRightsOptions() {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("GetRoleRights", "UserManagement")',
+            data: { id: $("#roleRightsDepartments").val(), userRoleId: $("#userGroups").val()},
+                dataType:'json',
+            success: function (items) {
+
+                var ActionsToBeAdded = items.ActionsToBeAdded;
+                var ActionsToBeRemoved = items.ActionsToBeRemoved;
+                console.log("Action to be added", ActionsToBeAdded);
+                console.log("Actions to be removed", ActionsToBeRemoved)
+
+                var ToBeAdded = $("#actionsToBeAdded");
+                var ToBeRemoved = $("#actionsToBeRemoved");
+
+                ToBeAdded.empty();
+                ToBeRemoved.empty();
+
+                $.each(items, function (k, v) {
+                    //console.log(v.Action);
+                    var string = "";
+
+                    if (v.AlreadyAssigned != true) {
+                        string = '<div  class="form-group" id="frmAdd' + v.Id + '"><button class="btn btn-xs btn-primary btnActionsAdd " type="button" id="btnAdd' + v.Id + '" data-value="' + v.Id + '"> <i class="fa fa-plus"></i> </button> <label id="lbl' + v.Id + '">' + v.RoleRightName + '</label></div >';
+                        ToBeAdded.append(string);
+                    } else {
+                        string = '<div  class="form-group" id="frmAdd' + v.Id + '"><button class="btn btn-xs btn-primary btnActionsRemove " type="button" id="btnAdd' + v.Id + '" data-value="' + v.Id + '"> <i class="fa fa-minus"></i> </button> <label id="lbl' + v.Id + '">' + v.RoleRightName + '</label> </div >';
+                        ToBeRemoved.append(string);
+                    }
+                });
+
+                //ToBeRemoved.empty();
+                //$.each(ActionsToBeRemoved, function (k, v) {
+                //    //console.log(v.Action);
+                //    var string = "";
+                //    string = '<div  class="form-group" id="frmAdd' + v.Id + '"><button class="btn btn-xs btn-primary btnActionsRemove " type="button" id="btnAdd' + v.Id + '" data-value="' + v.Id + '"> <i class="fa fa-minus"></i> </button> <label id="lbl' + v.Id + '">' + v.RoleRightName + '</label> </div >';
+
+                //    ToBeRemoved.append(string);
+                //});
+
+                ActionButtonListenersAdd();
+                ActionButtonListenersRemove();
+                   $('#selectingController').find('option').not(':first').remove();
+
+                    //$.each(items, function (i, item) {
+                    //    $('#selectingController').append($('<option>', {
+                    //        value: item.Id,
+                    //        text: item.RoleRightName
+                    //    }));
+                    //});
+                },
+                failure: function () {
+                    showNotification("Error Occured", "danger", true);
+                }
+
+            });
+    }
+
+        $("#selectingController").on('change', function() {
+
+            //Get the value of the name of the controller
+            var name = $("#selectingController").val();
+            var roleId = $("#userGroups").val();
+
+            var model = { UserRoleId: roleId, ControllerName: name };
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetActionsInAController","UserManagement")',
+                data: model,
+                dataType:'json',
+                success: function (obj) {
+                    var ActionsToBeAdded = obj.ActionsToBeAdded;
+                    var ActionsToBeRemoved = obj.ActionsToBeRemoved;
+                    console.log("Action to be added", ActionsToBeAdded);
+                    console.log("Actions to be removed", ActionsToBeRemoved )
+
+                    var ToBeAdded = $("#actionsToBeAdded");
+                    ToBeAdded.empty();
+                    $.each(ActionsToBeAdded, function (k, v) {
+                        //console.log(v.Action);
+                        var string = "";
+                        string = '<div  class="form-group" id="frmAdd' + v.Id + '"><button class="btn btn-xs btn-primary btnActionsAdd " type="button" id="btnAdd' + v.Id + '" data-value="'+ v.Id + '"> <i class="fa fa-plus"></i> </button> <label id="lbl'+v.Id+'">' + v.Action + '</label></div >';
+
+                        ToBeAdded.append(string);
+                    });
+
+                    var ToBeRemoved = $("#actionsToBeRemoved");
+                    ToBeRemoved.empty();
+                    $.each(ActionsToBeRemoved, function (k, v) {
+                        //console.log(v.Action);
+                        var string = "";
+                        string = '<div  class="form-group" id="frmAdd' + v.Id + '"><button class="btn btn-xs btn-primary btnActionsRemove " type="button" id="btnAdd' + v.Id + '" data-value="' + v.Id + '"> <i class="fa fa-minus"></i> </button> <label id="lbl' + v.Id + '">' + v.Action + '</label> </div >';
+
+                        ToBeRemoved.append(string);
+                    });
+
+                    ActionButtonListenersAdd();
+                    ActionButtonListenersRemove();
+                },
+                failure: function () {
+                    alert("Error Occured");
+                }
+
+            });
+        });
+
+        var AddButton = null;
+        var addBtnName = null;
+
+        function ActionButtonListenersAdd() {
+
+            $(".btnActionsAdd").each(function () {
+                $(this).unbind();
+                $(this).click(function () {
+                    var actionId = $(this).data("value");
+                    AddButton = "frmAdd" + actionId;
+                    var userRoleId = $("#userGroups").val();
+
+                    if (actionId != null && userRoleId != null) {
+                        var addRolesRight = { RoleRightId: actionId, UserRoleId: userRoleId, Status: "Active" }
+
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("SaveGroupUserRightRefined", "UserManagement")',
+                            dataType: 'json',
+                            data: addRolesRight,
+                            success: function (obj) {
+                                var result = $("#result");
+                                result.empty();
+                                result.append(obj);
+                                console.log(obj);
+
+                                result.fadeTo(1000, 500).slideUp(500, function () {
+                                    result.slideUp(500);
+                                })
+
+                                //THE Function replace followed by the arguments is used to remove 
+                                //non numeric parts of a string
+                                var ID = AddButton.replace(/\D/g, '');
+
+                                //here i pick the name of the action from the label
+                                var lblID = "lbl" + actionId;
+                                var lblText = $("#" + lblID).text();
+
+                                //remove button 
+                                //$("#" + AddButton).fadeTo(100, 500).slideUp(500);
+                                $("#" + AddButton).remove().fadeTo(100, 500);
+        
+                                //here i append the form group with the button and the label
+                                var toBeRemoved = "";
+                                toBeRemoved = '<div  class="form-group" id="frmAdd' + ID + '"><button class="btn btn-xs btn-primary btnActionsRemove " type="button" id="btnAdd' + ID + '" data-value="' + ID + '"> <i class="fa fa-minus"></i> </button> <label id="lbl' + ID + '">' + lblText + '</label> </div >';
+         
+                                $("#actionsToBeRemoved").append(toBeRemoved);
+                                console.log(lblText);
+                                ActionButtonListenersRemove();
+                            },
+                            error: function () {
+                                console.log("an error occured");
+                            }
+                        });
+
+                    }
+                    else { alert.show("Please select department or controller") }
+                });
+            });
+        }
+
+        var removeBtn = null;
+        var RemoveBtname = null;
+        function ActionButtonListenersRemove() {
+
+            $(".btnActionsRemove").each(function () {
+                $(this).unbind();
+                 $(this).click(function () {
+                    
+                    var actionId = $(this).data("value");
+                    var userRoleId = $("#userGroups").val();
+                    removeBtn = "frmAdd" + actionId;
+
+                    if (actionId != null && userRoleId != null) {
+                        var addRolesRight = { RoleRightId: actionId, UserRoleId: userRoleId, Status: "Inactive" }
+
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("RemoveUserGroupRightRefined", "UserManagement")',
+                            dataType: 'json',
+                            data: addRolesRight,
+                            success: function (obj) {
+                                var result = $("#result");
+                                result.empty();
+                                result.append(obj);
+                                //console.log(obj);
+
+                                //here the div containing the label successful is hidden after two seconds
+                                result.fadeTo(100, 500).slideUp(500, function () {
+                                    result.slideUp(500);
+                                })
+
+                                //THE Function replace followed by the arguments is used to remove 
+                                //non numeric parts of a string
+                                var ID = removeBtn.replace(/\D/g, '');
+
+                                //method to add a btn on the add side of the
+                                // so here i pick the name of the action from the label
+                                var lblID = "lbl" + actionId;
+                                var lblText = $("#" + lblID).text();
+
+                                //here we remove the button contained in the form
+                                //$("#" + removeBtn).fadeTo(100, 500).slideUp(500);
+                                $("#" + removeBtn).remove().fadeTo(100, 500);
+
+                               
+
+                                //here i append the form group with the button and the label
+                                var toBeAdded = "";
+                                toBeAdded = '<div  class="form-group" id="frmAdd' + ID + '"><button class="btn btn-xs btn-primary btnActionsAdd" type="button" id="btnAdd' + ID + '" data-value="' + ID + '"> <i class="fa fa-plus"></i> </button> <label id="lbl' + ID + '">' + lblText + '</label> </div >';
+
+                                $("#actionsToBeAdded").append(toBeAdded);
+                                console.log(lblText);
+
+                                //Here i register the new buttons to recieve click events
+                                ActionButtonListenersAdd();
+
+                            },
+                            error: function (obj) {
+                                //console.log(obj);
+                                console.log("an error occured");
+                            }
+                        });
+
+                    }
+                    else { alert.show("Please select department or controller") }
+                });
+            });
+        }
+
+       
+</script>
+}

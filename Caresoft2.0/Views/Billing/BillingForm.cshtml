@@ -1,0 +1,609 @@
+﻿@model Caresoft2._0.CustomData.OPDBillingFormData
+@{ var isIpd = false; if (Model.BillServices != null ) { isIpd = Model.OpdRegister.IsIPD; }
+
+  }
+
+<table class="table-condensed table-bordered" width="100%" style="color:#000">
+    <tr id="patientDetails">
+        <td><label>Reg No:</label></td>
+        <th>@Html.DisplayFor(model => model.OpdRegister.Patient.RegNumber)</th>
+        <td><label>Name:</label></td>
+        <th>@Html.DisplayFor(model => model.OpdRegister.Patient.Salutation)
+        @Html.DisplayFor(model => model.OpdRegister.Patient.FName) 
+        @Html.DisplayFor(model => model.OpdRegister.Patient.MName) 
+        @Html.DisplayFor(model => model.OpdRegister.Patient.LName)
+        
+        @if (ViewBag.WalkinMedications != null)
+        {
+            var walkinMeds = (IEnumerable<Caresoft2._0.Areas.Procurement.Models.Walking>)ViewBag.WalkinMedications;
+            @Html.DisplayFor(model=>walkinMeds.First().PatientsName)
+        }
+
+        </th>
+        <td><label>Patient Category: </label></td>
+        <th>@Html.DisplayFor(model => model.OpdRegister.Tariff.TariffName)</th>
+        <td><label>Bill No:</label></td>
+        <th>@Html.DisplayFor(model => model.OpdRegister.Id)</th>
+        <td><label>@if (isIpd) { <span>IPD No</span>} else {<span>OPD No</span>}</label></td>
+        <th>@Html.DisplayFor(model => model.OpdRegister.Id)</th>
+    </tr>
+</table>
+<br />
+<div class="" style="float:none">
+    @*<div style="float:right">
+        <input type="radio" name="fileMode" id="search-radio-btn" checked value="Search" />
+        <label for="search-radio-btn">Quick Search</label>
+        <input type="radio" name="fileMode" id="walkIn-radio-btn" value="WalkIn" />
+        <label for="walkIn-radio-btn">Walk In</label>
+    </div>*@
+    @if (ViewBag.WalkinMedications ==null)
+    {
+        <div id="searchfield" class="form-group">
+        Search Patient Name
+        <form novalidate="novalidate">
+            <input type="text" name="SearchBill" class="biginput ui-autocomplete-input" id="SearchBill" autocomplete="off" placeholder="Search Patient Name">
+            <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+        </form>
+    </div>
+    }
+    
+
+</div>
+<table class="table-data table-condensed table-bordered marg-top-16px" width="100%">
+    <thead>
+        <tr>
+            <th>
+                Head
+            </th>
+            <th>
+                Consulatation
+            </th>
+            <th>
+                Labs
+            </th>
+            <th>
+                XRAY
+            </th>
+            <th>
+                Drugs
+            </th>
+            <th>
+                Procedure
+            </th>
+            <th>
+                Package
+            </th>
+            <th>
+                Total
+            </th>
+        </tr>
+    </thead>
+    @if (ViewBag.WalkinMedications == null)
+    {
+        <tbody class="bg-white">
+        <tr>
+            <td>Charges</td>
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "consultation").Sum(e => (e.Quatity * e.Price))
+            </td>
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "labs").Sum(e => (e.Quatity * e.Price))
+            </td>
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "xray").Sum(e => (e.Quatity * e.Price))
+            </td>
+            <td class="money">
+                @Model.OpdRegister.Medications.Where(e => (bool)e.Available).Sum(e => e.Subtotal)
+            </td>
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "procedure").Sum(e => (e.Quatity * e.Price))
+            </td>
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "package").Sum(e => (e.Quatity * e.Price))
+            </td>
+            <td class="money">
+                @(Model.OpdRegister.BillServices.Sum(e => (e.Quatity * e.Price)) + Model.OpdRegister.Medications.Where(e => (bool)e.Available).Sum(e => e.Subtotal) )
+            </td>
+        </tr>
+
+        <tr>
+            <td>Insurance Award</td>
+
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "consultation").Sum(e => e.Award * e.Quatity)
+            </td>
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "labs").Sum(e => e.Award * e.Quatity)
+            </td>
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "xray").Sum(e => e.Award * e.Quatity)
+            </td>
+            <td class="money">
+                @Model.OpdRegister.Medications.Where(e => (bool)e.Available).Sum(e => e.Award * e.QuantityIssued)
+            </td>
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "procedure").Sum(e => e.Award * e.Quatity)
+            </td>
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "package").Sum(e => e.Award * e.Quatity)
+            </td>
+            <td class="money">
+                @{var sa = (Model.OpdRegister.BillServices.Sum(e => e.Award * e.Quatity) + Model.OpdRegister.Medications.Where(e => (bool)e.Available).Sum(e => e.Award * e.QuantityIssued)); }
+                @sa
+            </td>
+            <input type="hidden" id="sum_award" value="@sa" />
+        </tr>
+
+        <tr>
+            <td>Waiver</td>
+
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "consultation").Sum(e => e.WaivedAmount)
+            </td>
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "labs").Sum(e => e.WaivedAmount)
+            </td>
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "xray").Sum(e => e.WaivedAmount)
+            </td>
+            <td class="money">
+                @Model.OpdRegister.Medications.Where(e => (bool)e.Available).Sum(e => e.WaivedAmount)
+            </td>
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "procedure").Sum(e => e.WaivedAmount)
+            </td>
+            <td class="money">
+                @Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "package").Sum(e => e.WaivedAmount)
+            </td>
+            <td class="money">
+                @(Model.OpdRegister.BillServices.Sum(e => e.WaivedAmount) + Model.OpdRegister.Medications.Where(e => (bool)e.Available).Sum(e => e.WaivedAmount) )
+            </td>
+        </tr>
+
+        <tr>
+            <td>Paid</td>
+            <td class="money">
+                @(Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "consultation" && e.Paid).Sum(e => (e.Quatity * e.Price))
+                        - Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "consultation" && e.Paid).Sum(e => e.Award)
+                        + Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "consultation" && !e.Paid).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)))
+            </td>
+            <td class="money">
+                @(Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "labs" && e.Paid).Sum(e => (e.Quatity * e.Price))
+                        - Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "labs" && e.Paid).Sum(e => e.Award * e.Quatity)
+                        + Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "labs" && !e.Paid).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)))
+            </td>
+            <td class="money">
+                @(Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "xray" && e.Paid).Sum(e => (e.Quatity * e.Price))
+                        - Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "xray" && e.Paid).Sum(e => e.Award * e.Quatity)
+                        + Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "xray" && !e.Paid).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)))
+            </td>
+            <td class="money">
+                @(Model.OpdRegister.Medications.Where(e => e.Paid).Sum(e => e.Quantity * e.UnitPrice)
+                - Model.OpdRegister.Medications.Where(e => e.Paid).Sum(e => e.Award??0 * e.QuantityIssued)
+                + Model.OpdRegister.Medications.Where(e => !e.Paid && (bool)e.Available).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)) ))
+            </td>
+            <td class="money">
+                @(Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "procedure" && e.Paid).Sum(e => (e.Quatity * e.Price))
+
+                        - Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "procedure" && e.Paid).Sum(e => e.Award * e.Quatity)
+                        + Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "procedure" && !e.Paid).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)))
+            </td>
+            <td class="money" >
+
+                @(Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "package" && e.Paid).Sum(e => (e.Quatity * e.Price))
+
+                    - Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "package" && e.Paid).Sum(e => e.Award * e.Quatity)
+                    + Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "package" && !e.Paid).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)))
+            </td>
+            <td class="money">
+                @((Model.OpdRegister.BillServices.Where(e => e.Paid).Sum(e => (e.Quatity * e.Price)) + Model.OpdRegister.Medications.Where(e => e.Paid).Sum(e => e.QuantityIssued * e.UnitPrice))
+                            - (Model.OpdRegister.BillServices.Where(e => e.Paid).Sum(e => e.Award * e.Quatity) + Model.OpdRegister.Medications.Where(e => e.Paid).Sum(e => e.Award * e.QuantityIssued))
+                            + Model.OpdRegister.BillServices.Where(e => !e.Paid).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)))
+            </td>
+        </tr>
+
+        <tr>
+            <td>Outstanding</td>
+            <td class="money">
+                @(Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "consultation" && !e.Paid).Sum(e => (e.Quatity * e.Price)) -
+                                                    Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "consultation" && !e.Paid).Sum(e => e.Award * e.Quatity)
+                                                    - Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "consultation" && !e.Paid).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)))
+            </td>
+            <td class="money">
+                @(Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "labs" && !e.Paid).Sum(e => (e.Quatity * e.Price)) -
+                                                Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "labs" && !e.Paid).Sum(e => e.Award * e.Quatity)
+                                                - Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "labs" && !e.Paid).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)))
+            </td>
+            <td class="money">
+                @(Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "xray" && !e.Paid).Sum(e => (e.Quatity * e.Price)) -
+                                                Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "xray" && !e.Paid).Sum(e => e.Award * e.Quatity)
+                                                - Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "xray" && !e.Paid).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)))
+            </td>
+            <td class="money" >
+                @(Model.OpdRegister.Medications.Where(e => !e.Paid && (bool)e.Available).Sum(e => e.QuantityIssued * e.UnitPrice)
+                            - Model.OpdRegister.Medications.Where(e => !e.Paid && (bool)e.Available).Sum(e => e.Award * e.QuantityIssued)
+                            - Model.OpdRegister.Medications.Where(e => !e.Paid).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)) )
+            </td>
+            <td class="money" >
+                @(Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "procedure" && !e.Paid).Sum(e => (e.Quatity * e.Price)) -
+                                                Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "procedure" && !e.Paid).Sum(e => e.Award * e.Quatity)
+                                                - Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "procedure" && !e.Paid).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)))
+            </td>
+            <td class="money">
+                @(Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "package" && !e.Paid).Sum(e => (e.Quatity * e.Price)) -
+                                            Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "package" && !e.Paid).Sum(e => e.Award * e.Quatity)
+                                            - Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim() == "package" && !e.Paid).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)))
+            </td>
+            <td class="money" >
+                @(Model.OpdRegister.BillServices.Where(e => !e.Paid).Sum(e => (e.Quatity * e.Price)) + Model.OpdRegister.Medications.Where(e => !e.Paid && (bool)e.Available).Sum(e => e.QuantityIssued * e.UnitPrice) -
+                                                    (Model.OpdRegister.BillServices.Where(e => !e.Paid).Sum(e => e.Award * e.Quatity) + Model.OpdRegister.Medications.Where(e => !e.Paid && (bool)e.Available).Sum(e => e.Award * e.QuantityIssued))
+                                                    - Model.OpdRegister.BillServices.Where(e => !e.Paid).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount))
+                                                    - Model.OpdRegister.Medications.Where(e => !e.Paid && (bool)e.Available).Sum(e => e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)))
+            </td>
+        </tr>
+    </tbody>
+    }
+    
+
+</table>
+
+
+
+
+<fieldset class="marg-top-16px">
+    <legend>Bill Services</legend>
+
+    <div class="text-box">
+        <label>
+            <input type="radio"  name="ServicesFilter" value="All" @if (ViewBag.ServicesFilter == "All")
+            { <text>checked</text>}/> All
+        </label>
+        @foreach (var sGroup in Model.ServiceGroups.Where(e=>e.Id<6))
+        {
+            <label>
+                <input type="radio" name="ServicesFilter" value="@sGroup.ServiceGroupName" @if 
+                    (ViewBag.ServicesFilter == sGroup.ServiceGroupName) { <text> checked</text>} />
+                @sGroup.ServiceGroupName
+            </label>
+        }
+        @if (isIpd)
+        {
+            <div class="pull-right">
+                
+                <h4 style="color:red">Available Cash<input type="number" id="IPDAvailbleAmount"
+                                                              class="text-box box-lg" style="text-align:right" min="1" onchange="allocateAvailableAmount()"
+                                                              onkeyup="allocateAvailableAmount()" />
+                </h4>
+
+            </div>
+        }
+    </div>
+
+    <div id="provisional-bill-services" class="marg-top-2px">
+        <table class="table table-data table-condensed" id="bill-service-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    @*<th>Dr Name</th>*@
+                    <th>Department</th>
+                    <th>Service</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>SubTotal</th>
+                    <th>Unit Award</th>
+                    @if (ViewBag.WalkinMedications == null)
+                    {
+                        <th>Total Award</th>
+                    }
+                    <th>Waived</th>
+                    @if (isIpd)
+                    {
+                        <th><abbr title="The sum of partial payments in previous transactions.">P.Paid</abbr></th>
+
+                    }
+
+                    <th>Payable</th>
+                    <th>Billed</th>
+                    @if (isIpd)
+                    {
+                        <th>
+                            Allocate?
+                            <input type="checkbox" id="allocate_all" checked>
+                        </th>
+                        <th>Allocated</th>
+                        <th>Bal</th>
+                    }
+                </tr>
+            </thead>
+            <tbody class="bg-white">
+                @{ var x = 1; var sumAward = 0.0; var sumPayable = 0.0; }
+
+            @if (ViewBag.WalkinMedications != null)
+            {
+
+             
+
+                var walkinMeds = (IEnumerable<Caresoft2._0.Areas.Procurement.Models.Walking>)ViewBag.WalkinMedications;
+
+                <input type="hidden" id="walkinId" value="@walkinMeds.First().PatientIdentifierId" />
+
+                foreach(var item in walkinMeds)
+                {
+                <tr class="@if (item.Paid) {<text>paid</text> }" data-service-type="walkin-drugs" data-entry-id="@item.Id" @if (item.Paid)
+                { item.Subtotal = 0.0;} else { <text> style="background-color:#FFEBEE;" </text> } >
+                    <td>@x</td>
+                    @*<td></td>*@
+                    <td>Pharmacy Walkin</td>
+
+                    <td style="white-space:normal">@item.DrugName</td>
+                    <td align="center" class="quantity">@item.Quantity</td>
+                    <td @if (ViewBag.CanAdjust != null && ViewBag.CanAdjust && !item.Paid) { <text>contenteditable="true" class="editable-td bill-adjuster price"</text>  }>@item.UnitPrice</td>
+                    <td class="subtotal">@((item.UnitPrice * @item.Quantity).ToString())</td>
+                    <td id="drug-award-@item.Id" class="award">0</td>
+                    <td></td>
+                    @{var lpaid = 0;}
+                    @if (isIpd)
+                    {
+                        <td>@lpaid</td>
+                        <td>0</td>
+                                
+                    }
+                            
+                    @if (item.Paid)
+                    {
+                        <td class="payable-amount" id="drug-payable-@item.Id">0</td>
+                    }
+                    else
+                    {
+                        var waived = 0.0; 
+                        <td class="payable-amount" id="drug-payable-@item.Id">@(item.UnitPrice * item.Quantity - lpaid - waived)</td>
+                    }
+                    <td>
+                        @if (item.Paid)
+                        {<text>Paid</text> }
+                        else
+                        {
+                            <text>
+                                <input  type="checkbox"  @if (isIpd) {<text>disabled</text>} data-drug-id="@item.Id" checked class="billed-medication"  />
+                            </text>
+                        }
+                    </td>
+                    @if (isIpd)
+                    {
+                        if (item.Paid)
+                        {
+                            <td>-</td>
+                        }
+                        else
+                        {
+                            <td>
+                                <input  type="checkbox" data-billservice-id="@item.Id" class="allocated" checked disabled onclick="allocateAvailableAmount()"/>
+                            </td>
+                        }
+                    <td class="allocated-amount" id="drug-allocated-@item.Id"></td>
+                        <td  class="balance-amount" id="drug-balance-@item.Id">@* balance *@</td>
+                    }
+                </tr>
+
+                sumPayable += item.Subtotal;
+
+                x++;
+                }
+                    
+            }
+                    
+
+            </tbody>
+            
+            @if (Model.BillServices != null)
+            {
+                <tbody class="bg-white">
+                    
+                    @foreach (var item in Model.BillServices)
+                     {
+                        var p = item.Paid;
+                        var z = item.Award;
+                    <tr class="@if (item.Paid) {<text>paid</text> }"
+                        data-service-type="@item.Service.ServiceGroup.ServiceGroupName.ToLower()" data-entry-id="@item.Id"
+                        @if (item.Paid) { var PayableAmount = 0.0; } else { <text> style="background-color:#FFEBEE;" </text> }>
+                        <td>@x</td>
+                        @*<td></td>*@
+                        <td>@item.Service.Department.DepartmentName</td>
+                        <td style="white-space:normal">@item.ServiceName</td>
+
+                        <td align="center"
+                            @if (ViewBag.CanAdjust != null && ViewBag.CanAdjust && !item.Paid) { <text> contenteditable="true" class="editable-td bill-adjuster quantity" </text>  } else { <text> class="quantity" </text> }>
+                            @item.Quatity
+                        </td>
+                        <td @if (ViewBag.CanAdjust != null && ViewBag.CanAdjust && !item.Paid) { <text> contenteditable="true" class="editable-td bill-adjuster price" </text> }>@item.Price</td>
+                        <td class="subtotal">@((item.Price * @item.Quatity).ToString())</td>
+                        <td id="service-award-@item.Id" @if (ViewBag.CanAdjust != null && ViewBag.CanAdjust && !item.Paid && Model.OpdRegister.Tariff.TariffName.ToLower() != "cash") { <text> contenteditable="true" class="editable-td bill-adjuster award" </text> }>@(item.Award)</td>
+                        <td id="service-award-total-@item.Id" @if (ViewBag.CanAdjust != null && ViewBag.CanAdjust && !item.Paid && Model.OpdRegister.Tariff.TariffName.ToLower() != "cash") { <text> contenteditable="true" class="editable-td bill-adjuster-total award-total" </text> }>@(item.Award * item.Quatity)</td>
+                        <td>@(item.WaivedAmount ?? 0)</td>
+                        @{var lpaid = item.IPDBillPartialPayments.Sum(e => e.AllocatedAmount);}
+                        @if (isIpd)
+                        {
+                            <td>@lpaid</td>
+
+                        }
+                        @if (item.Paid)
+                        {
+                            <td class="payable-amount" id="service-payable-@item.Id">0</td>
+                        }
+                        else
+                        {
+                            var waived = 0.0; if (item.WaivedAmount != null) { waived = (double)item.WaivedAmount; }
+                            <td class="payable-amount" id="service-payable-@item.Id">@((item.Quatity * item.Price) - lpaid - waived - (item.Award * item.Quatity))</td>
+                        }
+
+                        <td>
+                            @if (item.Paid)
+                            {<text>Paid</text> }
+                        else
+                        {
+                            <text>
+                                <input @if (isIpd) { <text> disabled</text>} type="checkbox" data-billservice-id="@item.Id" checked class="billed" />
+                                <input type="button" value="Delete" class="btn btn-xs btn-danger" onclick="deleteBillItem('@item.Id', this)" />
+
+                            </text>
+
+
+                        }
+                        </td>
+                        @if (isIpd)
+                        {
+                            if (item.Paid)
+                            {
+                                <td>-</td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <input type="checkbox" data-billservice-id="@item.Id" class="allocated" disabled checked onclick="allocateAvailableAmount()" />
+
+                                </td>
+                            }
+
+
+                            <td class="allocated-amount" id="service-allocated-@item.Id"></td>
+                            <td class="balance-amount" id="service-allocated-@item.Id">@* balance *@</td>
+                        }
+                    </tr>
+                        sumAward += item.Award * item.Quatity;
+                        sumPayable += (item.Quatity * item.Price);
+
+                        x++;
+                    }
+
+                    
+                    @if (Model.Drugs.Where(e=>(bool)e.Available) != null)
+                    {
+                     foreach (var item in Model.Drugs.Where(e=>e.DrugId!=0 && e.Available !=null && (bool)e.Available))
+                     {
+                    <tr class="@if (item.Paid) {<text>paid</text> }" data-service-type="drugs" data-entry-id="@item.Id" @if (item.Paid) { item.Subtotal = 0.0; } else { <text> style="background-color:#FFEBEE;" </text> }>
+                        <td>@x</td>
+                        @*<td></td>*@
+                        <td>Pharmacy</td>
+
+                        <td style="white-space:normal">@item.DrugName</td>
+                        <td align="center" class="quantity">@item.QuantityIssued</td>
+                        <td @if (ViewBag.CanAdjust != null && ViewBag.CanAdjust && !item.Paid) { <text> contenteditable="true" class="editable-td bill-adjuster price" </text> }>@item.UnitPrice</td>
+                        <td class="subtotal">@((item.UnitPrice * @item.QuantityIssued).ToString())</td>
+                        <td id="drug-award-@item.Id" @if (ViewBag.CanAdjust != null && ViewBag.CanAdjust && !item.Paid && Model.OpdRegister.Tariff.TariffName.ToLower() != "cash") { <text> contenteditable="true" class="editable-td bill-adjuster award" </text> }>@(item.Award ?? 0)</td>
+                        <td id="service-award-total-@item.Id" @if (ViewBag.CanAdjust != null && ViewBag.CanAdjust && !item.Paid && Model.OpdRegister.Tariff.TariffName.ToLower() != "cash") { <text> contenteditable="true" class="editable-td bill-adjuster-total award-total" </text> }>@((item.Award ?? 0) * item.Quantity)</td>
+                        <td>@(item.WaivedAmount ?? 0)</td>
+                        @{var lpaid = item.IPDBillPartialPayments.Sum(e => e.AllocatedAmount);}
+                        @if (isIpd)
+                        {
+                            <td>@lpaid</td>
+                        }
+
+                        @if (item.Paid)
+                        {
+                            <td class="payable-amount" id="drug-payable-@item.Id">0</td>
+                        }
+                        else
+                        {
+                            var waived = 0.0; if (item.WaivedAmount != null) { waived = (double)item.WaivedAmount; }
+                            <td class="payable-amount" id="drug-payable-@item.Id">
+                                @((item.QuantityIssued * item.UnitPrice)
+- (item.QuantityIssued * item.Award ?? 0) - lpaid - waived)
+                        </td>
+                    }
+                        <td>
+                            @if (item.Paid)
+                            {<text>Paid</text> }
+                        else
+                        {
+                            <text>
+                                <input type="checkbox" @if (isIpd) { <text> disabled</text>} data-drug-id="@item.Id" checked class="billed-medication" />
+
+                            </text>
+                        }
+                        </td>
+                        @if (isIpd)
+                        {
+                            if (item.Paid)
+                            {
+                                <td>-</td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <input type="checkbox" data-billservice-id="@item.Id" class="allocated" checked onclick="allocateAvailableAmount()" />
+                                </td>
+                            }
+                            <td class="allocated-amount" id="drug-allocated-@item.Id"></td>
+                            <td class="balance-amount" id="drug-balance-@item.Id">@* balance *@</td>
+                        }
+                    </tr>
+                        if(item.Award != null)
+                        {
+                            sumAward += (double)(item.QuantityIssued * item.Award??0);
+                        }
+
+                        sumPayable += item.Subtotal;
+
+                        x++;
+                        }
+                    }
+                </tbody>
+            }
+            else
+            {
+                <tbody></tbody>
+            }
+            @if(ViewBag.WalkinMedications == null)
+            {
+              <tfoot>
+                <tr class="" id="walk-in-only">
+                    <td><small></small></td>
+                    @*<td></td>*@
+                    <td class="editable-td">
+                        <select class="text-box">
+                            <option>
+                                All
+                            </option>
+                           
+                        </select>
+                    </td>
+                    <td class="editable-td">
+                        <input type="text" class="td-cell" id="search-service" placeholder="Search to add item" />
+                        <input type="hidden" id="hidden-service-id" />
+                    </td>
+                    
+                    <td id="new-service-qty" contenteditable="true" class="editable-td" align="center"></td>
+                    <td id="new-service-price" @if (ViewBag.CanAdjust != null && ViewBag.CanAdjust) { <text>contenteditable="true" class="editable-td"</text>  }></td>
+                    <td id="new-service-subtotal"></td>
+                    <td id="new-service-award"></td>
+                    
+                    @if (isIpd)
+                    {
+                    <td>@* l.paid *@</td>
+                    }
+                    <td id="new-service-payable"></td>
+                    <td></td>
+                    @if (isIpd)
+                    {
+                        
+                        <td colspan="2" id="unallocated" class="text-danger"></td>
+                    }
+                   
+                    <td colspan="2"><button id="btn-add-service-to-bill" class="btn btn-primary btn-sm" >Add to Bill</button></td>
+                </tr>
+                
+            </tfoot>
+            }
+           
+        </table>
+
+        @if (ViewBag.CanAdjust != null && ViewBag.CanAdjust)
+        {
+        <div class="text-right">
+            <input type="button" class="btn btn-success btn-sm" id="btn-save-adjustment" value="Save BIll Adjustment" disabled onclick="sendAdjustRequest()" />
+        </div>
+            
+        }
+    </div>
+    <input type="hidden" value="@ViewBag.EwalletBalance" id="LiveEwallet"/>
+</fieldset>

@@ -2,41 +2,928 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    <meta name="viewport" content="width=device-width" />
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+    <title>@ViewBag.Title</title>
+    @{var companyName = "ABC FACILITY"; var vitalR = new List<CaresoftHMISDataAccess.VitalRanx>(); ; var username = "User"; var marquee = ""; var EMRPaid = "#FEFE32"; var EMRRead = "#DFEDFD"; var EMRUnpaid = "#C20017"; var EMREmergency = "#90FF41"; }
+
+    @{
+        try
+        {
+            using (CaresoftHMISDataAccess.CaresoftHMISEntities entity = new CaresoftHMISDataAccess.CaresoftHMISEntities())
+            {
+                var userId = Session["UserId"].ToString();
+                username = entity.Users.Find(int.Parse(userId)).Username;
+                ViewBag.Username = username;
+                vitalR = entity.VitalRanges.ToList();
+                var primaryColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("PrimaryColor")).Value;
+                var primaryLightColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("PrimaryLightColor")).Value;
+                var primaryDarkColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("PrimaryDarkColor")).Value;
+                var accentColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("AccentColor")).Value;
+                var emergencyColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EmergencyColor")).Value;
+                companyName = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("FacilityName")).Value;
+                marquee = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("Marquee")).Value;
+                <style>
+                :root {
+                    --outline-color: #009EE0;
+                    --normal-range: #08BF14;
+                    --abnormal-range:#FF2008;
+                    --panic-range:#2190FF;
+
+                    --accent-color: @accentColor;
+                    --primary-color: @primaryColor;
+                    --primary-light-color: @primaryLightColor;
+                    --primary-dark-color: @primaryDarkColor;
+                    --Emergency:@emergencyColor;
+
+                    --EMRPaid: @entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRPaid")).Value;
+                    --EMRRead:@entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRRead")).Value;
+                    --EMRunread:@entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRunread")).Value;
+                    --EMRUnpaid: @entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRUnpaid")).Value;
+                    --EMREmergency: @entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMREmergency")).Value;
+
+
+                }
+                </style>
+
+
+            }
+        }
+        catch (Exception e)
+        {
+            System.Diagnostics.Debug.WriteLine(e);
+        }
+
+    }
+
+
+    @Styles.RenderFormat(@"<link href=""{0}"" rel=""stylesheet"" media=""all"" />", "~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+<body style="padding:.8em; background:#fff;">
+
+    @*<table id="vital-range-values">
+            <thead>
+                <tr>
+                    <td>Item</td>
+                    <td>Normal Low</td>
+                    <td>Normal High</td>
+                    <td>Panic Low</td>
+                    <td>Panic High</td>
+                    <td>Unit</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var vr in vitalR)
+                {
+                <tr>
+                    <td>
+                        @vr.VitalName
+                    </td>
+                    <td>
+                        @vr.NormalLow
+                    </td>
+                    <td>
+                        @vr.NormalHigh
+                    </td>
+                    <td>
+                        @vr.PanicLow
+                    </td>
+                    <td>
+                        @vr.PanicHigh
+                    </td>
+                    <td>
+                        @vr.Unit
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>*@
+    <style>
+        tr#header td {
+            padding: .8em;
+        }
+    </style>
+    <table width="100%" style="border:2px solid var(--outline-color)">
+        <tr>
+            <td colspan="3" style="background: var(--outline-color); color:#fff">
+                <marquee>@marquee</marquee>
+            </td>
+        </tr>
+        <tr id="header">
+            <td id="company-one-logo" width="30%">
+                <img src="~/Content/icons/Coat_of_arms_of_Kenya.png" />
+            </td>
+            <td align="center" id="header-center">
+                <table width="100%">
+                    <tr>
+                        <td id="facility-name" colspan="2" align="center" style="text-transform:uppercase; color:#0099FF; font-family: Tahoma; font-size:24px; font-weight:700">
+                            @companyName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="greetings-username" style="color:#0033cc; font-family: Verdana; font-size:12px; font-weight:400">
+                            Welcome : @username
+                        </td>
+                        <td align="right">
+                            <img src="~/Content/icons/message1.png" title="Discuss" data-href="@Url.Action("Index", "Discuss")" class="img-link" />
+                            <img src="~/Content/icons/mainpanel.png" title="Main Panel" data-href="/" class="img-link" />
+                            <img src="~/Content/icons/home.png" title="Home" data-href="/hms" class="img-link" />
+                            <img src="~/Content/icons/signout.png" title="Logout" data-href="/Login/logout" class="img-link" />
+                            <img data-toggle="modal" data-target="#chenge-password-modal" - src="~/Content/icons/change_password.png" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td id="company-two-logo" align="right" width="30%">
+                <img src="~/Content/icons/Softcom-logo.png" /><br />
+                <p style="font-size:13px; float:right; padding:10px; color:#0099FF; font-family: Tahoma; white-space:normal"><strong>Caresoft v@{<span>@Session["Version"]</span>}</strong></p>
+
+            </td>
+        </tr>
+
+        @{ if (ViewBag.ShowTopMenu != null)
+            {
+                if ((bool)Session["IsDebugMode"])
+                {
+                    <tr>
+
+                        <b>
+                            <p style="font-size:16" class="cm-strong text-danger text-center">
+                                This is an Evaluation Solution. It is not in anyway supposed  to be used in commercial puposes.
+                                <br /> Offenders Will be prosecuted. Visit <a href="http://softcom.co.ke/"> softcom.co.ke </a>
+                            </p>
+                        </b>
+                    </tr>
+                }
+
+                <tr style="border-top:2px solid  var(--outline-color)">
+                    <td id="render-body" colspan="3">
+
+                        @if (ViewBag.IsNurse != null)
+                        {
+                            if (ViewBag.IsNurse)
+                            {
+                                @Html.Partial("_NavNurseModule")
+                            }
+                        }
+                        else if (ViewBag.ShowTopMenu.ToString() == "Procurement")
+                        {
+                            @Html.Partial("~/Areas/Procurement/Views/Shared/_NavProcurement.cshtml")
+
+                        }
+                        else if (ViewBag.ShowTopMenu.ToString() == "MedicalStore")
+                        {
+                            @Html.Partial("~/Areas/MedicalStore/Views/Shared/_NavMedicalStore.cshtml")
+
+                        }
+                        else if (ViewBag.ShowTopMenu.ToString() == "CareSoftReports")
+                        {
+                            @Html.Partial("~/Areas/CareSoftReports/Views/Shared/_NavCaresoftReports.cshtml")
+
+                        }
+                        else if (ViewBag.ShowTopMenu.ToString() == "GeneralStore")
+                        {
+                            @Html.Partial("~/Areas/GeneralStore/Views/Shared/_NavGeneralStore.cshtml")
+
+                        }
+                        else if (ViewBag.ShowTopMenu.ToString() == "FixedAssets")
+                        {
+                            @Html.Partial("~/Areas/FixedAssets/Views/Shared/_NavFixedAssets.cshtml")
+
+                        }
+                        else if (ViewBag.ShowTopMenu.ToString() == "Pharmacy")
+                        {
+                            @Html.Partial("~/Areas/PharmacyModule/Views/Shared/_NavPharmacy.cshtml")
+
+                        }
+                        else if (ViewBag.Nav != null)
+                        {
+                            @Html.Partial((string)ViewBag.Nav);
+                        }
+                        else
+                        {
+                            @Html.Partial("_Nav")
+                        }
+
+
+
+                    </td>
+                </tr>
+            }
+        }
+
+
+        <span class="noti glyphicon glyphicon-bell"><span class="count">&nbsp;</span></span>
+        <div class="noti-content">
+            <div class="noti-top-arrow"></div>
+            <ul id="notiContent"></ul>
+        </div>
+
+
+
+        <style type="text/css">
+            /*Added css for design notification area, you can design by your self*/
+            /* COPY css content from youtube video description*/
+            .noti-content {
+                position: fixed;
+                right: 100px;
+                background: #e5e5e5;
+                border-radius: 4px;
+                top: 47px;
+                width: 250px;
+                display: none;
+                border: 1px solid #9E988B;
+            }
+
+            ul#notiContent {
+                max-height: 200px;
+                overflow: auto;
+                padding: 0px;
+                margin: 0px;
+                padding-left: 20px;
+            }
+
+                ul#notiContent li {
+                    margin: 3px;
+                    padding: 6px;
+                    background: #fff;
+                }
+
+            .noti-top-arrow {
+                border-color: transparent;
+                border-bottom-color: #F5DEB3;
+                border-style: dashed dashed solid;
+                border-width: 0 8.5px 8.5px;
+                position: absolute;
+                right: 32px;
+                top: -8px;
+            }
+
+            span.noti {
+                color: #FF2323;
+                margin: 15px;
+                position: fixed;
+                right: 100px;
+                font-size: 36px;
+                cursor: pointer;
+            }
+
+            span.count {
+                position: relative;
+                top: -3px;
+            }
+        </style>
+
+        @* Add jquery code for Get Notification & setup signalr *@
+
+
+        <tr style="border-top:2px solid  var(--outline-color)">
+            <td id="render-body" colspan="3" style="background:#DDECFE; padding-top:.5em; ">
+                <!-- Modal -->
+                <div class="modal fade" data-backdrop="stati" id="UniversalModal" tabindex="-1" role="dialog" aria-labelledby="UniversalModal" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-body" id="UniversalModalView">
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div style="min-height:60vh;">@RenderBody()</div>
+            </td>
+        </tr>
+        <tr>
+            <td id="footer" colspan="3">
+                @Html.Partial("_Footer")
+            </td>
+        </tr>
+    </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-forms-holder" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content caresoft-panel" id="modal-content">
+
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+
+    <div id="notification">
+        <div class="close" style="float: right;" id="close-notification">&times;</div>
+        <div id="notification-message"></div>
     </div>
+
+    <div id="loadingElement" class="loader collapse">
+        <img src="~/Content/icons/loader.gif" />
+        <p><em>Please wait...</em></p>
+    </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/Caresoft.js"></script>
+    <script src="~/Scripts/notify.min.js"></script>
     @RenderSection("scripts", required: false)
+
+   
+
+
+
+    <script>
+
+        //Notification Scripts
+
+        $(function () {
+                // Click on notification icon for show notification
+       
+
+                $('span.noti').click(function (e) {
+                    e.stopPropagation();
+                    $('.noti-content').show();
+                    var count = 0;
+                    count = parseInt($('span.count').html()) || 0;
+                    //only load notification if not already loaded
+                    if (count > 0) {
+                        getAllMessages();
+                        
+                        updateNotificationCount();
+                        
+
+                    }
+                    $('span.count', this).html('&nbsp;');
+
+                });
+                // hide notifications
+                $('html').click(function () {
+                    $('.noti-content').hide();
+                });
+                // update notification
+
+
+                function getAllMessages() {
+                    $('#notiContent').empty();
+
+                    $('#notiContent').append($('<li>Loading...</li>'));
+
+
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Home/GetNotificationContacts',
+                        success: function (response) {
+                            $('#notiContent').empty();
+                            if (response.length == 0) {
+                                $('#notiContent').append($('<li>No data available</li>'));
+                            }
+                            $.each(response, function (index, value) {
+                                $('#notiContent').append($('<li/>', {
+                                    html: $('<a/>', {
+                                        href: '@Url.Action("Consultation", "emr" )',
+                                        text: 'New Patient:  ' + value.Id + ' (' + value.Discharged + ') added',
+                                        click: function () {
+                                            $.get(this.href, function (result) {
+                                                if (result) {
+                                                    window.location.href = '@Url.Action("Consultation", "emr")';
+                                                }
+                                            });
+                                           
+                                            return false;
+                                        }
+                                    })
+                                }));
+
+                            });
+
+
+
+
+                        },
+                        error: function (error) {
+                            console.log(error);
+
+
+                        }
+
+                    })
+
+                };
+
+
+
+                // update notification count
+                function updateNotificationCount() {
+                    var count = 0;
+                    count = parseInt($('span.count').html()) || 0;
+                    count++;
+                    $('span.count').html(count);
+                }
+                // signalr js code for start hub and send receive notification
+                var notification = $.connection.notificationHub;
+                $.connection.hub.start().done(function () {
+                    
+                  //  notification.server.send();
+
+                    
+                });
+      
+       //signalr method for push server message to client
+       notification.client.notify = function (message) {
+           
+
+
+           
+
+           console.log('Notification hub started');
+
+           if (message && message.toLowerCase() == "added") {
+
+               updateNotificationCount();
+
+               console.log('Notification hub started');
+
+
+           }
+       };
+        });
+
+        //End of Notification Scripts
+
+
+
+        function admissionRecommendationFormFunction() {
+            $("#form_recommend_admission").submit(function (e) {
+                e.preventDefault();
+            $(".loader").show();
+
+            var d = $(this).serializeObject();
+
+            $.ajax({
+                method: "post",
+                url: "@Url.Action("SaveRecommendAdmission", "emr")",
+                data: d,
+                success: function (res) {
+                    $(".loader").hide();
+                    showNotification(res.Message, res.Status, true);
+                    closeModalHolder();
+                },
+                error: function (e, x, r) {
+                    $(".loader").hide();
+                    showNotification("An error occured", "danger", true);
+                }
+
+            })
+            });
+
+            if ($("#Stage").val() === "final") {
+                $.ajax({
+                    url: "@Url.Action("GetWardCategoriesJson", "ipd")",
+                    success: function (data) {
+                        $("#WardCategory").html("<option value='0'>Select</option>");
+                        $.each(data, function (k, v) {
+                            $("#WardCategory").append("<option value='"+v.Id+"'>" + v.Name+"</option>")
+                        });
+                    },
+                    error: function (e, x, r) {
+                        showNotification("An error occured while getting ward categories.", "danger", false);
+                    }
+                })
+            }
+        }
+
+
+        function getMyWards(obj) {
+            var catId = $(obj).val();
+            if (catId === 0) {
+                return null;
+            }
+            $.ajax({
+                url: "@Url.Action("GetWardsJson", "ipd")/" + catId,
+                success: function (data) {
+                    $("#Ward").html("<option value='0'>Select</option>");
+                    $.each(data, function (k, v) {
+                        $("#Ward").append("<option value='"+v.Id+"'>" + v.Name+"</option>")
+                    });
+                },
+                error: function (e, x, r) {
+                    showNotification("An error occured while getting wards.", "danger", false);
+                }
+            })
+        }
+
+        function getMyBeds(obj) {
+            var wardId = $(obj).val();
+            if (wardId === 0) {
+                return null;
+            }
+            $.ajax({
+                url: "@Url.Action("GetBedsJson", "ipd")/" + wardId,
+                success: function (data) {
+                    $("#Bed").html("<option value='0'>Select</option>");
+                    $.each(data, function (k, v) {
+                        $("#Bed").append("<option value='"+v.Id+"'>" + v.Name+"</option>")
+                    });
+                },
+                error: function (e, x, r) {
+                    showNotification("An error occured while getting beds.", "danger", false);
+                }
+            })
+        }
+
+        function deleteBillItem(id, obj) {
+            var initText = $(obj).text();
+            $(obj).text("Please wait");
+            $(obj).prop("disabled", true);
+            $.ajax({
+                url: "@Url.Action("delete", "billing")/" + id,
+                success: function (data) {
+
+                    if (data.Status == "success") {
+                        var tr = $(obj).parent().parent();
+                        tr.remove();
+                        updateBillAmount();
+                    } else {
+                        $(obj).text(initText);
+
+                        showNotification(data.Message, data.Status, true);
+                    }
+                },
+                error: function (e, x, r) {
+                    console.log(e.responseText);
+                    showNotification("An error occured", "danger", true);
+                }
+            })
+
+        }
+
+        function opdRegistrationCallBack() {
+            markRequiredFields();
+            $("#btn-add-bill-item").click(function () {
+             $(".loader").show();
+            data = {
+                "OPDNo": $("#OPDNo").val(),
+                "DepartmentId": $("#Department").find(":selected").attr("data-dept-id"),
+                "ServiceId": $("#Services").find(":selected").attr("data-service-id"),
+                "PayableAmount": $("#PayableAmount").val(),
+                "AwardAmount": $("#AwardAmount").val(),
+                "View": "ProvisionalBillServices"
+
+            }
+
+            $.ajax({
+                type: "POST",
+                data: data,
+                url: "@Url.Action("EnterBillService", "registration")",
+                headers: {
+                    "authToken": ""
+                },
+                success: function (result) {
+                    $(".loader").fadeOut();
+                    $("#insurance-details-modal").modal("hide");
+                    $("#provisional-bill-items").html(result);
+                    $("#Services").val("Select");
+                    $("#AwardAmount").add($("#PayableAmount")).val("");
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").fadeOut();
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                    }
+                });
+            });
+
+            $("#insurance-details-form").submit(function (e) {
+            e.preventDefault();
+
+            var tariffId = $("#Tariff").find(":selected").attr("data-tariff-id");
+            if (typeof (tariffId) === "undefined") {
+                alert("Select Scheme");
+                return false;
+            }
+
+            var data = $(this).serializeObject();
+            data.OPDNo = $("#OPDNo").val();
+            console.log(data);
+
+            $(".loader").show();
+                $.ajax({
+                    type: "POST",
+                    data: data,
+                    url: "@Url.Action("SaveInsuranceDetails", "registration")",
+
+                    success: function (result) {
+                        $("#provisional-bill-items").html(result);
+                        showNotification("Insurance details saved successfully!", "success", true);
+                        $(".loader").fadeOut();
+                        $('a[href="#opd-registration-tab"]').tab('show');
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        $(".loader").fadeOut();
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            });
+
+            $("#corporate-details-form").submit(function (e) {
+            e.preventDefault();
+
+                var tariffId = $("#CorporateTariff").find(":selected").attr("data-tariff-id");
+            if (typeof (tariffId) === "undefined") {
+                alert("Select Exemption Type");
+                return false;
+            }
+
+            var data = $(this).serializeObject();
+            data.OPDNo = $("#OPDNo").val();
+            console.log(data);
+
+            $(".loader").show();
+                $.ajax({
+                    type: "POST",
+                    data: data,
+                    url: "@Url.Action("SaveCorporateDetails", "registration")",
+
+                    success: function (result) {
+                        $("#provisional-bill-items").html(result);
+                        showNotification("Saved successfully!", "success", true);
+                        $(".loader").fadeOut();
+                        $('a[href="#opd-registration-tab"]').tab('show');
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        $(".loader").fadeOut();
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            });
+
+    $("#Department").on("change", function () {
+        var deptId = $(this).find("option:selected").attr("data-dept-id");
+        getMyServices(deptId);
+    });
+
+    function getMyServices(deptId) {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("services", "registration")/" + deptId,
+            headers: {
+                "authToken": ""
+            },
+            success: function (result) {
+                $("#Services").html(result);
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                console.log(errorthrown, "danger")
+                console.log(xmlhttprequest.responseText);
+            }
+        });
+    }
+
+    $("#Services").on("change", function () {
+        var tariff = $("#Tariff").find(":selected").attr("data-tariff-id");
+        var serviceId = $(this).find(":selected").attr("data-service-id");
+        if (typeof (tariff) === "undefined") {
+            tariff = 0; //cash
+        }
+        if ($("#OPDMainCategory").find(":selected").text() === "Insurance" && tariff === 0) {
+            alert("Complete Insurance Details Registration First.");
+        } else {
+
+            getAwardAndPayableAmounts(serviceId);
+        }
+
+
+    });
+
+    function getAwardAndPayableAmounts(serviceId) {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("ServiceAwardAmount", "registration")",
+
+            data: {
+                "OPDNo": $("#OPDNo").val(),
+                "ServiceId": serviceId,
+                "Price": 0,
+                "Award": 0
+            },
+
+            headers: {
+                "authToken": ""
+            },
+            success: function (obj) {
+                console.log(obj);
+                //var obj = $.parseJSON(result);
+                $("#AwardAmount").val(obj.Award);
+                $("#PayableAmount").val((obj.Price) - (obj.Award));
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                console.log(errorthrown, "danger")
+                console.log(xmlhttprequest.responseText);
+            }
+        });
+    }
+
+    var previousRelation;
+    $("#MemberPatientRelationship").focus(function () {
+        previousRelation = $(this).val();
+    }).change(function () {
+        var newRelationship = $(this).val();
+        if (previousRelation === "Self") {
+            //not the owner any more
+            $("input.insurance-owner").each(function () {
+                $(this).val("");
+            });
+        } else if (newRelationship === "Self") {
+            //repopulate the fields marked .insurance-owner with the patients values
+        }
+    });
+
+    $("#OPDMainCategory").on("change", function () {
+        var mainCatId = $(this).find("option:selected").attr("data-main-cat-id");
+        var link = '@Url.Action("PatientCategories", "Registration", new { id = "-1" })';
+        link = link.replace("-1", mainCatId);
+        //getPatientcategories
+        $.ajax({
+            type: "GET",
+            url: link,
+            headers: {
+                "authToken": ""
+            },
+            success: function (result) {
+                $("#OPDPatientCategory").html(result);
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                console.log(errorthrown, "danger")
+                console.log(xmlhttprequest.responseText);
+            }
+        });
+
+    });
+
+    $("#OPDPatientCategory").on("change", function () {
+        var id = $("#OPDPatientCategory option:selected").attr("data-pat-cat-id");
+        var selected = $("#OPDPatientCategory option:selected").text();
+        $("#InsuranceCompanyName option[data-pat-cat-id=" + id + "]").prop('selected', true);
+        $("#corporateCompanyName option[data-pat-cat-id=" + id + "]").prop('selected', true);
+        var linkInsurance = $("a[href='#insurance-details']");
+        var linkCorporate = $("a[href='#corporate-details']");
+        if ($("#OPDMainCategory").find("option:selected").text() == "Insurance" && selected!=="Select") {
+            linkInsurance.attr("data-toggle", "pill");
+            linkInsurance.removeClass("not-allowed");
+            linkInsurance.tab("show");
+        } else {
+            linkInsurance.removeAttr("data-toggle");
+            linkInsurance.addClass("not-allowed");
+        }
+
+        if ($("#OPDMainCategory").find("option:selected").text() == "Corporate" && selected !== "Select") {
+            linkCorporate.attr("data-toggle", "pill");
+            linkCorporate.removeClass("not-allowed");
+            linkCorporate.tab("show");
+        } else {
+            linkCorporate.removeAttr("data-toggle");
+            linkCorporate.addClass("not-allowed");
+        }
+        getInsuranceSchemes(id);
+
+    });
+
+    $("#InsuranceCompanyName").on("change", function () {
+        var id = $("#InsuranceCompanyName option:selected").attr("data-pat-cat-id");
+        $("#OPDPatientCategory option[data-pat-cat-id=" + id + "]").prop('selected', true);
+        getInsuranceSchemes(id);
+     });
+
+    $("#corporateCompanyName").on("change", function () {
+        var id = $("#corporateCompanyName option:selected").attr("data-pat-cat-id");
+        $("#OPDPatientCategory option[data-pat-cat-id=" + id + "]").prop('selected', true);
+        getInsuranceSchemes(id);
+    });
+
+
+
+    function getInsuranceSchemes(id) {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("tariffs", "Registration")/" + id,
+            headers: {
+                "authToken": ""
+            },
+            success: function (result) {
+                $("#Tariff").html(result);
+                $("#CorporateTariff").html(result);
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                console.log(errorthrown, "danger")
+                console.log(xmlhttprequest.responseText);
+            }
+        });
+    }
+
+    $("#save-opd-form").click(function () {
+        $(".loader").show();
+        if ($("#emergency").is(":checked")) {
+            $("input[name=Status]").val("Emergency");
+        } else {
+            $("input[name=Status]").val("Active");
+        }
+
+        var data = $("form[name=OPDRegistrationForm]").serialize();
+
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("FinalizeOpdRegistration", "registration")",
+            data: data,
+            headers: {
+                "authToken": ""
+            },
+            success: function (result) {
+                $(".loader").hide();
+                console.log(result);
+                if (result.Status === "Success") {
+
+                    $("#modal-forms-holder").modal("hide");
+                    showNotification(result.Message, "success", true);
+                }
+
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                $(".loader").hide();
+                console.log(errorthrown, "danger")
+                console.log(xmlhttprequest.responseText);
+            }
+        });
+    });
+}
+
+        $("table.dropdown-table tr td").each(function () {
+            var hovered = $(this);
+            var sidekick = hovered.find(".sidekick-table-holder");
+            hovered.mouseover(function () {
+                if (sidekick.hasClass("inverse-dropdown")) {
+
+                    sidekick.css("left", -(sidekick.width()));
+                } else {
+                    sidekick.css("left", (hovered.width() + 28));
+                }
+
+                sidekick.css({ marginTop: '-24px' });
+            });
+
+        });
+
+        function closeModalHolder() {
+            $("#modal-forms-holder").modal("hide");
+        }
+
+
+        $("#change-password-form").submit(function (e) {
+            e.preventDefault();
+            if (!isValidForm($(this))) {
+                return false;
+            }
+            var data = $(this).serializeObject();
+            if (data.NewPassword !== data.RPassword) {
+                $("#password_change_message").text("Passwords Do Not Match!");
+                $("#password_change_message").addClass("text-danger");
+                return false;
+            } else {
+                $("#password_change_message").text("");
+            }
+
+            $(".loader").show();
+            $.ajax({
+                url: "Login/ChangePassword",
+                method: "POST",
+                data: data,
+                success: function (data) {
+                    $(".loader").hide();
+                    showNotification(data.Message, data.Status, true);
+                    if (data.Status == "success") {
+                        $("#change-password-form")[0].reset();
+                        window.location.href = "Login/Logout";
+                    }
+                },
+                error: function (e, x, r) {
+                    $(".loader").hide();
+                    console.log(e.responseText);
+                }
+            })
+
+
+        })
+
+
+        function populateMyForm(data, formSelector) {
+            var form = $(formSelector);
+            $.each(data, function (key, value) {
+                form.find("input[name=" + key + "]").val(value);
+            });
+        }
+    </script>
 </body>
 </html>
+
+

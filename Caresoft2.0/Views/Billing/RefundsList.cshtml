@@ -1,0 +1,115 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Refund>
+@{
+    ViewBag.Title = "Confirmed Refunds List";
+    ViewBag.ShowTopMenu = true;
+}
+
+
+
+<div class="col-xs-8 col-sm-offset-2">
+    <div class="panel panel-primary caresoft-panel ">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+            <form name="search_refund">
+                <table>
+                    <tr>
+                        <td>
+                            Search Refund<br />
+                            <input type="text" class="text-box box-lg" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <table class="table table-data table-condensed ">
+                <tr>
+                    <th>
+                        Tracking No
+                    </th>
+                    <th>
+                        RegNumber
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Refund Amount
+                    </th>
+                    <th>Reason For Refund</th>
+
+                    <th>
+                        Date Confirmed
+                    </th>
+
+                    <th></th>
+                </tr>
+                <tbody class="bg-white">
+                    @foreach (var r in Model)
+                    {
+                        <tr>
+                            <td>
+                                @r.Id.ToString().PadLeft(4, '0')
+                            </td>
+                            <td>
+                                @if (r.BillPayment.OPDNo.HasValue)
+                                {
+                                    @r.BillPayment.OpdRegister.Patient.RegNumber
+                                }
+                            </td>
+                            <td>
+                                @if (r.BillPayment.OPDNo.HasValue)
+                                {
+                                    var pat = r.BillPayment.OpdRegister.Patient;
+                                    <text>@pat.Salutation @pat.FName @pat.MName @pat.LName</text>
+
+                                }
+                            </td>
+                            <td class="money">
+
+                                @r.RefundedAmount
+                            </td>
+                            <td>
+                                @r.ReasonForRefund
+                            </td>
+                            <td>
+                                @r.DateAdded.ToShortDateString()
+                            </td>
+                            <td>
+                                <a href="@Url.Action("RemitRefund", "Billing", new { id = r.Id})" class="btn btn-xs btn-primary">Proceed to Refund</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+
+            </table>
+
+
+            @if (ViewBag.Pages != null)
+            {
+                <div class="text-center">
+                    <ul class="pagination">
+                        @for (var x = 1; x <= (int)ViewBag.Pages + 1; x++)
+                        {
+                            <li class="@if (x == ViewBag.Page) { <text>active</text>} "><a href="?page=@x">@x</a></li>
+                        }
+                    </ul>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section scripts{
+    <script>
+        var action = "/Billing/FilterReceiptList";
+        var method = "GET";
+    </script>
+}

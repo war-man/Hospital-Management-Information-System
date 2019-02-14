@@ -1,0 +1,225 @@
+﻿@using CaresoftHMISDataAccess;
+
+@{
+    ViewBag.Title = "Developers Page (Setup User Role Rights)";
+    Layout = "~/Views/Shared/_UserManagementLayout.cshtml";
+}
+
+<div class="panel panel-primary caresoft-panel">
+    <div class="panel-heading">
+        @ViewBag.Title
+    </div>
+    <div class="panel-body">
+        <form method="post">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <td>Department : </td>
+                        <td>
+                            <select class="text-box submit-form" style="width:80%;" name="dep">
+                                <option value="">Select Department</option>
+                                @foreach (var data in (List<Department>)ViewBag.Departments)
+                                {
+                                    if (ViewBag.dep == data.Id)
+                                    {
+                                        <option selected Value="@data.Id">@data.DepartmentName</option>
+                                    }
+                                    else
+                                    {
+                                        <option Value="@data.Id">@data.DepartmentName</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+
+                        <td>Role Right : </td>
+                        <td>
+                            <select class="text-box" style="width:80%;" id="roleright" name="roleright">
+                                <option value="">Select Role Right</option>
+                                @foreach (var data in (List<RoleRight>)ViewBag.RoleRights)
+                                {
+                                    if (ViewBag.roleright == data.Id)
+                                    {
+                                        <option selected Value="@data.Id">@data.RoleRightName</option>
+                                    }
+                                    else
+                                    {
+                                        <option Value="@data.Id">@data.RoleRightName</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Area : </td>
+                        <td>
+                            <select class="text-box" style="width:80%;" id="area" name="area">
+                                <option value="">Select Area</option>
+                                @foreach (var data in (System.Collections.Generic.List<System.Linq.IGrouping<string, CaresoftHMISDataAccess.TblController>>)ViewBag.Areas)
+                                {
+                                    if (ViewBag.area == data.FirstOrDefault().Area)
+                                    {
+                                        <option selected Value="@data.FirstOrDefault().Area">@data.FirstOrDefault().Area</option>
+                                    }
+                                    else
+                                    {
+                                        <option Value="@data.FirstOrDefault().Area">@data.FirstOrDefault().Area</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+
+                        <td>Controller : </td>
+                        <td>
+                            <select class="text-box" style="width:80%;" id="controller" name="controller">
+                                <option value="">Select Controller</option>
+                                @foreach (var data in (System.Collections.Generic.List<System.Linq.IGrouping<string, CaresoftHMISDataAccess.TblController>>)ViewBag.Controllers)
+                                {
+                                    if (ViewBag.controller == data.FirstOrDefault().Name)
+                                    {
+                                        <option selected Value="@data.FirstOrDefault().Name">@data.FirstOrDefault().Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option Value="@data.FirstOrDefault().Name">@data.FirstOrDefault().Name</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                </thead>
+            </table>
+             
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td valign="top" width="50%">
+                            <div style="margin:10px">
+                                <div class="panel panel-primary caresoft-panel">
+                                    <div class="panel-heading">
+                                        Pending Actions
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="actions" style="padding:10px;">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td valign="top" width="50%">
+                            <div style="margin:10px">
+                                <div class="panel panel-primary caresoft-panel">
+                                    <div class="panel-heading">
+                                        Actions Awarded
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="awardedactions" style="padding:10px;">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+
+
+@section scripts {
+
+    <script>
+        $('select').change(function () {
+            if ($(this).prop('id') != "controller") {
+                $("form").trigger('submit');
+            } else if ($(this).prop('id') == "controller") {
+
+                $.ajax({
+                    url: 'getRoleRightActions',
+                    data: {
+                        area: $('#area').val(), cont : $('#controller').val(),
+                        roleRightId : $('#roleright').val()
+                    },
+                    success: function (data) {
+                        console.log(data);
+
+                        $('#actions').html('');
+                        $('#awardedactions').html('');
+
+                        var item = "";
+
+                        $.each(data, function (k, v) {
+                            if (v.available != true) {
+                                item = '<div  class="form-group" id="' + v.Id + '"><button class="btn btn-xs btn-primary btnActionsAdd " type="button" id="' + v.Id + '" data-value="' + v.Id + '"> <i class="fa fa-plus"></i> ' + v.Action + ' </button></div >';
+                                $("#actions").append(item);
+                            } else {
+                                item = '<div  class="form-group" id="' + v.Id + '"><button class="btn btn-xs btn-primary btnActionsRemove " type="button" id="' + v.Id + '" data-value="' + v.Id + '"> <i class="fa fa-minus"></i> ' + v.Action + ' </button></div >';
+                                $("#awardedactions").append(item);
+                            }
+
+                        });   
+
+                        btnOnclicks();
+
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                    }
+                });
+            }
+        });
+
+        function btnOnclicks() {
+            $('.btnActionsAdd').click(function (e) {
+                activateAction($(this), $(this).prop('id'), $(this).text());
+            });
+
+            $('.btnActionsRemove').click(function (e) {
+                deactivateAction($(this), $(this).prop('id'), $(this).text());
+            });
+        }
+        function activateAction(obj, id, Action) {
+            $.get("activateRoleRightActions?RoleRightId=" + $('#roleright').val() + "&ActionId=" + id, function (data, status) {
+                if (data == 'Rights Awarded Successfully') {
+                    showNotification(data, 'success', true);
+
+                    var item = '<div  class="form-group" id="' + id + '"><button class="btn btn-xs btn-primary btnActionsRemove " type="button" id="' + id + '" data-value="' + id + '"> <i class="fa fa-minus"></i> ' + Action + ' </button></div >';
+                    $("#awardedactions").append(item);
+
+                    obj.parent().remove();
+
+
+                } else if (data == 'Already awarded') {
+                    showNotification(data, 'info', true);
+                } else {
+                    showNotification(data , 'danger', true);
+                }
+            });
+        }
+
+        function deactivateAction(obj, id, Action) {
+            $.get("deactivateRoleRightActions?RoleRightId=" + $('#roleright').val() + "&ActionId=" + id, function (data, status) {
+                if (data == 'Rights Awarded Revoked') {
+                    showNotification(data, 'success', true);
+
+                    var item = '<div  class="form-group" id="' + id + '"><button class="btn btn-xs btn-primary btnActionsAdd " type="button" id="' + id + '" data-value="' + id + '"> <i class="fa fa-minus"></i> ' + Action + ' </button></div >';
+                    $("#actions").append(item);
+
+                    obj.parent().remove();
+
+                } else if (data == 'Already revoked') {
+                    showNotification(data, 'info', true);
+
+                } else {
+                    showNotification(data, 'danger', true);
+                }
+            });
+        }
+    </script>
+}

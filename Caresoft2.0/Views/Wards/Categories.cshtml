@@ -1,0 +1,78 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HSWardCategory>
+@{
+    ViewBag.Title = "Ward Categories Master";
+    ViewBag.FormName = ViewBag.Title;
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+}
+
+<form id="WardCategoryForm" action="@Url.Action("Category", "Wards")" method="POST">
+    <table class="table-form">
+        <tr>
+            <td><label>Ward Category</label></td>
+            <td><input type="text" class="text-box box-lg" name="WardCategoryName" required/></td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+                <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<table class="table table-data table-condensed" id="wards-table">
+    <thead>
+        <tr>
+            <th>Edit</th>
+            
+            <th>Ward Category Name</th>
+            
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @foreach(var cat in Model)
+        {
+            <tr>
+                <td>
+                    <label class="edit-table-row-item" data-item-id="@cat.Id">Edit</label>
+                </td>
+                <td>
+                    @cat.WardCategoryName
+                </td>
+                <td>
+                    <label class="delete-table-row-item" data-item-id="@cat.Id">Delete</label>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section scripts{
+    <script>
+        @*$('#WardCategoryForm').submit(function (e) {
+            e.preventDefault();
+            $(".loader").show();
+
+            var data = $(this).serialize();
+            console.log(data);
+            $.ajax({
+                method: 'post',
+                url: '@Url.Action("Category", "Wards")',
+                data: data,
+                success: function (result) {
+                    console.log(result);
+                    $(".loader").hide();
+                },
+                error: function (e, x, h) {
+                    console.log(e.responseText);
+                    $(".loader").hide();
+                }
+
+            })
+        });*@
+    </script>
+}

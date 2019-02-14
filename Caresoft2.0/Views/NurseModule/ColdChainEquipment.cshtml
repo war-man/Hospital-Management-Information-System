@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Cold Chain Equipment";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                <table class="table-form">
+                    <tr>
+                        <td colspan="4">
+                            <label>Item Description</label>
+                            <br />
+                            <input type="text" class="text-box box-xlg"  />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Model</label><br />
+                            <input type="number" class="text-box box-xs" style="width:75px" />
+                        </td>
+                        <td>
+                            <label>Serail No</label><br />
+                            <input type="number" class="text-box box-xs" style="width:75px" />
+                        </td>
+                        <td>
+                            <label>Working Status</label><br />
+                            <fieldset style="width:98%">
+                                <label><input type="radio" name="WStatus" value="Yes" /> Yes</label>
+                                <label><input type="radio" name="WStatus" value="No" /> No</label>
+                            </fieldset>
+                        </td>
+                        <td>
+                            <label>Energy Source</label><br />
+                            <fieldset style="width:98%">
+                                <label><input type="radio" name="ESource" value="E" /> E</label>
+                                <label><input type="radio" name="ESource" value="G" /> G</label>
+                                <label><input type="radio" name="ESource" value="S" /> S</label>
+                            </fieldset>
+                        </td>
+                        <td >
+                            <label>Equipment Age in Year</label><br />
+                            <input type="number" class="text-box box-xs" style="width:75px" />
+                        </td>
+                        <td>
+                            <input type="button" class="btn btn-primary bnt-sm" value="Save" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-box">
+                            <label><input type="radio" name="ColdType" value="Freezer" checked /> Freezer</label>
+                            <label><input type="radio" name="ColdType" value="Refrigirator" /> Refrigirator</label>
+                        </td>
+                        
+                    </tr>
+                    
+                </table>
+                <table class="table-data table table-condensed marg-top-6px">
+                    <thead>
+                        <tr>
+                            <th>Edit</th>
+                            <th>Item Name</th>
+                            <th>Model</th>
+                            <th>Serail No</th>
+                            <th>Enenrgy Source</th>
+                            <th>Equipment Age</th>
+                            <th>Type</th>
+                            <th>Woring Status</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr>
+                            <td colspan="9" align="center">
+                                <label>No data to display</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

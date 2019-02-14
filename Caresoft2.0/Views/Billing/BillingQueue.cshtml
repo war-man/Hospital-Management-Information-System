@@ -1,0 +1,247 @@
+﻿@{
+    var walkins = (IEnumerable<Caresoft2._0.Areas.Procurement.Models.Walking>)ViewBag.Walkins;
+
+    if (ViewBag.Mode != "AJAX")
+    {
+        ViewBag.Title = "Bill Patient Selection";
+        Layout = "~/Views/Shared/_DataListContainer.cshtml";
+        ViewBag.ShowTopMenu = true;
+
+    }
+    else
+    {
+        //no layout for ajax calls, just return plain data
+    }
+}
+
+
+@model IEnumerable<CaresoftHMISDataAccess.OpdRegister>
+
+<h4 class="form-title">Billing Queue</h4>
+<table class="color-legend-table">
+    <tr>
+        <td>&nbsp;</td>
+        <td class="color-key" id="EMRunread"></td>
+        <td>Unread</td>
+        <td class="color-key" id="EMRRead"></td>
+        <td>Read</td>
+        <td class="color-key" id="EMRUnpaid"></td>
+        <td>Unpaid/Partialy Paid</td>
+
+    </tr>
+</table>
+<p>@ViewBag.SearchMeta</p>
+<table class="table table-data table-condensed ">
+    <tr>
+        <th>
+            OPD No
+        </th>
+        <th>
+            RegNumber
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Department
+        </th>
+        <th>
+            Patient Type
+        </th>
+
+        <th>
+            Date
+        </th>
+
+        <th>
+            Time
+        </th>
+
+        <th></th>
+    </tr>
+    <tbody class="bg-white">
+
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            var colorCode = "";
+            if (item.BillServices.FirstOrDefault(e => !e.Paid) != null)
+            {
+                if (item.Status == "Emergency")
+                {
+                    colorCode = "Emergency";
+                }
+                else
+                {
+                    colorCode = "Unpaid";
+                }
+
+            }
+            else if (item.Complaints.Count() < 1)
+            {
+                colorCode = "Unread";
+            }
+            else
+            {
+                colorCode = "Read";
+            }
+
+            if (item.Status.ToLower().Trim().Equals("emergency") && colorCode == "Unread")
+            {
+                colorCode = "Emergency";
+            }
+            <tr class="@colorCode tr-href" data-href="@Url.Action("Index", "Billing", new { id = item.Id })">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patient.RegNumber)
+                </td>
+                <td>
+                    @item.Patient.Salutation @item.Patient.FName @item.Patient.MName @item.Patient.LName
+                </td>
+                <td>
+                    @if (item.PatientReferals.Count() < 1)
+                    {
+                        @Html.DisplayFor(modelItem => item.Department)
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.PatientReferals.LastOrDefault().Department.DepartmentName)
+                    }
+
+
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tariff.TariffName)
+                </td>
+
+                <td>
+                    @item.TimeAdded
+                </td>
+
+                <td>
+
+                    @if (item.FromDept != "Consultant" && colorCode == "Unpaid" && colorCode != "Read")
+
+                    {
+
+                        var tat = new Caresoft2._0.Utils.QueueTimeCalculator(item.Id).TotalHours;
+
+
+                        if (tat.HasValue && tat.Value.TotalHours > 0)
+                        {
+                            <span>
+                                @tat.Value.Hours Hr
+                                @tat.Value.Minutes Min
+                            </span>
+
+                        }
+                        else
+                        {
+                            <span>
+                                @tat.Value.Minutes Min
+                            </span>
+
+
+
+                        }
+                    }
+
+                    //else if (colorCode != "Unpaid" && item.FromDept == "Billing")
+
+                    else if (
+                        (colorCode == "Unpaid" && item.FromDept == "Consultant") ||
+                        (colorCode == "Unpaid" && item.FromDept == "Nurse" && ViewBag.FromDepartment == "Nurse"))
+                    {
+
+                        var tat = new Caresoft2._0.Utils.QueueTimeCalculator(item.Id).BillingQueue;
+
+                        if (tat.HasValue && tat.Value.Hours > 0)
+                        {
+                            if (tat.HasValue)
+                            {
+                                <span>
+                                    @tat.Value.Hours Hr
+                                    @tat.Value.Minutes Min frm @item.FromDept
+                                </span>
+                            }
+
+                        }
+                        else
+                        {
+                            if (tat.HasValue)
+                            {
+                                <span>
+                                    @tat.Value.Minutes Min frm @item.FromDept
+                                </span>
+                            }
+
+
+                        }
+
+                    }
+
+
+                </td>
+
+
+
+                <td align="right">
+                    <a href="@Url.Action("Index", "Billing", new { id = item.Id })" class="btn btn-xs btn-primary">Select</a>
+                </td>
+            </tr>
+        }
+
+        @foreach (var w in walkins.OrderByDescending(e => e.PatientIdentifierId))
+        {
+
+            <tr class="tr-href" data-href="@Url.Action("Index", "Billing", new { id = w.PatientIdentifierId, type="walkin"})">
+                <td colspan="5">
+                    <label>Walkin#@w.PatientIdentifierId - @Html.DisplayFor(model => w.PatientsName)</label>
+                </td>
+                <td>
+                    @w.TimeAdded
+                </td>
+                <td align="right">
+                    <a href="@Url.Action("Index", "Billing", new { id = w.PatientIdentifierId, type="walkin" })" class="btn btn-xs btn-primary">Select</a>
+                </td>
+            </tr>
+        }
+
+
+        @{ if ((Model.Count() + walkins.Count()) < 1)
+            {
+                <tr>
+                    <td colspan="7" align="center"><em>No data was found matching your query </em></td>
+                </tr>
+            }
+        }
+    </tbody>
+
+
+</table>
+
+
+@if (ViewBag.Pages != null)
+{
+    <div class="text-center">
+        <ul class="pagination">
+            @for (var x = 1; x <= (int)ViewBag.Pages + 1; x++)
+            {
+                <li class="@if (x == ViewBag.Page) { <text>active</text>} "><a href="?page=@x">@x</a></li>
+            }
+        </ul>
+    </div>
+}
+
+
+@section scripts{
+    <script>
+        var action = "/Billing/FIlterBillingList";
+        var method = "GET";
+    </script>
+}
+
+
+

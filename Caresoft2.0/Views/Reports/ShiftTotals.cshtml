@@ -1,0 +1,102 @@
+﻿@model Caresoft2._0.CustomData.ShiftReportData
+@{
+    var StartDate = @DateTime.Now.ToString("yyyy-MM-dd");
+    var EndDate = @DateTime.Now.ToString("yyyy-MM-dd");
+
+    
+        StartDate = ViewBag.StartDate.ToString("yyyy-MM-dd");
+        EndDate = ViewBag.EndDate.ToString("yyyy-MM-dd");
+        
+    
+    ViewBag.Title = "SHIFT TOTALS REPORT From : " + StartDate + " To: " + EndDate;
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+    ViewBag.Size = "A4";
+    ViewBag.Orientation = "landscape";
+}
+
+<br />
+<div class="container" style="width:100%; padding:10px; background:  var(--primary-color)">
+    <form method="post" class="hidden-print">
+        <strong style="color:white">Start Date&nbsp;&nbsp; : &nbsp;&nbsp;</strong><input id="StartDate" name="StartDate" type="date" value="@StartDate" />
+        <strong  style="color:white">End Date&nbsp;&nbsp; : &nbsp;&nbsp;</strong><input id="EndDate" name="EndDate" type="date" value="@EndDate" />
+        <button type="submit" class="btn btn-xs btn-primary ">Filter</button>
+    </form>
+</div>
+
+
+@if (Model.Shifts.Count > 0)
+{
+    <table class="table table-condensed">
+        <thead>
+            <tr class="report-title gray-hr-bottom">
+                <th>No.</th>
+                <th>Shift NO</th>
+                <th>Cashier</th>
+                <th>Rct</th>
+                <th style="text-align:right !important">Cash</th>
+                <th style="text-align:right !important">Cheque</th>
+                <th style="text-align:right !important">ccard</th>
+                <th style="text-align:right !important">MPesa</th>
+                <th style="text-align:right !important">JPay</th>
+                <th style="text-align:right !important">Sub-Total</th>
+                <th style="text-align:right !important">Refunds</th>
+                <th style="text-align:right !important">Total</th>
+                <th>S/Time</th>
+                <th>E/Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody class="gray-hr-bottom">
+            @{var x = 1;
+            }
+            @foreach (var shift in Model.Shifts)
+            {
+            <tr>
+                <td>@x</td>
+                <td>@shift.Id</td>
+                <td>@shift.User.Username</td>
+                <td>@shift.BillPayments.Count()</td>
+                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cash")).Sum(e => e.PaidAmount)</td>
+                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cheque")).Sum(e => e.PaidAmount)</td>
+                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.ToLower().Trim().Equals("ccard")).Sum(e => e.PaidAmount)</td>
+                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.ToLower().Trim().Equals("mpesa")).Sum(e => e.PaidAmount)</td>
+                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.Equals("Jambo Pay")).Sum(e => e.PaidAmount)</td>
+                <td class="money">@{@(shift.BillPayments.Sum(e => e.PaidAmount) - shift.BillPayments.Sum(e => e.AmountFromWallet))} </td>
+                <th class="money text-danger" style="text-align:right !important">@shift.Refunds.Sum(e => e.RefundedAmount)</th>
+                <td class="money">@{@(shift.BillPayments.Sum(e => e.PaidAmount) - shift.BillPayments.Sum(e => e.AmountFromWallet) - shift.Refunds.Sum(e => e.RefundedAmount))}</td>
+                <td>@shift.StartTime</td>
+                <td>@shift.Endtime</td>
+                <td>
+
+                    @if (shift.Endtime != null || shift.StartTime.Date != DateTime.Today)
+                    {<text>Closed</text> }
+                else
+                { <text>Running</text>}
+                </td>
+            </tr>
+        x++;
+    }
+        </tbody>
+        <tfoot>
+            <tr class="report-title gray-hr-bottom">
+                <th colspan="3">Total</th>
+                <th>@Model.Shifts.Sum(e => e.BillPayments.Count())</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cash")).Sum(a => a.PaidAmount))}</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cheque")).Sum(a => a.PaidAmount))}</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.ToLower().Trim().Equals("ccard")).Sum(a => a.PaidAmount))}</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.ToLower().Trim().Equals("mpesa")).Sum(a => a.PaidAmount))}</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.Equals("Jambo Pay")).Sum(a => a.PaidAmount))}</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Sum(ba => ba.PaidAmount) - e.BillPayments.Sum(ba => ba.AmountFromWallet))}</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.Refunds.Sum(f => f.RefundedAmount))}</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Sum(ba => ba.PaidAmount) - e.BillPayments.Sum(ba => ba.AmountFromWallet) - Model.Shifts.Sum(s => s.Refunds.Sum(f => f.RefundedAmount))) }</th>
+                <th colspan="3"></th>
+            </tr>
+        </tfoot>
+    </table>
+}
+else
+{
+    <h4>No Shift Data Found!</h4>
+}
+
+

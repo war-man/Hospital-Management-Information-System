@@ -1,0 +1,30 @@
+﻿<div style="margin-top:-.5em; margin-bottom:1em; border-bottom:2px solid var(--primary-color)">
+    <label>Report</label>
+    <select class="text-box">
+        <option>Shift Totals Reports</option>
+        <option>Departmental Break Down</option>
+        <option>Cashier Shift Report</option>
+    </select>
+    <label>Department</label>
+    <select class="text-box">
+        <option>All</option>
+        <option>Dental</option>
+    </select>
+    <label>User</label>
+    <select class="text-box">
+        <option>All</option>
+        <option>Dev</option>
+    </select>
+    <label title="Start Date">S/Date</label>
+    <input type="date" class="text-box" name="SDate" id="SDate" value="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+    <label title="End Date">E/Date</label>
+    <input type="date" class="text-box" name="EDate" id="EDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+    <button class="btn btn-sm btn-primary">Preview</button>
+    <div class="pull-right" id="report-buttons">
+        <button class="btn btn-sm btn-warning" title="Print Report" onclick='$("page").print();'><i class="fa fa-print"></i></button>
+        &nbsp;
+        <button class="btn btn-sm btn-danger" title="Download PDF Report"><i class="fa fa-file-pdf-o"></i></button>
+        &nbsp;
+        <button class="btn btn-sm btn-success" title="Export to Excel"><i class="fa fa-file-excel-o"></i></button>
+    </div>
+</div>

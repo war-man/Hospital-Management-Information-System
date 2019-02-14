@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.RackMaster>
+
+@{
+    ViewBag.Title = "RackMaster";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+}
+
+<style>
+.text-box{
+    margin-bottom:3px;
+}
+</style>
+
+<div class="col-md-8">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading">
+            Rack Master
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="">
+                        <tr>
+                            <td>Rack Name</td>
+                            <td><input type="text" class="text-box" id="RackName" /></td>
+                        </tr>
+                        <tr>
+                            <td>Total Number of Cells</td>
+                            <td><input type="text" class="text-box" id="TotalNumberOfCells" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn btn-sm btn-primary" id="btnSave">Save</button>
+                                <button class="btn btn-sm btn-primary">Back</button>
+                                <button class="btn btn-sm btn-primary">Clear</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <div id="rackMasterList">
+                        @if (Model == null)
+                        {
+                            <table class="table table-data">
+                                <tr>
+                                    <th>Edit</th>
+                                    <th>Rack Name</th>
+                                    <th>No of Cells</th>
+                                    <th>Delete</th>
+                                </tr>
+                                <tr>
+                                    <td>No Data to display</td>
+                                </tr>
+                            </table>
+                        }
+                        else
+                        {
+                            @Html.Partial("~/Areas/MedicalStore/Views/MedicalStoreMaster/_RackMasterList.cshtml", Model)
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+        $("#btnSave").click(function () {
+            var name = $("#RackName").val();
+            var totalCells = $("#TotalNumberOfCells").val();
+
+            var rackMaster = { name: name, totalNumberOfCells: totalCells };
+
+            var checkmodel = false;
+
+            $.each(rackMaster, function (key, value) {
+
+                if (value != null && value != "" && value != " ") {
+                    checkmodel = true;
+                }
+                else {
+                    checkmodel = false;
+                }
+            });
+
+            if (checkmodel == true) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/PharmacyMaster/RackMaster",
+                    data: rackMaster,
+                    success: function (obj) {
+                        $("#rackMasterList").empty();
+                        $("#rackMasterList").append(obj);
+                        $("#RackName").val("");
+                        $("#TotalNumberOfCells").val("");
+                        $.notify("Something","success")
+                        
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                        $.notify("Error", "error")
+                    }
+                });
+
+            }
+            else {
+                console.log("Please Check Variables");
+            }
+
+
+        });
+
+
+    </script>
+
+}
+

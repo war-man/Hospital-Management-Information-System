@@ -1,0 +1,71 @@
+﻿@model IEnumerable<LabsDataAccess.WorkOrderTest>
+
+<div class="col-xs-8 col-xs-offset-2">
+
+    <br />
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading" style="height:40px ; ">
+            <h5 style="font-weight:bold">Sample Condition</h5>
+        </div>
+       
+        <div class="panel-body">
+            <div class="alert alert-info" role="alert" id="myAlert">
+                <strong></strong> <a href="#" id="Message" class="alert-link">Attend the Following</a>
+            </div>
+
+            @using (Ajax.BeginForm("SampleCondition", "SampleCollection", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                //UpdateTargetId = "TestList",
+                OnSuccess = "$('#Message').text('Updated Successfully'); $('#myAlert').removeClass('alert-info alert-success'); $('#myAlert').addClass('alert-success'); ",
+                OnFailure = "$('#Message').text('An Error Occured Try again Later'); $('#myAlert').removeClass('alert-info alert-success'); $('#myAlert').addClass('alert-danger'); ",
+                LoadingElementId = "loadingElement",
+            }))
+            {
+            <form>
+                @Html.AntiForgeryToken()
+
+                <table class="table table-condensed table-data-pathology">
+                    <thead class="bg-primary">
+                        <tr class="table-primary">
+                            <th>Test Names</th>
+                            <th>Sample Type</th>
+                            <th>Ref.Customer</th>
+                            <th>Sample Condition</th>
+                        </tr>
+                    </thead>
+                    <tbody class="">
+                        @foreach (var item in Model)
+            {
+                var color = "black";
+
+                if (item.BillPaid)
+                {
+                    color = "#FF9800";
+                }
+                else if (!item.BillPaid)
+                {
+                    color = "#F74519";
+                }
+                        <tr style="color: @color">
+                            <td>@item.LabTest.Test</td>
+                            <td>@Html.DisplayFor(e => item.LabTest.Sample.Sample_Type)</td>
+                            <td>@item.RefCustomer</td>
+                            <td><input name="@item.Id" type="text" value="@item.Condition" /></td>
+                        </tr>
+
+}
+                    </tbody>
+
+                </table>
+
+                <input type="submit" class="btn btn-primary" value="Save" />
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Back</button>
+
+            </form>
+
+     
+            }
+        </div>
+    </div>
+</div>

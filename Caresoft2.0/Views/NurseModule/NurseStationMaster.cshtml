@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Nurse Station Master";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+
+<style>
+
+.table-form tr td{
+    padding:5px;
+}   
+</style>
+
+<div class="">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+            <div class="panel-heading custom-navbar">
+                Nurse Station Master
+            </div>
+            <div class="panel-body">
+                <div class="tab-content" id="reg-form-holder">
+                    <table class="table-form">
+                        <tr>
+                            <td>Type</td>
+                            <td>
+                                <div id="type">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="OPD">OPD
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="IPD">IPD
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="OT">OT
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nurses Station Name</td>
+                            <td><input type="text" class="text-box"  id="Name"/> </td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td><input type="text" class="text-box" id="Description" /> </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="button" value="Save" class="btn btn-primary" style="margin:5px" id="btnSave" /><input type="button" id="btnClear" class="btn btn-primary" value="Clear" style="margin:5px" /></td>
+                        </tr>
+                    </table>
+                    <table class="table-data table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Edit</th>
+                                <th>Nurse Station Name</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $("#btnSave").click(function () {
+            var name = $("#Name").val();
+            var description = $("#Description").val();
+            var type = $("input:radio[name=optradio]:checked").val()
+            console.log(name);
+            console.log(description);
+            console.log(type);
+            
+        });
+    </script>
+    
+    }

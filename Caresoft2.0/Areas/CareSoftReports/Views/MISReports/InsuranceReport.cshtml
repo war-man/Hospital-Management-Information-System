@@ -1,0 +1,93 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Company>
+@{
+    ViewBag.Title = "Patient List By Department";
+    Layout = "~/Areas/CareSoftReports/Views/Shared/_LayoutReports.cshtml";
+    ViewBag.ReportName = "Insurance Report";
+}
+
+<style>
+    .text-box {
+        width: 150px;
+    }
+</style>
+<div class="col-sm-6 col-sm-offset-3">
+    <div class="panel panel-primary glass caresoft-panel">
+        <div class="panel-heading">
+            <h4>@ViewBag.ReportName</h4>
+            Set report filters and click download.
+        </div>
+        <div class="panel-body">
+            <form name="ReportFilter" id="ReportFilter" method="get" action="@Url.Action("GetInsuranceReport","MISReports",new {Area="CareSoftReports"})">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="col-md-5">
+                            <label> From Date</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input class="text-box" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" name="FromDate" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-5">
+                            <label>End Date</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input class="text-box" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" name="ToDate" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <br />
+                    <div id="Department" class="form-inline">
+                        <div class="col-md-6">
+                            <div class="col-md-5">
+                                <label class="">Insurance Scheme   &nbsp;   </label>
+                            </div>
+                            <div class="col-md-7">
+                                <select name="Department" id="dept" class="text-box">
+                                    <option>All</option>
+                                    @foreach (var item in Model)
+                                    {
+                                        <option>@item.CompanyName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                <div class="col-md-12">
+                    
+                    <div id="Department" class="form-inline">
+                        <div class="col-md-6">
+                            <div class="col-md-5">
+                                <label class="">Select Download Format   &nbsp;        &nbsp; </label>
+                            </div>
+                            <div class="col-md-7">
+                                <select name="Format" id="dept" class="text-box">
+                                    <option>PDF</option>
+                                    <option>EXCEL</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <br />
+                    <button type="submit" class="btn btn-primary btn-sm" id="btnDownloadReport">Download Patient List Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+
+    </script>
+
+}
+

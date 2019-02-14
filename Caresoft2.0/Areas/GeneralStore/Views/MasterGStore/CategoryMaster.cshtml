@@ -1,0 +1,100 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.Category>
+
+
+@{
+    ViewBag.Title = "CategoryMaster";
+    Layout = "~/Areas/GeneralStore/Views/Shared/_LayoutGeneralStore.cshtml";
+}
+
+<div class="col-md-8">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px"> <strong>Category Master</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td>Category</td>
+                            <td><input type="text" class="text-box" id="Name" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" id="BtnSave">Save</button>
+                                <button class="btn btn-sm btn-primary" id="BtnCancel">Cancel</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <div id="LstCategory">
+                        @Html.Partial("~/Areas/MedicalStore/Views/MedicalStoreMaster/_CategoryList.cshtml", Model)
+                       
+                    </div>
+                    <div id="pagination" class="col-md-12">
+                        <br />
+                        <div class="col-md-6 col-offset-3">
+                            <div class="pagination">
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                                of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("DoseMaster", new { page }))
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+
+
+        $("#BtnSave").click(function () {
+            var Name = $("#Name").val();
+
+            if (Name) {
+
+                var category = { CategoryName: Name };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/MasterGStore/CategoryMaster",
+                    data: category,
+                    beforeSend: function () {
+                        console.log(category);
+                    },
+                    success: function (obj) {
+                        console.log(obj);
+                        $("#LstCategory").empty();
+                        $("#LstCategory").append(obj);
+                        $("#Name").val("");
+                    },
+                    error: function () {
+
+                    },
+                    compete: function () {
+
+                    }
+
+                });
+
+            }
+            else
+            {
+                console.log("Name is null");
+            }
+
+        });
+
+
+    </script>
+
+}
+

@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.IsNurse = true;
+    ViewBag.ShowTopMenu = true;
+}
+<div class="row">
+    <div>
+        @RenderBody()
+    </div>
+</div>
+
+@section scripts{
+    @RenderSection("scripts", required: false)
+}
+

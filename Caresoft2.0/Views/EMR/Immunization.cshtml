@@ -1,0 +1,147 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var imm_cats = (IEnumerable<CaresoftHMISDataAccess.ImmunizationCategory>)ViewBag.ImmunizationCategories;
+    var patient = Model.Patient;
+    var myImmVisits = patient.OpdRegisters.Where(e=>e.ImmunizationAdmins.Count()>0).ToList();
+    ViewBag.WideView = true;
+    ViewBag.Title = "Immunization";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>Immunization Register</p>
+    </div>
+    <div class="panel-body">
+        <form id="Immunization_entry_form">
+
+            <input type="hidden" value="@Model.Patient.Id" name="PatientId" />
+            <input type="hidden" value="@Model.OpdRegister.Id" name="OpdIpdNumber" />
+
+            <table class="table-data table table-condensed table-bordered" > 
+                <tbody class="bg-white">
+                    @foreach(var cat in imm_cats)
+                    {
+                    <tr>
+                        <th>
+                           
+                        </th>
+                        <th>@cat.ImmunizationCategoryName</th>
+                        <th>Age</th>
+                        <th>Date Given</th>
+                        <th>Date of Next Visit</th>
+                        <th>Remarks</th>
+                        @*<th></th>*@
+                    </tr>
+                        foreach(var imm in cat.ImmunizationMasters)
+                        {
+                            <tr id="imm_@imm.Id">
+                                <td>
+                                    <input type="button" class="btn btn-xs btn-primary call-modal-form" 
+                                           data-action="@Url.Action("ImmunizationEntry", "EMR", new
+                                                   { id= Model.OpdRegister.Id, immId = imm.Id })" 
+                                           data-callback="immunizationEntryListener" value="Add/Edit" />
+                                </td>
+                                <td>
+                                    @imm.ImmunizationName
+                                </td>
+                                <td>
+                                    @imm.LowerAgeInMonths - @imm.UpperAgeInMonth @imm.BWMYType
+                                </td>
+                                <td class="date_given">
+                                  @if (myImmVisits.Count() > 0)
+                                  {
+                                      var entries = myImmVisits.Where(e => e.ImmunizationAdmins.Any(a => a.ImmunizationMasterId == imm.Id)).ToList();
+                                      if (entries.Count()>0)
+                                      {
+                                          //this patient has ever been immunized for this vaccine
+                                          foreach(var entry in entries)
+                                          {
+                                              foreach(var thisImm in entry.ImmunizationAdmins.Where(e=>e.ImmunizationMasterId == imm.Id))
+                                              {
+                                                  <text>@thisImm.DateGiven.ToShortDateString() <br /></text>
+                                              }
+                                          }
+
+                                      }
+                                  }
+                                </td>
+                                <td class="next_visit">
+                                    @if (myImmVisits.Count() > 0)
+                                    {
+                                        var entries = myImmVisits.Where(e => e.ImmunizationAdmins.Any(a => a.ImmunizationMasterId == imm.Id)).ToList();
+                                        if (entries.Count()>0)
+                                        {
+                                            //this patient has ever been immunized for this vaccine
+                                            foreach(var entry in entries)
+                                            {
+                                                foreach(var thisImm in entry.ImmunizationAdmins.Where(e => e.ImmunizationMasterId == imm.Id))
+                                                {
+                                                  <text>@thisImm.DateOfNextVisit.Value.ToShortDateString()<br /></text>
+                                              }
+                                          }
+
+                                      }
+                                  }
+                                </td>
+                                <td class="remarks">
+                                    @if (myImmVisits.Count() > 0)
+                                    {
+                                        var entries = myImmVisits.Where(e => e.ImmunizationAdmins.Any(a => a.ImmunizationMasterId == imm.Id)).ToList();
+                                        if (entries.Count()>0)
+                                        {
+                                            //this patient has ever been immunized for this vaccine
+                                            foreach(var entry in entries)
+                                            {
+                                                foreach(var thisImm in entry.ImmunizationAdmins.Where(e => e.ImmunizationMasterId == imm.Id))
+                                                {
+                                                  <text>@thisImm.Remarks <br /></text>
+                                              }
+                                          }
+
+                                      }
+                                  }
+                                </td>
+                                @*<td>
+                                    <input type="button" class="btn btn-xs btn-default" value="Delete" />
+                                </td>*@
+                            </tr>
+                        }
+                    }
+                </tbody>
+                
+            </table>
+        </form>
+    </div>
+    @*<div class="panel-footer" style="padding:1px;">
+        <div class="scrollable-table-container" id="complaints-log">
+            
+        </div>
+    </div>*@
+</div>
+
+
+
+
+@section scripts{
+    <script>
+
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+
+
+    </script>
+}
+

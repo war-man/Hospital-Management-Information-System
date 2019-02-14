@@ -1,0 +1,117 @@
+﻿@using PagedList.Mvc;
+@using Caresoft2._0.Areas.Procurement.Models;
+
+@model PagedList.IPagedList<Invoice>
+
+@{
+    ViewBag.Title = "InvoicePayement";
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+
+    var Invoices = Model.Select(e => e.Supplier).Distinct();
+
+}
+
+<style>
+    .text-box {
+        width: 170px;
+    }
+</style>
+<div class="col-md-11">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading">
+            Invoice Payment
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <form method="GET">
+                        <table class="table-condensed">
+                            <tr>
+                                <td>From Date</td>
+                                <td><input type="date" class="text-box" id="StartDate" name="StartDate" value='@DateTime.Now.ToString("yyyy-MM-dd")' /></td>
+                                <td>To Date</td>
+                                <td><input type="date" class="text-box" id="EndDate" name="EndDate" value='@DateTime.Now.ToString("yyyy-MM-dd")' /></td>
+                            </tr>
+                            <tr>
+                                <td>Supplier Name</td>
+                                <td><input type="text" class="text-box" id="SupplierName" name="SupplierName" /></td>
+                                <td><input type="text" class="text-box" id="SupplierId" name="SupplierId" /></td>
+
+                                <td></td>
+                                <td><input type="submit" class="btn btn-primary btn-sm" id="btnSearch" value="Search" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="All">All
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Paid">Paid
+                                    </label>
+                                    <i class="fa fa-square" style="color:gray"></i>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Paid">Not Paid
+                                    </label>
+                                    <i class="fa fa-square" style="color:yellow"></i>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Paid">Partial Paid
+                                    </label>
+                                    <i class="fa fa-square" style="color:lightseagreen"></i>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </form>
+                </div>
+
+                <div class="col-md-12">
+                    <table class="table-data-pathology table-condensed" width="100%">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>Supplier Code</th>
+                                <th>Supplier Name</th>
+                                <th>Telephone No</th>
+                                <th>Invoice Report</th>
+                                <th>Make Payment</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="bg-white">
+                            @if (Model == null)
+                            {
+                                <tr>
+                                    <td colspan="7">No data</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var item in Invoices)
+                                {
+                                    <tr>
+                                        <td>@item.Supplier_Code</td>
+                                        <td>@item.Supplier_Name</td>
+                                        <td>@item.Supplier_TelNo</td>
+
+                                        <td> @Html.ActionLink("Report", "Report", new { Id = item.Supplier_Code }, new { @class = "btn btn-primary btn-xs" })
+                                        <td> @Html.ActionLink("Make Payment", "InvoicePaymentDetails", new { Id = item.Supplier_Code }, new { @class = "btn btn-primary btn-xs" })
+                                    </tr>
+                                }
+
+
+                            }
+
+                        </tbody>
+                    </table>
+
+                    <div class="pagination">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                        of @Model.PageCount
+
+                        @Html.PagedListPager(Model, page => Url.Action("EditInvoice", new { page }))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

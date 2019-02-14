@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "WriteOffsCredits";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+}
+
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Writting Off Credits
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Scheme:
+                                </td>
+                                <td>
+                                    <select name="Scheme" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    &nbsp; Payer:
+                                </td>
+                                <td>
+                                    <input name="Payer" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Period From:
+                                </td>
+                                <td>
+                                    <input type="date" class="text-box margin-top-bottom-2" name="DateFrom" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp;  Period To:
+                                </td>
+                                <td>
+                                    <input type="date" class="text-box margin-top-bottom-2" name="DateTo" style="width:100%" />
+                                </td>
+                                <td>&nbsp; &nbsp;</td>
+                                <td>
+                                    <input type="checkbox" value="ConfirmPeriod" name="ConfirmPeriod" /> Confirm Period
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Credit No:
+                                </td>
+                                <td>
+                                    <input type="number" name="CreditNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Acc No:
+                                </td>
+                                <td>
+                                    <input type="number" name="AccNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Reason:
+                                </td>
+                                <td>
+                                    <input name="Reason" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp;  Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="Amount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Details:
+                                </td>
+                                <td>
+                                    <select name="Details" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    &nbsp;  GI Code:
+                                </td>
+                                <td>
+                                    <input name="GICode" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <table class="table table-data-pathology table-condensed">
+                            <tr>
+                                <th>Date</th>
+                                <th>Rct No</th>
+                                <th>Doc No</th>
+                                <th>Org Amount</th>
+                                <th>Amt to Write Off</th>
+                                <th>Balance</th>
+                                <th>Write Off</th>
+                            </tr>
+                            <tbody style="background-color: white">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <input type="checkbox" name="WriteOff" value="WriteOff" style="width:100%" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Write Off</button>
+                        <button type="reset" class="btn btn-default margin-top-bottom-2">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

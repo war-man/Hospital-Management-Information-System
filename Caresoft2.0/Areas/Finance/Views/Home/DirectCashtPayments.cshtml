@@ -1,0 +1,302 @@
+﻿
+@{
+    ViewBag.Title = "DirectCashtPayments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Finance/Views/Shared/_LeftNavigation.cshtml")
+</div>
+<div class="col-md-7">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Direct Cash Payment
+            </div>
+            <div class="panel-body">
+                <table>
+                    <tr>
+                        <td>
+                            Cash Point:
+                        </td>
+                        <td>
+                            <input type="text" name="CashPoint" id="CashPoint" class="text-box margin-top-bottom-2" style="width:100%" />
+                        </td>
+                        <td>
+                            Shift No:
+                        </td>
+                        <td>
+                            <input type="number" name="ShiftNo" id="ShiftNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                        </td>
+                    </tr>
+                </table>
+                <br />
+
+                <ul id="myNavTabs" class="nav nav-tabs">
+                    <li role="presentation" class="active">
+                        <a data-toggle="pill" href="#Payments">Payments</a>
+                    </li>
+                    <li role="presentation">
+                        <a data-toggle="pill" href="#InPatientsRefunds">In Patients Refunds</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="Payments">
+                        <form>
+                            <fieldset>
+                                <table>                                   
+                                    <tr>
+                                        <td>
+                                            Payee:
+                                        </td>
+                                        <td>
+                                            <input list="Payee" name="Payee" id="Payee" class="text-box margin-top-bottom-2" style="width:100%" />
+                                            <datalist id="Payee">
+                                                <option value=""></option>
+                                            </datalist>
+                                        </td>
+                                        <td>
+                                            Department:
+                                        </td>
+                                        <td>
+                                            <select class="text-box margin-top-bottom-2" style="width:100%" name="Department" id="Department">
+                                                <option value=""></option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Invoice No:
+                                        </td>
+                                        <td>
+                                            <input list="InvoiceNo" name="InvoiceNo" id="InvoiceNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                            <datalist id="InvoiceNo">
+                                                <option value=""></option>
+                                            </datalist>
+                                        </td>
+                                        <td>
+                                            Date:
+                                        </td>
+                                        <td>
+                                            <input type="date" name="Date" id="Date" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Requisitioner:
+                                        </td>
+                                        <td>
+                                            <input type="text" name="Requisitioner" id="Requisitioner" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                        <td>
+                                            Voucher No:
+                                        </td>
+                                        <td>
+                                            <input type="number" name="VoucherNo" id="VoucherNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="Search" id="SearchCode" value="SearchCode" /> Search by Code
+                                        <input type="radio" name="Search" id="SearchName" value="SearchName" /> Search by Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>&ensp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="radio" id="radio" value="Pay" /> Pay
+                                        <input type="radio" name="radio" id="radio" value="Reverse" /> Reverse
+                                        <input type="radio" name="radio" id="radio" value="Replenish" /> Replenish
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select class="text-box margin-top-bottom-2" style="width:100%">
+                                            <option value=""></option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        Cheque No:
+                                    </td>
+                                    <td>
+                                        <input type="number" name="ChequeNo" id="ChequeNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            <fieldset>
+                                <table class="table table-data-pathology table-condensed">
+                                    <tr>
+                                        <th>Purpose</th>
+                                        <th>Reason</th>
+                                        <th>Quantity</th>
+                                        <th>Amount</th>
+                                        <th>GI Account</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="Purpose" id="Purpose" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name="Reason" id="Reason" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name="Quantity" id="Quantity" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                        <td>
+                                            <input type="number" name="Amount" id="Amount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                        <td>
+                                            <input name="GIAcc" id="GIAcc" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br />
+                                Amount : <input type="number" name="AmountTotal" id="AmountTotal" class="text-box margin-top-bottom-2" />
+                            </fieldset>
+                            <button type="submit" name="Save" class="btn btn-primary bn-sm">Save</button>
+                            <button type="reset">Clear</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="InPatientsRefunds">
+                        <form>
+                            <fieldset>
+                                <legend>Select patient</legend>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <input type="radio" name="radio" id="radio" value="InPatient" /> In Patient
+                                            <input type="radio" name="radio" id="radio" value="OutPatient" />Out Patient
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Patient No:
+                                        </td>
+                                        <td>
+                                            <input list="PatientNo" name="PatientNo" id="PatientNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                            <datalist id="PatientNo">
+                                                <option value=""></option>
+                                            </datalist>
+                                        </td>
+                                        <td>
+                                            Paid To:
+                                        </td>
+                                        <td>
+                                            <input type="text" name="PaidTo" id="PaidTo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Visit ID:
+                                        </td>
+                                        <td>
+                                            <input name="VisitID" id="VisitID" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                        <td>
+                                            Donor:
+                                        </td>
+                                        <td>
+                                            <select class="text-box margin-top-bottom-2" style="width:100%" name="Donor" id="Donor">
+                                                <option value=""></option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Name:
+                                        </td>
+                                        <td>
+                                            <input type="text" name="Name" id="Name" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                        <td>
+                                            Project:
+                                        </td>
+                                        <td>
+                                            <select class="text-box margin-top-bottom-2" style="width:100%" name="Project" id="Project">
+                                                <option value=""></option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Balance:
+                                        </td>
+                                        <td>
+                                            <input type="number" name="Balance" id="Balance" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                        <td>
+                                            Unit:
+                                        </td>
+                                        <td>
+                                            <select class="text-box margin-top-bottom-2" style="width:100%" name="Unit" id="Unit">
+                                                <option value=""></option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Patient Category:
+                                        </td>
+                                        <td>
+                                            <input type="text" name="PatienCategory" id="PatientCategory" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                        <td>
+                                            Voucher No:
+                                        </td>
+                                        <td>
+                                            <input type="number" name="VoucherNo" id="VoucherNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            GL Code:
+                                        </td>
+                                        <td>
+                                            <input list="GLCode" name="GLCode" id="GLCode" class="text-box margin-top-bottom-2" style="width:100%" />
+                                            <datalist id="GLCode">
+                                                <option value=""></option>
+                                            </datalist>
+                                        </td>
+                                        <td>
+                                            GL Account:
+                                        </td>
+                                        <td>
+                                            <input name="GIAcc" id="GIAcc" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Amount Paid:
+                                        </td>
+                                        <td>
+                                            <input type="number" name="AmtPaid" id="AmtPaid" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                        <td>
+                                            Reason:
+                                        </td>
+                                        <td>
+                                            <input type="text" name="Reason" id="Reason" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                            <button type="submit" class="btn btn-primary bn-sm">Ok</button>
+                            <button type="reset">Clear</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,397 @@
+﻿@model CaresoftHMISDataAccess.Patient
+@using CaresoftHMISDataAccess
+
+@{
+    var rHeader = "_DefaultReportsHeader";
+
+    var db = new CaresoftHMISEntities();
+}
+<div class="col-xs-10 col-xs-offset-1">
+
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel panel-heading">
+            <button class="btn btn-xs btn-warning" title="Print Report" onclick="$('page').print()"><i class="fa fa-print"></i></button>
+            &nbsp;
+            <button class="btn btn-xs btn-danger" title="Download PDF Report"><i class="fa fa-file-pdf-o"></i></button>
+            &nbsp;
+            <button class="btn btn-xs btn-success" title="Export to Excel"><i class="fa fa-file-excel-o"></i></button>
+
+            <button style="margin-bottom:50px;" type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">X</button>
+
+        </div>
+        <div class="panel-body">
+            <page size="@ViewBag.Size" orientation="@ViewBag.Orientation">
+                @Html.Partial(rHeader)
+
+                <div style=" padding:5px; " class="text-center">
+                    <strong>PATIENT FOLLOWUP</strong>
+                </div>
+                <div>
+                    <div style="width:100%; background:red!important; height:2px!important;"></div>
+
+                    <div style=" margin:5px; ">
+                        <strong style="color:blue;">
+                            Patient Information:
+                        </strong>
+                        <div style=" margin:5px; ">
+                            <table width="100%">
+                                <thead>
+                                    <tr>
+                                        <th><strong style="color:red!important;"> Name / Reg No: </strong> &nbsp; &nbsp; @Model.FName @Model.MName @Model.LName | @Model.RegNumber </th>
+
+                                        <th><strong style="color:red!important;"> Age: </strong>  &nbsp; @(DateTime.Now.Year - @Model.DOB.Value.Year) Years</th>
+
+                                        <th><strong style="color:red!important;"> Sex: </strong>  &nbsp; &nbsp;@Model.Gender</th>
+
+                                        <th><strong style="color:red!important;"> Date of Birth: </strong> &nbsp; &nbsp;@Model.DOB</th>
+
+                                    </tr>
+                                    <tr>
+                                        <th><strong style="color:red!important;"> Address: </strong> &nbsp; &nbsp;@Model.HomeAddress</th>
+
+                                        <th><strong style="color:red!important;"> Entry Date: </strong> &nbsp; &nbsp; @Model.Timestamp</th>
+
+                                        <th><strong style="color:red!important;"> Religion: &nbsp; &nbsp; </strong> @Model.Religion</th>
+
+                                        <th> <strong style="color:red!important;"> Date of discharge: </strong> &nbsp; &nbsp;</th>
+
+                                    </tr>
+                                    <tr>
+                                        <th><strong style="color:red!important;"> BloodGroup:</strong> &nbsp; &nbsp; @Model.BloodGroup</th>
+
+                                        <th><strong style="color:red!important;"> Telephone: </strong> &nbsp; &nbsp; @Model.Mobile</th>
+
+                                        <th><strong style="color:red!important;"> PinCode: </strong>  &nbsp; &nbsp;</th>
+
+                                        <th><strong style="color:red!important;"> Email: </strong> &nbsp; &nbsp; @Model.Email</th>
+
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div style="width:100%; background:red!important; height:2px!important;"></div>
+
+                    @{
+                        var VisitNo = Model.OpdRegisters.Count();
+                    }
+                    @foreach (var i in Model.OpdRegisters.OrderByDescending(e => e.Id))
+                    {
+                        <div style="border:1px solid gray!important; margin:5px!important">
+
+
+                            <div style=" margin:5px; ">
+
+                                <div style=" margin:5px; ">
+
+                                    <div style=" margin:5px; ">
+                                        <table width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th width="20%"><strong style="color:red!important;"> Visit No: </strong> &nbsp; &nbsp; @VisitNo </th>
+                                                    @{VisitNo = VisitNo - 1; }
+                                                    <th width="40%"><strong style="color:red!important;"> Entry Date: </strong>  &nbsp;@i.TimeAdded</th>
+
+                                                    <th width="40%"><strong style="color:red!important;"> Doctor Incharge: </strong>  &nbsp; &nbsp; @db.Users.Find(i.Username).Employee.FName @db.Users.Find(i.Username).Employee.OtherName ( @db.Users.Find(i.Username).Username) </th>
+
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div style=" margin:5px; ">
+
+                                <div style=" margin:5px; ">
+                                    <strong style="color:blue;">
+                                        History:
+                                    </strong>
+                                    <div style=" margin:5px; ">
+
+                                        <table width="100%" class="table-data-pathology">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">
+                                                        <span style="color:red!important;">Examination</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    @if (Model.PhysicalExaminations.Count() == 0)
+
+                                                    {
+                                                        <td class="text-center">
+                                                            No Examination was done
+                                                        </td>
+                                                    }
+                                                    <td>
+                                                        @foreach (var pe in Model.PhysicalExaminations)
+                                                        {
+
+                                                            <div class="col-xs-4">
+                                                                <b>Temperature</b> : @pe.Temperature
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <b>Height</b> : @pe.Height
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <b>Weight</b> : @pe.Weight
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <b>BMI</b> :
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <b>Pulse</b> : @pe.Pulse
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <b>BPDIASTOLICS Sitting</b> : @pe.BPDIASTOLICSSitting
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <b>BPSDIASTOLIC Supine</b> : @pe.BPSDIASTOLICSupine
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <b>BPSYSTOLICS Sitting</b> : @pe.BPSYSTOLICSSitting
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <b>BPSYSTOLIC Supine</b> : @pe.BPSYSTOLICSupine
+                                                            </div>
+
+                                                        }
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <br />
+
+                                        <table width="100%" class="table-data-pathology">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">
+                                                        <span style="color:red!important;">Chief Complaints</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    @if (i.Complaints.Count() == 0)
+
+                                                    {
+                                                        <td class="text-center">
+                                                            No Complaints was recorded
+                                                        </td>
+                                                    }
+                                                    <td>
+
+                                                        @foreach (var pe in i.Complaints)
+                                                        {
+
+                                                            <div class="col-xs-12 marg-top-6px">
+                                                                <div class="col-xs-4">
+                                                                    <b>Complaint</b> : @pe.ChiefComplaints
+                                                                </div>
+                                                                <div class="col-xs-4">
+                                                                    <b>Since</b> : @pe.Since @pe.SinceUnit
+                                                                </div>
+                                                                <div class="col-xs-4">
+                                                                    <b>Treatment Taken</b> : @pe.TreatmentTaken
+                                                                </div>
+                                                                <div class="col-xs-4">
+                                                                    <b>Provisional Diagnostic</b> : @pe.ProvisionalDiagnostic
+                                                                </div>
+                                                            </div>
+
+
+
+
+                                                        }
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <br />
+
+                                        <table width="100%" class="table-data-pathology">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">
+                                                        <span style="color:red!important;">Investigations</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    @if (i.BillServices.Where(e => e.Service.IsLAB || e.Service.IsXRAY).Count() == 0)
+                                                    {
+                                                        <td class="text-center">
+                                                            No Investigations was done
+                                                        </td>
+                                                    }
+
+                                                    <td>
+
+                                                        @foreach (var investigation in i.BillServices.Where(e => e.Service.IsLAB || e.Service.IsXRAY))
+                                                        {
+
+                                                            <div class="col-xs-12 marg-top-6px">
+                                                                <div class="col-xs-4">
+                                                                    <b>* Test Name</b> : @investigation.ServiceName
+                                                                </div>
+                                                            </div>
+
+
+
+
+                                                        }
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <br />
+                                        <table width="100%" class="table-data-pathology">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="4" class="text-center">
+                                                        <span style="color:red!important;">Diagnosis</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    @if (i.PatientDiagnosis.Count() == 0)
+                                                    {
+                                                        <td class="text-center">
+                                                            No Diagnosis was recorded
+                                                        </td>
+                                                    }
+                                                    <td>
+                                                        @foreach (var pd in i.PatientDiagnosis)
+                                                        {
+                                                            <span class="col-xs-3"> <strong> * </strong> @pd.FinalDiagnosis </span>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <br />
+
+                                        <table width="100%" class="table-data-pathology">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="5" rowspan="2" class="text-center">
+                                                        <span style="color:red!important;">Treatment</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="text-danger" style="background-color:rgba(0, 0, 0, 0.2)!important;">
+                                                    <td><b>Drug</b></td>
+                                                    <td><b>Freq</b></td>
+                                                    <td><b>Days</b></td>
+                                                    <td><b>Qty</b></td>
+                                                    <td><b>Start</b></td>
+                                                </tr>
+                                                @if (i.Medications.Count() == 0)
+                                                {
+                                                    <tr>
+                                                        <td colspan="5" class="text-center">No Treatment Data</td>
+                                                    </tr>
+                                                }
+                                                @foreach (var tr in i.Medications)
+                                                {
+                                                    <tr>
+                                                        <td>@tr.DrugName</td>
+                                                        <td>@tr.Frequency</td>
+                                                        <td>@tr.Day</td>
+                                                        <td>@tr.Quantity</td>
+                                                        <td>@tr.StartDate.ToShortDateString()</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <br />
+                        <br />
+                    }
+
+
+                </div>
+            </page>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+@*<table width="100%" class="table-data-pathology">
+        <thead>
+            <tr>
+                <th class="text-center">
+                    <span style="color:red!important;">Medical History</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @if (0 == 0)
+                {
+                    <td class="text-center">
+                        No Medical History to display
+                    </td>
+                }
+
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+
+    <table width="100%" class="table-data-pathology">
+        <thead>
+            <tr>
+                <th class="text-center">
+                    <span style="color:red!important;">Family History</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @if (i.FamilyMedicalHistoryResponses == null || i.FamilyMedicalHistoryResponses.Count == 0)
+                    {
+                        <div class="text-center">
+                            No Family History
+                        </div>
+                    }
+                    @foreach (var x in @i.FamilyMedicalHistoryResponses)
+                    {
+                        <div class="col-md-3">
+                            @x.FamilyMedicalHistoryQuestion.FamilyMedicalHistoryQuestionName <span> : </span> @x.Response
+                        </div>
+                    }
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <br />*@

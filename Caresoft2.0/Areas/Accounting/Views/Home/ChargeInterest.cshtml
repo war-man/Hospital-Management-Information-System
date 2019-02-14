@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "ChargeInterest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-2">
+</div>
+<div class="col-md-7">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Charge Debtor Interest
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-2">
+                        <fieldset>
+                            <input type="checkbox" name="Debit" /> Debit
+                        </fieldset>
+                    </div>
+                    <div class="col-md-12">
+                        <fieldset>
+                            <legend>Enter Payer Details</legend>
+                            <table>
+                                <tr>
+                                    <td>
+                                        Payer/Category
+                                    </td>
+                                    <td>
+                                        <select name="Payer" class="text-box margin-top-bottom-2" style="width:100%">
+                                            <option>--Select--</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        &nbsp; Date:
+                                    </td>
+                                    <td>
+                                        <input type="date" name="Date" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Scheme Name:
+                                    </td>
+                                    <td>
+                                        <select name="SchemeName" class="text-box margin-top-bottom-2" style="width:100%">
+                                            <option>--Select--</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        &nbsp; Other Details:
+                                    </td>
+                                    <td>
+                                        <input name="OtherDetails" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Account Narration:
+                                    </td>
+                                    <td>
+                                        <select name="AccNarration" class="text-box margin-top-bottom-2" style="width:100%">
+                                            <option>--Select--</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        &nbsp; GI Code:
+                                    </td>
+                                    <td>
+                                        <input name="GICode" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
+                    <div class="col-md-12">
+                        <fieldset>
+                            <legend>Receipt Details</legend>
+                            <table>
+                                <tr>
+                                    <td>
+                                        Interest Rate:
+                                    </td>
+                                    <td>
+                                        <input name="Debt" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Amount Ksh:
+                                    </td>
+                                    <td>
+                                        <input type="number" name="Amount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    </td>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="CalculateInterest" /> Calculate Interest
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Ok</button>
+                        <button type="reset" class="btn btn-default margin-top-bottom-2">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

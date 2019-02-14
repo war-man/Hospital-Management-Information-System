@@ -1,0 +1,110 @@
+﻿@model LabsDataAccess.Machine
+
+@{
+
+    var Id = 0;
+    var Machine_Name = "";
+
+    if (@Model != null) { Id = Model.Id; Machine_Name = Model.Machine_Name; }
+ }
+
+<div id="MachineMaster" >
+    <div class="col-xs-offset-4 col-xs-4">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                Machine Master
+            </div>
+            <div class="panel-body">
+                @using (Ajax.BeginForm("MachineMaster", "Setup", new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    UpdateTargetId = "MachineMaster",
+                    OnSuccess = "",
+                    OnBegin = "RequestFormLoaderShow",
+                    OnComplete = "RequestFormLoaderHide",
+                }))
+                {
+                    @Html.AntiForgeryToken()
+                    <p id="Message"></p>
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group hidden">
+                            @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-xs-3" })
+                            <div class="col-xs-9">
+                                @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "", style = "width:80%", Value = Id } })
+                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Machine_Name, htmlAttributes: new { @class = "control-label col-xs-3" })
+                            <div class="col-xs-9">
+                                @Html.EditorFor(model => model.Machine_Name, new { htmlAttributes = new { @class = "", @required = true, style = "width:80%", Value = Machine_Name } })
+                                @Html.ValidationMessageFor(model => model.Machine_Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="" style="border: 1px solid var(--primary-dark-color)!important; background:white;">
+                            <table class="table table-data-Radiology table-bordered table-condensed bg-white">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Machine_Name)
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in (IEnumerable<LabsDataAccess.Machine>)ViewBag.Machines)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Machine_Name)
+                                        </td>
+                                        <td>
+                                            @Ajax.ActionLink("Edit", "EditMachine", new { id = @item.Id }, new AjaxOptions
+    {
+        UpdateTargetId = "MachineMaster",
+        HttpMethod = "GET",
+        LoadingElementId = "loadingElement",
+        OnSuccess = "$('#UniversalModal2').modal('show');"
+    }) | 
+                                            @Ajax.ActionLink("Delete", "DeleteMachine", new { id = @item.Id }, new AjaxOptions
+    {
+        UpdateTargetId = "MachineMaster",
+        HttpMethod = "GET",
+        LoadingElementId = "loadingElement",
+        OnSuccess = "$('#UniversalModal2').modal('show');"
+    })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+
+                        </div>
+
+                        <br />
+                        <div class="form-group">
+                            <div class="col-xs-offset-4 col-xs-2">
+                                @{
+                                    if (Model != null)
+                                    {
+                                        <input type="submit" value="Update" class="btn btn-sm btn-primary" />
+                                    }
+                                    else
+                                    {
+                                        <input type="submit" value="Create" class="btn btn-sm btn-primary" />
+                                    }
+                                }
+
+                            </div>
+                            <div class=" col-xs-2">
+                                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Back</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>

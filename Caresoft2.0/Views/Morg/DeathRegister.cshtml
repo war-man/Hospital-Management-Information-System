@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.MorgAdmission>
+@{
+    ViewBag.Title = "DeathRegister";
+    Layout = "~/Views/Morg/_MorgLayout.cshtml";
+    ViewBag.LayoutClass = "col-sm-12";
+}
+
+<fieldset>
+    <legend>Search Deceased</legend>
+    <input type="text" class="text-box" id="search_box" placeholder="Search Deceased" />
+</fieldset>
+<div id="list">
+    @Html.Partial("DeathRegisterList", Model)
+</div>
+
+
+@section scripts{
+    <script>
+        function pageNavigation(page) {
+            var s = $("#search_box").val();
+            $.ajax({
+                method: "get",
+                url: "@Url.Action("DeathRegisterList", "Morg")/?p="+page+"&s=" + s,
+                success: function (res) {
+                    $("#list").html(res);
+                    universalModalCaller();
+                },
+                error: function (e, x, r) {
+                    showNotification("An error occured while searching!", "danger", true);
+                }
+            })
+        }
+
+        $("#search_box").keyup(function () {
+            var s = $(this).val();
+            $.ajax({
+                method: "get",
+                url: "@Url.Action("DeathRegisterList", "Morg")/?s=" + s,
+                success: function (res) {
+                    $("#list").html(res);
+                    universalModalCaller();
+                },
+                error: function (e, x, r) {
+                    showNotification("An error occured while searching!", "danger", true);
+                }
+            })
+        })
+
+        
+    </script>
+}

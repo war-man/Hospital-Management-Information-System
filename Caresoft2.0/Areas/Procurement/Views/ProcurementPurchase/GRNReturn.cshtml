@@ -1,0 +1,250 @@
+﻿
+@{
+    ViewBag.Title = "GRNReturn";
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+}
+
+<style>
+    .text-box {
+        width: 150px;
+    }
+
+    table .table-form tr {
+        height: 35px;
+    }
+</style>
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black;margin-left:10px;"><strong>GRN Return</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-10">
+                    <form id="GRNForm">
+                        <table class="table-form">
+                            <tr>
+                                <td>Supplier Name</td>
+                                <td><input name="SupplierName" id="SupplierName" type="text" class="text-box" /><input hidden name="SupplierId" id="SupplierId" type="text" class="text-box" /></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>GRN NO</td>
+                                <td>
+                                    <select id="GetGRNNOs" name="GetGRNNOs" class="text-box">
+                                        <option>Select GRN No</option>
+                                    </select>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="6"><strong>GRN Return</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Item</td>
+                                <td>
+                                    <select id="ItemName" name="ItemName" class="text-box">
+                                        <option>Select Item</option>
+                                    </select>
+                                    <input disabled type="text" class="text-box" id="ItemId" name="ItemId" />
+
+                                </td>
+                                <td>Batch No</td>
+                                <td><input disabled type="text" class="text-box" id="BatchNo" name="BatchNo" /> </td>
+                                <td>Units Per Case</td>
+                                <td><input disabled type="text" class="text-box" id="UnitsPerCase" name="UnitsPerCase"/> </td>
+
+                            </tr>
+                            <tr>
+                                <td>No of Pack</td>
+                                <td><input disabled type="text" class="text-box" id="NoOfPack" name="NoOfPack" /> </td>
+                                <td>Units</td>
+                                <td><input disabled type="text" class="text-box" id="Units" name="Units" /> </td>
+                                <td>Per</td>
+                                <td><input  disabled type="text" class="text-box" id="Per" name="Per" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Cost price</td>
+                                <td><input disabled type="text" class="text-box" id="CostPrice" name="CostPrice" /> </td>
+                                <td>Amount</td>
+                                <td><input disabled type="text" class="text-box" id="Amount" name="Amount" /> </td>
+                                <td>VAT/CST(%)</td>
+                                <td><input disabled type="text" class="text-box" id="FreeUnits" name="FreeUnits" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Cost per Case Pack</td>
+                                <td><input disabled type="text" class="text-box" id="CostPerCasePack" name="CostPerCasePack" /> </td>
+                                <td>Expiry Date</td>
+                                <td><input disabled type="date" class="text-box" id="ExpDate" name="ExpDate"/> </td>
+                                <td>Mfg Date</td>
+                                <td><input disabled type="date" class="text-box" id="MfgDate" name="MfgDate" /> </td>
+
+                            </tr>
+                            <tr>
+                                <td>Mgf Company</td>
+                                <td><input disabled type="text" class="text-box" id="MfgCoNm" name="MfgCoNm" /> </td>
+                                <td>MRP/Pack</td>
+                                <td><input disabled type="datetime" class="text-box" id="MRP" name="MRP" /> </td>
+                                <td>Free Units</td>
+                                <td><input  disabled type="text" class="text-box" id="FreeUnits" name="FreeUnits"/></td>
+                            </tr>
+                            <tr>
+                                <td>Return Qty</td>
+
+                                <td><input type="text" class="text-box" id="ReceviedQty" name="ReceviedQty"/> </td>
+                                <td>Discount (%)</td>
+                                <td><input disabled type="text" class="text-box" id="Discount"  name="Discount"/> </td>
+
+
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <input type="button" class="btn btn-primary btn-sm" id="BtnSave" value="Save" />
+                                </td>
+                            </tr>
+                        </table>
+
+                    </form>
+                </div>
+            </div>
+
+            <br />
+            <div>
+                <table class="table table-data-pathology">
+                    <tr>
+                        <th>Item Id</th>
+                        <th>Item Name</th>
+                        <th>Batch No</th>
+                        <th>Per</th>
+                        <th>New C.R</th>
+                        <th>Quantity</th>
+                        <th>Total Amount</th>
+                        <th>Exp Date</th>
+                        <th>VAT/CST</th>
+                        <th>Discount</th>
+                        <th>Return Qty</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr><td colspan="13" style="">No data to display</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+@section scripts{
+    <script>
+
+        $("#SupplierName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Action("SearchSupplierName")",
+                    dataType: "json",
+                    data: { name: $("#SupplierName").val() },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Supplier_Name, value: item.Supplier_Name, Supplier_Code: item.Supplier_Code };
+                        }));
+                    }
+                });
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                showNotification("An Error Occured, try again later", "danger", true);
+            },
+            minLength: 1,
+            select: function (event, ui) {
+                var Supplier_Code = ui.item.Supplier_Code;
+                $("#SupplierId").val(Supplier_Code);
+                getGRNos();
+
+            }
+        });
+
+
+        function getGRNos() {
+            $.ajax({
+                    url: "@Url.Action("GetGRNNOs")",
+                    dataType: "json",
+                data: { SupplierID: $("#SupplierId").val() },
+                success: function (data) {
+                    console.log(data);
+
+                    $('#GetGRNNOs').find('option').remove().end().append($('<option>', {
+                        value: 0,
+                        text: 'Select GRN'
+                    }));
+                    $.each(data, function (i, item) {
+                        $('#GetGRNNOs').append($('<option>', {
+                            value: item.Id,
+                            text: item.Id
+                        }));
+                    });
+                }
+            });
+        }
+
+        var dataG = {};
+        $('#GetGRNNOs').on('change', function () {
+            $.ajax({
+                    url: "@Url.Action("GetSupplierItems")",
+                    dataType: "json",
+                    data: { InvoiceNo: $("#GetGRNNOs").val() },
+                    success: function (data) {
+                    console.log(data);
+                        dataG = data;
+                    $('#ItemName').find('option').remove().end().append($('<option>', {
+                        value: 0,
+                        text: 'Select Item'
+                    }));
+                    $.each(data, function (i, item) {
+                        $('#ItemName').append($('<option>', {
+                            value: item.Id,
+                            text: item.Item
+                        }));
+                    });
+                    }
+            });
+        });
+
+
+        $('#ItemName').on('change', function () {
+            $('#ItemId').val($(this).val());
+
+            populateMyView(dataG, "#GRNForm");
+
+        });
+
+
+        function populateMyView(data, formId) {
+            $.each(data[0], function (key, value) {
+                if (key === 'MfgDate' || key === 'ExpDate') {
+
+                    var dt = new Date(value);
+
+                    $(formId).find("input[name=" + key + "]").val(dt.getUTCFullYear() + '-' + ("0" + (parseInt(dt.getUTCMonth()) + 1)).slice(-2) + '-' + ("0" + (parseInt(dt.getUTCDate()) + 1)));
+
+                
+
+                    //var fDate = new Date(parseInt(value.substr(6)));
+                    //$(GRNForm).find("input[name=" + key + "]").val(fDate.getFullYear() + "-" + ('0' + (parseInt(fDate.getMonth()) + 1)).slice(-2) + "-" + ('0' + fDate.getDate()).slice(-2));
+
+                 
+                } else {
+                    $(formId).find("input[name=" + key + "]").val(value);
+                }
+
+            });
+        };
+
+    </script>
+}

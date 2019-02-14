@@ -1,0 +1,202 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    ViewBag.WideView = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+    ViewBag.OpdNo = Model.OpdRegister.Id;
+}
+
+<div class="panel panel-primary glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>OPD Patient History</p>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-pills">
+            <li class="active top-tab"><a data-toggle="pill" href="#medHisto">Medical History</a></li>
+            <li class="top-tab"><a data-toggle="pill" href="#famMedHist">Family Medical History</a></li>
+            <li class="top-tab"><a data-toggle="pill" href="#otherRisk">Other Heart Disease Risk Factor</a></li>
+        </ul>
+
+        <div class="tab-content">
+
+            <div id="medHisto" class="tab-pane fade in active">
+                <fieldset>
+                    <table class="table table-condensed table-bordered">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>Select</th>
+                                <th>Past Medical History</th>
+                                <th>Comment</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            @foreach (var quiz in Model.MedHistoryQuestions)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" id="select@(quiz.Id)"/>
+                                    </td>
+                                    <td>
+                                        <label for="select@(quiz.Id)">@(quiz.MedicalHistoryQuestionName)</label>
+                                    </td>
+                                    <td>
+                                        <textarea class="text-box" name="Response@(quiz.Id)"></textarea>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+            <div id="famMedHist" class="tab-pane fade">
+                <fieldset>
+                    <form id="FamilyHealthOverViewForm">
+                        <table class="cellpadding-3">
+                            <tbody class="bg-white">
+                                <tr>
+                                    <th colspan="4">Father:</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="FatherAlive" id="FatherAlive" checked /></td>
+                                    <td><label for="FatherAlive">Alive</label></td>
+                                    <td><label for="FatherCurrentAge">Current Age</label></td>
+                                    <td><input type="number" class="text-box" name="FatherCurrentAge" id="FatherCurrentAge" min="0"/></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td  colspan="3">
+                                        <label>My father's general health is:</label>
+                                        <fieldset style="width:35%">
+                                            <input type="radio" name="FathersGeneralHealth" id="FatherExcellent" checked value="Excellent" />
+                                            <label for="FatherExcellent">Excellent</label>
+                                            <input type="radio" name="FathersGeneralHealth" id="FatherGood" value="Good" />
+                                            <label for="FatherGood">Good</label>
+                                            <input type="radio" name="FathersGeneralHealth" id="FatherFair" value="Fair" />
+                                            <label for="FatherFair">Fair</label>
+                                            <input type="radio" name="FathersGeneralHealth" id="FatherPoor" value="Poor" />
+                                            <label for="FatherPoor">Poor</label>
+                                        </fieldset>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th  colspan="4">Mother:</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="MotherAlive" id="MotherAlive" checked /></td>
+                                    <td><label for="MotherAlive">Alive</label></td>
+                                    <td><label for="MotherCurrentAge">Current Age</label></td>
+                                    <td><input type="number" class="text-box" name="MotherCurrentAge" id="MotherCurrentAge" min="0" /></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="3">
+                                        <label>My mothers's general health is:</label>
+                                        <fieldset style="width:35%">
+                                            <input type="radio" name="MothersGeneralHealth" id="MotherExcellent" checked value="Excellent" />
+                                            <label for="MotherExcellent">Excellent</label>
+                                            <input type="radio" name="MothersGeneralHealth" id="MotherGood" value="Good" />
+                                            <label for="MotherGood">Good</label>
+                                            <input type="radio" name="MothersGeneralHealth" id="MotherFair" value="Fair" />
+                                            <label for="MotherFair">Fair</label>
+                                            <input type="radio" name="MothersGeneralHealth" id="MotherPoor" value="Poor" />
+                                            <label for="MotherPoor">Poor</label>
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="4">Siblings:</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        <table>
+                                            <tr>
+                                                <td><label>Number of brothers:</label></td>
+                                                <td><input type="number" class="text-box"  name="NumberOfBroters" id="NumberOfBroters" value="0" min="0" /></td>
+                                                <td><label>Number of Sisters:</label></td>
+                                                <td><input type="number" class="text-box"  name="NumberOfSisters" id="NumberOfSisters" value="0" min="0" /></td>
+                                                <td><label>Age Range:</label></td>
+                                                <td><input type="text" class="text-box" name="AgeRange" id="AgeRange" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <label>Health Problem:</label>
+                                                </td>
+                                                <td colspan="4">
+                                                    <textarea class="text-box box-xlg" name="HealthProblem" ></textarea>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    
+                    </form>
+                    
+                    <b>Familial Diseases:</b>
+                    <label>Have you or your blood relatives had any of the following(Include grandparents,aunts and uncles but exclude cousins relatives by marriage and half-relatives)?</label>
+                    <table class="table table-condensed table-bordered">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>Select</th>
+                                <th>Family Medical History</th>
+                                <th>Comment</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            @foreach (var quiz in Model.FamilyMedHistQuestions)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" id="select@(quiz.Id)" />
+                                    </td>
+                                    <td>
+                                        <label for="select@(quiz.Id)">@(quiz.FamilyMedicalHistoryQuestionName)</label>
+                                    </td>
+                                    <td>
+                                        <textarea class="text-box" name="Response@(quiz.Id)"></textarea>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+            <div id="otherRisk" class="tab-pane fade">
+                <fieldset>!</fieldset>
+            </div>
+
+            <div class="row marg-top-16px">
+                <div class="col-xs-6">
+                    <button type="button" class="btn btn-block btn-primary btn-sm">Save</button>
+                </div>
+                <div class="col-xs-6">
+                    <button type="button" class="btn btn-block btn-primary btn-sm">Add History</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+    </script>
+   
+}

@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Stock Movement Report";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+
+}
+
+<div class=" col-md-8">
+    <div class="panel caresoft-panel panel-primary">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+            <form action="/GetStockMovementRpt">
+                <table class="table-form">
+                    <tr>
+                        <td>From Date</td>
+                        <td> <input type="date" class="text-box" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" id="SDate" /></td>
+                        <td>To Date</td>
+                        <td> <input type="date" class="text-box" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" id="EDate" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button type="submit" class="btn btn-sm btn-primary">Download</button></td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+    </div>
+
+</div>

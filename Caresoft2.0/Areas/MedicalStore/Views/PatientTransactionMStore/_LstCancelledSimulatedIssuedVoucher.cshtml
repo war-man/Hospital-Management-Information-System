@@ -1,0 +1,54 @@
+﻿@model Caresoft2._0.Areas.Procurement.Models.SimulationTreatment
+
+<table class="table table-data table-condensed" style="background-color:ghostwhite;">
+    <tr>
+
+        <th>Drug Name</th>
+        <th>Drug Id</th>
+        <th>Batch No</th>
+        <th>Rate</th>
+        <th>Unit</th>
+        <th>Amount</th>
+        <th>Current Stock</th>
+        <th>Expiry Date</th>
+        <th>Item Refund</th>
+        <th>Cancel Quantity</th>
+        <th>Refund Amount</th>
+    </tr>
+    @if (Model == null)
+    {
+        <tr>
+            <td colspan="12" style="text-align:center; font-style:oblique;">
+                No Data to Display
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+
+            <td>@Model.ItemMaster.ItemName</td>
+            <td>@Model.ItemMasterId</td>
+            <td>@Model.ItemMaster.BatchNo</td>
+            <td>
+                @Model.Rate
+                <input type="hidden" value="@Model.Rate" id="Rate" />
+            </td>
+            <td>@Model.units
+            <input type="hidden" id="Units" value="@Model.units"/></td>
+            <td>@Model.Amount</td>
+            <td>@Model.ItemMaster.CurrentStock</td>
+            <td>@Model.ItemMaster.WarantyExpiryDate</td>
+            <td>@Model.ItemRefund</td>
+            <td>
+                <input type="text" class="text-box txtbox" id="CancelQuantity" value="0" />
+                <div class="collapse" id="errorResult">
+                   
+                </div>
+            </td>
+            <td><input type="text" class="text-box txtbox" id="RefundAmount" value="0" /></td>
+        </tr>
+    }
+
+</table>
+

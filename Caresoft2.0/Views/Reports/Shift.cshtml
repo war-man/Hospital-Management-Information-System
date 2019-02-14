@@ -1,0 +1,261 @@
+﻿@model Caresoft2._0.CustomData.ShiftReportData
+@{
+    ViewBag.Title = "CASHIER'S SHIFT REPORT";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+    ViewBag.Size = "A4";
+
+    var refundsList = (List<CaresoftHMISDataAccess.Refund>)ViewBag.ShiftRefunds;
+}
+
+
+@if (ViewBag.NoShift != null)
+{
+    <h4 class="warning">You do not have an open shift</h4>
+}
+else
+{
+
+    <table width="100%">
+        <tr class="gray-hr-bottom" >
+            <td> Cashier: @Model.Shift.User.Username</td>
+            <td>Shift No.: @Model.Shift.Id</td>
+            <td>Start time.: @Model.Shift.StartTime</td>
+
+            <td align="right">
+                Status: @if (Model.Shift.Endtime == null)
+                { <text>Open</text> }
+                else
+                { <text>Closed at </text>@Model.Shift.Endtime}
+            </td>
+        </tr>
+    </table>
+    <table class="table table-condensed">
+        <thead>
+            <tr class="report-title gray-hr-bottom">
+                <th>No.</th>
+                <th title="Receipt No">R.No</th>
+                <th>Date Time</th>
+                <th>Payer</th>
+                <th>Cash</th>
+                <th>Cheque</th>
+                <th>ccard</th>
+                <th>MPesa</th>
+                @if (ViewBag.Jpay == true)
+                {
+                    <th>Jpay</th>
+                }
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var totalJpay = Model.Shift.BillPayments.Where(f => f.PaymentMode.PaymentModeName.Equals("Jambo Pay")).Sum(e => e.PaidAmount);
+
+                var x = 1; var totalcash = 0.0; var totalcheque = 0.0; var totalccard = 0.0; var totalMpesa = 0.0; var grandTotal = 0.0;}
+
+            @foreach (var BP in Model.Shift.BillPayments.Where(e => e.WalkinId == null && e.OPDNo != null))
+            {
+            <tr>
+                <td>@x</td>
+                <td>@BP.Id</td>
+                <td>@BP.DateAdded</td>
+                <td>
+                    @BP.OpdRegister.Patient.Salutation
+                    @BP.OpdRegister.Patient.FName
+                    @BP.OpdRegister.Patient.MName
+                    @BP.OpdRegister.Patient.LName
+                </td>
+                <td class="money">
+                    @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cash"))
+                    {
+                        <text>@(BP.PaidAmount - BP.AmountFromWallet)  </text> totalcash += (BP.PaidAmount - BP.AmountFromWallet);
+                    }
+                    else
+                    { <text>0.0</text>}
+                </td>
+
+                <td class="money">
+                    @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cheque"))
+                    {
+                        <text>@(BP.PaidAmount - BP.AmountFromWallet) </text> totalcheque += (BP.PaidAmount - BP.AmountFromWallet);
+                    }
+                    else
+                    { <text>0.0</text>}
+                </td>
+                <td class="money">
+                    @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("ccard"))
+                    {<text>@(BP.PaidAmount - BP.AmountFromWallet) </text> totalccard += (BP.PaidAmount - BP.AmountFromWallet);
+                }
+                else
+                { <text>0.0</text>}
+                </td>
+                <td class="money">
+                    @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("mpesa"))
+                    {<text>@(BP.PaidAmount - BP.AmountFromWallet) </text> totalMpesa += (BP.PaidAmount - BP.AmountFromWallet);
+                }
+                else
+                { <text>0.0</text>}
+                </td>
+                @if (ViewBag.Jpay == true)
+                {
+                    <td class="money">
+                        @if (BP.PaymentMode.PaymentModeName.Trim().Equals("Jambo Pay"))
+                        {
+                            @BP.PaidAmount
+                        }
+                    </td>
+                }
+                <td class="money">@(BP.PaidAmount - BP.AmountFromWallet)  </td>
+            </tr>
+                grandTotal += (BP.PaidAmount - BP.AmountFromWallet);
+                x++;
+            }
+
+            @* Pharmacy walkin payments *@
+            @if (Model.Shift.BillPayments.Where(e => e.WalkinId != null).ToList().Count() > 0)
+            {
+                foreach (var BP in Model.Shift.BillPayments.Where(e => e.WalkinId != null))
+                {
+                <tr>
+                    <td>@x</td>
+                    <td>@BP.Id</td>
+                    <td>@BP.DateAdded</td>
+                    <td>
+                        Walkin #@(BP.WalkinId)
+                    </td>
+                    <td class="money">
+                        @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cash"))
+                        {
+                            <text>@(BP.PaidAmount - BP.AmountFromWallet) </text> totalcash += (BP.PaidAmount - BP.AmountFromWallet);
+                        }
+                        else
+                        { <text>0.0</text>}
+                    </td>
+
+                    <td class="money">
+                        @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cheque"))
+                        {
+                    <text>@(BP.PaidAmount - BP.AmountFromWallet) </text> totalcheque += (BP.PaidAmount - BP.AmountFromWallet);
+                        }
+                        else
+                        { <text>0.0</text>}
+                    </td>
+                    <td class="money">
+                        @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("ccard"))
+                        {<text>@(BP.PaidAmount - BP.AmountFromWallet) </text> totalccard += (BP.PaidAmount - BP.AmountFromWallet);
+                        }
+                        else
+                        { <text>0.0</text>}
+                    </td>
+                    <td class="money">
+                        @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("mpesa"))
+                        { <text>@(BP.PaidAmount - BP.AmountFromWallet) </text> totalMpesa += (BP.PaidAmount - BP.AmountFromWallet);
+                        }
+                        else
+                        { <text>0.0</text>}
+                    </td>
+                    <td class="money">@(BP.PaidAmount - BP.AmountFromWallet)  </td>
+                </tr>
+                    grandTotal += (BP.PaidAmount - BP.AmountFromWallet);
+                    x++;
+                }
+            }
+            
+        </tbody>
+        <tfoot>
+            <tr style="border-bottom:2px groove #ccc">
+                <th colspan="4">Total</th>
+                <th class="money">@totalcash</th>
+                <th class="money">@totalcheque</th>
+                <th class="money">@totalccard</th>
+                <th class="money">@totalMpesa</th>
+                @if (ViewBag.Jpay == true)
+                {
+                    <th class="money">@totalJpay</th>
+                }
+                <th class="money">@grandTotal</th>
+            </tr>
+
+            <tr style="border-bottom:2px groove #ccc">
+                <th colspan="8">Refunds</th>
+                @if (ViewBag.Jpay == true)
+                {
+                    <th class="money"></th>
+                }
+                <th class="money text-danger">@refundsList.Sum(e => e.RefundedAmount)</th>
+            </tr>
+
+            <tr style="border-bottom:2px groove #ccc">
+                <th colspan="8">Total after Refunds</th>
+                @if (ViewBag.Jpay == true)
+                {
+                    <th class="money"></th>
+                }
+                @{
+                    var gTotal = grandTotal - refundsList.Sum(e => e.RefundedAmount);
+                }
+                <th class="money text-success">@gTotal</th>
+            </tr>
+
+
+        </tfoot>
+    </table>
+
+    <table width="100%">
+        <tbody>
+            <tr>
+                <td>
+                    <table class="table-bordered table-condensed">
+                        <tr>
+                            <th colspan="2" class="report-title">SHIFT BREAKDOWN SUMMARY</th>
+                        </tr>
+                        <tr>
+                            <td>Consultation</td>
+                            <td class="money" align="right">@Model.Consultation</td>
+                        </tr>
+                        <tr>
+                            <td>XRAY</td>
+                            <td class="money" align="right">@Model.Xray</td>
+                        </tr>
+                        <tr>
+                            <td>Lab</td>
+                            <td class="money" align="right">@Model.Labs</td>
+                        </tr>
+                        <tr>
+                            <td>Drugs</td>
+                            <td class="money" align="right">@Model.Drugs</td>
+                        </tr>
+                        <tr>
+                            <td>Procedures</td>
+                            <td class="money" align="right">@Model.Procedure</td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td style="text-decoration:underline" align="right" class="money">@(Model.Procedure + Model.Drugs + Model.Labs + Model.Xray + Model.Consultation )</td>
+                        </tr>
+                    </table>
+
+                </td>
+                <td valign="top">
+                    @Html.Partial("ShiftRefunds", refundsList)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table width="100%" class="marg-top-16px">
+        <tr>
+            <td>RECEIVED FROM:________________________</td>
+            <td>BANKED BY:________________________</td>
+            <td>Date: ___/___/_____</td>
+            <td>Time: _______</td>
+        </tr>
+        <tr>
+            <td>RECEIVED BY:________________________</td>
+            <td>SIGN:________________________</td>
+            <td>Date: ___/___/_____</td>
+            <td>Time: _______</td>
+        </tr>
+    </table>
+}
+
+

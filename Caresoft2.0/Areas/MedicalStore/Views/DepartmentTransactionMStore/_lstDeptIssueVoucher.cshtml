@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.DepartmentVoucherItem>
+
+<table class="table table-data table-condensed" style="background-color:whitesmoke">
+    <tr>
+        <th>Edit</th>
+        <th>Item Name</th>
+        <th>Batch No</th>
+        <th>Rate</th>
+        <th>Unit</th>
+        <th>Amount</th>
+        <th>Current Stock</th>
+        <th>Expiry Date</th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="8">
+                No data to display
+            </td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+        <tr>
+            <td>Edit</td>
+            <td>@item.ItemMaster.ItemName</td>
+            <td>@item.ItemMaster.BatchNo</td>
+            <td>@item.ItemMaster.SellingPriceUnit</td>
+            <td>@item.Units</td>
+            <td>Ksh. @item.Amount.ToString("N2")</td>
+            <td>@item.ItemMaster.CurrentStock</td>
+            <td>@item.ItemMaster.ExpiryStatus</td>
+        </tr>
+        }
+    }
+
+</table>

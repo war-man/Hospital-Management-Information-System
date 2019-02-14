@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table width="100%" style="border:2px solid #009EE0; margin-top:-0.5em">
+    <tr style="border-top:2px solid  #009EE0">
+        <td id="render-body" colspan="3">
+            <table class="table-top-menu" width="100%">
+                <tbody>
+                    <tr style="background-color:#C1D8F9">
+                        <td>
+                            |  Employee Master <i class="fa fa-caret-down"></i>
+                            <div class="dropdown-table-holder">
+                                <table class="dropdown-table" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td data-href="/UserControl/Department">
+                                                | Department
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-href="/UserControl/Designation">
+                                                | Designation
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-href="/UserControl/NewEmployee">
+                                                | New Employee
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                        <td>
+                            |  Admin Master <i class="fa fa-caret-down"></i>
+                            <div class="dropdown-table-holder">
+                                <table class="dropdown-table" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td href="/Registration">
+                                                | User Management
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-href="/Registration/PatientsList">
+                                                | Create Admin
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-href="/Registration/PatientsList">
+                                                | Edit Admin
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+
+@RenderBody()
+
+@RenderSection("scripts", required: false)

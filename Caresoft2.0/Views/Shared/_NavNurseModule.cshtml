@@ -1,0 +1,1167 @@
+﻿@using CaresoftHMISDataAccess;
+@{ 
+    CaresoftHMISEntities db = new CaresoftHMISEntities();
+    ViewBag.Buildings = db.HSBuildings.ToList();
+    ViewBag.Floors = db.HSFloors.ToList();
+    ViewBag.Wards = db.HSWards.ToList();
+    var building = (List<CaresoftHMISDataAccess.HSBuilding>)ViewBag.Buildings;
+    var floors = (List<CaresoftHMISDataAccess.HSFloor>)ViewBag.Floors;
+    var wards = (List<CaresoftHMISDataAccess.HSWard>)ViewBag.Wards;
+}
+
+
+
+<script>
+
+</script>
+
+
+
+<table class="table-top-menu" width="100%">
+    <tr style="background-color:#C1D8F9">
+        <td>
+            | Nurse Module <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("NurseStationMaster")">
+                            | Nurse Station Master
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ChamberMaster")">
+                            | Chamber Master
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AssignConsultantToChamber")">
+                            | Assign Chamber to Consultant Physician
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AssignRoomToNurseStation")">
+                            | Assign Room to Nurse Station
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AssignNurseStationToNurse")">
+                            | Asign Nurse Station to Nurse
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("opdlist")">
+                            | IPD
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("opdlist")">
+                            | OPD
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("IssueForConsuption")">
+                            | Issue For Consumption
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>
+            | Medical Store <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("IndentForDept")">
+                            | Indent For Nurse Station
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("IndentStatus")">
+                            | Indent Status
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("StockAdjustments")">
+                            | Stock Adjustments
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("IssueVoucher")">
+                            | Issue to Nurse Station
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("RackMaster")">
+                            | Rack Master
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("SetItemLocation")">
+                            | Set Item Location
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>
+            | Inventory <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("IndentForDept")">
+                            | Indent For Nurse Station
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("IndentStatus")">
+                            | Indent Status
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("IssueVoucher")">
+                            | Issue to Nurse Station
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ColdChainEquipment")">
+                            | Cold Chain Equipment
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>
+            | General Store <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("IndentForDept")">
+                            | Indent For Nurse Station
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("IndentStatus")">
+                            | Indent Status
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("IssueVoucher")">
+                            | Issue to Nurse Station
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>
+            | House Keeping <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("CleanupRequest")">
+                            | Clean Up Request
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("PendingCleanupRequest")">
+                            | Pending Clean Up Request
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("BedCleanupRequest")">
+                            | Bed Clean Up Approval
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+
+        <td>
+            |Requests <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ambulancemodal" id="ambulancebtn">
+                                | Ambulance Request
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#maintenance" id="ambulancebtn">
+                                | Maintenace Request
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+
+
+
+        <td>
+            | Laundry <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("RequestForLinen")">
+                            | Request to Linen
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("IndentStatus")">
+                            | Status of  Request
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ReturntoHouseKeepingStore")">
+                            | Request For 
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>
+            | CSSD <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("RequestToCSSD")">
+                            | Request to CSSD Material
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AcceptCssdRequest")">
+                            | Accept CSSD  Request
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("IssueItemToPatient")">
+                            | Issue To Patient
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ReturnToCSSD")">
+                            | Return to CSSD
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>
+            | OT<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            | OT Schedule <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    @*  <tr>
+            <td data-href="@Url.Action("OTSchedule_Set")">| Set OT Schedule</td>
+        </tr>
+        <tr>
+            <td data-href="@Url.Action("OTSchedular_Approval")">| Request Ot Schedule</td>
+        </tr>
+        <tr>
+            <td data-href="@Url.Action("EditOTSchedular_Approval")">| Edit OT Schedule</td>
+        </tr>*@
+                                    <tr>
+                                        <td data-href="@Url.Action("ViewOTRequest")">| View OT Schedule</td>
+                                    </tr>
+                                    @* <tr>
+            <td data-href="@Url.Action("ViewOTSchedule")">| View OT Schedule</td>
+        </tr>*@
+
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | OT Register <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="90%">
+                                    <tr>
+                                        <td data-href="@Url.Action("OTPatientSelection", new { type = "Emergency"})">| Emergency Operation</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("OTPatientSelection", new { type = "Cataractsurgery" })">| Contract Surgery</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("OTPatientSelection", new { type="OTSearch" })">| OT Register</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+
+        <td>
+            | Report <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | Pharmacy Current Stock
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | Inventory Current Stock
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | House Keeping Current Stock
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | OT Request
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | Stock Ledger
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+    @*<tr id="setup-drop-down" class="tr-dropdown">
+            <td>
+                <table class="dropdown-table">
+                    <tr>
+                        <td>Account Master Billing &nbsp;<i class="fa fa-caret-right"></i></td>
+                        <td>
+                            <table class="dropdown-table side-kick-table">
+                                <tr>
+                                    <td>Departments</td>
+                                </tr>
+                                <tr>
+                                    <td>Services</td>
+                                </tr>
+                                <tr>
+                                    <td>Tariffs</td>
+                                </tr>
+                                <tr>
+                                    <td>Tariff Pricing</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Company Master</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>*@
+</table>
+
+
+
+
+<div class="modal fade" id="ambulancemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width:900px;" role="document">
+        <div class="modal-content">
+            <div class="panel panel-primary caresoft-panel">
+                <div class="panel-heading">
+                    Nurse Request
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-pills">
+                        <li class="active top-tab"><a data-toggle="pill" href="#nurse-request">Nurse Request</a></li>
+                        <li class="top-tab"><a data-toggle="pill" href="#request-list">Request List</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="nurse-request" class="tab-pane fade in active">
+                            <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                            <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+                            <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                            <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                            <script src="~/Scripts/bootstrap.min.js"></script>
+                            <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                            <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+                            <link href="~/Content/Css/JQueryUI/themes/base/jquery-ui.css" rel="stylesheet" />
+
+
+
+
+
+
+                            <script type="text/javascript">
+
+
+                jQuery(document).ready(function () {
+                    $('#ambulancemodal').on('shown.bs.modal', function () {
+
+
+                        $("#RegNumber").autocomplete({
+
+                            source: function (request, res) {
+
+
+                                $.ajax({
+
+                                    type: "POST",
+                                    url: "@Url.Action("SearchPatient", "NurseModule")",
+
+                                    dataType: "json",
+                                    data: { Prefix: request.term },
+
+
+                                    data: { search: $("#RegNumber").val() },
+                                    success: function (data) {
+                                        res($.map(data, function (item) {
+                                            return {
+                                                label: item.RegNumber + "(" + item.Name + ")" + "( Visit Date : " + item.OpdDate + ")",
+                                                value: item.RegNumber,
+                                                OpdId: item.OpdId,
+                                                patientId: item.PatientId, name: item.Name, FName: item.FName, MName: item.MName
+                                                , LName: item.LNames };
+                                        }));
+                                    },
+
+                                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                                        console.log(errorthrown, "danger")
+                                        console.log(xmlhttprequest.responseText);
+                                    }
+
+                                });
+                            },
+
+                            messages: {
+                                noResults: "", results: ""
+
+                            }
+
+                        });
+
+                        $("#RegNumber").on("autocompleteselect", function (event, ui) {
+                            $("#PatientName").val(ui.item.name);
+                            $("#PatientId").val(ui.item.patientId);
+                            $("#OPDNo").val(ui.item.OpdId);
+
+
+
+                            console.log(ui);
+
+
+                        });
+            $("#ConsultantDoctor").autocomplete({
+                source: function (req, res) {
+                    $.ajax({
+                        type: "POST",
+                        minLength: 0,
+                        url: "@Url.Action("SearchDoctors", "NurseModule")",
+                        dataType: "json",
+                        data: { search: $("#ConsultantDoctor").val() },
+                        success: function (data) {
+                            res($.map(data, function (item) {
+                                return { label: item.Name, value: item.Name, doctorId: item.DoctorId };
+                            }));
+                        },
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                    });
+                }
+            });
+                        $("#SearchAmbulance").autocomplete({
+                            source: function (req, res) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("SearchRoute", "NurseModule")",
+                        focus: function (event, ui) {
+                            $("#SearchAmbulance").val(ui.item.label);
+                            return false;
+                        },
+                        dataType: "json",
+
+                        select: function (event, ui) {
+                            event.preventDefault();
+                            if (ui.item.value != null) {
+                                $("#SearchAmbulance").val(ui.item.label);
+                                $("#amb-id").val(ui.item.value);
+                                $("#amb-detail").val(ui.item.value);
+                            }
+                        },
+
+                        data: { search: $("#SearchAmbulance").val() },
+                        success: function (data) {
+                            res($.map(data, function (item) {
+                                return {
+                                    label: item.Name, value: item.Name, Id: item.Id, Department: item.Department, PayableAmount: item.PayableAmount,
+                                    Price: item.Price };
+                            }));
+                        },
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                });
+
+                            }
+
+
+                        });
+
+
+
+
+
+                        $("#SearchAmbulance").on("autocompleteselect", function (event, ui) {
+
+                            $("#ServiceName").val(ui.item.label);
+                            $("#ServiceId").val(ui.item.Id);
+                            $("#Department").val(ui.item.Department);
+                            $("#Price").val(ui.item.Price);
+
+                            console.log("AutoComplete Opened");
+
+                            var ServiceId = ui.item.Id;
+                            var data = ui.item;
+                            console.log(ui.item);
+
+                            if ($("#draft-service-" + ServiceId).data("status") === "draft") {
+                                //the request is still in draft and cannot be resent just yet
+                                showNotification("You already requested this test!", "info", true);
+                                return false;
+                            } else {
+                                console.log($("#draft-service-" + ServiceId).data("status"));
+                            }
+
+                            var selectBox = '<select class="text-box" id="priority-' + ServiceId + '">' +
+                                '<option>Normal</option>' +
+                                '<option>Urgent</option>' +
+                                '<option>Emergency</option>' +
+                                '</select>';
+
+                            var tr = "<tr id='draft-service-" + ServiceId + "' data-status='draft' data-serviceid=" + ServiceId + "><td><label class='delete-row btn btn-xs'>Delete</label></td><td>" + data.label + "</td><td>" + data.Price +  "</td><td>" + (data.PayableAmount - data.AwardedAmount) + "</td><td id='service-" + ServiceId + "-department'>" + data.Department +
+                                "</td><td>" + selectBox + "</td><td></td></tr>";
+                            $("#table-selected-tests tbody").append(tr);
+
+
+                            $(".delete-row").each(function () {
+                                $(this).unbind();
+                                $(this).click(function () {
+                                    $(this).parent().parent().remove();
+                                });
+                            })
+
+                            $.ajax({
+                                success: function () {
+                                    $("#SearchAmbulance").val('');
+                                }
+                            });
+
+
+                        });
+
+
+
+       })
+
+
+ });
+
+
+
+
+
+                            </script>
+
+
+
+
+
+
+
+                            <div class="panel panel-primary shadow glass caresoft-panel" style="margin-bottom:-1em;">
+
+                                <div class="panel-body">
+
+                                    <div class="tab-content">
+                                        <div id="work-order-tab" class="tab-pane fade in active">
+                                            <fieldset>
+                                                @using (Ajax.BeginForm("SaveAmbulanceRequest", "NurseModule", new { }, new AjaxOptions
+                                                {
+                                                    LoadingElementId = "loadingElement",
+                                                    HttpMethod = "POST",
+                                                    UpdateTargetId = "",
+                                                    OnFailure = "showNotification('Failed', 'danger', 'false')",
+                                                    OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                                                }))
+                                                {
+
+                                                    <form id="ambulance-request" method="post" action="@Url.Action("SaveAmbulanceRequest", "NurseModule")" class="form-container">
+                                                        <table width="100%">
+                                                            <tr>
+                                                                <td>
+                                                                    <label>RegNo</label>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="text-box box-lg" required id="RegNumber" placeholder="Search Patient" />
+                                                                </td>
+                                                                <td>
+                                                                    <label>Patient Name</label>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="text-box box-lg" id="PatientName" required />
+                                                                    <input type="hidden" id="PatientId" name="PatientId" />
+                                                                </td>
+
+                                                            </tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                            <tr>
+                                                                
+
+                                                                <td>
+                                                                    <label>Date</label>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="date" name="AdmissionDate" class="text-box box-lg" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+                                                                </td>
+
+                                                            </tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="hidden" id="ServiceName" name="ServiceName" class="text-box box-lg" value="" required />
+                                                                </td>
+                                                                <td>
+                                                                    <input type="hidden" id="Department" name="Department" class="text-box box-lg" value="" required />
+                                                                </td>
+                                                                <td>
+                                                                    <input type="hidden" id="OPDNo" name="OPDNo" class="text-box box-lg" value="" required />
+                                                                </td>
+                                                                <td>
+                                                                    <input type="hidden" id="ServiceId" name="ServiceId" class="text-box box-lg" value="" required />
+                                                                </td>
+                                                                <td>
+                                                                    <input type="hidden" id="Price" name="Price" class="text-box box-lg" value="" required />
+                                                                </td>
+
+                                                            </tr>
+
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+
+
+                                                            <tr>
+                                                                <td>Search Service From</td>
+                                                                <td class="td-value">
+
+                                                                    <input type="radio" name="search-from" id="lab" value="Ambulatory" checked />
+                                                                    <label for="lab">Ambulatory</label>
+                                                                </td>
+                                                                <td colspan="2">
+                                                                    <input type="text" class="text-box box-xlg" placeholder="Search Route" id="SearchAmbulance" />
+                                                                </td>
+                                                                <td></td>
+                                                                <td class="td-value" colspan="2"></td>
+                                                            </tr>
+
+                                                        </table>
+
+
+
+                                                        <fieldset>
+
+                                                            <legend>Selected Ambulance Service</legend>
+                                                            <table class="table table-data table-condensed" id="table-selected-tests">
+                                                                <thead>
+                                                                    <tr>
+
+                                                                        <th></th>
+
+                                                                        <th>Service Name</th>
+                                                                        <th>Rate</th>
+
+                                                                        <th>Payable</th>
+                                                                        <th>Department</th>
+
+                                                                        <th>Order Priority</th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody class="bg-white table table-data table-condensed">
+
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td id="ServiceId"></td>
+                                                                        <td id="value"></td>
+                                                                        <td id="Price"></td>
+                                                                        <td id="PayableAmount"></td>
+                                                                        <td id="Department"></td>
+
+                                                                        <td></td>
+
+
+                                                                    </tr>
+
+                                                                </tbody>
+
+                                                            </table>
+                                                        </fieldset>
+
+                                                        <div class="row marg-top-2px">
+                                                            <div class="col-xs-12">
+                                                                <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit" name="btnSubmit">Submit Request</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+
+                                                }
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div id="request-list" class="tab-pane fade">
+                            <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                            <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+                            <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                            <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                            <script src="~/Scripts/bootstrap.min.js"></script>
+                            <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                            <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+
+
+
+
+
+                            <script type="text/javascript">
+                                jQuery(document).ready(function ($) {
+                                    $('#requesttable').DataTable({
+
+
+
+                                        "ajax": {
+                                            "url": "/NurseModule/GetRequest",
+                                            "type": "GET",
+                                            "datatype": "json",
+                                            "dataSrc": ""
+
+                                           
+                                        },
+                                        
+
+                                        "columns": [
+
+                                            { "data": "Id" },
+                                            { "data": "OPDNo" },
+                                            { "data": "name" },
+
+                                            { "data": "AmbulanceType" },
+                                            { "data": "VehicleNumber" },
+                                            { "data": "RequestedRoute" },
+                                            { "data": "AssignedDriver" },
+                                            {
+                                                "data": "Paid",
+                                                "render": function (data, type, row) {
+
+                                                    return (data == false) ? "Not Paid"
+                                                        : " Paid";
+                                                }
+                                            },
+                                            {
+                                                'data': 'Paid', 'render': function (data, type, row, meta) {
+                                                    return (data == true) ? '<input type="button" value="Edit" class="btnEdit sfBtn sfPrimaryBtn sfLocale" />' : '';
+                                                }
+                                            }
+
+
+                                        ],
+
+                                        "createdRow": function (row, data, dataIndex) {
+                                            if (data["Paid"] == "1") {
+                                                $(row).css("background-color", "Yellow");
+
+                                            }
+                                            else if (data["Paid"] == "0") {
+                                                $(row).css("background-color", "Red");
+                                            }
+                                        },
+
+                                        "aaSorting": [[2, 'desc']],
+
+                                    });
+                                    $("#requesttable tbody").on("click", ".btnEdit", function () {
+                                        var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                        // alert(id);
+                                        //alert($(this).text());
+                                        //alert();
+                                        $.ajax({
+                                            data: { id: id },
+                                            url: '/NurseModule/Approve',
+                                            type: 'POST',
+                                            success: function (data) {
+                                                alert("The Request Has being approved");
+                                            }
+                                        });
+                                    });
+
+
+                                });
+
+                            </script>
+
+
+                            <h4 class="text-center text-uppercase">Nurse Request</h4>
+                            <div id="dataTable_wrapper"></div>
+                            <table id="requesttable" class="table table-data-pathology table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>OPDNo</th>
+                                        <th> Patient Name</th>
+                                        <th>Ambulance Type</th>
+                                        <th>Vehicle Number</th>
+                                        <th>Request</th>
+
+                                        <th>AssignedDriver</th>
+                                        <th>Paid</th>
+                                        <th>Action</th>
+                                       
+
+
+
+
+                                    </tr>
+                                </thead>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="maintenance" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width:900px;" role="document">
+        <div class="modal-content">
+            <div class="panel panel-primary caresoft-panel">
+                <div class="panel-heading">
+                    Maintenece Request
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div id="work-order-tab" class="tab-pane fade in active">
+                            <fieldset>
+                                @using (Ajax.BeginForm("SaveMaintenceRequest", "NurseModule", new { }, new AjaxOptions
+                                {
+                                    LoadingElementId = "loadingElement",
+                                    HttpMethod = "POST",
+                                    UpdateTargetId = "",
+                                    OnFailure = "showNotification('Failed', 'danger', 'false')",
+                                    OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                                }))
+                                {
+
+                                    <form id="ambulance-request" method="post" action="@Url.Action("SaveMaintenceRequest", "NurseModule")" class="form-container">
+                                        <table width="100%">
+                                            <tr>
+                                                <td>
+                                                    <label>Complain Name</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="text-box box-lg" required name="ComplainName" />
+                                                </td>
+                                                <td>
+                                                    <label>Problem</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="text-box box-lg" id="Problem" required name="Problem" />
+
+                                                </td>
+                                                <td>
+                                                    <label>Priority</label>
+                                                </td>
+                                                <td>
+                                                    <select class="text-box box-lg" name="Priority">
+                                                        <option>Normal</option>
+                                                        <option>Urgent</option>
+                                                        <option>Emergency</option>
+                                                    </select>
+
+                                                </td>
+
+                                            </tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <tr>
+
+
+                                                <td>
+                                                    <label>Building name</label>
+                                                </td>
+                                                <td>
+                                                    <select class="text-box box-lg" name="RequestBuilding">
+                                                        <option>Select Building</option>
+                                                        @foreach (var r in building)
+                                                        {
+                                                            <option>@r.BuildingName</option>
+                                                        }
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <label>Floor Name</label>
+                                                </td>
+                                                <td>
+                                                    <select class="text-box box-lg" name="RequestFloor">
+                                                        <option>Select Floor</option>
+                                                        @foreach (var r in floors)
+                                                        {
+                                                            <option>@r.FloorName</option>
+                                                        }
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <label>Area</label>
+                                                </td>
+                                                <td>
+                                                    <select class="text-box box-lg" name="RequestArea">
+                                                        <option>Select Area</option>
+                                                        @foreach (var r in wards)
+                                                        {
+                                                            <option>@r.WardName</option>
+                                                        }
+                                                    </select>
+                                                </td>
+
+                                            </tr>
+
+
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+
+
+
+                                        </table>
+
+
+
+                                        <fieldset></fieldset>
+
+                                        <div class="row marg-top-2px">
+                                            <div class="col-xs-12">
+                                                <button type="submit" class="btn btn-sm btn-primary" id="" name="btnSubmit">Submit Request</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                }
+                            </fieldset>
+                        </div>
+
+                        <div id="request-list" class="right-element tab-pane fade in active">
+                            <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                            <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+                            <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                            <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                            <script src="~/Scripts/bootstrap.min.js"></script>
+                            <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                            <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+                            <link href="~/Content/Css/JQueryUI/themes/base/jquery-ui.css" rel="stylesheet" />
+
+
+
+
+
+
+                            <script type="text/javascript">
+                            jQuery(document).ready(function ($) {
+                                //  var table = $('#dataTable').DataTable();
+                                $('#maintenaceassn').DataTable({
+                                    "ajax": {
+                                        "url": "/NurseModule/GetMaintenanceAssn",
+                                        "type": "GET",
+                                        "datatype": "json",
+                                        "dataSrc": "",
+                                    },
+                                    "columns": [
+                                        { "data": "Id" },
+                                        { "data": "RequsetedTask" },
+                                        { "data": "AssignedWorker" },
+                                        
+                                        {
+                                            'data': 'AllocatedDate', 'render': function (data) {
+                                                return moment(data).format(' MMMM d, YYYY ');
+                                            }
+                                        },
+                                        {
+                                            'data': 'AllocatedTime', 'render': function (data, type, row) {
+                                                return moment(data).format('h:mm:ss a');
+                                            }
+
+                                        },
+
+                                        {
+                                            "data": function (data, type, row) {
+                                                if (data["Status"] == "0") {
+
+                                                    return "<span class='glyphicon glyphicon-remove'> Pending </span> <input type='button' value='Confirm Complete' class='btnEdit sfBtn sfPrimaryBtn sfLocale' />"
+
+
+                                                }
+                                                
+                                                else if (data["Status"] == "1" ) {
+
+                                                    return "Work Done"
+                                                }
+
+
+
+                                            }
+
+                                        },
+
+
+                                    ],
+                                    "createdRow": function (row, data, dataIndex) {
+                                        if (data["Status"] == "0") {
+                                            $(row).css("background-color", "Red");
+
+                                        }
+                                        
+                                        else if (data["Status"] == "1") {
+                                            $(row).css("background-color", "Green");
+                                            $(row).css("color", "white");
+                                        }
+                                    },
+
+
+                                });
+                                var table = $('#maintenaceassn').DataTable();
+                                $('.maintenaceassn').on('click', 'tbody tr', function () {
+                                    console.log('API row values : ', table.row(this).data());
+
+                                    $('.nav-tabs a[href="#assign-amb"]').tab('show');
+                                    // alert();
+
+                                })
+
+
+                                $("#maintenaceassn tbody").on("click", ".btnEdit", function () {
+                                    var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                    // alert(id);
+                                    //alert($(this).text());
+                                    //alert();
+                                    $.ajax({
+                                        data: { id: id },
+                                        url: '/Maintenance/ConfirmMaintenace',
+                                        type: 'POST',
+                                        success: function (data) {
+                                            alert("Task Completed");
+                                        }
+                                    });
+                                });
+
+
+                            });
+
+
+
+
+
+
+
+                            </script>
+
+
+                            <h4 class="text-center text-uppercase">Maintenance work order</h4>
+                            <div id="dataTable_wrapper"></div>
+
+                            <ul class="legend" style="float:right;">
+                                <li><span class="Available"></span> <strong>Available</strong></li>
+                                <li><span class="Engaged"></span> <strong>Engaged</strong></li>
+
+                            </ul>
+
+                            <style>
+
+                                .legend {
+                                    list-style: none;
+                                }
+
+                                    .legend li {
+                                        float: left;
+                                        margin-right: 10px;
+                                    }
+
+                                    .legend span {
+                                        border: 1px solid #ccc;
+                                        float: left;
+                                        width: 12px;
+                                        height: 12px;
+                                        margin: 2px;
+                                    }
+                                    /* your colors */
+                                    .legend .Engaged {
+                                        background-color: yellow;
+                                    }
+
+                                    .legend .Available {
+                                        background-color: green;
+                                    }
+                            </style>
+                            <table id="maintenaceassn" class="table table-data-pathology table-condensed">
+
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Requested Task</th>
+                                        <th>Assigned Worker</th>
+                                        <th>Allocated Date</th>
+                                        <th>Allocated Time</th>
+
+                                        
+
+                                        <th>Status</th>
+
+
+                                    </tr>
+                                </thead>
+                            </table>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                @section scripts{
+                    <script type="text/javascript">
+
+
+                    </script>
+
+
+                }

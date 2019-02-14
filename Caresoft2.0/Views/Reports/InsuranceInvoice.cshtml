@@ -1,0 +1,286 @@
+﻿@model CaresoftHMISDataAccess.OpdRegister
+
+@{
+    ViewBag.Title = "INVOICE #"+ Model.Id;
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+    ViewBag.IsPartial = true;
+    //ViewBag.Size = "A4";
+}
+
+<table width="100%" class="gray-hr-bottom">
+    <tr>
+        <th>Name</th>
+        <td colspan="2">
+            @Model.Patient.Salutation
+            @Model.Patient.FName
+            @Model.Patient.MName
+            @Model.Patient.LName
+        </td>
+        <th>Reg No.</th>
+        <td colspan="2">
+            @Model.Patient.RegNumber
+        </td>
+    </tr>
+
+    <tr>
+        <th>Age/Gender</th>
+        <td>
+            @(DateTime.Now.Year - Model.Patient.DOB.Value.Year) / @Model.Patient.Gender
+        </td>
+        <th>Bill No.</th>
+        <td>
+            @Model.Id
+        </td>
+        <th>
+            Treat. Dr.
+        </th>
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <th>OPD No.</th>
+        <td>
+            @Model.Id
+        </td>
+        <th>
+            OPD Date
+        </th>
+        <td>
+            @Model.TimeAdded.Value.ToShortDateString()
+        </td>
+        <th>OPD Time</th>
+        <td>
+            @Model.TimeAdded.Value.ToShortTimeString()
+        </td>
+    </tr>
+
+    <tr>
+        <th>Patient Type</th>
+        <td>
+            @Model.Tariff.Company.CompanyType.CompanyTypeName
+        </td>
+        <th>
+            Patient Category
+        </th>
+        <td>
+            @Model.Tariff.TariffName
+        </td>
+
+    </tr>
+    @{var card = @Model.InsuranceCards.OrderByDescending(e => e.Id).FirstOrDefault();}
+    <tr>
+        <th>Card Holder</th>
+        <td>
+            <span>@card.MemberFirstName @card.MemberMiddleName @card.MemberLastName</span>
+        </td>
+        <th>
+            Relationship
+        </th>
+        <td>
+            @card.MemberPatientRelationShip
+        </td>
+        <th>Member/Card No.</th>
+        <td>
+            @Model.InsuranceCards.OrderByDescending(e => e.Id).FirstOrDefault().CardNo
+        </td>
+    </tr>
+
+</table>
+
+<table class="table table-condensed ">
+    <thead>
+        <tr class="report-heading">
+            <th>No.</th>
+            <th>Department</th>
+            <th>Service</th>
+            <th>Count</th>
+            <th style="text-align:right">Unit Item Award</th>
+            <th style="text-align:right">S.Award</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ var c = 1; var award = 0.0; }
+
+        @{ var cons = Model.BillServices.Where(e => e.Award > 0 &&
+         e.Service.ServiceGroup.ServiceGroupName.ToLower().Equals("consultation"));}
+        @if (cons.Count() > 0)
+        {
+            <tr>
+                <td colspan="6" class="service-group-subheading">Consultation Charges</td>
+            </tr>
+            foreach (var item in cons)
+            {
+                <tr>
+                    <td>@c</td>
+                    <td>@item.Service.Department.DepartmentName</td>
+                    <td>@item.ServiceName</td>
+                    <td>@item.Quatity</td>
+                    <td class="money">@item.Award</td>
+                    <td class="money">@(item.Award) @{award += item.Award * item.Quatity; }</td>
+                </tr>
+                c++;
+            }
+
+            <tr>
+                <td colspan="4"></td>
+                <td class="cust-text-bold td-sub-total">Sub Total</td>
+                <td class="td-sub-total money">
+                    @cons.Sum(e => e.Award * e.Quatity)
+                </td>
+            </tr>
+        }
+
+
+        @{ var drugs = Model.Medications.Where(e => e.Award > 0);}
+
+        @if (drugs.Count() > 0)
+        {
+            <tr>
+                <td colspan="6" class="service-group-subheading">Drugs Charges</td>
+            </tr>
+            foreach (var item in drugs)
+            {
+                <tr>
+                    <td>@c</td>
+                    <td>Pharmacy</td>
+                    <td>@item.DrugName</td>
+                    <td>@item.Quantity</td>
+                    <td class="money">@item.Award</td>
+                    <td class="money">@(item.Award * item.Quantity) @{award += (double)item.Award * item.Quantity;}</td>
+                </tr>
+                c++;
+            }
+            <tr>
+                <td colspan="4"></td>
+                <td class="cust-text-bold td-sub-total">Sub Total</td>
+                <td class="td-sub-total money">
+                    @drugs.Sum(e => e.Award * e.Quantity)
+                </td>
+            </tr>
+        }
+
+
+        @{ var proc = Model.BillServices.Where(e => e.Award > 0 &&
+         e.Service.ServiceGroup.ServiceGroupName.ToLower().Equals("procedure"));}
+
+        @if (proc.Count() > 0)
+        {
+            <tr>
+                <td colspan="6" class="service-group-subheading">Procedure Charges</td>
+            </tr>
+
+            foreach (var item in proc)
+            {
+                <tr>
+                    <td>@c</td>
+                    <td>@item.Service.Department.DepartmentName</td>
+                    <td>@item.ServiceName</td>
+                    <td>@item.Quatity</td>
+                    <td class="money">@item.Award</td>
+                    <td class="money">@(item.Award * item.Quatity) @{award += item.Award * item.Quatity; }</td>
+                </tr>
+                c++;
+            }
+
+            <tr>
+                <td colspan="4"></td>
+                <td class="cust-text-bold td-sub-total">Sub Total</td>
+                <td class="td-sub-total money">@proc.Sum(e => e.Award * e.Quatity)</td>
+            </tr>
+
+        }
+
+
+        @{ var lab = Model.BillServices.Where(e => e.Award > 0 &&
+         e.Service.ServiceGroup.ServiceGroupName.ToLower().Equals("labs"));}
+
+        @if (lab.Count() > 0)
+        {
+            <tr>
+                <td colspan="6" class="service-group-subheading">Lab Charges</td>
+            </tr>
+            foreach (var item in lab)
+            {
+                <tr>
+                    <td>@c</td>
+                    <td>@item.Service.Department.DepartmentName</td>
+                    <td>@item.ServiceName</td>
+                    <td>@item.Quatity</td>
+                    <td class="money">@item.Award</td>
+                    <td class="money">@(item.Award * item.Quatity) @{award += item.Award * item.Quatity; }</td>
+                </tr>
+                c++;
+            }
+
+            <tr>
+                <td colspan="4"></td>
+                <td class="cust-text-bold td-sub-total">Sub Total</td>
+                <td class="td-sub-total money">
+                    @lab.Sum(e => e.Award * e.Quatity)
+                </td>
+            </tr>
+        }
+
+
+        @{ var rad = Model.BillServices.Where(e => e.Award > 0 &&
+         e.Service.ServiceGroup.ServiceGroupName.ToLower().Equals("xray"));}
+
+        @if (lab.Count() > 0)
+        {
+            <tr>
+                <td colspan="6" class="service-group-subheading">Radiology Charges</td>
+            </tr>
+            foreach (var item in rad)
+            {
+                <tr>
+                    <td>@c</td>
+                    <td>@item.Service.Department.DepartmentName</td>
+                    <td>@item.ServiceName</td>
+                    <td>@item.Quatity</td>
+                    <td class="money">@item.Award</td>
+                    <td class="money">@(item.Award * item.Quatity) @{award += item.Award * item.Quatity; }</td>
+                </tr>
+                c++;
+            }
+
+            <tr>
+                <td colspan="4"></td>
+                <td class="cust-text-bold td-sub-total">Sub Total</td>
+                <td class="td-sub-total money">
+                    @rad.Sum(e => e.Award * e.Quatity)
+                </td>
+            </tr>
+        }
+
+    </tbody>
+    <tfoot>
+        <tr class="report-heading gray-hr-bottom">
+            <th colspan="2" style="font-size:larger">Total Award</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th class="money" style="font-size:larger">@award</th>
+        </tr>
+        
+    </tfoot>
+</table>
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>Name___________________________________________</th>
+        
+        <th>Date_____________</th>
+        
+        <th>Sign__________________</th>
+    </tr>
+    <tr>
+        <th>Official Name___________________________________</th>
+
+        <th>Date_____________</th>
+
+        <th>Sign__________________</th>
+    </tr>
+</table>
+
+  
+    

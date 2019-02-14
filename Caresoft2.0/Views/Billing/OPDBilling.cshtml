@@ -1,0 +1,544 @@
+﻿@model Caresoft2._0.CustomData.OPDBillingFormData
+@{
+    ViewBag.Title = "Billing";
+    ViewBag.ShowTopMenu = true;
+}
+
+
+<div class="row">
+    <div class="col-xs-8 col-sm-offset-2">
+        <div class="panel panel-primary caresoft-panel " >
+            <div class="panel-heading">
+                
+                
+                <div class="text-right" style="float:right">
+                    <div id="searchfield">
+                        Search Bill
+                        <form><input type="text" name="SearchBill" class="biginput" id="SearchBill"></form>
+                    </div>
+                </div>
+
+                OPD Bill
+                <table class="table-condensed table-bordered" width="100%" style="color:#000">
+                    <tr>
+                        @*@{ var patient = Model.OpdRegister.Patient; }*@
+                        <td><label>Reg No:</label></td>
+                        <th>@*@patient.RegNumber*@ VVSS-SMS-2323</th>
+                        <td><label>Name:</label></td>
+                        <th>@*@patient.Salutation @patient.FName @patient.MName @patient.LName*@Mr James Omsuami </th>
+                        <td><label>Patient Category: </label></td>
+                        <th>@*@patient.PatientCategory*@ Cash</th>
+                        <td><label>Bill No:</label></td>
+                        <th>@*@Model.OpdRegister.Id*@ 0056</th>
+                        <td><label>OPD No:</label></td>
+                        <th>@*@Model.OpdRegister.Id*@ 56</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel-body">
+                <table class="table-data table-condensed table-bordered" width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                Head
+                            </th>
+                            <th>
+                                Consulatation
+                            </th>
+                            <th>
+                                Labs
+                            </th>
+                            <th>
+                                Drugs
+                            </th>
+                            <th>
+                                Procedure
+                            </th>
+                            <th>
+                                Package
+                            </th>
+                            <th>
+                                Total
+                            </th>
+                        </tr>
+                    </thead>
+                   <tbody class="bg-white">
+                       <tr>
+                           <td>Charges</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                       </tr>
+                       <tr>
+                           <td>Insuance Award</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                       </tr>
+                       <tr>
+                           <td>Paid</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                       </tr>
+                       <tr>
+                           <td>Outstanding</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                           <td>0.0</td>
+                       </tr>
+                   </tbody>
+                    
+                </table>
+                <fieldset class="marg-top-16px">
+                    <legend>Bill Services</legend>
+
+                    <div id="provisional-bill-services">
+                        @Html.Partial("~/Views/Registration/ProvisionalBillServices.cshtml", Model.BillServices)
+                    </div>
+                </fieldset>
+                <fieldset class="marg-top-16px">
+                    <form id="BillPaymentForm">
+                        <input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+                        <input type="hidden" name="BilledEntries" id="BilledEntries" value="" />
+                        <table class="table-form">
+                            <tr>
+                                <td>
+                                    <input type="radio" name="Currency" value="Primary" id="PrimaryCurrency" checked />
+                                    <label for="PrimaryCurrency">In Primary Currency <b>(KSH)</b></label>
+                                    <table>
+                                        <tr>
+                                            <td>Bill Amount</td>
+                                            <td><input type="text" class="text-box box-lg" name="BillAmount" id="BillAmount" readonly /> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Discount%/Amt</td>
+                                            <td>
+                                                <fieldset>
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <label for="PercentDiscount">Per</label>
+                                                                <input type="radio" name="DiscountUnit" value="Percent" id="PercentDiscount" />
+                                                            </td>
+                                                            <td>
+                                                                <label for="AmountDiscount">Amt</label>
+                                                                <input type="radio" name="DiscountUnit" value="Amount" id="AmountDiscount" checked />
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="Discount" id="Discount" size="4" />
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </fieldset>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Reason For Discount</td>
+                                            <td><select class="text-box box-lg"></select></td>
+                                        </tr>
+                                        <tr class="collapse">
+                                            <td>Received Amount</td>
+                                            <td><input type="text" class="text-box box-lg" name="ReceivedAmount" id="ReceivedAmount" /> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Awarded Amount</td>
+                                            <td><input type="text" class="text-box box-lg" name="AwardedAmount" id="AwardedAmount" readonly /> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Discount Amount</td>
+                                            <td><input type="text" class="text-box box-lg" name="DiscountAmount" id="DiscountAmount" readonly /> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Paid Amount</td>
+                                            <td><input type="number" class="text-box box-lg" name="PaidAmount" id="PaidAmount" /> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Balance</td>
+                                            <td><input type="text" class="text-box box-lg" name="Balance" id="Balance" readonly /> </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <div class="custom-hr"></div>
+                        Reason for Balance <select class="text-box box-lg"></select>
+
+                        <input type="text" class="text-box box-lg" name="AmountFromWallet" id="AmountFromWallet" placeholder="Amount From Wallet" />
+                        <input type="checkbox" id="TransferFromEWallet" />
+                        <label for="TransferFromEWallet">Transfer From E-Wallet (Total Amt: 0)</label>
+                        <div class="custom-hr"></div>
+                        <button type="button" class="btn btn-primary btn-sm" id="btn-save-bill-payment">Save</button>
+                        <button type="button" class="btn btn-primary btn-sm">Save & Print Receipt</button>
+                        <button type="button" class="btn btn-default btn-sm">Cancel</button>
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="collapse">
+    <fieldset>
+        <legend>Shift Session Identity</legend>
+        <div class="row">
+            <div class="col-sm-3">
+                <label for="cashPoint">Cash Point</label><br />
+                <input type="text" class="text-box" id="cashPoint" name="cashPoint" disabled value="Counter 1" />
+            </div>
+
+            <div class="col-sm-3">
+                <label for="shiftNo">Shift No.</label><br />
+                <input type="number" class="text-box" id="shiftNo" name="shiftNo" readonly disabled value="@ViewBag.ShiftNo" />
+            </div>
+            <div class="col-sm-3">
+                <label for="glAccNo">Gl Acc. No</label><br />
+                <input type="text" class="text-box" id="glAccNo" name="glAccNo" />
+            </div>
+
+            <div class="col-sm-3">
+                <label for="date">Date</label><br />
+                <input type="date" class="text-box" id="date" name="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            </div>
+        </div>
+
+
+    </fieldset>
+
+    <fieldset>
+        <legend>Patient File Billing Details</legend>
+        <div class="row">
+            <div class="col-xs-2">
+                <label for="fileMode">File Selection Mode</label>
+            </div>
+            <div class="col-xs-4">
+
+
+                <input type="radio" name="fileMode" id="search-radio-btn" checked />
+                <label for="search">Quick Search</label>
+
+                <input type="radio" name="fileMode" id="walkIn-radio-btn" />
+                <label for="walkIn">Walk In</label>
+            </div>
+
+            <div class="col-xs-2">
+                <label for="ReceiptNo">Receipt No</label><br />
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="text-box searchable" readonly disabled id="ReceiptNo" name="ReceiptNo" />
+                <div id="ReceiptNo-list" class="suggestions collapse"></div>
+            </div>
+        </div>
+
+        <div class="row marg-top-6px">
+            <div class="col-xs-2">
+                <label for="PatientName">Patient Name</label>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="text-box searchable" id="PatientName" name="PatientName" />
+                <div id="PatientName-list" class="suggestions collapse"></div>
+            </div>
+
+            <div class="col-sm-2">
+                <label for="PatientNo">Patient Number</label>
+            </div>
+
+            <div class="col-sm-4">
+                <input type="text" class="text-box searchable" id="PatientNo" name="PatientNo" />
+
+            </div>
+        </div>
+
+
+        <div class="row marg-top-6px">
+            <div class="col-xs-2">
+                <label for="revenueCode">Revenue Code</label>
+            </div>
+            <div class="col-sm-4">
+                <select class="text-box" id="revenueCode">
+                    <option>-Select Revenue Code</option>
+                </select>
+            </div>
+
+            <div class="col-sm-2">
+                <label for="patCat">Patient Category</label>
+            </div>
+
+            <div class="col-sm-4">
+                <input type="text" class="text-box" id="patCat" name="patCat" readonly disabled />
+            </div>
+        </div>
+
+        <div class="row marg-top-6px">
+            <div class="col-xs-2">
+                <label for="accCode">A/C Code</label>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="text-box" id="accCode" />
+            </div>
+
+            <div class="col-sm-2">
+                <label for="waiverNo">Excemption/Waiver Number</label>
+            </div>
+
+            <div class="col-sm-4">
+                <input type="text" class="text-box" id="waiverNo" name="waiverNo" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Cash Sales Particulars</legend>
+        <table class="table table-condensed table-bordered table-striped" id="chargeable-services">
+            <thead class="bg-primary">
+                <tr>
+                    <th>Service</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Sub Total</th>
+                    <th>Gl Account</th>
+                    <th>Billed</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot class="table-footer">
+                <tr>
+                    <td>
+                        <input class="input-td" id="NewService" placeholder="New*" />
+                        <div id="NewService-list" class="suggestions collapse" style="width:auto;"></div>
+                    </td>
+                    <td id="qty" contenteditable="true" align="center"></td>
+                    <td id="price" align="right"></td>
+                    <td id="subTotal" align="right"></td>
+                    <td></td>
+                    <td align="center">
+                        <input type="checkbox" checked id="trigger-add-new" />
+                    </td>
+                    <td align="center" id="addService" title="Add Service to bill" style="cursor:pointer">
+                        Add
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <fieldset class="marg-top-16px">
+            <table>
+
+                <tr>
+                    <td><label for="currency">Currency</label></td>
+                    <td>
+                        <select id="currency">
+                            <option>Ksh</option>
+                            <option>USD</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="amtKsh">Amt </label></td>
+                    <td><input type="text" class="small-text-box money" id="amtKsh" readonly disabled /></td>
+                </tr>
+                <tr>
+                    <td><label for="excemption">Exemption?</label></td>
+                    <td><input type="checkbox" id="excemption" /></td>
+                </tr>
+                <tr>
+                    <td><label for="waiver">Waiver</label></td>
+                    <td>
+                        <input type="text" class="small-text-box money" id="waiver" />
+                        <label for="percent-unit">Percent</label>
+                        <input type="radio" name="waiverUnit" id="percent-unit" value="percentage" />
+                        <label for="amount-unit">Amount</label>
+                        <input type="radio" name="waiverUnit" id="amount-unit" value="amount" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="waivedAmt">Waived Amount</label></td>
+                    <td><input type="text" class="small-text-box money" id="waivedAmt" value="0.0" disabled /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <hr />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="payable">Payable Amount</label></td>
+                    <td><input type="text" class="small-text-box money" id="payable" disabled readonly /> </td>
+                </tr>
+                <tr>
+                    <td><label for="moneyPaid">Paid Amount</label></td>
+                    <td><input type="text" class="small-text-box money" id="moneyPaid" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="paymentMode">Payment Mode</label><br />
+                    </td>
+                    <td>
+                        <select class="text-box" id="paymentMode" name="paymentMode">
+                            <option>Cash</option>
+                            <option>Mpesa</option>
+                            <option>Cheque</option>
+                            <option>Card</option>
+                            <option>E-Wallet</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="change">Change</label></td>
+                    <td><input type="text" class="small-text-box money" id="change" readonly disabled /></td>
+                </tr>
+            </table>
+        </fieldset>
+
+
+
+    </fieldset>
+    <div class="row marg-top-6px">
+        <div class="col-xs-12">
+            <button class="btn btn-primary btn-receipt">
+                <i class="fa fa-print fa-2x"></i>&nbsp;Print Receipt
+            </button>
+
+            <button class="btn btn-primary btn-receipt" id="postReceiptData">
+                <i class="fa fa-clipboard fa-2x"></i>&nbsp;Post Receipt Data
+            </button>
+
+            <button class="btn btn-primary">
+                <i class="fa fa-remove fa-2x"></i>&nbsp;Clear Data
+            </button>
+
+
+        </div>
+    </div>
+</div>*@
+
+
+@section scripts{
+    <script>
+        var opdRegister = [{value : "hello", data:"dfsdf sdf"}];
+        
+        $("#SearchBill").autocomplete({
+            source: function (req, res) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("OPDRegisterJson", "Billing")",
+                    dataType: "json",
+                    data: { search: $("#SearchBill").val() },
+                    headers: {
+                        "authToken": ""
+                    },
+                    success: function (data) {
+                        res($.map(data, function (item) {
+                            return { label: item.Name, value: item.OPDNo };
+                        }));
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            }
+        });
+
+        $("#SearchBill").on("autocompleteselect", function (event, ui) {
+            var opdNo = ui.item.value;
+
+        });
+
+        $(".billed").click(function () {
+            var tr = $(this).parent().parent();
+            if ($(this).is(":checked")) {
+                tr.removeClass("unbilled-entry");
+            } else {
+                tr.addClass("unbilled-entry");
+            }
+            updateBillAmount();
+        });
+
+        updateBillAmount();
+        function updateBillAmount() {
+            var payable = $("#sum-payable").attr("data-sum-payable");
+            var award = $("#sum-award").attr("data-sum-award");
+
+            $("#BillAmount").add("#Balance").val(payable);
+            $("#AwardedAmount").val(award);
+
+           $("#BilledEntries").val("");
+            var entries = "";
+            $("input.billed").each(function () {
+
+                if ($(this).is(":checked")) {
+                    var entryId = $(this).attr("data-billservice-id");
+                    entries += entryId + ",";
+                }
+            });
+            $("#BilledEntries").val(entries);
+
+        }
+
+        $("#PaidAmount").keyup(function () {
+            var amount = $(this).val().trim();
+            var balance = $("#BillAmount").val();
+            if ($.isNumeric(amount)) {
+                balance = $("#BillAmount").val() - amount;
+            }
+
+            $("#Balance").val(balance);
+        });
+
+
+
+        $("#btn-save-bill-payment").click(function () {
+            if ($("#BillAmount").val() < 1) {
+                alert("Bill Amount Cannot Be Zero");
+                return false;
+            }
+            if ($("#Balance").val() > 0) {
+                alert("Please pay full amount");
+                return false;
+            } else {
+                var data = $("#BillPaymentForm").serializeObject();
+                console.log(data);
+                $(".loader").show();
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("BillPayment", "Billing")",
+                    data: data,
+
+                    headers: {
+                        "authToken": ""
+                    },
+                    success: function (result) {
+                        $(".loader").hide();
+                        if (result.Status === "Success") {
+                            alert("Bill Paid Successfully!");
+                        } else {
+                            alert(result.Status);
+                        }
+                        console.log(result);
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        $(".loader").hide();
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            }
+        });
+
+    </script>
+}

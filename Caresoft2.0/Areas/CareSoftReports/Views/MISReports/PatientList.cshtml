@@ -1,0 +1,152 @@
+﻿@model Caresoft2._0.Areas.CareSoftReports.ViewModels.PatientListDataModel
+@{
+    ViewBag.Title = "PatientList";
+    Layout = "~/Areas/CareSoftReports/Views/Shared/_LayoutReports.cshtml";
+    ViewBag.ReportName = "Patient List";
+}
+
+<style>
+    .text-box{
+        width:200px;
+            
+    }
+</style>
+<div class="col-sm-6 col-sm-offset-3">
+    <div class="panel panel-primary glass caresoft-panel">
+        <div class="panel-heading">
+            <h4>@ViewBag.ReportName</h4>
+            Set report parameters and click generate.
+        </div>
+        <div class="panel-body">
+            <form name="ReportFilter"  id="ReportFilter" method="get" action="@Url.Action("GeneratePatientListReport","MISReports",new {Area="CareSoftReports"})">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label> Select From Date</label>
+                            <input class="text-box" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" name="FromDate" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label> Select End Date</label>
+                            <input class="text-box" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" name="ToDate" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <br/>
+                    <div id="type">
+                        <fieldset>
+                            <label class="radio-inline">
+                                <input class="type" type="radio" name="optradio" value="Clinician">Clinician
+                            </label>
+                            <label class="radio-inline">
+                                <input class="type" type="radio" name="optradio" value="Department">Department
+                            </label>
+                            <label class="radio-inline">
+                                <input class="type" type="radio" name="optradio" value="Insurance">Insurance Company
+                            </label>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <br />
+                    <br />
+                    <div id="Clinician" class="form-inline collapse" >
+                        <label class="">Clinician Doctor</label>
+                        <select name="Clinician" id="clin" class="text-box">
+                            <option>All</option>
+                            @foreach (var item in Model.Employees)
+                            {
+                                <option>@item.FName @item.OtherName</option>
+                            }
+                        </select>
+                    </div>
+                    <div id="Department" class="form-inline collapse">
+                        <label class="">Department</label>
+                        <select name="Department" id="dept" class="text-box">
+                            <option>All</option>
+                            @foreach (var item in Model.Departments)
+                            {
+                                <option>@item.DepartmentName</option>
+                            }
+
+                        </select>
+                    </div>
+                    <div id="Insurance" class="form-inline collapse">
+                        <label class="">Insurance Company</label>
+                        <select name="InsuranceCompany" id="insu" class="text-box">
+                            
+                            <option>All</option>
+                            @foreach (var item in Model.Companies)
+                            {
+                                <option>@item.CompanyName</option>
+                            }
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <br />
+                    <input type="hidden" name="selectedDiv" id="selectedDiv" />
+                    <button type="submit" class="btn btn-primary btn-sm" id="btnDownloadReport">Download Patient List Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    
+    <script>
+
+        var selectedDiv = "";
+
+        $('.type').on('change', function () {
+            //alert($(this).val());
+
+            var theDiv = $(this).val();
+
+            $("#clin")[0].selectedIndex = 0;
+            $("#dept")[0].selectedIndex = 0;
+            $("#insu")[0].selectedIndex = 0;
+
+            $("#Clinician").hide();
+            $("#Department").hide();
+            $("#Insurance").hide();
+
+            $("#" + theDiv).show();
+            selectedDiv = theDiv;
+            $("#selectedDiv").val(selectedDiv);
+           
+        });
+
+
+        $("#btnDownloadReport").click(function () {
+
+
+
+        });
+
+
+        $("#ReportFilter").on('submit', (function (e) {
+
+            e.preventDefault(e);
+
+            if (selectedDiv === "") {
+                $.notify("Check entries", "error");
+            }
+            else
+            {
+                $(this).trigger('submit');
+             
+                $.notify("Please wait ", "success");
+            }
+           
+
+        }));
+
+    </script>
+    
+    }

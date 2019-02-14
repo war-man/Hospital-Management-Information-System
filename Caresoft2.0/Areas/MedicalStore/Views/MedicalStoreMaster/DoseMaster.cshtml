@@ -1,0 +1,147 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.Dose>
+
+@{
+    ViewBag.Title = "DoseMaster";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+}
+
+<style>
+    .text-box {
+        width: 150px;
+    }
+
+    .table-form tr {
+        height: 40px;
+    }
+
+    .requiredField{
+        color:red;
+        font-size:8px;
+    }
+</style>
+<div class="col-md-8">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading">
+            Dose Master
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table width="100%">
+                        <tr>
+                            <td>Dose</td>
+                            <td><input type="text" class="text-box margin-top-bottom-2" id="Dose" /><i class="fa fa-asterisk requiredField"></i></td>
+
+                            <td>Quantity</td>
+                            <td><input type="number" class="text-box margin-top-bottom-2" id="Quantity" /><i class="fa fa-asterisk requiredField"></i></td>
+
+                            <td>Standard Time</td>
+                            <td><input type="text" class="text-box margin-top-bottom-2" id="StandardTime" /></td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td><textarea type="text" class="text-box margin-top-bottom-2" id="Description"></textarea></td>
+                            <td></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" id="btnSave">Save</button>
+                                <button class="btn btn-sm btn-primary" id="btnClear">Clear</button>
+                            </td>
+                        </tr>
+                       
+                    </table>
+                    <br />
+
+                </div>
+                <div class="col-md-12" id="lstTable">
+                        @Html.Partial("~/Areas/MedicalStore/Views/MedicalStoreMaster/_DoseList.cshtml", Model)
+                </div>
+                <div id="pagination" class="col-md-12">
+                    <div class="pagination">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                        of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("DoseMaster", new { page }))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var model = "";
+
+        function GetVariables() {
+            var Dose = $("#Dose").val();
+            var Quantity = $("#Quantity").val();
+            var StandardTime = $("#StandardTime").val();
+            var Description = $("#Description").val();
+
+            model = { Name: Dose, Quantity: Quantity, StandardTime: StandardTime, Description };
+
+        }
+
+        function ClearForm() {
+            var Dose = $("#Dose");
+            var Quantity = $("#Quantity");
+            var StandardTime = $("#StandardTime");
+            var Description = $("#Description");
+
+            var formData = { Name: Dose, Quantity: Quantity, StandardTime: StandardTime, Description };
+
+            
+            $.each(formData, function (key, value) {
+
+                value.val("");
+            });
+        }
+
+        $("#btnSave").click(function () {
+            GetVariables();
+
+            var ifModelIsNull = false;
+            $.each(model, function (key, value) {
+                if (key == "Name" || key =="Quantity")
+                {
+                    if (value == "" || value == " " || value == null) {
+                        ifModelIsNull = true;
+                    };
+                }
+                
+            })
+
+            if (ifModelIsNull == false) {
+                var dose = model;
+                $.ajax({
+                    type: 'POST',
+                    url: '/MedicalStoreMaster/DoseMaster',
+                    data: dose,
+                    beforeSend: function () {
+                        $(".loader").show();
+                    },
+                    success: function (obj) {
+                        $("#lstTable").empty();
+                        $("#lstTable").append(obj);
+                        $(".loader").hide();
+                        ClearForm();
+                        $.notify("Saving Details Successfull", "success")
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                        $.notify("Error occured while saving Dose", "error");
+                    }
+                })
+            }
+            else {
+                $.notify("Error occured, check your varibales", "error")
+
+            }
+
+        });
+
+
+
+    </script>
+
+}

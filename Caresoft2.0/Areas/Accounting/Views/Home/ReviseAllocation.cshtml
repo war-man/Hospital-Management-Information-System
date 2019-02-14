@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewBag.Title = "ReviseAllocation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+}
+
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Revise Allocation
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Scheme:
+                                </td>
+                                <td>
+                                    <select name="Scheme" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    &nbsp; Scheme Acc No:
+                                </td>
+                                <td>
+                                    <input type="number" name="SchemeAccNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>
+                                        Period From:
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="date" name="PeriodFrom" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Period To:
+                                </td>
+                                <td>
+                                    <input type="date" name="PeriodTo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <input type="checkbox" value="confirm" /> Confirm
+                                    &nbsp;
+                                    <input type="checkbox" value="ByCheque" /> By Cheque
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Receipt No:
+                                </td>
+                                <td>
+                                    <input type="number" name="ReceiptNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td></td>
+                                <td>
+                                    <input type="checkbox" value="ReconcileReceipt" name="ReconcileReceipt"/> Reconcile Receipt
+                                </td>
+                                <td>
+                                    &nbsp; Bank Acc No:
+                                </td>
+                                <td>
+                                    <input type="number" name="BankAccNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ChequeNo:
+                                </td>
+                                <td>
+                                    <input type="number" name="ChequeNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Original Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="OrigAmount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Allocated Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="AllocatedAmt" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+
+                            </tr>
+                        </table>
+
+                    </div>
+                    &nbsp;
+                    <div class="col-md-12">
+                        <table class="table table-data-pathology table-condensed">
+                            <tr>
+                                <th>Inv Date</th>
+                                <th>Inv No</th>
+                                <th>Patient No/ User</th>
+                                <th>Inv Amount</th>
+                                <th>Allocate Amt</th>
+                                <th>Unallocate</th>
+                                <th>Cheque No</th>
+                            </tr>
+                            <tbody style="background-color: white">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <input type="checkbox" name="UnAllocate" value="UnAllocate" style="width:100%" />
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Allocatable Balance:
+                                </td>
+                                <td>
+                                    <input type="number" name="AllocatableBalance" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Save</button>
+                        <button type="reset" class="btn btn-default margin-top-bottom-2">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

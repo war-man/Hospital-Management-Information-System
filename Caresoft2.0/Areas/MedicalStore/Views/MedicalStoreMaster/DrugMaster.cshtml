@@ -1,0 +1,621 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.Drug>
+
+@{
+    ViewBag.Title = "DrugMaster";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+
+    var lstDoses = (List<Caresoft2._0.Areas.Procurement.Models.Dose>)ViewBag.Dose;
+    var racks = (List<Caresoft2._0.Areas.Procurement.Models.RackMaster>)ViewBag.Racks;
+}
+
+<style>
+    .text-box {
+        width: 150px;
+    }
+
+    .table-form tr {
+        height: 40px;
+    }
+    .fa-asterisk{
+        color:red;
+        font-size:8px;
+    }
+</style>
+<div class="col-md-10">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px"> <strong>  Drug Master</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <table class="">
+                        <tr>
+                            <td>Drug Name</td>
+                            <td><input type="text" class="text-box margin-top-bottom-2" id="DrugName" /><span> <i class="fa fa-asterisk"></i></span></td>
+                            <td>Generic Drug Name:</td>
+                            <td>
+                                <input type="text" autocomplete="off" class="text-box margin-top-bottom-2" id="GenericDrugName" />
+                                <div class="text-box suggestions collapse" id="lstGenericList">
+                                </div>
+                                <input type="hidden" class="text-box" id="hiddenGenericDrugName" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ICD10 :</td>
+                            <td><input type="text" class="text-box margin-top-bottom-2" id="IcdTen" /><span> <i class="fa fa-asterisk"></i></span></td>
+                            <td>Category:</td>
+                            <td>
+                                <input type="text"  autocomplete="off" class="text-box margin-top-bottom-2" id="Category" /><span> <i class="fa fa-asterisk"></i></span>
+                                <div class="text-box suggestions collapse" id="lstCategory">
+                                </div>
+                                <input type="hidden" class="text-box" id="hiddenCategory" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Case Pack</td>
+                            <td><input type="text" class="text-box margin-top-bottom-2" id="CasePack" placeholder="Unit/Pack" /></td>
+                            <td>Route of Admin</td>
+                            <td>
+                                <select class="text-box margin-top-bottom-2" id="routeOfAdmin">
+                                    <option>-- Select --</option>
+                                    <option>IM </option>
+                                    <option>Intra Nasal</option>
+                                    <option>IV</option>
+                                    <option>IV Fluid</option>
+                                    <option>Oral</option>
+                                    <option>PR</option>
+                                    <option>PV</option>
+                                    <option>SC</option>
+                                    <option>Sub Lingual</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Reorder Level</td>
+                            <td><input type="text" class="text-box margin-top-bottom-2" id="reorderLevel" /></td>
+                            <td>Remark</td>
+                            <td><textarea type="text" class="text-box margin-top-bottom-2" id="remark"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Dose </td>
+                            <td>
+                                <select class="text-box margin-top-bottom-2" id="Dose">
+                                    <option>Select Option</option>
+                                    @if (lstDoses != null)
+                                    {
+                                        foreach (var item in lstDoses)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    }
+
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Select Rack Name</td>
+                            <td>
+                                <select class="text-box margin-top-bottom-2" id="rackName">
+                                    <option>Select Rack Name</option>
+                                    @if (racks != null)
+                                    {
+                                        foreach (var item in racks)
+                                        {
+                                            <option value="@item.Id" data-cellno="@item.totalNumberOfCells">@item.name</option>
+                                        }
+                                    }
+                                </select>
+                                <input type="hidden" id="rackIdNumber" />
+                            </td>
+                            <td colspan="2" class="margin-top-bottom-2">
+                                <input type="checkbox" id="isVaccine" /> Is Vaccine
+                                <input type="checkbox" id="isStrip" /> Is Strip
+                                <input type="checkbox" id="IsVitaminA" /> Is Vitamin A
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="text-box margin-top-bottom-2" id="AddCheckboxes" style="overflow:scroll; height:150px;width:150px">
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <fieldset>
+                                    <label class="radio-inline margin-top-bottom-2">
+                                        <input type="radio" name="optradio" value="Cream">Cream
+                                    </label>
+                                    <label class="radio-inline margin-top-bottom-2">
+                                        <input type="radio" name="optradio" value="Syrup" /> Syrup
+                                    </label>
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button id="btnSave" class="btn btn-primary btn-sm margin-top-bottom-2">Save</button>
+                                <button id="BtnBack" class="btn btn-primary btn-sm margin-top-bottom-2">Back</button>
+                                <button id="BtnCancel" class="btn btn-primary btn-sm margin-top-bottom-2">Cancel</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div id="result">
+
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+
+                    <div id="lstDrugList">
+                        @Html.Partial("~/Areas/MedicalStore/Views/MedicalStoreMaster/_DrugMasterList.cshtml", Model)
+                    </div>
+                    <div id="pagination" class="col-md-12">
+                        <div class="col-md-8">
+                            <div class="pagination">
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                                of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("DrugMaster", new { page }))
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="GenericDrug" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Drug</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSaveGenericDrug" class="btn btn-primary btn-sm">Save</button>
+                <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+        var name = "";
+        var icdten = "";
+        var genericDrugName = "";
+        var categoryId = "";
+        var unitpacks = "";
+        var reorderLevel = "";
+        var routeOfAdmin = "";
+        var Dose = "";
+        var rackName = "";
+        var isVaccine = false;
+        var isStrip = false;
+        var IsVitaminA = false;
+        var remark = "";
+        var CreamSyrup = "";
+        var CellinRack = "";
+
+        $(".btnDrug").each(function () {
+            $(this).click(function () {
+
+                $("#GenericDrug").modal('show');
+            })
+
+        });
+
+        $("#btnSave").click(function () {
+            GetVariableValues();
+            var checkIfModelIsValid = true;
+
+            var model = {
+                Name: name, IcdTenCode: icdten, GenericDrugNameId: genericDrugName,
+                CategoryId: category, UnitsPack: unitpacks, ReorderLevel: reorderLevel,
+                RouteOfAdmin: routeOfAdmin, DoseId: Dose, Rack: rackName, IsVaccine: isVaccine,
+                IsStrip: isStrip, IsVitamin: IsVitaminA, Remark: remark, CreamSyrup: CreamSyrup,
+                CellinRack: CellinRack
+            }
+
+            //console.log(model);
+
+            $.each(model, function (key, value) {
+
+                //if (value == "" || value == " " || value == undefined || value == null) {
+                //    if (key == "IsVaccine" || key == "IsStrip" || key == "IsVitamin") { }
+                //    else {
+                //        bool = true;
+                //    }
+                //}
+
+                if (key == "Name" || key == "IcdTenCode" || key =="CategoryId") {
+
+                    if (value == "" || value == " " || value == undefined || value == null) {
+                        checkIfModelIsValid = false;
+                    }
+                }
+               
+            })
+
+            if (checkIfModelIsValid == true) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/MedicalStoreMaster/DrugMaster',
+                    data: model,
+                    success: function (obj) {
+                        //console.log(obj);
+                        var lstDrugList = $("#lstDrugList");
+                        lstDrugList.empty();
+                        lstDrugList.html(obj);
+                        ClearAddNewDrugTextBoxes();
+                        $.notify("Drug has been saved successfully", "success");
+                    },
+                    error: function (x,y,z) {
+
+                        console.log(x.responseText);
+                        $.notify("An Error occured while saving your data", "error");
+                    }
+                })
+            }
+            else {
+
+                $.notify("Check entries", "error");
+            }
+
+        });
+
+
+        function GetVariableValues() {
+            name = $("#DrugName").val();
+            icdten = $("#IcdTen").val();
+            genericDrugName = $("#hiddenGenericDrugName").val();
+            category = $("#hiddenCategory").val();
+            unitpacks = $("#CasePack").val();
+            reorderLevel = $("#reorderLevel").val();
+            routeOfAdmin = $("#routeOfAdmin").val();
+            Dose = $("#Dose").val();
+            rackName = $("#rackName").val();
+            remark = $("#remark").val();
+            CreamSyrup = $("input:radio[name=optradio]:checked").val();
+            CellinRack = $("input:radio[name=rack]:checked").val();
+
+            if ($("#isVaccine").is(":checked")) {
+                isVaccine = true;
+            }
+            else {
+                isVaccine = false;
+            }
+
+            if ($("#isStrip").is(":checked")) {
+                isStrip = true;
+            }
+            else {
+                isStrip = false;
+            }
+
+
+            if ($("#IsVitaminA").is(":checked")) {
+                IsVitaminA = true;
+            }
+            else {
+                IsVitaminA = false;
+            }
+
+        }
+
+        function ClearAddNewDrugTextBoxes() {
+            $("#DrugName").val("");
+            $("#IcdTen").val("");
+            $("#GenericDrugName").val("")
+            $("#Category").val("");
+            $("#CasePack").val("");
+            $("#routeOfAdmin").val("");
+            $("#reorderLevel").val("");
+            $("#remark").val("");
+            $("#Dose").val("");
+            $("#rackName").val("");
+        }
+
+        function ShowSuccessfulResult() {
+            var result = $("#result");
+            result.empty();
+            var string = '<div class="alert alert-success">' +
+                '<strong>Successful!</strong> Added Successfully.' +
+                ' </div >';
+            result.empty();
+            result.append(string);
+            result.fadeOut(1000, "linear");
+
+        }
+
+        function ErrorPleaseFillAllTextBoxes() {
+            var result = $("#result");
+            var string = '<div class="alert alert-warning">' +
+                '<strong>Warning!</strong> Some Fields are missing.' +
+                ' </div >';
+            result.empty();
+            result.append(string);
+            result.fadeTo(2000, 1000).slideUp(500, function () {
+                result.slideUp(500);
+                result.empty();
+            })
+
+        }
+        function ShowErrorResult() {
+            var result = $("#resultAddNewDrug");
+            var string = '<div class="alert alert-warning">' +
+                '<strong>Warning!</strong> An Error Occured While Adding.' +
+                ' </div >';
+            result.empty();
+            result.append(string);
+            result.fadeTo(2000, 1000).slideUp(500, function () {
+                result.slideUp(500);
+                result.empty();
+            })
+        }
+
+        //On key up populate the div for selecting Item List
+        //$("#GenericDrugName").keyup(function () {
+
+        //    var genericDrugName = $("#GenericDrugName").val();
+        //    var genericDrugList = $("#lstGenericList");
+
+        //    if (genericDrugName.length < 1) {
+        //        genericDrugList.fadeOut();
+        //    }
+        //    else {
+
+        //        var nam = { name: genericDrugName };
+
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: '/MinorMasterProcurement/SearchGenericDrug',
+        //            data: nam,
+        //            success: function (obj) {
+
+        //                //create an array to store the values searched
+        //                var item = [];
+        //                //loop through all the items and push then into the array variable
+
+        //                $.each(obj, function (key, value) {
+        //                    var string = '<p class="searchedItems" data-title="' + value.Name + '" data-value="' + value.Id + '">' + value.Name + '</p>';
+        //                    item.push(string);
+
+        //                    //console.log(obj);
+
+        //                })
+
+        //                // empty the div element
+        //                $("#lstGenericList").empty();
+
+        //                var items = item.join("");
+        //                genericDrugList.append(items);
+        //                genericDrugList.fadeIn();
+
+        //                $(".searchedItems").each(function () {
+        //                    $(this).click(function () {
+        //                        var val = $(this).data('value');
+        //                        var val2 = $(this).data('title');
+
+        //                        $("#GenericDrugName").val(val2);
+        //                        $("#hiddenGenericDrugName").val(val);
+        //                        genericDrugList.fadeOut();
+        //                    })
+        //                });
+        //            },
+        //            error: function () {
+        //                console.log("Error Occured");
+        //            }
+        //        })
+
+        //    }
+
+
+        //})
+
+        $("#GenericDrugName").autocomplete({
+            source: function (request, response) {
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/MinorMasterProcurement/SearchGenericDrug',
+                    dataType: "json",
+                    data: { name: $("#GenericDrugName").val() },
+                    success: function (data) {
+
+                        console.log(data);
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Name, value: item.Name, selectedId: item.Id
+                            };
+                        }));
+                    }
+                });
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                showNotification("An Error Occured, try again later", "danger", true);
+            },
+            minLength: 2,
+            select: function (event, ui) {
+
+                $("#hiddenGenericDrugName").val(ui.item.selectedId)
+            }
+        });
+
+        //On key up to populate the div containing CategoryList
+        //$("#Category").keyup(function () {
+
+        //    var categoryName = $("#Category").val();
+        //    var categoryList = $("#lstCategory");
+
+
+        //    if (categoryName.length < 1) {
+
+        //        categoryList.fadeOut();
+        //    }
+        //    else {
+
+        //        var nam = { name: categoryName };
+
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: '/MinorMasterProcurement/SearchCategory',
+        //            data: nam,
+        //            success: function (obj) {
+
+        //                //create an array to store the values searched
+        //                var item = [];
+        //                //loop through all the items and push then into the array variable
+
+        //                $.each(obj, function (key, value) {
+        //                    var string = '<p class="searchedItems" data-value="' + value.CategoryID + '">' + value.CategoryName + '</p>';
+        //                    item.push(string);
+
+        //                })
+
+        //                // empty the div element
+        //                $("#lstCategory").empty();
+
+        //                var items = item.join("");
+        //                categoryList.append(items);
+        //                categoryList.fadeIn();
+
+        //                $(".searchedItems").each(function () {
+        //                    $(this).click(function () {
+        //                        var val = $(this).data("value");
+        //                        var val2 = $(this).text();
+        //                        $("#Category").val(val2);
+        //                        $("#hiddenCategory").val(val)
+        //                        categoryList.fadeOut();
+        //                    })
+        //                });
+
+
+        //            },
+        //            error: function () {
+        //                console.log("Error Occured");
+        //            }
+        //        })
+
+        //    }
+
+        //})
+
+        $("#Category").autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+                        type: 'GET',
+                         url: '/MinorMasterProcurement/SearchCategory',
+                        dataType: "json",
+                        data: { name: $("#Category").val() },
+            success: function (data) {
+
+                        console.log(data);
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.CategoryName, value: item.StoreName, selectedId: item.CategoryID
+                            };
+                        }));
+                        }
+                    });
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    showNotification("An Error Occured, try again later", "danger", true);
+                },
+                minLength: 2,
+                select: function (event, ui) {
+
+                    $("#hiddenCategory").val(ui.item.selectedId)
+                }
+        });
+
+        $("#rackName").on('change', function () {
+
+            var rackId = $(this).val();
+            var noOfCells = $(this).find(':selected').data('cellno');
+            AddCheckBoxes(noOfCells);
+
+        });
+
+        function AddCheckBoxes(obj) {
+            var theDiv = $("#AddCheckboxes");
+            theDiv.empty();
+
+            var string = '';
+
+            for (var i = 0; i < obj; i++) {
+                //var str = '<input class="theDivCheckbox" type="checkbox" value=' + i + '/> cell-' + i;
+                var cell_No = i + 1;
+                var str = '<input type= "radio" name= "rack" value= "' + cell_No + '" /> Cell ' + cell_No;
+                string += str;
+            }
+
+            theDiv.html(string);
+        }
+
+
+        $("#BtnBack").click(function (e) {
+            e.preventDefault();
+            var value = $("input:radio[name=rack]:checked").val();
+            console.log(value);
+        });
+
+        //KOgi Script
+        $("#search").autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+                        type: 'GET',
+                        url: "@Url.Action("SearchDrugs")",
+                        dataType: "json",
+                        data: { search: $("#search").val() },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.Name,
+                                    value: item.Name,
+                                    Id: item.Id,
+                                };
+                            }));
+                        }
+                    });
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    showNotification("An Error Occured, try again later", "danger", true);
+                },
+                minLength: 2,
+                select: function (event, ui) {
+
+                    console.log(ui.item.Id);
+                    window.location.replace("/MedicalStore/MedicalStoreMaster/DrugMaster?drugId=" + ui.item.Id);
+                }
+        });
+
+        
+    </script>
+
+}

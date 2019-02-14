@@ -1,0 +1,262 @@
+﻿
+<table class="table-top-menu" width="100%">
+    <tr style="background-color:#C1D8F9">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td width="200px">
+            | Master <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("ItemMasterList", "MedicalStoreMaster")">
+                            | Item Master
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("SupplierMaster", "MedicalStoreMaster")">
+                            | Supplier Master
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ManufactureCompany", "MedicalStoreMaster")">
+                            | Manufacture Company
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("DrugMaster", "MedicalStoreMaster")">
+                            | Drug Master
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("DoseMaster", "MedicalStoreMaster")">
+                            | Dose Master
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("SetRateType", "MedicalStoreMaster")">
+                            | Set Rate Type
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("RateTypeForAwardAmount", "MedicalStoreMaster")">
+                            | Rate Type For AwardAmount
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("GenericDrugMaster", "MedicalStoreMaster")">
+                            | Generic Drug Master
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("CategoryMaster", "MedicalStoreMaster")">
+                            | Category Master
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | Report Setting
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("", "")">
+                            | Upload Drug List
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("RackMaster", "MedicalStoreMaster")">
+                            | Rack Master
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ItemLocationDetails", "MedicalStoreMaster")">
+                            | Item Location Details
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td width="200px">
+            | Patient Transaction <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("SearchPatientIssueVoucher", "PatientTransactionMStore")">
+                            | Patient Issue Voucher
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("EditPatientIssueVoucher", "PatientTransactionMStore")">
+                            | Search Patient Voucher
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("SearchCanceledIssueVoucher", "PatientTransactionMStore")">
+                            | Cancel Issuer Voucher
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("CancelVoucherReqFromNurse", "PatientTransactionMStore")">
+                            | Cancel Issue Voucher Request by Nurse
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ItemRefund", "PatientTransactionMStore")">
+                            | Item Refund
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td data-href="@Url.Action("StockAdjustment", "PatientTransactionMStore",new { area="MedicalStore" })">
+                            | Stock Adjustment
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </td>
+        <td width="200px">
+            | Department Transaction  <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("IssueVoucher", "DepartmentTransactionMStore")">
+                            | Issue Voucher
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("SearchIssueVoucher", "DepartmentTransactionMStore")">
+                            | Search Issue Voucher
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("DeptIndexList", "DepartmentTransactionMStore")">
+                            | Indent Request
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("IsueForConsuption", "DepartmentTransactionMStore")">
+                            | Issue For Consumption
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ViewPendingRequest", "DepartmentTransactionMStore")">
+                            | View Pharmacy Request
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("IssueToCssd", "DepartmentTransactionMStore")">
+                            | View CSSD Request
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td width="200px">
+            | Branch Transaction <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("ItemReceivedDetails", "BranchTransactionMStore")">
+                            | Material Recieved
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AcknowledgementDetail", "BranchTransactionMStore")">
+                            | View Acknowledgement
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </td>
+        <td width="200px">
+            | Medical Report <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            | Stock Report <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("StockPosition", "MedicalstoreReports")">| Stock Ledger</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("CurrentStock", "MedicalstoreReports")"> | Current Stock</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("ItemStockPosition", "MedicalstoreReports")">| Item Stock Ledger</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Patient Report <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("CashSummaryReport", "MedicalstoreReports")">| Cash Summary</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("PatientReportSummary", "MedicalstoreReports")">| Patient Summary Report</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            | Issue/Sales Report <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("DrugWiseReport", "MedicalstoreReports")">| Item Wise Report</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("BillWiseDailySalesReport", "MedicalstoreReports")">| Bill Wise/Daily Sales Report</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("CashRegisterReport", "MedicalstoreReports")">| Cash Register Report</td>
+                                    </tr>
+                                    <tr>
+
+                                        <td data-href="@Url.Action("SalesProfitReport", "MedicalstoreReports")">| Sales Profit Report</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            | Donor Wise Report <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+
+                                        <td data-href="@Url.Action("DonorWiseSupplierReport", "MedicalstoreReports")">| Donor Wise Supplier Report</td>
+                                    </tr>
+                                    <tr>
+
+                                        <td data-href="@Url.Action("DonorWiseIssueReport", "MedicalstoreReports")">| Donor Wise Issue Report</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                </table>
+            </div>
+        </td>
+        <td></td>
+        <td></td>
+
+    </tr>
+   
+</table>
+

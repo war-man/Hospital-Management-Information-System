@@ -1,0 +1,357 @@
+﻿
+@{
+    ViewBag.Title = "Adjustment Stock";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+}
+
+<style>
+    .text-box {
+    }
+
+    .textboxNumbers {
+        width: 100px;
+    }
+</style>
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                <div class="col-md-4" >
+                                    <fieldset style="padding:5px;">
+                                        <label class="radio-inline">
+                                            <input type="radio" checked name="optradio" value="Surplus">Surplus
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio" value="Deficit">Deficit
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio" value="Damage">Damage
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col-md-12">
+                    <br />
+                    <table class="table-form">
+                        <tr>
+                            <th>Item Desc</th>
+                            <th>Batch</th>
+                            <th>Current Stock</th>
+                            <th>Cost</th>
+                            <th>Adjustment</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" class="text-box" style="width:300px;" id="ItemDescription" placeholder="Start typing Drug Name to select drug ..." />
+                                <div class="text-box suggestions collapse" id="ItemList" style="width:300px;">
+                                </div>
+                            </td>
+                            <td>
+                                <select class="text-box textboxNumbers" id="SelectBatchNo">
+                                    <option>Batch</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" class="text-box textboxNumbers" id="CurrentStock" disabled />
+                            </td>
+                            <td>
+                                <input type="text" class="text-box textboxNumbers" id="CostPerUnit" disabled />
+                            </td>
+                            <td>
+                                <input  min="1"  type="number" class="text-box textboxNumbers" id="Adjustment" />
+                            </td>
+                            <td>
+                                <input type="button" id="btnOk" class="btn btn-primary btn-sm" value="OK" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-12">
+                    <br />
+
+                    <div id="TableList">
+                        <table class="table table-data-pathology table-condensed" style="background-color:white">
+                            <tr>
+                                <th>Edit</th>
+                                <th>Item Name</th>
+                                <th>Batch No</th>
+                                <th>Current Stock</th>
+                                <th>Cost</th>
+                                <th>Adjusted Quantity</th>
+                                <th>Delete</th>
+                            </tr>
+                            <tr>
+                                <td colspan="7" style="font-style:italic;text-align:center">
+                                    No Data to display
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <input type="button" class="btn btn-sm btn-primary" value="Save" />
+                    <input type="button" class="btn btn-sm btn-primary" value="New" />
+                    <input type="button" class="btn btn-sm btn-primary" value="Report" />
+                    <input type="button" class="btn btn-sm btn-primary" value="Back" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+        $("#ItemDescription").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Action("SearchItemListItem")",
+                    dataType: "json",
+                    data: { name: $("#ItemDescription").val() },
+                    success: function (data) {
+                        console.log(data);
+                        response($.map(data, function (item) {
+                            return { label: item.ItemName, value: item.ItemName, selected: item.ItemName};
+                        }));
+                    }
+                });
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                showNotification("An Error Occured, try again later", "danger", true);
+            },
+            minLength: 2,
+            select: function (event, ui) {
+                var selected = ui.item.selected;
+                console.log(selected);
+
+                SearchBatchNumbers(ui.item.selected);
+
+            }
+        });
+
+        function SearchBatchNumbers(itemid) {
+            $('.loader').show();
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("SearchBatchNumbers")",
+                data: { search: itemid },
+                success: function (obj) {
+                    console.log(obj);
+
+                    $("#SelectBatchNo").html("");
+
+                    var SelectBatchNo = document.getElementById('SelectBatchNo');
+                    var option = document.createElement('option');
+                    option.innerHTML = "Select Batch";
+                    SelectBatchNo.appendChild(option);
+
+
+                    var batchNumbers = $.each(obj, function (key, value) {
+                        var option = document.createElement('option');
+                        option.value = value.BatchNo;
+                        option.innerHTML = value.BatchNo;
+
+                        SelectBatchNo.appendChild(option);
+
+                    });
+                    $('.loader').hide();
+
+                },
+                error: function (x, y, z) {
+                    $('.loader').hide();
+
+                    console.log(x.responseText);
+                }
+            })
+        }
+        //$("#ItemDescription").keyup(function () {
+
+        //    var itemName = $("#ItemDescription").val();
+        //    var itemList = $("#ItemList");
+
+        //    if (itemName.length < 1) {
+        //        itemList.fadeOut();
+        //    }
+        //    else {
+
+        //        var nam = { name: itemName };
+
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: '/PatientTransactionMStore/SearchItemListItem',
+        //            data: nam,
+        //            success: function (obj) {
+
+        //                //create an array to store the values searched
+        //                var item = [];
+        //                //loop through all the items and push then into the array variable
+
+        //                //console.log(obj);
+        //                $.each(obj, function (key, value) {
+
+
+
+        //                    var string = '<p class="searchedItems" data-batchno="' + value.BatchNo + '" data-costunitprice="' + value.CostPriceUnit + '"';
+        //                    var moredata = 'data-unitspack="' + value.UnitsPack + '" data-expirystatus="' + value.ExpiryStatus + '"  data-costpercasepack="' + value.CasePackRate + '" data-mfgconame="' + value.MfgCoName + '" ';
+        //                    var otherData = 'data-itemaname="' + value.ItemName + '" > ' + value.ItemName + '</p > ';
+
+        //                    var itm = string + moredata + otherData;
+        //                    item.push(itm);
+
+        //                })
+
+        //                // empty the div element
+        //                $("#ItemList").empty();
+
+        //                var items = item.join("");
+        //                itemList.append(items);
+        //                itemList.fadeIn();
+
+        //            },
+        //            error: function () {
+        //                console.log("Error Occured");
+        //            }
+        //        })
+
+        //    }
+
+
+        //})
+
+        var batchId = 0;
+        $("#SelectBatchNo").on('change', function () {
+
+            var batchNo = $("#SelectBatchNo").val();
+            var itemName = $("#ItemDescription").val();
+            var stockData = { itemName: itemName, batchNo: batchNo };
+
+            $.ajax({
+                type: 'POST',
+                url: '/PharmacyPatientTransaction/ItemDetailsMS',
+                data: stockData,
+                beforeSend: function () { $('.loader').show() },
+                success: function (obj) {
+                    $('.loader').hide();
+                    batchId = obj.Id;
+                    console.log(obj);
+                    $("#CurrentStock").val(obj.CurrentStock);
+                    $("#CostPerUnit").val(obj.CostPriceUnit);
+
+                },
+                error: function (x, y, z) {
+                    $('.loader').hide();
+                    console.log(x.responseText);
+                }
+            });
+
+        });
+
+        //$("#SelectBatchNo").on('change', function () {
+
+
+        //    var batchNo = $(this).val();
+        //    var itemName = $("#ItemDescription").val();
+        //    var stockData = { itemName: itemName, batchNo: batchNo };
+        //    $('.loader').show();
+
+
+        //    $.ajax({
+        //        type: 'POST',
+        //        url: '/ProcurementPurchase/ItemDetails',
+        //        data: stockData,
+        //        success: function (obj) {
+        //            console.log(obj);
+        //            $("#CurrentStock").val(obj.CurrentStock);
+        //            $("#CostPerUnit").val(obj.CostPriceUnit);
+        //            $('.loader').hide();
+
+
+        //        },
+        //        error: function (x, y, z) {
+        //            console.log(x.responseText);
+        //            $('.loader').hide();
+        //            $("#CurrentStock").val("");
+        //            $("#CostPerUnit").val("");
+        //            $('.loader').hide();
+
+        //        }
+        //    });
+
+        //    });
+
+
+        $("#btnOk").click(function () {
+            var qty = $("#ItemDescription");
+
+            qty = $("#ItemDescription");
+            if (!qty.val().trim()) {
+                qty.notify("Select Brand Name");
+
+                return false;
+            }
+
+            qty = $("#SelectBatchNo");
+            if (!qty.val().trim() || qty.val() < 1) {
+                $("#SelectBatchNo").notify("Select Batch");
+
+                return false;
+            }
+
+            qty = $("#Adjustment");
+            if (!qty.val().trim() || qty.val() < 1) {
+                $("#Adjustment").notify("Specify Adjustment");
+
+                return false;
+            }
+
+            var newCost = $("#Adjustment").val();
+
+            var TableList = $("#TableList");
+            var adjustment_type = $("input[name=optradio]:checked").val();
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("UpdateItemCost", "DepartmentTransactionMStore")",
+                data: { newCost: newCost, id: batchId, type : adjustment_type},
+                beforeSend: function () { $(".loader").show();},
+                success: function (obj) {
+                    //console.log(obj)
+
+                    TableList.empty();
+                    TableList.append(obj);
+                    $(".loader").hide();
+                    $.notify("Stock Adjusted Successfully", "success");
+
+                },
+                error: function (x, y, z) {
+
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("An error occured adjusting stock", "error");
+
+                }
+            })
+
+
+
+        });
+
+    </script>
+}
+
+
+

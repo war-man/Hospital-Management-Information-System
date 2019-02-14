@@ -1,0 +1,335 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.DepartmentVoucherItem>
+
+@{
+    ViewBag.Title = "IssueVoucher";
+    Layout = "~/Areas/GeneralStore/Views/Shared/_LayoutGeneralStore.cshtml";
+
+    var issueVoucherNumber = Model.Select(p => p.DepartmentVoucherId).FirstOrDefault();
+}
+
+
+<style>
+    .text-box {
+        width: 200px;
+    }
+
+    .tbline {
+        width: 150px;
+        margin: 2px;
+    }
+</style>
+
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px"> <strong> Issue Voucher</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table-form">
+                        <tr>
+                            <td>Issue Voucher Number</td>
+                            <td><input type="text" class="text-box" id="IssueVoucherNumber" disabled value="@issueVoucherNumber" /></td>
+                            <td>Date</td>
+                            <td><input type="date" class="text-box" id="IssueVoucherDate" disabled value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" /></td>
+                        </tr>
+                        <tr>
+                            <td>Issue To</td>
+                            <td>
+                                <select class="text-box" id="SelectDepartment">
+                                    <option> --Select Department-- </option>
+                                    @foreach (var item in ViewBag.Departments)
+                                    {
+                                        <option value="@item.Id">@item.DepartmentName</option>
+                                    }
+
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <fieldset>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="CompositionName">Composition Name
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="BrandName" checked>Brand Name
+                                    </label>
+                                </fieldset>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                    <br />
+                </div>
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <th>Item Description</th>
+                            <th>Batch No</th>
+                            <th>Rate</th>
+                            <th>Issue Qty</th>
+                            <th>Current Stock</th>
+                            <th>Expiry Date</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select class="text-box" id="SelectItem" disabled>
+                                    <option>Select Item Description</option>
+                                    @foreach (var item in ViewBag.Items)
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                </select>
+
+                                <input type="hidden" id="ItemMasterId" />
+                            </td>
+                            <td>
+                                <select class="text-box tbline" id="BatchNo" disabled></select>
+                            </td>
+                            <td>
+                                <input type="text" class="text-box tbline" id="Rate" disabled />
+                            </td>
+                            <td>
+                                <input type="text" class="text-box tbline" id="IssueQty" />
+                            </td>
+                            <td>
+                                <input type="text" class="text-box tbline" id="CurrentStock" disabled />
+                            </td>
+                            <td>
+                                <input type="date" class="text-box tbline" id="ExpiryDate" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" disabled />
+                            </td>
+                            <td>
+                                <button id="btnSaveTreatment" class="btn btn-primary btn-sm">OK</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br />
+
+
+
+            <div class="col-md-12">
+                <div style="overflow-y:scroll;height:300px;" id="lstTreatment">
+                    <table class="table table-data">
+                        <tr>
+                            <th>Edit</th>
+                            <th>Item Name</th>
+                            <th>Batch No</th>
+                            <th>Rate</th>
+                            <th>Unit</th>
+                            <th>Amount</th>
+                            <th>Current Stock</th>
+                            <th>Expiry Date</th>
+                        </tr>
+                        @if (Model == null)
+                        {
+                            <tr>
+                                <td colspan="8">
+                                    No data to display
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>Edit</td>
+                                    <td>@item.ItemMaster.ItemName</td>
+                                    <td>@item.ItemMaster.BatchNo</td>
+                                    <td>@item.ItemMaster.SellingPriceUnit</td>
+                                    <td>@item.Units</td>
+                                    <td>Ksh. @item.Amount.ToString("N2")</td>
+                                    <td>@item.ItemMaster.CurrentStock</td>
+                                    <td>@item.ItemMaster.ExpiryStatus</td>
+                                </tr>
+                            }
+                        }
+
+                    </table>
+                </div>
+                <button class="btn btn-sm btn-primary" id="BtnSaveIssuedVoucher">Save</button>
+                <button class="btn btn-sm btn-primary">Report</button>
+                <button class="btn btn-sm btn-primary">Add New</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+
+    <script>
+
+        $(window).on('load', function () {
+
+            var departmentId = localStorage.getItem("departmentId")
+            if (departmentId != null) {
+                console.log("the dept index", departmentId);
+                $("#SelectDepartment")[0].selectedIndex = departmentId;
+                $("#SelectItem").prop('disabled', false);
+                $("#SelectDepartment").prop('disabled', true);
+            }
+
+            
+        })
+
+        $("#btnSaveTreatment").click(function () {
+            var DepartmentId = $("#SelectDepartment").val();
+            var Rate = $("#Rate").val();
+            var IssueQty = $("#IssueQty").val();
+            var CurrentStock = $("#CurrentStock").val();
+            var ItemMasterId = $("#ItemMasterId").val();
+            var Amount = Rate * IssueQty;
+
+
+            var model = {
+
+                DepartmentId: DepartmentId,
+                ItemMasterId: ItemMasterId,
+                units: IssueQty,
+                Amount: Amount,
+                CurrentStock: CurrentStock,
+            }
+
+            console.log(model);
+
+            $.ajax({
+                type: "POST",
+                url: "/DepartmentTransactionGStore/IssueVoucher",
+                data: model,
+                success: function (obj) {
+                    $("#lstTreatment").empty();
+                    $("#lstTreatment").append(obj);
+                    //console.log(obj);
+                    var voucherNumber = localStorage.getItem("IssueVoucherNumber");
+
+                    if (voucherNumber == null) {
+                        localStorage.setItem("IssueVoucherNumber", 1);
+                        var Dept = $("#SelectDepartment")[0].selectedIndex;
+                        localStorage.setItem("departmentId", Dept);
+                        location.reload();
+                        
+                    }
+
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                }
+            });
+
+        });
+
+        //Item Description
+        $("#SelectItem").on('change', function () {
+
+            var itemName = $("#SelectItem").val();
+
+            GetBatchNumbers(itemName);
+
+        })
+
+        function GetBatchNumbers(name) {
+            var itemMasterData = null;
+            var SelectedBatchNo = null;
+            if (name != null) {
+
+
+                var url = "/ProcurementPurchase/SearchItemName";
+                $.ajax({
+                    type: "GET",
+                    data: { name: name },
+                    url: url,
+                    success: function (obj) {
+                        itemMasterData = obj;
+
+                        $("#BatchNo").empty();
+                        var select = document.getElementById("BatchNo");
+                        var option = document.createElement("option");
+                        option.text = "--SELECT--";
+                        select.add(option);
+
+                        $.each(itemMasterData, function (key, value) {
+
+                            var option = document.createElement("option");
+                            option.text = value.BatchNo;
+                            select.add(option);
+
+                        })
+
+                        $("#BatchNo").on('change', function () {
+                            SelectedBatchNo = $(this).val();
+
+                            $.each(itemMasterData, function (key, value) {
+                                if (value.BatchNo == SelectedBatchNo) {
+                                    $("#Rate").val(value.SellingPriceUnit);
+                                    $("#CurrentStock").val(value.CurrentStock);
+                                    $("#ItemMasterId").val(value.Id);
+
+                                }
+
+                            });
+                        });
+
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                    }
+                });
+            }
+        }
+
+        $("#SelectDepartment").on('change', function () {
+
+            $("#SelectItem").prop('disabled', false);
+        })
+
+        $("#SelectItem").on('change', function () {
+
+            $("#BatchNo").prop('disabled', false);
+            $("#SelectDepartment").prop('disabled', true);
+        });
+
+        $("#BtnSaveIssuedVoucher").click(function () {
+
+            $(this).prop('disabled', true);
+
+            $.ajax({
+                type: "POST",
+                url: "/DepartmentTransactionMStore/SaveIssueVoucher",
+                success: function (obj) {
+                    $("#lstTreatment").empty();
+                    $("#lstTreatment").append(obj);
+                    localStorage.removeItem("IssueVoucherNumber");
+                    localStorage.removeItem("departmentId");
+                    
+                    clearTextBoxes();
+                    location.reload();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                }
+            });
+
+        })
+
+        function clearTextBoxes() {
+            $("#SelectDepartment").selectedIndex = 0;
+            $("#Rate").val("");
+            $("#IssueQty").val("");
+            $("#CurrentStock").val("");
+            $("#ItemMasterId").val("");
+            $("#BatchNo").selectedIndex = 0;
+            $("#SelectItem").selectedIndex = 0;
+            $("#IssueVoucherNumber").val("");
+        }
+    </script>
+
+}

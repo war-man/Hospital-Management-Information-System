@@ -1,0 +1,58 @@
+﻿@model CaresoftHMISDataAccess.PatientClaim
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PatientClaim</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClaimNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClaimNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrunchId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrunchId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpdRegister.Department)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpdRegister.Department)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

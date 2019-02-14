@@ -1,0 +1,33 @@
+﻿@model CaresoftHMISDataAccess.Patient
+@{
+    ViewBag.Title = "Patient History";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+    ViewBag.Size = "A4";
+}
+
+
+<h5 class="report-section-heading">Patient Details</h5>
+<table width="100%" border="1" cellpadding="1">
+    <tr>
+        <td>Reg Number</td>
+        <td><b>@Model.RegNumber</b></td>
+        <td>Full Name</td>
+        <td>
+            <b>
+                @Model.Salutation
+                @Model.FName
+                @Model.MName
+
+                @Model.LName
+            </b>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+    </tr>
+    
+</table>
+
+

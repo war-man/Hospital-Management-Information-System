@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.DrugTariffs>
+
+<table class="table table-data-pathology table-condensed" style="background-color:white">
+    <tr>
+        <th>Drug Name</th>
+        <th>Drug Code</th>
+        <th>Rate type Name</th>
+        <th>Rate</th>
+    </tr>
+    @if (Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Drug.Name
+                </td>
+                <td>
+                    @item.DrugId
+                </td>
+                <td>
+                    @item.TarrifName
+                </td>
+                <td>
+                    @item.DrugUnitPrice
+                </td>
+            </tr>
+        }
+
+    }
+    else
+    {
+        <tr>
+            <td colspan="4"> No data to display</td>
+        </tr>
+    }
+
+</table>

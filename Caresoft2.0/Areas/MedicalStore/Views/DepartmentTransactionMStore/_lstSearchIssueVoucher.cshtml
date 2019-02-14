@@ -1,0 +1,33 @@
+﻿
+@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.DepartmentVoucher>
+
+<table class="table table-data table-condensed" style="background-color:white">
+    <tr>
+        <th>Edit</th>
+        <th>Voucher Number</th>
+        <th>Issue Date</th>
+        <th>Total Amount</th>
+        <th>Report</th>
+    </tr>
+    @if (Model == null)
+    {
+        <tr>
+            <td colspan="5"> No data to display</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td><button class="btn btn-xs btn-primary">Edit</button></td>
+                <td>@item.VoucherNO</td>
+                <td>@item.IssueDate</td>
+                <td>@item.Total</td>
+                <td><button class="btn btn-xs btn-primary">Report</button></td>
+            </tr>
+        }
+
+    }
+
+</table>

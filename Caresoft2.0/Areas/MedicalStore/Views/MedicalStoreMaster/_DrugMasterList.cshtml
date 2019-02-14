@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.Drug>
+
+
+<table class="table table-data-pathology table-condensed" style="background-color:white">
+    <tr>
+        <th>Edit</th>
+        <th>Drug Name</th>
+        <th>IDA Code</th>
+        <th>Units/Pack</th>
+        <th>Reorder Level</th>
+        <th>Remark</th>
+        <th>Delete</th>
+    </tr>
+
+    <tr>
+        <th></th>
+        <th>
+            <input id="search" class="text-box" style="width:80%" />
+            <button style="width:20%" onclick="window.location.replace('/MedicalStore/MedicalStoreMaster/DrugMaster')" type="button" class="btn btn-xs btn-primary">Reset</button>
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+
+    </tr>
+    @if (Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            
+    <tr>
+        <td>
+            <button class="btn btn-xs btn-primary">Edit</button>
+            @if (item.IsActive == null || (bool)item.IsActive)
+            {
+                @Html.ActionLink("Deactivate", "ActivateDrug", new { id = item.Id, page = ViewBag.Page }, new { @class = "btn btn-xs btn-success" })
+            }
+            else
+            {
+                @Html.ActionLink("Activate", "ActivateDrug", new { id = item.Id, page = ViewBag.Page }, new { @class = "btn btn-xs btn-danger " })
+            }
+        </td>
+        <td style="white-space:normal">@item.Name</td>
+        <td>@item.IcdTenCode</td>
+        <td>@item.UnitsPack</td>
+        <td>@item.ReorderLevel </td>
+        <td>@item.Remark</td>
+        <td><button class="btnDrug btn btn-xs btn-primary" data-drugid="@item.Id">Delete</button></td>
+    </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="7" class="text-center">No data to display</td>
+        </tr>
+    }
+</table>

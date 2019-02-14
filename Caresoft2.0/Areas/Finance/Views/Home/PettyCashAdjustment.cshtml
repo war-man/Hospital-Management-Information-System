@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "PettyCashAdjustment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Finance/Views/Shared/_LeftNavigation.cshtml")
+</div>
+
+<div class="col-md-6">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Petty Cash Adjustment
+            </div>
+            <div class="panel-body">
+
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Requisitioner:
+                                </td>
+                                <td>
+                                    <select name="Requisitioner" id="Requisitioner" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option value=""></option>
+                                    </select>
+                                </td>
+                                <td>
+                                   &nbsp; Department:
+                                </td>
+                                <td>
+                                    <select name="Department" id="Department" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option value=""></option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Reason:
+                                </td>
+                                <td>
+                                    <input type="text" name="Reason" id="Reason" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                   &nbsp; Payment Details:
+                                </td>
+                                <td>
+                                    <input type="text" name="PaymenDetails" id="PaymentDetails" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Voucher No:
+                                </td>
+                                <td>
+                                    <input type="number" name="VoucherNo" id="VoucherNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                   &nbsp; Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="Amount" id="Amount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <button type="submit" class="btn btn-primary bn-sm">Ok</button>
+                        <button type="reset">Clear</button>
+                    </div>                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

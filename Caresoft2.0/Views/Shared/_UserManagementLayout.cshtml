@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "UserRollRight";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+}
+
+
+
+<div>
+    <div class="col-xs-2">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                Hospital Management
+            </div>
+            <div class="panel-body">
+                <div>
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action isActive" id="list-home-list" data-toggle="list" href="/UserManagement/UserMaster" role="tab" aria-controls="home">User Master</a>
+                        <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="/UserManagement/ActiveUsers" role="tab" aria-controls="home">Active Users</a>
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="/UserManagement/AddUser" role="tab" aria-controls="profile">Add User</a>
+
+                        <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="/UserManagement/RollMaster" role="tab" aria-controls="home">Roles Master</a>
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="/UserManagement/AddRole" role="tab" aria-controls="profile">Add Role</a>
+                        <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="/UserManagement/UserRollRight" role="tab" aria-controls="home">Map Roles to Functionalities</a>
+
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="/UserManagement/AddEmployee" role="tab" aria-controls="profile">Add New Employee</a>
+
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="/UserManagement/Reports" role="tab" aria-controls="profile">Reports</a>
+                    </div>
+
+                    <span class="text-danger">Developers Page</span>
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="/UserManagement/AddRoleRight" role="tab" aria-controls="profile">Add Functionality</a>
+                        <a class="list-group-item list-group-item-action isActive" id="list-home-list" data-toggle="list" href="/UserManagement/RoleRightActions" role="tab" aria-controls="home">Set Role Right Actions</a>
+                    </div>
+                </div>                   
+            </div>
+        </div>
+        @*<div class="row">
+                <div class="sidenav">
+                    <a href="#" class="head" style="border-bottom:1px solid black;"><b>Hospital Management</b></a>
+                    <a href="/UserManagement/UserMaster">User Master</a>
+                    <a href="/UserManagement/AddUser">Add User</a>
+                    <a href="/UserManagement/RollMaster">Role Master</a>
+                    <a href="/UserManagement/AddRole">Add Role</a>
+                    <a href="/UserManagement/UserRollRight">Role Rights Module</a>
+                    <a href="/UserManagement/AddEmployee">Add New Employee</a>
+                    <a href="/UserManagement/Reports">Reports</a>
+                </div>
+        </div>*@    
+
+
+    </div>
+    <div class="col-xs-9 ">
+        <div>
+            @RenderBody()
+        </div>
+       
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script src="~/Scripts/Caresoft.js"></script>
+@RenderSection("scripts", required: false)
+
+@section scripts{
+    <script>
+
+        $("#list-tab a").each(function () {
+            if ($(this).attr("href") === pathName) {
+                $(this).addClass("isActive");
+            } else {
+                $(this).removeClass("isActive");
+            }
+
+            
+        });
+    </script>
+}

@@ -1,0 +1,84 @@
+﻿@model Caresoft2._0.CustomData.DepartmentsData
+@{
+    ViewBag.FormName = "Create Department";
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+}
+
+
+@using (Ajax.BeginForm("Department", "Master", new { },new AjaxOptions
+{
+    LoadingElementId = "loadingElement",
+    HttpMethod = "POST",
+    UpdateTargetId = "departments-list",
+    OnSuccess = "$('#Department_DepartmentName').val('')"
+
+},new { }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+    <table class="table-form">
+        <tr>
+            <td><label>Department Type</label></td>
+            <td>
+                @Html.DropDownListFor(model => model.Department.DepartmentType, new SelectList(Model.DepartmentTypeList, "Id", "DepartmnetType"), "", htmlAttributes: new { @class = "text-box box-lg", @required = "required" })
+                @Html.ValidationMessageFor(model => model.Department.DepartmentType, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Department Name</label>
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Department.DepartmentName, new { htmlAttributes = new { @class = "text-box box-lg", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Department.DepartmentName, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Is Medical</label>
+            </td>
+            <td>
+                <select class="text-box box-lg" required name="Department.IsMedical">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+
+
+    <div class="form-group collapse">
+        @Html.LabelFor(model => model.Department.DateAdded, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Department.DateAdded, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Department.DateAdded, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input id="btn-depart" type="submit" value="Create" class="btn btn-primary btn-sm" />
+        </div>
+    </div>
+</div>
+}
+
+<div id="departments-list">
+
+    @Html.Partial("Departments", Model.Departments)
+</div>
+
+@section scripts{
+    <script>
+       
+    </script>
+}

@@ -1,0 +1,216 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.ItemMaster>
+
+@{
+    ViewBag.Title = "ItemMasterList";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+}
+
+<style>
+    .text-box{
+        width:200px;
+        margin-bottom:3px;
+    }
+</style>
+
+<div class="col-md-10">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px;">
+        <div class="panel-heading">
+            Item Master List
+        </div>
+        <div class="panel-body">
+            <div>
+                <div class="col-md-12">
+                    <table width="80%">
+                        <tr>
+                            <td>Item Description</td>
+                            <td>
+                                <input type="text" class="text-box margin-top-bottom-2" id="ItemDescription" />
+                                <div class="text-box suggestions collapse" id="ItemList" style="width:300px;">
+                                </div>
+                            </td>
+                            <td> Category</td>
+                            <td>
+                                <select class="text-box margin-top-bottom-2">
+                                    <option> Select Item</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>From Date</td>
+                            <td> <input type="date" class="text-box margin-top-bottom-2" value="@DateTime.Now.ToString("MM/dd/yyyy")" /></td>
+
+                            <td>To Date</td>
+                            <td> <input type="date" class="text-box margin-top-bottom-2" value="@DateTime.Now.ToString("MM/dd/yyyy")" /></td>
+
+
+                        </tr>
+
+                        <tr>
+                            <td>Supplier Name</td>
+                            <td>
+                                <input type="text" class="text-box margin-top-bottom-2"/>
+                            </td>
+                            <td></td>
+                            <td> <button class="btn btn-primary btn-sm">Search</button> </td>
+                           
+                        </tr>
+                    </table>
+                    <br/>
+                </div>
+
+
+
+                <div id="itemListSearched" class="marg-top-6px">
+                    <div class="col-md-12">
+                        <a href="@Url.Action("ItemMaster")" class="btn btn-primary btn-sm margin-top-bottom-2">Add New Item</a>
+
+                        @Html.Partial("~/Areas/MedicalStore/Views/MedicalStoreMaster/_ItemMasterList.cshtml", Model)
+                    </div>
+                    <div id="pagination" class="col-md-12">
+                        <div class="col-md-8">
+                            <div class="pagination">
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                                of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("ItemMasterList", new { page }))
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+        $("#ItemDescription").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    type: 'POST',
+                    url: "@Url.Action("SearchItemListItem", "MedicalStoreMaster")",
+                    dataType: "json",
+                    data: { name: $('#ItemDescription').val() },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.ItemName, value: item.ItemName, selectedId: item.ItemName };
+                        }));
+                    }
+                });
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                showNotification("An Error Occured, try again later", "danger", true);
+            },
+            minLength: 2,
+            select: function (event, ui) {
+                SearchItems(ui.item.selectedId);
+                console.log(ui.item.selectedId);
+            }
+        });
+
+        function SearchItems(itemaname) {
+
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("SearchItems", "PatientTransactionMStore")",
+                data: { name: itemaname },
+                success: function (obj) {
+                    //console.log(obj);
+                    $("#itemListSearched").empty();
+                    $("#itemListSearched").append(obj);
+
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                }
+            });
+
+        }
+
+        //$("#ItemDescription").keyup(function () {
+
+        //    var itemName = $("#ItemDescription").val();
+        //    var itemList = $("#ItemList");
+
+        //    if (itemName.length < 1) {
+        //        itemList.fadeOut();
+        //    }
+        //    else {
+
+        //        var nam = { name: itemName };
+
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: '/MedicalStoreMaster/SearchItemListItem',
+        //            data: nam,
+        //            success: function (obj) {
+
+        //                //create an array to store the values searched
+        //                var item = [];
+        //                //loop through all the items and push then into the array variable
+
+        //                //console.log(obj);
+        //                $.each(obj, function (key, value) {
+
+
+
+        //                    var string = '<p class="searchedItems" data-batchno="' + value.BatchNo + '" data-costunitprice="' + value.CostPriceUnit + '"';
+        //                    var moredata = 'data-unitspack="' + value.UnitsPack + '" data-expirystatus="' + value.ExpiryStatus + '"  data-costpercasepack="' + value.CasePackRate + '" data-mfgconame="' + value.MfgCoName + '" ';
+        //                    var otherData = 'data-itemaname="' + value.ItemName + '" > ' + value.ItemName + '</p > ';
+
+        //                    var itm = string + moredata + otherData;
+        //                    item.push(itm);
+
+        //                })
+
+        //                // empty the div element
+        //                $("#ItemList").empty();
+
+        //                var items = item.join("");
+        //                itemList.append(items);
+        //                itemList.fadeIn();
+
+        //                $(".searchedItems").each(function () {
+        //                    $(this).click(function () {
+
+        //                        $("#ItemDescription").val($(this).data("itemaname"));
+        //                        itemList.fadeOut();
+
+        //                        var na = $(this).data("itemaname");
+
+        //                        var n = { name: na }
+
+        //                        $.ajax({
+        //                            type: 'POST',
+        //                            url: '/PatientTransactionMStore/SearchItems',
+        //                            data: n,
+        //                            success: function (obj) {
+        //                                //console.log(obj);
+        //                                $("#itemListSearched").empty();
+        //                                $("#itemListSearched").append(obj);
+
+        //                            },
+        //                            error: function (x, y, z) {
+        //                                console.log(x.responseText);
+        //                            }
+        //                        })
+
+        //                    })
+        //                });
+        //            },
+        //            error: function () {
+        //                console.log("Error Occured");
+        //            }
+        //        })
+
+        //    }
+        //});
+
+    </script>    
+    
+}

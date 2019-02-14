@@ -1,0 +1,294 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.DrugTariffs>
+
+@{
+    ViewBag.Title = "SetRateType";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+}
+
+<style>
+    .text-box {
+        width: 200px;
+    }
+
+    .table-form tr {
+        height: 40px;
+    }
+</style>
+<div class="col-xs-8">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading">
+            Set Price
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="">
+                        <tr>
+                            <td>Drug Name &nbsp; </td>
+                            <td>
+                                <input type="text" class="text-box margin-top-bottom-2" id="name" data-kimoi="" autocomplete="off" />
+                                <input type="hidden" class="text-box" id="DrugId" data-kimoi="" autocomplete="off" />
+                                <div class="text-box suggestions collapse" id="ItemNameList">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Drug Id &nbsp;  </td>
+                            <td><input type="text" class="text-box  margin-top-bottom-2" /></td>
+                        </tr>
+                        <tr>
+                            <td>Drug Code &nbsp; </td>
+                            <td><input type="text" class="text-box  margin-top-bottom-2"  /></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-xs-12 marg-top-6px" >
+                    <div id="lstTarrifs">
+                        <table class="table table-data-pathology table-condensed pathology-border" style="background-color:white">
+
+                            <tr>
+                                <th>Rate type</th>
+                                <th>Rate </th>
+                                <th>Delete</th>
+                            </tr>
+                            <tr>
+                                <td class="text-center" colspan="3"> No data to display</td>
+                            </tr>
+                        </table>
+                    </div>
+                   
+                    <div>
+                        <button class="btn btn-primary btn-sm" id="btnSave">Save</button>
+                        <button class="btn btn-primary btn-sm" id="btnBack">Back</button>
+                        <button class="btn btn-primary btn-sm" id="btnCancel">Cancel</button>
+                    </div>
+                    <br/>
+                   
+                    <div id="lstDrugTarrifDetails" style="height: 60vh; overflow:auto;">
+                        <table class="table table-data-pathology table-condensed " style="background-color:white">
+                            <tr>
+                                <th>Drug Name</th>
+                                <th>Drug Code</th>
+                                <th>Rate type Name</th>
+                                <th>Rate</th>
+                            </tr>
+                            @if (Model.Count() > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.Drug.Name
+                                        </td>
+                                        <td>
+                                            @item.DrugId
+                                        </td>
+                                        <td>
+                                            @item.TarrifName
+                                        </td>
+                                        <td>
+                                            @item.DrugUnitPrice.ToString("N2")
+                                        </td>
+                                    </tr>
+                                }
+
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4"> No data to display</td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $("#name").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Action("SearchDrugbyName", "PatientTransactionMStore")",
+                    dataType: "json",
+                    data: { name: $('#name').val() },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Name, value: item.Name, selectedId: item.Id };
+                        }));
+                    }
+                });
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                showNotification("An Error Occured, try again later", "danger", true);
+            },
+            minLength: 1,
+            select: function (event, ui) {
+                $("#DrugId").val(ui.item.selectedId);
+                AddTextBoxesForTarrifsAndPrices(ui.item.selectedId);
+                console.log(ui.item.selectedId);
+            }
+        });
+
+        //$("#name").keyup(function () {
+
+        //    var itemName = $("#name").val();
+        //    var itemList = $("#ItemNameList");
+
+
+        //    if (itemName.length < 1) {
+
+        //        itemList.fadeOut();
+        //    }
+        //    else {
+
+        //        var nam = { name: itemName };
+
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: '/PatientTransactionMStore/SearchDrugbyName',
+        //            data: nam,
+        //            success: function (obj) {
+        //                //console.log(obj);
+        //                //create an array to store the values searched
+        //                var item = [];
+        //                //loop through all the items and push then into the array variable
+
+        //                $.each(obj, function (key, value) {
+        //                    var string = '<p class="searchedItems" data-val="' + value.Id + '"  data-value="' + value.Name + '">' + value.Name + '</p>';
+        //                    item.push(string);
+
+        //                })
+
+        //                // empty the div element
+        //                $("#ItemNameList").empty();
+
+        //                var items = item.join("");
+        //                itemList.append(items);
+        //                itemList.fadeIn();
+
+        //                $(".searchedItems").each(function () {
+        //                    $(this).click(function () {
+        //                        var val = $(this).data("value");
+        //                        var dataId = $(this).data("val");
+
+        //                        $("#name").val(val);
+        //                        $("#DrugId").val(dataId);
+        //                        $("#ItemNameList").fadeOut();
+        //                        $("#ItemNameList").empty();
+        //                        //GetBatchNumbers(val);
+        //                        AddTextBoxesForTarrifsAndPrices();
+        //                    })
+        //                });
+
+
+        //            },
+        //            error: function (e, x, y) {
+        //                console.log(e.responseText);
+        //            }
+        //        });
+
+        //    }
+
+        //});
+
+        function AddTextBoxesForTarrifsAndPrices(DrugId) {
+
+            $.ajax({
+                type: "POST",
+                url: "/PatientTransactionMStore/TextboxesForTarrifs",
+                data: { DrugId : DrugId},
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    $("#lstTarrifs").empty();
+                    $("#lstTarrifs").append(obj);
+                    $(".loader").hide();
+                },
+                error: function (x,y,z) {
+                    $.notify("An error occured", "error");
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                }
+
+            });
+        }
+
+        $("#btnSave").click(function () {
+
+            var drugTariffs = [];
+            var drugId = $("#DrugId").val();
+
+           
+            $(".text-tarrif").each(function (key, value) {
+                var TarrifId = $(this).data('id');
+                var DrugUnitPrice = $(this).val();
+                var tarrifname = $(this).data('name');
+
+                var lstDrugs = {
+                    DrugUnitPrice: DrugUnitPrice,
+                    TariffId: TarrifId,
+                    DrugId: drugId,
+                    TarrifName: tarrifname
+                };
+
+                drugTariffs.push(lstDrugs);
+            });
+
+            //console.log(drugTariffs);
+
+            if (drugTariffs.length > 0) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/PatientTransactionMStore/AddDrugsPriceToDrugs',
+                    data: { "drugTariffs": drugTariffs },
+                    beforeSend: function () {
+                        $(".loader").show();
+
+                    },
+                    success: function (obj) {
+                        //console.log(obj);
+
+                        $(".loader").hide();
+                        if (obj == "null")
+                        {
+                            $.notify("An Error occured saving your values", "error");
+                            
+
+                        }
+                        else {
+                            $.notify("Data Saved Successfully", "success");
+                            $("#lstTarrifs").empty();
+
+                            $("#lstDrugTarrifDetails").empty();
+                            $("#lstDrugTarrifDetails").append(obj);
+                            $("#name").val("");
+
+                        }
+
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                        $(".loader").hide();
+                        $.notify("An error occured", "error");
+                       
+                    }
+                });
+            }
+
+            
+
+        })
+
+        
+
+        
+
+    </script>
+}

@@ -1,0 +1,180 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.ImmunizationMaster>
+
+@{
+    ViewBag.Title = "Immunization Master";
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+    ViewBag.FormName = ViewBag.Title;
+    var cats = (IEnumerable<CaresoftHMISDataAccess.ImmunizationCategory>)ViewBag.ImmunizationCategories;
+
+}
+<form id="form_create_immunization_master">
+    <table class="table-form">
+        <tr>
+            <td>
+                <label for="imm_cat_id">
+                    Immnunization Category
+                </label>
+            </td>
+            <td>
+                <select class="text-box box-lg" id="imm_cat_id" required name="ImmunizationCategoryId">
+                    <option></option>
+                    @foreach (var cat in cats)
+                {
+                    <option value="@cat.Id">@cat.ImmunizationCategoryName</option>
+            }
+                </select>
+                <a href="@Url.Action("ImmunizationCategories", "Master")">Add New</a>
+            </td>
+
+        </tr>
+        <tr>
+
+            <td>
+                <label>
+                    Immnunization Type
+                </label>
+            </td>
+            <td>
+                <select class="text-box box-lg" name="ImmunizationType">
+                    <option>All</option>
+                    <option>Optional</option>
+                    <option>Routine</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="imm_name">
+                    Immnunization Name
+                </label>
+            </td>
+            <td>
+                <input type="text" class="text-box box-lg" required id="imm_name" name="ImmunizationName" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="imm_lower_age">
+                    Lower Age
+                </label>
+            </td>
+            <td>
+                <input type="number" class="text-box box-lg" id="imm_lower_age" required min="0" name="LowerAgeInMonths" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="imm_upper_age">
+                    Upper Age
+                </label>
+            </td>
+            <td>
+                <input type="number" class="text-box box-lg" id="imm_upper_age" required min="0" name="UpperAgeInMonth" />
+            </td>
+        </tr>
+
+
+
+        <tr>
+            <td>
+                <label>
+                    BWMY Type
+                </label>
+            </td>
+            <td>
+                <select class="text-box box-lg" name="BWMYType">
+                    <option>Weeks</option>
+                    <option>Months</option>
+                    <option>Years</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    Vaccine Flag
+                </label>
+            </td>
+            <td>
+                <select class="text-box box-lg" name="VaccineFlag">
+                    <option></option>
+                    <option>Adult</option>
+                    <option>Child</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Save" class="btn btn-sm btn-primary" />
+                <input type="reset" value="Clear" class="btn btn-sm btn-default" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+<div id="immunization_list">
+    @Html.Partial("ImmunizationMasterList", Model)
+</div>
+
+@section scripts{
+
+    <script>
+        $("#form_create_immunization_master").submit(function (e) {
+            e.preventDefault();
+            if (!isValidForm($(this))) {
+                return false;
+            }
+            $(".loader").show();
+            var data = $(this).serializeObject();
+            $.ajax({
+                url: "@Url.Action("SaveImmunizationMaster","Master")",
+                data: data,
+                method: "post",
+                success: function (res) {
+                    $(".loader").hide();
+                    $("#immunization_list").html(res);
+                },
+                error: function (e, x, r) {
+                    $(".loader").hide();
+                    showNotification("An error occured", "danger", true);
+                    console.log(e.responseText);
+                }
+                
+            })
+
+        })
+
+        function deleteMe(id, obj) {
+            var tr = $("#immunization-" + id);
+            var name = tr.find(".name").text().trim();
+            
+            var con = confirm("Are you sure you want to delete " + name + "?");
+            if (con) {
+                $(obj).attr('disable', 'disable');
+                $(".loader").show();
+                $.ajax({
+                    method: "get",
+                    url: "@Url.Action("DeleteImmunization","Master")/" + id,
+                    success: function (res) {
+                        $(".loader").hide();
+                        showNotification(res.Message, res.Status, true);
+                        if (res.Status === 'success') {
+                            tr.remove();
+                        }
+
+                    },
+                    error: function (e, x, r) {
+                        $(".loader").hide();
+                        showNotification("An error occured", "danger", true);
+                        console.log(e.responseText);
+
+                    }
+                })
+            }
+        }
+    </script>
+}
+
+    

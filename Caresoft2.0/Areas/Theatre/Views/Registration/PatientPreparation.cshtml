@@ -1,0 +1,202 @@
+﻿@model CaresoftHMISDataAccess.TheatrePatientBioData
+@using CaresoftHMISDataAccess;
+
+<fieldset>
+    <legend> <h5><b> Operation Personel Preparation </b> </h5> </legend>
+
+
+    @using (Ajax.BeginForm("PatientPreparation", "Registration", new AjaxOptions
+    {
+        OnFailure = "$('#message').text()",
+        OnSuccess = "getresult2",
+        LoadingElementId = "LoadingElement"
+    }))
+    {
+        @Html.AntiForgeryToken()
+
+        <p id="message"></p>
+        <form id="patientPreparationForm">
+            <div class="">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="col-md-6">
+                    <div>
+                        <fieldset style="padding: 10px;">
+                            <legend> <h5><b> Surgeon Registration </b> </h5> </legend>
+                            <section id="SelectedSurgeon"></section>
+                            <div>
+                                @foreach (var i in Model.TheatreOperationPersonels.Where(e => e.TheatreDesignation.DesignationName.Contains("Surgeon")))
+                                {
+                                    <input disabled readonly hidden name="rowId" value="@i.Id" class="text-box theatrestaff" style="width:50%" />
+                                    <input id="Surgeon" readonly value="@i.Name" class="text-box theatrestaff" style="width:50%" />
+                                    <select id="SurgeonRole" readonly class="text-box" style="width:30%">
+                                        @{
+                                            foreach (var x in ((List<TheatreDesignation>)ViewBag.TheatreDesignations).Where(e => e.DesignationName.Contains("Surgeon")))
+                                            {
+                                                if (i.Designation == x.Id)
+                                                {
+                                                    <option selected value="@x.Id">@x.DesignationName</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@x.Id">@x.DesignationName</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    <img id="removeSurgeon" class="text-box" style="height:25px" src="~/Content/icons/treeviewicons/button-open.png">
+
+                                }
+                                <input hidden id="SurgeonId" class="text-box theatrestaff" style="width:50%" />
+                                <input id="Surgeon" class="text-box theatrestaff" style="width:50%" />
+                                <select id="SurgeonRole" class="text-box" style="width:30%">
+                                    @{
+                                        foreach (var i in ((List<TheatreDesignation>)ViewBag.TheatreDesignations).Where(e => e.DesignationName.Contains("Surgeon")))
+                                        {
+                                            <option value="@i.Id">@i.DesignationName</option>
+                                        }
+                                    }
+                                </select>
+                                <img id="addSurgeon" class="text-box" style="height:25px" src="/Content/icons/treeviewicons/button-closed.png">
+                            </div>
+                        </fieldset>
+
+                        <fieldset style="padding: 10px;">
+                            <legend> <h5><b> Anaesthesists </b> </h5> </legend>
+                            <section id="SelectedAnaesthesists"></section>
+                            <div>
+                                @foreach (var i in Model.TheatreOperationPersonels.Where(e => e.TheatreDesignation.DesignationName.Contains("Anaesthesist")))
+                                {
+                                    <input disabled readonly hidden name="rowId" value="@i.Id" class="text-box theatrestaff" style="width:50%" />
+                                    <input id="Anaesthesist" readonly value="@i.Name" class="text-box theatrestaff" style="width:50%" />
+                                    <select id="AnaesthesistRole" readonly class="text-box" style="width:30%">
+                                        @{
+                                            foreach (var x in ((List<TheatreDesignation>)ViewBag.TheatreDesignations).Where(e => e.DesignationName.Contains("Anaesthesist")))
+                                            {
+                                                if (i.Designation == x.Id)
+                                                {
+                                                    <option selected value="@x.Id">@x.DesignationName</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@x.Id">@x.DesignationName</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    <img id="removeAnaesthesist" class="text-box" style="height:25px" src="~/Content/icons/treeviewicons/button-open.png">
+
+                                }
+                               
+                                <input hidden id="AnaesthesistId" class="text-box theatrestaff" style="width:50%" />
+                                <input id="Anaesthesist" class="text-box theatrestaff" style="width:50%" />
+                                <select id="AnaesthesistRole" class="text-box" style="width:30%">
+                                    @{
+                                        foreach (var i in ((List<TheatreDesignation>)ViewBag.TheatreDesignations).Where(e => e.DesignationName.Contains("Anaesthesist")))
+                                        {
+                                            <option value="@i.Id">@i.DesignationName</option>
+                                        }
+                                    }
+                                </select>
+                                <img id="addAnaesthesist" class="text-box" style="height:25px" src="/Content/icons/treeviewicons/button-closed.png">
+                            </div>
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div>
+                        <fieldset style="padding: 10px;">
+                            <legend> <h5><b> Scrub Nurses </b> </h5> </legend>
+                            <section id="SelectedScrubNurses"></section>
+                            <div>
+                                @foreach (var i in Model.TheatreOperationPersonels.Where(e => e.TheatreDesignation.DesignationName.Contains("Scrub Nurse")))
+                                {
+                                    <input disabled readonly hidden name="rowId" value="@i.Id" class="text-box theatrestaff" style="width:50%" />
+                                    <input id="ScrubNurse" readonly value="@i.Name" class="text-box theatrestaff" style="width:50%" />
+                                    <select id="ScrubNurseRole" readonly class="text-box" style="width:30%">
+                                        @{
+                                            foreach (var x in ((List<TheatreDesignation>)ViewBag.TheatreDesignations).Where(e => e.DesignationName.Contains("Scrub Nurse")))
+                                            {
+                                                if (i.Designation == x.Id)
+                                                {
+                                                    <option selected value="@x.Id">@x.DesignationName</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@x.Id">@x.DesignationName</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    <img id="removeAnaesthesist" class="text-box" style="height:25px" src="~/Content/icons/treeviewicons/button-open.png">
+
+                                }
+                                <input hidden id="ScrubNurseId" class="text-box theatrestaff" style="width:50%" />
+                                <input id="ScrubNurse" class="text-box theatrestaff" style="width:50%" />
+                                <select id="ScrubNurseRole" class="text-box" style="width:30%">
+                                    @{
+                                        foreach (var i in ((List<TheatreDesignation>)ViewBag.TheatreDesignations).Where(e => e.DesignationName.Contains("Scrub Nurse")))
+                                        {
+                                            <option value="@i.Id">@i.DesignationName</option>
+                                        }
+                                    }
+                                </select>
+                                <img id="addScrubNurse" class="text-box" style="height:25px" src="/Content/icons/treeviewicons/button-closed.png">
+                            </div>
+                        </fieldset>
+
+                        <fieldset style="padding: 10px;">
+                            <legend> <h5><b> Circulatory Nurses </b> </h5> </legend>
+                            <section id="SelectedCirculatoryNurses"></section>
+                            <div>
+                                @foreach (var i in Model.TheatreOperationPersonels.Where(e => e.TheatreDesignation.DesignationName.Contains("Circulatory Nurse")))
+                                {
+                                    <input disabled readonly hidden name="rowId" value="@i.Id" class="text-box theatrestaff" style="width:50%" />
+                                    <input id="CirculatoryNurse" readonly value="@i.Name" class="text-box theatrestaff" style="width:50%" />
+                                    <select id="CirculatoryNurseRole" readonly class="text-box" style="width:30%">
+                                        @{
+                                            foreach (var x in ((List<TheatreDesignation>)ViewBag.TheatreDesignations).Where(e => e.DesignationName.Contains("Circulatory Nurse")))
+                                            {
+                                                if (i.Designation == x.Id)
+                                                {
+                                                    <option selected value="@x.Id">@x.DesignationName</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@x.Id">@x.DesignationName</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    <img id="removeAnaesthesist" class="text-box" style="height:25px" src="~/Content/icons/treeviewicons/button-open.png">
+
+                                }
+                                <input hidden id="CirculatoryNurseId" class="text-box theatrestaff" style="width:50%" />
+                                <input id="CirculatoryNurse" class="text-box theatrestaff" style="width:50%" />
+                                <select id="CirculatoryNurseRole" class="text-box" style="width:30%">
+                                    @{
+                                        foreach (var i in ((List<TheatreDesignation>)ViewBag.TheatreDesignations).Where(e => e.DesignationName.Contains("Circulatory Nurse")))
+                                        {
+                                            <option value="@i.Id">@i.DesignationName</option>
+                                        }
+                                    }
+                                </select>
+                                <img id="addCirculatoryNurse" class="text-box" style="height:25px" src="/Content/icons/treeviewicons/button-closed.png">
+                            </div>
+                        </fieldset>
+
+                    </div>
+                </div>                
+          
+            </div>
+
+            <div class="col-md-12">
+                <button id="savePatientPreparation" type="button" class="btn btn-sm btn-primary marg-top-6px"> Save </button>
+            </div>
+        </form>
+    }
+
+</fieldset>
+

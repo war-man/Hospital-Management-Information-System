@@ -1,0 +1,53 @@
+﻿@model CaresoftHMISDataAccess.OpdRegister
+@{ var imm = (CaresoftHMISDataAccess.ImmunizationMaster)ViewBag.Immunization;}
+<div class="panel panel-primary  shadow glass caresoft-panel" style="margin-bottom:-1em;">
+    <div class="panel-heading caresoft-panel">
+        Immunization Entry
+    </div>
+    <div class="panel-body">
+        <fieldset style="padding:.6em">
+            <h5>@imm.ImmunizationCategory.ImmunizationCategoryName</h5>
+            <h4>@imm.ImmunizationName</h4>
+            <hr />
+
+            <form id="immunization_entry_form">
+                <input type="hidden" name="OPDNo" value="@Model.Id" />
+                <input type="hidden" name="ImmunizationMasterId" value="@imm.Id" />
+                <table class="table-form">
+                    <tr>
+                        <td>
+                            <label>Due On</label>
+                        </td>
+                        <td>
+                            <input type="date" class="text-box box-lg" />
+                        </td>
+                        <td rowspan="3" valign="top">
+                            <label>Remarks</label>
+                        </td>
+                        <td rowspan="3" valign="top">
+                            <textarea class="text-box box-xlg" rows="5" name="Remarks"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="DateGiven">Given On</label>
+                        </td>
+                        <td>
+                            <input type="date" class="text-box box-lg" name="DateGiven" id="DateGiven" value="@DateTime.Today.ToString("yyyy-MM-dd")" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="DateOfNextVisit">Next Visit On</label>
+                        </td>
+                        <td>
+                            <input type="date" class="text-box box-lg" name="DateOfNextVisit" id="DateOfNextVisit" required />
+                        </td>
+                    </tr>
+
+                </table>
+                <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+            </form>
+        </fieldset>
+    </div>
+</div>

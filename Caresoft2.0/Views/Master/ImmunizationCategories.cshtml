@@ -1,0 +1,77 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.ImmunizationCategory>
+
+@{
+    ViewBag.Title = "Immunization Categories";
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+    ViewBag.FormName = ViewBag.Title;
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p class="text-@ViewBag.Status">@ViewBag.Message</p>
+    <table class="table-form">
+        <tr>
+            <td>
+                <label for="ImmunizationCategoryName">Immunization Category Name</label>
+            </td>
+            <td>
+                <input type="text" class="text-box box-xlg" name="ImmunizationCategoryName" id="ImmunizationCategoryName" required />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" class="btn btn-sm btn-primary" value="Create" />
+            </td>
+        </tr>
+    </table>
+}
+
+    <p style="margin-top:1em;">
+        <a href="@Url.Action("Immunizations", "Master")">Back to Immunization Master</a>
+    </p>
+
+<table class="table table-data table-condensed">
+    <tr>
+        <th></th>
+        <th>#</th>
+        <th>Immunization Category Name</th>
+        <th></th>
+    </tr>
+    <tbody class="bg-white">
+        @{var x = Model.Count();}
+        @foreach (var cat in Model)
+        {
+            <tr>
+                <td>
+                    <button class="btn btn-xs btn-defaut">Edit</button>
+                </td>
+                <td>
+                    @x
+                </td>
+                <td>
+                    @cat.ImmunizationCategoryName
+                </td>
+                <td>
+                    <button class="btn btn-xs btn-defaut">Delete</button>
+                </td>
+            </tr>
+            x--;
+        }
+    </tbody>
+
+</table>
+
+
+
+<input type="hidden" id="status" value="@ViewBag.Status" />
+<input type="hidden" id="message" value="@ViewBag.Message" />
+
+@section scripts{
+    <script>
+        markRequiredFields();
+
+
+    </script>
+}

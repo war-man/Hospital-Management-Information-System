@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetMohMonthlyCashAnalysis" targetNamespace="http://tempuri.org/DataSetMohMonthlyCashAnalysis.xsd" xmlns:mstns="http://tempuri.org/DataSetMohMonthlyCashAnalysis.xsd" xmlns="http://tempuri.org/DataSetMohMonthlyCashAnalysis.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetMohMonthlyCashAnalysis" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetMohMonthlyCashAnalysis" msprop:Generator_UserDSName="DataSetMohMonthlyCashAnalysis">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BreakDownByDepartment" msprop:Generator_TableClassName="BreakDownByDepartmentDataTable" msprop:Generator_TableVarName="tableBreakDownByDepartment" msprop:Generator_RowChangedName="BreakDownByDepartmentRowChanged" msprop:Generator_TablePropName="BreakDownByDepartment" msprop:Generator_RowDeletingName="BreakDownByDepartmentRowDeleting" msprop:Generator_RowChangingName="BreakDownByDepartmentRowChanging" msprop:Generator_RowEvHandlerName="BreakDownByDepartmentRowChangeEventHandler" msprop:Generator_RowDeletedName="BreakDownByDepartmentRowDeleted" msprop:Generator_RowClassName="BreakDownByDepartmentRow" msprop:Generator_UserTableName="BreakDownByDepartment" msprop:Generator_RowEvArgName="BreakDownByDepartmentRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
+              <xs:element name="IpCash" msprop:Generator_ColumnVarNameInTable="columnIpCash" msprop:Generator_ColumnPropNameInRow="IpCash" msprop:Generator_ColumnPropNameInTable="IpCashColumn" msprop:Generator_UserColumnName="IpCash" type="xs:double" minOccurs="0" />
+              <xs:element name="Maternity" msprop:Generator_ColumnVarNameInTable="columnMaternity" msprop:Generator_ColumnPropNameInRow="Maternity" msprop:Generator_ColumnPropNameInTable="MaternityColumn" msprop:Generator_UserColumnName="Maternity" type="xs:double" minOccurs="0" />
+              <xs:element name="XRay" msprop:Generator_ColumnVarNameInTable="columnXRay" msprop:Generator_ColumnPropNameInRow="XRay" msprop:Generator_ColumnPropNameInTable="XRayColumn" msprop:Generator_UserColumnName="XRay" type="xs:double" minOccurs="0" />
+              <xs:element name="Lab" msprop:Generator_ColumnVarNameInTable="columnLab" msprop:Generator_ColumnPropNameInRow="Lab" msprop:Generator_ColumnPropNameInTable="LabColumn" msprop:Generator_UserColumnName="Lab" type="xs:double" minOccurs="0" />
+              <xs:element name="Theatre" msprop:Generator_ColumnVarNameInTable="columnTheatre" msprop:Generator_ColumnPropNameInRow="Theatre" msprop:Generator_ColumnPropNameInTable="TheatreColumn" msprop:Generator_UserColumnName="Theatre" type="xs:double" minOccurs="0" />
+              <xs:element name="Mortuary" msprop:Generator_ColumnVarNameInTable="columnMortuary" msprop:Generator_ColumnPropNameInRow="Mortuary" msprop:Generator_ColumnPropNameInTable="MortuaryColumn" msprop:Generator_UserColumnName="Mortuary" type="xs:double" minOccurs="0" />
+              <xs:element name="OpTreatment" msprop:Generator_ColumnVarNameInTable="columnOpTreatment" msprop:Generator_ColumnPropNameInRow="OpTreatment" msprop:Generator_ColumnPropNameInTable="OpTreatmentColumn" msprop:Generator_UserColumnName="OpTreatment" type="xs:double" minOccurs="0" />
+              <xs:element name="Pharmacy" msprop:Generator_ColumnVarNameInTable="columnPharmacy" msprop:Generator_ColumnPropNameInRow="Pharmacy" msprop:Generator_ColumnPropNameInTable="PharmacyColumn" msprop:Generator_UserColumnName="Pharmacy" type="xs:double" minOccurs="0" />
+              <xs:element name="OtherBreakdown" msprop:Generator_ColumnVarNameInTable="columnOtherBreakdown" msprop:Generator_ColumnPropNameInRow="OtherBreakdown" msprop:Generator_ColumnPropNameInTable="OtherBreakdownColumn" msprop:Generator_UserColumnName="OtherBreakdown" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CashReciepts" msprop:Generator_TableClassName="CashRecieptsDataTable" msprop:Generator_TableVarName="tableCashReciepts" msprop:Generator_RowChangedName="CashRecieptsRowChanged" msprop:Generator_TablePropName="CashReciepts" msprop:Generator_RowDeletingName="CashRecieptsRowDeleting" msprop:Generator_RowChangingName="CashRecieptsRowChanging" msprop:Generator_RowEvHandlerName="CashRecieptsRowChangeEventHandler" msprop:Generator_RowDeletedName="CashRecieptsRowDeleted" msprop:Generator_RowClassName="CashRecieptsRow" msprop:Generator_UserTableName="CashReciepts" msprop:Generator_RowEvArgName="CashRecieptsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
+              <xs:element name="CashCollections" msprop:Generator_ColumnVarNameInTable="columnCashCollections" msprop:Generator_ColumnPropNameInRow="CashCollections" msprop:Generator_ColumnPropNameInTable="CashCollectionsColumn" msprop:Generator_UserColumnName="CashCollections" type="xs:double" minOccurs="0" />
+              <xs:element name="NhifReceipts" msprop:Generator_ColumnVarNameInTable="columnNhifReceipts" msprop:Generator_ColumnPropNameInRow="NhifReceipts" msprop:Generator_ColumnPropNameInTable="NhifReceiptsColumn" msprop:Generator_UserColumnName="NhifReceipts" type="xs:double" minOccurs="0" />
+              <xs:element name="OtherDebtorsReceipts" msprop:Generator_ColumnVarNameInTable="columnOtherDebtorsReceipts" msprop:Generator_ColumnPropNameInRow="OtherDebtorsReceipts" msprop:Generator_ColumnPropNameInTable="OtherDebtorsReceiptsColumn" msprop:Generator_UserColumnName="OtherDebtorsReceipts" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RevenueNotCollected" msprop:Generator_TableClassName="RevenueNotCollectedDataTable" msprop:Generator_TableVarName="tableRevenueNotCollected" msprop:Generator_RowChangedName="RevenueNotCollectedRowChanged" msprop:Generator_TablePropName="RevenueNotCollected" msprop:Generator_RowDeletingName="RevenueNotCollectedRowDeleting" msprop:Generator_RowChangingName="RevenueNotCollectedRowChanging" msprop:Generator_RowEvHandlerName="RevenueNotCollectedRowChangeEventHandler" msprop:Generator_RowDeletedName="RevenueNotCollectedRowDeleted" msprop:Generator_RowClassName="RevenueNotCollectedRow" msprop:Generator_UserTableName="RevenueNotCollected" msprop:Generator_RowEvArgName="RevenueNotCollectedRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
+              <xs:element name="NhifPatients" msprop:Generator_ColumnVarNameInTable="columnNhifPatients" msprop:Generator_ColumnPropNameInRow="NhifPatients" msprop:Generator_ColumnPropNameInTable="NhifPatientsColumn" msprop:Generator_UserColumnName="NhifPatients" type="xs:double" minOccurs="0" />
+              <xs:element name="OtherDebtors" msprop:Generator_ColumnVarNameInTable="columnOtherDebtors" msprop:Generator_ColumnPropNameInRow="OtherDebtors" msprop:Generator_ColumnPropNameInTable="OtherDebtorsColumn" msprop:Generator_UserColumnName="OtherDebtors" type="xs:double" minOccurs="0" />
+              <xs:element name="Waivers" msprop:Generator_ColumnVarNameInTable="columnWaivers" msprop:Generator_ColumnPropNameInRow="Waivers" msprop:Generator_ColumnPropNameInTable="WaiversColumn" msprop:Generator_UserColumnName="Waivers" type="xs:double" minOccurs="0" />
+              <xs:element name="Exemptions" msprop:Generator_ColumnVarNameInTable="columnExemptions" msprop:Generator_ColumnPropNameInRow="Exemptions" msprop:Generator_ColumnPropNameInTable="ExemptionsColumn" msprop:Generator_UserColumnName="Exemptions" type="xs:double" minOccurs="0" />
+              <xs:element name="Absconders" msprop:Generator_ColumnVarNameInTable="columnAbsconders" msprop:Generator_ColumnPropNameInRow="Absconders" msprop:Generator_ColumnPropNameInTable="AbscondersColumn" msprop:Generator_UserColumnName="Absconders" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Banking" msprop:Generator_TableClassName="BankingDataTable" msprop:Generator_TableVarName="tableBanking" msprop:Generator_RowChangedName="BankingRowChanged" msprop:Generator_TablePropName="Banking" msprop:Generator_RowDeletingName="BankingRowDeleting" msprop:Generator_RowChangingName="BankingRowChanging" msprop:Generator_RowEvHandlerName="BankingRowChangeEventHandler" msprop:Generator_RowDeletedName="BankingRowDeleted" msprop:Generator_RowClassName="BankingRow" msprop:Generator_UserTableName="Banking" msprop:Generator_RowEvArgName="BankingRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
+              <xs:element name="AmountBankedInFacilityAccount" msdata:Caption="AmountBankedInFacility" msprop:Generator_ColumnVarNameInTable="columnAmountBankedInFacilityAccount" msprop:Generator_ColumnPropNameInRow="AmountBankedInFacilityAccount" msprop:Generator_ColumnPropNameInTable="AmountBankedInFacilityAccountColumn" msprop:Generator_UserColumnName="AmountBankedInFacilityAccount" type="xs:double" minOccurs="0" />
+              <xs:element name="AmountBankedDirectlyinAccountFor" msdata:Caption="AmountBankedDirectly" msprop:Generator_ColumnVarNameInTable="columnAmountBankedDirectlyinAccountFor" msprop:Generator_ColumnPropNameInRow="AmountBankedDirectlyinAccountFor" msprop:Generator_ColumnPropNameInTable="AmountBankedDirectlyinAccountForColumn" msprop:Generator_UserColumnName="AmountBankedDirectlyinAccountFor" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MonthlyBreakDownOfOtherIncome" msprop:Generator_TableClassName="MonthlyBreakDownOfOtherIncomeDataTable" msprop:Generator_TableVarName="tableMonthlyBreakDownOfOtherIncome" msprop:Generator_RowChangedName="MonthlyBreakDownOfOtherIncomeRowChanged" msprop:Generator_TablePropName="MonthlyBreakDownOfOtherIncome" msprop:Generator_RowDeletingName="MonthlyBreakDownOfOtherIncomeRowDeleting" msprop:Generator_RowChangingName="MonthlyBreakDownOfOtherIncomeRowChanging" msprop:Generator_RowEvHandlerName="MonthlyBreakDownOfOtherIncomeRowChangeEventHandler" msprop:Generator_RowDeletedName="MonthlyBreakDownOfOtherIncomeRowDeleted" msprop:Generator_RowClassName="MonthlyBreakDownOfOtherIncomeRow" msprop:Generator_UserTableName="MonthlyBreakDownOfOtherIncome" msprop:Generator_RowEvArgName="MonthlyBreakDownOfOtherIncomeRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
+              <xs:element name="Category" msprop:Generator_ColumnVarNameInTable="columnCategory" msprop:Generator_ColumnPropNameInRow="Category" msprop:Generator_ColumnPropNameInTable="CategoryColumn" msprop:Generator_UserColumnName="Category" type="xs:string" minOccurs="0" />
+              <xs:element name="AmountKsh" msprop:Generator_ColumnVarNameInTable="columnAmountKsh" msprop:Generator_ColumnPropNameInRow="AmountKsh" msprop:Generator_ColumnPropNameInTable="AmountKshColumn" msprop:Generator_UserColumnName="AmountKsh" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

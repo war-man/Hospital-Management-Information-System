@@ -1,0 +1,140 @@
+﻿@model CaresoftHMISDataAccess.MorgAdmission
+@{
+    ViewBag.Title = "Body Collection/Release";
+    Layout = "~/Views/Morg/_MorgLayout.cshtml";
+}
+
+
+<div class="alert alert-@ViewBag.Status">
+    @ViewBag.Message
+</div>
+<fieldset>
+    <legend>Deceased</legend>
+    <table class="table-form">
+        <tr>
+            <td>
+                <label>Name</label>
+            </td>
+            <td>
+                @if (Model.RegNumber != null)
+                {<text>(@Model.RegNumber)</text>}<br />
+                @Model.DeceasedName
+            </td>
+            <td>
+                <label>Sheet No</label>
+            </td>
+            <td>
+                @Model.Id.ToString().PadLeft(4, '0')
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <labe>Age [Gender]</labe>
+            </td>
+            <td>
+                @Model.Age [@Model.Gender]
+            </td>
+            <td>
+                <label>IP/OP</label>
+            </td>
+            <td>
+                @if (Model.WardUnit != null)
+                {
+                    <text>In Patient</text>
+                }
+                else
+                { <text>Out Patient</text>}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Date</label>
+            </td>
+            <td>@Model.DateOfDeath.ToShortDateString()</td>
+            <td>
+                <label>Residence</label>
+            </td>
+            <td>
+                @Model.Residence
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Place of Death</label>
+            </td>
+            <td>
+                @Model.PlaceOfDeath
+            </td>
+        </tr>
+    </table>
+</fieldset>
+
+<fieldset>
+    <legend>Bill Details</legend>
+    <table width="50%">
+        <tr>
+            <td>
+                <label>Out Standing Bill</label>
+            </td>
+            <td class="money" style="color:@if (@ViewBag.OutStandingBill > 0) { <text>red</text>} else { <text>green</text> } ">
+                @ViewBag.OutStandingBill
+            </td>
+
+        </tr>
+    </table>
+</fieldset>
+
+<fieldset>
+    <legend>Details of the person collecting the body</legend>
+    <form id="form_body_release" action="\morg\SaveBodyCollection" method="post">
+        <input type="hidden" name="AdmissionId" value="@Model.Id"/>
+        <table class="table-form">
+            <tr>
+                <td>
+                    <label for="DateCollected">Date Collected</label>
+                </td>
+                <td>
+                    <input type="date" class="text-box box-lg" name="DateCollected" id="DateCollected" required 
+                           value="@if (Model.ReleasedDate.HasValue){<text>@Model.ReleasedDate.Value.ToString("yyy-MM-dd")</text>}else {<text>@DateTime.Now.ToString("yyy-MM-dd")</text>}"/>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label for="BodyCollectorName">Name</label>
+                </td>
+                <td>
+                    <input type="text" class="text-box box-lg" name="BodyCollectorName" id="BodyCollectorName" 
+                           required value="@Html.DisplayFor(model=>model.PersonCollectingBody)" />
+                </td>
+                <td>
+                    <label for="BodyCollectorIdNo">ID No</label>
+                </td>
+                <td>
+                    <input type="text" class="text-box box-lg" name="BodyCollectorIdNo" id="BodyCollectorIdNo" required
+                           value="@Html.DisplayFor(model=>model.PersonCollectingBodyIdNo)"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="BodyCollectorRelationShip">Relationship</label>
+                </td>
+                <td>
+                    <input type="text" class="text-box box-lg" name="BodyCollectorRelationShip" id="BodyCollectorRelationShip" required
+                           value="@Html.DisplayFor(model=>model.PersonCollectingBodyRelationship)"/>
+                </td>
+                <td>
+                    <label for="BodyCollectorTelNo">Tel No</label>
+                </td>
+                <td>
+                    <input type="text" class="text-box box-lg" name="BodyCollectorTelNo" id="BodyCollectorTelNo" required
+                           value="@Html.DisplayFor(model=>model.PersonCollectingBodyTel)"/>
+                </td>
+            </tr>
+
+        </table>
+        <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+        <a href="@Url.Action("DeathRegister","morg")">Close</a>
+    </form>
+</fieldset>

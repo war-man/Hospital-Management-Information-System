@@ -1,0 +1,293 @@
+﻿@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.SimulationPatientIssueVoucher>
+@{
+    ViewBag.Title = "SearchCanceledIssueVoucher";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+}
+
+<style>
+    .cancelled {
+        color: red;
+    }
+
+    .NotCancelled {
+        color: yellow;
+    }
+
+    .PartialCancelled {
+        color: turquoise;
+    }
+
+    .text-box {
+        margin-top: 2px;
+        margin-bottom: 2px;
+        max-width: 150px;
+    }
+</style>
+
+
+<div class="col-md-8">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px">
+                <strong> Cancel Issued Voucher</strong>
+            </p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-10">
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                From Date
+                            </td>
+                            <td>
+                                <input type="date" class="text-box" id="fromDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </td>
+                            <td>
+                                To Date
+                            </td>
+                            <td>
+                                <input type="date" class="text-box" id="toDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Voucher No
+                            </td>
+                            <td>
+                                <input type="text" class="text-box" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Patient Name
+                            </td>
+                            <td>
+                                <input type="text" id="PatientsName" class="text-box" />
+                                <div class="text-box suggestions collapse" id="ItemNameList"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Item Name
+                            </td>
+                            <td>
+                                <input type="text" class="text-box" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <div id="type">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="All">All
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Cancelled">Cancelled <i class="fa fa-square cancelled"></i>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="NotCancelled">Not Cancelled <i class="fa fa-square NotCancelled"></i>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="PartialCancelled">Partial Cancelled <i class="fa fa-square PartialCancelled"></i>
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="col-md-12" id="InvoiceList">
+                    <br />
+                    @Html.Partial("~/Areas/PharmacyModule/Views/PharmacyPatientTransaction/_SearchCancelIssuedVoucher.cshtml", Model)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+        $("#fromDate").on('change', function () {
+
+            var fromDate = $(this).val();
+            var toDate = $("#toDate").val();
+
+            var dates = { fromDate: fromDate, toDate: toDate };
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyPatientTransaction/SearchCancelPatientIssueVoucherByDates",
+                data: dates,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+
+        })
+
+        $("#toDate").on('change', function () {
+            var fromDate = $("#fromDate").val();
+            var toDate = $(this).val();
+
+            var dates = { fromDate: fromDate, toDate: toDate };
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyPatientTransaction/SearchCancelPatientIssueVoucherByDates",
+                data: dates,
+                beforeSend: function () {
+                    $(".loader").show();
+
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+
+        })
+
+        $("#patientRegNo").keyup(function () {
+            var regNo = $("#patientRegNo").val();
+
+            if (regNo.Length > 0) {
+                $.notify("Fetching Data", "success");
+            }
+
+            var url = "/PharmacyPatientTransaction/SearchEditPatientIssueVoucherByRegNo?regNo=" + regNo;
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url:url,
+                beforeSend: function () {
+
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+        })
+
+
+        $("#PatientsName").keyup(function () {
+
+            var itemName = $("#PatientsName").val();
+            var itemList = $("#ItemNameList");
+
+
+            if (itemName.length < 1) {
+
+                itemList.fadeOut();
+            }
+            else {
+
+                var nam = { name: itemName };
+
+                var url = '/PharmacyPatientTransaction/SearchPatientName?patientsName=' + itemName;
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: nam,
+                    success: function (obj) {
+                        //console.log(obj);
+                        //create an array to store the values searched
+                        var item = [];
+                        //loop through all the items and push then into the array variable
+
+                        $.each(obj, function (key, value) {
+                            var string = '<p class="searchedItems" data-id="' + value.Id + '" data-value="' + value.Name + '">' + value.Name + '</p>';
+                            item.push(string);
+
+                        })
+
+                        // empty the div element
+                        $("#ItemNameList").empty();
+
+                        var items = item.join("");
+                        itemList.append(items);
+                        itemList.fadeIn();
+
+                        $(".searchedItems").each(function () {
+                            $(this).click(function () {
+                                var val = $(this).data("value");
+                                var Id = $(this).data("id");
+                                $("#PatientsName").val(val);
+                                $("#ItemId").val(Id);
+                                $("#ItemNameList").fadeOut();
+                                $("#ItemNameList").empty();
+                                SearchCancelledIssueVoucherByPatient(Id);
+                            })
+                        });
+
+
+                    },
+                    error: function (e, x, y) {
+                        console.log(e.responseText);
+                    }
+                })
+
+            }
+
+        })
+
+        function SearchCancelledIssueVoucherByPatient(Id) {
+
+            var id = Id;
+            var url = '/PharmacyPatientTransaction/SearchCancelledIssueVoucherByPatient?Id=' + id;
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                beforeSend: function () {
+                    $(".loader").show();
+
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                    console.log(obj);
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $.notify("An Error Occured", "error");
+                    $(".loader").hide();
+                }
+            })
+         }
+
+    </script>
+
+}
+
+

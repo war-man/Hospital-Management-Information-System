@@ -1,0 +1,189 @@
+﻿
+@{
+    ViewBag.Title = "BankReconciliation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+    var banks = (List<CaresoftHMISDataAccess.FinanceBank>)ViewBag.banks;
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Finance/Views/Shared/_LeftNavigation.cshtml")
+</div>
+
+<div class="col-md-9">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                BankReconciliaition
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    From Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="FromDate" id="FromDate" class="text-box margin-top-bottom-2" style="width:100%"/>
+                                </td>
+                                <td>
+                                   &nbsp; To Date:
+                                </td>
+                                <td>
+                                   <input type="date" name="ToDate" id="ToDate" class="text-box margin-top-bottom-2" style="width:100%"/>
+                                </td>
+                                <td>
+                                    <input type="radio" name="RadioB" id="CBookDiscripacy" /> &nbsp; <strong>Enter C/Book Discripacy</strong> 
+                                </td>                                
+                                <td>
+                                    <input type="radio" name="RadioB" id="StmtDiscripacy" /> &nbsp; <strong>Enter Bnk Stmt Stmt Discripacy</strong>
+                                </td>
+                            </tr>
+                        <tr><td>&nbsp;</td></tr>
+                            <tr>
+                                <td>
+                                    CashBook:
+                                </td>
+                                <td>
+                                    <select name="CashBNo" id="CashBNO" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                        @foreach (var item in banks)
+                                        {
+                                            <option value="@item.AccNo">@item.GIName</option>
+
+                                        }
+
+                                    </select>                                    
+                                </td>
+                                <td>
+                                   &nbsp; CashBook Balance:
+                                </td>
+                                <td>
+                                    <input name="CashBBalance" id="CashBBalance" class="text-box margin-top-bottom-2" style="width:100%" readonly/>
+                                </td>
+                            </tr>
+                            <tr>                                
+                                <td>
+                                    Actual Bank Balance:
+                                </td>
+                                <td>
+                                    <input type="number" name="ActualBankBalance" id="ActualBankBalance"class="text-box margin-top-bottom-2" required style="width:100%"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+                        <table class="table table-data-pathology table-condensed">
+                            <tr>
+                                <th>DATE</th>
+                                <th>CHEQUE NO</th>
+                                <th>DEBIT</th>
+                                <th>CREDIT</th>
+                                <th>RECONCILED</th>
+                            </tr>
+                            <tbody style="background-color: white">
+                                <tr>
+                                    <td>
+                                        @*<input type="date" class="text-box margin-top-bottom-2 Date" id="Date" />*@
+                                    </td>
+                                    <td>
+                                        @*<input type="number" class="text-box margin-top-bottom-2 ChequeNo" id="ChequeNo"/>*@
+                                    </td>
+                                    <td>
+                                        @*<input type="number" class="text-box margin-top-bottom-2 Debit" id="Debit"/>*@
+                                    </td>
+                                    <td>
+                                        @*<input type="number" class="text-box margin-top-bottom-2 Credit" id="Credit" />*@
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="text-box margin-top-bottom-2 Reconciled" id="Reconciled" style="width:100%" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Cheque NO.
+                                </td>
+                                <td>
+                                    <input list="ChequeNo" name="ChequeNO" id="ChequeNO" class="text-box margin-top-bottom-2" style="width:100%"/>
+                                    <datalist id="ChequeNo">
+                                        <option value=""></option>
+                                    </datalist>
+                                </td>
+                                <td>
+                                  &nbsp;  Amount:
+                                </td>
+                                <td>
+                                    <input type="number" class="text-box margin-top-bottom-2" name="Amount" id="Amount" style="width:100%"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Unbalanced Amount:
+                                </td>
+                                <td>
+                                    <input type="number" class="text-box margin-top-bottom-2" id="UnbalancedAmount" name="UnbalancedAmount" style="width:100%"/>
+                                </td>
+                                <td>
+                                   &nbsp; Unbalanced Items:
+                                </td>
+                                <td>
+                                    <input type="number" class="text-box margin-top-bottom-2" id="UnbalancedItems" name="UnbalancedItems" style="width:100%"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Net Balance:
+                                </td>
+                                <td>
+                                    <input type="number" class="text-box margin-top-bottom-2" id="NetBalance" name="NetBalance" style="width:100%"/>
+                                </td>
+                                <td>
+                                  &nbsp;  Unbalanced Item Value:
+                                </td>
+                                <td>
+                                    <input type="number" class="text-box margin-top-bottom-2" id="UnbalancedItemsValue" name="UnbalancedItemValue" style="width:100%"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    &nbsp;
+                    <div class="col-md-12">
+                        <button type="submit" name="ReconcileAccount" class="btn btn-primary bn-sm">Reconcile Account</button>
+                        <button type="reset">Clear Entries</button>
+                    </div>                   
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    
+    <script>
+
+
+        $(document).ready(function () {
+
+            $("#CashBNO").change(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/Finance/Home/getCashTotals",
+                    data: { AccNo: $("#CashBNO").val() },
+                    success: function (Cash) {
+                        $("#CashBBalance").val(Cash);
+                        console.log(Cash);
+                    },
+                    error: function () {
+                    }
+                });
+
+            });
+        });
+    </script>    
+    }

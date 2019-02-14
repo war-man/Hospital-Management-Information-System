@@ -1,0 +1,34 @@
+﻿@model  Caresoft2._0.Areas.Procurement.Models.ProvisionalPurchaseOrder
+<table class="table table-data">
+    <tr>
+        <th>Edit</th>
+        <th>Item Desc</th>
+        <th>Quantity</th>
+        <th>Cost Per Unit</th>
+        <th>Total Cost</th>
+        <th>Delete</th>
+    </tr>
+
+    @if (Model.POItemsDetail.Count() > 0)
+    {
+        foreach (var item in Model.POItemsDetail)
+        {
+            <tr>
+                <td></td>
+                <td>@item.Drug.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.CostPerUnit</td>
+                <td>@item.TotalCost</td>
+                <td></td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="6">No Data to Displayed</td>
+        </tr>
+    }
+
+
+</table>

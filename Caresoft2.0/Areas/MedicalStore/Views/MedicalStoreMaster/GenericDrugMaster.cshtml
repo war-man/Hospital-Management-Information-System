@@ -1,0 +1,293 @@
+﻿@model  IEnumerable<Caresoft2._0.Areas.Procurement.Models.GenericDrugName>
+
+@{
+    ViewBag.Title = "GenericDrugMaster";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+}
+
+<style>
+    .text-box {
+        width: 200px;
+        margin: 5px;
+    }
+
+    .thedivs {
+        background-color: ghostwhite;
+        width: 200px;
+        height: 100px;
+        overflow-y: scroll;
+    }
+
+    .fa-plus {
+        font-weight: bold;
+        color: orangered;
+        font-size: 18px;
+    }
+</style>
+
+<div class="col-md-8">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading">
+            Add Generic Drug Name
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr class="spacer">
+                            <td>
+                                Generic Drug Name :
+                            </td>
+                            <td>
+                                <input type="text" class="text-box" id="GenericDrugName" />
+                            </td>
+                            <td colspan="2">
+                                <i class="fa fa-plus" id="addDrugEffect"></i> Add Drug Effect
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Side Effects: </td>
+                            <td>
+                                <div class="text-box thedivs" id="divSideEffects">
+                                    @if (ViewBag.SideEffects != null)
+                                    {
+                                        foreach (var item in ViewBag.SideEffects)
+                                        {
+                                            <input type="checkbox" value="@item.Id" /> @item.Description <br />
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <p>Add new Side Effects</p>
+                                    }
+
+                                </div>
+                            </td>
+                            <td>
+                                Toxicites:
+                            </td>
+                            <td>
+                                <div class="text-box thedivs" id="divToxicities">
+                                    @if (ViewBag.Toxicities != null)
+                                    {
+                                        foreach (var item in ViewBag.Toxicities)
+                                        {
+                                            <input type="checkbox" value="@item.Id" /> @item.Description <br />
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <p>Add Toxities</p>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Contraindication:
+                            </td>
+                            <td>
+                                <div class="text-box thedivs" id="divContraindication">
+                                    @if (ViewBag.Contraindication != null)
+                                    {
+                                        foreach (var item in ViewBag.Contraindication)
+                                        {
+                                            <input type="checkbox" value="@item.Id" /> @item.Description <br />
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <p>Add Contraindication</p>
+                                    }
+
+                                </div>
+                            </td>
+                            <td>
+                                Allergies :
+                            </td>
+                            <td>
+                                <div class="text-box thedivs" id="divAllergies">
+                                    @if (ViewBag.Allergies != null)
+                                    {
+                                        foreach (var item in ViewBag.Allergies)
+                                        {
+                                            <input type="checkbox" value="@item.Id" /> @item.Description <br />
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <p>Add Allergies</p>
+                                    }
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Investigation advice of</td>
+                            <td colspan="3">
+                                <input type="text" class="text-box" id="InvestigationOfAdvice" /> <i class="fa fa-plus"></i>
+                                days option to select investigation treatment.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Reason:</td>
+                            <td>
+                                <textarea class="text-box thedivs" id="Reason"> </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" id="btnSaveGenericDrug"> Save</button>
+                                <button class="btn btn-sm btn-primary"> Back</button>
+                                <button class="btn btn-sm btn-primary"> Cancel</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+
+                    <div id="genericDrugsTbl">
+
+                        @Html.Partial("~/Areas/MedicalStore/Views/MedicalStoreMaster/_GenericDrugNames.cshtml", Model)
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="DrugEffect" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Drug Effect</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table-form">
+                    <tr>
+                        <td>Select Type</td>
+                        <td>
+                            <select class="text-box" id="SelectTypeEffect">
+                                <option value="1">Side Effect</option>
+                                <option value="2">Toxicites</option>
+                                <option value="3">Allergies</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>
+                            <textarea class="text-box" id="DescriptionEffect">
+
+                            </textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary btn-sm" id="btnSaveEffect">Save</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var genericDrugViewModel = null;
+
+        //generic drug details
+        var Name = "";
+        var InvestigationAdvice = "";
+        var Reason = "";
+
+        //Side Effects
+        var SideEffectsId = [];
+        var Toxicites = [];
+        var Contraindication = [];
+        var Allergies = [];
+
+
+
+        function GetVariables() {
+
+            //Get Selected Side Effects
+            $("#divSideEffects").find(':checkbox:checked').each(function (i, o) {
+                SideEffectsId[i] = $(o).val();
+            });
+
+            //Get Selected Side Effects
+            $("#divToxicities").find(':checkbox:checked').each(function (i, o) {
+                Toxicites[i] = $(o).val();
+            });
+
+            //Get Selected Side Effects
+            $("#divContraindication").find(':checkbox:checked').each(function (i, o) {
+                Contraindication[i] = $(o).val();
+            });
+
+            //Get Selected Side Effects
+            $("#divAllergies").find(':checkbox:checked').each(function (i, o) {
+                Allergies[i] = $(o).val();
+            });
+
+            Name = $("#GenericDrugName").val();
+            Reason = $("#InvestigationOfAdvice").val()
+            InvestigationAdvice = $("#Reason").val()
+        }
+
+
+        $("#btnSaveGenericDrug").click(function () {
+
+            GetVariables();
+
+            var genericDrugName = {
+                Name: Name, InvestigationOfAdvice: InvestigationAdvice,
+                Reason: Reason,
+            };
+
+
+            genericDrugViewModel = {
+                genericDrugName: genericDrugName,
+                Toxicities: Toxicites,
+                Allergies: Allergies,
+                Contraindication: Contraindication,
+                SideEffects: SideEffectsId
+            };
+
+            console.log(genericDrugViewModel);
+            $.ajax({
+                type: "POST",
+                url: "/MedicalStoreMaster/GenericDrugMaster",
+                data: genericDrugViewModel,
+                success: function (data) {
+                    let table = $("#genericDrugsTbl");
+                    table.empty();
+                    table.append(data);
+                }
+            });
+
+        });
+
+
+
+        $("#addDrugEffect").click(function (e) {
+            e.preventDefault();
+            $("#DrugEffect").modal('show');
+
+        });
+
+    </script>
+
+}
+
+
+

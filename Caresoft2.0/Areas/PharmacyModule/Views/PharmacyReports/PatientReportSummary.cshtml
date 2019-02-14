@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "PatientReportSummary";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+}
+
+
+
+<style>
+    .text-box {
+        width: 200px;
+        margin-top: 2px;
+    }
+</style>
+
+<div class="col-md-10">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px">
+                <strong> Patient Summary Report</strong>
+            </p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form method="get" action="@Url.Action("GetPatientReportSummary")">
+                        <table class="table-form">
+
+                            <tr>
+                                <td>From Date</td>
+                                <td>
+                                    <input type="date" class="text-box" name="FromDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                </td>
+                                <td>To Date</td>
+                                <td>
+                                    <input type="date" class="text-box" name="ToDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>OPD No</td>
+                                <td>
+                                    <input type="text" class="text-box" value="" name="OpdNo" />
+                                </td>
+
+                                <td>Reg No/Patient Name</td>
+                                <td>
+                                    <input type="text" class="text-box" value="" name="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Insurance Scheme</td>
+                                <td>
+                                    <select class="text-box" name="insuaranceCompany" id="insuaranceCompany">
+                                        <option value=0>All</option>
+                                        @foreach (var item in Model)
+                                        {
+                                            <option value="@item.Id">@item.CompanyName</option>
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" class="btn btn-primary btn-sm" value="Report" />
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

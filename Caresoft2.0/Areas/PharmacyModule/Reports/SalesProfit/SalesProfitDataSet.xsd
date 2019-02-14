@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SalesProfitDataSet" targetNamespace="http://tempuri.org/SalesProfitDataSet.xsd" xmlns:mstns="http://tempuri.org/SalesProfitDataSet.xsd" xmlns="http://tempuri.org/SalesProfitDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SalesProfitDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SalesProfitDataSet" msprop:Generator_UserDSName="SalesProfitDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SalesProfit" msprop:Generator_TableClassName="SalesProfitDataTable" msprop:Generator_TableVarName="tableSalesProfit" msprop:Generator_TablePropName="SalesProfit" msprop:Generator_RowDeletingName="SalesProfitRowDeleting" msprop:Generator_RowChangingName="SalesProfitRowChanging" msprop:Generator_RowEvHandlerName="SalesProfitRowChangeEventHandler" msprop:Generator_RowDeletedName="SalesProfitRowDeleted" msprop:Generator_UserTableName="SalesProfit" msprop:Generator_RowChangedName="SalesProfitRowChanged" msprop:Generator_RowEvArgName="SalesProfitRowChangeEvent" msprop:Generator_RowClassName="SalesProfitRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SrNo" msprop:Generator_ColumnVarNameInTable="columnSrNo" msprop:Generator_ColumnPropNameInRow="SrNo" msprop:Generator_ColumnPropNameInTable="SrNoColumn" msprop:Generator_UserColumnName="SrNo" type="xs:string" minOccurs="0" />
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SalesAmount" msprop:Generator_ColumnVarNameInTable="columnSalesAmount" msprop:Generator_ColumnPropNameInRow="SalesAmount" msprop:Generator_ColumnPropNameInTable="SalesAmountColumn" msprop:Generator_UserColumnName="SalesAmount" type="xs:double" minOccurs="0" />
+              <xs:element name="TotalPurchaseCost" msprop:Generator_ColumnVarNameInTable="columnTotalPurchaseCost" msprop:Generator_ColumnPropNameInRow="TotalPurchaseCost" msprop:Generator_ColumnPropNameInTable="TotalPurchaseCostColumn" msprop:Generator_UserColumnName="TotalPurchaseCost" type="xs:double" minOccurs="0" />
+              <xs:element name="Total_x0020_Vat" msprop:Generator_ColumnVarNameInTable="columnTotal_Vat" msprop:Generator_ColumnPropNameInRow="Total_Vat" msprop:Generator_ColumnPropNameInTable="Total_VatColumn" msprop:Generator_UserColumnName="Total Vat" type="xs:double" minOccurs="0" />
+              <xs:element name="GrandTotal" msprop:Generator_ColumnVarNameInTable="columnGrandTotal" msprop:Generator_ColumnPropNameInRow="GrandTotal" msprop:Generator_ColumnPropNameInTable="GrandTotalColumn" msprop:Generator_UserColumnName="GrandTotal" type="xs:double" minOccurs="0" />
+              <xs:element name="Profit" msprop:Generator_ColumnVarNameInTable="columnProfit" msprop:Generator_ColumnPropNameInRow="Profit" msprop:Generator_ColumnPropNameInTable="ProfitColumn" msprop:Generator_UserColumnName="Profit" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

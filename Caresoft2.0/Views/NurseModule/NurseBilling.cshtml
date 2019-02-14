@@ -1,0 +1,189 @@
+﻿@model Caresoft2._0.CustomData.TreatmentFormData
+<div class="col-md-12">
+    <div class="panel panel-primary shadow glass caresoft-panel" style="margin-bottom:-1em;">
+        <div class="panel-heading ">
+            Nurse Drug Requests
+           
+        </div>
+        <div class="panel-body">
+            <p>
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span><strong>OPD : </strong> @Model.OPDRegister.Id</span>
+                            </td>
+                            <td>
+                                <span><strong>REG No : </strong> @Model.OPDRegister.Patient.RegNumber</span>
+                            </td>
+                            <td>
+                                <span><strong>Name : </strong> @Model.OPDRegister.Patient.Salutation @Model.OPDRegister.Patient.FName @Model.OPDRegister.Patient.LName</span>
+                            </td>
+                            <td>
+                                <span><strong>Tarrif : </strong> @Model.OPDRegister.Tariff.TariffName</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </p>
+            <ul class="nav nav-pills">
+                <li class="active top-tab"><a data-toggle="pill" href="#treatment"> Drugs </a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="treatment" class="tab-pane fade in active">
+                    <fieldset>
+                        <form id="prescription-form">
+                            <input hidden id="formtype" name="formtype" value="NurseBilling"/>
+                            <input type="hidden" id="entry-mode" value="new" />
+                            <input type="hidden" name="EditMedicatioId" id="EditMedicatioId" />
+                            <input type="hidden" id="OPDNo" name="OPDNo" value="@Model.OPDRegister.Id" />
+                            <table class="table-form">
+                                                  
+                                <tr>
+                                    <td>
+                                        <label>Brand Name</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box box-xlg" name="DrugName" id="BrandName" required />
+                                        <input type="hidden" id="DrugId" name="DrugId" />
+                                        <input type="hidden" name="UnitPrice" id="UnitPrice" />
+                                    </td>
+                                    <td>
+                                        <label>Current Stock</label>
+                                        <input type="text" readonly id="Instock" name="Instock" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <style>
+                                .box-sm {
+                                    width: 100%
+                                }
+                            </style>
+                            <table class="table table-form">
+                                <tr style="font-size:12px">
+
+                                    <th>Start Date</th>
+                                    <th hidden>Routing Admin</th>
+                                    <th hidden>Frequency</th>
+                                    <th hidden>Day</th>
+                                    <th>End Date</th>
+                                    <th>Qty</th>
+                                    <th>Notes</th>
+                                    <th></th>
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        <input readonly type="date" class="text-box box-sm" name="StartDate" id="StartDate"
+                                               value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+                                    </td>
+                                    <td hidden>
+                                        @*<input type="text" class="text-box box-sm" name="RoutingAdmin" id="RoutingAdmin">*@
+                                        <select readonly class="text-box box-sm" name="RoutingAdmin" id="RoutingAdmin" required>
+                                            @foreach (var x in Model.RoutingAdmins)
+                                            {
+                                                <option @*value="@x.Id"*@>@x.RoutingAdminName</option>
+                                            }
+                                        </select>
+                                    </td>
+                                    <td hidden>
+                                        @*<input class="text-box box-sm" name="Frequency" id="Frequency" required>*@
+                                        <select readonly class="text-box box-sm" name="Frequency" id="Frequency" required>
+                                            @foreach (var y in Model.Frequencies)
+                                            {
+                                                <option data-frequency="@y.Id" data-quantity="@y.Quantity">@y.Name</option>
+                                            }
+                                        </select>
+                                    </td>
+                                    <td hidden><input hidden readonly type="number" class="text-box box-sm" name="Day" id="Day" min="1" value="1" required /></td>
+                                    <td><input readonly type="date" class="text-box box-sm" id="EndDate" name="EndDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" required /></td>
+                                    <td><input type="number" class="text-box box-sm" id="Quantity" name="Quantity" min="0" required /></td>
+                                    <td><textarea class="text-box" name="Notes" id="Notes"></textarea></td>
+                                    <td><button type="submit" class="btn btn-primary btn-xs" id="btn-add-prescription">OK</button></td>
+                                </tr>
+
+                            </table>
+                        </form>
+                        <div style="margin-top:-2.5em;" class="text-danger">
+                            <h5>
+                                @foreach (var diagno in Model.OPDRegister.PatientDiagnosis)
+                                {
+                                    @(diagno.FinalDiagnosis)<text>, </text>
+                                }
+                            </h5>
+
+                        </div>
+                        <table>
+                            <tr>
+                                <td class="color-key" id="EMRunread"></td>
+                                <td><label>Sent</label></td>
+                                <td class="color-key"></td>
+
+                                <td class="color-key" id="EMRRead"></td>
+                                <td><label>Issued</label></td>
+
+                                <td class="color-key"></td>
+                                <td class="color-key" id="EMRUnpaid"></td>
+                                <td><label>Drugs Not Available In Facility</label></td>
+                            </tr>
+                        </table>
+                        <table class="table table-data table-bordered table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Edit</th>
+                                    <th>Drug Name</th>
+                                    <th>Day</th>
+                                    <th>Qty</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Requested By</th>
+                                    <th>Notes</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white">
+                                @foreach (var entry in Model.OPDRegister.Medications.OrderByDescending(e => e.Id))
+                                {
+                                    var issueStatus = "pending";
+                                    if (entry.Issued)
+                                    {
+                                        issueStatus = "issued";
+                                    }
+                                <tr class="@if (entry.DrugId==null){<text>Unpaid</text>} else if (entry.Issued) { <text>Read</text>}else{<text>Unread</text>} " id="drug-@entry.Id">
+                                    <td>
+                                        <button onclick="editMedication(@entry.Id)" class="btn btn-xs btn-primary" @if (issueStatus == "issued") { <text> disabled</text>}>Edit</button>
+                                    </td>
+                                    <td style="white-space:normal">@entry.DrugName</td>
+                                    <td align="center">@entry.Day</td>
+                                    <td align="center">@entry.Quantity</td>
+                                    <td>@entry.TimeAdded.ToShortDateString()</td>
+                                    <td>@entry.TimeAdded.ToString("hh:mm:ss")</td>
+                                    <td>@Model.Users.FirstOrDefault(e => e.Id == entry.UserId).Employee.Designation @Model.Users.FirstOrDefault(e => e.Id == entry.UserId).Username</td>
+                                    <td>@entry.Notes</td>
+                                    <td>
+                                        @if (entry.UserId == (int)Session["UserId"])
+                                        {
+                                            <button id="delete-@entry.Id" class="btn btn-xs btn-primary" @if (issueStatus == "issued") { <text> disabled</text>} else { <text>onclick="deleteDrugFromMedication(@entry.Id)" </text> }>
+                                                Delete
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <strong>From Doctor</strong>
+                                        }
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+

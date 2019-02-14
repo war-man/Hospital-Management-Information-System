@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "MasterSetting";
+    ViewBag.ShowTopMenu = true;
+}
+
+<div class="col-md-8 col-lg-offset-2">
+
+    <div class="panel panel-primary caresoft-panel glass thisisit">
+        <div class="panel-heading">
+            Master Entries:
+        </div>
+        <div class="panel-body">
+            <form>
+                <div class="col-md-12">
+                    <table>
+                        <tr>
+                            <td>
+                                Blood Type Code:
+                            </td>
+                            <td>
+                                <input name="BloodTypeCode" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Type:
+                            </td>
+                            <td>
+                                <select name="Type" class="text-box margin-top-bottom-2" style="width:100%" required>
+                                    <option>--Select--</option>
+                                </select>
+                            </td>
+                            <td>
+                                &nbsp; Blood Bag Type:
+                            </td>
+                            <td>
+                                <select name="BloodBagType" class="text-box margin-top-bottom-2" style="width:100%">
+                                    <option>--Select--</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Description:
+                            </td>
+                            <td>
+                                <input name="Description" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                            <td>
+                                &nbsp; Mfg Company:
+                            </td>
+                            <td>
+                                <select name="MfgCompany" class="text-box margin-top-bottom-2" style="width:100%" required>
+                                    <option>--Select--</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Expiry Days:
+                            </td>
+                            <td>
+                                <input type="number" name="ExpiryDays" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                            <td>
+                                &nbsp; Suffix Code:
+                            </td>
+                            <td>
+                                <input name="SuffixCode" class="text-box margin-top-bottom-2" style="width:100%" required />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Rate:
+                            </td>
+                            <td>
+                                <input type="number" name="Rate" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-12 marg-top-16px">
+                    <button type="submit" class="btn btn-primary btn-sm bn-sm">Save</button>
+                    <button type="reset" class="">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

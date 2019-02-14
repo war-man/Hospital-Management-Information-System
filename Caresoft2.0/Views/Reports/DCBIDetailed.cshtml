@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Caresoft2._0.CustomData.DCBIReportData>
+@{
+    ViewBag.Title = "Daily Collection (By Billing Item) ";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+    ViewBag.Size = "A4";
+    var ram = 0.0;
+
+    var meds = 0.0; var walks = 0.0;
+
+    var start = (DateTime)ViewBag.Start;
+    var end = (DateTime)ViewBag.End;
+}
+
+<p>From @ViewBag.StartDate to  @ViewBag.EndDate</p>
+<span class="money">@(Model.Sum(e => e.ActualAmount) )</span> (@Model.Count() Items)
+<table class="table table-condensed" border="1">
+    <thead>
+        <tr class="report-title gray-hr-bottom">
+            <th>O/IPDNo</th>
+            <th>PatType</th>
+            <th>Department</th>
+            <th>Service</th>
+            <th>Price</th>
+            <th>Qty</th>
+
+            <th>Award</th>
+            <th>Waiver</th>
+            <th>WaiverNo</th>
+
+            <th>ReceiptNo</th>
+            <th>Actual Amt</th>
+            
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var entry in Model)
+        {
+            <tr>
+                <th>@entry.OPDNo</th>
+                <th>@entry.PatType</th>
+                <td>@entry.DepartmentName</td>
+                <td>@entry.ServiceName</td>
+                <td>@entry.Price</td>
+                <td>@entry.Quantity</td>
+                <th>@entry.Award</th>
+                <th>@entry.Waiver</th>
+                <th>@entry.WaiverNo</th>
+                <th>@entry.Receipt</th>
+                <td>@entry.ActualAmount</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr class="report-title gray-hr-bottom">
+            <th colspan="2" align="right" class="text-right">Grand Total</th>
+            <th></th>
+            <th class="money">@(Model.Sum(e => e.ActualAmount) )</th>
+
+
+        </tr>
+    </tfoot>
+
+    
+</table>

@@ -1,0 +1,153 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Employee>
+@{
+    ViewBag.Title = "CASHIER'S SHIFT REPORT";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+    ViewBag.Size = "A4";
+}
+
+
+@if (ViewBag.NoShift != null)
+{
+    <h4 class="warning">You do not have an open shift</h4>
+}
+else
+{
+    
+    <table width="100%">
+        <tr class="gray-hr-bottom" >
+            <td> Employee Name: </td>
+            <td>Shift No.</td>
+            <td>Start time./td>
+
+            <td align="right">
+                Status: @if (Model.Shift.Endtime == null)
+                { <text>Open</text> }
+                else
+                { <text>Closed at </text>@Model.Shift.Endtime}
+            </td>
+        </tr>
+    </table>
+    <table class="table table-condensed">
+        <thead>
+            <tr class="report-title gray-hr-bottom">
+                <th>No.</th>
+                <th title="Receipt No">R.No</th>
+                <th>Date Time</th>
+                <th>Payer</th>
+                <th>Cash</th>
+                <th>Cheque</th>
+                <th>ccard</th>
+                <th>MPesa</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{var x = 1; var totalcash = 0.0; var totalcheque = 0.0; var totalccard = 0.0; var totalMpesa = 0.0; var grandTotal = 0.0;}
+
+            @foreach (var BP in Model.Shift.BillPayments)
+            {
+                <tr>
+                    <td>@x</td>
+                    <td>@BP.Id</td>
+                    <td>@BP.DateAdded</td>
+                    <td>
+                        @BP.OpdRegister.Patient.Salutation
+                        @BP.OpdRegister.Patient.FName
+                        @BP.OpdRegister.Patient.MName
+                        @BP.OpdRegister.Patient.LName
+                    </td>
+                    <td>
+                        @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cash"))
+                        {
+                            <text>@BP.BillAmount</text> totalcash += BP.BillAmount;
+                        }
+                        else
+                        { <text>0.0</text>}
+                    </td>
+
+                    <td>
+                        @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cheque"))
+                        {
+                            <text>@BP.BillAmount</text> totalcheque += BP.BillAmount;
+                        }
+                        else
+                        { <text>0.0</text>}
+                    </td>
+                    <td>
+                        @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("ccard"))
+                        { <text>@BP.BillAmount</text> totalccard += BP.BillAmount;
+                        }
+                        else
+                        { <text>0.0</text>}
+                    </td>
+                    <td>
+                        @if (BP.PaymentMode.PaymentModeName.ToLower().Trim().Equals("mpesa"))
+                        { <text>@BP.BillAmount</text> totalMpesa += BP.BillAmount;
+                        }
+                        else
+                        { <text>0.0</text>}
+                    </td>
+                    <td>@BP.BillAmount </td>
+                </tr>
+                grandTotal += BP.BillAmount;
+                x++;
+            }
+        </tbody>
+        <tfoot>
+            <tr style="border-bottom:2px groove #ccc">
+                <th colspan="4">Total</th>
+                <th>@totalcash</th>
+                <th>@totalcheque</th>
+                <th>@totalccard</th>
+                <th>@totalMpesa</th>
+                <th>@grandTotal</th>
+            </tr>
+        </tfoot>
+    </table>
+    <table class="table-bordered table-condensed">
+        <tr>
+            <th colspan="2" class="report-title">SHIFT BREAKDOWN SUMMARY</th>
+        </tr>
+        <tr>
+            <td>Consultation</td>
+            <td align="right">@Model.Consultation</td>
+        </tr>
+        <tr>
+            <td>XRAY</td>
+            <td align="right">@Model.Xray</td>
+        </tr>
+        <tr>
+            <td>Lab</td>
+            <td align="right">@Model.Labs</td>
+        </tr>
+        <tr>
+            <td>Drugs</td>
+            <td align="right">@Model.Drugs</td>
+        </tr>
+        <tr>
+            <td>Procedures</td>
+            <td align="right">@Model.Procedure</td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <td style="text-decoration:underline" align="right">@(Model.Procedure + Model.Drugs + Model.Labs + Model.Xray + Model.Consultation )</td>
+        </tr>
+    </table>
+
+    <table width="100%" class="marg-top-16px">
+        <tr>
+            <td>RECEIVED FROM:________________________</td>
+            <td>BANKED BY:________________________</td>
+            <td>Date: ___/___/_____</td>
+            <td>Time: _______</td>
+        </tr>
+        <tr>
+            <td>RECEIVED BY:________________________</td>
+            <td>SIGN:________________________</td>
+            <td>Date: ___/___/_____</td>
+            <td>Time: _______</td>
+        </tr>
+    </table>
+}
+
+

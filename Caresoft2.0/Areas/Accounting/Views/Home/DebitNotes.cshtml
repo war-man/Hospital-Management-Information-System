@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "DebitNotes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+}
+
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Enter Debit Note
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="radio" value="BookDebitNote" /> Book Debit Note
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="checkbox" value="AddGIItem" /> Click to add a GI Item
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> &nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Dealer:
+                                </td>
+                                <td>
+                                    <select name="Dealer" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    &nbsp; Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="Date" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    &nbsp;
+                    <div class="col-md-12">
+                        <table class="table table-data-pathology table-condensed">
+                            <tr>
+                                <th>Description</th>
+                                <th>Activity Code</th>
+                                <th>Invoice No.</th>
+                                <th>Invoice Date</th>
+                                <th>Date Due</th>
+                                <th>Reason for Debiting</th>
+                                <th>Amount</th>
+                                <th>VAT Amount</th>
+                            </tr>
+                            <tbody style="background-color: white">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>                           
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Save</button>
+                        <button type="reset" class="btn btn-default margin-top-bottom-2">Clear</button>
+                    </div>
+                </form>                
+            </div>
+        </div>
+    </div>
+</div>
+

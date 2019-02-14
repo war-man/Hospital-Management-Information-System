@@ -1,0 +1,70 @@
+﻿@model CaresoftHMISDataAccess.Questionnaire
+
+@{
+        ViewBag.ShowTopMenu = true;
+        ViewBag.Title = Model.QuestionnaireName;
+        var bs_class = "";
+}
+
+@if (ViewBag.IsAjax == null)
+{
+    bs_class = "col-sm-8 col-sm-offset-2";
+}
+
+
+<div class="@bs_class">
+    <div class="panel panel-primary shadow glass caresoft-panel" style="margin-bottom:-1em;">
+        <div class="panel-heading ">
+            @Model.QuestionnaireName
+        </div>
+        <div class="panel-body">
+            <form>
+                 <ol>
+                 @foreach(var quiz in Model.QuestionnaireQuizes)
+                    {
+                        <li>
+                            @quiz.Question
+                            @{ var resType = quiz.QuestionnaireResponseType.ResponseType.Trim().ToLower();}
+                            @if (resType == "text")
+                            {
+                                <input type="text" name="response-@quiz.Id" />
+                            } else if (resType == "checkbox") {
+                                //get multiple choices
+                                <ol>
+                                    @foreach(var choice in quiz.QuestionnaireMultichoices)
+                                    {
+                                        <li>
+                                            <label>
+                                                <input type="checkbox" name="response-@quiz.Id" />
+                                                @choice.Choice
+                                            </label>
+                                        </li>
+                                    }
+                                </ol>
+                            }else if (resType == "radio") {
+                                //get multiple choices
+                                <ol>
+                                    @foreach(var choice in quiz.QuestionnaireMultichoices)
+                                    {
+                                        <li>
+                                            <label>
+                                                <input type="radio" name="response-@quiz.Id" />
+                                                @choice.Choice
+                                            </label>
+                                        </li>
+                                    }
+                                </ol>
+                            }
+                        </li>
+                    }
+            </ol>
+                 <div class="form-group pull-right">
+                     <button type="reset" class="btn btn-sm btn-primary" @*onclick="confirm('Are you sure you want to clear the entire form?')"*@>Discard</button>
+                     <button type="button" class="btn btn-sm btn-primary">Save</button>
+                 </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

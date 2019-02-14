@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetA6ToA12" targetNamespace="http://tempuri.org/DataSetA6ToA12.xsd" xmlns:mstns="http://tempuri.org/DataSetA6ToA12.xsd" xmlns="http://tempuri.org/DataSetA6ToA12.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetA6ToA12" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetA6ToA12" msprop:Generator_UserDSName="DataSetA6ToA12">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="A6ToA12" msprop:Generator_TableClassName="A6ToA12DataTable" msprop:Generator_TableVarName="tableA6ToA12" msprop:Generator_RowChangedName="A6ToA12RowChanged" msprop:Generator_TablePropName="A6ToA12" msprop:Generator_RowDeletingName="A6ToA12RowDeleting" msprop:Generator_RowChangingName="A6ToA12RowChanging" msprop:Generator_RowEvHandlerName="A6ToA12RowChangeEventHandler" msprop:Generator_RowDeletedName="A6ToA12RowDeleted" msprop:Generator_RowClassName="A6ToA12Row" msprop:Generator_UserTableName="A6ToA12" msprop:Generator_RowEvArgName="A6ToA12RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TotalNewAttendances" msprop:Generator_ColumnVarNameInTable="columnTotalNewAttendances" msprop:Generator_ColumnPropNameInRow="TotalNewAttendances" msprop:Generator_ColumnPropNameInTable="TotalNewAttendancesColumn" msprop:Generator_UserColumnName="TotalNewAttendances" type="xs:int" minOccurs="0" />
+              <xs:element name="TotalReAttendances" msprop:Generator_ColumnVarNameInTable="columnTotalReAttendances" msprop:Generator_ColumnPropNameInRow="TotalReAttendances" msprop:Generator_ColumnPropNameInTable="TotalReAttendancesColumn" msprop:Generator_UserColumnName="TotalReAttendances" type="xs:int" minOccurs="0" />
+              <xs:element name="MedicalExaminations" msprop:Generator_ColumnVarNameInTable="columnMedicalExaminations" msprop:Generator_ColumnPropNameInRow="MedicalExaminations" msprop:Generator_ColumnPropNameInTable="MedicalExaminationsColumn" msprop:Generator_UserColumnName="MedicalExaminations" type="xs:int" minOccurs="0" />
+              <xs:element name="Dressings" msprop:Generator_ColumnVarNameInTable="columnDressings" msprop:Generator_ColumnPropNameInRow="Dressings" msprop:Generator_ColumnPropNameInTable="DressingsColumn" msprop:Generator_UserColumnName="Dressings" type="xs:int" minOccurs="0" />
+              <xs:element name="RemovalOfStitches" msprop:Generator_ColumnVarNameInTable="columnRemovalOfStitches" msprop:Generator_ColumnPropNameInRow="RemovalOfStitches" msprop:Generator_ColumnPropNameInTable="RemovalOfStitchesColumn" msprop:Generator_UserColumnName="RemovalOfStitches" type="xs:int" minOccurs="0" />
+              <xs:element name="Injections" msprop:Generator_ColumnVarNameInTable="columnInjections" msprop:Generator_ColumnPropNameInRow="Injections" msprop:Generator_ColumnPropNameInTable="InjectionsColumn" msprop:Generator_UserColumnName="Injections" type="xs:int" minOccurs="0" />
+              <xs:element name="Stitching" msprop:Generator_ColumnVarNameInTable="columnStitching" msprop:Generator_ColumnPropNameInRow="Stitching" msprop:Generator_ColumnPropNameInTable="StitchingColumn" msprop:Generator_UserColumnName="Stitching" type="xs:int" minOccurs="0" />
+              <xs:element name="PlasterOfParis" msprop:Generator_ColumnVarNameInTable="columnPlasterOfParis" msprop:Generator_ColumnPropNameInRow="PlasterOfParis" msprop:Generator_ColumnPropNameInTable="PlasterOfParisColumn" msprop:Generator_UserColumnName="PlasterOfParis" type="xs:int" minOccurs="0" />
+              <xs:element name="MedicalReports" msprop:Generator_ColumnVarNameInTable="columnMedicalReports" msprop:Generator_ColumnPropNameInRow="MedicalReports" msprop:Generator_ColumnPropNameInTable="MedicalReportsColumn" msprop:Generator_UserColumnName="MedicalReports" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

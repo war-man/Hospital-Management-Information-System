@@ -1,0 +1,682 @@
+﻿
+@{
+    ViewBag.Title = "Item Master";
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+}
+
+<style>
+    .table-form tr {
+        height: 35px;
+    }
+
+    .text-box {
+        width: 200px;
+    }
+
+    table .table-form td {
+        padding-left: -1px;
+    }
+
+    .fa-plus-circle {
+        color: orange;
+        font-size: 24px;
+    }
+
+        .fa-plus-circle > span {
+            color: darkslategray;
+            font-size: 16px;
+        }
+
+    .modal {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        bottom: 0;
+        left: 0;
+        z-index: 10040;
+        overflow: auto;
+        overflow-y: auto;
+    }
+    .formrequired {
+        color: red;
+        font-size: 18px;
+    }
+
+</style>
+<div>
+    <div class="col-md-10">
+        <div class="panel panel-primary caresoft-panel" style="margin-top:10px;">
+            <div class="panel-heading custom-navbar">
+                <p style="color:black;margin-left:10px;">
+                    <strong>Item Master Entry</strong>
+                </p>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="">
+                        <form id="formItemMaster" autocomplete="off">
+                            <table class="table-form" style="margin-left:10px">
+                                <tr>
+                                    <td>Item Name</td>
+                                    <td>
+                                        <input type="text" id="name" class="text-box" /> <span class="formrequired">*</span>
+                                        <div class="text-box suggestions collapse" id="ItemNameList">
+                                        </div>
+                                    </td>
+                                    <td>Batch No</td>
+                                    <td>
+                                        <input type="text" id="BatchNo" class="text-box" /> <span class="formrequired">*</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Generic Drug Name</td>
+                                    <td colspan="2">
+                                        <input type="text" id="GenericDrugName" class="text-box" />
+                                        <i class="fa fa-plus-circle" id="AddNewGenericDrug"><span>Add New Generic Drug</span></i>
+                                        <div class="text-box suggestions collapse" id="GenericDrugNameList">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>MfgCo. Name</td>
+                                    <td colspan="2">
+                                        <input type="text" id="MfgCoName" class="text-box" />
+                                        <i class="fa fa-plus-circle" id="AddNewMfgCompany"><span>Add New Mfg Company</span></i>
+                                        <div class="text-box suggestions collapse" id="MfgNameList">
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <div id="showResult">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Category</td>
+                                    <td colspan="2">
+                                        <input type="text" id="category" class="text-box" multiple /> <span class="formrequired">*</span>
+                                        <i class="fa fa-plus-circle" id="AddNewMfgCategory"><span>Add New Category</span></i>
+                                        <div class="text-box suggestions collapse" id="CategoryList">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Supplier</td>
+                                    <td>
+                                        <input type="text" id="supplier" class="text-box" />
+                                        <div class="text-box suggestions collapse" id="SupplierList">
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Current Stock</td>
+                                    <td>
+                                        <input type="text" id="CurentStock" class="text-box" multiple />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mfg Date</td>
+                                    <td>
+                                        <input type="text" id="MfgDate" class="text-box" />
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Reorder Level</td>
+                                    <td>
+                                        <input type="text" id="ReorderLevel" class="text-box" multiple />
+                                    </td>
+                                    <td>Bar Code</td>
+                                    <td>
+                                        <input type="text" id="barcode" class="text-box" multiple />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Units/Pack</td>
+                                    <td>
+                                        <input type="text" id="unitsPack" class="text-box" multiple />
+                                    </td>
+                                    <td>Case Pack Rate</td>
+                                    <td>
+                                        <input type="text" id="casePackRate" class="text-box" multiple />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Cost Price/Unit</td>
+                                    <td>
+                                        <input type="text" id="costPriceUnit" class="text-box" multiple />
+                                    </td>
+                                    <td>Selling Price/Unit</td>
+                                    <td>
+                                        <input type="text" id="sellingPriceUnit" class="text-box" multiple />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Expiry Status</td>
+                                    <td>
+                                        <select class="text-box" id="expiryStatus">
+                                           
+                                            <option>Expiry Item</option>
+                                            <option selected>Non Expiry Item</option>
+                                        </select>
+                                    </td>
+                                   
+                                    <td colspan="2"> 
+                                        <div class="collapse" id="expDate">
+                                            <table class="table-form">
+                                                <tr>
+                                                    <td>Expiry Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                    <td>
+                                                        <div>
+                                                            <input type="text" class="text-box" id="ExpiryDate" />
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                       
+                                    </td>
+                                       
+                                </tr>
+                                <tr>
+                                    <td>Purchase Date</td>
+                                    <td>
+                                        <input type="text" class="text-box" id="purchaseDate" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="button" id="btnSave" class="btn btn-sm btn-primary" value="Save" />
+                                        <input type="button" class="btn btn-sm btn-primary" value="Clear" />
+                                    </td>
+                                    <td>
+                                        <div id="result">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="GenericDrug" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">New Generic Drug</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table-form">
+                    <tr>
+                        <td>Generic Drug Name</td>
+                        <td>
+                            <input type="text" class="text-box" id="DrugName" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div id="resultGeneric">
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSaveGenericDrug" class="btn btn-primary btn-sm">Save</button>
+                <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="MfgCompanyModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">New Mfg Company</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table-form">
+                    <tr>
+                        <td>Mfg Company Name</td>
+                        <td>
+                            <input type="text" class="text-box" id="CompanyName" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div id="resultCompany">
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSaveNewCompany" class="btn btn-primary btn-sm">Save</button>
+                <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="CategoryModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">New Category</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table-form">
+                    <tr>
+                        <td>Category Name</td>
+                        <td>
+                            <input type="text" class="text-box" id="CategoryName" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div id="resultCategory">
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSaveCategory" class="btn btn-primary btn-sm">Save</button>
+                <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/date.js"></script>
+
+    <script type="text/javascript">
+        //On key up to populate the div containing drug list
+        $("#name").keyup(function () {
+
+            var itemName = $("#name").val();
+            var itemList = $("#ItemNameList");
+
+
+            if (itemName.length < 1) {
+
+                itemList.fadeOut();
+            }
+            else {
+
+                var nam = { name: itemName };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/MinorMasterProcurement/SearchDrugList',
+                    data: nam,
+                    success: function (obj) {
+                        //console.log(obj);
+                        //create an array to store the values searched
+                        var item = [];
+                        //loop through all the items and push then into the array variable
+
+                        $.each(obj, function (key, value) {
+                            var string = '<p class="searchedItems" data-id="' + value.Id + '" data-value="' + value.Name + '">' + value.Name + '</p>';
+                            item.push(string);
+
+                        })
+
+                        // empty the div element
+                        $("#ItemNameList").empty();
+
+                        var items = item.join("");
+                        itemList.append(items);
+                        itemList.fadeIn();
+
+                        $(".searchedItems").each(function () {
+                            $(this).click(function () {
+                                var val = $(this).data("value");
+                                var Id = $(this).data("id");
+                                $("#name").val(val);
+                                $("#ItemNameList").fadeOut();
+                                $("#ItemNameList").empty();
+
+                                var url = "/MinorMasterProcurement/SearchDrugById?Id=" + Id;
+
+                                $.ajax({
+                                    type: "GET",
+                                    url: url,
+                                    success: function (obj) {
+                                        //console.log(obj);
+                                        $("#GenericDrugName").val(obj.Name);
+                                        $("#category").val(obj.CategoryName);
+                                        $("#ReorderLevel").val(obj.ReorderLevel);
+                                        $("#unitsPack").val(obj.UnitsPack);
+                                        
+                                    }
+                                });
+                            })
+                        });
+
+
+                    },
+                    error: function (e, x, y) {
+                        console.log(e.responseText);
+                    }
+                })
+
+            }
+
+        })
+
+        $("#btnSave").click(function () {
+            var Name = $("#name").val();
+            var BatchNo = $("#BatchNo").val();
+            var GenericDrugName = $("#GenericDrugName").val();
+            var MfgCoName = $("#MfgCoName").val();
+            var category = $("#category").val();
+            var supplier = $("#supplier").val();
+            var CurentStock = $("#CurentStock").val();
+            var MfgDate = $("#MfgDate").val();
+            var ICDCode = $("#ICDCode").val();
+            var ReorderLevel = $("#ReorderLevel").val();
+            var barcode = $("#barcode").val();
+            var unitsPack = $("#unitsPack").val();
+            var casePackRate = $("#casePackRate").val();
+            var costPriceUnit = $("#costPriceUnit").val();
+            var sellingPriceUnit = $("#sellingPriceUnit").val();
+            var expiryStatus = $("#expiryStatus").val();
+            var purchaseDate = $("#purchaseDate").val();
+            var ExpiryDate = $("#ExpiryDate").val();
+            var StoreName = $("#StoreName").val();     
+
+            var model = {
+                ItemName: Name, BatchNo: BatchNo, GenericDrugName: GenericDrugName,
+                MfgCoName: MfgCoName, Category: category, Supplier: supplier, CurrentStock: CurentStock,
+                MfgDate: MfgDate, ICDTenCode: ICDCode, ReorderLevel: ReorderLevel, barCode: barcode,
+                UnitsPack: unitsPack, CasePackRate: casePackRate, CostPriceUnit: costPriceUnit,
+                SellingPriceUnit: sellingPriceUnit, ExpiryStatus: expiryStatus, PurchaseDate: purchaseDate,
+                ExpiryDate: ExpiryDate, StoreName: StoreName
+            }
+
+            
+
+            //Initialize a bool variable to false
+            var checkIfModelIsValid = true;
+
+            //run function to loop through all the values in the json
+            //if any of the  values in the loop is missing then show assign boolVal to true
+            $.each(model, function (key, value) {
+
+                if (key == "ItemName") {
+
+                    if (value) {
+                        //this returns true if the value is not  null, undefined, empty, nan, etc
+                    }
+                    else {
+
+                        $("#name").notify("Required", { elementPosition: "right" });
+                        checkIfModelIsValid = true;
+                    }
+                }
+                else if (key == "BatchNo") {
+                    if (value) {
+                        //this returns true if the value is not  null, undefined, empty, nan, etc
+                    }
+                    else {
+
+                        $("#BatchNo").notify("Required", { elementPosition: "right" });
+                        checkIfModelIsValid = false;
+                    }
+                }
+                else if (key == "Category") {
+                    if (value) {
+                        //this returns true if the value is not  null, undefined, empty, nan, etc
+                    }
+                    else {
+
+                        $("#category").notify("Required", { elementPosition: "right" });
+                        checkIfModelIsValid = false;
+                    }
+                }
+                else if (key == "StoreName") {
+                    if (value == "") {
+                        $("#StoreName").notify("Required", { elementPosition: "right" });
+                        checkIfModelIsValid = false;
+                    }
+                   
+                }
+
+            });
+
+            if (checkIfModelIsValid == true) {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/ProcurementMaster/ItemMaster',
+                    data: model,
+                    beforeSend: function () {
+                        $("#btnSave").prop("disabled", true);
+                        $('body').loading({
+                            theme: 'dark',
+                            message: "Saving Data ..."
+                        });
+
+                    },
+                    success: function () {
+
+                        $("#formItemMaster")[0].reset();
+
+                        $("#result").notify("Save Record Successfully", "success");
+                        $("#btnSave").prop("disabled", false);
+                        $('body').loading('stop');
+                    },
+                    error: function () {
+                        $("#result").notify("An Error Occured Saving your Entry", "error");
+                        $("#btnSave").prop("disabled", false);
+                        $('body').loading('stop');
+                    }
+                });
+            }
+            else {
+                $("#result").notify("One of your Entities is missing", "error");
+            }
+            
+        })
+
+        $("#MfgCoName").keyup(function () {
+
+            var ManfactureName = $("#MfgCoName").val();
+            var ManufactureList = $("#MfgNameList");
+
+
+            if (ManfactureName.length < 1) {
+
+                ManufactureList.fadeOut();
+            }
+            else {
+
+                var nam = { name: ManfactureName };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/MinorMasterProcurement/SearchManufactureName',
+                    data: nam,
+                    success: function (obj) {
+
+                        //create an array to store the values searched 
+                        var item = [];
+                        //loop through all the items and push then into the array variable
+
+                        $.each(obj, function (key, value) {
+                            var string = '<p class="searchedItems" data-value="' + value.Name + '">' + value.Name + '</p>';
+                            item.push(string);
+
+                        })
+
+                        // empty the div element
+                        $("#MfgNameList").empty();
+
+                        var items = item.join("");
+                        ManufactureList.append(items);
+                        ManufactureList.fadeIn();
+
+                        $(".searchedItems").each(function () {
+                            $(this).click(function () {
+                                var val = $(this).data("value");
+                                $("#MfgCoName").val(val);
+                                ManufactureList.fadeOut();
+                            })
+                        });
+
+
+                    },
+                    error: function () {
+                        console.log("Error Occured");
+                    }
+                })
+
+            }
+
+        })
+
+        $("#supplier").keyup(function () {
+
+            var supplierName = $("#supplier").val();
+            var supplierList = $("#SupplierList");
+
+
+            if (supplierName.length < 1) {
+
+                supplierList.fadeOut();
+            }
+            else {
+
+                var nam = { name: supplierName };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/MinorMasterProcurement/SearchSupplier',
+                    data: nam,
+                    success: function (obj) {
+
+                        //create an array to store the values searched 
+                        var item = [];
+                        //loop through all the items and push then into the array variable
+
+                        $.each(obj, function (key, value) {
+                            var string = '<p class="searchedItems" data-value="' + value.Supplier_Name + '">' + value.Supplier_Name + '</p>';
+                            item.push(string);
+
+                        })
+
+                        // empty the div element
+                        $("#SupplierList").empty();
+
+                        var items = item.join("");
+                        supplierList.append(items);
+                        supplierList.fadeIn();
+
+                        $(".searchedItems").each(function () {
+                            $(this).click(function () {
+                                var val = $(this).data("value");
+                                $("#supplier").val(val);
+                                supplierList.fadeOut();
+                                supplierList.empty();
+                            })
+                        });
+
+
+                    },
+                    error: function () {
+                        console.log("Error Occured");
+                    }
+                })
+
+            }
+
+        })
+
+        $("#expiryStatus").on('change', function () {
+            var expiryStatus = $("#expiryStatus").val();
+
+            if (expiryStatus == "Expiry Item") {
+                $("#expDate").show();
+            }
+            else
+            {
+                $("#expDate").hide();
+            }
+                
+        })
+
+        $(window).on('load', function () {
+
+            var dateToday = new Date();
+            var yrRange = dateToday.getFullYear() + ":" + (dateToday.getFullYear() + 10);
+           
+
+           
+
+            $("#purchaseDate").datepicker({
+                dateFormat: "dd-mm-yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: yrRange
+            });
+            
+            $("#MfgDate").datepicker({
+                dateFormat: "dd-mm-yy",
+                changeMonth: true,
+                changeYear: true,
+            });
+            
+            $("#ExpiryDate").datepicker({
+                
+                changeMonth: true,
+                changeYear: true,
+                yearRange: yrRange
+            });
+
+            $("#ExpiryDate").on('change', function () {
+                var chosenDate = $(this).val();
+                var selectedDate = new Date(chosenDate);
+                var todaysDate = Date.today();
+
+                if (selectedDate < todaysDate) {
+                    //alert('Selected date must be greater than today date');
+                    $("#ExpiryDate").notify("Selected date must be greater than today date", { elementPosition: "right" });
+                    $(this).val('');
+                }
+            });
+
+
+
+        })
+    </script>
+
+    @*<script src="~/Areas/Procurement/Scripts/ItemMasterScript.js?v=@(new Random().Next(1,10000))"></script>*@
+
+
+}
+

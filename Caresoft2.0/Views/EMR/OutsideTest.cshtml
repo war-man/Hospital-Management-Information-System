@@ -1,0 +1,75 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.OutsideTest>
+
+<table id="ot_tests" class="table table-striped table-bordered">
+    <thead class="bg-primary">
+        <tr>
+            <th>Edit</th>
+            <th>Type</th>
+            <th>Test Name</th>
+            <th>Clinical Comments</th>
+            <th>View</th>
+            <th>Print</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody style="background:white;">
+        @if (Model.Count() == 0)
+        {
+
+            <tr>
+                <td colspan="6" align="center">
+                    <em>No data to display</em>
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "DeleteOutsideTest", new { id = item.Id }, new { @class = "btn btn-xs btn-block btn-success" })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TestName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClinicalComments)
+                </td>
+                <td>
+                    @Html.ActionLink("View", "asd", new { })
+                </td>
+
+                <td>
+                    @if (item.Printed??false)
+                    {
+                        <input type="checkbox" value="@item.Id" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" value="@item.Id" checked />
+                    }
+                </td>
+
+                <td>
+                    @Ajax.ActionLink("Delete", "DeleteOutsideTest", new { id = item.Id }, new AjaxOptions
+               {
+                   LoadingElementId = "loadingElement",
+                   HttpMethod = "GET",
+                   UpdateTargetId = "ot_tests"
+
+               }, new { @class = "btn btn-xs btn-block btn-danger" })
+
+
+                </td>
+
+
+            </tr>
+            }
+
+        }
+        </tbody>
+</table>

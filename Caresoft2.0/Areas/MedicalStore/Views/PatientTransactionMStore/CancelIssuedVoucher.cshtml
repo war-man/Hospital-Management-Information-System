@@ -1,0 +1,225 @@
+﻿@model Caresoft2._0.Areas.Procurement.Models.SimulationPatientIssueVoucher
+
+@{
+    ViewBag.Title = "CancelIssuedVoucher";
+    Layout = "~/Areas/MedicalStore/Views/Shared/_LayoutMedicalStore.cshtml";
+}
+
+<style>
+    .cancelled {
+        color: red;
+    }
+
+    .NotCancelled {
+        color: yellow;
+    }
+
+    .PartialCancelled {
+        color: turquoise;
+    }
+
+    table.table-bordered {
+        border: 1px solid blue;
+        margin-top: 20px;
+    }
+
+        table.table-bordered > thead > tr > th {
+            border: 1px solid blue;
+        }
+
+        table.table-bordered > tbody > tr > td {
+            border: 1px solid blue;
+        }
+
+        .text-box{
+            width:200px;
+        }
+
+        .txtbox{
+            width:50px;
+        }
+</style>
+
+
+<div class="col-md-10">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px"> <strong> Cancel Issue Voucher</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                Issue Voucher Number
+                            </td>
+                            <td>
+                                <input type="text" class="text-box" value="@Model.VoucherNumber" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Drug Name
+                            </td>
+                            <td>
+                                <select class="text-box"  id="DrugName">
+                                    <option>--Select Drug--</option>
+                                    @foreach (var item in Model.SimulationTreatment)
+                                    {
+                                         <option value="@item.Id"> @item.ItemMaster.ItemName</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="button" value="Show Voucher Detail" class="btn btn-primary btn-sm" />
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br />
+                </div>
+                <div class="col-md-6">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Total Amount</td>
+                            <td> 0 </td>
+                            <td>Discount Amount</td>
+                            <td> 0 </td>
+                        </tr>
+                        <tr>
+                            <td>Total Amount Received</td>
+                            <td> 0 </td>
+                            <td>Balance</td>
+                            <td> 0 </td>
+                        </tr>
+                        <tr>
+                            <td>Refund Amount</td>
+                            <td> 0 </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-12" id="LstCancelledVoucher">
+                <table class="table table-data" >
+                    <tr>
+                        <th>Drug Name</th>
+                        <th>Drug Id</th>
+                        <th>Batch No</th>
+                        <th>Rate</th>
+                        <th>Unit</th>
+                        <th>Amount</th>
+                        <th>Current Stock</th>
+                        <th>Expiry Date</th>
+                        <th>Item Refund</th>
+                        <th>Cancel Quantity</th>
+                        <th>Refund Amount</th>
+                    </tr>
+                    <tr>
+                        <td colspan="11">No data to display</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <button class="btn btn-sm btn-primary" id="btnSave"> Save</button>
+                <button class="btn btn-sm btn-primary"> Report</button>
+                <button class="btn btn-sm btn-primary"> Detailed Report</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    
+        <script>
+            $("#DrugName").on('change', function () {
+
+                var SimulationTreatmentId = $(this).val();
+
+                if (SimulationTreatmentId != null || SimulationTreatmentId != "") {
+
+                    var url = "/PatientTransactionMStore/SimulationTreatmentToBeCancelled?Id=" + SimulationTreatmentId;
+
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        success: function (obj) {
+                            $("#LstCancelledVoucher").empty();
+                            $("#LstCancelledVoucher").append(obj);
+                            CalculateRefundAmount();
+                            $("#btnSave").removeProp("disabled");
+                        },
+                        error: function (x, y, z) {
+                            console.log(x.responseText);
+                        }
+                    });
+                }
+                else {
+                    console.log("Error check value")
+                }
+            })
+
+
+            function CalculateRefundAmount() {
+                var Rate = $("#Rate").val();
+                var Units = $("Units").val();
+               
+                $("#CancelQuantity").keyup(function () {
+                    var cancelQuantity = $(this).val();
+
+                    if (cancelQuantity > Units) {
+
+                        var error = $("#errorResult");
+                        var texttoappend = '<p class="label label-warning">Quantity must be less than Units</p>';
+                        error.html(texttoappend);
+                        error.show();
+                        error.fadeOut(500);
+                    }
+                    else
+                    {
+                        var totalRefund = Rate * cancelQuantity;
+                        $("#RefundAmount").val(totalRefund);
+                    }
+                      
+                });
+            }
+
+            $("#btnSave").click(function () {
+
+                var Id = $("#DrugName").val();
+                var ItemRefund = $("#CancelQuantity").val();
+                var totalRefund = $("#RefundAmount").val();
+
+                var refundData = {
+                    Id: Id,
+                    ItemRefund: ItemRefund,
+                    totalRefund: totalRefund
+                }
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "/PatientTransactionMStore/SaveCancelledTreatment",
+                    data: refundData,
+                    success: function (obj) {
+                        $("#LstCancelledVoucher").empty();
+                        $("#LstCancelledVoucher").append(obj);
+                        CalculateRefundAmount();
+                        $("#btnSave").attr("disabled", "disabled");
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                    }
+                });
+
+
+            })
+
+        </script>
+    
+    }

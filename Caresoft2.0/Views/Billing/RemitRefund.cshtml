@@ -1,0 +1,197 @@
+﻿@model CaresoftHMISDataAccess.Refund
+@{
+    ViewBag.Title = "Remit Refund";
+    ViewBag.ShowTopMenu = true;
+
+    var pat = new CaresoftHMISDataAccess.Patient();
+    if(Model.BillPayment.OPDNo!=null )
+    {
+        pat = Model.BillPayment.OpdRegister.Patient;
+    }
+}
+
+<style>
+    .print-only{
+        display: none;
+    }
+
+    @@media print {
+        .no-print {
+            display: none;
+        }
+
+        .print-only{
+            display: block;
+        }
+}
+</style>
+
+<div class="col-xs-8 col-sm-offset-2">
+    <div class="panel panel-primary caresoft-panel ">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        
+        <div class="panel-body">
+            Shift Number: @ViewBag.ShiftId
+ <input type="hidden" id="RefundTrackId"  value="@Model.Id"/>
+
+ <div id="refund_receipt">
+     <div class="print-only">
+         <table class="table-bordered table-condensed marg-top-16px" width="45%">
+             <tr>
+                 <td align="center">
+                     <h3>@ViewBag.FacilityName</h3>
+                     <p>@ViewBag.FacilityAddress | @ViewBag.FacilityContact</p>
+                     <p>Refund Receipt</p>
+                 </td>
+             </tr>
+         </table>
+     </div>
+     <table class="table-bordered table-condensed marg-top-16px" width="45%">
+         <tbody class="bg-white">
+             <tr>
+                 <td>
+                     Tracking No.
+                 </td>
+                 <th>
+                     @Model.Id.ToString().PadLeft(4, '0')
+                 </th>
+             </tr>
+             <tr>
+                 <td>Reg No:</td>
+                 <th>@Html.DisplayFor(model => pat.RegNumber)</th>
+             </tr>
+             <tr>
+                 <td><label>Name:</label></td>
+                 <th id="CustomerName">
+                     @Html.DisplayFor(model => pat.Salutation) @Html.DisplayFor(model => pat.FName) @Html.DisplayFor(model => pat.MName) @Html.DisplayFor(model => pat.LName) @if (pat.RegNumber == null)
+                    {<text>Walkin Customer</text>}
+                 </th>
+             </tr>
+             <tr>
+                 <td>
+                     Refund Amount
+                 </td>
+                 <th class="money" id="RefundAmount">
+                     @Model.RefundedAmount
+                 </th>
+             </tr>
+             <tr>
+                 <td>
+                     Approved By
+                 </td>
+                 <td>
+                     @Model.User.Username
+                 </td>
+             </tr>
+             <tr>
+                 <td>
+                     Approved On
+                 </td>
+                 <td>
+                     @Model.DateAdded
+                 </td>
+             </tr>
+             <tr>
+                 <td>Remitted By</td>
+                 <td id="RemittedBy">
+                     @Html.DisplayFor(model => model.Shift.User.Username)
+                 </td>
+             </tr>
+
+             <tr>
+                 <td>Remitted On</td>
+                 <td id="RemittedAt">@Html.DisplayFor(model => model.RemittedAt)</td>
+             </tr>
+             <tr>
+                 <td>
+                     Customer Sign
+                 </td>
+                 <td>
+                     <br />_____________________
+                 </td>
+             </tr>
+
+         </tbody>
+
+     </table>
+ </div>
+
+ <div class="marg-top-16px">
+     <p>
+         <strong class="text-danger">@ViewBag.DeclineRemitReason</strong>
+     </p>
+
+     @if (Model.Remitted)
+     {
+         <p>
+             <strong class="text-danger">Already Refunded</strong>
+         </p>
+     }
+
+     <button onclick="confirmRefund()"
+             class="btn btn-sm btn-primary" id="btn_confirm_refund"
+             @if (Model.Remitted || ViewBag.AcceptRemit == false) { <text> disabled</text>}>
+         Confirm refund
+     </button>
+
+     <button onclick="$('#refund_receipt').print()"
+             class="btn btn-sm btn-primary" id="btn_print_refund_receipt"
+             @if (!Model.Remitted) { <text> disabled</text>}>
+         Print
+     </button>
+
+     <a href="@Url.Action("RefundsList", "Billing")"
+        class="btn btn-sm btn-primary" id="btn_confirm_refund">
+         Close
+     </a>
+ </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section scripts{
+    <script>
+
+        function confirmRefund() {
+            var trackId = $("#RefundTrackId").val();
+            var amt = $("#RefundAmount").text();
+            var customer = $("#CustomerName").text();
+            var confirmed = confirm("Are you sure you want to issue a refund of Ksh " +
+                amt + "\n to " + customer + "?");
+
+            if (confirmed) {
+                $(".loader").show();
+                $.ajax({
+                    url: "@Url.Action("ConfirmRemitRefund", "Billing")",
+                    method: "post",
+                    data: { "id": trackId},
+                    success: function (res) {
+                        $(".loader").hide();
+                        showNotification(res.Message, res.Status, true);
+                        if (res.Status === "success") {
+                            $("#RemittedBy").text(res.RemittedBy);
+                            $("#RemittedAt").text(res.RemittedOn);
+                            $("#btn_confirm_refund").attr('disabled', 'disabled');
+                            $("#btn_print_refund_receipt").removeAttr('disabled');
+
+                            $("#refund_receipt").print();
+                        }
+                    },
+                    error: function (e, x, r) {
+                        $(".loader").hide();
+                        showNotification("An error occured!", "danger", true);
+                        console.log(e.responseText)
+                    }
+                })
+            }
+        }
+    </script>
+}

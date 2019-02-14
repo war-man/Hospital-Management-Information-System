@@ -1,0 +1,150 @@
+﻿@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.SimulationPatientIssueVoucher>
+
+@{
+    ViewBag.Title = "EditPatientIssueVoucher";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+}
+
+<style>
+    .text-box{
+        margin-bottom:2px;
+        margin-top:2px;
+    }
+</style>
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading ">
+            Edit Patient Issue Voucher
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                From Date
+                            </td>
+                            <td>
+                                <input type="date" id="fromDate" class="text-box" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </td>
+                            <td>
+                                To Date
+                            </td>
+                            <td>
+                                <input type="date" id="toDate" class="text-box" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Reg No
+                            </td>
+                            <td>
+                                <input type="text" class="text-box" id="patientRegNo" />
+                            </td>
+                            
+                        </tr>
+                    </table>
+                    <div id="InvoiceList">
+                        @Html.Partial("~/Areas/PharmacyModule/Views/PharmacyPatientTransaction/_EditPatientIssueVoucher.cshtml", Model)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $("#fromDate").on('change', function () {
+            
+            var fromDate = $(this).val();
+            var toDate = $("#toDate").val();
+
+            var dates = { fromDate: fromDate, toDate: toDate };
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyPatientTransaction/SearchEditPatientIssuerVoucher",
+                data: dates,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+
+        })
+
+        $("#toDate").on('change', function () {
+            var fromDate = $("#fromDate").val();
+            var toDate = $(this).val();
+
+            var dates = { fromDate: fromDate, toDate: toDate };
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyPatientTransaction/SearchEditPatientIssuerVoucher",
+                data: dates,
+                beforeSend: function () {
+                    $(".loader").show();
+
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+
+        })
+
+        $("#patientRegNo").keyup(function () {
+            var regNo = $("#patientRegNo").val();
+
+            if (regNo.Length > 0) {
+                $.notify("Fetching Data", "success");
+            }
+
+            var url = "/PharmacyPatientTransaction/SearchEditPatientIssueVoucherByRegNo?regNo=" + regNo;
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url:url,
+                beforeSend: function () {
+                    
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+        })
+
+    </script>
+}
+
+

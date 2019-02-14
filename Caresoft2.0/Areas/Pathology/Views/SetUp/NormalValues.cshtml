@@ -1,0 +1,310 @@
+﻿@model LabsDataAccess.NormalValue
+
+@{
+    ViewBag.Title = "Normal Values";
+    ViewBag.ShowTopMenu = true;
+    Layout = ViewBag.Layout;
+}
+<div class="col-xs-12 col-xs-offset-0">
+
+    <br />
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading" style="height:40px ; ">
+            <h5 style="font-weight:bold">@ViewBag.Title</h5>
+        </div>
+
+        <div class="panel-body">
+
+            <div class="form-group col-xs-offset-3">
+                @Html.Label("Select Department", htmlAttributes: new { @class = " col-xs-3", style = "font-weight: bold;" })
+                <div class="col-xs-3">
+                    @Html.DropDownList("Departments", ViewBag.Departments as IEnumerable<SelectListItem>, "Select Department", htmlAttributes: new { @class = "text-box", id = "departments" })
+                </div>
+            </div>
+            <br />
+            @using (Ajax.BeginForm("NormalValues", "Labs", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = "normal_value_list",
+                OnSuccess = "clearAppFields(); onClicks()",
+                LoadingElementId = "loadingElement",
+            }, new { id = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <table class="cust_table" style="width:100%;" id="">
+                        <tr class="cust_table">
+                            <th rowspan="2" class="cust_table">Test Name</th>
+                            <th rowspan="2" class="cust_table">Test Code</th>
+                            <th rowspan="2" class="cust_table">Parameter</th>
+                            <th rowspan="2" class="cust_table">Sex</th>
+                            <th colspan="3" class="cust_table">Age</th>
+                            <th colspan="4" class="cust_table">Normal Range</th>
+                        </tr>
+                        <tr class="cust_table">
+                            <th class="cust_table">Lower</th>
+                            <th class="cust_table">Upper</th>
+                            <th class="cust_table">Days</th>
+                            <th class="cust_table">Lower</th>
+                            <th class="cust_table">Upper</th>
+                            <th class="cust_table">Unit</th>
+                            <th class="cust_table">General</th>
+                        </tr>
+                        <tr class="cust_table">
+                            <td class="cust_table" valign="top">
+                                <div class="form-group">
+                                    <div class="col-xs-10">
+                                        @Html.DropDownList("Test", null, htmlAttributes: new { @class = "text-box", style = "width:230px;", @required = "required" })
+                                        @Html.ValidationMessageFor(model => model.Test, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-10">
+                                        @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "text-box", style = "width:100px;", @readonly = true, id = "Id", @Value = "0", @type = "hidden" } })
+                                        @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td class="cust_table" valign="top">
+                                <div class="form-group">
+                                    <div class="col-xs-10">
+                                        @Html.EditorFor(model => model.LabTest.Test_Code, new { htmlAttributes = new { @class = "text-box", style = "width:60px;", @disabled = true, id = "test" } })
+                                        @Html.ValidationMessageFor(model => model.LabTest.Test_Code, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="cust_table" valign="top">
+                                <div class="form-group">
+                                    <div class="col-xs-10">
+                                        @Html.DropDownList("Parameter", null, htmlAttributes: new { @class = "text-box", style = "width:150px;" })
+                                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="cust_table" valign="top">
+                                <div class="form-group">
+                                    <div class="col-xs-10">
+                                        @Html.DropDownList("Gender", null, htmlAttributes: new { @class = "text-box", style = "width:80px;" })
+                                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="cust_table" valign="top">
+                                <div class="form-group">
+                                    <div class="col-xs-10">
+                                        @Html.EditorFor(model => model.Lower_Age, new { htmlAttributes = new { @class = "text-box resetfields", style = "width:50px;" } })
+                                        @Html.ValidationMessageFor(model => model.Lower_Age, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="cust_table" valign="top">
+                                <div class="form-group">
+                                    <div class="col-xs-10">
+                                        @Html.EditorFor(model => model.Upper_Age, new { htmlAttributes = new { @class = "text-box resetfields", style = "width:50px;" } })
+                                        @Html.ValidationMessageFor(model => model.Upper_Age, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="cust_table" valign="top">
+                                <div class="form-group">
+                                    <div class="col-xs-10">
+                                        @Html.DropDownList("Days", null, htmlAttributes: new { @class = "text-box", style = "width:80px;" })
+                                        @Html.ValidationMessageFor(model => model.Days, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td class="cust_table" valign="top">
+                                <div class="form-group">
+                                    <div class="col-xs-10">
+                                        @Html.EditorFor(model => model.LowerRange, new { htmlAttributes = new { @class = "text-box resetfields", style = "width:50px;" } })
+                                        @Html.ValidationMessageFor(model => model.LowerRange, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="cust_table" valign="top">
+                                <div class="form-group">
+                                    <div class="col-xs-10">
+                                        @Html.EditorFor(model => model.UpperRange, new { htmlAttributes = new { @class = "text-box resetfields", style = "width:50px;" } })
+                                        @Html.ValidationMessageFor(model => model.UpperRange, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="cust_table" valign="top">
+                                <div class="form-group">
+                                    <div class="col-xs-10">
+                                        @Html.EditorFor(model => model.Unit, new { htmlAttributes = new { @class = "text-box resetfields", style = "width:90px;" } })
+                                        @Html.ValidationMessageFor(model => model.Unit, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="cust_table" valign="top">
+                                <div class="form-group">
+                                    <div class="col-xs-10">
+                                        @Html.TextAreaFor(model => model.General, new { @class = "text-box resetfields", style = "height:100px" })
+                                        @Html.ValidationMessageFor(model => model.General, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="cust_table" colspan="11">
+                                <input type="submit" value="Save" id="add" class="btn btn-primary btn-sm" />
+                                <input type="reset" value="Reset" id="btnreset" class="btn btn-primary btn-sm" />
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            }
+            <br />
+            <div>
+                <div class="bg-white" id="normal_value_list" style="height:30vh; overflow:auto"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $("#departments").change(function () {
+            RequestFormLoaderShow();
+            $("#test").val("");
+            $("#normal_value_list").html("");
+
+            $.ajax({
+                url: "/Pathology/SetUp/NormalValuesOptions/" + $(this).val(), success: function (result) {
+                    $("#Test").html(result);
+                    RequestFormLoaderHide();
+                    $("#btnreset").trigger("click");
+
+                }, error: function () {
+                    RequestFormLoaderHide();
+
+                }
+            });
+
+        });
+
+        $("#Test").change(function () {
+            RequestFormLoaderShow();
+            $("#test").val("");
+            $("#normal_value_list").html("");
+            $("#Parameter").html("");
+            $("#test").val($(this).val())
+
+            var id = $(this).val();
+
+            $.ajax({
+                url: "/Pathology/SetUp/NormalValueList/" + id, success: function (result) {
+                    $("#normal_value_list").html(result);
+                    onClicks();
+                    RequestFormLoaderHide();
+                    getParameters(id);
+
+                }, error: function () {
+                    RequestFormLoaderHide();
+                    getParameters(id);
+                }
+            });
+        });
+
+        function getParameters(id) {
+            RequestFormLoaderShow();
+            $.ajax({
+                url: "/Pathology/SetUp/PanicValuesParametersOptions/" + id,
+                success: function (result) {
+                    $("#Parameter").html(result);
+                    RequestFormLoaderHide();
+
+                }, error: function () {
+                    RequestFormLoaderHide();
+                }
+            });
+        }
+        function clearAppFields() {
+            $('#form').trigger("reset");
+            $('#General').text("");
+            $('#Id').text("");
+            $("#add").val("Save");
+
+
+        }
+        //$('.edit').on("click", "a", function () {
+        //    alert($(this).text());
+        //});
+
+
+        $('#btnreset').click(function () {
+            clearAppFields();
+        });
+
+        function onClicks() {
+
+            $('.edit').each(function () {
+
+                $(this).click(function (e) {
+                    $("#Id").val($(this).attr("data-Id"));
+                    e.preventDefault();
+                    getNVData($(this).attr("data-Id"));
+                });
+
+            });
+
+            $('.delete').each(function () {
+
+                $(this).click(function (e) {
+
+                    e.preventDefault();
+                    alert($(this).attr("data-Id"));
+                });
+
+            });
+
+        };
+
+        function populateMyView(data, formId) {
+            $.each(data, function (key, value) {
+                $(formId).find("input[name=" + key + "]").val(value);
+                $(formId).find("textarea[name=" + key + "]").text(value);
+                $(formId).find("select[name=" + key + "]").find("option[text=" + value + "]").prop('selected', true);
+                $(formId).find("select[name=" + key + "]").val(value);
+            });
+
+        };
+
+        function getNVData(id) {
+            $('.loader').show();
+
+            $.ajax({
+                type: "GET",
+                cache: false,
+                url: "/Pathology/SetUp/EditNormalValue?Id=" + id,
+                success: function (data) {
+                    $('.loader').hide();
+
+                    $("#add").val("Update");
+
+                    populateMyView(data, "#form");
+
+                },
+                error: function () {
+                    $('#error-page').html('<div class="alert alert-warning"><strong> Warning!</strong > An Error Occured while deleting the item, Try again another time. If the problem persist contact admin.</div >');
+                    $('.loader').hide();
+                }
+            });
+        };
+
+
+
+    </script>
+}

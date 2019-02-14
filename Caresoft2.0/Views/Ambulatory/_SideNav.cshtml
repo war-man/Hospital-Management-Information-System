@@ -1,0 +1,265 @@
+﻿<div >
+   
+    <style type="text/css">
+        .list-group {
+            margin: auto;
+            float: left;
+            padding-top: 20px;
+        }
+
+        .lead {
+            margin: auto;
+            left: 0;
+            right: 0;
+            padding-top: 10%;
+        }
+
+
+
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $('.list-group-item').click(function (e) {
+                e.preventDefault();
+                $('.list-group-item').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+
+    </script>
+
+    <div class="panel-body" style="height:400px" id="mySidenav">
+        <div class="list-group">
+
+            <a href="#" class="list-group-item active"><i class="fa fa-key"></i> <span>Transport Management</span></a>
+            <a href="#" class="list-group-item" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-credit-card"></i> <span>vehicle registration</span></a>
+            <a href="#" class="list-group-item" ><i class="fa fa-question-circle"></i> <span>Avilable drivers</span></a>
+            <a href="#" class="list-group-item" data-toggle="modal" data-target="#nurserequest"><i class="fa fa-arrow-circle-o-left"></i> <span>Nurse Request</span></a>
+            <a href="#" class="list-group-item"><i class="fa fa-book"></i> <span>Engaged Ambulances</span></a>
+            <a href="#" class="list-group-item"><i class="fa fa-compass"></i> <span>Waiting Queue</span></a>
+
+        </div>
+        <div class="col-sm-11 col-sm-offset-2">
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+
+                        <div class="panel panel-primary caresoft-panel">
+                            <div class="panel-heading">
+                                Vehicle Registration
+                            </div>
+                            <div class="panel-body">
+                                <form id="vehicle-registration" method="post" action="@Url.Action("SaveAmbulanceMaster", "Ambulatory")" class="form-container">
+                                    <table class="table-form">
+
+                                        <tr>
+                                            <td>
+                                                <label>Ambulance Type</label><br />
+                                            <td>
+                                                <input type="text" name="AmbulanceType" id="AmbulanceType" required />
+                                            </td>
+                                            <td>
+                                                <label>Vehicle Type</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="VehicleType" id="VehicleType" required />
+                                            </td>
+                                        </tr>
+                                        <td> &nbsp;</td>
+                                        <td> &nbsp;</td>
+                                        <td> &nbsp;</td>
+
+                                        <tr>
+
+                                            <td>
+                                                <label>Vehicle Name</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="VehicleName" id="VehicleName" required />
+                                            </td>
+                                            <td>
+                                                <label>Vehicle Number</label>
+                                            </td>
+                                            <td>
+                                                <input type="number" name="VehicleNumber" id="VehicleNumber" required />
+                                            </td>
+                                        </tr>
+                                        <td> &nbsp;</td>
+                                        <td> &nbsp;</td>
+                                        <td> &nbsp;</td>
+                                        <tr>
+                                            <td>
+                                                <label>Power</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="Power" id="Power" required />
+                                            </td>
+                                        </tr>
+
+                                        <td> &nbsp;</td>
+                                        <td> &nbsp;</td>
+                                        <tr>
+                                            <td>
+                                                <label>Registration Date</label>
+                                            </td>
+                                            <td>
+                                                <input type="date" name="RegistrationDate" id="RegistrationDate" value="@DateTime.Today.ToString("yyyy-MM-dd")" required />
+                                            </td>
+                                            <td>
+                                                <label>Fuel Capacity</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="FuelCapacity" id="FuelCapacity" required />
+                                            </td>
+                                        </tr>
+                                        <td> &nbsp;</td>
+                                        <td> &nbsp;</td>
+                                        <td> &nbsp;</td>
+                                        <tr>
+                                            <td>
+                                                <label>Description</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="Description" id="Description" required />
+                                            </td>
+
+                                            <td>
+                                                <label>Net Weight</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="NetWeight" id="Netweight" required />
+                                            </td>
+                                        </tr>
+
+
+                                    </table>
+
+                                    <div>
+                                        <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit" name="btnSubmit">Save</button>
+                                        <button type="reset" class="btn btn-sm btn-primary">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-8 col-sm-offset-6" style="width:700px;">
+            <style>
+                .modal-dialog {
+                    width: 800px;
+                    margin: 30px auto;
+                }
+            </style>
+            <div class="modal fade " id="nurserequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="width:700px;">
+                <div class="modal-dialog modal-dialog-centered " role="document" ">
+                    <div class="modal-content">
+
+                        <div class="panel panel-primary caresoft-panel">
+                            <div class="panel-heading">
+                                Nurse Request
+                            </div>
+                            <div class="panel-body">
+
+                                <div id="services-list" class="right-element">
+                                    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                                    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                                    <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                                    <script src="~/Scripts/bootstrap.min.js"></script>
+                                    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                                    <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+                                    <script src="~/Scripts/moment.js"></script>
+
+
+
+
+
+
+                                    <script type="text/javascript">
+                                        jQuery(document).ready(function ($) {
+                                            $('#requesttable').DataTable({
+                                                "ajax": {
+                                                    "url": "/Ambulatory/GetRequest",
+                                                    "type": "GET",
+                                                    "datatype": "json"
+                                                },
+                                                "columns": [
+                                                    { "data": "OPDNo" },
+                                                    { "data": "RequestingNurse" },
+                                                    { "data": "ServiceName" },
+                                                    { "data": "Department" },
+                                                    {
+                                                        "data": "AddedOn",
+                                                        "render": function (data) {
+                                                            var d = new Date(data);
+                                                            return d.toLocaleString();
+                                                        }
+                                                    }
+                                                   /* {
+                                                        "data": "Engaged",
+                                                        "render": function (data, type, row) {
+
+                                                            return (data == true) ? "<span class='glyphicon glyphicon-ok'> available </span > "
+                                                                : " <span class='glyphicon glyphicon-remove' > engaged </span > ";
+                                                        }
+                                                    }*/
+
+                                                ]
+
+
+                                            });
+                                        });
+
+
+
+
+
+
+
+                                    </script>
+
+
+                                    <h4 class="text-center text-uppercase">All Vehicles Available</h4>
+                                    <div id="dataTable_wrapper"></div>
+                                    <table id="requesttable" class="table table-data-pathology table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>OPDNo</th>
+                                                <th>Requesting Nurse</th>
+                                                <th>Requested Route</th>
+
+                                                <th>Department</th>
+                                                <th>Requested On</th>
+                                               
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                 </div>
+            </div>
+        </div>
+     </div>
+</div>

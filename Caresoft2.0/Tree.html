@@ -1,0 +1,247 @@
+﻿<!-- REf = http://code.iamkate.com/javascript/collapsible-lists/-->
+
+<style>
+    .collapsibleList li {
+        list-style-image: url('Content/icons/treeviewicons/button.png');
+        cursor: auto;
+    }
+
+    li.collapsibleListOpen {
+        list-style-image: url('Content/icons/treeviewicons/button-open.png');
+        cursor: pointer;
+    }
+
+    li.collapsibleListClosed {
+        list-style-image: url('Content/icons/treeviewicons/button-closed.png');
+        cursor: pointer;
+    }
+
+
+    .treeView {
+        -moz-user-select: none;
+        position: relative;
+    }
+
+        .treeView ul {
+            margin: 0 0 0 -1.5em;
+            padding: 0 0 0 1.5em;
+        }
+
+            .treeView ul ul {
+                background: url('Content/icons/treeviewicons/list-item-contents.png') repeat-y left;
+            }
+
+        .treeView li.lastChild > ul {
+            background-image: none;
+        }
+
+        .treeView li {
+            margin: 0;
+            padding: 0;
+            background: url('Content/icons/treeviewicons/list-item-root.png') no-repeat top left;
+            list-style-position: inside;
+            list-style-image: url('Content/icons/treeviewicons/button.png');
+            cursor: auto;
+        }
+
+            .treeView li.collapsibleListOpen {
+                list-style-image: url('Content/icons/treeviewicons/button-open.png');
+                cursor: pointer;
+            }
+
+            .treeView li.collapsibleListClosed {
+                list-style-image: url('Content/icons/treeviewicons/button-closed.png');
+                cursor: pointer;
+            }
+
+            .treeView li li {
+                background-image: url('Content/icons/treeviewicons/list-item.png');
+                padding-left: 1.5em;
+            }
+
+            .treeView li.lastChild {
+                background-image: url('Content/icons/treeviewicons/list-item-last.png');
+            }
+
+            .treeView li.collapsibleListOpen {
+                background-image: url('Content/icons/treeviewicons/list-item-open.png');
+            }
+
+            .treeView li.collapsibleListOpen.lastChild {
+                background-image: url('Content/icons/treeviewicons/list-item-last-open.png');
+            }
+</style>
+
+
+<ul class="treeView">
+    <li>
+        <ul class="collapsibleList">
+            <li class="collapsibleListClosed" style="user-select: none;">
+                General
+                <ul class="collapsibleList" style="display: none;">
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Disease Entry
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Chief Complaints
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Demography
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Allergies
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Toxicity
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        History
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Examination
+                        <ul class="collapsibleList" style="display: block;">
+                            <li style="user-select: none;">Physical Examination</li>
+                            <li class="lastChild" style="user-select: none;">Systemic Examination</li>
+                        </ul>
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Diagnosis
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Investigation
+                        <ul class="collapsibleList" style="display: block;">
+                            <li style="user-select: none;">View Investigation</li>
+                            <li style="user-select: none;">Work Order</li>
+                            <li style="user-select: none;">Outside Test</li>
+                            <li style="user-select: none;">Visit Wise View Investigation</li>
+                            <li class="lastChild" style="user-select: none;">Edit View Investigation</li>
+                        </ul>
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Treatment
+                        <ul class="collapsibleList" style="display: block;">
+                            <li style="user-select: none;">Medication</li>
+                            <li style="user-select: none;">Procedures</li>
+                            <li class="lastChild" style="user-select: none;">Brief Medication/Follow Up</li>
+                        </ul>
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Immunization
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Patient Summary Report
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        EMR Book
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Diagnosis
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Ebook Report
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Tally Sheet
+                    </li>
+                    <li class="lastChild collapsibleListOpen" style="user-select: none;">
+                        Procedure
+                    </li>
+                </ul>
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                Rheumatology
+                <ul class="collapsibleList" style="display: none;">
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        Joint Examination
+                        <ul class="collapsibleList" style="display: block;">
+                            <li style="user-select: none;">Deformity</li>
+                            <li style="user-select: none;">Fibromyalgia</li>
+                            <li style="user-select: none;">Spine</li>
+                            <li style="user-select: none;">Hypermobility</li>
+                            <li style="user-select: none;">Musculoskeletal Deformity</li>
+                            <li style="user-select: none;">Musculoskeltal-Brief</li>
+                            <li class="lastChild" style="user-select: none;">Musculoskeltal</li>
+                        </ul>
+                    </li>
+                    <li class="lastChild" style="user-select: none;">Assessments</li>
+                </ul>
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                Diet & Nutrition
+                <ul class="collapsibleList" style="display: none;">
+                    <li style="user-select: none;">Diet Scheduler</li>
+                    <li style="user-select: none;">Diet Chart</li>
+                    <li class="lastChild" style="user-select: none;">Diet</li>
+                </ul>
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                Opthalmology
+                <ul class="collapsibleList" style="display: none;">
+                    <li style="user-select: none;">OrthaEva</li>
+                    <li style="user-select: none;">CorneaClinic</li>
+                    <li style="user-select: none;">RetinaClinic</li>
+                    <li style="user-select: none;">Lasik Clinic</li>
+                    <li style="user-select: none;">Glucorma Performa</li>
+                    <li class="lastChild" style="user-select: none;">OpthaExam</li>
+                </ul>
+            </li>
+            <li class=" collapsibleListOpen" style="user-select: none;">
+                Obst & Gynae
+                <ul class="collapsibleList" style="display: none;">
+                    <li style="user-select: none;">PapSmear</li>
+                    <li style="user-select: none;">GynaeExam</li>
+                    <li style="user-select: none;">Colposcopy</li>
+                    <li style="user-select: none;">Antenatal Care Clinic Visit</li>
+                    <li style="user-select: none;">Delivery Sheet</li>
+                    <li style="user-select: none;">Obstetric History</li>
+                    <li style="user-select: none;">See &amp; Treat Registration Form</li>
+                    <li style="user-select: none;">POST NATAL EXAMINATION</li>
+                    <li style="user-select: none;">Family Planning</li>
+                    <li class="lastChild" style="user-select: none;">Referral Form</li>
+                </ul>
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                Dental
+                <ul class="collapsibleList" style="display: none;">
+                    <li style="user-select: none;">Dental New</li>
+                    <li style="user-select: none;">Dental</li>
+                    <li class="lastChild" style="user-select: none;">Dental TreatmentPlan</li>
+                </ul>
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                Cardiology
+                <ul class="collapsibleList" style="display: none;">
+                    <li class="lastChild" style="user-select: none;">CoronoryHeartDisease Assesment</li>
+                </ul>
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                Physiotherapy
+                <ul class="collapsibleList" style="display: none;">
+                    <li class="lastChild" style="user-select: none;">Physiotherapy</li>
+                </ul>
+            </li>
+            <li class="lastChild collapsibleListOpen" style="user-select: none;">
+                Other
+                <ul class="collapsibleList" style="display: none;">
+                    <li style="user-select: none;">Other Diagnosis</li>
+                    <li style="user-select: none;">Questionnaire 1b</li>
+                    <li style="user-select: none;">Remark For Nurse</li>
+                    <li style="user-select: none;">Triage</li>
+                    <li style="user-select: none;">Fall Risk</li>
+                    <li class="lastChild" style="user-select: none;">Upload File</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+
+<script src="Scripts/CollapsibleLists.js"></script>
+<script>
+    CollapsibleLists.apply();
+
+
+    // make the list with the ID 'newList' collapsible
+    //CollapsibleLists.applyTo(document.getElementById('newList'));
+
+</script>

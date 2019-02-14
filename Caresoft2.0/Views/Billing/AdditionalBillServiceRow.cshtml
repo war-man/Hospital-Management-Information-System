@@ -1,0 +1,23 @@
+﻿@model CaresoftHMISDataAccess.BillService
+
+<tr>
+    <td>x</td>
+    <td></td>
+    <td>@Model.ServiceName</td>
+    <td>@Model.Quatity</td>
+    <td>@Model.Price</td>
+    <td>@((Model.Price * @Model.Quatity).ToString())</td>
+    <td>@Model.Award</td>
+    <td>@(Model.Quatity * Model.Price)</td>
+    <td>
+        @if (Model.Paid)
+        {<text>Paid</text> }
+        else
+        {
+            <text>
+                <input type="checkbox" data-billservice-id="@Model.Id" checked class="billed" />
+            </text>
+        }
+    </td>
+</tr>
+

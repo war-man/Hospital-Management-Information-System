@@ -1,0 +1,103 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.BillPayment>
+@{
+
+    if (ViewBag.Mode != "AJAX")
+    {
+        ViewBag.Title = "Refund Patient Selection";
+        Layout = "~/Views/Shared/_DataListContainer.cshtml";
+        ViewBag.ShowTopMenu = true;
+
+    }
+    else
+    {
+        //no layout for ajax calls, just return plain data
+    }
+}
+
+<h4 class="form-title">Receipt List</h4>
+
+<p>@ViewBag.SearchMeta</p>
+<table class="table table-data table-condensed ">
+    <tr>
+        <th>
+            Receipt No
+        </th>
+        <th>
+            RegNumber
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Paid Amount
+        </th>
+
+        <th>
+            Date
+        </th>
+
+        <th></th>
+    </tr>
+    <tbody class="bg-white">
+        @foreach(var r in Model)
+        {
+            <tr>
+                <td>
+                    @r.Id.ToString().PadLeft(4, '0')
+                </td>
+                <td>
+                    @if (r.OPDNo.HasValue)
+                    {
+                        @r.OpdRegister.Patient.RegNumber
+                    }
+                </td>
+                <td>
+                    @if (r.OPDNo.HasValue)
+                    {
+                        var pat = r.OpdRegister.Patient;
+                            <text>@pat.Salutation @pat.FName @pat.MName @pat.LName</text>
+
+                    }
+                </td>
+                <td class="money">
+                    @if(r.OPDNo!=null && !r.OpdRegister.IsIPD){ //remove balance from opds
+                        if (r.Balance < 0)
+                        {
+                            r.PaidAmount = r.PaidAmount + r.Balance;
+                        }
+                    }
+                    @r.PaidAmount 
+                </td>
+                <td>
+                    @r.DateAdded.ToShortDateString()
+                </td>
+                <td>
+                    <a href="@Url.Action("ConfirmRefund", "Billing", new { id = r.Id})" class="btn btn-xs btn-primary">Refund</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+
+
+@if (ViewBag.Pages != null)
+{
+    <div class="text-center">
+        <ul class="pagination">
+            @for (var x = 1; x <= (int)ViewBag.Pages + 1; x++)
+            {
+                <li class="@if (x == ViewBag.Page) { <text>active</text>} "><a href="?page=@x">@x</a></li>
+            }
+        </ul>
+    </div>
+}
+
+
+@section scripts{
+    <script>
+        var action = "/Billing/FilterReceiptList";
+        var method = "GET";
+    </script>
+}

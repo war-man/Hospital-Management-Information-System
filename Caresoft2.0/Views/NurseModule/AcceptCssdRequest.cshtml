@@ -1,0 +1,233 @@
+﻿
+@{
+    ViewBag.Title = "Accept CSSD Request";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                <div id="cssd-request" class="right-element">
+                    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                    <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                    <script src="~/Scripts/bootstrap.min.js"></script>
+                    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                    <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+
+
+
+
+
+                    <script type="text/javascript">
+                                        jQuery(document).ready(function ($) {
+                                            //  var table = $('#dataTable').DataTable();
+                                            $('#cssdTable').DataTable({
+                                                "ajax": {
+                                                    "url": "/NurseModule/GetCSSDRequest",
+                                                    "type": "GET",
+                                                    "datatype": "json",
+                                                    "dataSrc": ""
+                                                },
+                                                "columns": [
+                                                    { "data": "Id" },
+                                                    {
+                                                        'data': 'RequiredDate', 'render': function (data) {
+                                                            return moment(data).format(' MMMM d, YYYY ');
+                                                        }
+                                                    },
+                                                    {
+                                                        'data': 'RequiredTime', 'render': function (data, type, row) {
+                                                            return moment(data).format('h:mm:ss a');
+                                                        }
+
+                                                    },
+                                                    { "data": "RequestType" },
+                                                    { "data": "RequestItem" },
+                                                    { "data": "Quantity" },
+                                                    { "data": "Remarks" },
+
+
+
+
+                                                    {
+                                                        "data": function (data, type, row) {
+                                                            if (data["Approval"] == "0") {
+
+                                                                return "Waiting Approval"
+
+
+                                                            }
+                                                            else if (data["Status"] == "0" && data["Approval"] == "1") {
+                                                                return "<span class='glyphicon glyphicon-ok'> Not Delivered </span > "
+                                                            }
+
+                                                            else if (data["Approval"] == "1" && data["Status"] == "1") {
+
+                                                                return "Delivered"
+                                                            }
+
+
+
+                                                        }
+
+                                                    },
+
+                                                    {
+                                                        'data': function (data, type, row, meta) {
+                                                            var id = $(this).closest('tr').find('td').eq(0).text();
+
+                                                            if (data["Approval"] == "1" && data["Status"] == "0") {
+                                                                return '<input type="button" value="Confirm Delivery" class="btnComplete sfBtn sfPrimaryBtn sfLocale" />';
+
+                                                            } else if (data["Status"] == "0" && data["Approval"] == "0") {
+
+                                                                return 'Not Approved';
+
+
+                                                            } else if (data["Status"] == "1") {
+                                                                return 'Delivered';
+                                                            }
+                                                        }
+                                                    }
+
+                                                ],
+                                                "createdRow": function (row, data, dataIndex) {
+                                                    if (data["Approval"] == "0") {
+                                                        $(row).css("background-color", "Red");
+
+                                                    }
+                                                    else if (data["Approval"] == "1" && data["Status"] == "0") {
+                                                        $(row).css("background-color", "Yellow");
+                                                    }
+                                                    else if (data["Status"] == "1") {
+                                                        $(row).css("background-color", "Green");
+                                                        $(row).css("color", "white");
+                                                    }
+                                                },
+
+
+
+                                            });
+                                            var table = $('#cssdTable').DataTable();
+                                            $('.cssdTable').on('click', 'tbody tr', function () {
+                                                console.log('API row values : ', table.row(this).data());
+
+                                                $('.nav-tabs a[href="#assign-amb"]').tab('show');
+                                                // alert();
+
+                                            })
+
+
+                                            $("#cssdTable tbody").on("click", ".btnEdit", function () {
+                                                var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                                // alert(id);
+                                                //alert($(this).text());
+                                                //alert();
+                                                $.ajax({
+                                                    data: { id: id },
+                                                    url: '/NurseModule/ApproveCSSDDelivey',
+                                                    type: 'POST',
+                                                    success: function (data) {
+                                                        alert("Cleanup Approved");
+                                                    }
+                                                });
+                                            });
+                                            $("#cssdTable tbody").on("click", ".btnComplete", function () {
+                                                var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                                // alert(id);
+                                                //alert($(this).text());
+                                                //alert();
+                                                $.ajax({
+                                                    data: { id: id },
+                                                    url: '/NurseModule/ConfirmCSSDDelivey',
+                                                    type: 'POST',
+                                                    success: function (data) {
+                                                        alert(data);
+                                                    }
+                                                });
+                                            });
+
+                                        });
+
+
+
+
+
+
+
+                    </script>
+
+
+                    <h4 class="text-center text-uppercase"> CSSD Request Master</h4>
+                    <div id="dataTable_wrapper"></div>
+
+                    <ul class="legend" style="float:right;">
+                        <li><span class="Pending"></span> <strong>Pending</strong></li>
+                        <li><span class="Processing"></span> <strong>Processing</strong></li>
+                        <li><span class="Completed"></span> <strong>Completed</strong></li>
+
+                    </ul>
+
+                    <style>
+
+                        .legend {
+                            list-style: none;
+                        }
+
+                            .legend li {
+                                float: left;
+                                margin-right: 10px;
+                            }
+
+                            .legend span {
+                                border: 1px solid #ccc;
+                                float: left;
+                                width: 12px;
+                                height: 12px;
+                                margin: 2px;
+                            }
+                            /* your colors */
+                            .legend .Pending {
+                                background-color: red;
+                            }
+
+                            .legend .Processing {
+                                background-color: yellow;
+                            }
+
+                            .legend .Completed {
+                                background-color: green;
+                            }
+                    </style>
+                    <table id="cssdTable" class="table table-data-pathology table-condensed">
+
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Required Date</th>
+                                <th>Required Time</th>
+                                <th>Request Type</th>
+                                <th> Request Item</th>
+                                <th> Quantity</th>
+                                <th>Remarks</th>
+                                <th>Status</th>
+                                <th>Confirm Delivery</th>
+
+
+
+                            </tr>
+                        </thead>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

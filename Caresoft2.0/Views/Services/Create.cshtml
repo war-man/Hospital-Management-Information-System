@@ -1,0 +1,165 @@
+﻿@model Caresoft2._0.CustomData.ServicesMasterData
+@using PagedList.Mvc;
+@{
+    ViewBag.FormName = "Create Services";
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+    ViewBag.Wide = true;
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <table class="table-form">
+        <tr>
+            <td>
+                <label>Department</label>
+            </td>
+            <td>
+                <select class="text-box box-lg" name="DepartmentId" required>
+                    @foreach (var dep in Model.Departments)
+                    {
+                        <option value="@dep.Id">@dep.DepartmentName</option>
+                    }
+                </select>
+            </td>
+
+            <td>
+                <label>Service Group</label>
+            </td>
+            <td>
+                <select class="text-box box-lg" id="ServiceGroupId" name="ServiceGroupId" required>
+                    @foreach (var sg in Model.ServiceGroups)
+                    {
+                        <option value="@sg.Id">@sg.ServiceGroupName</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Service Name</label>
+            </td>
+            <td>
+                <input type="text" class="text-box box-lg" name="ServiceName" id="ServiceName" required />
+            </td>
+
+            <td>
+                <label>Cash Price</label>
+            </td>
+            <td>
+                <input type="number" class="text-box box-lg" name="CashPrice" id="CashPrice" required />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label><input type="checkbox" name="IsOPD" /> OPD</label>
+                <label><input type="checkbox" name="IsIPD" /> IPD</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Create" class="btn btn-primary btn-sm" />
+            </td>
+        </tr>
+    </table>
+}
+
+<div id="services-list">
+    @Html.Partial("index", Model.Services)
+</div>
+
+@section scripts{
+    <script>
+        $("form").submit(function (e) {
+
+            e.preventDefault();
+            var data = $(this).serializeObject();
+            console.log(data);
+            if (typeof (data.IsIPD) !== 'undefined') {
+                data.IsIPD = true;
+            }
+            if (typeof (data.IsOPD) !== 'undefined') {
+                data.IsOPD = true;
+            }
+            if ($(this).valid()) {
+                $(".loader").show();
+                $.ajax({
+                    data: data,
+                    method: 'post',
+                    url: '@Url.Action("Create", "Services")',
+                    success: function (result) {
+                        $(".loader").hide();
+                        //console.log(result);
+                        $("#services-list").html(result)
+                        $("#CashPrice").val(""); $("#ServiceName").val("");
+
+                    },
+                    error: function (e, f, g) {
+                        $(".loader").hide();
+                        console.log(e.responseText);
+                    }
+                });
+            }
+        });
+
+        //KOgi Script
+
+        $("#Search").autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+                        type: 'GET',
+                        url: "@Url.Action("SearchServices")",
+                        dataType: "json",
+                        data: { search: $("#Search").val() },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.ServiceName,
+                                    value: item.ServiceName, selectedId: item.Id
+                                };
+                            }));
+                        }
+                    });
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    showNotification("An Error Occured, try again later", "danger", true);
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    window.location.href = "Create?searchId=" + ui.item.selectedId;
+                }
+        });
+
+        //function searchFunction() {
+        //    // Declare variables
+        //    var input, filter, table, tr, td, i, txtValue;
+        //    input = document.getElementById("Search");
+        //    filter = input.value.toUpperCase();
+        //    table = document.getElementById("servicesTable");
+        //    tr = table.getElementsByTagName("tr");
+
+        //    // Loop through all table rows, and hide those who don't match the search query
+        //    for (i = 0; i < tr.length; i++) {
+        //        td = tr[i].getElementsByTagName("td")[0];
+        //        if (td) {
+        //            txtValue = td.textContent || td.innerText;
+        //            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        //                tr[i].style.display = "";
+        //            } else {
+        //                tr[i].style.display = "none";
+        //            }
+        //        }
+        //    }
+        //}
+
+        $('#btnActivateServive').click(function () {
+            alert(1);
+        });
+    </script>
+}

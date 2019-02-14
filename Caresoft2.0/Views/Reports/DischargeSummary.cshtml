@@ -1,0 +1,161 @@
+﻿@model CaresoftHMISDataAccess.OpdRegister
+@{
+    ViewBag.Title = "Discharge Summary";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+    ViewBag.Size = "A4";
+}
+
+
+<h5 class="report-section-heading">Patient Details</h5>
+<table width="100%" border="1" cellpadding="1">
+    <tr>
+        <td>Reg Number</td>
+        <td><b>@Model.Patient.RegNumber</b></td>
+        <td>Full Name</td>
+        <td>
+            <b>
+                @Model.Patient.Salutation
+                @Model.Patient.FName
+                @Model.Patient.MName
+
+                @Model.Patient.LName
+            </b>
+        </td>
+        <td>IPD Number</td>
+        <td><b>@Model.Id</b></td>
+        <td>Admission Date</td>
+        <td><b>@Model.AdmissionDate.Value.ToShortDateString()</b></td>
+
+    </tr>
+    <tr>
+        <td>Ward Type</td>
+        <td><b>@Model.HSBed.HSWard.HSWardCategory.WardCategoryName</b></td>
+        <td>Ward Name</td>
+        <td><b>@Model.HSBed.HSWard.WardName @Model.HSBed.HSWard.HSFloor.HSBuilding.BuildingName -  @Model.HSBed.HSWard.HSFloor.FloorName</b></td>
+        <td>Bed Name</td>
+        <td><b>@Model.HSBed.BedName</b></td>
+        <td></td>
+        <td></td>
+
+    </tr>
+</table>
+
+<h5 class="report-section-heading">Procedures</h5>
+<table width="100%" class="table-hover table-condensed table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Procedure Name</th>
+            <th>Date Ordered</th>
+            <th>Odered By</th>
+            <th>Date Applied</th>
+            <th>Applied By</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{var x = 1;}
+        @foreach (var proc in Model.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim().Equals("procedure")))
+        {
+            <tr>
+                <td>@x</td>
+                <td>@proc.ServiceName</td>
+                <td>@proc.DateAdded</td>
+                <td>@proc.UserId</td>
+                <td>@proc.DateAdded</td>
+                <td>@proc.OfferedBy</td>
+            </tr>
+            x++;
+        }
+    </tbody>
+
+
+</table>
+
+<h5 class="report-section-heading">Lab Tests</h5>
+<table width="100%" class="table-hover table-condensed table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Test Name</th>
+            <th>Ordered Date</th>
+            <th>Ordered By</th>
+            <th>Applied Date</th>
+            <th>Applied By</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{var t = 1;}
+        @foreach (var test in Model.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim().Equals("labs")))
+        {
+            <tr>
+                <td>@t</td>
+                <td>@test.ServiceName</td>
+                <td>@test.DateAdded</td>
+                <td>@test.UserId</td>
+                <td>@test.PaidDate</td>
+                <td>Labs</td>
+            </tr>
+            t++;
+        }
+    </tbody>
+</table>
+
+<h5 class="report-section-heading">Medication</h5>
+<table width="100%" class="table-hover table-condensed table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Drug Name</th>
+            <th>Sart Date</th>
+            <th>Sart Date</th>
+            <th>Odered By</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{var y = 1;}
+        @foreach (var med in Model.Medications)
+        {
+            <tr>
+                <td>@y</td>
+                <td>@med.DrugName</td>
+                <td>@med.StartDate.ToShortDateString()</td>
+                <td>@med.EndDate.ToShortDateString()</td>
+                <td>@med.UserId</td>
+            </tr>
+            y++;
+        }
+    </tbody>
+</table>
+
+
+<h5 class="report-section-heading">Doctor Notes</h5>
+<table width="100%" class="table-hover table-condensed table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Note</th>
+            <th>Doctor</th>
+            <th>Note Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{var n = 1;}
+        @foreach (var med in Model.DoctorNotes)
+        {
+            <tr>
+                <td>@n</td>
+                <td>@med.DoctorNote1</td>
+                <td>
+                    @med.User.Employee.Salutation
+                    @med.User.Employee.FName
+                    @med.User.Employee.OtherName
+                </td>
+                <td>@med.DateAdded.ToShortDateString()</td>
+            </tr>
+            n++;
+        }
+    </tbody>
+</table>
+
+

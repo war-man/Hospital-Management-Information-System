@@ -1,0 +1,283 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<Caresoft2._0.Areas.Procurement.Models.supplier>
+
+@{
+    ViewBag.Title = "Supplier Master";
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+}
+
+<style>
+    .table-form tr {
+        height: 35px;
+    }
+
+    .text-box {
+        width: 250px;
+    }
+
+    .table > tbody + tbody {
+        background-color: white;
+    }
+
+    .formrequired {
+        color: red;
+        font-size: 18px;
+    }
+</style>
+
+<div>
+    <div class="col-md-12 col-lg-8">
+        <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+            <div class="panel-heading">
+                Supplier Details
+            </div>
+            <div class="panel-body">
+                <div class="">
+                    <div class="">
+                        <form id="formSupplierMaster" autocomplete="off">
+                            <table class="">
+                                <tr>
+                                    <td>Supplier Type</td>
+                                    <td>
+                                        <div id="type">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" checked value="General Supplier">General Supplier
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="Donor Supplier">Donor Supplier
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Supplier Name</td>
+                                    <td>
+                                        <input type="text" id="SupplierName" class="text-box margin-top-bottom-2" /> <span class="formrequired">*</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td>
+                                        <input type="text" id="SupplierAddress" class="text-box margin-top-bottom-2" multiple /> <span class="formrequired">*</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>City</td>
+                                    <td>
+                                        <input type="text" id="SupplierCity" class="text-box margin-top-bottom-2" multiple /> <span class="formrequired">*</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Telephone No</td>
+                                    <td>
+                                        <input type="text" id="SupplierTelephone" class="text-box margin-top-bottom-2" multiple />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fax No</td>
+                                    <td>
+                                        <input type="text" id="SupplierFax" class="text-box" multiple />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>
+                                        <input type="text" id="SupplierEmail" class="text-box margin-top-bottom-2" multiple email /> <span class="formrequired">*</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Web</td>
+                                    <td>
+                                        <input type="text" id="SupplierWeb" class="text-box margin-top-bottom-2" multiple />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+
+                                    <td>
+                                        <input type="button" class="btn btn-sm btn-primary" value="Save" id="btnSave" />
+                                        <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div id="result">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+                <hr />
+                <div class="" id="SupplierList">
+                    @Html.Partial("~/Areas/Procurement/Views/Shared/_SupplierList.cshtml", Model)
+                </div>
+                <div id="pagination" class="col-md-12">
+                    <br />
+                    <div class="col-md-6 col-offset-3">
+                        <div class="pagination">
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                            of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("SupplierMaster", new { page }))
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+        $("#btnSave").click(function () {
+            var type = $("input:radio[name=optradio]:checked").val()
+            var name = $("#SupplierName").val();
+            var address = $("#SupplierAddress").val();
+            var city = $("#SupplierCity").val();
+            var telephone = $("#SupplierTelephone").val();
+            var fax = $("#SupplierFax").val();
+            var email = $("#SupplierEmail").val();
+            var web = $("#SupplierWeb").val();
+            var storeName = $("#StoreName").val();
+
+            var Model = {
+                Supplier_Type: type,
+                Supplier_Name: name,
+                Supplier_Address: address,
+                Supplier_City: city,
+                Supplier_TelNo: telephone,
+                Email: email,
+                Fax: fax,
+                StoreName: storeName
+            };
+
+            var checkIfModelIsValid = true;
+            $.each(Model, function (indexInArray, valueOfElement) {
+
+                if (indexInArray == "Supplier_Name") {
+
+                    if (valueOfElement) {
+                        //this returns true if the value is not  null, undefined, empty, nan, etc
+                    }
+                    else {
+
+                        $("#SupplierName").notify("Required", { elementPosition: "right" }, "error");
+                        checkIfModelIsValid = false;
+                    }
+                }
+                else if (indexInArray == "Supplier_Address") {
+                    if (valueOfElement) {
+                        //this returns true if the value is not  null, undefined, empty, nan, etc
+                    }
+                    else {
+
+                        $("#SupplierAddress").notify("Required", { elementPosition: "right" });
+                        checkIfModelIsValid = false;
+                    }
+                }
+                else if (indexInArray == "Supplier_City") {
+                    if (valueOfElement) {
+                        //this returns true if the value is not  null, undefined, empty, nan, etc
+                    }
+                    else {
+
+                        $("#SupplierCity").notify("Required", { elementPosition: "right" });
+                        checkIfModelIsValid = false;
+                    }
+                }
+                else if (indexInArray == "Email") {
+                    if (valueOfElement) {
+                        //this returns true if the value is not  null, undefined, empty, nan, etc
+                    }
+                    else {
+
+                        $("#SupplierEmail").notify("Required", { elementPosition: "right" });
+                        checkIfModelIsValid = false;
+                    }
+                }
+                else if (indexInArray == "StoreName") {
+                    if (valueOfElement) {
+                        //this returns true if the value is not  null, undefined, empty, nan, etc
+                    }
+                    else {
+
+                        $("#StoreName").notify("Required", { elementPosition: "right" });
+                        checkIfModelIsValid = false;
+                    }
+                }
+
+            });
+
+
+
+            if (checkIfModelIsValid == true) {
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("SupplierMaster", "ProcurementMaster")',
+                    data: Model,
+                    beforeSend: function () {
+                        $('.loader').fadeIn();
+                    },
+                    success: function (obj) {
+                        $("#formSupplierMaster")[0].reset();
+                        $("#result").notify("Saved Successfully", "success");
+                        UpdateSupplierList(obj);
+                        $('.loader').fadeOut();
+                    },
+                    error: function () {
+                        $("#result").notify("Record Not Saved", "warn");
+                        console.log("an error occured");
+                        $('.loader').fadeOut();
+                    }
+
+                });
+
+            }
+            else {
+                $("#result").notify("Record Not Saved","warn");
+            }
+
+
+
+        });
+
+        function UpdateSupplierList(data) {
+            location.reload()
+            //console.log(data);
+            //var supplierList = $("#SupplierList");
+            //supplierList.empty();
+            //supplierList.append(data);
+        }
+
+        $(".editSupplier").click(function () {
+
+            var data = $(this).data('supplierid');
+
+            $.ajax({
+                type: "POST",
+                url: "/ProcurementMaster/",
+                data: "name=John&location=Boston",
+                dataType: "json",
+                success: function (response) {
+
+                }
+            });
+
+        })
+
+        $(window).on('load', function () {
+
+
+        })
+    </script>
+
+}
+
+
+

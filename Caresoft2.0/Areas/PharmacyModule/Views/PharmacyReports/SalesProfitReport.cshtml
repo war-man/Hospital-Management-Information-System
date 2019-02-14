@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "SalesProfitReport";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+}
+
+<style>
+    .text-box {
+        width: 200px;
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+</style>
+
+<div class="col-md-8">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px">
+                <strong>Sales Profit Report</strong>
+            </p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td>From Date</td>
+                            <td>
+                                <input type="date" class="text-box" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </td>
+                            <td>To Date</td>
+                            <td>
+                                <input type="date" class="text-box" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <a href="@Url.Action("GetSalesProfitReport")" class="btn btn-primary btn-sm">Report</a>
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

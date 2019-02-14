@@ -1,0 +1,198 @@
+﻿@model IEnumerable<LabsDataAccess.WorkOrder>
+@using CaresoftHMISDataAccess;
+
+@{
+
+    ViewBag.Title = "Patient Report";
+
+    Layout = "~/Areas/Radiology/Views/Shared/_ReportsLayout.cshtml";
+
+    var OPD = (OpdRegister)ViewBag.OPD;
+}
+
+<div style="border-bottom:solid 1px red;">
+    <table class="table-condensed" width="100%">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <td>: @OPD.Patient.Salutation @OPD.Patient.FName @OPD.Patient.LName </td>
+                <th>Reg No.</th>
+                <td>: @OPD.Patient.RegNumber</td>
+            </tr>
+            <tr>
+                <th>Age & Gender</th>
+                <td>
+                    :   @{
+                        if (OPD.Patient.DOB != null)
+                        {
+                            DateTime dob = ((DateTime)OPD.Patient.DOB);
+
+                            DateTime today = DateTime.Today;
+
+                            int months = today.Month - dob.Month;
+                            int years = today.Year - dob.Year;
+
+                            if (today.Day < dob.Day)
+                            {
+                                months--;
+                            }
+
+                            if (months < 0)
+                            {
+                                years--;
+                                months += 12;
+                            }
+
+                            int days = (today - dob.AddMonths((years * 12) + months)).Days;
+
+                            var age_years = 0;
+                            var age_months = 0;
+                            var age_days = 0;
+
+                            age_years = years;
+                            age_months = months;
+                            age_days = days;
+
+                            if (age_years != 0)
+                            {
+                                <span>@age_years </span> @: Years
+                            }
+                            else if (@age_months != 0)
+                            {
+                                <span>@age_months </span> @: Months
+                            }
+                            else
+                            {
+                                <span>@age_days </span> @: Days
+                            }
+
+                        }
+
+                    } / @OPD.Patient.Gender
+                </td>
+                <th>Path No</th>
+                <td>: </td>
+            </tr>
+            <tr>
+                <th>Referring Doctor</th>
+                <td>: </td>
+                <th>Sample Draw Date</th>
+                <td>: </td>
+            </tr>
+            <tr>
+                <th>Referring Cust./Lab</th>
+                <td>: </td>
+                <th>Report Date</th>
+                <td>: @DateTime.Now.ToString("dd/MM/yyyy hh:mm")</td>
+            </tr>
+        </thead>
+    </table>
+
+</div>
+
+<br />
+
+<div>
+
+    @foreach (var wo in Model.OrderByDescending(e => e.Id))
+    {
+        <p><b>Path No :</b> @wo.Id || <b>Time requested : </b>@wo.CreatedUtc </p>
+        var TestDepartments = wo.WorkOrderTests.GroupBy(x => x.LabTest.Department1.Department1);
+
+        <table width="100%" class="table-condensed">
+
+            @foreach (var dep in TestDepartments)
+            {
+                <thead>
+                    <tr style="border:solid 2px black;">
+                        <th class="text-center" colspan="4">@dep.First().LabTest.Department1.Department1</th>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th><u>DESCRIPTION</u></th>
+                        <th><u>VALUE OBSERVED</u></th>
+                        <th><u>UNITS</u></th>
+                        <th><u>REFERENCE RANGE</u></th>
+                    </tr>
+                </thead>
+
+                foreach (var test in wo.WorkOrderTests.Where(e => e.LabTest.Department == dep.First().LabTest.Department && e.Status1.StatusValue == "Authorized"))
+                {
+                    var Normal_range = @test.LabTest.NormalValues.FirstOrDefault();
+                    <tbody>
+                        @if (test.LabTest.Parameter)
+                        {
+
+                            <tr>
+                                <th>@test.LabTest.Test</th>
+                            </tr>
+
+                            foreach (var par in test.WorkOrderTestParameters)
+                            {
+                                var Par_Normal_range = par.Parameter1.LabTest.NormalValues.FirstOrDefault(e => e.Parameter == par.Parameter);
+
+                                <tr>
+                                    <td style="padding-left: 20px;">@par.Parameter1.Parameter_Name</td>
+                                    <td>@par.Results</td>
+                                    <td>@par.Parameter1.Parameter_Code</td>
+                                    <td>@Html.DisplayFor(model => Normal_range.LowerRange) - @Html.DisplayFor(model => Normal_range.UpperRange)</td>
+                                </tr>
+
+                                if (par.Image != null && par.Image.Length > 0)
+                                {
+                                    <tr>
+                                        <td colspan="4">
+                                            <a target="_blank" href="~/Areas/Radiology/Images/Results/@par.Image">Attached Document</a><br />
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            <tr>
+                                <th>@test.LabTest.Test</th>
+                                <td>@test.Results</td>
+                                <td>@test.LabTest.Test_Code</td>
+                                <td>@Html.DisplayFor(model => Normal_range.LowerRange) - @Html.DisplayFor(model => Normal_range.UpperRange)</td>
+                            </tr>
+
+                            if (test.Image != null && test.Image.Length > 0)
+                            {
+                                <tr>
+                                    <td colspan="4">
+                                        <a target="_blank" href="~/Areas/Radiology/Images/Results/@test.Image">Attached Document</a><br />
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+
+                    <tr>
+                        <td colspan="4">
+                            <p style="float:right">
+                                @try
+                                {
+                                    <b> &nbsp; &nbsp; &nbsp; Lab Technician :  &nbsp; </b>
+                                    <span style="color: red!important">@Html.DisplayFor(e => dep.First().WorkOrder1.WorkOrderTests.FirstOrDefault().DepartmentAssignment.UserName)</span>
+                                    <b> &nbsp; &nbsp; &nbsp; Signature : &nbsp; </b>
+                                    <img height="50px;" src="~/Areas/Pathology/Images/Signatures/@dep.First().WorkOrder1.WorkOrderTests.FirstOrDefault().DepartmentAssignment.SingatureImage" />
+
+                                }
+                                catch (Exception e) { }
+                            </p>
+                        </td>
+                    </tr>
+
+                }
+            }
+        </table>
+
+        <div style="border-top:1px solid red;">
+            <p class="container"></p>
+        </div>
+    }
+</div>

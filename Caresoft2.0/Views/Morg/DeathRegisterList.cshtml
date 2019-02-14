@@ -1,0 +1,73 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.MorgAdmission>
+
+<table class="table table-data table-bordered table-condensed">
+    <tr>
+        <th>
+
+        </th>
+        <th>S.No</th>
+        <th>Deceased Name</th>
+        <th>Reg Number</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Residence</th>
+        <th>Place of Death</th>
+        <th>Next of Kin</th>
+        <th>Relation</th>
+        <th>Kin's Mobile</th>
+        <th>Kin's Id</th>
+        <th>Police Officer</th>
+        <th>Force No.</th>
+        <th>Police Station</th>
+        <th>Storage</th>
+        <th></th>
+    </tr>
+    <tbody class="bg-white">
+        @foreach (var ma in Model)
+        {
+            <tr id="entry-@ma.Id">
+                <td>
+                    <a href="@Url.Action("DeathNotification", "Morg", new { id=ma.Id})" class="btn btn-xs btn-primary" title="Death Notification for @ma.DeceasedName">D. Notification</a>
+                </td>
+                <td>@ma.Id.ToString().PadLeft(4, '0')</td>
+                <td>@ma.DeceasedName</td>
+                <td>@ma.RegNumber</td>
+                <td>@ma.Age</td>
+                <td>@ma.Gender</td>
+                <td>@ma.Residence</td>
+                <td>@ma.PlaceOfDeath</td>
+                <td>@ma.NextOfKinName</td>
+                <td>@ma.Relation</td>
+                <td>@ma.KinsTelephone</td>
+                <td>@ma.KinsIdNo</td>
+                <td>@ma.PoliceOfficer</td>
+                <td>@ma.ForceNo</td>
+                <td>@ma.PoliceStation</td>
+                <td class="storage-details">@Html.DisplayFor(model=>ma.MorgCabinet.CabinetName)
+                @if (!ma.MorgCabinetId.HasValue)
+                {
+                    <label>
+                        <a class="call-modal-form btn btn-xs btn-primary" 
+                           data-action="@Url.Action("SetMorgCabinet", "morg", new { id=ma.Id})"
+                           data-callback="setMorgCabListener">Set</a>
+                    </label>
+                }
+                </td>
+                <td><a class="btn btn-xs btn-primary" data-callback="investigationModalListener"
+                       href="/morg/BodyCollection/@ma.Id">Body Release</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<div class="text-center">
+    <ul class="pagination">
+        @for (var x = 1; x <= ViewBag.Pages; x++)
+        {
+            <li class="page-item @if (x == ViewBag.Page) { <text>active</text>} ">
+        <a class="page-link" href="#" onclick="pageNavigation(@x)">@x</a></li>
+
+        }
+    </ul>
+</div>

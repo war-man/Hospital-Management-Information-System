@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Bed Cleaning Request";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                @using (Ajax.BeginForm("SaveLinenRequest", "NurseModule", new { }, new AjaxOptions
+                {
+                    LoadingElementId = "loadingElement",
+                    HttpMethod = "POST",
+                    UpdateTargetId = "",
+                    OnFailure = "showNotification('Failed', 'danger', 'false')",
+                    OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                }))
+                {
+
+                    <form id="cleanup" method="post" action="@Url.Action("SaveLinenRequest", "NurseModule")">
+                        <table class="table-form">
+
+                            <tr>
+                                <td colspan="2">
+                                    <label>Linen Name</label><br />
+                                    <input type="text" class="text-box" name="LinenName" />
+                                </td>
+                                <td>
+                                    <label>Qty</label><br />
+                                    <input type="number" class="text-box" name="RequestQuantity" />
+                                </td>
+
+                            </tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <tr>
+                                <td>
+                                    <label>Request Type</label><br />
+                                    <select class="text-box box-lg" name="LType" onchange='CheckColors(this.value);'>
+                                        <option>Select Type</option>
+
+                                        <option>Bed Cover</option>
+                                        <option>Patient Clothes</option>
+                                        <option>Bandage</option>
+                                        <option value="others">Others</option>
+
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <input type="text" name="LType" id="linen-type" style='display:none;' placeholder="Please Specify" />
+                                </td>
+                            </tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+
+                            <script type="text/javascript">
+                                function CheckColors(val) {
+                                    var element = document.getElementById('linen-type');
+                                    if (val == 'Select Type' || val == 'others')
+                                        element.style.display = 'block';
+                                    else
+                                        element.style.display = 'none';
+                                }
+
+                            </script>
+                        </table>
+                        <div>
+                            <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+                            <input type="reset" class="btn btn-sm btn-primary" value="Cancel" />
+                        </div>
+                        </form>
+                }
+                        <table class="table table-data table-condensed marg-top-16px">
+                            <thead>
+                                <tr>
+                                    <th>Linen Name</th>
+                                    <th>Qty</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white">
+                                <tr>
+                                    <td colspan="3" align="center">
+                                        <label>No data at the moment</label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                </div>
+        </div>
+    </div>
+</div>

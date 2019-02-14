@@ -1,0 +1,143 @@
+﻿@model CaresoftHMISDataAccess.MorgAdmission
+@{
+    ViewBag.Title = "Death Notification";
+    Layout = "~/Views/Morg/_MorgLayout.cshtml";
+}
+
+<page style="padding:1em !important;">
+    <h3 class="text-center">Death Notification</h3>
+    <fieldset>
+        <legend>Deceased</legend>
+        <table class="table-form">
+            <tr>
+                <td>
+                    <label>Name</label>
+                </td>
+                <td>
+                    @if (Model.RegNumber != null)
+                    {<text>(@Model.RegNumber)</text>}<br />
+                    @Model.DeceasedName
+                </td>
+                <td>
+                    <label>Sheet No</label>
+                </td>
+                <td>
+                    @Model.Id.ToString().PadLeft(4, '0')
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <labe>Age [Gender]</labe>
+                </td>
+                <td>
+                    @Model.Age [@Model.Gender]
+                </td>
+                <td>
+                    <label>IP/OP</label>
+                </td>
+                <td>
+                    @if (Model.WardUnit != null)
+                    {
+                        <text>In Patient</text>
+                    }
+                    else
+                    { <text>Out Patient</text>}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Date</label>
+                </td>
+                <td>@Model.DateOfDeath.ToShortDateString()</td>
+                <td>
+                    <label>Residence</label>
+                </td>
+                <td>
+                    @Model.Residence
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Place of Death</label>
+                </td>
+                <td>
+                    @Model.PlaceOfDeath
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>Next of Kin</legend>
+        <table class="table-form">
+            <tr>
+                <td>
+                    <label>Name</label>
+                </td>
+                <td>
+
+                    @Model.NextOfKinName
+                </td>
+                <td>
+                    <label>Relation</label>
+                </td>
+                <td>
+                    @Model.Relation
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <labe>Address</labe>
+                </td>
+                <td>
+                    @Model.KinsAddress
+                </td>
+                <td>
+                    <label>Telephone</label>
+                </td>
+                <td>
+                    @Model.KinsTelephone
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Id Number</label>
+                </td>
+                <td>@Model.KinsTelephone</td>
+
+            </tr>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>For the Medical practitioner</legend>
+        <fieldset style="height:5em;"></fieldset>
+        <fieldset>
+            <legend>Based on the above findings, I certify that the person named is dead.</legend>
+
+            <table class="table-form">
+                <tr>
+                    <td>
+                        <label>Police Station Referred to</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Date/Time</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Name</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Designation</label>
+                    </td>
+                </tr>
+            </table>
+
+        </fieldset>
+    </fieldset>
+
+    
+</page>

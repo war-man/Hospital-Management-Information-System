@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.UserRole>
+@{
+    ViewBag.Title = "RollMaster";
+    Layout = "~/Views/Shared/_UserManagementLayout.cshtml";
+}
+
+<div class="row">
+    <div class="">
+
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                User Master
+            </div>
+            <div class="panel-body">
+                <div class="tab-content" id="reg-form-holder">
+                    <div id="addDept" class="tab-pane fade in active">
+                        <div class="scrollable-table-container">
+                            <table width="100%" class="table-data-pathology table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Edit</th>
+                                        <th>Role Name</th>
+                                        <th>Role Description</th>
+                                        <th>Landing Page</th>
+                                        <th>Delete</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white">
+                                    @if(Model.Count() == 0){
+                                        <tr>
+                                            <td colspan="5"> <strong class="text-center"> Nothing to Display </strong></td>
+                                        </tr>
+                                    }
+                                    @foreach (var role in Model)
+                                    {
+                                        <tr>
+                                            <td><a class="btn btn-xs btn-primary " href="EditRole/@role.Id">Edit</a></td>
+                                            <td>@role.RoleName</td>
+                                            <td>@role.RoleDescription</td>
+                                            <td>@role.LandingPage</td>
+                                            <td><button id="" class="btn btn-xs btn-primary">Delete</button></td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <button class="btn btn-sm btn-primary">Previous Page</button>
+                                            <button class="btn btn-sm btn-primary">Next Page</button>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

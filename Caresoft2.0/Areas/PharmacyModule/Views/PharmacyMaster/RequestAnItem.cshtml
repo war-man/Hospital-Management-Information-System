@@ -1,0 +1,324 @@
+﻿@using Caresoft2._0.Areas.Procurement.Models;
+
+@{
+    ViewBag.Title = "Request an Item";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+    List<PharmacyRequestedItems> requestList = new List<PharmacyRequestedItems>();
+
+    if (Session["lstPharmacyRequestesItems"] != null)
+    {
+        requestList = (List<PharmacyRequestedItems>)Session["lstPharmacyRequestesItems"];
+    }
+}
+
+<style>
+    .text-box{
+        margin-top:10px;
+    }
+</style>
+
+<div class="panel panel-primary caresoft-panel">
+    <div class="panel-heading">
+        @ViewBag.Title
+    </div>
+
+    <div class="panel-body">
+       
+        <table>
+            <tbody>
+                <tr>
+                    <td>Request Number</td>
+                    <td>  <input class="text-box margin-top-bottom-2" type="number" id="" name="" style="width:150px;" disabled /></td>
+                </tr>
+                <tr>
+                    <td>
+                        Request Date
+                    </td>
+                    <td colspan="5">
+                        <input class="text-box margin-top-bottom-2" type="date" id="RequestDate" name="RequestDate" style="width:150px;" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Send Request
+                    </td>
+                    <td colspan="5">
+                        <span>
+                            <select class="text-box margin-top-bottom-2" id="SelectStore" style="width:150px;">
+                                <option value="">Select Store</option>
+                                <option value="MS">Medical Store</option>
+                                <option value="GS">General Store</option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;&nbsp; Item Name
+                    </td>
+                    <td>
+                        <select id="ItemName" class="text-box margin-top-bottom-2" style="width:150px;"></select>
+                        <input readonly type="hidden" id="ItemMasterId" />
+                    </td>
+                    <td>
+                        &nbsp;&nbsp; Batch No &nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <select id="BatchNo" class="text-box" style="width:150px;"></select>
+                    </td>
+                    <td>
+                        &nbsp;&nbsp; Current Stock &nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <input class="text-box margin-top-bottom-2" type="number" id="CurrentStock" name="CurrentStock" style="width:120px;" disabled />
+                    </td>
+                    <td>
+                        &nbsp;&nbsp; Required Quantity &nbsp;&nbsp;
+                    </td>
+                    <td>
+
+                        <input class="text-box margin-top-bottom-2" type="number" id="RequiredQuantity" style="width:120px;" />
+
+                        <button class="btn btn-sm btn-primary margin-top-bottom-2" id="AddItems">Add</button>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class=" margin-top-bottom-2" id="onError"> 
+
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <br />
+        <div class="pathology  margin-top-bottom-2" style="background:white;" id="lstPharmacyItems">
+
+            @Html.Partial("~/Areas/PharmacyModule/Views/PharmacyMaster/_RequestedItemsList.cshtml", requestList)
+
+        </div>
+        <div class="margin-top-bottom-5">
+            <button type="submit" class="btn btn-sm btn-primary " id="btnSave">Save</button>
+            <button type="reset" class="btn btn-sm btn-primary " id="btnNew">New</button>
+            <button class="btn btn-sm btn-primary" id="btnReport">Report</button>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script>
+
+        $("#SelectStore").on('change', function () {
+            var selectedStore = $(this).val();
+            $('.loader').show();
+
+            var url = "/PharmacyMaster/GetItemsInStore?storeName=" + selectedStore;
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (obj) {
+                    $("#ItemName").empty();
+                    var select = document.getElementById("ItemName");
+
+                    var option = document.createElement("option");
+                    option.text = "--SELECT--";
+                    select.add(option);
+
+                    $.each(obj, function (key, value) {
+                        var option = document.createElement("option");
+                        option.text = value;
+                        option.value = value;
+                        select.add(option);
+                    });
+
+                    $('.loader').hide();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $('.loader').hide();
+                }
+            });
+
+        });
+
+        $("#ItemName").on('change', function () {
+            var itemName = $(this).val();
+            GetBatchNumbers(itemName);
+        });
+
+        function GetBatchNumbers(name) {
+            var itemMasterData = null;
+            var SelectedBatchNo = null;
+            if (name != null) {
+
+
+                var url = "/PharmacyMaster/SearchItemName" ;
+                $.ajax({
+                    type: "GET",
+                    data: { name : name },
+                    url: url,
+                    beforeSend: function () {
+                        $(".loader").show();
+                    },
+                    success: function (obj) {
+                        $(".loader").hide();
+
+                        console.log(obj);
+
+                        if (obj.Id == "")
+                        {
+                            $("#onError").notify("Error occured", "error");
+                        }
+                        else
+                        {
+                            //$("#CurrentStock").val(obj.CurrentStock);
+                            //$("#ItemMasterId").val(obj.Id);
+                        }
+
+                        $("#BatchNo").empty();
+
+                        $('<option/>', {
+                            'value': 0,
+                            'id': 0,
+                            'text': '--SELECT--'
+                        }).appendTo('#BatchNo');
+
+                  
+
+                        $.each(obj, function (key, value) {
+
+                            $('<option/>', {
+                                'value': value.CurrentStock,
+                                'id': value.Id,
+                                'text': value.BatchNo
+                            }).appendTo('#BatchNo');
+
+                        })
+
+                        $("#BatchNo").on('change', function () {
+                            console.log($(this).se)
+                            $("#CurrentStock").val($(this).val());
+                            $("#ItemMasterId").val($('#BatchNo').find(":selected").attr('id'));
+                        });
+
+                    },
+                    error: function (x, y, z) {
+                        $(".loader").hide();
+                        console.log(x.responseText);
+                        $("#onError").notify("Error occured", "error");
+                    }
+                });
+            }
+        }
+
+        $("#AddItems").click(function () {
+
+            var currentStock = parseInt($("#CurrentStock").val());
+            var RequiredQuantity = parseInt($("#RequiredQuantity").val());
+
+
+
+            var ItemMasterId = $("#ItemMasterId").val();
+           
+
+            var model = {
+
+                RequiredQuantity: RequiredQuantity,
+                ItemMasterId: ItemMasterId
+            };
+
+            var checkIfModelIsValid = true;
+
+            $.each(model, function (key, value) {
+                if (!value) {
+                    checkIfModelIsValid = false;
+                }
+            });
+
+            console.log(model);
+
+            if (checkIfModelIsValid) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/PharmacyMaster/RequestPharmacy",
+                    data: model,
+                    success: function (obj) {
+
+                        $("#lstPharmacyItems").empty();
+                        $("#lstPharmacyItems").append(obj);
+
+                        $("#ItemName").val("");
+                        $("#ItemMasterId").val("");
+                        $("#BatchNo").val("");
+                        $("#CurrentStock").val("");
+                        $("#RequiredQuantity").val("");
+
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+
+                    }
+                });
+            }
+            else {
+                $(this).notify("Error, Please Check your entries")
+            }
+
+
+        });
+
+        $("#RequiredQuantity").keyup(function () {
+            var currentStock = parseInt($("#CurrentStock").val());
+            var requiredQuantity = parseInt($("#RequiredQuantity").val());
+
+            
+
+            if(requiredQuantity>currentStock) {
+
+                $("#CurrentStock").notify("Quantity cannot be larger than available stock", "error");
+
+                //$("#RequiredQuantity").val("")
+                setTimeout(function () {
+
+                    $("#RequiredQuantity").val("")
+                },500);
+               
+            }
+
+        });
+
+        $("#btnSave").click(function () {
+
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyMaster/SaveRequestedItems",
+                success: function (obj) {
+
+                    $("#lstPharmacyItems").empty();
+                    $("#lstPharmacyItems").append(obj);
+
+                    $("#ItemName").val("");
+                    $("#ItemMasterId").val("");
+                    $("#BatchNo").val("");
+                    $("#CurrentStock").val("");
+                    $("#RequiredQuantity").val("");
+                    $.notify("Save Successful", "success");
+
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $.notify("Saving Data Unssuccessful", "error");
+
+                }
+            });
+
+        });
+        
+
+    </script>
+}
+

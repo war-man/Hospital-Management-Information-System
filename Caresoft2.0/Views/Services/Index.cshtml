@@ -1,0 +1,116 @@
+﻿@model PagedList.IPagedList<CaresoftHMISDataAccess.Service>
+@using PagedList.Mvc;
+
+<table id="servicesTable" class="table table-data-pathology table-condensed">
+
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>
+                Service Name
+            </th>
+            <th>
+                Price
+            </th>
+
+            <th>
+                Department Name
+            </th>
+            <th>
+                Service Group
+            </th>
+            <th>Is OPD</th>
+            <th>Is IPD</th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>S.Status</th>
+            <th>Under 5</th>
+
+            <th>
+                <input style="width:80%;" onkeyup="searchFunction()" placeholder="Search" id="Search" name="Search" class="text-box" />
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.IsActive)
+                    {
+                        @Html.ActionLink("Diactivate", "ActivateService", new { id = item.Id, page = Model.PageNumber }, new { @class = "btn btn-xs btn-danger" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Activate", "ActivateService", new { id = item.Id, page = Model.PageNumber }, new { @class = "btn btn-xs btn-success" })
+                    }
+
+                </td>
+                <td>
+                    @if (item.IsUnder5)
+                    {
+                        @Html.ActionLink("Diactivate", "ActivateUnder5", new { id = item.Id, page = Model.PageNumber }, new { @class = "btn btn-xs btn-danger" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Activate", "ActivateUnder5", new { id = item.Id, page = Model.PageNumber }, new { @class = "btn btn-xs btn-success" })
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceName)
+                </td>
+                <td align="right">
+                    @Html.DisplayFor(modelItem => item.CashPrice)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceGroup.ServiceGroupName)
+                </td>
+                <td>
+                    @if (item.IsOPD)
+                    {
+                        <input type="checkbox" checked disabled />
+                    }
+                    else
+                    {
+                        <input type="checkbox" disabled />
+                    }
+                </td>
+                <td>
+                    @if (item.IsIPD)
+                    {
+                        <input type="checkbox" checked disabled />
+                    }
+                    else
+                    {
+                        <input type="checkbox" disabled />
+                    }
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Create",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

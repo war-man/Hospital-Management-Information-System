@@ -1,0 +1,45 @@
+﻿@model CaresoftHMISDataAccess.TheatrePatientBioData
+@using CaresoftHMISDataAccess;
+
+
+
+<fieldset>
+    <legend> <h5><b> Procedures </b> </h5> </legend>
+    <input hidden id="OPDNo" value="@Model.OpdRegister.Id" />
+    <div class="col-md-6">
+        <fieldset>
+            <legend> <h5><b> Operation Time </b> </h5> </legend>
+
+            <div>
+                &nbsp;&nbsp;
+                <strong style="width:20%"> Start : </strong> &nbsp;&nbsp;
+                <input id="CirculatoryNurse" value="@DateTime.Now.ToString("yyyy-MM-dd")" class="text-box margin-top-bottom-2" style="width:40%" type="date" />
+                <input id="CirculatoryNurse" value="@DateTime.Now.ToString("hh:mm")" class="text-box margin-top-bottom-2" style="width:40%" type="time" />
+            </div>
+
+            <div>
+                &nbsp;&nbsp;
+                <strong style="width:20%"> Stop : </strong> &nbsp;&nbsp;
+                <input id="CirculatoryNurse" value="@DateTime.Now.ToString("yyyy-MM-dd")" class="text-box margin-top-bottom-2" style="width:40%" type="date" />
+                <input id="CirculatoryNurse" value="@DateTime.Now.ToString("hh:mm")" class="text-box margin-top-bottom-2" style="width:40%" type="time" />
+            </div>
+        </fieldset>
+        @Html.Partial("~/Areas/Theatre/Views/Operation/Procedures.cshtml", Model)        
+
+    </div>
+
+    <div class="col-md-6">
+
+        @Html.Partial("~/Areas/Theatre/Views/Operation/PatientInformation.cshtml", Model)       
+
+        @Html.Partial("~/Areas/Theatre/Views/Operation/OperationPersonel.cshtml", Model)
+
+    </div>
+
+
+</fieldset>
+
+ 
+
+
+

@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+    <title>@ViewBag.Title</title>
+    @{var companyName = "we"; var marquee = ""; var EMRPaid = "#FEFE32"; var EMRRead = "#DFEDFD";  var EMRUnpaid = "#C20017"; var EMREmergency = "#90FF41"; }
+
+    @{
+        try
+        {
+            using (CaresoftHMISDataAccess.CaresoftDBEntities entity = new CaresoftHMISDataAccess.CaresoftDBEntities())
+            {
+                var userId = Session["UserId"].ToString();
+                var username = entity.Users.Find(int.Parse(userId)).Username;
+                ViewBag.Username = username;
+                var primaryColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("PrimaryColor")).Value;
+                var primaryLightColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("PrimaryLightColor")).Value;
+                var primaryDarkColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("PrimaryDarkColor")).Value;
+                var accentColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("AccentColor")).Value;
+                var emergencyColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EmergencyColor")).Value;
+                companyName = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("FacilityName")).Value;
+                marquee = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("Marquee")).Value;
+                <style>
+                :root {
+                --accent-color: @accentColor;
+                --primary-color: @primaryColor;
+                --primary-light-color: @primaryLightColor;
+                --primary-dark-color: @primaryDarkColor;
+                --Emergency:@emergencyColor;
+
+                    --EMRPaid: @entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRPaid")).Value;
+                     --EMRRead:@entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRRead")).Value;
+                    --EMRunread:@entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRunread")).Value;
+                     --EMRUnpaid: @entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRUnpaid")).Value;
+                     --EMREmergency: @entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMREmergency")).Value;
+            }
+                </style>
+
+
+            }
+        }
+        catch (Exception e)
+        {
+            System.Diagnostics.Debug.WriteLine(e);
+        }
+
+    }
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="marquee">
+        <marquee>@marquee </marquee>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-3" id="company-logo-1">
+                <img src="~/Content/icons/Softcom-logo.png" />
+            </div>
+            <div class="col-xs-6 text-center" id="company-name">
+                <h3>@companyName</h3>
+            </div>
+            <div class="col-xs-3 text-right" id="company-logo-2">
+                <img src="~/Content/icons/Coat_of_arms_of_Kenya.png" />
+            </div>
+        </div>
+    </div>
+    
+    
+    @Html.Partial("_Nav")
+
+    @{
+        var viewSize = "container";
+        if (ViewBag.WideView!=null)
+        {
+            viewSize = "container-fluid";
+        }
+    } 
+    @* Override layout for EMR forms *@
+    @{ if (ViewBag.IsEMR != null)
+        {
+
+           <div class="row">
+               <div class="col-sm-2">
+                   @* side navigation and mini patient list*@
+                  
+                   <ul class="nav nav-tabs">
+                       <li class="active"><a data-toggle="tab" href="#menu-options">Menu</a></li>
+                       <li><a data-toggle="tab" href="#mini-list">Patients List</a></li>
+                   </ul>
+
+                   <div class="tab-content">
+                       <div id="menu-options" class="tab-pane fade in active">
+                           @Html.Partial("_SideNavigation")
+                       </div>
+                       <div id="mini-list" class="tab-pane fade">
+                           @{ using (CaresoftHMISDataAccess.CaresoftDBEntities db = new CaresoftHMISDataAccess.CaresoftDBEntities())
+                              {
+                                var opdMiniList = db.OpdRegisters.Where(e => e.Date.Equals(DateTime.Today)).ToList();
+                                @Html.Partial("OPDMiniList", opdMiniList);
+
+                              }
+                           }
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-10">
+                   <div class="rendered-body">
+                       @RenderBody()
+                   </div>
+                   <hr />
+               </div>
+           </div>
+
+
+        
+
+        }
+        else if (ViewBag.IsMasterForm != null)
+        {
+        @RenderBody()
+        }
+        else
+        {
+            <div class="@viewSize body-content">
+                <div class="rendered-body">
+                    @RenderBody()
+                </div>
+                <hr />
+            </div>
+        }
+    }
+    
+   
+    &rarr;
+    @Html.Partial("_Footer")
+
+    <div class="container-fluid notify-area collapse">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-sm-offset-8 notice-column">
+                <p class="collapse text-right" id="close-all-notice">Close All</p>
+                <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <p>Patient Registered Successfully</p>
+                </div>
+                <div class="alert alert-danger">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <p>Internal Server error. Contact administrator.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <div id="loadingElement" class="loader collapse">
+        <img src="~/Content/icons/loader.gif" />
+        <p><em>Please wait...</em></p>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/Caresoft.js"></script>
+    @RenderSection("scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-submenu a.test').on("click", function (e) {
+                var parent = $(this).parent();
+                var uncles = parent.siblings();
+                $.each(uncles, function () {
+                    $(this).find("ul.dropdown-menu").fadeOut();
+                });
+                
+                $(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
+            });
+        });
+    </script>
+    
+</body>
+</html>

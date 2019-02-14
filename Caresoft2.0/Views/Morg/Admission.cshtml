@@ -1,0 +1,499 @@
+﻿
+@{
+    ViewBag.Title = "Mortuary Admission";
+    Layout = "~/Views/Morg/_MorgLayout.cshtml";
+
+    var relations = (IEnumerable<CaresoftHMISDataAccess.Relationship>)ViewBag.Relationships;
+}
+
+
+    
+<ul class="nav nav-pills">
+    <li class="active top-tab"><a data-toggle="pill" href="#internal-bodies">Internal Bodies</a></li>
+    <li class="top-tab"><a data-toggle="pill" href="#external-bodies">BID Form</a></li>
+</ul>
+<div class="tab-content">
+    <div id="internal-bodies" class="tab-pane fade in active">
+        <fieldset>
+            <form id="internal-bodies-form">
+                <input type="hidden" name="InternalExternalBody" value="Internal" />
+                <input type="hidden" name="PatientId" value="Internal" />
+                <input type="hidden" name="RegNumber" value="" />
+                <input type="hidden" name="PlaceOfDeath" value="In Facility" />
+                <fieldset>
+                    <legend>Deceased Details</legend>
+                    <table class="table-form">
+                        @*<tr>
+                    <td></td>
+                    <td>
+                        <fieldset class="text-center">
+                            <label style="margin-right:1em;">
+                                <input type="radio" name="PatType" value="OPD" /> Out Patient
+                            </label>
+
+                            <label style="margin-left:1em;">
+                                <input type="radio" name="PatType" value="IPD" /> In Patient
+                            </label>
+                        </fieldset>
+                    </td>
+                </tr>*@
+                        <tr>
+                            <td>
+                                <label>Patient No.</label>
+                                <small>(Search)</small>
+                            </td>
+                            <td>
+                                <input type="text" name="PatientNo" id="PatientNo" class="text-box box-lg" />
+                            </td>
+                            <td>
+                                <label>Date Admitted</label>
+                            </td>
+                            <td>
+                                <input type="date" name="DateAdmitted" class="text-box box-lg" value="" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Deceased Name</label>
+                            </td>
+                            <td>
+                                <input type="text" name="DeceasedName" readonly class="text-box box-lg" />
+                            </td>
+                            <td>
+                                <label>Date of Death</label>
+                            </td>
+                            <td>
+                                <input type="hidden" name="DateReceived" class="text-box box-lg" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+
+                                <input type="date" name="DateOfDeath" class="text-box box-lg" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Residence</label>
+                            </td>
+                            <td>
+                                <input type="text" name="Residence" readonly class="text-box box-lg" />
+                            </td>
+                            <td>
+                                <label style="color:red">Serial No.</label>
+                            </td>
+                            <td>
+                                <input type="text" name="SerialNo" style="color:#ff0000 !important; text-align:right" class="text-box box-lg" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Age</label>
+                            </td>
+                            <td>
+                                <input type="text" name="Age" readonly class="text-box box-lg" />
+                            </td>
+
+                            <td>
+                                <label>Time</label>
+                            </td>
+                            <td>
+                                <input type="time" name="TimeOfDeath" class="text-box box-lg" value="@DateTime.Now.ToString("HH:mm:ss")" />
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Gender</label>
+                            </td>
+                            <td>
+                                <input type="text" name="Gender" readonly class="text-box box-lg" />
+                            </td>
+                            <td>
+                                <label for="CauseOfDeath">Cause of Death</label>
+                            </td>
+                            <td>
+                                <input type="text" name="CauseOfDeath" id="CauseOfDeath" class="text-box box-lg" required />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Ward/Unit</label>
+                            </td>
+                            <td>
+                                <input type="text" name="WardUnit" readonly class="text-box box-lg" />
+                            </td>
+                            <td>
+                                <label for="CertifiedBy">Certified By</label>
+                            </td>
+                            <td>
+                                <input type="text" name="CertifiedBy" id="CertifiedBy" class="text-box box-lg" required />
+                            </td>
+                        </tr>
+
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Details of the next of Kin</legend>
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                <label>Name</label>
+                            </td>
+                            <td>
+                                <input type="text" name="NextOfKinName" class="text-box box-lg" />
+                            </td>
+
+                            <td>
+                                <label>Relation</label>
+                            </td>
+                            <td>
+                                <select class="text-box box-lg" name="Relation">
+                                    <option></option>
+                                    @foreach (var r in relations)
+                                    {
+                                        <option>@r.RelationshipName</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Address</label>
+                            </td>
+                            <td>
+                                <textarea name="KinsAddress" class="text-box box-lg"></textarea>
+                            </td>
+
+                            <td>
+                                <label>Telephone No</label>
+                            </td>
+                            <td>
+                                <input type="text" name="KinsTelephone" class="text-box box-lg" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td>
+                                <label>ID No</label>
+                            </td>
+                            <td>
+                                <input type="text" name="KinsIdNo" class="text-box box-lg" />
+                            </td>
+                        </tr>
+
+                    </table>
+                </fieldset>
+
+                <fieldset class="marg-top-6px">
+                    <button class="btn btn-sm btn-primary" type="submit">Save</button>
+                    <button class="btn btn-sm btn-primary" type="reset">Clear</button>
+                </fieldset>
+            </form>
+        </fieldset>
+    </div>
+
+    <div id="external-bodies" class="tab-pane fade">
+        <fieldset>
+            <form id="external-bodies-form">
+                <input type="hidden" name="InternalExternalBody" value="External" />
+                <fieldset>
+                    <legend>Deceased Details</legend>
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                <label style="color:red">Serial No.</label>
+                            </td>
+                            <td>
+                                <input type="text" name="SerialNo" class="text-box box-lg" readonly style="color:red !important; text-align:right" />
+                            </td>
+                            <td>
+                                <label for="PlaceOfDeathB">Place of Death</label>
+                            </td>
+                            <td>
+                                <input type="text" name="PlaceOfDeath" id="PlaceOfDeathB" required class="text-box box-lg" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="DeceasedNameB">Deceased Name</label>
+                            </td>
+                            <td>
+                                <input type="text" name="DeceasedName" id="DeceasedNameB" class="text-box box-lg" required />
+                            </td>
+                            <td>
+                                <label for="ResidenceB">Residence</label>
+                            </td>
+                            <td>
+                                <input type="text" name="Residence" id="ResidenceB" class="text-box box-lg" required/>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <label for="AgeB">Age</label>
+                            </td>
+                            <td>
+                                <input type="text" name="Age" id="AgeB" class="text-box box-lg" required/>
+                            </td>
+                            <td>
+                                <label>Police Officer</label>
+                            </td>
+                            <td>
+                                <input type="text" name="PoliceOfficer" class="text-box box-lg" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="DateOfDeathB">Date of Death</label>
+                            </td>
+                            <td>
+                                <input type="date" name="DateOfDeath" id="DateOfDeathB" required class="text-box box-lg" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                            </td>
+                            <td>
+                                <label>Force No</label>
+                            </td>
+                            <td>
+                                <input type="text" name="ForceNo" class="text-box box-lg" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="DateReceivedB">Date Received</label>
+                            </td>
+                            <td>
+                                <input type="date" name="DateReceived" id="DateReceivedB" required class="text-box box-lg" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                            </td>
+                            <td>
+                                <label>Police Station</label>
+                            </td>
+                            <td>
+                                <input type="text" name="PoliceStation" class="text-box box-lg" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="genderB">Gender</label>
+                            </td>
+                            <td>
+                                <label>
+                                    <input type="radio" id="genderB" name="Gender" value="Male" required/> Male
+                                </label>
+
+                                <label>
+                                    <input type="radio" name="Gender" value="Female" /> Female
+                                </label>
+                            </td>
+                            <td>
+                                <label>Vehicle No.</label>
+                            </td>
+                            <td>
+                                <input type="text" name="VehicleNo" class="text-box box-lg" />
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <label for="CertifiedByB">Death Certified By</label>
+                            </td>
+                            <td>
+                                <input type="text" name="CertifiedBy" required id="CertifiedByB" class="text-box box-lg" />
+                            </td>
+                            <td>
+                                <label>Time</label>
+                            </td>
+                            <td>
+                                <input type="time" name="TimeOfDeath" class="text-box box-lg" value="@DateTime.Now.ToString("HH:mm:ss")" />
+                            </td>
+                        </tr>
+
+
+
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend>Details of the person who brought the body</legend>
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                <label for="NextOfKinB">Brought In By</label>
+                            </td>
+                            <td>
+                                <input type="text" name="NextOfKin" id="NextOfKinB" required class="text-box box-lg" />
+                            </td>
+
+                            <td>
+                                <label id="RelationB">Relation</label>
+                            </td>
+                            <td>
+                                <select class="text-box box-lg" name="Relation" id="RelationB">
+                                    <option></option>
+                                    @foreach (var r in relations)
+                                    {
+                                        <option>@r.RelationshipName</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="KinsAddressB">Address</label>
+                            </td>
+                            <td>
+                                <textarea name="KinsAddress" required id="KinsAddressB" class="text-box box-lg"></textarea>
+                            </td>
+
+                            <td>
+                                <label for="KinsTelephoneB">Telephone No</label>
+                            </td>
+                            <td>
+                                <input type="text" name="KinsTelephone" id="KinsTelephoneB" required class="text-box box-lg" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td>
+                                <label for="KinsIdNoB">ID No</label>
+                            </td>
+                            <td>
+                                <input type="text" name="KinsIdNo" id="KinsIdNoB" required class="text-box box-lg" />
+                            </td>
+                        </tr>
+
+                    </table>
+                </fieldset>
+
+                <fieldset class="marg-top-6px">
+                    <button class="btn btn-sm btn-primary" type="submit">Save</button>
+                    <button class="btn btn-sm btn-primary" type="reset">Clear</button>
+                </fieldset>
+            </form>
+        </fieldset>
+    </div>
+</div>
+
+
+@section scripts{
+<script>
+    $("#PatientNo").on("autocompleteselect", function (event, ui) {
+
+    
+        var patId = ui.item.Id;
+        var form = $("#internal-bodies-form");
+        getThisPatient(patId, form);
+
+    
+        
+    });
+
+    function getThisPatient(id, form) {
+        $(".loader").show();
+
+        $.ajax({
+            type: "get",
+            url: "/morg/getinternalpatient/"+id,
+            success: function (pat) {
+                $(".loader").hide();
+                populateMyForm(pat, "#internal-bodies-form");
+                
+            },
+            error: function (xmlhttprequest, textstatus, errorthrown) {
+                showNotification("Unable to get patient.", "danger", true);
+                console.log(xmlhttprequest.responseText);
+            }
+        });
+    }
+
+    $("#PatientNo").autocomplete({
+        source: function (req, res) {
+            $.ajax({
+                type: "POST",
+                url: "/morg/PatientList/",
+                data: { search: $("#PatientNo").val()},
+
+                success: function (data) {
+                    res($.map(data, function (item) {
+                        return {
+                            label: item.Name, value: item.RegNumber, Id: item.Id };
+                    }));
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    showNotification("Unable to search patients", "danger", true);
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+        }
+    });
+
+    $("#internal-bodies-form").submit(function (e) {
+        e.preventDefault();
+        if (!isValidForm($(this))) {
+            return false;
+        }
+        var data = $(this).serializeObject();
+
+        $(".loader").show();
+        $.ajax({
+            method: "post",
+            url: "@Url.Action("SaveMorgAdmission", "morg")",
+            data: data,
+            success: function (res) {
+                $(".loader").hide();
+                if (typeof (res) === "object") {
+                    populateMyForm(res, "#internal-bodies-form");
+                }
+                console.log(res);
+                showNotification("Body registered successfully.", "success", true);
+            },
+            error: function (e, x, r) {
+                $(".loader").hide();
+                showNotification("An error occured!", "danger", true);
+            }
+        })
+    });
+
+
+    $("#external-bodies-form").submit(function (e) {
+        e.preventDefault();
+        if (!isValidForm($(this))) {
+            return false;
+        }
+
+        if (!$("input[name=Gender]").is(':checked')) {
+            return false;
+        }
+        var data = $(this).serializeObject();
+
+        $(".loader").show();
+        $.ajax({
+            method: "post",
+            url: "@Url.Action("SaveMorgAdmission", "morg")",
+            data: data,
+            success: function (res) {
+                $(".loader").hide();
+                if (typeof (res) === "object") {
+                    populateMyForm(res, "#external-bodies-form");
+                }
+                console.log(res);
+                showNotification("Body registered successfully.", "success", true);
+            },
+            error: function (e, x, r) {
+                $(".loader").hide();
+                showNotification("An error occured!", "danger", true);
+            }
+        })
+    });
+
+
+    
+</script>
+}

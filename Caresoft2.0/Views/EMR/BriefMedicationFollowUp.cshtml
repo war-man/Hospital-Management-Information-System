@@ -1,0 +1,124 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+@{
+    ViewBag.Title = "Brief Medication Follow Up";
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+
+<div class="panel panel-primary caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>Brief Medication/Follow Up</p>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-2">
+                <label for="template">Template</label>
+            </div>
+            <div class="col-xs-10">
+                <input type="text" class="text-box" name="template" id="template" />
+            </div>
+        </div>
+
+        <div class="row marg-top-16px">
+            <div class="col-xs-2">
+                <label for="prescription">Prescription</label>
+            </div>
+            <div class="col-xs-10">
+                <textarea class="ckeditor" id="prescription"></textarea>
+            </div>
+        </div>
+
+        <div class="row marg-top-16px">
+            <div class="col-xs-2">
+                <label for="advice">Advice</label>
+            </div>
+            <div class="col-xs-10">
+                <textarea class="ckeditor" id="addvice"></textarea>
+            </div>
+        </div>
+        <div class="row marg-top-16px">
+            <div class="col-xs-2 ">
+                <label for="followupdate">Follow Up Date</label>
+            </div>
+            <div class="col-xs-10">
+                <input type="date" class="text-box" name="followupdate" id="followupdate" />
+            </div>
+        </div>
+
+        <div class="row marg-top-16px">
+            <div class="col-xs-2 ">
+                <label for="followvisitAfter">Follow Up Visit After</label>
+            </div>
+            <div class="col-xs-10">
+                <input type="number" style="width:50px" class="text-box" name="followvisitAfter" id="followvisitAfter" />
+                <span class="patient-details" style="padding:.5em;">
+                    <input checked type="radio" name="followUpNumberUnit" id="month" value="Month" />
+                    Month
+                    <input type="radio" name="followUpNumberUnit" id="week" value="Week" />
+                    Week
+                    <input type="radio" name="followUpNumberUnit" id="days" value="Days" />
+                    Days
+                </span>
+            </div>
+        </div>
+        <div class="row marg-top-16px">
+            <div class="col-xs-2 ">
+                <label for="referral">Referral</label>
+            </div>
+            <div class="col-xs-10">
+                <input type="text" class="text-box" name="referral" id="referral" />
+            </div>
+        </div>
+
+        <div class="row marg-top-16px">
+            <div class="col-xs-2 ">
+
+            </div>
+            <div class="col-xs-10">
+                <button class="btn btn-primary btn-sm">Save</button>
+                <button class="btn btn-primary btn-sm">Clear</button>
+            </div>
+        </div>
+
+        <table class="table table-bordered">
+            <thead class="bg-primary">
+                <tr>
+                    <th>Edit</th>
+                    <th>Follow Up</th>
+                    <th>Prescription</th>
+                    <th>Advice</th>
+                    <th>Follow up Date</th>
+                    <th>Visit After</th>
+                    <th>RefDoc Name</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="table-primary-row text-center" colspan="8">
+                        <i>No data to display</i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+@section scripts{
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript" src="~/Scripts/ckeditor/ckeditor.js"></script>
+}

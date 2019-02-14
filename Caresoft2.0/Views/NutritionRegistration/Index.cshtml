@@ -1,0 +1,573 @@
+﻿@using CaresoftHMISDataAccess;
+@{
+    ViewBag.Title = "Home Page";
+
+
+    ViewBag.WideView = true;
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel glass shadow">
+        <div class="panel-heading">
+            New Adult Register
+        </div>
+        <div class="panel-body">
+
+            <form method="post" action="/Home/AddNutritionAdultRegister">
+
+
+                <div class="col-md-12 col-sm-12 create-new-account">
+
+                    <input type="hidden" name="OPDID" value="3" />
+
+
+                    <table width="100%" class="table-form">
+                        <tr width="20%">
+                            <th width="20%">Service Point</th>
+                            <th width="20%">Visit Date</th>
+                            <th width="20%">Visit Type</th>
+                            <th width="20%">
+                                Patient No.
+                            </th>
+                            <th width="20%">
+                                Patient Name.
+                            </th>
+                        </tr>
+                        <tr width="20%">
+                            <td width="20%">
+                                <select style="width:90%" class=" text-box" name="ServicePoint">
+                                    <option>Select</option>
+                                    <option>Test Data 1</option>
+                                    <option>Test Data 2</option>
+                                </select>
+                            </td>
+                            <td width="20%">
+                                <input style="width:90%" type="date" class=" text-box" name="VisitDate" id="theDate">
+                            </td>
+                            <td width="20%">
+                                <select style="width:90%" class=" text-box" name="VisitType">
+                                    <option>Test Data</option>
+                                </select>
+                            </td>
+                            <td width="20%">
+                                <input style="width:90%" type="number" class=" text-box" name="PatientNo">
+                            </td>
+                            <td width="20%">
+                                <input style="width:90%" type="text" name="PatientName" class=" text-box">
+                            </td>
+                        </tr>
+
+                        <tr width="20%">
+                            <th width="20%">Age</th>
+                            <th width="20%">Gender</th>
+                            <th width="20%">Linked OVC</th>
+                            <th width="20%">Patient category</th>
+                            <th width="20%"></th>
+                        </tr>
+                        <tr width="20%">
+                            <td width="20%">
+                                <input style="width:90%" type="number" class=" text-box" name="age">
+                            </td>
+                            <td width="20%">
+                                <select style="width:90%" class=" text-box" name="gender">
+                                    <option>Select Gender</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </td>
+                            <td width="20%">
+                                <select style="width:90%" class=" text-box" name="LinkedOVC">
+                                    <option>Select OVC</option>
+                                    <option>Test Data 1</option>
+                                    <option>Test Data 2</option>
+
+                                </select>
+                            </td>
+                            <td width="20%">
+                                <select style="width:90%" class=" text-box" name="PatientCategory">
+                                    <option>Select category</option>
+                                    <option>Test Data 1</option>
+                                    <option>Test Data 2</option>
+
+                                </select>
+                            </td>
+                            <td width="20%"></td>
+                        </tr>
+                    </table>
+
+                    <br />
+
+
+
+                    <fieldset class="row">
+                        <legend>&nbsp; ASSESMENT & NUTRITION DIAGNOSIS &nbsp;</legend>
+
+                        <div class="col-md-12">
+                            <table width="100%" class="table-form">
+                                <tr width="20%">
+                                    <th width="20%">Weight (kg)</th>
+                                    <th width="20%">Height (m)</th>
+                                    <th width="20%">Edema</th>
+                                    <th width="20%">BMI for Age(15-17 Years)</th>
+                                    <th width="20%">BMI (Adult Over 18 Years)</th>
+                                </tr>
+                                <tr width="20%">
+                                    <td width="20%">
+                                        <input style="width:90%" type="number" class=" text-box" name="Weight">
+                                    </td>
+                                    <td width="20%"><input style="width:90%" type="number" class=" text-box" name="Height"></td>
+                                    <td width="20%">
+                                        <select style="width:90%" class=" text-box" name="Edema">
+                                            <option></option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </td>
+                                    <td width="20%">
+                                        <input style="width:90%" type="number" class=" text-box" name="BMIForAge15-17-Years)">
+                                    </td>
+                                    <td width="20%">
+                                        <input style="width:90%" type="number" class=" text-box" name="BMIForAdult">
+                                    </td>
+                                </tr>
+
+                                <tr width="20%">
+                                    <th width="20%">BMI</th>
+                                    <th width="20%">MUAC | PPW (cm)</th>
+                                    <th width="20%">BMIz</th>
+                                    <th width="20%">
+                                        Nutrition Status
+                                    </th>
+                                    <th width="20%">Serostatus</th>
+                                </tr>
+                                <tr width="20%">
+                                    <td width="20%" valign="top">
+                                        <input style="width:90%;" type="number" class=" text-box" name="bmi">
+                                    </td>
+                                    <td width="20%" valign="top">
+                                        <input style="width:90%;" type="number" class=" text-box" name="muac">
+                                    </td>
+                                    <td width="20%" valign="top">
+                                        <input style="width:90%;" type="number" class=" text-box" name="bmiz">
+                                    </td>
+                                    <td width="20%" valign="top">
+                                        <select style="width:90%;" class=" text-box" id="NutritionStatus" name="NutritionStatus">
+                                            <option></option>
+                                            <option value="1=SAM">1=SAM</option>
+                                            <option value="2=MAM">2=MAM</option>
+                                            <option value="3=OverWeight">3=OverWeight</option>
+                                            <option value="4=Obese">4=Obese</option>
+                                            <option value="5=Normal">5=Normal</option>
+                                        </select>
+
+                                       
+                                    </td>
+                                    <td width="20%" valign="top">
+                                        <select style="width:90%;" class=" text-box" name="Serostatus">
+                                            <option></option>
+                                            <option>P=Positive</option>
+                                            <option>N=Negative</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr width="20%">
+                                    <th width="20%" valign="top">
+                                        SAM/MAM Clients
+                                    </th>
+                                    <th width="20%" valign="top">
+                                        On ARVs
+                                    </th>
+                                    <th width="20%" colspan="2" valign="top">
+                                        Co-existing conditions
+                                    </th>
+                                    <th width="20%" valign="top">
+                                        Anaemia
+                                    </th>
+                                </tr>
+                                <tr width="20%">
+                                    <td  valign="top"  width="20%">
+                                        <select style="width:90%;" disabled="disabled" class=" text-box" id="SamMamClients" name="SamMamClients">
+                                            <option></option>
+                                            <option>1-1st Time Diagnosis</option>
+                                            <option>2-Relapse</option>
+                                            <option>3-Readmission</option>
+
+                                         
+                                        </select>
+                                    </td>
+                                    <td  valign="top"  width="20%">
+                                        <select style="width:90%;" class=" text-box" name="OnARVs">
+                                            <option></option>
+                                            <option>Y=Yes</option>
+                                            <option>N=No</option>
+                                        </select>
+                                    </td>
+                                    <td valign="top" colspan="2" width="40%">
+                                        <input readonly style="width:90%;" type="text" class=" text-box" id="CoexistingConditions" name="CoexistingConditions">
+
+                                        <label class="CoexistingConditions checkbox-inline"><input type="checkbox" value="1=TB">1=TB</label>
+                                        <label class="CoexistingConditions checkbox-inline"><input type="checkbox" value="2=Diarrhoea">2=Diarrhoea</label>
+                                        <label class="CoexistingConditions checkbox-inline"><input type="checkbox" value="3=Oral Trush">3=Oral Trush</label>
+                                        <label class="CoexistingConditions checkbox-inline"><input type="checkbox" value="4=Other Ols">4=Other Ols</label>
+                                        <label class="CoexistingConditions checkbox-inline"><input type="checkbox" value="2=Diarrhoea">5=Naisea/Vomiting/Anorexia</label>
+                                        <label class="CoexistingConditions checkbox-inline"><input type="checkbox" value="2=6=None">6=None</label>
+
+                                    </td>
+                                    <td width="20%">
+                                        <select style="width:90%;" class=" text-box" name="Anaemia">
+                                            <option></option>
+                                            <option>1=Severe</option>
+                                            <option>2=Moderate</option>
+                                            <option>3=Mild</option>
+                                            <option>3=Normal</option>
+                                            <option>3=Not Done</option>
+
+                                        </select>
+                                    </td>
+                                    
+                                </tr>
+
+                                <tr width="20%">
+
+                                    <th width="20%" valign="top">
+                                        Anaemia TO chage
+                                    </th>
+                                    
+                                    <th width="20%">
+                                        Allergies & intolerance
+
+                                    </th>
+                                    <th width="20%">
+                                        CD 4 Count
+                                    </th>
+                                    <th width="20%">
+                                        Food Secure
+                                    </th>
+                                    <th width="20%">
+                                    </th>
+                                    <th width="20%">
+                                    </th>
+                                </tr>
+                                <tr width="20%">
+                                    <td width="20%">
+                                        <input style="width:90%;" type="number" class=" text-box" name="MetabolicDisorders">
+                                    </td>
+                                    <td width="20%">
+                                        <select style="width:90%;" class=" text-box" name="AllergiesIntolerance">
+                                            <option></option>
+                                            <option>Food Allergies</option>
+                                            <option>Food Intolerance</option>
+
+                                        </select>
+                                    </td>
+                                    <td width="20%">
+                                        <select style="width:90%;" class=" text-box" name="CD4Count">
+                                            <option></option>
+                                            <option><span><</span>350</option>
+                                            <option>350-500</option>
+                                            <option><span>>500</span></option>
+                                            <option>Not Done</option>
+                                          
+                                        </select>
+                                    </td>
+                                    <td width="20%">
+                                        <select style="width:90%;" class=" text-box" name="FoodSecure">
+                                            <option></option>
+                                            <option>Yes</option>
+                                            <option>No</option>
+
+                                        </select>
+                                    </td>
+                                    <td width="20%"></td>
+                                    <td width="20%"></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </fieldset>
+
+                    <br>
+                    @*<div class="row">
+                <fieldset>
+                    <legend>&nbsp; FEEDING PRACTICE &nbsp;</legend>
+
+
+
+
+
+                        <div class="col-md-6">
+                            First 0 - 6 Months
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <select class=" text-box" name="First0to6Months">
+                                        <option>Select</option>
+                                        <option>Test Data 1</option>
+                                        <option>Test Data 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            6 - 12 Months
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <select class=" text-box" name="Sixto12Months">
+                                        <option>Select </option>
+                                        <option>Test Data 1</option>
+                                        <option>Test Data 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                </fieldset>
+            </div>*@
+
+                    <br>
+                    <div class="row">
+                        <fieldset class="col-md-12">
+                            <legend>&nbsp; NUTRITION COUNSELLING &nbsp;</legend>
+
+                            <table width="100%" class="table-form">
+                                <tr width="20%">
+                                    <th width="20%" valign="top">
+                                        Maternal Nutrition
+                                    </th>
+                                    <th width="20%" valign="top">
+                                        Critical Nutrition Practices
+                                    </th>
+                                    <th width="20%"></th>
+                                </tr>
+                                <tr width="20%">
+                                    <td valign="top">
+                                        <select style="width:90%" class=" text-box" name="maternalNutrition">
+                                            <option></option>
+                                            <option>1=Pre-natal</option>
+                                            <option>2=Post-natal</option>
+                                        </select>
+                                    </td>
+                                    <td valign="top" colspan="2">
+                                        <input style="width:90%" readonly type="text" class=" text-box" name="CriticalNutritionPractices" />
+
+                                        <label class="CriticalNutritionPractices checkbox-inline"><input type="checkbox">Nutrition status assesment</label>
+                                        <label class="CriticalNutritionPractices checkbox-inline"><input type="checkbox">Dietery/Energy needs</label>
+                                        <label class="CriticalNutritionPractices checkbox-inline"><input type="checkbox">Sanitation</label>
+                                        <label class="CriticalNutritionPractices checkbox-inline"><input type="checkbox">Positive living behaviour</label>
+                                        <label class="CriticalNutritionPractices checkbox-inline"><input type="checkbox">Exercise</label>
+                                        <label class="CriticalNutritionPractices checkbox-inline"><input type="checkbox">Safe Drinking water</label>
+                                        <label class="CriticalNutritionPractices checkbox-inline"><input type="checkbox">prompt treatment for Ols </label>
+                                        <label class="CriticalNutritionPractices checkbox-inline"><input type="checkbox">Drug food interation side effect </label>
+                                        <label class="CriticalNutritionPractices checkbox-inline"><input type="checkbox">None</label>
+
+                                    </td>
+                            </table>
+
+                        </fieldset>
+                    </div>
+
+
+                    <br>
+                    <div class="row">
+                        <fieldset class="col-md-12">
+                            <legend>&nbsp; PRESCRIBED NUTRITION SUPPORT &nbsp;</legend>
+
+                            <table width="100%" class="table-form">
+                                <tr width="20%">
+                                    <th width="20%">
+                                        Therapeutic Foods
+                                    </th>
+                                    <th width="20%">
+                                        Supplemental Foods
+                                    </th>
+                                    <th width="20%">
+                                        Micronutrients
+                                    </th>
+                                </tr>
+                                <tr width="20%">
+                                    <td>
+                                        <select style="width:90%;" class=" text-box" id="TherapeuticFoods" name="TherapeuticFoods">
+                                            <option></option>
+                                            <option>1=RUTF</option>
+                                            <option>2=F75</option>
+                                            <option>3=F100</option>
+                                            <option>4=Resomol</option>
+                                            <option>5=Others</option>
+                                            <option>6=None</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="number" class=" text-box" name="SupplementalFoods" />
+                                    </td>
+                                    <td>
+                                        <input type="number" class=" text-box" name="Micronutrients" />
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </fieldset>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <fieldset class="col-md-12">
+                            <legend>&nbsp; OUTCOMES & REFERRALS &nbsp;</legend>
+
+                            <table width="100%" class="table-form">
+                                <tr width="20%">
+                                    <th width="20%">
+                                        Outcome for revisiting SAM/MAM client
+                                    </th>
+                                    <th width="20%">
+                                        Referrals and transfers
+                                    </th>
+                                    <th width="20%">
+                                        TCA Date
+                                    </th>
+                                    <th width="20%">
+                                        Designation
+                                    </th>
+                                    <th width="20%">
+                                        Initials
+                                    </th>
+
+                                </tr>
+                                <tr width="20%">
+                                    <td>
+                                        <input type="number" class=" text-box text-box" name="OutcomeClient" />
+                                    </td>
+                                    <td>
+                                        <input type="number" class=" text-box" name="ReferralsandTransfers" />
+                                    </td>
+                                    <td>
+                                        <input type="date" class=" text-box" name="TCADate" id="currentDate" />
+                                    </td>
+                                    <td>
+                                        <select type="date" class=" text-box" name="Designation">
+                                            <option>Select Designation</option>
+                                            <option>Test Data 1</option>
+                                            <option>Test Data 2</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" class=" text-box" name="Initials" />
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </fieldset>
+                    </div>
+
+                    <div class="row">
+
+                        @*<input type="date" id="theDate">*@
+
+                        <input type="submit" value="submit" class="btn-upper btn btn-primary checkout-page-button" />
+
+                    </div>
+
+                    <br />
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+@section scripts{
+
+    <script>
+
+        $("#NutritionStatus").change(function () {         
+            var val = $('#NutritionStatus').val();
+            if (val == "1=SAM" || val == "2=MAM") {
+                $('#SamMamClients').prop('disabled', false);
+                $("#SamMamClients").val($("#SamMamClients option:first").val());
+            }
+            else {
+                $('#SamMamClients').prop('disabled', true);
+
+            }
+        });
+
+        $('input[type="checkbox"]').change(function () {
+
+            var selected = "";
+
+            if($(this).is(".CoexistingConditions")){
+
+                if (selected != "") {
+                    selected = selected + "|" + $(this).text();
+                } else {
+                    selected = $(this).text();
+                }            }
+            
+        });
+
+    </script>
+
+
+
+    @*Kevin Scripts*@
+    <script>
+
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+
+
+        $(document).ready(function () {
+            var date = new Date();
+
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+
+            if (month < 10) month = "0" + month;
+            if (day < 10) day = "0" + day;
+
+            var today = year + "-" + month + "-" + day;
+            $("#theDate").attr("value", today);
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var date = new Date();
+
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+
+            if (month < 10) month = "0" + month;
+            if (day < 10) day = "0" + day;
+
+            var today = year + "-" + month + "-" + day;
+            $("#currentDate").attr("value", today);
+        });
+
+    </script>
+
+
+
+}
+

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<LabsDataAccess.LabTest>
+
+@{
+    ViewBag.Title = "Test Availability";
+    ViewBag.ShowTopMenu = false;
+}
+<table width="100%" class="table-data-pathology table-condensed">
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Test)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Test_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Available)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody class="bg-white">
+        @if (!Model.Any())
+        {
+            <tr><td colspan="4"><b class="text-center">No Tests To Display</b></td></tr>
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Test)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Test_Code)
+                </td>
+                <td class="text-primary">
+                    @{ var color = "green";}
+                    @if (!item.Available)
+                    {
+                        color = "red";
+                    }
+                    <span style="color:@color">@Html.DisplayFor(modelItem => item.Available)</span>
+                </td>
+                <td>
+                    @if (!item.Available)
+                    {
+                        @Ajax.ActionLink("Activate", "TestAvailability", new { id = item.Id }, new AjaxOptions {
+                           LoadingElementId = "loader",
+                           HttpMethod = "Post",
+                           UpdateTargetId = "myTable",
+                           OnFailure = "showNotification('An Error Occured. Contact the Administrator', 'danger', 'true');",
+                        }, new { @class= "btn btn-xs btn-primary", })
+                    }
+                    else
+                    {
+                        @Ajax.ActionLink("Deactivate", "TestAvailability", new { id = item.Id }, new AjaxOptions {
+                           LoadingElementId = "loader",
+                           HttpMethod = "Post",
+                           UpdateTargetId = "myTable",
+                           OnFailure = "showNotification('An Error Occured. Contact the Administrator', 'danger', 'true');",
+                        }, new { @class= "btn btn-xs btn-primary" })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

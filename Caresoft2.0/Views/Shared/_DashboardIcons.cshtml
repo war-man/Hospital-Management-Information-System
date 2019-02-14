@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+    <title>@ViewBag.Title</title>
+    @{var companyName = "we"; var marquee = ""; var EMRPaid = "#FEFE32"; var EMRRead = "#DFEDFD";  var EMRUnpaid = "#C20017"; var EMREmergency = "#90FF41"; }
+
+    @{
+        try
+        {
+            using (CaresoftHMISDataAccess.CaresoftHMISEntities entity = new CaresoftHMISDataAccess.CaresoftHMISEntities())
+            {
+                //TODO: initialize the colors outside the try block
+                var primaryColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("PrimaryColor")).Value;
+                var primaryLightColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("PrimaryLightColor")).Value;
+                var primaryDarkColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("PrimaryDarkColor")).Value;
+                var accentColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("AccentColor")).Value;
+                var emergencyColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EmergencyColor")).Value;
+                companyName = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("FacilityName")).Value;
+                marquee = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("Marquee")).Value;
+                <style>
+                :root {
+                --accent-color: @accentColor;
+                --primary-color: @primaryColor;
+                --primary-light-color: @primaryLightColor;
+                --primary-dark-color: @primaryDarkColor;
+                --Emergency:@emergencyColor;
+
+                    --EMRPaid: @entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRPaid")).Value;
+                     --EMRRead:@entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRRead")).Value;
+                    --EMRunread:@entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRunread")).Value;
+                     --EMRUnpaid: @entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRUnpaid")).Value;
+                     --EMREmergency: @entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMREmergency")).Value;
+            }
+                </style>
+
+
+            }
+        }
+        catch (Exception e)
+        {
+            System.Diagnostics.Debug.WriteLine(e);
+        }
+
+    }
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="background:#fff;">
+    <br />
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2" style="border:1px solid var(--primary-dark-color); border-radius:.5em; background:#DDECFE;">
+            <table width="100%">
+                <br />
+                <tr>
+                    <td align="center"><b>HOSPITAL INFORMATION MANAGEMENT SYSTEM</b></td>
+                    <td>
+                        <img data-toggle="modal" data-target="#chenge-password-modal" - src="~/Content/icons/change_password.png" />
+                        <img src="~/Content/icons/signout.png" title="Logout" data-href="login/logout" class="img-link" />
+                    </td>
+                </tr>
+                <br />
+                <tr>
+                    <td colspan="2" align="center">
+                        <br /><br />
+                        @RenderBody()
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+
+
+
+    <div id="loadingElement" class="loader collapse">
+        <img src="~/Content/icons/loader.gif" />
+        <p><em>Please wait...</em></p>
+    </div>
+
+    @Html.Partial("_ChangePassword")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script src="~/Scripts/Caresoft.js"></script>
+    <script>
+        $("#change-password-form").submit(function (e) {
+            e.preventDefault();
+            if (!isValidForm($(this))) {
+                return false;
+            }
+            var data = $(this).serializeObject();
+            if (data.NewPassword !== data.RPassword) {
+                $("#password_change_message").text("Passwords Do Not Match!");
+                $("#password_change_message").addClass("text-danger");
+                return false;
+            } else {
+                $("#password_change_message").text("");
+            }
+
+            $(".loader").show();
+            $.ajax({
+                url: "Login/ChangePassword",
+                method: "POST",
+                data: data,
+                success: function (data) {
+                    $(".loader").hide();
+                    showNotification(data.Message, data.Status, true);
+                    if (data.Status == "success") {
+                        $("#change-password-form")[0].reset();
+                        window.location.href = "Login/Logout";
+                    }
+                },
+                error: function (e, x, r) {
+                    $(".loader").hide();
+                    console.log(e.responseText);
+                }
+            })
+
+
+        })
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.PhysicalExamination>
+
+
+    <table class="table table-data">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.RegNumber)
+            </th>
+
+            <th>
+               Temp<sup>o</sup>C
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pulse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RespiratoryRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BPSDIASTOLICSupine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BPDIASTOLICSSitting)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BPSYSTOLICSupine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BPSYSTOLICSSitting)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HipRation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetWeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HeadCircumfrence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetBMI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MUAC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+           
+          
+           
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Temperature)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pulse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RespiratoryRate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BPSDIASTOLICSupine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BPDIASTOLICSSitting)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BPSYSTOLICSupine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BPSYSTOLICSSitting)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HipRation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Height)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TargetWeight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HeadCircumfrence)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TargetBMI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MUAC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+                
+               
+            </tr>
+        }
+
+    </table>

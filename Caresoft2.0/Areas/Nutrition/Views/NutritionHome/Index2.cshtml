@@ -1,0 +1,376 @@
+﻿@using CaresoftHMISDataAccess;
+@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+@{
+    ViewBag.Title = "Nutrition";
+
+    ViewBag.WideView = true;
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+<style>
+    .modal-dialog {
+        width: 80%;
+        height: auto;
+        padding: 0;
+    }
+
+    .modal-content {
+        height: 80%;
+    }
+</style>
+
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel glass shadow">
+        <div class="panel-heading">
+            INITIAL NUTRITION SCREENING AND ASSESMENT FORM
+        </div>
+        <div class="panel-body">
+            @using (@Html.BeginForm("AddNutritionScreeningDetails", "Home", FormMethod.Post))
+            {
+                <div class="col-md-12 col-sm-12 create-new-account">
+                    <!-- <h4 class="checkout-subtitle">Initialnutrition Screening and Assesment Form </h4> -->
+                    <!-- <p class="text title-tag-line"></p> -->
+
+
+
+                    <div class="row">
+
+                        <input hidden type="number" name="OPDIPDID" id="OPDIPDID" value="@ViewBag.OpdNo">
+                        <input hidden type="number" name="UserId" id="UserId" value="@Session["UserId"]">
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Date <span><font color="red"><b>*</b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="date" class="form-control text-box unicase-form-control text-box text-input" name="date" id="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Time <span><font color="red"><b>*</b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="Time" class="form-control text-box unicase-form-control text-box text-input" name="time" id="time" value="@DateTime.Now.ToString("hh:mm:ss")">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Age <span><font color="red"><b>*</b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="number" class="form-control text-box unicase-form-control text-box text-input" name="age" id="age">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Ht <span><font color="red"><b>*</b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="number" class="form-control text-box unicase-form-control text-box text-input" name="ht" id="ht">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Wt <span><font color="red"><b>*</b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="Number" class="form-control text-box unicase-form-control text-box text-input" name="wt" id="wt">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">BMI <span><font color="red"><b>*</b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="Number" class="form-control text-box unicase-form-control text-box text-input" name="bmi" id="bmi">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">ABW <span><font color="red"><b>*</b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="Number" class="form-control text-box unicase-form-control text-box text-input" name="abw" id="abw">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">IBW <span><font color="red"><b>*</b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="Number" class="form-control text-box unicase-form-control text-box text-input" name="ibw" id="ibw">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Preterm <span><font color="red"><b>*</b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="text" class="form-control text-box unicase-form-control text-box text-input" name="preterm" id="preterm">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Weeks <span><font color="red"><b>*</b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="text" class="form-control text-box unicase-form-control text-box text-input" name="weeks" id="weeks">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Ht/Age <span><font color="red"><b></b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="number" class="form-control text-box unicase-form-control text-box text-input" name="ht_age" id="ht_age">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Wt/Age <span><font color="red"><b></b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="number" class="form-control text-box unicase-form-control text-box text-input" name="wt_age" id="wt_age">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Wt/Ht <span><font color="red"><b></b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="number" class="form-control text-box unicase-form-control text-box text-input" name="wt_ht" id="wt_ht">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Ideal wt <span><font color="red"><b></b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="number" class="form-control text-box unicase-form-control text-box text-input" name="ideal_wt" id="ideal_wt">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+
+                                <label class="info-title" for="full_name">Ideal Ht <span><font color="red"><b></b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="number" class="form-control text-box unicase-form-control text-box text-input" name="ideal_ht" id="ideal_ht">
+                            </div>
+                        </div>
+
+                        <input hidden name="symptoms" id="symptoms" />
+                        <fieldset name="symptoms" style="margin-left: 15px; margin-right: 15px;">
+                            <legend>Symptoms</legend>
+                            <div class="col-md-2 ">
+
+                                <label>
+                                    <input class="symptoms" id="blood_pressure" type="checkbox" value="blood_pressure"> Blood Pressure
+                                </label>
+
+                            </div>
+
+                            <div class="col-md-2 ">
+                                <label>
+                                    <input class="symptoms" id="vomiting" value="vomiting" type="checkbox"> Vomiting
+                                </label>
+                            </div>
+
+                            <div class="col-md-2 ">
+                                <label>
+                                    <input class="symptoms" id="diarrhea" value="diarrhea" type="checkbox"> Diarrhea
+                                </label>
+                            </div>
+
+                            <div class="col-md-2 ">
+                                <label>
+                                    <input class="symptoms" id="constipation" value="constipation" type="checkbox"> Constipation
+                                </label>
+                            </div>
+
+                            <div class="col-md-2 ">
+                                <label>
+                                    <input class="symptoms" id="nausea" value="nausea" type="checkbox"> Nausea
+                                </label>
+                            </div>
+
+                            <div class="col-md-2 ">
+                                <label>
+                                    <input class="symptoms" id="difficulty_swallowing" value="difficulty_swallowing" type="checkbox"> Difficulty Swallowing
+                                </label>
+                            </div>
+
+                            <div class="col-md-2 ">
+                                <label>
+                                    <input class="symptoms" id="appetite_changes" value="appetite_changes" type="checkbox"> Appetite changes
+                                </label>
+                            </div>
+
+                            <div class="col-md-4 ">
+                                <label>
+                                    <input class="symptoms" id="food_drug_interaction" value="food_drug_interaction" type="checkbox"> Food Drug Interaction
+                                </label>
+                            </div>
+
+                            <div class="col-md-2 ">
+                                <label>
+                                    <input class="symptoms" id="Others" value="Others" type="checkbox"> Others
+                                </label>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                    <br />
+                    <div class="row">
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Patient Type <span><font color="red"><b></b></font></span></label>
+                                <span id='patient_type'></span>
+
+                                <select class="form-control text-box unicase-form-control text-box text-input" name="patient_type" id="patient_type">
+                                    <option>Select patient type</option>
+                                    <option>Emergecy</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Dietitian Name <span><font color="red"><b></b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="text" class="form-control text-box unicase-form-control text-box text-input" name="dietitian_name" id="dietitian_name">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">ID Number <span><font color="red"><b></b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="number" class="form-control text-box unicase-form-control text-box text-input" name="id_number" id="id_number">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Extension Number <span><font color="red"><b></b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="number" class="form-control text-box unicase-form-control text-box text-input" name="extension_number" id="extension_number">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Plan <span><font color="red"><b></b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <textarea class="form-control text-box unicase-form-control text-box text-input" name="plan_description" id="plan_description"></textarea>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Time Plan <span><font color="red"><b></b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <input type="text" class="form-control text-box unicase-form-control text-box text-input" name="time_plan" id="time_plan">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="info-title" for="full_name">Meal Time <span><font color="red"><b></b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <select class="form-control text-box unicase-form-control text-box text-input" name="meal_time" id="meal_time">
+                                    <option>Select meal type</option>
+                                    @foreach (var item in (List<MealType>)ViewBag.MealTime)
+                                    {
+                                        <option value="@item.id"> @item.meal_type</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="">
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="info-title" for="full_name">Item category <span><font color="red"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <select class="form-control text-box unicase-form-control text-box text-input" name="item_category" id="item_category">
+                                        <option>Select Item category</option>
+                                        @foreach (var item in (List<ItemName>)ViewBag.ItemName)
+                                        {
+                                            <option value="@item.id"> @item.item_name</option>
+                                        }
+                                        @*<option>Fruits</option>
+                                    <option>Food Items</option>*@
+
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="info-title" for="full_name">Food Items <span><font color="red"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <select class="form-control text-box unicase-form-control text-box text-input" name="food_items" id="food_items">
+                                        <option>Select Food Items</option>
+                                        @foreach (var item in (List<ItemName>)ViewBag.ItemName)
+                                        {
+                                            <option value="@item.id"> @item.item_name</option>
+                                        }
+
+
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="info-title" for="full_name">Quantity(ml/grm) <span><font color="red"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <input type="text" class="form-control text-box unicase-form-control text-box text-input" name="quantity" id="quantity">
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="info-title" for="full_name">Calories <span><font color="red"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <input type="text" class="form-control text-box unicase-form-control text-box text-input" name="calories" id="calories">
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <button type="submit" class="btn-upper btn btn-primary checkout-page-button" id="submitDietScheduller">SAVE</button>
+                    </div>
+
+
+                </div>
+
+            }
+
+        </div>
+    </div>
+
+    <script src="~/Scripts/nutrition.js"></script>
+
+

@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+       <div class="panel panel-primary caresoft-panel">
+           <div class="panel-heading">
+               @ViewBag.Title
+           </div>
+           <div class="panel-body">
+               <form name="filter-form">
+                   <fieldset>
+                       <legend>Filter Results</legend>
+                       <table class="table-controls" width="100%">
+                           <tr>
+                               <td>Department</td>
+
+                               <td>
+                                   <label>From</label>
+                               </td>
+
+                               <td>
+                                   <label>To</label>
+                               </td>
+                               <td>
+                                   <label for="quick-search">Quick Search</label>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td>
+                                    @{var deps = (IEnumerable<CaresoftHMISDataAccess.Department>)ViewBag.MedicalDeps; }
+
+                                   <select class="text-box box-lg data-filter-control" name="Department">
+                                       <option value="All">All Departments</option>
+                                       <option value="Walkins">Pharmacy Walkins</option>
+                                       @foreach(var dep in deps)
+                                        {
+                                            <option>@dep.DepartmentName</option>
+                                        }
+                                   </select>
+                               </td>
+
+                               <td>
+                                   <input  type="date" class="text-box box-lg data-filter-control" name="StartDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                               </td>
+                               <td>
+                                   <input  type="date" class="text-box box-lg data-filter-control" name="EndDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                               </td>
+
+                               <td>
+                                   <input type="search" class="text-box box-xlg data-filter-control" name="SearchText" />
+                                   <input type="hidden" name="IsNurse" value="@ViewBag.IsNurse" />
+                               </td>
+                           </tr>
+                       </table>
+                   </fieldset>
+               </form>
+
+               <div id="data-results">
+                   @RenderBody()
+               </div>
+           </div>
+       </div> 
+       
+    </div>
+</div>
+
+
+
+@section scripts{
+    @RenderSection("scripts", required: false)
+}

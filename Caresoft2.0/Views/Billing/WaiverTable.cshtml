@@ -1,0 +1,84 @@
+﻿@model CaresoftHMISDataAccess.OpdRegister
+@{ var drugs = Model.Medications; var billServices = Model.BillServices;}
+
+<table class="table table-data table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Service</th>
+            <th>Qty</th>
+            <th>Total</th>
+            <th>T.Paid</th>
+            <th>Balance</th>
+            <th>Waived</th>
+            <th>
+                Waive
+                <input type="checkbox" id="waive-all" />
+            </th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @if (billServices != null)
+        {
+            foreach (var bs in billServices)
+            {
+                <tr id="service-@bs.Id" data-entry-id="@bs.Id"  data-entry-type="@bs.Service.ServiceGroup.ServiceGroupName">
+                    <td>@bs.DateAdded.ToShortDateString()</td>
+                    <td>@bs.ServiceName</td>
+                    <td align="center">@bs.Quatity</td>
+                    <td align="right">@(bs.Quatity * bs.Price )</td>
+                    <td align="right">@bs.IPDBillPartialPayments.Sum(e => e.AllocatedAmount)</td>
+                    <td align="right" class="balance">
+                        @{var bal = ((bs.Quatity * bs.Price) - bs.IPDBillPartialPayments.Sum(e => e.AllocatedAmount) -(bs.WaivedAmount ?? 0)- (bs.Award * bs.Quatity));}
+                        @bal
+                    </td>
+                    <td class="waived-amount" align="right">
+                        @(bs.WaivedAmount)
+                    </td>
+                    
+                   @if (bs.Paid)
+                   {
+                       <td>Paid</td>
+                   }
+                   else
+                   {
+                        <td align="center">
+                        <input type="checkbox" class="waive" checked  onclick="allocateAmountToWaive();" />
+                    </td>
+                   }
+                </tr>
+            }
+        }
+
+        @if (drugs != null)
+        {
+            foreach(var bs in drugs)
+            {
+                <tr id="medication-@bs.Id" data-entry-id="@bs.Id" data-entry-type="drugs">
+                    <td>@bs.TimeAdded.ToShortDateString()</td>
+                    <td>@bs.DrugName</td>
+                    <td align="center">@bs.QuantityIssued</td>
+                    <td align="right">@bs.Subtotal</td>
+                    <td align="right">@bs.IPDBillPartialPayments.Sum(e => e.AllocatedAmount)</td>
+                    <td align="right" class="balance">
+                        @(bs.QuantityIssued * bs.UnitPrice - bs.IPDBillPartialPayments.Sum(e => e.AllocatedAmount) -
+                    (bs.Award ?? 0 * bs.QuantityIssued ) - (bs.WaivedAmount ?? 0))
+                    </td>
+                    <td class="waived-amount" align="right">
+                        @bs.WaivedAmount
+                    </td>
+                    @if (bs.Paid)
+                   {
+                       <td>Paid</td>
+                   }
+                   else
+                   {
+                        <td align="center">
+                        <input type="checkbox" class="waive" checked onclick="allocateAmountToWaive();" />
+                    </td>
+                   }
+                </tr>
+            }
+        }
+    </tbody>
+</table>

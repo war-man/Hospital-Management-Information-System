@@ -1,0 +1,67 @@
+﻿@model CaresoftHMISDataAccess.ServicesPrice
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ServicesPrice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Award)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Award)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AwardUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AwardUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DoctorFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoctorFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DoctorFeeUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoctorFeeUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Service.ServiceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service.ServiceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tariff.TariffName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tariff.TariffName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

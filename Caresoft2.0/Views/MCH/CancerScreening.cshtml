@@ -1,0 +1,256 @@
+﻿
+@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Post Natal Examination";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>Post Natal Examination</p>
+        <div class="tab-content">
+            <button type="button" style="float:left; outline:none; cursor:pointer; padding:14px 16px; border:none; transition:0.3s;" id="btn-mother-post-natal" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("MotherPostNatal", "MCH", new { id= ViewBag.OpdNo })" data-callback="motherpostnatal">Mother Post Natal</button>
+            <button type="button" style="float:left; outline:none; cursor:pointer; padding:14px 16px; border:none; transition:0.3s;" id="btn-baby-post-natal" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("BabyPostNatal", "MCH", new { id= ViewBag.OpdNo })" data-callback="babypostnatal">Baby post Natal</button>
+            <button type="button" style="float:left; outline:none; cursor:pointer; padding:14px 16px; border:none; transition:0.3s;" id="cancer-screening" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("CancerScreening", "MCH", new { id= ViewBag.OpdNo })" data-callback="babypostnatal">Cancer Screening</button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form id="post-natal-form">
+            <input type="hidden" value="@Model.OpdRegister.Id" name="OpdIpdNumber" />
+
+            <fieldset class="text-center ">
+                <label>
+                    <input type="radio" name="DoneTo" value="Mother" checked /> Mother
+                </label>
+                <label>
+                    <input type="radio" name="DoneTo" value="Baby" /> Baby
+                </label>
+                <label>
+                    <input type="radio" name="DoneTo" value="Reproductive" /> Reproductive Organs Cancer Screening(tick as appropriate)
+                </label>
+            </fieldset>
+
+            <div id="sub-form">
+
+                <table class="marg-top-16px" width="75%">
+                    <tr>
+                        <td>
+                            <label>Cervix and Breast Test</label>
+                        </td>
+                        <td align="center">
+                            <fieldset class="text-center">
+                                <label>
+                                    <input type="radio" name="Cervix" value="Cervix" /> Cervix
+                                </label>
+                                <label>
+                                    <input type="radio" name="Breast" value="Breast" /> Breast
+                                </label>
+                            </fieldset>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                       
+                    </tr>
+                </table>
+
+
+                <table class="table-form marg-top-16px">
+                    <tr>
+                        <td>
+                            <label for="DateOfVisit">
+                                Date Of Visit
+                            </label>
+                        </td>
+                        <td>
+                            <input name="DateOfVisit" required id="date=of-visit" type="date" class="text-box box-lg" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Cervix VIA Test</label>
+                        </td>
+                        <fieldset class="text-center">
+                            <label>
+                                <input type="radio" name="TestResult" value="VIANegative" />VIA Negative
+                            </label>
+                            <label>
+                                <input type="radio" name="TestResult" value="VIAPositive" /> VIA Positive
+                            </label>
+                            <label>
+                                <input type="radio" name="TestResult" value="Suspicious" /> Suspicious
+                            </label>
+                        </fieldset>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>
+                            <label> Cervix VILI Test</label>
+                        </td>
+                        <td align="left">
+                            <fieldset class="text-center">
+                                <label>
+                                    <input type="radio" name="TestResult" value="VILINegative" />VILI Negative
+                                </label>
+                                <label>
+                                    <input type="radio" name="TestResult" value="VILIPositive" /> VILI Positive
+                                </label>
+                                <label>
+                                    <input type="radio" name="TestResult" value="Suspicious" /> Suspicious
+                                </label>
+                            </fieldset>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Cervix Pap Smear Test </label>
+                        </td>
+                        <fieldset class="text-center">
+                            <label>
+                                <input type="radio" name="TestResult" value="Normal" />Normal
+                            </label>
+                            <label>
+                                <input type="radio" name="TestResult" value="LSIL" /> LSIL
+                            </label>
+
+                            <label>
+                                <input type="radio" name="TestResult" value="HSIL" /> HSIL
+                            </label>
+                            <label>
+                                <input type="radio" name="TestResult" value="OvertCancer" /> Overt Cancer
+                            </label>
+                        </fieldset>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Cervix Treatment</label>
+                        </td>
+                        <fieldset class="text-center">
+                            <label>
+                                <input type="radio" name="Treatment" value="CryoTreatment" />CryoTreatment
+                            </label>
+                            <label>
+                                <input type="radio" name="Treatment" value="LEEPTreatment" /> LEEP Treatment
+                            </label>
+
+                        </fieldset>
+                        <td>
+                            <label for="OtherTreatment">
+                                Other (Specifiy)
+                            </label>
+                        </td>
+                        <td>
+                            <input name="Treatment" required id="OtherTreatment" type="text" class="text-box box-lg" />
+                        </td>
+                        <td>
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            <label>
+                                Referral
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" name="Treatment" class="text-box box-lg" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Breast CBE Test </label>
+                        </td>
+                        <fieldset class="text-center">
+                            <label>
+                                <input type="radio" name="TestResult" value="Normal" />Normal
+                            </label>
+                            <label>
+                                <input type="radio" name="TestResult" value="BenignLump" /> Benign Lump
+                            </label>
+
+                            <label>
+                                <input type="radio" name="TestResult" value="Suspicious" /> Suspicious Lump
+                            </label>
+
+                        </fieldset>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Breast Treatment</label>
+                        </td>
+                        <fieldset class="text-center">
+                            <label>
+                                <input type="radio" name="Treatment" value="FNA"  />FNA
+                            </label>
+                            <label>
+                                <input type="radio" name="Treatment" value="Excision" /> Excision
+                            </label>
+
+                        </fieldset>
+                        <td>
+                            <label for="OtherTreatment">
+                                Other (Specifiy)
+                            </label>
+                        </td>
+                        <td>
+                            <input name="Treatment" required id="OtherTreatment" type="text" class="text-box box-lg"  />
+                        </td>
+                        <td>
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            <label>
+                                Referral
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" name="Treatment" class="text-box box-lg" required />
+                        </td>
+                    </tr>
+                   
+                        </table>
+
+</div>
+            <div class="form-group marg-top-16px">
+                <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                <button type="reset" class="btn btn-primary btn-sm">Reset</button>
+            </div>
+
+
+
+
+        </form>
+    </div>
+
+</div>
+
+
+
+
+@section scripts{
+    <script>
+
+
+
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+
+
+    </script>

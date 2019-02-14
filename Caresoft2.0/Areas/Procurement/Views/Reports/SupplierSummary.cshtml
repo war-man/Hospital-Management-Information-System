@@ -1,0 +1,129 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.Invoice>
+
+@{ 
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+    ViewBag.Title = "Supplier Summary";
+}
+
+<div class="col-md-12 CustomLabel">
+    <div class="panel panel-primary caresoft-panel">
+
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+            <div class="panel-body">
+
+                <form>
+                    <table width="100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="form-group ">
+                                        @Html.Label("Supplier", htmlAttributes: new { @class = " col-xs-2" })
+                                        <div class="col-xs-10">
+                                            @Html.DropDownList("Suppliers", new SelectList(ViewBag.Suppliers, "Supplier_Code", "Supplier_Name"), "Select Supplier", new { @class = "text-box box-lg margin-top-bottom-5", @style = "width:60%", @value = DateTime.Now.ToString("yyyy-MM-dd") })
+                                            @Html.ValidationMessage("Suppliers", "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        @Html.Label("Start Date", htmlAttributes: new { @class = " col-xs-2" })
+                                        <div class="col-xs-10">
+                                            @Html.Editor("StartDate", new { htmlAttributes = new { @class = "margin-top-bottom-5", style = "width:60%", @required = true, type = "date", @value=DateTime.Now.ToString("yyyy-MM-dd")} })
+                                            @Html.ValidationMessage("StartDate", "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        @Html.Label("End Date", htmlAttributes: new { @class = " col-xs-2" })
+                                        <div class="col-xs-10">
+                                            @Html.Editor("EndDate", new { htmlAttributes = new { @class = "margin-top-bottom-5", style = "width:60%", @required = true, type = "date" } })
+                                            @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <button type="submit" id="submit" class="btn btn-sm btn-primary margin-top-bottom-5" value="Filter">Filter</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+                <table class="table pathology-border">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.InvoiceNo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.InvoiceDate)
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th>
+                                Amount Paid
+                            </th>
+                            <th>
+                                Balance
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        @foreach (var item in Model.OrderByDescending(e => e.InvoiceDate))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InvoiceNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InvoiceDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InvoiceAmount)
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                            </tr>
+
+                            foreach (var it in item.InvoiceNo)
+                            {
+                                <tr>
+                                    <td>
+                                      
+                                        @Html.DisplayFor(modelItem => it)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.InvoiceDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.InvoiceAmount)
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

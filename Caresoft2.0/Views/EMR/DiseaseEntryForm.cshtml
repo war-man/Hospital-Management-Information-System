@@ -1,0 +1,86 @@
+﻿@model Caresoft2._0.CustomData.DiseaseEntryFormData
+<div class="panel panel-primary  shadow glass caresoft-panel" style="margin-bottom:-1em;">
+    <div class="panel-heading caresoft-panel">
+        Disease Entry
+    </div>
+    <div class="panel-body">
+        <form id="disease-entry-form">
+            <table class="table-form">
+                <tr>
+                    <td>
+                        <label>Disease Group</label>
+                    </td>
+                    <td>
+                        <select class="text-box">
+                            <option>Select Group Name</option>
+                        </select>
+                    </td>
+                    <td>
+                        <label>Search</label>
+                    </td>
+                    <td>
+                        <input type="search" class="text-box" id="filter_diseases" placeholder="Search Disease">
+                        <input type="button" class="btn btn-xs btn-primary" disabled value="Save as Others" id="save_disease_as_others" />
+                    </td>
+                    <td class="text-box">
+                        <label><input type="radio" name="OldNewCase" value="New Case" checked /> New Case</label>
+                        <label><input type="radio" name="OldNewCase" value="Old Case" /> Old Case</label>
+                    </td>
+                </tr>
+               <tr>
+                   <td colspan="5">
+                       <fieldset style="height:270px; overflow-y:auto; background:#fff; padding:.4em;" id="disease_list">
+                           @foreach(var disease in Model.Diseases)
+                           {
+                           <label><input type="checkbox" value="A@(disease.CodeMOH705_A) B@(disease.CodeMOH705_B)  - @disease.DiseaseName" />A@(disease.CodeMOH705_A) B@(disease.CodeMOH705_B) -  @disease.DiseaseName</label><br />
+                           }
+                       </fieldset>
+                   </td>
+               </tr>
+               <tr>
+                   <td colspan="3">
+                       <button class="btn btn-sm btn-primary" type="submit" id="btn_submit_disease_entry_form">Save</button>
+                       <button class="btn btn-sm btn-primary" type="button" onclick="$('#btn_submit_disease_entry_form').trigger('click');" data-dismiss="modal">Save and Close</button>
+                       <button class="btn btn-sm btn-primary" type="reset">Clear</button>
+                   </td>
+               </tr>
+           </table>
+        </form>
+       
+        <table class="table table-data table-condensed">
+            <thead>
+                <tr>
+                    <th>Disease Date</th>
+                    <th>Disease Name</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white">
+                @if (Model.OpdRegister.PatientDiagnosis != null && Model.OpdRegister.PatientDiagnosis.Count() > 0)
+                {
+                    foreach(var diagno in Model.OpdRegister.PatientDiagnosis)
+                    {
+                    <tr>
+                        <td>@diagno.TimeAdded</td>
+                        <td>@diagno.FinalDiagnosis</td>
+                        <td>
+                            @if(diagno.TimeAdded.Date == DateTime.Today)
+                            {
+                                <button class="btn btn-xs btn-priamry" onclick="attemptDeleteDiagno('@diagno.Id', this)">Delete</button>
+                            }
+                        </td>
+                    </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                    <td colspan="3" align="center">
+                        <label>No data at the moment</label>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

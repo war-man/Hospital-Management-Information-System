@@ -1,0 +1,187 @@
+﻿@model IEnumerable<LabsDataAccess.LabTest>
+@using LabsDataAccess
+
+@{
+    ViewBag.Title = "Radiology";
+    ViewBag.ShowTopMenu = false;
+    Layout = ViewBag.Layout;
+}
+
+<div class="col-xs-offset-1 col-xs-10 CustomLabel" id="TestList">
+    <br />
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading" style="height:40px ; ">
+            <h5 style="font-weight:bold">Title Master</h5>
+        </div>
+
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.Label("Select Department", new { @class = "col-xs-2", style = "font-weight:bold" })
+                        <div class="col-xs-9">
+
+                            @Html.DropDownList("Departments", ViewBag.Departments as IEnumerable<SelectListItem>, "Select Department", htmlAttributes: new { @class = "text-box" })
+                            <input type="submit" value="List" class="btn btn-sm btn-primary" style="margin-left:55px" />
+
+
+                            @Ajax.ActionLink("Add New Test", "AddTest", null, new AjaxOptions
+                       {
+                           UpdateTargetId = "UniversalModalView",
+                           InsertionMode = InsertionMode.Replace,
+                           HttpMethod = "GET",
+                           LoadingElementId = "loadingElement",
+                           OnSuccess = "$('#UniversalModal').modal('show');"
+                       }, new { @class = "btn btn-primary btn-sm" })
+
+                            @*<input type="button" value="Add New Test" class="" data-toggle="modal" data-target="#AddNewTest" />*@
+                        </div>
+                    </div>
+                    <h5 style="font-weight:bold">Search by Test Code/Test Name</h5>
+
+
+                    <div class="form-group">
+
+                        <div class="col-xs-2">Test Code</div>
+                        <input value="@ViewBag.TestCode" type="text" class="col-xs-2 text-box" id="TestCode" name="TestCode"  style = "font-weight:bold" />
+                        <div class="col-xs-2">Test Name</div>
+                        <input value="@ViewBag.TestName" type="text" class="col-xs-2 text-box" id="TestName" name="TestName" style = "font-weight:bold"  />
+
+                        <input style="margin-left:5px" type="submit" value="Search" class="btn  btn-sm btn-primary" />
+
+                    </div>
+
+
+                </div>
+            }
+
+
+            <div style="height:300px; overflow-y:auto; background-color:white;  border: 1px solid var(--primary-dark-color)">
+                <table class="table table-bordered table-condensed table-data-Radiology">
+                    <thead class="bg-primary" style="white-space:nowrap">
+                        <tr class="table-primary">
+                            <th>Edit</th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Test)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Test_Code)
+                            </th>
+                            <th>
+                                Single Format
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Sample_Type)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Order_Number)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Test_Method)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HCPCS_Code)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CPT_Code)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ICD10)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Parameter)
+                            </th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                        <tr class="table-primary-row">
+                            <td>
+                                @Ajax.ActionLink("Edit", "EditTest", new { id = item.Id }, new AjaxOptions
+        {
+            UpdateTargetId = "UniversalModal2View",
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            LoadingElementId = "loadingElement",
+            OnSuccess = "$('#UniversalModal2').modal('show');"
+        })
+                                <a href="EditTest/@item.Id"> <img class="del-icon" src="~/Content/icons/edit-icon.png" /> </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Test)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Test_Code)
+                            </td>
+                            <td>
+                                @if (item.Parameter)
+        {<span>Group</span>}
+else
+{ <span>Single Value</span>}
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sample_Type)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Order_Number)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Test_Method)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HCPCS_Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CPT_Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ICD10)
+                            </td>
+                            <td>
+                                @if (item.Parameter)
+    {
+                            @Ajax.ActionLink("Show Parameters", "ParameterMaster", new { id = @item.Id }, new AjaxOptions
+{
+    UpdateTargetId = "UniversalModalView",
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "GET",
+    LoadingElementId = "loadingElement",
+    OnSuccess = "$('#UniversalModal').modal('show');"
+})
+
+}
+                            </td>
+                            <td>
+                                @Ajax.ActionLink("Delete", "DeleteTest", new { id = item.Id }, new AjaxOptions
+                           {
+                               UpdateTargetId = "UniversalModalView",
+                               InsertionMode = InsertionMode.Replace,
+                               HttpMethod = "GET",
+                               LoadingElementId = "loadingElement",
+                               OnSuccess = "$('#UniversalModal').modal('show');"
+                           })
+                                <a href="DeleteTest/@item.Id"> <img class="del-icon" src="~/Content/icons/erase_delete.png" /> </a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+
+                </table>
+                <br />
+            </div>
+            <br />
+            <input type="submit" value="Report" class="col-xs-offset-6" />
+
+        </div>
+    </div>
+</div>
+

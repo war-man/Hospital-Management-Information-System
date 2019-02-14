@@ -1,0 +1,258 @@
+﻿
+@{
+    ViewBag.Title = "Patient_Appointment";
+    Layout = "~/Areas/Appointments/Views/Shared/_Layout.cshtml";
+    var patientList = (List<CaresoftHMISDataAccess.Patient>)ViewBag.PatientAppointment;
+    var Speciality = (List<CaresoftHMISDataAccess.Department>)ViewBag.Speciality;
+    //var docs = (List<CaresoftHMISDataAccess.DoctorsSchedule>)ViewBag.DoctorsReturn;
+
+
+}
+
+<div class="col-md-12">
+    <div class="col-md-2">
+        @Html.Partial("~/Areas/Appointments/Views/Shared/_SideNav.cshtml")
+    </div>
+    <div class="col-md-7">
+        <div class="panel panel-primary caresoft-panel glass shadow">
+            <div class="panel-heading">
+                Set Patient Appointment
+            </div>
+            <div class="panel-body">                
+                <br />
+                <ul id="myNavTabs" class="nav nav-tabs">
+                    <li role="presentation" class="active">
+                        <a data-toggle="pill" href="#Bookings">Set Appointment</a>
+                    </li>
+                    <li role="presentation">
+                        <a data-toggle="pill" href="#Anaesthesia">View Appointment</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="Bookings">
+                        <form method="post" action="/Home/PatientAppointment" name="PatientAppointment">
+                            <table width="80%">
+                                <tr>
+                                    <td></td>
+                                    <td colspan="4">
+                                        <fieldset>
+                                             <input type="radio" name="Appointment" id="OPD Appointment" /> OPD Appointment
+                                             <input type="radio" name="Appointment" id="IPD Appointment" /> IPD Appointment
+                                             <input type="radio" name="Appointment" id="Lab Appointment" /> Lab Appointment
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Patient Reg No:
+                                    </td>
+                                    <td>
+                                         <input style="width:80%;" list="list" name="RegNumber" id="RegNo" class="text-box marg-top-6px" />                                       
+                                    </td>
+                                    <td>
+                                        Date of Appointment:
+                                    </td>
+                                    <td>
+                                         <input style="width:80%;" type="date" id="DOA" name=" Date_of_Appointment" class="text-box marg-top-6px GetDocsOnChange" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        First Name:
+                                    </td>
+                                    <td>
+                                         <input style="width:80%;"  id="FirstName" name="FirstName" class="text-box marg-top-6px" />                                        
+                                    </td>
+                                    <td>
+                                        Middle Name:
+                                    </td>
+                                    <td>
+                                         <input style="width:80%;" id="MName" type="text" name="MName" class="text-box marg-top-6px" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Last Name:
+                                    </td>
+                                    <td>
+                                         <input style="width:80%;" id="LName" type="text" name="LName" class="text-box marg-top-6px" />
+                                    </td>
+                                    <td>
+                                        Date of Birth:
+                                    </td>
+                                    <td>
+                                         <input style="width:80%;" id="DateofBirth" type="text" name="DateofBirth" class="text-box marg-top-6px" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Address:
+                                    </td>
+                                    <td>
+                                         <input style="width:80%;" id="HomeAddress" type="text" name="HomeAddress" class="text-box marg-top-6px" />
+                                    </td>
+                                    <td>
+                                        Mobile no:
+                                    </td>
+                                    <td>
+                                         <input style="width:80%;" id="Mobile" type="tel" name="Mobile" class="text-box marg-top-6px" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Speciality:
+                                    </td>
+                                    <td>
+                                         <input style="width:80%;" list="Speciality" class="text-box marg-top-6px" name="Speciality" />
+                                        <datalist id="Speciality">
+                                            @foreach (var speciality in Speciality.Where(e => e.IsMedical != null && e.IsMedical.ToLower() == "yes"))
+                                            {
+                                                <option value="@speciality.DepartmentName"></option>
+                                            }
+                                        </datalist>
+                                    </td>
+                                    <td>
+                                        Select Doctor:
+                                    </td>
+                                    <td>
+                                        <select style="width:80%;"  id="DoctorsList" class="text-box marg-top-6px" name="Doctor">
+
+
+
+                                        </select>
+
+                                        @*<datalist id="Dlist">
+                                            @foreach (var doc in docs)
+                                            {
+                                                <option value="@doc.Doctor"></option>
+                                            }
+                                        </datalist>*@
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Select Timing:
+                                    </td>
+                                    <td>
+                                         <input style="width:80%;" type="time" id="Time" name="AppointmentTime" class="text-box marg-top-6px GetDocsOnChange" />
+                                    </td>
+                                    </tr>
+                                <tr>
+                                    <td>
+                                        Explanation:
+                                    </td>
+                                    <td>
+                                        <textarea style="width:80%;"  type="text" class="text-box margin-top-bottom-2" name="Explanation"></textarea>
+                                    </td>
+                                </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary" type="submit" name="SET_APPOINTMENT">Set Appointment</button>
+                                        </td>
+                                    </tr>
+                            </table>
+                        </form>
+
+                    </div>
+
+                    <div class="tab-pane" id="Anaesthesia">
+                        <form method="post" action="/Home/ViewAppointment">
+                            @*@Html.Partial("~/Areas/Appointments/Views/Home/ViewAppointment.cshtml")*@
+                        </form>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+
+        $("#RegNo").autocomplete({
+            source: function (req, res) {
+                $.ajax({
+                    type: "GET",
+                    //url: "searchSOPTests?id=" + $("#Department").val() + "&search=" + $("#TestName").val(),
+                    url: "/Appointments/Home/SearchPatient",
+                    dataType: "json",
+                    data: { searchString: $("#RegNo").val() },
+
+                    success: function (data) {
+                       //console.log(data);
+                        
+                        res($.map(data, function (item) {
+                            return { label: item, value: item, Id: item };
+                        }));
+                    },
+
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+
+            }, select: function (event, ui) {
+                //alert(ui.item.value)
+                $.ajax({
+                    type: "GET",
+                    url: "/Appointments/Home/getpatientdetails",
+                    data: { RegNo: ui.item.value },
+
+                    success: function (data) {
+
+                        console.log(data);
+                        $("#FirstName").val(data.FName);
+                        $("#MName").val(data.MName);
+                        $("#LName").val(data.LName);
+                        $("#DateofBirth").val(data.DOB);
+                        $("#HomeAddress").val(data.HomeAddress);
+                        $("#Mobile").val(data.Mobile);
+
+
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                    }
+
+                });
+            }
+
+        });
+
+        $(".GetDocsOnChange").change(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Appointments/Home/getDoctors",
+                data: { doa: $("#DOA").val(), time: $("#Time").val() },
+
+                success: function (data) {
+                    console.log(data);
+                    var options = $("#DoctorsList");
+                    $('#DoctorsList')
+                        .empty()
+                        .append('<option selected="selected" value="0">Select Doctor</option>')
+                        ;
+
+                    $.each(data, function (key, val) {
+                        options.append(new Option(val.Name, val.Id));
+                    });
+                   
+                   
+                },
+
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+        });
+
+    </script>
+}
+
+

@@ -1,0 +1,288 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.Invoice>
+
+
+@{
+    ViewBag.Title = "InvoicePaymentDetails";
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+}
+
+<style>
+    .text-box {
+        width: 170px;
+    }
+
+    table .table-form tr {
+        height: 35px;
+    }
+</style>
+<div class="col-xs-11">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading">
+            Invoice Payment
+        </div>
+        <div class="panel-body">
+            <p><strong>Payment To : @Model.FirstOrDefault().SupplierName</strong></p>
+            <div class="row">
+                <div class="col-xs-8">
+                    <table class="table-data-pathology table-condensed" width="100%">                     
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Invoice No</th>
+                                <th>Invoice Amount</th>
+                                <th>Pay Amount</th>
+                                <th>Cumulative payment</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background:white">
+                            @foreach (var item in Model)
+                            {
+
+                                var cum_Payment = @item.ProcurementInvoiceTransactions.Sum(e => e.TransactionAmountPaid);
+                                var ballance_at =  (item.InvoiceDetails.Sum(e => ((e.NoOfPack * e.CostPerCasePack) + e.VatAmt + e.FreightCharges + e.PackingCharges) - e.Discount) - item.ProcurementInvoiceTransactions.Sum(e => e.TransactionAmountPaid));
+                            <tr class="invoices">
+                                <td >
+                                    <strong class="identifier">@item.Id</strong>
+                                </td>
+                                <td>
+                                    <strong>@item.InvoiceNo</strong>
+                                </td>
+                                <td>                             
+                                     <strong class="TotalAmont">@item.InvoiceDetails.Sum(e => ((e.NoOfPack * e.CostPerCasePack) + e.VatAmt + e.FreightCharges + e.PackingCharges) - e.Discount)</strong>
+                                </td>
+                                <td>
+                                    @if (@ballance_at <= 0)
+                                    {
+                                        <b class=" margin-top-bottom-2" style="color:green!important;">Paid</b>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" class="text-box margin-top-bottom-2 PayAmount" id="PayAmount" name="PayAmount" value="0" />
+                                    }
+                                </td>
+                                <td>
+                                    @cum_Payment
+                                </td>
+                                <td>
+                                    @ballance_at
+                                </td>
+                            </tr>
+
+
+                            }
+
+
+                        </tbody>
+                    </table>
+                    <p>
+                        <table class="table-data-pathology margin-top-bottom-2 table-condensed" width="100%">
+                            <thead>
+                                <tr>
+                                    <th><strong>Remark</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><textarea style="width:100%;" class="text-box margin-top-bottom-2" type="text" id="remark"></textarea>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </p>
+                    <div class="pathology-border">
+                        <div class="col-xs-8">
+                            <table class="table-condensed" width="100%">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            <label class="radio-inline"><input type="radio" name="currency" id="currency" value="PrimaryCurrency" checked>Primary Currency</label>
+                                            <label class="radio-inline"><input type="radio" name="currency" id="currency" value="SecondaryCurrency">Secondary Currency</label>
+
+                                        </td>
+                                        <td>
+                                            <select id="CurrencyType" name="CurrencyType" class="text-box margin-top-bottom-2" disabled>
+                                                <option id="0">Select Currency</option>
+                                                <option>$ Dollar </option>
+                                                <option>£ Pounds</option>
+
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <fieldset>
+                                                <label class="radio-inline margin-top-bottom-2">
+                                                    <input type="radio" checked name="modeOfPayment" value="Cash">Cash
+                                                </label>
+                                                <label class="radio-inline margin-top-bottom-2">
+                                                    <input type="radio" name="modeOfPayment" value="Cheque">Cheque
+                                                </label>
+                                                <label class="radio-inline margin-top-bottom-2">
+                                                    <input type="radio" name="modeOfPayment" value="Credit Card">Credit Card
+                                                </label>
+                                            </fieldset>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table class="table-form">
+                                                <tr>
+                                                    <td>
+                                                        Cash Amount
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="text-box" id="CashAmount" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </thead>
+                             
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-7">
+                    <table width="100%">
+                        <tr><td colspan="4">Primary Currency</td></tr>
+                        <tr>
+                            @*<td>
+            Amount
+        </td>
+        <td>
+            <input type="text" class="text-box margin-top-bottom-2" id="Amount" name="Amount" value="@Model.FirstOrDefault().InvoiceAmount" disabled />
+        </td>*@
+                            <td>
+                                Total Amount
+                            </td>
+                            <td>
+                                <input disabled type="text" class="text-box margin-top-bottom-2" id="TotalAmount" name="TotalAmount" value="@Model.Sum(f=> f.InvoiceDetails.Sum(e => (e.NoOfPack * e.CostPerCasePack )))" />
+                            </td>
+                            <td>
+                                Grand Total
+                            </td>
+                            <td>
+                                <input disabled type="text" class="text-box margin-top-bottom-2" id="TotalAmount" name="TotalAmount" value="@Model.Sum(f=> f.InvoiceDetails.Sum(e => (e.NoOfPack * e.CostPerCasePack )
+                                                                                                                              + (e.VatAmt + e.FreightCharges + e.PackingCharges) - e.Discount))" />
+                            </td>
+                        </tr>
+                      
+                        <tr>
+
+                            <td>
+                                Total Amount Paid
+                            </td>
+                            <td>
+                                <input disabled type="text" class="text-box margin-top-bottom-2" id="AmountPaid" name="AmountPaid" value="@(Model.Sum(f=> f.ProcurementInvoiceTransactions.Sum(e => (e.TransactionAmountPaid))))"/>
+                            </td>
+                            <td>
+                                Balance
+                            </td>
+                            <td> 
+                                <input disabled type="text" class="text-box margin-top-bottom-2" id="Balance" name="Balance" value="@(   Model.Sum(f=> f.InvoiceDetails.Sum(e => (e.NoOfPack * e.CostPerCasePack )
+                                                                                                                              + (e.VatAmt + e.FreightCharges + e.PackingCharges) - e.Discount)) - (Model.Sum(f=> f.ProcurementInvoiceTransactions.Sum(e => (e.TransactionAmountPaid)))))" />
+                            </td>
+                        </tr>
+                        <tr>
+                            @*<td>
+                                Other
+                            </td>
+                            <td>
+                                <input type="text" class="text-box margin-top-bottom-2" id="Other" name="Other" />
+                            </td>*@
+                          
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <button id="save" class="btn btn-primary btn-sm">Save</button>
+                    <button class="btn btn-primary btn-sm">Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    <script>
+        $('input[type=radio][name=currency]').change(function () {
+
+            if (this.value == 'PrimaryCurrency') {
+                $('#CurrencyType').prop('selectedIndex', 0);
+
+                $('#CurrencyType').prop('disabled', true);
+            }
+            else if (this.value == 'SecondaryCurrency') {
+                $('#CurrencyType').removeProp('disabled');
+            }
+        });
+
+        var data = [];
+        $('#save').click(function () {
+            data = []; 
+            $('.invoices').each(function (i, obj) {
+                var tr = $(this);
+                var invoiceId = tr.find(".identifier").text();
+                var amount = tr.find(".PayAmount").val();
+
+                if (amount != undefined) {
+                    var single = {
+                        "Id": parseInt(invoiceId),
+                        "PayAmount": parseFloat(amount),
+                    }
+
+                    data.push(single);
+
+                }
+
+            });
+
+
+            postPaymentData(data);
+        });
+
+        function postPaymentData(data) {
+            $('.loader').show();
+            console.log(data);
+
+            $.ajax({
+                type: "POST",
+                data: {
+                    'TotalInvoicePaymentList': JSON.stringify(data) },
+                cache: false,
+                url: '/Procurement/ProcurementPurchase/InvoicePaymentDetails',
+                success: function (data) {
+                    $('.loader').hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+
+                    $('.custom-alert').show();
+
+                    $('.loader').hide();
+                }
+            });
+        }
+        
+        $(".PayAmount").on("keyup change", function () {
+            var amount = 0;
+
+            $(".PayAmount").each(function () {
+                if ($(this).val().length > 0) {
+                    amount += parseInt($(this).val());
+                }
+            })
+
+            $("#CashAmount").val(amount);
+
+        })
+
+
+
+    </script>
+}

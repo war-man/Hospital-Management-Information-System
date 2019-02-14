@@ -1,0 +1,111 @@
+﻿@model CaresoftHMISDataAccess.Disease
+@{
+    ViewBag.Title = "Disease Master";
+    ViewBag.FormName = ViewBag.Title;
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+
+    var diseases = (IEnumerable<CaresoftHMISDataAccess.Disease>)ViewBag.Diseases;
+}
+
+<form id="disease_master" method="post" action="CreateDisease">
+    <table class="table-form">
+        <tr>
+            <td>
+                <label>Disease Name</label>
+            </td>
+            <td>
+                @Html.EditorFor(model => model.DiseaseName,
+                                         new { htmlAttributes = new { @class = "text-box box-lg", @required = "required" } })
+            </td>
+
+
+        </tr>
+        <tr>
+
+            <td>
+                <label>MOH 705 A Code</label>
+            </td>
+            <td>
+                @Html.EditorFor(model => model.CodeMOH705_A,
+                                        new { htmlAttributes = new { @class = "text-box box-lg" } })
+            </td>
+            <td>
+                <label>MOH 705 B Code</label>
+            </td>
+            <td>
+                @Html.EditorFor(model => model.CodeMOH705_B,
+                                        new { htmlAttributes = new { @class = "text-box box-lg" } })
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <label><input type="checkbox" name="EpidemicFlag" value="true" /> Epidemic Flag </label>
+
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <label><input type="checkbox" name="STIFlag" value="true" /> STI Flag</label>
+                
+            </td>
+        </tr>
+    </table>
+    <button class="btn btn-sm btn-primary" type="submit">Save</button>
+    <button class="btn btn-sm btn-primary" type="reset">Clear</button>
+</form>
+
+
+<div class="marg-top-16px" id="diseases-list">
+    <table class="table-data table table-condensed">
+        <thead>
+            <tr>
+                <th>Edit</th>
+                <th>Disease Name</th>
+                <th>705 A Code</th>
+                <th>705 B Code</th>
+                <th>Epidemic Flag</th>
+                <th>STI Flag</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white">
+            @if (diseases.Count() < 1)
+            {
+                <tr>
+                <td colspan="7" align="center">
+                    <label>No data at the moment</label>
+                </td>
+            </tr>
+            }
+            else
+            {
+                foreach(var d in diseases)
+                {
+                    <tr>
+                        <td>
+                            <label>Edit</label>
+                        </td>
+                        <td>@d.DiseaseName</td>
+                        <td>
+                            @d.CodeMOH705_A
+                        </td>
+                        <td>
+                            @d.CodeMOH705_B
+                        </td>
+                        <td>
+                            @d.EpidemicFlag
+                        </td>
+                        <td>
+                            @d.STIFlag
+                        </td>
+                        <td>
+                            <label>Edit</label>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

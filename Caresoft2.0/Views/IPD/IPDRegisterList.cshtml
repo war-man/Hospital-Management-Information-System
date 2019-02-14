@@ -1,0 +1,67 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.OpdRegister>
+   
+<table id="searchTable" class="table table-data-pathology table-responsive  table-condensed" >
+    <thead>
+        <tr>
+            <th>Edit</th>
+            <th>Select</th>
+            <th>Reg No</th>
+            <th>Tarrif</th>
+            <th>Patient Name</th>
+            <th>Doctor Incharge</th>
+            <th>Entry Date</th>
+            <th>Ward</th>
+            <th>Bed</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @foreach (var pat in Model)
+        {
+
+        <tr>
+            <td>
+                <button type="button" class="call-modal-form btn btn-xs btn-success"
+                        data-action="@Url.Action("OPDRegistration", "Registration", new { id= pat.Id , mode = "Edit"  })"
+                        data-callback="opdRegistrationCallBack">
+                    Edit IPD
+                </button>
+            </td>
+
+            <td>
+                @{if (ViewBag.IsNurse != null && ViewBag.IsNurse)
+                    {
+                        @Html.ActionLink("Select", "Physicalexamination", "emr", new { id = pat.Id }, new { @class = "btn btn-info btn-xs" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Select", "Consultation", "emr", new { id = pat.Id }, new { @class = "btn btn-info btn-xs" })
+
+                    }
+                }
+            </td>
+            <td>@pat.Patient.RegNumber</td>
+            <td>@pat.Tariff.TariffName</td>
+            <td>
+                @pat.Patient.Salutation
+                @pat.Patient.FName
+                @pat.Patient.MName
+                @pat.Patient.LName
+            </td>
+            <td>
+                @pat.ConsultantDoctor
+            </td>
+            <td>
+                @if (pat.AdmissionDate != null)
+                {
+                    @pat.AdmissionDate.Value.ToShortDateString()
+                }
+
+            </td>
+            <td>
+                @pat.HSBed.HSWard.WardName
+            </td>
+            <td>@pat.HSBed.BedName</td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,128 @@
+﻿@model LabsDataAccess.Parameter
+@using LabsDataAccess;
+
+@{
+    ViewBag.ShowTopMenu = true;
+    ViewBag.Title = "Add Parameter";
+    Layout = ViewBag.Layout;
+
+    ViewBag.Test_Parameter = 1;
+    if ((Parameter)ViewBag.Last_Parameter != null)
+    {
+        ViewBag.Test_Parameter = ((Parameter)ViewBag.Last_Parameter).Id + 1;
+    }
+
+}
+
+<div class="col-xs-6 col-xs-offset-3">
+    @ViewBag.Test_Parameter
+    <br />
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading" style="height:40px ; ">
+            <h5 style="font-weight:bold">Add Parameter</h5>
+        </div>
+
+        <div class="panel-body">
+            <p id="Message" style="padding:5px; border:solid">
+                <strong>Test Name : </strong> @ViewBag.LabTests.Test
+            </p>
+
+
+            @using (Ajax.BeginForm("AddParameter", "SetUp", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = "UniversalModalView",
+                OnSuccess = "$('#UniversalModal2').modal('hide');",
+
+                LoadingElementId = "loadingElement",
+
+            }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Test, htmlAttributes: new { @class = "col-xs-3" })
+                        <div class="col-xs-7">
+                            @Html.EditorFor(model => model.Test, new { htmlAttributes = new { @class = "text-box ", @readony = "readonly", @required = true, style = "width:70%", @Value = ViewBag.LabTests.Id } })
+                            <span>@Html.ValidationMessageFor(model => model.Test, "", new { @class = "text-danger" })</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Parameter_Name, htmlAttributes: new { @class = "col-xs-3" })
+                        <div class="col-xs-7">
+                            @Html.EditorFor(model => model.Parameter_Name, new { htmlAttributes = new { @class = "text-box", @required = true, style = "width:70%" } })
+                            <span>@Html.ValidationMessageFor(model => model.Parameter_Name, "", new { @class = "text-danger" })</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Parameter_Code, htmlAttributes: new { @class = "col-xs-3" })
+                        <div class="col-xs-7">
+                            @Html.EditorFor(model => model.Parameter_Code, new { htmlAttributes = new { @class = "text-box", @required = true, style = "width:70%", @Value= ViewBag.Test_Parameter } })
+                            @Html.ValidationMessageFor(model => model.Parameter_Code, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Parameter_Order, htmlAttributes: new { @class = "col-xs-3" })
+                        <div class="col-xs-7">
+                            @Html.EditorFor(model => model.Parameter_Order, new { htmlAttributes = new { @class = "text-box", style = "width:70%" } })
+                            @Html.ValidationMessageFor(model => model.Parameter_Order, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Parameter_Method, htmlAttributes: new { @class = "col-xs-3" })
+                        <div class="col-xs-7">
+                            @Html.EditorFor(model => model.Parameter_Method, new { htmlAttributes = new { @class = "text-box", style = "width:70%" } })
+                            @Html.ValidationMessageFor(model => model.Parameter_Method, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Machine_Name, htmlAttributes: new { @class = "col-xs-3" })
+                        <div class="col-xs-7">
+                            @Html.DropDownListFor(model => model.Machine_Name, ViewBag.Machine as IEnumerable<SelectListItem>, "Select Machine Name", new { @class = "text-box box-lg", style = "width:70%" })
+                            @Html.ValidationMessageFor(model => model.Machine_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title_Machine_Name, htmlAttributes: new { @class = "col-xs-3" })
+                        <div class="col-xs-7">
+                            @Html.EditorFor(model => model.Title_Machine_Name, new { htmlAttributes = new { @class = "text-box", style = "width:70%" } })
+                            @Html.ValidationMessageFor(model => model.Title_Machine_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Short_Form, htmlAttributes: new { @class = "col-xs-3" })
+                        <div class="col-xs-7">
+                            @Html.EditorFor(model => model.Short_Form, new { htmlAttributes = new { @class = "text-box", style = "width:70%" } })
+                            @Html.ValidationMessageFor(model => model.Short_Form, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Heading, htmlAttributes: new { @class = "col-xs-3" })
+                        <div class="col-xs-7">
+                            @Html.DropDownListFor(model => model.Heading, ViewBag.Headings as IEnumerable<SelectListItem>, "Select Heading", new { @class = "text-box box-lg", @style = "width:70%" })
+                            @Html.ValidationMessageFor(model => model.Heading, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-7">
+                            <input type="submit" value="Add" class="btn btn-primary btn-sm" />
+                            <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

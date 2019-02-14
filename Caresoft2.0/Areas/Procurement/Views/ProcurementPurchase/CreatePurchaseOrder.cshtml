@@ -1,0 +1,162 @@
+﻿
+@{
+    ViewBag.Title = "CreatePurchaseOrder";
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+}
+
+<style>
+    .text-box{
+        width:200px;
+    }
+</style>
+<div class="col-md-10">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black;margin-left:10px;"><strong>Create Purchase Order</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td>PO Number</td>
+                            <td></td>
+                            <td>PO Date</td>
+                            <td>
+                                <input type="date" class="text-box" id="PODate" />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Accepted Provisional PO</td>
+                            <td>
+                                <select class="text-box">
+                                    <option>Select Provisional</option>
+                                </select>
+                            </td>
+                            <td>Ref No</td>
+                            <td><input type="text" class="text-box" id="refnumber" /></td>
+
+                        </tr>
+                        <tr>
+                            <td>Supplier Name</td>
+                            <td>
+                                <select class="text-box">
+                                    <option>Select Supplier</option>
+                                </select>
+                            </td>
+                            <td>Manufactured Company</td>
+                            <td><input type="text" class="text-box" id="ManufacturedCompany" /></td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="5"> Purchase Details </td>
+                        </tr>
+                        <tr>
+                            <td>Item Desc</td>
+                            <td>
+                                <select class="text-box">
+                                    <option>Select Supplier</option>
+                                </select>
+                            </td>
+                            <td>
+                                Cost Price Unit
+                            </td>
+                            <td><input type="text" class="text-box" /> </td>
+                            <td>Current Stock</td>
+                            <td><input type="text" class="text-box" /></td>
+                        </tr>
+                        <tr>
+                            <td>Cost Price </td>
+                            <td>
+                                <input type="text" class="text-box" />
+                            </td>
+                            <td>
+                                Quantity
+                            </td>
+                            <td><input type="text" class="text-box" /> </td>
+                            <td>Free Qty</td>
+                            <td><input type="text" class="text-box" /></td>
+                        </tr>
+                        <tr>
+                            <td>Per </td>
+                            <td>
+                                <input type="text" class="text-box" />
+                            </td>
+                            <td>
+                                Disc(%)
+                            </td>
+                            <td><input type="text" class="text-box" /> </td>
+                            <td>Total</td>
+                            <td><input type="text" class="text-box" /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" class="btn btn-primary btn-sm" value="OK" /></td>
+                            <td>
+                                <div class="form-inline">
+                                    <input type="checkbox" class="checkbox" />   Approve PO
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <table class="table table-data">
+                        <tr>
+                            <th>Edit</th>
+                            <th>Item Name</th>
+                            <th>Cost Price</th>
+                            <th>Quantity Required</th>
+                            <th>Per</th>
+                            <th>Free Quantity</th>
+                            <th>Amount</th>
+                            <th>Disc</th>
+                            <th>Total Amount</th>
+                        </tr>
+                        <tr><td colspan="9">No data to display</td></tr>
+                    </table>
+                </div>
+             
+              
+                <div class="col-md-10 ">
+                        <table class="table-form">
+                            <tr>
+                                <td>Total Cost</td>
+                                <td><input type="text" class="text-box" /></td>
+                                <td></td>
+                                <td>
+                                    <div class="form-inline">
+                                        <input type="checkbox" class="checkbox-inline" />Credit Note
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Total Discount</td>
+                                <td><input type="text" class="text-box" /></td>
+                                <td>Credit Amount</td>
+                                <td><input type="text" class="text-box" /></td>
+                            </tr>
+                            <tr>
+                                <td>Total Amount</td>
+                                <td><input type="text" class="text-box" /></td>
+                                <td>Terms and Condition</td>
+                                <td><textarea class="text-box"></textarea></td>
+                            </tr>
+                        </table>
+                </div>
+                <div class="col-md-10">
+                    <button class="btn btn-primary btn-sm">Save</button>
+                    <button class="btn btn-primary btn-sm" >New Order</button>
+                    <button class="btn btn-primary btn-sm">New Order</button>
+                </div>
+            </div>
+        </div>
+
+        
+      </div>
+</div>
+
+

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.DeptIndentList>
+
+<table class="table table-data">
+    <tr>
+        <th>Process</th>
+        <th>Dept Name</th>
+        <th>Nurse Station</th>
+        <th>Date</th>
+        <th>User Name</th>
+        <th>Req Qty</th>
+    </tr>
+    @if (Model == null)
+    {
+        <tr>
+            <td colspan="6"> No data to display</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.processed</td>
+                <td>@item.DeptName</td>
+                <td>@item.NurseStation</td>
+                <td>@item.Date</td>
+                <td>@item.UserName</td>
+                <td>@item.ReqQty</td>
+            </tr>
+        }
+    }
+
+</table>

@@ -1,0 +1,191 @@
+﻿@model Caresoft2._0.CustomData.AddUserUserManagementData
+@{
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/_UserManagementLayout.cshtml";
+
+    AjaxOptions ajaxOptions = new AjaxOptions()
+    {
+        OnBegin = "OnBegin",
+        OnComplete = "OnComplete",
+        OnFailure = "OnFailure",
+        OnSuccess = "OnSuccess"
+
+    };
+
+    AjaxOptions ajaxOptions1 = new AjaxOptions()
+    {
+        OnBegin = "OnBegin",
+        OnComplete = "OnComplete",
+        OnFailure = "OnFailure",
+        OnSuccess = "OnSuccess"
+    };
+
+}
+
+<div class="row">
+    <div class="col-xs-7">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                Edit User
+            </div>
+            <div class="panel-body">
+                @using (Ajax.BeginForm("AddUsertoRole", "UserManagement", new { id = Model.lstEmployee.FirstOrDefault().Users.FirstOrDefault().Id}, 
+                    new AjaxOptions
+                {
+                    LoadingElementId = "loader",
+                    UpdateTargetId = "loader",
+                    OnSuccess = "showNotification('Successfully Updated', 'success', true);",
+                    OnFailure = "showNotification('Failed to Update User', 'danger', false)",
+                }, new { }))
+                {
+                    <div class="tab-content" id="reg-form-holder">
+                        <div id="addDept" class="tab-pane fade in active">
+                            @*@using (Ajax.BeginForm("AddUserToRole",ajaxOptions1))
+                    {*@
+                            <table class="table-form" style="width:100%;">
+
+                                <tr style="margin-bottom:1em;">
+                                    <td>
+                                        <label for="mainDepartment">
+                                            User Id
+                                        </label>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" class="text-box" style="width:80%;" name="Email" id="Email" required value="@Model.lstEmployee.FirstOrDefault().Users.FirstOrDefault().Id" />
+
+                                    </td>
+                                </tr>
+
+                                <tr style="margin-bottom:1em;">
+                                    <td>
+                                        <label for="mainDepartment">
+                                            Department Name
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <select required="required" class="text-box" id="dropdown" style="width:80%;" name="deptId">
+                                            @foreach (var dep in Model.lstDepartments)
+                                            {
+                                                <option Value="@dep.Id">@dep.DepartmentName</option>
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr style="margin-bottom:1em;">
+                                    <td>
+                                        <label for="mainDepartment">
+                                            Employee Name
+                                        </label>
+                                    </td>
+
+                                    <td>
+                                        <select required="required" class="text-box" style="width:80%;" id="dropdown2" name="employeeId">
+                                            @foreach (var emp in Model.lstEmployee)
+                                            {
+                                                <option Value="@emp.Id">@emp.FName @emp.OtherName</option>
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr style="margin-bottom:1em;">
+                                    <td>
+                                        <label for="mainDepartment">
+                                            Email Id
+                                        </label>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" class="text-box" style="width:80%;" name="Email" id="Email" required value="@Model.lstEmployee.FirstOrDefault().Email" />
+
+                                    </td>
+                                </tr>
+
+                                <tr style="margin-bottom:1em;">
+                                    <td>
+                                        <label for="mainDepartment">
+                                            Phone Number
+                                        </label>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" class="text-box" name="phoneNumber" style="width:80%;" id="phoneNumber" required
+                                               value="@Model.lstEmployee.FirstOrDefault().Mobile" />
+
+                                    </td>
+                                </tr>
+
+                                <tr style="margin-bottom:1em;">
+                                    <td>
+                                        <label for="mainDepartment">
+                                            User Role
+                                        </label>
+                                    </td>
+
+                                    <td>
+                                        <select required="required" class="text-box" style="width:80%;" id="dropdown3" name="userRoleId">
+                                            @foreach (var urole in Model.lstUserRole)
+                                            {
+                                                if (urole.Id == Model.lstEmployee.FirstOrDefault().Users.FirstOrDefault().UserRoleId)
+                                                {
+                                                    <option selected value="@urole.Id">@urole.RoleName</option>
+                                                }
+                                                else
+                                                {
+                                                    <option Value="@urole.Id">@urole.RoleName</option>
+                                                }
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr style="margin-bottom:10em;">
+                                    <td>
+                                        <label for="mainDepartment">
+                                            User Name
+                                        </label>
+                                    </td>
+
+                                    <td>
+                                        <input required="required" type="text" class="text-box" style="width:80%;" name="username" id="UserName"
+                                               value="@Model.lstEmployee.FirstOrDefault().Users.FirstOrDefault().Username" />
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="mainDepartment">
+                                            Password
+                                        </label>
+                                    </td>
+
+                                    <td>
+                                        <input required="required" type="text" class="text-box" style="width:80%;" name="password" id="Password"
+                                               value="@Model.lstEmployee.FirstOrDefault().Users.FirstOrDefault().Password" />
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td></td>
+                                    <td>
+                                        <button type="submit"  class="btn btn-primary">Save</button>
+                                        <div id="saveResult" style="margin:5px">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

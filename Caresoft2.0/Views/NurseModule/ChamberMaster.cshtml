@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Chamber Master";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                Chamber Master
+            </div>
+            <div class="panel-body">
+                <form name="chamberMasterForm">
+                    <table class="form-table table">
+                        <tr>
+                            <td><label>Chamber No</label></td>
+                            <td><input type="text" class="text-box" /></td>
+                    </table>
+                    <div class="marg-top-2px">
+                        <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+                        <input type="button" class="btn btn-sm btn-primary" value="Save" />
+                    </div>
+                </form>
+
+                <table class="table table-data table-condensed marg-top-16px">
+                    <thead>
+                        <tr>
+                            <th>Edit</th>
+                            <th>Chamber No</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

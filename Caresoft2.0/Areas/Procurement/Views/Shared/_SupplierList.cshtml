@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.supplier>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-procurement" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content caresoft-panel" id="modalprocurement">
+
+        </div>
+    </div>
+</div>
+
+<div class="">
+    <div class="">
+        <table class="table table-data-pathology table-condensed">
+            <tr>
+                <th>Edit</th>
+                <th>Supplier Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>Fax No</th>
+                <th>Supp type</th>
+                <th>Delete</th>
+
+            </tr>
+            <tbody>
+                @if (Model != null)
+                {
+
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Ajax.ActionLink("Edit", "EditSupplier", "ProcurementMaster", new { id = @item.Supplier_Code }, new AjaxOptions
+                           {
+                               UpdateTargetId = "modalprocurement",
+                               HttpMethod = "GET",
+                               LoadingElementId = "loadingElement",
+                               OnSuccess = "$('#modal-procurement').modal('show');"
+
+                           }, new {@class="btn btn-xs btn-primary" })
+
+                            </td>
+                            <td>@item.Supplier_Name</td>
+                            <td>@item.Supplier_Address</td>
+                            <td>@item.Supplier_City</td>
+                            <td>@item.Supplier_TelNo</td>
+                            <td>@item.Email</td>
+                            <td>@item.Fax</td>
+
+                            <td>@item.Supplier_Type</td>
+                            <td><button class="deleteSupplier btn btn-xs btn-primary" data-supplierid="@item.Supplier_Code">Delete</button></td>
+
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    <tr><td colspan="12" class="text-center"> No Data to Display</td></tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,68 @@
+﻿
+<div class="panel panel-primary shadow glass caresoft-panel" style="margin-bottom:-1em;">
+    <div class="panel-heading ">
+        Mpesa Payment
+    </div>
+    <div class="panel-body">
+        <form id="mpesa-payment" method="post">
+            <table class="table-form" cellpadding="2">
+                <tr>
+                    <td>
+                        <fieldset>
+                            <table class="table-form">
+                                <tr>
+                                    <td>Bill Reference Number(OPD/IPD No.)</td>
+                                    <td>
+                                        <input type="text" class="text-box box-lg" name="BillReferenceNumber" value="@ViewBag.OPDNo" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Mpesa Mobile Number</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box box-lg" readonly value="254" name="prefix" style="width:30px" />
+                                        <input type="tel" class="text-box box-lg" maxlength="9" name="mobile" value="@ViewBag.Mobile" required style="width:136px" />
+                                        <button type="submit" class="btn btn-xs btn-primary">Confirm Payment</button>
+                                        <button type="button" class="btn btn-xs btn-primary" disabled>Send STK Push Request</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Transaction Id</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box box-lg" readonly id="TransactionId" name="TransactionId" />
+                                    </td>
+                                </tr>
+                                <tr class="collapse">
+                                    <td>
+                                        <label>Date</label>
+                                    </td>
+                                    <td>
+                                        <input type="date" class="text-box box-lg" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Amount</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="text-box box-lg" readonly id="MpesaAmount" name="MpesaAmount" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="button" class="btn btn-sm btn-primary" data-dismiss="modal" value="Cancel" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+
+                    </td>
+
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

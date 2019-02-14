@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewBag.Title = "ConfirmBanking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Banking = (List<CaresoftHMISDataAccess.FinanceBanking>)ViewBag.DateBanked;
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Finance/Views/Shared/_LeftNavigation.cshtml")
+</div>
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Confirm Banking
+            </div>
+            <div class="panel-body">
+                <form method="post" action="/Finance/Home/PostComfirmation">
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Date Banked:
+                                </td>
+                                <td>
+                                    <select name="BankingID" id="id1" class="text-box margin-top-bottom-2" required>
+                                        <option value="">--Select</option>
+                                        @foreach (var item in Banking)
+                                        {                                            
+                                        <option value="@item.ID">@item.DateBanked.ToString("MMM.dd,yyyy HH:mm:ss");</option>
+
+                                        }
+                                        
+                                    </select>
+                                </td>                               
+                                <td>
+                                   &nbsp; CashBook No:
+                                </td>
+                                <td>
+                                    <input class="text-box margin-top-bottom-2" id="CashBookNo" style="width:100%" readonly/>
+
+                                </td>
+                                <td>
+                                  &nbsp;  Branch Banked:
+                                </td>
+                                <td>
+                                    <input class="text-box margin-top-bottom-2" id="Branch" readonly/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Account NO:
+                                </td>
+                                <td>
+                                    <input  id="AccNo" class="text-box margin-top-bottom-2" style="width:100%" readonly />
+                                </td>
+                                <td>
+                                   &nbsp; Slip No:
+                                </td>
+                                <td>
+                                    <input name="SlipNo" id="SlipNo" class="text-box margin-top-bottom-2" style="width:100%" required/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Slip Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="SlipDate" id="SlipDate" class="text-box margin-top-bottom-2" style="width:100%" required/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <table class="table table-data-pathology table-condensed">
+                            <tr>
+                                <th>Cash Banked</th>
+                                <th>Mpesa Amount Banked</th>
+                            </tr>
+                            <tbody style="background-color: white">
+                                <tr>
+                                    <td>
+                                        <input class="text-box margin-top-bottom-2" id="Cash" readonly />
+                                    </td>
+                                    <td>
+                                        <input class="text-box margin-top-bottom-2" id="Mpesa" readonly />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br />
+                        <table class="table table-data-pathology table-condensed" title="Cheques Banked">
+                            <tr>
+                                <th>Cheque No</th>
+                                <th>Debit</th>
+                            </tr>
+                            <tbody id="tbody" style="background: white">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="submit"class="btn btn-primary bn-sm">ok</button>
+                    <button type="reset">Clear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#id1").autocomplete({
+            source: function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/Finance/Home/getBanking",
+                    data: { id: $("#id1").val() },        
+                    success: function (obj) {
+                        //console.log(obj);
+                        $("#CashBookNo").val(obj.GIName);
+                        $("#AccNo").val(obj.AccNo);
+                        $("#Cash").val(obj.CashAmountToBank);
+                        $("#Mpesa").val(obj.MpesaAmountToBank);
+                        $("#Branch").val(obj.Branch);
+                        var cheques = obj.ChequeNumbers.split(',');
+                        $("#tbody").html("");
+                        for (var i = 0; i < cheques.length - 1; i++) {
+                            var td = "<tr>"
+                                + '<td>' + cheques[i] + '</td>'
+                                + '<td></td>'
+                                + "</tr>";
+                            $("#tbody").append(td);
+                        }
+                    },
+
+                    error: function () {
+
+                    }
+                });
+
+            }, select: function (event, ui) {
+
+            }
+
+        });
+
+    </script>
+}

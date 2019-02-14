@@ -1,0 +1,183 @@
+﻿@model IEnumerable<LabsDataAccess.WorkOrderTest>
+
+@{
+    ViewBag.Title = "Rejected Sample";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Areas/Pathology/Views/Shared/_LayoutPathology.cshtml";
+}
+
+<div class="">
+    <div class="col-xs-offset-2 col-xs-8 CustomLabel">
+        <div class="panel panel-primary caresoft-panel">
+
+            <div class="panel-heading">
+                Work Order
+            </div>
+            <div class="panel-body">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-group col-xs-6">
+                            @Html.Label("From Date", htmlAttributes: new { @class = "col-xs-4" })
+                            <div class="col-xs-6">
+                                @Html.Editor("FromDate", new { htmlAttributes = new { @class = "text-box", style = "width:100%", type = "date", @Value = @DateTime.Now.ToString("yyyy-MM-dd") } })
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            @Html.Label("To Date", htmlAttributes: new { @class = "col-xs-4" })
+                            <div class="col-xs-6">
+                                @Html.Editor("ToDate", new { htmlAttributes = new { @class = "text-box", style = "width:100%", type = "date", @Value = @DateTime.Now.ToString("yyyy-MM-dd") } })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-xs-6">
+                            @Html.Label("Patient Name", htmlAttributes: new { @class = "col-xs-4" })
+                            <div class="col-xs-6">
+                                @Html.Editor("PatientName", new { htmlAttributes = new { @class = "text-box", style = "width:100%" } })
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            @Html.Label("Lab No", htmlAttributes: new { @class = "col-xs-4" })
+                            <div class="col-xs-6">
+                                @Html.Editor("LabNo", new { htmlAttributes = new { @class = "text-box", style = "width:100%" } })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-xs-6">
+                            @Html.Label("Financial Year", htmlAttributes: new { @class = "col-xs-4" })
+                            <div class="col-xs-6">
+                                @Html.DropDownList("FinancialYear", new SelectList(ViewBag.FinancialYear), "Select Financial Year", new { @class = "text-box", style = "width:100%" })
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                }
+
+                <div class="text-center" id="SampleRejectionList">
+                    No Tests To Display
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@section scripts{
+
+<script>
+
+        $(function () { getSampleRejectionList(); });
+
+        $("#FromDate").change(function () {
+            RequestFormLoaderShow();
+            $("#SampleRejectionList").html("");
+
+            getSampleRejectionList();
+
+        });
+
+        $("#ToDate").change(function () {
+            RequestFormLoaderShow();
+            $("#SampleRejectionList").html("");
+
+            getSampleRejectionList()
+
+        });
+
+        function getSampleRejectionList() {
+            $('.loader').show();
+
+            $.ajax({
+                data: $('form').serialize(),
+                url: "/Pathology/Accession/RejectedSamplesList/", success: function (result) {
+                    $("#SampleRejectionList").html(result);
+                    $('.loader').hide();
+                    //onClicks();
+                }, error: function () {
+                    $('.loader').hide();
+
+                }
+            });
+        };
+
+        $("#PatientName").autocomplete({
+            source: function (req, res) {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("searchPatient", "Accession")",
+                    dataType: "json",
+                    data: { search: $("#PatientName").val() },
+
+                    success: function (data) {
+                        res($.map(data, function (item) {
+                            return { label: item.Name, value: item.Name, OPD: item.OPD };
+                        }));
+                    },
+
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            }
+    });
+
+    $("#LabNo").autocomplete({
+        source: function (req, res) {
+
+                var formdata = $('form').serialize();
+
+                $('.loader').show();
+
+                $.ajax({
+                    data: formdata,
+                    url: "/Pathology/Accession/RejectedSamplesList/", success: function (result) {
+                        $("#SampleRejectionList").html(result);
+                        $('.loader').hide();
+                                        //onClicks();
+                    }, error: function () {
+                        $('.loader').hide();
+
+                    }
+                });
+            }
+    });
+
+
+    $("#PatientName").on("autocompleteselect", function (event, ui) {
+        var opdNo = ui.item.OPD;
+        var formdata = $('form').serialize();
+        var formdata = $('form').serialize() + '&' + $.param({ 'PatientId': opdNo });
+
+        $('.loader').show();
+
+        $.ajax({
+            data: formdata,
+            url: "/Pathology/Accession/RejectedSamplesList/", success: function (result) {
+                $("#SampleRejectionList").html(result);
+                $('.loader').hide();
+                //onClicks();
+            }, error: function () {
+                $('.loader').hide();
+
+            }
+        });
+
+    });
+</script>
+
+
+}

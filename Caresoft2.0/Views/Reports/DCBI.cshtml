@@ -1,0 +1,151 @@
+﻿@model IEnumerable<Caresoft2._0.CustomData.DCBIReportData>
+@{
+    ViewBag.Title = "Daily Collection (By Billing Item) ";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+    ViewBag.Size = "A4";
+    var ram = 0.0;
+
+    var meds = 0.0; var walks = 0.0;
+
+    var start = (DateTime)ViewBag.Start;
+    var end = (DateTime)ViewBag.End;
+}
+
+<p>From @ViewBag.StartDate to  @ViewBag.EndDate</p>
+<table class="table table-condensed" border="1">
+    <thead>
+        <tr class="report-title gray-hr-bottom">
+
+            <th>Department</th>
+            <th>Service</th>
+            <th>Actual Amt</th>
+            <th>Totals</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entry in Model.GroupBy(e=>e.DepartmentName))
+        {
+         <tr>
+             <td rowspan="@(entry.GroupBy(e=>e.ServiceName).Count()+2)">@entry.First().DepartmentName  </td>
+         </tr>
+            foreach(var ser in entry.GroupBy(e=>e.ServiceName))
+            {
+                <tr>
+                    <td>@ser.First().ServiceName</td>
+                    <td class="money">@ser.Sum(e=>e.ActualAmount)</td>
+                    <td class="money">@ser.Sum(e => e.ActualAmount)</td>
+                </tr>
+            
+            }
+            <tr>
+                <td align="right">SubTotal</td>
+                <td class="money" style="border-bottom: 2px solid black !important; font-weight:bold 
+                    !important">@entry.Sum(e => e.ActualAmount)
+                </td>
+                <td class="money" style="border-bottom: 2px solid black !important; font-weight:bold 
+                    !important">@entry.Sum(e => e.ActualAmount)
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr class="report-title gray-hr-bottom">
+            <th colspan="2" align="right" class="text-right">Grand Total</th>
+            <th></th>
+            <th class="money">@(Model.Sum(e => e.ActualAmount)  )</th>
+
+
+        </tr>
+    </tfoot>
+
+    @*<tbody>
+            @foreach (var dep in Model.Departments.OrderBy(a => a.DepartmentName))
+            {
+                var depTotal = 0.0;
+                if (Model.BillServices.Any(e => e.Service.DepartmentId == dep.Id))
+                {
+                    var myServices = Model.BillServices.Where(e => e.DepartmentId == dep.Id).GroupBy(e => e.ServiceName).ToList();
+
+                    <tr>
+                        <td rowspan="@(myServices.Count()+2)">
+                            <b>@dep.DepartmentName</b>
+                        </td>
+                    </tr>
+                    foreach (var ser in myServices)
+                    {
+                        <tr>
+                            <td>@ser.First().ServiceName</td>
+                            <td class="money">
+                                @{var a = ser.Where(e=>e.Paid).Sum(e => (e.Quatity * e.Price) - (e.Quatity * e.Award)  - (e.WaivedAmount ?? 0));
+
+                                    var patPaid = ser.Where(e => !e.Paid).Sum(e => e.IPDBillPartialPayments.Where(pp=>
+                                    pp.BillPayment.DateAdded>=start && pp.BillPayment.DateAdded <end).Sum(l => l.AllocatedAmount));
+
+                                    depTotal += (a + patPaid); ram += (a + patPaid);
+                            } @(a + patPaid)
+                        </td>
+                        <td class="money"> @(a + patPaid)</td>
+                    </tr>
+                }
+                <tr>
+                    <td align="right">
+                        TOTAL
+                    </td>
+                    <td class="money">
+                        @depTotal
+                    </td>
+                    <td class="money">
+                        @depTotal
+                    </td>
+                </tr>
+
+
+            }
+
+              if (dep.DepartmentName.ToLower().Trim() == "pharmacy" && Model.Medications.Count()>0)
+                {
+                   meds = (double)Model.Medications.Where(e=>e.Paid).Sum(e => (e.QuantityIssued * e.UnitPrice)  -
+                   (e.QuantityIssued * (e.Award ?? 0) - (e.WaivedAmount ?? 0)));
+
+                    var partMeds = (double)Model.Medications.Where(e=>!e.Paid).Sum(e => e.IPDBillPartialPayments.Where(pp=>
+                                    pp.BillPayment.DateAdded>=start && pp.BillPayment.DateAdded <end).Sum(l => l.AllocatedAmount));
+                                        meds = meds+partMeds;
+                    walks = (double)ViewBag.WalkinMedPrice;
+                    <tr>
+                        <td rowspan="3">
+                            <b>@dep.DepartmentName</b>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>GOK Drugs</td>
+                        <td class="money">@(meds + walks)</td>
+                        <td class="money">@(meds + walks)</td>
+                    </tr>
+
+                    <tr>
+                        <td align="right">
+                            TOTAL
+                        </td>
+                        <td class="money">
+                            @(meds + walks)
+                        </td>
+                        <td class="money">
+                            @(meds + walks)
+                        </td>
+                    </tr>
+
+                }
+
+        }
+        </tbody>
+        <tfoot>
+            <tr class="report-title gray-hr-bottom">
+                <th colspan="2" align="right" class="text-right">Grand Total</th>
+                <th></th>
+                <th class="money">@(ram + walks +meds )</th>
+
+
+            </tr>
+        </tfoot>*@
+</table>

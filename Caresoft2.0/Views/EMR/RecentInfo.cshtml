@@ -1,0 +1,319 @@
+﻿@model CaresoftHMISDataAccess.PhysicalExamination
+ @{var Ranges = new List<CaresoftHMISDataAccess.VitalRanx>(); var marking = "";}
+@try
+{
+    Ranges = new CaresoftHMISDataAccess.CaresoftHMISEntities().VitalRanges.ToList();
+    
+}
+catch (Exception)
+{
+
+}
+
+    <div class="panel panel-primary glass caresoft-panel">
+        <div class="panel-heading custom-navbar">
+            <p>Recent Info</p>
+        </div>
+        <div class="panel-body">
+            @try
+            {
+                var lastOpd = Model.Patient.OpdRegisters.OrderByDescending(e => e.Id).FirstOrDefault();
+
+                <p><b>Recent Complaints</b></p>
+                <label style="border-bottom:1px solid #000; width:100%;">
+                    @Html.DisplayFor(model => lastOpd.Complaints.LastOrDefault().ChiefComplaints)
+                </label>
+            }
+            catch (Exception) { }
+            @try
+            {
+                var lastOpd = Model.Patient.OpdRegisters.OrderByDescending(e => e.Id).FirstOrDefault();
+
+               
+                <p><b>Allergy</b></p>
+                <label style="border-bottom:1px solid #000; width:100%;">
+                    @Html.DisplayFor(model => lastOpd.Patient.PatientAllergies.FirstOrDefault().AllergyDescription)
+                </label>
+            } catch (Exception) { }
+
+            <p><b>Vital Parameter</b></p>
+            <table class="small-table">
+                <tr>
+                    <td class="color-key" id="normal">&nbsp;</td>
+                    <td> Normal </td>
+                    <td class="color-key" style="margin-left:.3em;" id="abnormal">&nbsp;</td>
+                    <td> Abnormal </td>
+                    <td class="color-key" style="margin-left:.3em;" id="panic">&nbsp;</td>
+                    <td> Panic </td>
+                </tr>
+            </table>
+            <table class="table-recent-info small-table" id="latest-patient-vitals">
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.Temperature)</td>
+                    <td 
+                        @if(Ranges.FirstOrDefault(e=>e.VitalName.ToLower().Trim().Equals("temperature")) !=null){
+                            var entry = Ranges.FirstOrDefault(e => e.VitalName.ToLower().Trim().Equals("temperature"));
+                            if(Model !=null && Model.Temperature >= entry.NormalLow && Model.Temperature<=entry.NormalHigh)
+                            {
+                                marking = "normal";
+                            }else if(Model !=null && Model.Temperature>=entry.PanicLow && Model.Temperature <= entry.PanicHigh)
+                            {
+                                marking = "panic";
+                            }
+                            else
+                            {
+                                 marking = "abnormal";
+                            }
+                        } class="@(marking)-value">
+                        @Html.DisplayFor(model => model.Temperature)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Pulse)
+                    </td>
+
+                    <td 
+                        @if(Ranges.FirstOrDefault(e=>e.VitalName.ToLower().Trim().Equals("pulse")) !=null){
+                            var entry = Ranges.FirstOrDefault(e => e.VitalName.ToLower().Trim().Equals("pulse"));
+                            if(Model !=null && Model.Pulse >= entry.NormalLow && Model.Pulse<=entry.NormalHigh)
+                            {
+                                marking = "normal";
+                            }else if(Model !=null && Model.Pulse>=entry.PanicLow && Model.Pulse <= entry.PanicHigh)
+                            {
+                                marking = "panic";
+                            }
+                            else
+                            {
+                                 marking = "abnormal";
+                            }
+                        } class="@(marking)-value">
+                        @Html.DisplayFor(model => model.Pulse)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.RespiratoryRate)
+                    </td>
+
+                    <td
+                        @if(Ranges.FirstOrDefault(e=>e.VitalName.ToLower().Trim().Equals("respiratory rate")) !=null){
+                            var entry = Ranges.FirstOrDefault(e => e.VitalName.ToLower().Trim().Equals("respiratory rate"));
+                            if(Model !=null && Model.RespiratoryRate >= entry.NormalLow && Model.RespiratoryRate<=entry.NormalHigh)
+                            {
+                                marking = "normal";
+                            }else if(Model !=null && Model.RespiratoryRate>=entry.PanicLow && Model.RespiratoryRate <= entry.PanicHigh)
+                            {
+                                marking = "panic";
+                            }
+                            else
+                            {
+                                 marking = "abnormal";
+                            }
+                        } class="@(marking)-value">
+                        @Html.DisplayFor(model => model.RespiratoryRate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>BP DIASTOLIC</b>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left:2em">
+                        Supine
+                    </td>
+
+                    <td @if(Ranges.FirstOrDefault(e=>e.VitalName.ToLower().Trim().Equals("diastolic")) !=null){
+                            var entry = Ranges.FirstOrDefault(e => e.VitalName.ToLower().Trim().Equals("diastolic"));
+                            if(Model !=null && Model.BPSDIASTOLICSupine >= entry.NormalLow && Model.BPSDIASTOLICSupine<=entry.NormalHigh)
+                            {
+                                marking = "normal";
+                            }else if(Model !=null && Model.BPSDIASTOLICSupine>=entry.PanicLow && Model.BPSDIASTOLICSupine <= entry.PanicHigh)
+                            {
+                                marking = "panic";
+                            }
+                            else
+                            {
+                                 marking = "abnormal";
+                            }
+                        } class="@(marking)-value">
+                        @Html.DisplayFor(model => model.BPSDIASTOLICSupine)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left:2em">
+                        Sitting
+                    </td>
+
+                    <td  @if(Ranges.FirstOrDefault(e=>e.VitalName.ToLower().Trim().Equals("diastolic")) !=null){
+                            var entry = Ranges.FirstOrDefault(e => e.VitalName.ToLower().Trim().Equals("diastolic"));
+                            if(Model !=null && Model.BPDIASTOLICSSitting >= entry.NormalLow && Model.BPDIASTOLICSSitting<=entry.NormalHigh)
+                            {
+                                marking = "normal";
+                            }else if(Model !=null && Model.BPDIASTOLICSSitting>=entry.PanicLow && Model.BPDIASTOLICSSitting <= entry.PanicHigh)
+                            {
+                                marking = "panic";
+                            }
+                            else
+                            {
+                                 marking = "abnormal";
+                            }
+                        } class="@(marking)-value">
+                        @Html.DisplayFor(model => model.BPDIASTOLICSSitting)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>BP SYSTOLIC</b>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left:2em">
+                        Supine
+                    </td>
+
+                    <td @if(Ranges.FirstOrDefault(e=>e.VitalName.ToLower().Trim().Equals("systolic")) !=null){
+                            var entry = Ranges.FirstOrDefault(e => e.VitalName.ToLower().Trim().Equals("systolic"));
+                            if(Model !=null && Model.BPSYSTOLICSupine >= entry.NormalLow && Model.BPSYSTOLICSupine<=entry.NormalHigh)
+                            {
+                                marking = "normal";
+                            }else if(Model !=null && Model.BPSYSTOLICSupine>=entry.PanicLow && Model.BPSYSTOLICSupine <= entry.PanicHigh)
+                            {
+                                marking = "panic";
+                            }
+                            else
+                            {
+                                 marking = "abnormal";
+                            }
+                        } class="@(marking)-value">
+                        @Html.DisplayFor(model => model.BPSYSTOLICSupine)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left:2em">
+                        Sitting
+                    </td>
+
+                    <td  @if(Ranges.FirstOrDefault(e=>e.VitalName.ToLower().Trim().Equals("systolic")) !=null){
+                            var entry = Ranges.FirstOrDefault(e => e.VitalName.ToLower().Trim().Equals("systolic"));
+                            if(Model !=null && Model.BPSYSTOLICSSitting >= entry.NormalLow && Model.BPSYSTOLICSSitting<=entry.NormalHigh)
+                            {
+                                marking = "normal";
+                            }else if(Model !=null && Model.BPSYSTOLICSSitting>=entry.PanicLow && Model.BPSYSTOLICSSitting <= entry.PanicHigh)
+                            {
+                                marking = "panic";
+                            }
+                            else
+                            {
+                                 marking = "abnormal";
+                            }
+                        } class="@(marking)-value">
+                        @Html.DisplayFor(model => model.BPSYSTOLICSSitting)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.HipRation)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.HipRation)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Height)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Height)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Weight)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Weight)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.TargetWeight)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.TargetWeight)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.HeadCircumfrence)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.HeadCircumfrence)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.TargetBMI)
+                    </td>
+
+                    <td @if(Ranges.FirstOrDefault(e=>e.VitalName.ToLower().Trim().Equals("bmi")) !=null){
+                            var entry = Ranges.FirstOrDefault(e => e.VitalName.ToLower().Trim().Equals("bmi"));
+                            if(Model !=null && Model.TargetBMI >= entry.NormalLow && Model.TargetBMI<=entry.NormalHigh)
+                            {
+                                marking = "normal";
+                            }else if(Model !=null && Model.TargetBMI>=entry.PanicLow && Model.TargetBMI <= entry.PanicHigh)
+                            {
+                                marking = "panic";
+                            }
+                            else
+                            {
+                                 marking = "abnormal";
+                            }
+                        } class="@(marking)-value">
+                        @Html.DisplayFor(model => model.TargetBMI)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.MUAC)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.MUAC)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Notes)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Notes)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Date)
+                    </td>
+                </tr>
+
+
+
+            </table>
+        </div>
+
+    </div>
+
+

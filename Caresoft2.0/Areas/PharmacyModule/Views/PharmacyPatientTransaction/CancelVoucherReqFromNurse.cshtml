@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "CancelVoucherReqFromNurse";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+}
+
+
+<style>
+    .cancelled {
+        color: red;
+    }
+
+    .NotCancelled {
+        color: yellow;
+    }
+
+    .PartialCancelled {
+        color: turquoise;
+    }
+</style>
+
+
+<div class="col-md-10">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px"> <strong>Cancel Voucher Request From Nurse</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                From Date
+                            </td>
+                            <td>
+                                <input type="date" class="text-box" />
+                            </td>
+                            <td>
+                                To Date
+                            </td>
+                            <td>
+                                <input type="date" class="text-box" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Voucher No
+                            </td>
+                            <td>
+                                <input type="text" class="text-box" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Patient Name
+                            </td>
+                            <td>
+                                <input type="text" class="text-box" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Item Name
+                            </td>
+                            <td>
+                                <input type="text" class="text-box" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td colspan="2">
+                                <div id="type">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="All">All
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Cancelled">Cancelled <i class="fa fa-square cancelled"></i>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="NotCancelled">Not Cancelled <i class="fa fa-square NotCancelled"></i>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="PartialCancelled">Partial Cancelled <i class="fa fa-square PartialCancelled"></i>
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="col-md-6">
+                                    <button class="btn btn-sm btn-primary pull-right">Show</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br />
+                    <table class="table table-data">
+                        <tr>
+                            <th>
+                                Voucher No
+                            </th>
+                            <th>
+                                Patient Name
+                            </th>
+                            <th>
+                                Total Amount
+                            </th>
+                            <th>
+                                Cancel
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="5">No data to display</td>
+                        </tr>
+                    </table>
+                    <div class="col-md-12">
+                        <button class="btn btn-primary btn-sm">Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

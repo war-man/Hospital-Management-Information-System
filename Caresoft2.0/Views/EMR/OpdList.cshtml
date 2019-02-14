@@ -1,0 +1,409 @@
+﻿@using System.Data.Entity;
+@{
+    var labDb = new LabsDataAccess.CareSoftLabsEntities();
+
+    var db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+    var default_consultation_service_name = db.KeyValuePairs.FirstOrDefault(e => e.Key_.ToLower().Trim()
+    == "default_consultation_service_name").Value.ToLower().Trim();
+
+    if (ViewBag.Mode != "AJAX")
+    {
+        ViewBag.Title = "Consultant Panel";
+        ViewBag.ShowTopMenu = true;
+        Layout = "~/Views/Shared/_DataListContainer.cshtml";
+    }
+    else
+    {
+        //no layout for ajax calls, just return plain data
+    }
+
+    var userRole = Session["UserRole"].ToString();
+}
+
+
+@model IEnumerable<CaresoftHMISDataAccess.OpdRegister>
+
+<div class="row" >
+    <div class="col-sm-12" >
+        <h4 class="form-title">OPD Waiting List</h4>
+        <table class="color-legend-table">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="color-key" id="EMRunread"></td>
+                <td> Unread</td>
+                <td class="color-key" id="EMRRead"></td>
+                <td> Read</td>
+                <td class="color-key" id="EMRUnpaid"></td>
+                <td> Unpaid</td>
+                <td class="color-key" id="EMREmergency"></td>
+                <td> Emergency</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+                <td>
+                    <form action="/emr/opdlist?Unread=true">
+                        <button type="submit" class="btn btn-primary">
+                            Total Waiting Queue <span class="badge badge-light" style="color:red">@ViewBag.Unread</span>
+                        </button>
+                    </form>
+                </td>
+
+
+
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+
+
+
+
+
+
+            </tr>
+        </table>
+        <p>@ViewBag.SearchMeta</p>
+
+        <div class="" style="overflow:auto">
+            <table class="table table-data  table-condensed">
+                <tr>
+                    <th>
+                        OPD No
+                    </th>
+                    <th>
+                        Reg Number
+                    </th>
+                    <th>
+                        Tarrif
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>Department</th>
+
+                    <th>
+                        Consultant Doctor
+                    </th>
+
+                    @*<th>
+            Date
+        </th>*@
+                    @*
+        <th>
+            Investigation
+        </th>
+                    *@
+                    <th>
+                        Time
+                    </th>
+
+                    <th>Lab/X-Ray</th>
+                    <th>
+
+                    </th>
+                </tr>
+
+                <tbody class="bg-white">
+                    @foreach (var item in Model.OrderByDescending(e => e.Id))
+                    {
+                        var colorCode = "";
+                        if (item.Tariff.TariffName.ToLower().Equals("cash") && item.BillServices.FirstOrDefault(e => e.ServiceName.Trim()
+                        .ToLower().Contains("consultation")&&
+                        !e.Paid) != null || (item.BillServices.Where(bs => bs.ServiceName
+                        .ToLower().Contains("consultation")).Count() < 1))
+                        {
+                            if (item.Status == "Emergency")
+                            {
+                                colorCode = "Emergency";
+                            }
+                            else
+                            {
+                                colorCode = "Unpaid";
+                            }
+
+                            //var cons = item.BillServices.FirstOrDefault(e =>
+                            //e.ServiceName.Trim().ToLower().Contains("consultation"));
+
+                            //if (cons.Price - cons.Award == 0)
+                            //{
+                            //    colorCode = "";
+                            //}
+
+                        }
+                        else if (item.Complaints.Count() < 1)
+                        {
+                            colorCode = "Unread";
+                        }
+                        else
+                        {
+                            colorCode = "Read";
+                        }
+
+                        //   if (item.Status.ToLower().Trim().Equals("emergency") && colorCode == "Unread")
+                        //  {
+                        //     colorCode = "Emergency";
+                        //  }
+
+
+
+                    <tr class="@colorCode tr-href lockable"
+                        @{if (ViewBag.IsNurse != null && ViewBag.IsNurse) { <text> data-href='</text>@Url.Action("Physicalexamination", "emr", new { id = item.Id })<text>' </text>  } else { <text> data-href='</text>@Url.Action("Consultation", "emr", new { id = item.Id })<text>' </text>  } }>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Patient.RegNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tariff.TariffName)
+                        </td>
+                        <td>
+                            @item.Patient.Salutation @item.Patient.FName @item.Patient.LName
+                        </td>
+
+                        <td>
+
+
+                            @if (item.PatientReferals.Count() == 0)
+                            {
+
+                                if (item.Department == null || item.Department == "")
+                                {
+                                    <span>OPD</span>
+                                }
+                                @Html.DisplayFor(modelItem => item.Department)
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.PatientReferals.LastOrDefault().Department.DepartmentName)
+                            }
+
+
+
+                        </td>
+
+                        <td>
+                            @if (item.Complaints.Count < 1)
+                            {
+                                @Html.DisplayFor(modelItem => item.ConsultantDoctor)
+                            }
+                            else
+                            {
+                                var doc = item.Complaints.LastOrDefault().User.Employee;
+                                <span>@Html.DisplayFor(modelItem => doc.Salutation) @Html.DisplayFor(modelItem => doc.FName)  @Html.DisplayFor(modelItem => doc.OtherName)</span>
+                            }
+                        </td>
+
+                        @*<td>
+            @item.TimeAdded
+
+        </td>*@
+
+
+                        <td>
+
+                            @if (colorCode == "Unpaid" && colorCode != "Read")
+
+                            {
+                                var tat = new Caresoft2._0.Utils.QueueTimeCalculator(item.Id).TotalHours.Value;
+
+                                if (tat.Hours > 0)
+                                {
+                                    <span>
+                                        @tat.Hours Hr
+                                        @tat.Minutes Min
+                                    </span>
+
+                                }
+                                else
+                                {
+                                    <span>
+                                        @tat.Minutes Min
+                                    </span>
+
+
+
+                                }
+                            }
+
+                            //else if (colorCode != "Unpaid" && item.FromDept == "Billing")
+
+                            else if (
+                                (colorCode != "Unpaid" && item.FromDept != "Consultant") ||
+                                (colorCode != "Unpaid" && item.FromDept != "Nurse" && ViewBag.FromDepartment == "Nurse"))
+                            {
+
+                                var tat = new Caresoft2._0.Utils.QueueTimeCalculator(item.Id).BillingQueue;
+
+                                if (tat.HasValue && tat.Value.Hours > 0)
+                                {
+                                    if (tat.HasValue)
+                                    {
+                                        <span>
+                                            @tat.Value.Hours Hr
+                                            @tat.Value.Minutes Min frm @item.FromDept
+                                        </span>
+                                    }
+
+                                }
+                                else
+                                {
+                                    if (tat.HasValue)
+                                    {
+                                        <span>
+                                            @tat.Value.Minutes Min frm @item.FromDept
+                                        </span>
+                                    }
+
+
+                                }
+
+                            }
+                            @*
+             else if (
+            (colorCode != "Unpaid" && item.FromDept == "Pathology" ) ||
+            (colorCode != "Unpaid" && item.FromDept != "Nurse" && ViewBag.FromDepartment == "Nurse"))
+             {
+
+                 var tat = item.BillingQueue;
+
+                 if (tat.HasValue && tat.Value.Hours > 0)
+                 {
+                     if (item.BillingQueue.HasValue)
+                     {
+                         <span>
+                             @item.BillingQueue.Value.Hours Hr
+                             @item.BillingQueue.Value.Minutes Min frm Lab
+                         </span>
+                     }
+
+                 }
+                 else
+                 {
+                     if (item.BillingQueue.HasValue)
+                     {
+                         <span>
+                             @item.BillingQueue.Value.Minutes Min frm Lab
+                         </span>
+                     }
+
+
+                 }
+
+             }
+                            *@
+                        </td>
+
+
+
+
+                        <td align="center">
+                            @if (item.BillServices.Where(e => e.WorkOrderTestId != null).Count() > 0)
+                            {
+                                var tests = labDb.WorkOrderTests.Include(a => a.WorkOrder1).Where(e => e.WorkOrder1.OPDNo == item.Id);
+
+                                if (tests != null && tests.Any(e => e.Status1.StatusValue.Trim().ToLower().Equals("authorized")))
+                                {
+                                    <a title="View lab results" href="@Url.Action("Consultation", "emr", new { id = item.Id , v="results"})"><i class="fa fa-file-pdf-o btn btn-primary"></i></a>
+                                }
+                            }
+                        </td>
+                        <td align="right" class="prevent-href-prop">
+
+                            @{
+                                if (ViewBag.IsNurse != null && ViewBag.IsNurse)
+                                {
+                                    @Html.ActionLink("Triage", "Physicalexamination", "emr", new { id = item.Id }, new { @class = "btn btn-info btn-xs lockable" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Consultation", "Consultation", new { id = item.Id }, new { @class = "btn btn-info btn-xs lockable" })
+
+                                }
+
+
+                            }
+                        </td>
+
+                    </tr>
+                    }
+
+                    @{ if (Model.Count() < 1)
+                        {
+                            <tr>
+                                <td colspan="8" align="center"><em>No data was found matching your query </em></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+
+        @if (ViewBag.Pages != null)
+        {
+            <div class="text-center">
+                <ul class="pagination">
+                    @for (var x = 1; x <= (int)ViewBag.Pages + 1; x++)
+                    {
+                        <li class="@if (x == ViewBag.Page) { <text>active</text>} "><a href="?page=@x">@x</a></li>
+                    }
+                </ul>
+            </div>
+        }
+
+
+
+        @section scripts{
+            <script>
+                //ajax request is at caresoft.js and requires only the bellow parameters
+                var action = "/EMR/FIlterOPDList";
+                var method = "GET";
+            </script>
+        }
+    </div>
+</div>
+

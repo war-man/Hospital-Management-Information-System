@@ -1,0 +1,77 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.RenalPatientProfile>
+
+
+
+<table class="table table-caresoft table-condensed">
+    <thead>
+        <tr>
+            <td style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"><b><i>OPD No</i></b></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+
+            <th style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"><b><i>User</i></b></th>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+            <th style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"><b><i>Date Of Visit</i></b></th>
+
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+            <tr>
+                <td>@a.OPDNo</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+                <td>@a.UserId</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td style="color:crimson">@a.DateAdded</td>
+
+
+            </tr>
+        }
+
+    </tbody>
+
+    <td>&nbsp;</td>
+    <tr>
+        <th></th>
+        <th>Screening Date</th>
+        <th>Treatment No</th>
+        <th>Physician</th>
+        <th>Access</th>
+        <th>HIV/Hbs Ag</th>
+        <th>Blood Group</th>
+        <th> Pre Dialysis Weight</th>
+        <th>Target Weight</th>
+        <th></th>
+    </tr>
+    <tbody class="bg-white">
+        @foreach (var e in Model.OrderByDescending(e => e.Id))
+        {
+            <tr style="background-color:chartreuse">
+                <td></td>
+                <td>@e.ScreeningDate</td>
+                <td>@e.TreatmentNo</td>
+                <td>@e.Physician</td>
+                <td>@e.Access>
+                <td>@e.HIVHbs</td>
+                <td>@e.BloodGroup</td>
+                <td>@e.PreDialysisWeight</td>
+                <td>@e.TargetWeigh</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

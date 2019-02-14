@@ -1,0 +1,268 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Colposcopy Detail";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>Colposcopy Detail</p>
+    </div>
+    <div class="panel-body">
+        @if (Model.OpdRegister.IsIPD)
+    {
+        var ipd = Model.OpdRegister;
+        <table class="table-form">
+            <tr>
+                <td>
+                    <label>Date of Admission:</label>
+                    <label>
+                        <b>@ipd.AdmissionDate.Value.ToShortDateString()</b>
+                    </label>
+                </td>
+
+                <td>
+                    <label>
+                        Room Type
+                    </label>
+                    <label>
+                        <b>@ipd.HSBed.HSWard.HSWardCategory.WardCategoryName</b>
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        RoomNo/WardNo
+                    </label>
+                    <label>
+                        <b>@ipd.HSBed.HSWard.WardName</b>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Doctor Incharge:</label>
+                    <label>
+                        <b>@ipd.ConsultantDoctor</b>
+                    </label>
+                </td>
+
+                <td>
+                    <label>
+                        Provisional Diagnosis
+                    </label>
+                    <label>
+                        <b>@Html.DisplayFor(model => ipd.Complaints.OrderByDescending(e => e.Id).FirstOrDefault().ProvisionalDiagnostic)</b>
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        Final Diagnosis
+                    </label>
+                    <label>
+                        <b>@Html.DisplayFor(model => ipd.PatientDiagnosis.OrderByDescending(e => e.Id).FirstOrDefault().FinalDiagnosis)</b>
+                    </label>
+                </td>
+            </tr>
+        </table>
+}
+        <fieldset>
+            <legend>&nbsp;</legend>
+            <table class="table-form">
+                <tr>
+                    <td>
+                        <label>Obsteric History</label>
+                    </td>
+                    <td>
+                        <textarea class="text-box box-lg"></textarea>
+                    </td>
+                    <td>
+                        <label>Menstrual History</label>
+                    </td>
+                    <td>
+                        <select class="text-box box-lg">
+                            <option></option>
+                            <option>LMP</option>
+                            <option>PMC</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Pap Smear Report</label>
+                    </td>
+                    <td>
+                        <textarea class="text-box box-lg"></textarea>
+                    </td>
+                    <td>
+                        <label>Menstrual History</label>
+                    </td>
+                    <td>
+                        <input type="text" class="text-box box-lg">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Indication Of Colposcopy</label>
+                    </td>
+                    <td>
+                        <input type="text" class="text-box box-lg">
+                    </td>
+                    <td>
+                        <label>Pap Smear Date</label>
+                    </td>
+                    <td>
+                        <input type="date" class="text-box box-lg">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>&nbsp;</legend>
+            <table class="table-form">
+                <tr>
+                    <td>
+                        <label>P/S</label>
+                    </td>
+                    <td>
+                        <input type="text" class="text-box box-lg">
+                    </td>
+                    <td>
+                        <label>P/V</label>
+                    </td>
+                    <td>
+                        <input type="text" class="text-box box-lg">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>&nbsp;</legend>
+            <table class="table-form">
+                <tr>
+                    <td>
+                        <label>Record Type/Treatment Most Recent Colposcopy</label>
+                    </td>
+                    <td>
+                        <input type="text" class="text-box box-lg">
+                    </td>
+                    <td>
+                        <label>Colposcopic Evalution</label>
+                    </td>
+                    <td>
+                        <select class="text-box box-lg">
+                            <option></option>
+                            <option>Adequate</option>
+                            <option>Inadequate</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Colposcopic Impreesion</label>
+                    </td>
+                    <td>
+                        <textarea class="text-box box-lg"></textarea>
+                    </td>
+                    <td>
+                        <label>Colposcopic Findings</label>
+                    </td>
+                    <td>
+                        <textarea class="text-box box-lg"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Colposcopic Diagnosis</label>
+                    </td>
+                    <td>
+                        <select class="text-box box-lg">
+                            <option></option>
+                            <option>Begin Type</option>
+                            <option>Cin I</option>
+                        </select>
+                    </td>
+
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>&nbsp;</legend>
+            <table class="table-form">
+                <tr>
+                    <td>
+                        <label>Treatment</label>
+                    </td>
+                    <td>
+                        <select class="text-box box-lg">
+                            <option></option>
+                            <option>LEEP</option>
+                            <option>Laser</option>
+                        </select>
+                    </td>
+                    <td>
+                        <label>Cervix Biopsy Site</label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="CervixBiopsy" value="Yes" /> Yes
+                        </label>
+                        <label>
+                            <input type="radio" name="CervixBiopsy" value="No" /> No
+                        </label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <textarea class="text-box box-lg"></textarea>
+                    </td>
+                    <td>
+                        <label>Treatment Given</label>
+                    </td>
+                    <td>
+                        <textarea class="text-box box-lg"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <div class="marg-top-16px">
+            <button class="btn btn-sm btn-primary">Save</button>
+            <button class="btn btn-sm btn-primary">Report</button>
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+
+       
+    </script>
+}
+
+

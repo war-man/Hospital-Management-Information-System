@@ -1,0 +1,171 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Preventative Services";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>@ViewBag.Title</p>
+    </div>
+   
+    <div class="panel-body">
+        <form class="preventative-service" method="post" action="@Url.Action("SavePreventativeServices", "mch")">
+            <input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+            <table class="table table-condensed table-data" id="preventative_services_table">
+                <thead>
+                    <tr>
+                        <th>Vaccine</th>
+                        <th>Date</th>
+                        <th>Next Visit</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white">
+
+                    <tr>
+                        <td>
+                            <select name="Vaccine">
+                                <option value="TetunusToxoid1">Tetunus Toxoid 1</option>
+                                <option value="TetunusToxoid2">Tetunus Toxoid 2</option>
+                                <option value="TetunusToxoid3">Tetunus Toxoid 3</option>
+                                <option value="TetunusToxoid4">Tetunus Toxoid 4</option>
+                                <option value="TetunusToxoid5">Tetunus Toxoid 5</option>
+                                <option value="MalariaProphylaxisIPT1">Malaria Prophylaxis IPT1</option>
+                                <option value="MalariaProphylaxisIPT2">Tetunus Malaria Prophylaxis IPT2</option>
+                                <option value="MalariaProphylaxisIPT3">Malaria Prophylaxis IPT3</option>
+                                <option value="MalariaProphylaxisIPT4">Malaria Prophylaxis IPT4</option>
+                                <option value="MalariaProphylaxisIPT5">Malaria Prophylaxis IPT5</option>
+                                <option value="MalariaProphylaxisIPT6">Malaria Prophylaxis IPT6</option>
+                                <option value="MalariaProphylaxisIPT7">Malaria Prophylaxis IPT7</option>
+                                
+                            </select>
+                        </td>
+                        <td>
+                            <input type="date" class="text-box box-lg" name="DateGiven" required value="@DateTime.Today.ToString("yyyy-MM-dd")"/>
+                        </td>
+                        <td>
+                            <input type="date" class="text-box box-lg" name="NextVisit" required />
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td colspan="3">
+                            <table class="table-form" border="1">
+                                <tr>
+                                    <td rowspan="4" align="center">
+                                        <b>Ferrous Fumarate</b><br />
+                                        <label>(Combined Tablet-60mg<br /> iron and 400 &mu;g folic acid)<br />or any other available</label>
+                                    </td>
+                                    <td>
+                                        1<sup>st</sup> Visit
+                                    </td>
+                                    <td>
+                                        <label>16 weeks</label>
+                                    </td>
+                                    <td>
+                                        <label>90 tablets</label>
+                                    </td>
+                                    <td>
+                                        Date Given
+                                        <input type="date" class="text-box box-lg" name="FirstFerrousFumarate" required value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        2<sup>nd</sup> Visit
+                                    </td>
+                                    <td>
+                                        <label>28 weeks</label>
+                                    </td>
+                                    <td>
+                                        <label>90 tablets</label>
+                                    </td>
+                                    <td>
+                                        Date Given
+                                        <input type="date" class="text-box box-lg" name="SecondFerrousFumarate" required value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        3<sup>rd</sup> Visit
+                                    </td>
+                                    <td>
+                                        <label>28 weeks</label>
+                                    </td>
+                                    <td>
+                                        <label>90 tablets</label>
+                                    </td>
+                                    <td>
+                                        Date Given
+                                        <input type="date" class="text-box box-lg" name="ThirdFerrousFumarate" required value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        4<sup>th</sup> Visit
+                                    </td>
+                                    <td>
+                                        <label>28 weeks</label>
+                                    </td>
+                                    <td>
+                                        <label>90 tablets</label>
+                                    </td>
+                                    <td>
+                                        Date Given
+                                        <input type="date" class="text-box box-lg" name="ForthFerrousFumarate" required value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+            <div class="marg-top-6px">
+                <button class="btn btn-sm btn-primary" id="btn_add_previous_pregnanacy">Save</button>
+                <button class="btn btn-sm btn-primary">Cancel</button>
+                @Html.ActionLink("Continue", "Delivery", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+@style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+                &nbsp;
+                &nbsp;
+                @Html.ActionLink("Previous", "WeightGainChart", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+     @style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+            </div>
+        </form>
+        <div>
+            @Html.Partial("VaccinesDetails", Model.OpdRegister.MCHPreventativeServices)
+        </div>
+
+    </div>
+    
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+
+       
+    </script>
+}
+
+

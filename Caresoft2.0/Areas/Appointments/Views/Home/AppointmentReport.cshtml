@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "AppointmentReport";
+    Layout = "~/Areas/Appointments/Views/Shared/_Layout.cshtml";
+    //var reports = (List<CaresoftHMISDataAccess.User>)ViewBag.AppointmentReports;
+
+}
+
+<div class="col-md-12">
+    <div class="col-md-2">
+        @Html.Partial("~/Areas/Appointments/Views/Shared/_SideNav.cshtml")
+    </div>
+    <div class="col-md-8">
+        <div class="panel panel-primary caresoft-panel glass shadow">
+            <div class="panel-heading">
+                Appointment_Report
+            </div>
+            <div class="panel-body">
+                <form method="post" action="/Home/AppointmentReport">
+                    <table>
+                        <tr>
+                            <td>
+                                From Date:
+                            </td>
+
+                            <td>
+                                <input type="date" class="text-box marg-top-6px" name="From_date" />
+                            </td>
+                            <td>
+                                To Date:
+                            </td>
+                            <td>
+                                <input type="date" class="text-box marg-top-6px" name="To_Date" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input name="Report" class="btn-sm btn-primary marg-top-16px" type="Submit">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                @*<datalist>
+                        @foreach (var report in reports)
+                        {
+                            <option value="@report.Username"></option>
+                        }
+                    </datalist>*@
+            </div>
+        </div>
+    </div>
+</div>

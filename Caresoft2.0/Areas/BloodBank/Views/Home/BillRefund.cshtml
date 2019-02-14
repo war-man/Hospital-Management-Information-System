@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "BillRefund";
+    //Layout = "~/Areas/BloodBank/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-6 col-lg-offset-3">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Bill Refund:
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Enter Patient Id/Name:
+                                </td>
+                                <td>
+                                    <input name="PatientId" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Bill Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="BillAmount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Amount Paid:
+                                </td>
+                                <td>
+                                    <input type="number" name="AmountPaid" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Discount:
+                                </td>
+                                <td>
+                                    <input type="number" name="Discount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Due Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="DueAmount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Concession:
+                                </td>
+                                <td>
+                                    <input type="number" name="Concession" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Amount Given:
+                                </td>
+                                <td>
+                                    <input type="number" name="AmountGiven" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 marg-top-16px">
+                        <button type="submit" class="btn btn-primary btn-sm bn-sm">Save</button>
+                        <button type="reset" class="">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

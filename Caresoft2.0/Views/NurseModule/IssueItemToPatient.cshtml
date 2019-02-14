@@ -1,0 +1,386 @@
+﻿
+@{
+    ViewBag.Title = "Issue To Patient";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                @using (Ajax.BeginForm("SaveCSSDIssueToPatient", "NurseModule", new { }, new AjaxOptions
+                {
+                    LoadingElementId = "loadingElement",
+                    HttpMethod = "POST",
+                    UpdateTargetId = "",
+                    OnFailure = "showNotification('Failed', 'danger', 'false')",
+                    OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                }))
+                {
+                    <form id="cleanup" method="post" action="@Url.Action("SaveCSSDIssueToPatient", "NurseModule")">
+                        <table class="table-form">
+                            <tr>
+                                <td>
+                                    <label>Reg Number</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-lg" name="RegNumber" id="IRegNumber" />
+                                </td>
+                                <td>
+                                    <label>Patient Name</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-lg" name="PatientName" id="RPatientName" />
+                                    <input type="hidden" id="OpdNum" name="OPDNo" />
+                                </td>
+                            </tr>
+
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+
+
+                            <tr>
+                                <td>
+                                    <label>Select Item/Set</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-lg" name="RequestItem" />
+                                </td>
+                                <td>
+                                    <label>Issue Quanity</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-lg" name="IssueQuantity" />
+                                </td>
+                                <td>
+                                    <label>Issue Date</label>
+                                </td>
+                                <td>
+                                    <input type="date" class="text-box box-lg" name="RequestDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                </td>
+                            </tr>
+
+                        </table>
+                        <div>
+                            <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+                            <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+                        </div>
+
+                    </form>
+
+                }
+                    <div id="cssd-request" class="right-element">
+                        <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                        <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+                        <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                        <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                        <script src="~/Scripts/bootstrap.min.js"></script>
+                        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                        <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+                        <script src="~/Scripts/moment.js"></script>
+
+                        <link href="~/Content/Css/JQueryUI/themes/base/jquery-ui.css" rel="stylesheet" />
+
+
+
+
+
+
+                      
+                       
+
+
+
+
+
+
+
+                        <script type="text/javascript">
+
+                            jQuery(document).ready(function ($) {
+                                //  var table = $('#dataTable').DataTable();
+                                $('#cssdTable').DataTable({
+                                    "ajax": {
+                                        "url": "/NurseModule/GetCSSDIssue",
+                                        "type": "GET",
+                                        "datatype": "json",
+                                        "dataSrc": ""
+                                    },
+                                    "columns": [
+                                        { "data": "Id" },
+                                        { "data": "OPDNo" },
+                                        { "data": "name" },
+                                        { "data": "RequestItem" },
+                                        { "data": "IssueQuantity" },
+
+                                        {
+                                            'data': 'RequiredDate', 'render': function (data) {
+                                                return moment(data).format(' MMMM d, YYYY ');
+                                            }
+                                        },
+
+
+
+
+
+                                        {
+                                            "data": function (data, type, row) {
+                                                if (data["Status"] == "0") {
+
+                                                    return "<span class='glyphicon glyphicon-remove'> Pending </span >  <input type='button' value='Confirm Return' class='btnEdit sfBtn sfPrimaryBtn sfLocale' />"
+
+
+                                                }
+                                                else if ( data["Status"] == "1") {
+
+                                                    return "Returned"
+                                                }
+
+
+
+                                            }
+
+                                        },
+
+
+
+                                    ],
+                                    "createdRow": function (row, data, dataIndex) {
+                                        if (data["Status"] == "0") {
+                                            $(row).css("background-color", "Red");
+
+                                        }
+                                        else if (data["Status"] == "1") {
+                                            $(row).css("background-color", "Green");
+                                            $(row).css("color", "white");
+                                        }
+                                    },
+
+
+
+                                });
+
+                                var table = $('#cssdTable').DataTable();
+                                $('.cssdTable').on('click', 'tbody tr', function () {
+                                    console.log('API row values : ', table.row(this).data());
+
+                                    $('.nav-tabs a[href="#assign-amb"]').tab('show');
+                                    // alert();
+
+                                })
+
+
+                                $("#cssdTable tbody").on("click", ".btnEdit", function () {
+                                    var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                    // alert(id);
+                                    //alert($(this).text());
+                                    //alert();
+                                    $.ajax({
+                                        data: { id: id },
+                                        url: '/NurseModule/ConfirmCSSDReturn',
+                                        type: 'POST',
+                                        success: function (data) {
+                                            alert("Cleanup Approved");
+                                        }
+                                    });
+                                });
+                               
+                                            $("#IRegNumber").autocomplete({
+
+                            source: function (request, res) {
+
+
+                                $.ajax({
+
+                                    type: "POST",
+                                    url: "@Url.Action("SearchPatient", "NurseModule")",
+
+                                    dataType: "json",
+                                    data: { Prefix: request.term },
+
+
+                                    data: { search: $("#IRegNumber").val() },
+                                    success: function (data) {
+                                        res($.map(data, function (item) {
+                                            return {
+                                                label: item.RegNumber + "(" + item.Name + ")" + "( Visit Date : " + item.OpdDate + ")",
+                                                value: item.RegNumber,
+                                                OpdId: item.OpdId,
+                                                patientId: item.PatientId, name: item.Name, FName: item.FName, MName: item.MName
+                                                , LName: item.LNames };
+                                        }));
+                                    },
+
+                                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                                        console.log(errorthrown, "danger")
+                                        console.log(xmlhttprequest.responseText);
+                                    }
+
+                                });
+                            },
+
+                            messages: {
+                                noResults: "", results: ""
+
+                            }
+
+                        });
+
+            $("#IRegNumber").on("autocompleteselect", function (event, ui) {
+                            $("#RPatientName").val(ui.item.name);
+                            $("#PatientId").val(ui.item.patientId);
+                            $("#OpdNum").val(ui.item.OpdId);
+
+
+
+                            console.log(ui);
+
+
+                        });
+
+                            });
+
+
+
+
+
+
+
+                        </script>
+
+
+                        <h4 class="text-center text-uppercase"> Monitor Issue to Patient</h4>
+                        <div id="dataTable_wrapper"></div>
+
+                        <ul class="legend" style="float:right;">
+                            <li><span class="Pending"></span> <strong>Not Returned</strong></li>
+
+                            <li><span class="Completed"></span> <strong>Returned</strong></li>
+
+                        </ul>
+
+                        <style>
+
+                            .legend {
+                                list-style: none;
+                            }
+
+                                .legend li {
+                                    float: left;
+                                    margin-right: 10px;
+                                }
+
+                                .legend span {
+                                    border: 1px solid #ccc;
+                                    float: left;
+                                    width: 12px;
+                                    height: 12px;
+                                    margin: 2px;
+                                }
+                                /* your colors */
+                                .legend .Pending {
+                                    background-color: red;
+                                }
+
+
+                                .legend .Completed {
+                                    background-color: green;
+                                }
+                        </style>
+                        <table id="cssdTable" class="table table-data-pathology table-condensed">
+
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>OPDNo</th>
+                                    <th>Patient Name</th>
+                                    <th>Issued Item</th>
+                                    <th> Issue Date</th>
+                                    <th>Issued Quantity</th>
+                                    <th> Confirm Return</th>
+
+
+
+
+                                </tr>
+                            </thead>
+                        </table>
+
+
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+    <link href="~/Content/Css/JQueryUI/themes/base/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            $("#IRegNumber").autocomplete({
+
+                            source: function (request, res) {
+
+
+                                $.ajax({
+
+                                    type: "POST",
+                                    url: "@Url.Action("SearchPatient", "NurseModule")",
+
+                                    dataType: "json",
+                                    data: { Prefix: request.term },
+
+
+                                    data: { search: $("#IRegNumber").val() },
+                                    success: function (data) {
+                                        res($.map(data, function (item) {
+                                            return {
+                                                label: item.RegNumber + "(" + item.Name + ")" + "( Visit Date : " + item.OpdDate + ")",
+                                                value: item.RegNumber,
+                                                OpdId: item.OpdId,
+                                                patientId: item.PatientId, name: item.Name, FName: item.FName, MName: item.MName
+                                                , LName: item.LNames };
+                                        }));
+                                    },
+
+                                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                                        console.log(errorthrown, "danger")
+                                        console.log(xmlhttprequest.responseText);
+                                    }
+
+                                });
+                            },
+
+                            messages: {
+                                noResults: "", results: ""
+
+                            }
+
+                        });
+
+            $("#IRegNumber").on("autocompleteselect", function (event, ui) {
+                            $("#RPatientName").val(ui.item.name);
+                            $("#PatientId").val(ui.item.patientId);
+                            $("#OpdNum").val(ui.item.OpdId);
+
+
+
+                            console.log(ui);
+
+
+                        });
+        }
+    </script>

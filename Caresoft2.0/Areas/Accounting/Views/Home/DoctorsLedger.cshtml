@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "DoctorsLedger";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+}
+
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Doctors Ledger
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="checkbox" value="OutPatient" name="patient" /> Out Patients
+                            </td>
+                            <td>
+                                <input type="checkbox" value="OinPatient" name="patient" /> In Patients
+                            </td>
+                            <td>
+                                <input type="checkbox" value="others" name="patient" /> Out Patients
+                            </td>
+                            <td>&nbsp;</td>
+                            <td>
+                                Date:
+                            </td>
+                            <td>
+                                <input type="date" name="Date" class="text-box margin-top-bottom-2" style="width:100%"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="search" value="SearchByNo" /> Search By No.
+                            </td>
+                            <td>
+                                &nbsp; <input type="checkbox" name="search" value="SearchByName" /> Search By Name
+                            </td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>
+                                Invoice No.
+                            </td>
+                            <td>
+                                <input type="number" name="InvoiceNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                &nbsp;
+                <div class="col-md-12">
+                    <table>
+                        <tr>
+                            <td>
+                                Patient No.
+                            </td>
+                            <td>
+                                <select name="PatienNo" class="text-box margin-top-bottom-2" style="width:100%">
+                                    <option>--Select</option>
+                                </select>
+                            </td>
+                            <td>
+                                &nbsp; Name:
+                            </td>
+                            <td>
+                                <input name="PatientName" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Payment Mode:
+                            </td>
+                            <td>
+                                <input name="PaymentMode" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                            <td>
+                                &nbsp; Patient Category:
+                            </td>
+                            <td>
+                                <input name="PatientCategory" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Revenue Dep:
+                            </td>
+                            <td>
+                                <input name="RevenueDep" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>      
+                <div class="col-md-12">
+                    <table class="table table-data-pathology table-condensed marg-top-16px">
+                        <tr>
+                            <th>Servive</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th>GI Account</th>
+                            <th>Doctor</th>
+                        </tr>
+                        <tbody style="background-color: white">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12">
+                    <table>
+                        <tr>
+                            <td>
+                                Amount:
+                            </td>
+                            <td>
+                                <input type="number" name="Amount" class="text-box margin-top-bottom-2" style="width:100%" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Ok</button>
+                    <button type="reset" class="btn btn-default margin-top-bottom-2">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

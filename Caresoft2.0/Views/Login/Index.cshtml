@@ -1,0 +1,134 @@
+﻿@model  CaresoftHMISDataAccess.User
+
+@{
+    ViewBag.Title = "Login to Caresoft";
+    Layout = "~/Views/Shared/_Login.cshtml";
+
+   
+}
+<div style="margin-top:6em;">
+    <table>
+        <tr>
+            <td style="background:url('../Content/icons/stethoscope.jpg'); background-size:contain; background-repeat:no-repeat; background-position:center; width:400px"></td>
+            <td style="background-color:#009EE0; width:400px">
+                @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+                    if (ViewBag.ErrorMessage != null)
+                    {
+                        <div class="alert alert-danger">
+                            <p>@ViewBag.ErrorMessage</p>
+                        </div>
+                    }
+                    <table class="login-form-table">
+                        <tr>
+                            <td style="color:#fff">
+                                User Name:
+                            </td>
+                            <td align="right">
+                                <input type="text" class="text-box" name="Username" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color:#fff">
+                                Password:
+                            </td>
+                            <td align="right">
+                                <input type="password" class="text-box" name="Password" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td align="right">
+                                <input type="submit" class="btn btn-primary" value="Login" />
+                            </td>
+                        </tr>
+                    </table>
+
+
+                }
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <br />
+                <div class="row" style="margin-bottom:1em">
+                    <div class="col-sm-4">
+                        <a href="#" class="btn btn-primary btn-sm btn-block" style="background:#009EE0">Appointment</a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="#" class="btn btn-primary btn-sm btn-block" style="background:#009EE0; ">Online Registration</a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="#" class="btn btn-primary btn-sm btn-block" style="background:#009EE0;">SMS Registration</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        @if ((bool)Session["IsDebugMode"])
+        {
+        <b>
+            <p style="font-size:16" class="cm-strong text-danger text-center">
+                This is an Evaluation Solution. It is not in anyway supposed  to be used in commercial puposes.
+                <br /> Offenders Will be prosecuted. Visit <a href="http://softcom.co.ke/"> softcom.co.ke </a>
+            </p>
+        </b>
+        }
+        @if (ViewBag.RequestActivation != null && ViewBag.RequestActivation)
+        {
+            <tr>
+                <td></td>
+                <td style="background:#009EE0;padding:.5em; ">
+                    <p class="text-center">This product is not licensed yet. Please supply your license key provided by the vendor to continue enjoying all features of this system.</p>
+                    <form id="activation_form" name="activation_form" method="post" action="\Login\activation">
+                        <style>
+                            form[name=activation_form] input {
+                                text-transform: uppercase;
+                                text-align: center;
+                            }
+                        </style>
+                        <input type="text" name="part1" maxlength="5" class="text-box box-xs" required />
+                        <input type="text" name="part2" maxlength="5" class="text-box box-xs" required />
+                        <input type="text" name="part3" maxlength="5" class="text-box box-xs" required />
+                        <input type="text" name="part4" maxlength="5" class="text-box box-xs" required />
+                        <input type="text" name="part5" maxlength="5" class="text-box box-xs" required />
+                        <input style="float:right" type="submit" class="btn btn-sm btn-primary" value="OK" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+@section scripts{
+@*<script>
+    $("#activation_form").submit(function (e) {
+        e.preventDefault();
+
+        var data = $(this).serialize();
+        $(".loader").show();
+
+        $.ajax({
+            method: "POST",
+            url: "@Url.Action("activation", "Login")",
+            data: data,
+            success: function (res) {
+                $(".loader").hide();
+
+                if (res.Status == "success") {
+                    window.location = window.location.href;
+                } else {
+                    showNotification(res.Message, res.Status, true);
+                }
+            },
+            error: function (e, x, r) {
+                $(".loader").hide();
+                showNotification("Unable to activate your product. Please Check you connection and try again!", "warning", true);
+            }
+        })
+    })
+</script>*@
+}

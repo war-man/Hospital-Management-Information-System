@@ -1,0 +1,347 @@
+﻿@model LabsDataAccess.WorkOrder
+
+
+@{
+    ViewBag.Title = "Sample Collection";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Areas/Radiology/Views/Shared/_LayoutRadiology.cshtml";
+}
+
+<div class="">
+    <div class="col-xs-offset-1 col-xs-10 CustomLabel">
+        <div class="panel panel-primary caresoft-panel">
+
+            <div class="panel-heading">
+                Work Order
+            </div>
+            <div class="panel-body">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <table width="100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @Html.Label("From Date", htmlAttributes: new { @class = " margin-top-bottom-2" })
+                                </td>
+                                <td>
+                                    @Html.Editor("FromDate", new { htmlAttributes = new { @class = "text-box margin-top-bottom-2", style = "width:90%", type = "date", @Value = @DateTime.Now.ToString("yyyy-MM-dd") } })
+                                </td>
+                                <td>
+                                    @Html.Label("To Date", htmlAttributes: new { @class = " margin-top-bottom-2" })
+                                </td>
+                                <td>
+                                    @Html.Editor("ToDate", new { htmlAttributes = new { @class = "text-box margin-top-bottom-2", style = "width:90%", type = "date", @Value = @DateTime.Now.ToString("yyyy-MM-dd") } })
+                                </td>
+                                <td>
+                                    @Html.Label("Path No", htmlAttributes: new { @class = " margin-top-bottom-2" })
+                                </td>
+                                <td>
+                                    @Html.Editor("PathNo", new { htmlAttributes = new { @class = "text-box margin-top-bottom-2", style = "width:90%", type = "text" } })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.Label("Patient Name", htmlAttributes: new { @class = " margin-top-bottom-2" })
+                                </td>
+                                <td>
+                                    <input hidden id="opd" value="" />
+                                    @Html.Editor("PatientName", new { htmlAttributes = new { @class = "text-box margin-top-bottom-2", style = "width:90%" } })
+                                </td>
+                                <td>
+                                    @Html.Label("Lab No", htmlAttributes: new { @class = " margin-top-bottom-2" })
+                                </td>
+                                <td>
+                                    @Html.Editor("LabNo", new { htmlAttributes = new { @class = "text-box margin-top-bottom-2", style = "width:90%" } })
+                                </td>
+                                <td>
+                                    @Html.Label("BarCode", htmlAttributes: new { @class = " margin-top-bottom-2" })
+                                </td>
+                                <td>
+                                    @Html.Editor("BarCode", new { htmlAttributes = new { @class = "text-box margin-top-bottom-2", style = "width:90%", type = "text" } })
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    @Html.Label("Patient Type", htmlAttributes: new { @class = " margin-top-bottom-2" })
+                                </td>
+                                <td>
+                                    <div class="text-box text-center margin-top-bottom-2" style="width:90%; padding-bottom:5px;">
+                                        <label class="radio-inline"><input type="radio" checked="checked" name="PatientType" value="All">All</label>
+                                        <label class="radio-inline"><input type="radio" name="PatientType" value="OPD">OPD</label>
+                                        <label class="radio-inline"><input type="radio" name="PatientType" value="IPD">IPD</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    @Html.Label("Accession Status", htmlAttributes: new { @class = " margin-top-bottom-2" })
+                                </td>
+                                <td>
+                                    <div class="text-box text-center margin-top-bottom-2 margin-top-bottom-2" style="width:90%; padding-bottom:5px;">
+                                        <label class="radio-inline"><input type="radio" name="AccessionStatus" value="All">All</label>
+                                        <label class="radio-inline"><input type="radio" name="AccessionStatus" value="Done">Done</label>
+                                        <label class="radio-inline"><input type="radio" checked="checked" name="AccessionStatus" value="Pending">Pending</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    @Html.Label("Financial Year", htmlAttributes: new { @class = " margin-top-bottom-2" })
+                                </td>
+                                <td>
+                                    @Html.DropDownList("FinancialYear", new SelectList(ViewBag.Accession_Status), "Select Ref.Customer", new { @class = "text-box", style = "width:90%" })
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row">
+                        <div class="container">
+                            <div class="row">
+                                <div class="container">
+                                    <table class="color-legend-table" style="margin-bottom:0px">
+                                        <tr>
+                                            <td class="color-key" style="background:var( --LabsColorPendingBill)" id="ResultEntryAbnormal"></td>
+                                            <td> Pending Bill Patient</td>
+                                            <td class="color-key" style="background:var( --LabsColorPartialBillPaid)" id="ResultEntryAbnormal"></td>
+                                            <td> Partial Bill Paid Patient</td>
+                                            <td class="color-key" style="background:var( --LabsColorBillPaid)" id="ResultEntryAbnormal"></td>
+                                            <td> Bill Paid Patient</td>
+                                            <td class="color-key" style="background:var( --LabsColorAccessionDonePatient)" id="ResultEntryAbnormal"></td>
+                                            <td>
+                                                Accession done Patient
+                                            </td>
+                                            <td class="color-key" style="background:var( --LabsColorAccessionPendingPatient)" id="ResultEntryAbnormal"></td>
+                                            <td>
+                                                Accession Pending Patient
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <br />
+                    <div class="text-center" id="SampleCollectionList">
+                        No Tests To Display
+                    </div>
+                    @*<div class="form-group">
+                            <div class="col-xs-offset-2 ">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>*@
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+    $(function () { getSampleCollectionList(); $('#getTest').text(1) });
+
+
+        $("#FromDate").change(function () {
+            RequestFormLoaderShow();
+            $("#SampleCollectionList").html("");
+
+            getSampleCollectionList();
+
+        });
+
+        $("#ToDate").change(function () {
+            RequestFormLoaderShow();
+            $("#SampleCollectionList").html("");
+
+            getSampleCollectionList()
+
+        });
+
+    $("[name='PatientType']").change(function () {
+        $('.loader').show();
+        $("#SampleCollectionList").html("");
+
+        getSampleCollectionList()
+
+    });
+
+    $("[name='AccessionStatus']").change(function () {
+        $('.loader').show();
+        $("#SampleCollectionList").html("");
+
+        getSampleCollectionList()
+
+    });
+
+        function getSampleCollectionList() {
+            $('.loader').show();
+            var formdata = $('form').serialize() + '&' + $.param({ 'PatientId': $('#opd').val() });
+
+            $.ajax({
+                data: formdata,
+                url: "/Radiology/Accession/SampleCollectionList/", success: function (result) {
+                    $("#SampleCollectionList").html(result);
+                    $('.loader').hide();
+                    onClicks();
+                }, error: function () {
+                    $('.loader').hide();
+
+                }
+            });
+        };
+
+        function onClicks() {
+
+            $('.toggle-testlist').each(function () {
+                $(this).unbind();
+                $(this).click(function (e) {
+                    e.preventDefault();
+
+                    if (!$("#toggle" + $(this).attr("row-Id")).hasClass('in')) {
+                        $("#toggle" + $(this).attr("row-Id")).parent().removeClass("collapse");
+                        $('#labTestListParent' + $(this).attr("row-Id")).show();
+                        getTestList($(this).attr("row-Id"), $(this).attr("Id"));
+
+                        $('#' + $(this).attr('id')).attr('src', '/Content/icons/treeviewicons/button-open.png');
+
+                    } else {
+                        $("#toggle" + + $(this).attr("row-Id")).parent().addClass("collapse");
+                        $('#' + $(this).attr('id')).attr('src', '/Content/icons/treeviewicons/button-closed.png');
+
+                    }
+                });
+
+            });
+
+            $('.submitbuttons').each(function () {
+                $(this).unbind();
+
+                $(this).click(function (e) {
+                    e.preventDefault();
+                    $('.loader').show();
+
+                    var Rowid = $(this).attr("Rowid");
+                    $.ajax({
+                        data: $('form').serialize(),
+                        url: "/Radiology/Accession/UpdateSampleCollectionToTestResEntry?id=" + $(this).attr("Rowid"), success: function (result) {
+                            $("#wo_row_id" + Rowid).remove();
+                            $("#labTestListHolder" + Rowid).remove();
+
+                            $('.loader').hide();
+
+
+                            showNotification("Submission was successful", "success", false);
+
+
+                        }, error: function () {
+                            $('.loader').hide();
+                            showNotification("An Error Occured. System failed to communicate to the server", "danger", false)
+
+
+                        }
+                    });
+                });
+
+            });
+
+
+            $('.sampleconditionbuttons').each(function () {
+                $(this).unbind();
+
+                $(this).click(function (e) {
+                    e.preventDefault();
+                    $('.loader').show();
+
+                    var Rowid = $(this).attr("Rowid");
+                    $.ajax({
+                        data: $('form').serialize(),
+                        url: "/Radiology/Accession/SampleCondition/" + Rowid, success: function (result) {
+                            $("#UniversalModalView").html(result);
+                            $("#UniversalModal").modal('show');
+                            $('.loader').hide();
+
+                        }, error: function () {
+                            $('.loader').hide();
+
+                        }
+                    });
+                });
+
+            });
+
+
+        };
+
+    function getTestList(Rowid, LabTestsList) {
+        $('.loader').show();
+
+        $.ajax({
+            data: $('form').serialize(),
+            url: "/Radiology/Accession/LabTestsList?id=" + LabTestsList, success: function (result) {
+                $(".panel-collapse").removeClass('in');
+                $("#toggle" + Rowid).addClass('in');
+                $("#labTestList" + Rowid).html(result);
+
+                $('.loader').hide();
+                onClicks();
+
+            }, error: function () {
+                $('.loader').hide();
+
+            }
+        });
+    }
+
+    $("#PatientName").autocomplete({
+            source: function (req, res) {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("searchPatient", "Accession")",
+                    dataType: "json",
+                    data: { search: $("#PatientName").val() },
+
+                    success: function (data) {
+                        res($.map(data, function (item) {
+                            return { label: item.Name, value: item.Name, OPD: item.OPD };
+                        }));
+                    },
+
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            }
+    });
+
+    $("#PatientName").on("autocompleteselect", function (event, ui) {
+        var opdNo = ui.item.OPD;
+        $('#opd').val(opdNo);
+        var formdata = $('form').serialize();
+        var formdata = $('form').serialize() + '&' + $.param({ 'PatientId': opdNo });
+
+        $('.loader').show();
+
+        $.ajax({
+            data: formdata,
+            url: "/Radiology/Accession/SampleCollectionList/", success: function (result) {
+                $("#SampleCollectionList").html(result);
+                $('.loader').hide();
+                onClicks();
+            }, error: function () {
+                $('.loader').hide();
+
+            }
+        });
+
+    });
+
+    </script>
+}

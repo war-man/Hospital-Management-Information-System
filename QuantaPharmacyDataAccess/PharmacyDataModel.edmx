@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QuantaPharmacyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'embutown_pharmacy.dbo.drugstocktakinglist' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="drugstocktakinglist">
+          <Key>
+            <PropertyRef Name="DrugId" />
+          </Key>
+          <Property Name="DrugId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DrugName" Type="nvarchar" MaxLength="200" />
+          <Property Name="costprice" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'embutown_pharmacy.dbo.vw_currentstockvaluesakuda' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_currentstockvaluesakuda">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BatchNo" Type="nvarchar" MaxLength="80" />
+          <Property Name="CostPrice" Type="float" />
+          <Property Name="CurrentStock" Type="float" />
+          <Property Name="Item_Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Exp_date" Type="datetime" />
+          <Property Name="totalvalue" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'embutown_pharmacy.dbo.vw_overthecountersakuda' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_overthecountersakuda">
+          <Key>
+            <PropertyRef Name="srno" />
+          </Key>
+          <Property Name="srno" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="billno" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="pepatid" Type="nvarchar" MaxLength="20" />
+          <Property Name="recdate" Type="datetime" />
+          <Property Name="amount" Type="float" />
+          <Property Name="OPDno" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="IPDno" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ReceiptNo" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Credit" Type="bit" />
+          <Property Name="Cash" Type="bit" />
+          <Property Name="Cheque" Type="bit" />
+          <Property Name="ChequeNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChequeDate" Type="datetime" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ChequeAmount" Type="float" />
+          <Property Name="CCPersonName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="cccomm" Type="float" />
+          <Property Name="cccommamount" Type="float" />
+          <Property Name="CCExpireDate" Type="datetime" />
+          <Property Name="CCCompany" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCAmount" Type="float" />
+          <Property Name="CreditAmount" Type="float" />
+          <Property Name="CashAmount" Type="float" />
+          <Property Name="tDateTime" Type="datetime" />
+          <Property Name="ChequeStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="disc_amount" Type="float" />
+          <Property Name="Disc_Type" Type="nvarchar" MaxLength="3" />
+          <Property Name="tax" Type="float" />
+          <Property Name="WardNo" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="IssueToFlag" Type="nvarchar" MaxLength="50" />
+          <Property Name="IssueToType" Type="varchar" MaxLength="50" />
+          <Property Name="StoreFlag" Type="char" MaxLength="10" />
+          <Property Name="username" Type="varchar" MaxLength="20" />
+          <Property Name="FinancialYearId" Type="float" />
+          <Property Name="Companyid" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Modeofpay" Type="nvarchar" MaxLength="50" />
+          <Property Name="advancepaidincurrency" Type="float" />
+          <Property Name="secondryCurrency" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="discountcurrency" Type="float" />
+          <Property Name="Symbol" Type="nvarchar" MaxLength="50" />
+          <Property Name="CurrencyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="corp_compid" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="corp_transno" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
+          <Property Name="pname" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalAmount" Type="float" />
+          <Property Name="ShortFall" Type="float" />
+          <Property Name="Award" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'embutown_pharmacy.dbo.VW_PatientSummaryReportSakuda' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_PatientSummaryReportSakuda">
+          <Key>
+            <PropertyRef Name="BillNo" />
+            <PropertyRef Name="FinancialYearId" />
+            <PropertyRef Name="IssueToFlag" />
+            <PropertyRef Name="IssueToType" />
+            <PropertyRef Name="StoreFlag" />
+            <PropertyRef Name="companyid" />
+            <PropertyRef Name="RefundAmount" />
+          </Key>
+          <Property Name="BillNo" Type="int" Nullable="false" />
+          <Property Name="BillDate" Type="datetime" />
+          <Property Name="pepatid" Type="nvarchar" MaxLength="20" />
+          <Property Name="TotalAmount" Type="float" />
+          <Property Name="Amountreceivd" Type="float" />
+          <Property Name="AmtDue" Type="float" />
+          <Property Name="FinancialYearId" Type="float" Nullable="false" />
+          <Property Name="IssueToFlag" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IssueToType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StoreFlag" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="companyid" Type="int" Nullable="false" />
+          <Property Name="BatchNo" Type="nvarchar" MaxLength="80" />
+          <Property Name="Rate" Type="float" />
+          <Property Name="Units" Type="int" />
+          <Property Name="currentstock" Type="int" />
+          <Property Name="pname" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDA_Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="DrugName" Type="nvarchar" MaxLength="200" />
+          <Property Name="OPDno" Type="int" />
+          <Property Name="IPDno" Type="int" />
+          <Property Name="RefundAmount" Type="float" Nullable="false" />
+          <Property Name="ItemRefund" Type="int" />
+          <Property Name="billcancelled" Type="bit" />
+          <Property Name="disc_amount" Type="float" />
+          <Property Name="Award" Type="float" />
+          <Property Name="ShortFall" Type="float" />
+          <Property Name="IsDonor" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="QuantaPharmacyModelStoreContainer">
+          <EntitySet Name="drugstocktakinglist" EntityType="Self.drugstocktakinglist" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [drugstocktakinglist].[DrugId] AS [DrugId], 
+    [drugstocktakinglist].[DrugName] AS [DrugName], 
+    [drugstocktakinglist].[costprice] AS [costprice]
+    FROM [dbo].[drugstocktakinglist] AS [drugstocktakinglist]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_currentstockvaluesakuda" EntityType="Self.vw_currentstockvaluesakuda" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_currentstockvaluesakuda].[ItemId] AS [ItemId], 
+    [vw_currentstockvaluesakuda].[BatchNo] AS [BatchNo], 
+    [vw_currentstockvaluesakuda].[CostPrice] AS [CostPrice], 
+    [vw_currentstockvaluesakuda].[CurrentStock] AS [CurrentStock], 
+    [vw_currentstockvaluesakuda].[Item_Description] AS [Item_Description], 
+    [vw_currentstockvaluesakuda].[Exp_date] AS [Exp_date], 
+    [vw_currentstockvaluesakuda].[totalvalue] AS [totalvalue]
+    FROM [dbo].[vw_currentstockvaluesakuda] AS [vw_currentstockvaluesakuda]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_overthecountersakuda" EntityType="Self.vw_overthecountersakuda" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_overthecountersakuda].[srno] AS [srno], 
+    [vw_overthecountersakuda].[billno] AS [billno], 
+    [vw_overthecountersakuda].[pepatid] AS [pepatid], 
+    [vw_overthecountersakuda].[recdate] AS [recdate], 
+    [vw_overthecountersakuda].[amount] AS [amount], 
+    [vw_overthecountersakuda].[OPDno] AS [OPDno], 
+    [vw_overthecountersakuda].[IPDno] AS [IPDno], 
+    [vw_overthecountersakuda].[ReceiptNo] AS [ReceiptNo], 
+    [vw_overthecountersakuda].[Credit] AS [Credit], 
+    [vw_overthecountersakuda].[Cash] AS [Cash], 
+    [vw_overthecountersakuda].[Cheque] AS [Cheque], 
+    [vw_overthecountersakuda].[ChequeNo] AS [ChequeNo], 
+    [vw_overthecountersakuda].[ChequeDate] AS [ChequeDate], 
+    [vw_overthecountersakuda].[BankName] AS [BankName], 
+    [vw_overthecountersakuda].[ChequeAmount] AS [ChequeAmount], 
+    [vw_overthecountersakuda].[CCPersonName] AS [CCPersonName], 
+    [vw_overthecountersakuda].[CCNo] AS [CCNo], 
+    [vw_overthecountersakuda].[cccomm] AS [cccomm], 
+    [vw_overthecountersakuda].[cccommamount] AS [cccommamount], 
+    [vw_overthecountersakuda].[CCExpireDate] AS [CCExpireDate], 
+    [vw_overthecountersakuda].[CCCompany] AS [CCCompany], 
+    [vw_overthecountersakuda].[CCAmount] AS [CCAmount], 
+    [vw_overthecountersakuda].[CreditAmount] AS [CreditAmount], 
+    [vw_overthecountersakuda].[CashAmount] AS [CashAmount], 
+    [vw_overthecountersakuda].[tDateTime] AS [tDateTime], 
+    [vw_overthecountersakuda].[ChequeStatus] AS [ChequeStatus], 
+    [vw_overthecountersakuda].[disc_amount] AS [disc_amount], 
+    [vw_overthecountersakuda].[Disc_Type] AS [Disc_Type], 
+    [vw_overthecountersakuda].[tax] AS [tax], 
+    [vw_overthecountersakuda].[WardNo] AS [WardNo], 
+    [vw_overthecountersakuda].[IssueToFlag] AS [IssueToFlag], 
+    [vw_overthecountersakuda].[IssueToType] AS [IssueToType], 
+    [vw_overthecountersakuda].[StoreFlag] AS [StoreFlag], 
+    [vw_overthecountersakuda].[username] AS [username], 
+    [vw_overthecountersakuda].[FinancialYearId] AS [FinancialYearId], 
+    [vw_overthecountersakuda].[Companyid] AS [Companyid], 
+    [vw_overthecountersakuda].[Modeofpay] AS [Modeofpay], 
+    [vw_overthecountersakuda].[advancepaidincurrency] AS [advancepaidincurrency], 
+    [vw_overthecountersakuda].[secondryCurrency] AS [secondryCurrency], 
+    [vw_overthecountersakuda].[discountcurrency] AS [discountcurrency], 
+    [vw_overthecountersakuda].[Symbol] AS [Symbol], 
+    [vw_overthecountersakuda].[CurrencyName] AS [CurrencyName], 
+    [vw_overthecountersakuda].[corp_compid] AS [corp_compid], 
+    [vw_overthecountersakuda].[corp_transno] AS [corp_transno], 
+    [vw_overthecountersakuda].[Type] AS [Type], 
+    [vw_overthecountersakuda].[TransactionType] AS [TransactionType], 
+    [vw_overthecountersakuda].[pname] AS [pname], 
+    [vw_overthecountersakuda].[TotalAmount] AS [TotalAmount], 
+    [vw_overthecountersakuda].[ShortFall] AS [ShortFall], 
+    [vw_overthecountersakuda].[Award] AS [Award]
+    FROM [dbo].[vw_overthecountersakuda] AS [vw_overthecountersakuda]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_PatientSummaryReportSakuda" EntityType="Self.VW_PatientSummaryReportSakuda" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_PatientSummaryReportSakuda].[BillNo] AS [BillNo], 
+    [VW_PatientSummaryReportSakuda].[BillDate] AS [BillDate], 
+    [VW_PatientSummaryReportSakuda].[pepatid] AS [pepatid], 
+    [VW_PatientSummaryReportSakuda].[TotalAmount] AS [TotalAmount], 
+    [VW_PatientSummaryReportSakuda].[Amountreceivd] AS [Amountreceivd], 
+    [VW_PatientSummaryReportSakuda].[AmtDue] AS [AmtDue], 
+    [VW_PatientSummaryReportSakuda].[FinancialYearId] AS [FinancialYearId], 
+    [VW_PatientSummaryReportSakuda].[IssueToFlag] AS [IssueToFlag], 
+    [VW_PatientSummaryReportSakuda].[IssueToType] AS [IssueToType], 
+    [VW_PatientSummaryReportSakuda].[StoreFlag] AS [StoreFlag], 
+    [VW_PatientSummaryReportSakuda].[companyid] AS [companyid], 
+    [VW_PatientSummaryReportSakuda].[BatchNo] AS [BatchNo], 
+    [VW_PatientSummaryReportSakuda].[Rate] AS [Rate], 
+    [VW_PatientSummaryReportSakuda].[Units] AS [Units], 
+    [VW_PatientSummaryReportSakuda].[currentstock] AS [currentstock], 
+    [VW_PatientSummaryReportSakuda].[pname] AS [pname], 
+    [VW_PatientSummaryReportSakuda].[IDA_Code] AS [IDA_Code], 
+    [VW_PatientSummaryReportSakuda].[DrugName] AS [DrugName], 
+    [VW_PatientSummaryReportSakuda].[OPDno] AS [OPDno], 
+    [VW_PatientSummaryReportSakuda].[IPDno] AS [IPDno], 
+    [VW_PatientSummaryReportSakuda].[RefundAmount] AS [RefundAmount], 
+    [VW_PatientSummaryReportSakuda].[ItemRefund] AS [ItemRefund], 
+    [VW_PatientSummaryReportSakuda].[billcancelled] AS [billcancelled], 
+    [VW_PatientSummaryReportSakuda].[disc_amount] AS [disc_amount], 
+    [VW_PatientSummaryReportSakuda].[Award] AS [Award], 
+    [VW_PatientSummaryReportSakuda].[ShortFall] AS [ShortFall], 
+    [VW_PatientSummaryReportSakuda].[IsDonor] AS [IsDonor]
+    FROM [dbo].[VW_PatientSummaryReportSakuda] AS [VW_PatientSummaryReportSakuda]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuantaPharmacyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QuantaPharmacyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="VW_PatientSummaryReportSakuda" EntityType="QuantaPharmacyModel.VW_PatientSummaryReportSakuda" />
+          <EntitySet Name="drugstocktakinglists" EntityType="QuantaPharmacyModel.drugstocktakinglist" />
+          <EntitySet Name="vw_currentstockvaluesakuda" EntityType="QuantaPharmacyModel.vw_currentstockvaluesakuda" />
+          <EntitySet Name="vw_overthecountersakuda" EntityType="QuantaPharmacyModel.vw_overthecountersakuda" />
+        </EntityContainer>
+        <EntityType Name="VW_PatientSummaryReportSakuda">
+          <Key>
+            <PropertyRef Name="BillNo" />
+            <PropertyRef Name="FinancialYearId" />
+            <PropertyRef Name="IssueToFlag" />
+            <PropertyRef Name="IssueToType" />
+            <PropertyRef Name="StoreFlag" />
+            <PropertyRef Name="companyid" />
+            <PropertyRef Name="RefundAmount" />
+          </Key>
+          <Property Name="BillNo" Type="Int32" Nullable="false" />
+          <Property Name="BillDate" Type="DateTime" Precision="3" />
+          <Property Name="pepatid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="Double" />
+          <Property Name="Amountreceivd" Type="Double" />
+          <Property Name="AmtDue" Type="Double" />
+          <Property Name="FinancialYearId" Type="Double" Nullable="false" />
+          <Property Name="IssueToFlag" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IssueToType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StoreFlag" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="companyid" Type="Int32" Nullable="false" />
+          <Property Name="BatchNo" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Double" />
+          <Property Name="Units" Type="Int32" />
+          <Property Name="currentstock" Type="Int32" />
+          <Property Name="pname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDA_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DrugName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="OPDno" Type="Int32" />
+          <Property Name="IPDno" Type="Int32" />
+          <Property Name="RefundAmount" Type="Double" Nullable="false" />
+          <Property Name="ItemRefund" Type="Int32" />
+          <Property Name="billcancelled" Type="Boolean" />
+          <Property Name="disc_amount" Type="Double" />
+          <Property Name="Award" Type="Double" />
+          <Property Name="ShortFall" Type="Double" />
+          <Property Name="IsDonor" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="drugstocktakinglist">
+          <Key>
+            <PropertyRef Name="DrugId" />
+          </Key>
+          <Property Name="DrugId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DrugName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="costprice" Type="Double" />
+        </EntityType>
+        <EntityType Name="vw_currentstockvaluesakuda">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BatchNo" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="CostPrice" Type="Double" />
+          <Property Name="CurrentStock" Type="Double" />
+          <Property Name="Item_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Exp_date" Type="DateTime" Precision="3" />
+          <Property Name="totalvalue" Type="Double" />
+        </EntityType>
+        <EntityType Name="vw_overthecountersakuda">
+          <Key>
+            <PropertyRef Name="srno" />
+          </Key>
+          <Property Name="srno" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="billno" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="pepatid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="recdate" Type="DateTime" Precision="3" />
+          <Property Name="amount" Type="Double" />
+          <Property Name="OPDno" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IPDno" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ReceiptNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Credit" Type="Boolean" />
+          <Property Name="Cash" Type="Boolean" />
+          <Property Name="Cheque" Type="Boolean" />
+          <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+          <Property Name="BankName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeAmount" Type="Double" />
+          <Property Name="CCPersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cccomm" Type="Double" />
+          <Property Name="cccommamount" Type="Double" />
+          <Property Name="CCExpireDate" Type="DateTime" Precision="3" />
+          <Property Name="CCCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCAmount" Type="Double" />
+          <Property Name="CreditAmount" Type="Double" />
+          <Property Name="CashAmount" Type="Double" />
+          <Property Name="tDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ChequeStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="disc_amount" Type="Double" />
+          <Property Name="Disc_Type" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="tax" Type="Double" />
+          <Property Name="WardNo" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="IssueToFlag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IssueToType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StoreFlag" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FinancialYearId" Type="Double" />
+          <Property Name="Companyid" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Modeofpay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="advancepaidincurrency" Type="Double" />
+          <Property Name="secondryCurrency" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="discountcurrency" Type="Double" />
+          <Property Name="Symbol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="corp_compid" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="corp_transno" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="Double" />
+          <Property Name="ShortFall" Type="Double" />
+          <Property Name="Award" Type="Double" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuantaPharmacyModelStoreContainer" CdmEntityContainer="QuantaPharmacyEntities">
+          <EntitySetMapping Name="VW_PatientSummaryReportSakuda">
+            <EntityTypeMapping TypeName="QuantaPharmacyModel.VW_PatientSummaryReportSakuda">
+              <MappingFragment StoreEntitySet="VW_PatientSummaryReportSakuda">
+                <ScalarProperty Name="IsDonor" ColumnName="IsDonor" />
+                <ScalarProperty Name="ShortFall" ColumnName="ShortFall" />
+                <ScalarProperty Name="Award" ColumnName="Award" />
+                <ScalarProperty Name="disc_amount" ColumnName="disc_amount" />
+                <ScalarProperty Name="billcancelled" ColumnName="billcancelled" />
+                <ScalarProperty Name="ItemRefund" ColumnName="ItemRefund" />
+                <ScalarProperty Name="RefundAmount" ColumnName="RefundAmount" />
+                <ScalarProperty Name="IPDno" ColumnName="IPDno" />
+                <ScalarProperty Name="OPDno" ColumnName="OPDno" />
+                <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+                <ScalarProperty Name="IDA_Code" ColumnName="IDA_Code" />
+                <ScalarProperty Name="pname" ColumnName="pname" />
+                <ScalarProperty Name="currentstock" ColumnName="currentstock" />
+                <ScalarProperty Name="Units" ColumnName="Units" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="StoreFlag" ColumnName="StoreFlag" />
+                <ScalarProperty Name="IssueToType" ColumnName="IssueToType" />
+                <ScalarProperty Name="IssueToFlag" ColumnName="IssueToFlag" />
+                <ScalarProperty Name="FinancialYearId" ColumnName="FinancialYearId" />
+                <ScalarProperty Name="AmtDue" ColumnName="AmtDue" />
+                <ScalarProperty Name="Amountreceivd" ColumnName="Amountreceivd" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="pepatid" ColumnName="pepatid" />
+                <ScalarProperty Name="BillDate" ColumnName="BillDate" />
+                <ScalarProperty Name="BillNo" ColumnName="BillNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="drugstocktakinglists">
+            <EntityTypeMapping TypeName="QuantaPharmacyModel.drugstocktakinglist">
+              <MappingFragment StoreEntitySet="drugstocktakinglist">
+                <ScalarProperty Name="costprice" ColumnName="costprice" />
+                <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+                <ScalarProperty Name="DrugId" ColumnName="DrugId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_currentstockvaluesakuda">
+            <EntityTypeMapping TypeName="QuantaPharmacyModel.vw_currentstockvaluesakuda">
+              <MappingFragment StoreEntitySet="vw_currentstockvaluesakuda">
+                <ScalarProperty Name="totalvalue" ColumnName="totalvalue" />
+                <ScalarProperty Name="Exp_date" ColumnName="Exp_date" />
+                <ScalarProperty Name="Item_Description" ColumnName="Item_Description" />
+                <ScalarProperty Name="CurrentStock" ColumnName="CurrentStock" />
+                <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_overthecountersakuda">
+            <EntityTypeMapping TypeName="QuantaPharmacyModel.vw_overthecountersakuda">
+              <MappingFragment StoreEntitySet="vw_overthecountersakuda">
+                <ScalarProperty Name="Award" ColumnName="Award" />
+                <ScalarProperty Name="ShortFall" ColumnName="ShortFall" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="pname" ColumnName="pname" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="corp_transno" ColumnName="corp_transno" />
+                <ScalarProperty Name="corp_compid" ColumnName="corp_compid" />
+                <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="discountcurrency" ColumnName="discountcurrency" />
+                <ScalarProperty Name="secondryCurrency" ColumnName="secondryCurrency" />
+                <ScalarProperty Name="advancepaidincurrency" ColumnName="advancepaidincurrency" />
+                <ScalarProperty Name="Modeofpay" ColumnName="Modeofpay" />
+                <ScalarProperty Name="Companyid" ColumnName="Companyid" />
+                <ScalarProperty Name="FinancialYearId" ColumnName="FinancialYearId" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="StoreFlag" ColumnName="StoreFlag" />
+                <ScalarProperty Name="IssueToType" ColumnName="IssueToType" />
+                <ScalarProperty Name="IssueToFlag" ColumnName="IssueToFlag" />
+                <ScalarProperty Name="WardNo" ColumnName="WardNo" />
+                <ScalarProperty Name="tax" ColumnName="tax" />
+                <ScalarProperty Name="Disc_Type" ColumnName="Disc_Type" />
+                <ScalarProperty Name="disc_amount" ColumnName="disc_amount" />
+                <ScalarProperty Name="ChequeStatus" ColumnName="ChequeStatus" />
+                <ScalarProperty Name="tDateTime" ColumnName="tDateTime" />
+                <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+                <ScalarProperty Name="CreditAmount" ColumnName="CreditAmount" />
+                <ScalarProperty Name="CCAmount" ColumnName="CCAmount" />
+                <ScalarProperty Name="CCCompany" ColumnName="CCCompany" />
+                <ScalarProperty Name="CCExpireDate" ColumnName="CCExpireDate" />
+                <ScalarProperty Name="cccommamount" ColumnName="cccommamount" />
+                <ScalarProperty Name="cccomm" ColumnName="cccomm" />
+                <ScalarProperty Name="CCNo" ColumnName="CCNo" />
+                <ScalarProperty Name="CCPersonName" ColumnName="CCPersonName" />
+                <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
+                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+                <ScalarProperty Name="Cheque" ColumnName="Cheque" />
+                <ScalarProperty Name="Cash" ColumnName="Cash" />
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="ReceiptNo" ColumnName="ReceiptNo" />
+                <ScalarProperty Name="IPDno" ColumnName="IPDno" />
+                <ScalarProperty Name="OPDno" ColumnName="OPDno" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="recdate" ColumnName="recdate" />
+                <ScalarProperty Name="pepatid" ColumnName="pepatid" />
+                <ScalarProperty Name="billno" ColumnName="billno" />
+                <ScalarProperty Name="srno" ColumnName="srno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

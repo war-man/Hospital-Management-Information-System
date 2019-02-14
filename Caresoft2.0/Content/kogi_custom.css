@@ -1,0 +1,123 @@
+﻿@import url('caresoft-default.css');
+body {
+    font-size: 12px !important;
+    min-width:1080px;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid var(--primary-dark-color);
+}
+
+    .nav-tabs > li.active > a,
+    .nav-tabs > li.active > a:hover,
+    .nav-tabs > li.active > a:focus {
+        color: white;
+        cursor: not-allowed;
+        background-color: var(--primary-color);
+        border: 1px solid var(--primary-dark-color);
+        border-bottom-color: transparent;
+    } 
+
+input {
+    color: black!important;
+}
+
+.del-icon{
+    margin-left:10px;
+    height:13px;
+    width:13px;
+}
+
+.cust_table {
+    /*text-align:center;*/
+    padding:10px;
+    border: 2px solid gray;
+    border-collapse: collapse;
+}
+
+.holder-table td {
+    padding-right: 14px;
+    padding-bottom: 2px;
+}
+.table-cust-bordered td, th {
+    /*border: 1px solid var(--primary-dark-color);*/
+}
+
+.cust_border_dark {
+    padding:5px;
+    background: white;
+    border: 1px solid var(--primary-dark-color);
+}
+
+thead {
+    width: inherit;
+    position: sticky;
+}
+
+.square {
+    width: 20px;
+    height: 20px;
+}
+
+.pathology-border {
+    border: 1px solid var(--primary-dark-color);
+}
+
+.table-data-pathology {
+    border-collapse: collapse;
+}
+.table-data-pathology td th, thead.bg-primary th {
+    border-bottom: 1px solid var(--primary-dark-color);
+}
+
+.table-data-pathology th, thead.bg-primary th {
+    background: linear-gradient(#D7E8FC, #94B6E8);
+    border: 1px solid #4F93E3;
+    font-family: Tahoma;
+    font-size: 12px;
+    white-space:nowrap;
+    font-weight: bold;
+}
+
+.table-data-pathology td, thead.bg-primary th {
+    border: 1px solid #4F93E3;
+    font-family: Tahoma;
+    font-size: 12px;
+}
+
+.table-data-pathology-v-centre td {
+    vertical-align: central;
+}
+
+.margin-top-bottom-5 {
+    margin: 3px 0 5px 0;
+}
+
+.margin-top-bottom-2 {
+    margin: 2px 0 2px 0;
+}
+
+#summary a.collapsed:after {
+    content: '+ Read More';
+}
+
+#summary a:not(.collapsed):after {
+    content: '- Read Less';
+}
+
+.cust-text-bold{
+    font-weight:bold;
+}
+
+
+.bg-primary-foreground-white {
+    font-weight: bold!important;
+    color: white!important;
+    background: var(--primary-dark-color)!important;
+}
+
+@media print {
+    body {
+        -webkit-print-color-adjust: exact;
+    }
+}

@@ -1,0 +1,338 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Patient>
+
+<style>
+    table#patientList {
+        white-space: nowrap;
+    }
+
+    table#patientList tr:hover {
+        white-space: nowrap;
+    }
+
+</style>
+@if (ViewBag.IsSearch == null)
+{ 
+    ViewBag.ShowTopMenu = true;
+}
+
+    <div class="container">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                Patients Register
+            </div>
+            <div class="panel-body ">
+                @Html.Partial("_DataFilterControls")
+                <div class="scrollable-table-container" id="data-results">
+                    @Html.Partial("PatientsListResult", Model);
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+
+
+    <div class="modal fade " data-backdrop="static" id="opd-registration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content caresoft-panel">
+                <div class="panel panel-primary  shadow glass caresoft-panel" style="margin-bottom:-1em;">
+                    <div class="panel-heading caresoft-panel">
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        OPD Registration
+                    </div>
+                    <div class="panel-body" id="opd-form-holder">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section scripts{
+    <script>
+        var method = "POST";
+        var action = "@Url.Action("PatientsList", "Registration")";
+         function OPDFormListeners() {
+
+            @*$("#btn-add-bill-item").click(function () {
+                $(".loader").show();
+                data = {
+                    "OPDNo": $("#OPDNo").val(),
+                    "DepartmentId": $("#Department").find(":selected").attr("data-dept-id"),
+                    "ServiceId": $("#Services").find(":selected").attr("data-service-id"),
+                    "PayableAmount": $("#PayableAmount").val(),
+                    "AwardAmount": $("#AwardAmount").val(),
+                    "View":"ProvisionalBillServices"
+
+                }
+
+                $.ajax({
+                    type: "POST",
+                    data: data,
+                    url:"@Url.Action("registration", "EnterBillService")",
+                    headers: {
+                        "authToken": ""
+                    },
+                    success: function (result) {
+                        $(".loader").fadeOut();
+                        $("#insurance-details-modal").modal("hide");
+                        $("#provisional-bill-items").html(result);
+                        $("#Services").val("Select");
+                        $("#AwardAmount").add($("#PayableAmount")).val("");
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        $(".loader").fadeOut();
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            });
+
+            $("#btn-save-insuance-details").click(function () {
+                var tariffId = $("#Tariff").find(":selected").attr("data-tariff-id");
+                if (typeof (tariffId) === "undefined") {
+                    alert("Select Scheme");
+                    return false;
+                }
+
+                $(".loader").show();
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        "OPDNo": $("#OPDNo").val(),
+                        "TariffId": tariffId,
+                    },
+                    url: "registration/SaveInsuranceDetails/",
+                    headers: {
+                        "authToken": ""
+                    },
+                    success: function (result) {
+                        $("#provisional-bill-items").html(result);
+                        showNotification("Insurance details saved successfully!", "success", true)
+                        $(".loader").fadeOut();
+                        $("#insurance-details-modal").modal("hide");
+                        console.log(result);
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        $(".loader").fadeOut();
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+
+            });
+
+            $("#Department").on("change", function () {
+                var deptId = $(this).find("option:selected").attr("data-dept-id");
+                getMyServices(deptId);
+            });
+
+            function getMyServices(deptId) {
+                $.ajax({
+                    type: "GET",
+                    url: "registration/services/" + deptId,
+                    headers: {
+                        "authToken": ""
+                    },
+                    success: function (result) {
+                        $("#Services").html(result);
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            }
+
+            $("#Services").on("change", function () {
+                var tariff = $("#Tariff").find(":selected").attr("data-tariff-id");
+                var serviceId = $(this).find(":selected").attr("data-service-id");
+                if (typeof (tariff) === "undefined") {
+                    tariff = 0; //cash
+                }
+                if ($("#OPDMainCategory").find(":selected").text() === "Insurance" && tariff === 0) {
+                    alert("Complete Insurance Details Registration First.");
+                } else {
+
+                    getAwardAndPayableAmounts(serviceId);
+                }
+
+
+            });
+
+            function getAwardAndPayableAmounts(serviceId) {
+                $.ajax({
+                    type: "POST",
+                    url: "registration/ServiceAwardAmount/",
+
+                    data: {
+                        "OPDNo": $("#OPDNo").val(),
+                        "ServiceId": serviceId,
+                        "Price": 0,
+                        "Award":0
+                    },
+
+                    headers: {
+                        "authToken": ""
+                    },
+                    success: function (obj) {
+                        console.log(obj);
+                        //var obj = $.parseJSON(result);
+                        $("#AwardAmount").val(obj.Award);
+                        $("#PayableAmount").val((obj.Price) - (obj.Award));
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            }
+
+            var previousRelation;
+            $("#MemberPatientRelationship").focus(function () {
+                previousRelation = $(this).val();
+            }).change(function () {
+                var newRelationship = $(this).val();
+                if (previousRelation === "Self") {
+                    //not the owner any more
+                    $("input.insurance-owner").each(function () {
+                        $(this).val("");
+                    });
+                } else if (newRelationship === "Self") {
+                    //repopulate the fields marked .insurance-owner with the patients values
+                }
+            });
+
+            $("#OPDMainCategory").on("change", function () {
+                var mainCatId = $(this).find("option:selected").attr("data-main-cat-id");
+                var link = '@Url.Action("PatientCategories", "Registration", new { id = "-1" })';
+                link = link.replace("-1", mainCatId);
+                //getPatientcategories
+                $.ajax({
+                    type: "GET",
+                    url: link,
+                    headers: {
+                        "authToken": ""
+                    },
+                    success: function (result) {
+                        $("#OPDPatientCategory").html(result);
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+
+            });
+
+            $("#OPDPatientCategory").on("change", function () {
+                var id = $("#OPDPatientCategory option:selected").attr("data-pat-cat-id");
+                var patCatName = find("option:selected").text().toLowerCase();
+                alert(patCatName);
+                $("#InsuranceCompanyName option[data-pat-cat-id=" + id + "]").prop('selected', true);
+                if (patCatName == "insurance") {
+                    $("#insurance-details-modal").modal("show");
+                }
+               
+                getInsuranceSchemes(id);
+            });
+
+            $("#InsuranceCompanyName").on("change", function () {
+                var id = $("#InsuranceCompanyName option:selected").attr("data-pat-cat-id");
+                $("#OPDPatientCategory option[data-pat-cat-id=" + id + "]").prop('selected', true);
+                getInsuranceSchemes(id);
+            });
+
+            function getInsuranceSchemes(id) {
+                $.ajax({
+                    type: "GET",
+                    url: "registration/tariffs/"+id,
+                    headers: {
+                        "authToken": ""
+                    },
+                    success: function (result) {
+                        $("#Tariff").html(result);
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            }
+
+            $("#save-opd-form").click(function () {
+                $(".loader").show();
+                if ($("#emergency").is(":checked")) {
+                    $("input[name=Status]").val("Emergency");
+                }
+
+                var data = $("form[name=OPDRegistrationForm]").serialize();
+
+                $.ajax({
+                    type: "POST",
+                    url: "registration/FinalizeOpdRegistration/",
+                    data: data,
+                    headers: {
+                        "authToken": ""
+                    },
+                    success: function (result) {
+                        $(".loader").hide();
+                        console.log(result);
+                        if (result.Status === "Success") {
+                            $("#opd-registration").modal("hide");
+                        }
+
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        $(".loader").hide();
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            });*@
+        }
+
+        $("input[name=regType]").each(function () {
+            $(this).click(function () {
+                $("#revisit_patient_id").val("0");
+                var checked_radio = $("input[name=regType]:checked");
+
+                $(".radio-bound").each(function () {
+                    if ($(this).attr("data-boubd-radio") === checked_radio.val()) {
+                        $(this).prop('disabled', false);
+                    } else {
+                        $(this).prop('disabled', true);
+                    }
+                })
+
+            });
+         });
+
+         $("#OPDMainCategory").on("change", function () {
+                var mainCatId = $(this).find("option:selected").attr("data-main-cat-id");
+                var link = '@Url.Action("PatientCategories", "Registration", new { id = "-1" })';
+                link = link.replace("-1", mainCatId);
+                //getPatientcategories
+                $.ajax({
+                    type: "GET",
+                    url: link,
+                    headers: {
+                        "authToken": ""
+                    },
+                    success: function (result) {
+                        $("#OPDPatientCategory").html(result);
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+
+        });
+
+
+
+
+    </script>   
+}

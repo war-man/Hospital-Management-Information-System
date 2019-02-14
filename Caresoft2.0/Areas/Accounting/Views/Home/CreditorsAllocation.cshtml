@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "CreditorsAllocation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+}
+
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Creditors Allocation
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                        Creditor:
+                                </td>
+                                <td>
+                                    <select name="Creditor" class="text-box margin-top-bottom-2" style="width:100%">
+                                        <option>--Select--</option>
+                                    </select>
+                                </td>                                
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>
+                                        Period From:
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="date" name="PeriodFrom" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Period To:
+                                </td>
+                                <td>
+                                    <input type="date" name="PeriodTo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <input type="checkbox" value="ComfirmPeriod" /> Confirm Period
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Voucher No:
+                                </td>
+                                <td>
+                                    <input type="number" name="VoucherNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Account No:
+                                </td>
+                                <td>
+                                    <input type="number" name="AccNo" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Bank Account:
+                                </td>
+                                <td>
+                                    <input name="BankAcc" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Bank Name:
+                                </td>
+                                <td>
+                                    <input name="BankName" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ChequeNo:
+                                </td>
+                                <td>
+                                    <input type="number" name="ChequeNo" class="text-box margin-top-bottom-2" style="width:100%" readonly/>
+                                </td>
+                                <td>
+                                    &nbsp; Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="Amount" class="text-box margin-top-bottom-2" style="width:100%" readonly/>
+                                </td>
+                                <td>
+                                    &nbsp; Cheque Date:
+                                </td>
+                                <td>
+                                    <input type="date" name="ChequeDate" class="text-box margin-top-bottom-2" style="width:100%" readonly />
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    &nbsp;
+                    <div class="col-md-12">
+                        <table class="table table-data-pathology table-condensed">
+                            <tr>
+                                <th>Date</th>
+                                <th>Inv No</th>
+                                <th>A/C No</th>
+                                <th>Orig Amount</th>
+                                <th>Amount to Allocate</th>
+                                <th>Balance</th>
+                                <th>Allocate</th>
+                            </tr>
+                            <tbody style="background-color: white">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <input type="checkbox" name="Allocate" value="Allocate" style="width:100%" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td>
+                                    Allocatale Balance:
+                                </td>
+                                <td>
+                                    <input type="number" name="AllocatableBalance" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                                <td>
+                                    &nbsp; Allocated Amount:
+                                </td>
+                                <td>
+                                    <input type="number" name="AllocateAmount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Allocate</button>
+                        <button type="reset" class="btn btn-default margin-top-bottom-2">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

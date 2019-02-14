@@ -1,0 +1,75 @@
+﻿@model CaresoftHMISDataAccess.Patient
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Identity Card</h2>
+<button style="float:right" class="btn btn-primary btn-sm" title="Print ID" id="print-id"><i class="fa fa-print"></i></button>
+<div class="row" id="printable-area">
+    <div class="col-sm-4 id-card id-front">
+        <div class="id-heading">
+            <img class="id-company-logo" align="left" />
+            <p class="text-center text-large">Kenyatta National Hospital</p>
+            <p class="text-center text-medium">MEDICAL CARD</p>
+        </div>
+        <img class="id-holder-img" align="left" />
+        <table class="id-details">
+            <tr>
+                <th>Name</th>
+                <td>@Html.DisplayFor(model => model.Salutation) @Html.DisplayFor(model => model.FName) @Html.DisplayFor(model => model.MName) @Html.DisplayFor(model => model.LName)</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>@Html.DisplayFor(model => model.Gender)</td>
+            </tr>
+            <tr>
+                <th>DOB</th>
+                <td>@Html.DisplayFor(model => model.DOB)</td>
+            </tr>
+            <tr>
+                <th>Blood Group</th>
+                <td>@Html.DisplayFor(model => model.BloodGroup)
+                
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-4 id-card id-back">
+        <div class="id-barcode"></div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-offset-4">
+                        <img id="id-auth-signature" src="~/Content/icons/sample-signature.png" class="img-responsive" />
+                    </div>
+                </div>
+                <p>This identity card is the property of Kenyatta National Hospital.</p>
+                <p>If found please return to: PO Box 2201-001000 GPO, Nairobi, Kenya</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@section scripts {
+
+    <script>
+        $("#print-id").click(function () {
+            var original = $("body").html();
+            var printount = $("#printable-area");
+            $("body").html(printount);
+            window.print();
+            $("body").html(original);
+        });
+
+        
+
+    </script>
+
+}

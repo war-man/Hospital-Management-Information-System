@@ -1,0 +1,538 @@
+﻿@*@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.SimulationTreatment>*@
+@model IEnumerable<Caresoft2._0.Areas.PharmacyModule.Controllers.PharmacyPatientTransactionController.SimulationTreatmentNew>
+
+<table class="table table-data-pathology table-condensed">
+
+    <thead>
+        <tr>
+            <th colspan="13"> <p style="float:right"><strong>Total Bill : @Model.Sum(e => e.Amount)</strong></p> </th>
+        </tr>
+        <tr>
+            <th>Edit</th>
+            <th>Item Name</th>
+            <th>Batch No</th>
+            <th>Rate</th>
+            <th>Units</th>
+            <th>Amount</th>
+            <th>Curr Stock</th>
+            <th>Expiry Date</th>
+            <th>Dose</th>
+            <th>NoOfDays</th>
+            <th>Description</th>
+            <th>Save for Billing</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody style="background:white;">
+        @if (Model.Count() < 1)
+        {
+            <tr>
+                <td colspan="13" class="text-center">No Drugs to be Issued</td>
+            </tr>
+        }
+        else
+        {
+            if (Model.All(p => p.isIssued == true))
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id" disabled>Edit</button>
+                        </td>
+                        <td>@item.ItemMaster.ItemName</td>
+                        <td>@item.ItemMaster.BatchNo</td>
+                        <td>@item.Rate</td>
+                        <td>@item.units</td>
+                        <td>@item.Amount</td>
+                        <td>@item.ItemMaster.CurrentStock</td>
+                        <td></td>
+                        <td>@item.ItemMaster.Drug.Dose.Name</td>
+                        <td>@item.NoOfDays</td>
+
+                        <td>@item.Description</td>
+
+                        <td style="text-align:center">
+                            <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" checked disabled />
+                        </td>
+                        <td>
+                            <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id" disabled>Delete</button>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+
+                if (Model.Any(p => p.isIssued == true))
+                {
+                    foreach (var item in Model)
+                    {
+
+                        if (item.DrugIsNotInHospitalDataBase == true)
+                        {
+
+                            <tr style="background-color:purple; color:white;">
+                                <td>
+                                    <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id" disabled>Edit</button>
+                                </td>
+                                <td>@item.ItemMaster.ItemName</td>
+                                <td>@item.ItemMaster.BatchNo</td>
+                                <td>@item.Rate</td>
+                                <td>@item.units</td>
+                                <td>@item.Amount</td>
+                                <td>@item.ItemMaster.CurrentStock</td>
+                                <td></td>
+                                <td>@item.ItemMaster.Drug.Dose.Name</td>
+                                <td>@item.NoOfDays</td>
+
+                                <td>@item.Description</td>
+
+                                <td style="text-align:center">
+                                    <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" disabled />
+                                </td>
+                                <td>
+                                    <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id" disabled>Delete</button>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            if (item.isIssued == true)
+                            {
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id" disabled>Edit</button>
+                                    </td>
+                                    <td>@item.ItemMaster.ItemName</td>
+                                    <td>@item.ItemMaster.BatchNo</td>
+                                    <td>@item.Rate</td>
+                                    <td>@item.units</td>
+                                    <td>@item.Amount</td>
+                                    <td>@item.ItemMaster.CurrentStock</td>
+                                    <td></td>
+                                    <td>@item.ItemMaster.Drug.Dose.Name</td>
+                                    <td>@item.NoOfDays</td>
+
+                                    <td>@item.Description</td>
+
+                                    <td style="text-align:center">
+                                        <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" disabled checked />
+                                    </td>
+
+                                    <td>
+                                        <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id" disabled>Delete</button>
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                if (item.isPaid == true)
+                                {
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id" disabled>Edit</button>
+                                        </td>
+                                        <td>@item.ItemMaster.ItemName</td>
+                                        <td>@item.ItemMaster.BatchNo</td>
+                                        <td>@item.Rate</td>
+                                        <td>@item.units</td>
+                                        <td>@item.Amount</td>
+                                        <td>@item.ItemMaster.CurrentStock</td>
+                                        <td></td>
+                                        <td>@item.ItemMaster.Drug.Dose.Name</td>
+                                        <td>@item.NoOfDays</td>
+
+                                        <td>@item.Description</td>
+
+                                        <td style="text-align:center">
+                                            <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" checked disabled />
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id" disabled>Delete</button>
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    if (item.Available == true)
+                                    {
+
+                                        <tr>
+
+                                            <td>
+                                                <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id">Edit</button>
+                                            </td>
+                                            <td>  @item.ItemMaster.ItemName</td>
+                                            <td>@item.ItemMaster.BatchNo</td>
+                                            <td>@item.Rate</td>
+                                            <td>@item.units</td>
+                                            <td>@item.Amount</td>
+                                            <td>@item.ItemMaster.CurrentStock</td>
+                                            <td></td>
+                                            <td>@item.ItemMaster.Drug.Dose.Name</td>
+
+                                            <td>@item.NoOfDays</td>
+
+                                            <td>@item.Description</td>
+
+                                            @if (item.Available == true)
+                                            {
+                                                <td style="text-align:center">
+                                                    <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" checked />
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td style="text-align:center">
+                                                    <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" />
+                                                </td>
+                                            }
+
+                                            <td>
+                                                <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id">Delete</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        if (item.DrugIsNotInHospitalDataBase == true)
+                                        {
+                                            <tr style="background-color:purple;color:white;">
+                                                <td>
+                                                    <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id" disabled>Edit</button>
+                                                </td>
+                                                <td>@item.ItemMaster.ItemName</td>
+                                                <td>@item.ItemMaster.BatchNo</td>
+                                                <td>@item.Rate</td>
+                                                <td>@item.units</td>
+                                                <td>@item.Amount</td>
+                                                <td>@item.ItemMaster.CurrentStock</td>
+                                                <td></td>
+                                                <td>@item.ItemMaster.Drug.Dose.Name</td>
+                                                <td>@item.NoOfDays</td>
+
+                                                <td>@item.Description</td>
+
+                                                <td style="text-align:center">
+                                                    <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" disabled />
+                                                </td>
+
+                                                <td>
+                                                    <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id" disabled>Delete</button>
+                                                </td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id">Edit</button>
+                                                </td>
+                                                <td>@item.ItemMaster.ItemName</td>
+                                                <td>@item.ItemMaster.BatchNo</td>
+                                                <td>@item.Rate</td>
+                                                <td>@item.units</td>
+                                                <td>@item.Amount</td>
+                                                <td>@item.ItemMaster.CurrentStock</td>
+                                                <td></td>
+                                                <td>@item.ItemMaster.Drug.Dose.Name</td>
+                                                <td>@item.NoOfDays</td>
+
+                                                <td>@item.Description</td>
+
+                                                <td style="text-align:center">
+                                                    <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" />
+                                                </td>
+
+                                                <td>
+                                                    <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id">Delete</button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (Model.All(p => p.isPaid == true))
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id" disabled>Edit</button>
+                                </td>
+                                <td>@item.ItemMaster.ItemName</td>
+                                <td>@item.ItemMaster.BatchNo</td>
+                                <td>@item.Rate</td>
+                                <td>@item.units</td>
+                                <td>@item.Amount</td>
+                                <td>@item.ItemMaster.CurrentStock</td>
+                                <td></td>
+                                <td>@item.ItemMaster.Drug.Dose.Name</td>
+                                <td>@item.NoOfDays</td>
+
+                                <td>@item.Description</td>
+
+                                <td style="text-align:center">
+                                    <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" checked disabled />
+                                </td>
+                                <td>
+                                    <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id" disabled>Delete</button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        if (Model.Any(p => p.isPaid == true))
+                        {
+                            foreach (var item in Model)
+                            {
+                                if (item.DrugIsNotInHospitalDataBase == true)
+                                {
+                                    <tr style="background-color:purple;color:white;">
+                                        <td>
+                                            <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id" disabled>Edit</button>
+                                        </td>
+                                        <td>@item.ItemMaster.ItemName</td>
+                                        <td>@item.ItemMaster.BatchNo</td>
+                                        <td>@item.Rate</td>
+                                        <td>@item.units</td>
+                                        <td>@item.Amount</td>
+                                        <td>@item.ItemMaster.CurrentStock</td>
+                                        <td></td>
+                                        <td>@item.ItemMaster.Drug.Dose.Name</td>
+                                        <td>@item.NoOfDays</td>
+
+                                        <td>@item.Description</td>
+
+                                        <td style="text-align:center">
+                                            <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" checked disabled />
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id" disabled>Delete</button>
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    if (item.isPaid == true)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id" disabled>Edit</button>
+                                            </td>
+                                            <td>@item.ItemMaster.ItemName</td>
+                                            <td>@item.ItemMaster.BatchNo</td>
+                                            <td>@item.Rate</td>
+                                            <td>@item.units</td>
+                                            <td>@item.Amount</td>
+                                            <td>@item.ItemMaster.CurrentStock</td>
+                                            <td></td>
+                                            <td>@item.ItemMaster.Drug.Dose.Name</td>
+                                            <td>@item.NoOfDays</td>
+
+                                            <td>@item.Description</td>
+
+                                            <td style="text-align:center">
+                                                <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" checked disabled />
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id" disabled>Delete</button>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td>
+                                                <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id">Edit</button>
+                                            </td>
+                                            <td>@item.ItemMaster.ItemName</td>
+                                            <td>@item.ItemMaster.BatchNo</td>
+                                            <td>@item.Rate</td>
+                                            <td>@item.units</td>
+                                            <td>@item.Amount</td>
+                                            <td>@item.ItemMaster.CurrentStock</td>
+                                            <td></td>
+                                            <td>@item.ItemMaster.Drug.Dose.Name</td>
+                                            <td>@item.NoOfDays</td>
+
+                                            <td>@item.Description</td>
+
+                                            <td style="text-align:center">
+                                                <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" checked />
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id">Delete</button>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (Model.Any(p => p.Available == true))
+                            {
+                                foreach (var item in Model)
+                                {
+                                    if (item.DrugIsNotInHospitalDataBase == true)
+                                    {
+                                        <tr style="background-color:purple;color:white;">
+                                            <td>
+                                                <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id" disabled>Edit</button>
+                                            </td>
+                                            <td>@item.ItemMaster.ItemName</td>
+                                            <td>@item.ItemMaster.BatchNo</td>
+                                            <td>@item.Rate</td>
+                                            <td>@item.units</td>
+                                            <td>@item.Amount</td>
+                                            <td>@item.ItemMaster.CurrentStock</td>
+                                            <td></td>
+                                            <td>@item.ItemMaster.Drug.Dose.Name</td>
+                                            <td>@item.NoOfDays</td>
+
+                                            <td>@item.Description</td>
+
+                                            <td style="text-align:center">
+                                                <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" disabled />
+                                            </td>
+
+                                            <td>
+                                                <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id" disabled>Delete</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td>
+                                                <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id">Edit</button>
+                                            </td>
+                                            <td>@item.ItemMaster.ItemName</td>
+                                            <td>@item.ItemMaster.BatchNo</td>
+                                            <td>@item.Rate</td>
+                                            <td>@item.units</td>
+                                            <td>@item.Amount</td>
+                                            <td>@item.ItemMaster.CurrentStock</td>
+                                            <td></td>
+                                            <td>@Html.DisplayFor(model => item.ItemMaster.Drug.Dose.Name)</td>
+                                            <td>@item.NoOfDays</td>
+
+                                            <td>@item.Description</td>
+
+                                            @if (item.Available == true)
+                                            {
+                                                <td style="text-align:center">
+                                                    <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" checked />
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td style="text-align:center">
+                                                    <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" />
+                                                </td>
+                                            }
+
+                                            <td>
+                                                <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id">Delete</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                foreach (var item in Model)
+                                {
+                                    if (item.DrugIsNotInHospitalDataBase == true)
+                                    {
+                                        <tr style="background-color:purple;color:white;">
+                                            <td>
+                                                <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id" disabled>Edit</button>
+                                            </td>
+                                            <td>@item.ItemMaster.ItemName</td>
+                                            <td>@item.ItemMaster.BatchNo</td>
+                                            <td>@item.Rate</td>
+                                            <td>@item.units</td>
+                                            <td>@item.Amount</td>
+                                            <td>@item.ItemMaster.CurrentStock</td>
+                                            <td></td>
+                                            <td>@item.ItemMaster.Drug.Dose.Name</td>
+                                            <td>@item.NoOfDays</td>
+
+                                            <td>@item.Description</td>
+
+                                            <td style="text-align:center">
+                                                <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" disabled />
+                                            </td>
+
+                                            <td>
+                                                <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id" disabled>Delete</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td>
+                                                <button class="btn btn-xs btn-primary btnEditDrug" data-id="@item.Id">Edit</button>
+                                            </td>
+                                            <td>@item.ItemMaster.ItemName</td>
+                                            <td>@item.ItemMaster.BatchNo</td>
+                                            <td>@item.Rate</td>
+                                            <td>@item.units</td>
+                                            <td>@item.Amount</td>
+                                            <td>@item.ItemMaster.CurrentStock</td>
+                                            <td></td>
+                                            <td>@item.ItemMaster.Drug.Dose.Name</td>
+                                            <td>@item.NoOfDays</td>
+
+                                            <td>@item.Description</td>
+
+                                            <td style="text-align:center">
+                                                <input type="checkbox" name="availability" data-id="@item.Id" class="checkbox" />
+                                            </td>
+
+                                            <td>
+                                                <button class="btn btn-xs btn-primary btnDelete" style="text-align:center" data-id="@item.Id">Delete</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </tbody>
+</table>
+
+
+@* this section is for walk in patients*@
+<div class="collapse" id="MessageForWalkin">
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px"> <strong>Patients Walk in Id</strong></p>
+        </div>
+        <div class="panel-body">
+            <div style="text-align:center">
+                @if (ViewBag.TheBillingUserId != null)
+                {
+                    <p>The patients Walk IN number is <h3 id="TheBillingUserId"># @ViewBag.TheBillingUserId.ToString()</h3></p>
+                }
+            </div>
+
+
+        </div>
+    </div>
+</div>

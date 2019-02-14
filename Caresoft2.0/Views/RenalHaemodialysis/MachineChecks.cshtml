@@ -1,0 +1,219 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+
+@{
+    var myProfile = new CaresoftHMISDataAccess.RenalMachineCheck();
+
+    if (Model.OpdRegister.RenalMachineChecks != null)
+    {
+        myProfile = Model.OpdRegister.RenalMachineChecks
+            .OrderByDescending(e => e.Id).FirstOrDefault();
+    }
+
+    var relationships = (List<CaresoftHMISDataAccess.Relationship>)ViewBag.Relationships;
+    var maritals = (List<CaresoftHMISDataAccess.MaritalStatu>)ViewBag.Maritals;
+
+    var tests = (List<CaresoftHMISDataAccess.MasterPostNatalTest>)ViewBag.MasterPostNatalTests;
+
+    ViewBag.WideView = true;
+    ViewBag.Title = "Machine Checks";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>Machine Checks</p>
+    </div>
+    <style>
+        input.box-sm {
+            width: 120px
+        }
+    </style>
+    <div class="panel-body">
+        <form id="maternal_profile" method="post" action="@Url.Action("SaveMachineCheck", "RenalHaemodialysis")">
+            <input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+            <fieldset>
+
+                <table class="table-form marg-top-16px">
+
+
+
+                    <tr>
+                        <td>
+                            <label>
+                                Staff Setting Machine
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" name="Staff" class="text-box box-lg" required />
+                        </td>
+
+
+                    </tr>
+
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label for="BloodLeak">
+                                Blood Leak Tested On
+                            </label>
+                        </td>
+                        <td>
+                            <input name="BloodLeak" required type="time" class="text-box box-lg" />
+                        </td>
+                        <td>
+                            <label>
+                                Air Detect Tested On
+                            </label>
+                        </td>
+                        <td>
+                            <input type="time" name="AirDetect" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>
+                                Temperature
+                            </label>
+                        </td>
+                        <td>
+                            <input type="number" name="Temperature" class="text-box box-lg" required />
+                        </td>
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label>Conductivity</label>
+                        </td>
+                        <td>
+                            <input type="text" name="Conductivity" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>Dialysis p.</label>
+                        </td>
+                        <td>
+                            <input type="text" name="DialysisP" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>TMP ON</label>
+                        </td>
+                        <td>
+                            <input type="text" name="TMP" class="text-box box-lg" required />
+                        </td>
+
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+                    <tr>
+                        <td>
+                            <label>
+                                Rej.Rate
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" name="RejRAte" class="text-box box-lg" required />
+                        </td>
+
+
+                    </tr>
+
+
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label>Time Due</label>
+                        </td>
+                        <td>
+                            <input type="time" name="TimeDue" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>Nurse commencing Dialysis.</label>
+                        </td>
+                        <td>
+                            <input type="text" name="InitiatingNurse" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>No. Clamps</label>
+                        </td>
+                        <td>
+                            <input type="number" name="InitialClamps" class="text-box box-lg" required />
+                        </td>
+
+                    </tr>
+
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <tr>
+                        <td>
+                            <label>Time Off</label>
+                        </td>
+                        <td>
+                            <input type="time" name="TimeOff" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>Nurse Discontinuing Dialysis.</label>
+                        </td>
+                        <td>
+                            <input type="text" name="TerminatingNurse" class="text-box box-lg" required />
+                        </td>
+                        <td>
+                            <label>No. Clamps</label>
+                        </td>
+                        <td>
+                            <input type="number" name="FinalClamps" class="text-box box-lg" required />
+                        </td>
+
+                    </tr>
+
+
+
+
+                </table>
+                <input type="submit" class="btn btn-sm btn-primary " value="Save" />
+
+                @Html.ActionLink("Continue", "DialysisInfo", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+@style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+
+                @Html.ActionLink("Previous", "DialysisOrder", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
+@style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+
+
+
+
+            </fieldset>
+
+        </form>
+
+        <div>
+            @Html.Partial("MachineChecksList", Model.OpdRegister.RenalMachineChecks)
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        getRecentInfo();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+
+        function showModal() {
+            $('#UniversalModal').modal('show');
+        }
+    </script>
+}

@@ -1,0 +1,259 @@
+﻿@model CaresoftHMISDataAccess.Patient
+@{
+    Layout = "~/Areas/HIV/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+}
+<div class="col-md-8">
+    <div class="col-md-2">
+
+
+    </div>
+</div>
+
+
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-primary caresoft-panel glass shadow">
+        <div class="panel-heading">
+            HIV Registration
+        </div>
+        <div class="panel-body">
+            <form method="get">
+                <div class="col-md-12"></div>
+                <div class="form-group"></div>
+
+
+                <fieldset style="max-width:300px;margin-left:170px;">
+                    <div >
+
+                        <input type="radio" name="details" id="OPD"disabled="disabled" />
+                        <label for="O">OPD</label>
+
+                        <input type="radio" name="details" id="IPD" disabled="disabled"/>
+                        <label for="I">IPD</label>
+
+                        <input type="radio" name="details" id="Casuality"disabled="disabled" />
+                        <label for="C">Casuality</label>
+
+                        <input type="radio" name="details" id="Lab" disabled="disabled"/>
+                        <label for="L">Lab</label>
+
+                        <input type="radio" name="details" id="HIV"checked />
+                        <label for="H">HIV</label>
+
+
+                    </div>
+                </fieldset>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td> Name/RegNo</td>
+                            <td><input value="@Model.RegNumber @Model.FName @Model.LName" class="text-box marg-top-6px" style="width:140px; margin-right:50px; margin-left:15px;margin-bottom:15px;" type="text" id="normal" /></td>
+
+                            <td>Claim Number </td>
+                            <td><input class="text-box marg-top-6px" style="width:140px; margin-left:-100px; margin-bottom:15px;" type="text" id="normal" /></td>
+                        </tr>
+                        <tr>
+                            <td>Bill Groups</td>
+                            <td>
+                                <select id="Bill Groups" class="text-box" style="width:140px; margin-right:50px; margin-left:15px;margin-bottom:15px;">
+                                    <option>--Select Bill Group--</option>
+                                    <option>Consultation</option>
+                                    <option>Domiciliary Visiting Within A Radius Of 7km</option>
+                                    <option>Injections</option>
+                                    <option>Procedures & Intervention</option>
+                                    <option>Miscellaneous</option>
+                                    <option>Dental Procedure Charges</option>
+                                    <option>ECG Charges</option>
+                                    <option>EEG Charges</option>
+                                    <option>Haemo Dialysis Charges</option>
+                                    <option>Peritonial Dialysis Charges</option>
+                                    <option>Hearing Aid Devices</option>
+                                    <option>Incubator Charges</option>
+                                    <option>Nursing Care Charges</option>
+                                    <option>Chemotheraphy Planning Charges</option>
+                                    <option>Orthopedic Charges</option>
+                                    <option>Photo Therapy Charges</option>
+                                    <option>Physiotherapy Charges</option>
+                                    <option>Pure Tone Audiometry Charges</option>
+                                    <option>Speech Therapy Charges</option>
+                                    <option>TMT Charges</option>
+                                    <option>Maintenance</option>
+                                    <option>Medical Care Charges</option>
+                                    <option>Registration</option>
+                                    <option>OPD Dressing</option>
+                                    <option>OPD Consultant</option>
+                                    <option>Immunization Charges</option>
+                                    <option>Stiching Charges</option>
+                                    <option>Dressing Charges</option>
+
+                                </select>
+                            </td>
+
+                            <td>Department </td>
+                            <td>
+                                <select disabled="disabled" class="text-box" placeholder="HIV" style=" margin-right:50px; margin-left:-100px;width:140px;margin-bottom:15px;">
+                                    <option>HIV</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Services</td>
+                            <td>
+                                <select id="Bill Groups" class="text-box" style="width:140px; margin-right:50px; margin-left:15px;margin-bottom:15px;">
+                                    <option>--Select Service--</option>
+                                    <option>Consultation Charge</option>
+                                    <option>room consultation</option>
+                                    <option>Medical Exam Charges</option>
+                                    <option>Medical Records Charges</option>
+                                </select>
+                            </td>
+                            <td> Referring Doctor</td>
+                            <td>
+                                <input class="text-box marg-top-6px" style="width:140px; margin-right:50px; margin-left:-100px;margin-bottom:15px;" type="text" id="normal" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Award Amout</td>
+                            <td><input class="text-box marg-top-6px" placeholder="0" style="width:140px; margin-right:50px; margin-left:15px;margin-bottom:15px;" type="text"id="normal" /></td>
+                            <td>Consultant Doctor</td>
+                            <td>
+                                <select id="Consultant Doctor" class="text-box" style="width:140px; margin-right:50px; margin-left:-100px;margin-bottom:15px;">
+                                    <option>--Select Doctor--</option>
+                                    <option>Dr. Pasanna</option>
+                                    <option>Dr. Shreyas Sharma</option>
+
+                                </select>
+                        </tr>
+                        <tr>
+
+                            <td> Shortfall Amount</td>
+                            <td>
+                                <input class="text-box marg-top-6px" style="width:140px; margin-right:50px; margin-left:15px;margin-bottom:15px;" type="text" id="normal" />
+                            </td>
+                            <td>
+                                <label class="info-title col-md-12" value="Enter Complaints"or="black_name">Complaints <span><font color="black"><b></b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <textarea style="width:100%;height: 120px;" class="text-box unicase-form-control text-input" name="Complaint" id="extension_number"
+                                          placeholder="Enter Complaints" value="Enter Complaints">
+                                        
+                                    </textarea>
+                            </td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Shortfall Amount Paid By</td>
+                            <td>
+                                <select id="Shortfall Amount Paid By" class="text-box" style="width:140px; margin-right:50px; margin-left:15px;margin-bottom:15px;">
+                                    <option>--Select Paid By--</option>
+                                    <option>Self</option>
+                                    <option>Insurance</option>
+                                </select>
+                            </td>
+                            <td> Relation</td>
+                            <td><input class="text-box marg-top-6px" placeholder="Relation" style="width:140px;  margin-left:-150px;margin-bottom:15px;" type="text" id="normal"/>
+
+                        </tr>
+                        <tr>
+                            <td> Name of Kin</td>
+                            <td>
+                                <input value="@Model.KinFName" class="text-box marg-top-6px" placeholder="Kin Name"  style="width:140px; margin-right:50px; margin-left:15px;margin-bottom:15px;" type="text" id="normal"/>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><input id="Button1" class="btn btn-sm btn-primary" type="submit" value="Add" /></td>
+                            <td></td>
+                            
+                            <td>
+                                <input id="Checkbox1" type="checkbox" disabled /> <label>Referral-in</label>
+                                <input id="Checkbox1" type="checkbox" disabled /> <label>Counter Referral</label>
+                                <input id="Checkbox1" type="checkbox" disabled /> <label>Referral By CHW</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                                                       
+                            <td>
+                              Referring Facility
+                            </td>
+                            <td>
+                                
+                                <textarea style="width:100%;height: 120px; margin-left:-5px;" class="text-box unicase-form-control text-input" name="Referring Facility" id="extension_number"
+                                          placeholder="Referring Facility" >
+                                        
+                                    </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+
+
+
+                </table>
+                <fieldset>
+                    <legend>Medico Legal</legend>
+                    <table>
+                        <tr>
+
+                            <td>Brought By</td>
+                            <td><input class="text-box marg-top-6px" placeholder="Brought By" style="width:140px; margin-right:50px; margin-left:15px;margin-bottom:15px;" type="text" id="normal"/></td>
+                            <td>MLC No</td>
+                            <td><input class="text-box marg-top-6px" placeholder="MLC No" style="width:140px; margin-right:50px; margin-left:15px;margin-bottom:15px;" type="text" id="normal" /></td>
+                            <td>Police Station Name</td>
+                            <td><input class="text-box marg-top-6px" style="width:140px; margin-right:50px; margin-left:15px;margin-bottom:15px;" type="text" id="normal" /></td>
+
+                        </tr>
+                    </table>
+                </fieldset>
+                <table class="table table-data table-bordered table-condensed">
+                    <tr>
+                        <th>No</th>
+                        <th>Dr Name</th>
+                        <th>Service</th>
+                        <th>Award</th>
+                        <th>ShortFall</th>
+                        <th>Delete</th>
+                    </tr>
+                    </table>
+                <table  class="table table-data table-condensed"background-color:white >
+                    <tr>
+                        <th>No data to display</th>
+                    </tr>
+                </table>
+                    
+                         
+
+                    <table class="table table-data table-bordered table-condensed">
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Sum=</th>
+                        <th>Sum=</th>
+                        <th></th>
+                    </tr>
+                </table>
+                    
+                       <input id="Button1" class="btn btn-sm btn-primary" type="submit" value="Save" />
+                       <input id="Button1" class="btn btn-sm btn-primary" type="submit" value="Clear" />
+                    
+                        
+                            <fieldset>
+                                <legend>Patient Detail</legend>
+                            </fieldset>
+                        
+                
+
+
+
+
+            </form>
+        </div>
+
+    </div>
+  
+
+</div>
+

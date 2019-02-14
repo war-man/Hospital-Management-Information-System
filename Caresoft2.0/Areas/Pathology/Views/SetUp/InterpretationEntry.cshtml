@@ -1,0 +1,121 @@
+﻿@model LabsDataAccess.InterpretationEntry
+@{
+    ViewBag.Title = "Interpretation Entry";
+    ViewBag.ShowTopMenu = true;
+    Layout = ViewBag.Layout;
+
+}
+
+
+<div class="col-xs-6 col-xs-offset-3">
+
+    <br />
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel-heading" style="height:40px ; ">
+            <h5 style="font-weight:bold">@ViewBag.Title </h5>
+        </div>
+
+        <div class="panel-body">
+            <form class="form-horizontal" id="TypeSelectionForm" method="get">
+
+                <div class="form-group">
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-10 col-xs-offset-1 text-center">
+
+                        @if (ViewBag.Selected.Equals("TestCode"))
+                        {
+                            <label class="radio-inline cust-text-bold"><input type="radio" name="Type" value="TestCode" checked="checked">Test Code</label>
+                            <label class="radio-inline cust-text-bold"><input type="radio" name="Type" value="Profiles">Profiles</label>
+                        }
+                        else if (ViewBag.Selected.Equals("Profiles"))
+                        {
+                            <label class="radio-inline cust-text-bold"><input type="radio" name="Type" value="TestCode">Test Code</label>
+                            <label class="radio-inline cust-text-bold"><input type="radio" name="Type" value="Profiles" checked="checked">Profiles</label>
+                        }
+
+
+                    </div>
+                </div>
+            </form>
+
+            @using (Html.BeginForm(new { Type = ViewBag.Selected }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+
+
+                    <div class="form-group">
+                        <span id="SelectedOption" class="col-xs-2"> @ViewBag.Selected</span>
+                        <div class="col-xs-9">
+
+                            @if (ViewBag.Selected.Equals("TestCode"))
+                            {
+                                @Html.DropDownList("Test", ViewBag.Test as IEnumerable<SelectListItem>, "Select Test", htmlAttributes: new { @class = "text-box", style = "width: 60%;", id = "Test", onchange = "getTestInterpretationData()" })
+                                @Html.ValidationMessage("Test", new { @class = "text-danger" })
+                            }
+                            else if (ViewBag.Selected.Equals("Profiles"))
+                            {
+                                @Html.DropDownList("Profiles", ViewBag.Test as IEnumerable<SelectListItem>, "Select Profile", htmlAttributes: new { @class = "text-box", style = "width: 60%;", id = "Test", onchange = "getTestInterpretationData()" })
+                                @Html.ValidationMessage("Profiles", new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "col-xs-12" })
+                        <div class="col-xs-12">
+                            @Html.TextAreaFor(model => model.Data, new { @class = "text-box ckeditor", style = "width: 100%", id = "Data" })
+                            @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-0 col-xs-10">
+                            <input type="submit" value="Add" class="btn btn-primary btn-sm" />
+                            <input type="button" value="Save Remark" class="btn btn-primary btn-sm" />
+                            <input type="button" value="List" class="btn btn-primary btn-sm" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+
+    <script>
+        function getTestInterpretationData() {
+            $.get("getInterpretationData?id=" + $('#Test').val() + "&Type=" + $('#SelectedOption').text().trim(), function (data, status) {
+
+
+                if (status == 'success') {
+                    CKEDITOR.instances.Data.setData("", function () {
+                        this.checkDirty();  // true
+                    });
+                    CKEDITOR.instances.Data.setData(data.Data, function () {
+                        this.checkDirty();  // true
+                    });
+                } else {
+                    alert("Data: " + data + "\nStatus: " + status);
+                }
+            });
+        }
+
+        $('input:radio[name="Type"]').change(
+            function () {
+                $("#TypeSelectionForm").submit();
+            });
+
+
+
+    </script>
+
+
+
+}

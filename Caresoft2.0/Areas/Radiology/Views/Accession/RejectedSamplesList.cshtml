@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LabsDataAccess.WorkOrderTest>
+
+
+<table class="table table-bordered table-condensed table-data table-fixed table-header-fixed">
+    <thead class="bg-primary">
+        <tr class="table-primary">
+            <th style="width:40px"></th>
+            <th>Lab No</th>
+            <th>Patient Name</th>
+            <th>Sex</th>
+            <th>Age</th>
+            <th>C_ID</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var item in Model)
+        {
+            using (CaresoftHMISDataAccess.CaresoftHMISEntities entity = new CaresoftHMISDataAccess.CaresoftHMISEntities())
+            {
+                var patient = entity.OpdRegisters.SingleOrDefault(e => e.Id == item.WorkOrder1.OPDNo);
+
+
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WorkOrder1.LabNo)
+                    </td>
+                    <td>
+                        @patient.Patient.FName @patient.Patient.MName @patient.Patient.LName
+                    </td>
+                    <td>
+                        @patient.Patient.Gender
+                    </td>
+                    <td>
+                        @{
+                            if (patient.Patient.DOB != null)
+                            {
+                                var age = (int)((DateTime.Now - (DateTime)patient.Patient.DOB).TotalDays) / 365;
+                                @age
+
+                            }
+
+                        }
+                    </td>
+                    <td>
+                        C_ID
+                    </td>
+                </tr>
+
+            }
+
+        }
+    </tbody>
+
+</table>
+

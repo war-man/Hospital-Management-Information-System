@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReceiptsDataSet" targetNamespace="http://tempuri.org/ReceiptsDataSet.xsd" xmlns:mstns="http://tempuri.org/ReceiptsDataSet.xsd" xmlns="http://tempuri.org/ReceiptsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ReceiptsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ReceiptsDataSet" msprop:Generator_UserDSName="ReceiptsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ReceiptsData" msprop:Generator_TableClassName="ReceiptsDataDataTable" msprop:Generator_TableVarName="tableReceiptsData" msprop:Generator_TablePropName="ReceiptsData" msprop:Generator_RowDeletingName="ReceiptsDataRowDeleting" msprop:Generator_RowChangingName="ReceiptsDataRowChanging" msprop:Generator_RowEvHandlerName="ReceiptsDataRowChangeEventHandler" msprop:Generator_RowDeletedName="ReceiptsDataRowDeleted" msprop:Generator_UserTableName="ReceiptsData" msprop:Generator_RowChangedName="ReceiptsDataRowChanged" msprop:Generator_RowEvArgName="ReceiptsDataRowChangeEvent" msprop:Generator_RowClassName="ReceiptsDataRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ReceiptNo" msprop:Generator_ColumnVarNameInTable="columnReceiptNo" msprop:Generator_ColumnPropNameInRow="ReceiptNo" msprop:Generator_ColumnPropNameInTable="ReceiptNoColumn" msprop:Generator_UserColumnName="ReceiptNo" type="xs:string" minOccurs="0" />
+              <xs:element name="Payer" msprop:Generator_ColumnVarNameInTable="columnPayer" msprop:Generator_ColumnPropNameInRow="Payer" msprop:Generator_ColumnPropNameInTable="PayerColumn" msprop:Generator_UserColumnName="Payer" type="xs:string" minOccurs="0" />
+              <xs:element name="User" msprop:Generator_ColumnVarNameInTable="columnUser" msprop:Generator_ColumnPropNameInRow="User" msprop:Generator_ColumnPropNameInTable="UserColumn" msprop:Generator_UserColumnName="User" type="xs:string" minOccurs="0" />
+              <xs:element name="Mode" msprop:Generator_ColumnVarNameInTable="columnMode" msprop:Generator_ColumnPropNameInRow="Mode" msprop:Generator_ColumnPropNameInTable="ModeColumn" msprop:Generator_UserColumnName="Mode" type="xs:string" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ReportsMetaData" msprop:Generator_TableClassName="ReportsMetaDataDataTable" msprop:Generator_TableVarName="tableReportsMetaData" msprop:Generator_TablePropName="ReportsMetaData" msprop:Generator_RowDeletingName="ReportsMetaDataRowDeleting" msprop:Generator_RowChangingName="ReportsMetaDataRowChanging" msprop:Generator_RowEvHandlerName="ReportsMetaDataRowChangeEventHandler" msprop:Generator_RowDeletedName="ReportsMetaDataRowDeleted" msprop:Generator_UserTableName="ReportsMetaData" msprop:Generator_RowChangedName="ReportsMetaDataRowChanged" msprop:Generator_RowEvArgName="ReportsMetaDataRowChangeEvent" msprop:Generator_RowClassName="ReportsMetaDataRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FacilityName" msprop:Generator_ColumnVarNameInTable="columnFacilityName" msprop:Generator_ColumnPropNameInRow="FacilityName" msprop:Generator_ColumnPropNameInTable="FacilityNameColumn" msprop:Generator_UserColumnName="FacilityName" type="xs:string" minOccurs="0" />
+              <xs:element name="FacilityAddress" msprop:Generator_ColumnVarNameInTable="columnFacilityAddress" msprop:Generator_ColumnPropNameInRow="FacilityAddress" msprop:Generator_ColumnPropNameInTable="FacilityAddressColumn" msprop:Generator_UserColumnName="FacilityAddress" type="xs:string" minOccurs="0" />
+              <xs:element name="FacilityContact" msprop:Generator_ColumnVarNameInTable="columnFacilityContact" msprop:Generator_ColumnPropNameInRow="FacilityContact" msprop:Generator_ColumnPropNameInTable="FacilityContactColumn" msprop:Generator_UserColumnName="FacilityContact" type="xs:string" minOccurs="0" />
+              <xs:element name="ReportName" msprop:Generator_ColumnVarNameInTable="columnReportName" msprop:Generator_ColumnPropNameInRow="ReportName" msprop:Generator_ColumnPropNameInTable="ReportNameColumn" msprop:Generator_UserColumnName="ReportName" type="xs:string" minOccurs="0" />
+              <xs:element name="ReportPeriod" msprop:Generator_ColumnVarNameInTable="columnReportPeriod" msprop:Generator_ColumnPropNameInRow="ReportPeriod" msprop:Generator_ColumnPropNameInTable="ReportPeriodColumn" msprop:Generator_UserColumnName="ReportPeriod" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

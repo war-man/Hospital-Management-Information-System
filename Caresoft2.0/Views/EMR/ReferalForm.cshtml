@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.Department>
+<div class="panel panel-primary shadow glass caresoft-panel" style="margin-bottom:-1em;">
+    <div class="panel-heading ">
+        Referal Form
+    </div>
+    <div class="panel-body">
+        <form id="referal-form">
+            <input type="hidden" name="OPDNo" value="@ViewBag.OPDNo" />
+            <table class="table-form">
+                <tr>
+                    <td>
+                        <label for="ReferalType">Type</label>
+                    </td>
+                    <td>
+                        <select id="ReferalType" name="ReferalType" required class="text-box box-lg">
+                            <option>Internal</option>
+                            <option>External</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="DepartmentId">Department</label>
+                    </td>
+                    <td>
+                        <select id="DepartmentId" name="DepartmentId" class="text-box box-lg" onchange=" GetThisDepartmentDoctors();">
+                            @foreach(var dep in Model.Where(e=>e.DepartmentType1.DepartmnetType.ToLower().Trim().Equals("revenue") &&
+                            e.IsMedical!=null && e.IsMedical.Trim().ToLower().Equals("yes")))
+                            {
+                                <option value="@dep.Id">@dep.DepartmentName</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="ReferedToId">Doctor</label>
+                    </td>
+                    <td>
+                        <select id="ReferedToId" name="ReferedToId" class="text-box box-lg">
+                            
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="Note">Note</label>
+                    </td>
+                    <td>
+                        <textarea id="Note" name="Note" required class="text-box box-xlg"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <button class="btn btn-xs btn-primary" type="submit">Submit</button>
+            <button class="btn btn-xs btn-primary" type="reset">Cancel</button>
+        </form>
+    </div>
+        
+       
+</div>

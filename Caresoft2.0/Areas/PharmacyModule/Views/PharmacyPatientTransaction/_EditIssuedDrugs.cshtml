@@ -1,0 +1,370 @@
+﻿@using Caresoft2._0.Areas.Procurement.Models;
+
+<div class="col-md-6 col-md-offset-3">
+    @model CaresoftHMISDataAccess.Medication
+
+
+    @if (ViewBag.EditIssuedDrugs == true)
+    {
+        <div class="panel panel-primary caresoft-panel" style="padding:0px;">
+            <div class="panel-heading custom-navbar">
+                <p style="color:black ; margin-left:5px">
+                    <strong>Edit Prescribed Drug</strong>
+                </p>
+            </div>
+            <div class="panel-body">
+                <div class="">
+                    <div class="">
+
+                        <table class="table-form">
+                            @if (Model != null)
+                            {
+
+
+                                <tr>
+                                    <td>Drug Name</td>
+                                    <td>
+                                        <input id="EditDrugName" disabled class="text-box" value="@Model.DrugName" />
+                                        <input type="hidden" id="MedicationId" value="@Model.Id" />
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Batch No</td>
+                                    <td>
+                                        <input id="EditBatchNo" disabled class="text-box" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Rate</td>
+                                    <td>
+                                        <input id="EditRate" disabled class="text-box" value="@Model.UnitPrice" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Units Requested</td>
+                                    <td>
+                                        <input id="EditUnits" class="text-box" value="@Model.Quantity" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Amount</td>
+                                    <td>
+                                        <input id="EditAmount" disabled class="text-box" value="@Model.Subtotal" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Expiry Date</td>
+                                    <td>
+                                        <input id="EditExpiryDate" disabled class="text-box" value="@Model.TimeAdded.ToString("dd-MM-yyyy")" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Dose</td>
+                                    @*<td>
+                                        <input id="EditDose" class="text-box" value="" />
+                                    </td>*@
+
+                                    <td>
+                                        <select class="text-box editField" id="DoseValue" name="RoutingAdmin">
+                                            @if (ViewBag.Doses != null)
+                                            {
+                                                var data = ViewBag.Doses;
+
+                                                foreach (var item in (List<Dose>)data)
+                                                {
+                                                    if (item.Name == Model.Frequency)
+                                                    {
+                                                        <option selected value="@item.Quantity">@item.Name</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.Quantity">@item.Name</option>
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <option value=1>1x1</option>
+                                                <option value=2>1 x 2</option>
+                                                <option value=3>3 x1 </option>
+                                            }
+
+
+                                        </select>
+                                        <input type="hidden" id="editDoseQuantity" value="@Model.Quantity" />
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Number of Days</td>
+                                    <td>
+                                        <input id="EditDays" class="text-box editField" value="@Model.Day" />
+                                    </td>
+                                </tr>
+                                @*<tr>
+                                        <td>Issue Qty</td>
+                                        <td>
+                                            <input id="EditIssueQty" disabled class="text-box" value="@Model.Quantity" />
+                                        </td>
+                                    </tr>*@
+                                <tr>
+                                    <td>Notes</td>
+                                    <td>
+                                        <input id="EditDescription" class="text-box" value="@Model.Notes" />
+                                    </td>
+                                </tr>
+                                @*<tr>
+                                        <td>Notes</td>
+                                        <td>
+                                            <input id="EditDescription" class="text-box" value="@Model.Notes" />
+                                        </td>
+                                    </tr>*@
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary pull-right" id="btnSaveEditedDrug" onclick="btnSaveEditedDrug()">Save Edited Drug</button>
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>NO DRUG SELECTED</td>
+                                </tr>
+                            }
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (ViewBag.DeleteIssuedDrugs == true)
+    {
+        <div class="panel panel-primary caresoft-panel" style="padding:0px;">
+            <div class="panel-heading custom-navbar">
+                <p style="color:black ; margin-left:5px">
+                    <strong>Delete Prescribed Drug</strong>
+                </p>
+            </div>
+            <div class="panel-body">
+                <div class="">
+                    <div class="">
+
+                        <table class="table-form">
+                            @if (Model != null)
+                            {
+                                <tr>
+                                    <td colspan="2" style="text-align:center">
+                                        <strong> Are you sure you want to delete this drug ?</strong>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Drug Name</td>
+                                    <td>
+                                        <input id="EditDrugName" disabled class="text-box" value="@Model.DrugName" />
+                                        <input type="hidden" id="MedicationId" value="@Model.Id" />
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Batch No</td>
+                                    <td>
+                                        <input id="EditBatchNo" disabled class="text-box" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Rate</td>
+                                    <td>
+                                        <input id="EditRate" disabled class="text-box" value="@Model.UnitPrice" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Units Requested</td>
+                                    <td>
+                                        <input id="EditUnits" disabled class="text-box" value="@Model.Quantity" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Amount</td>
+                                    <td>
+                                        <input id="EditAmount" disabled class="text-box" value="@Model.Subtotal" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Expiry Date</td>
+                                    <td>
+                                        <input id="EditExpiryDate" disabled class="text-box" value="@Model.TimeAdded.ToString("dd-MM-yyyy")" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Dose</td>
+                                    <td>
+                                        <input id="EditDose" disabled class="text-box" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Number of Days</td>
+                                    <td>
+                                        <input id="EditDays" disabled class="text-box" value="@Model.Day" />
+                                    </td>
+                                </tr>
+                                @*<tr>
+                                        <td>Issue Qty</td>
+                                        <td>
+                                            <input id="EditIssueQty" disabled class="text-box" value="@Model.Quantity" />
+                                        </td>
+                                    </tr>*@
+                                <tr>
+                                    <td>Notes</td>
+                                    <td>
+                                        <input id="EditDescription" disabled class="text-box" value="@Model.Notes" />
+                                    </td>
+                                </tr>
+                                @*<tr>
+                                        <td>Notes</td>
+                                        <td>
+                                            <input id="EditDescription" class="text-box" value="@Model.Notes" />
+                                        </td>
+                                    </tr>*@
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary pull-right" id="btnDeleteEditedDrug" onclick="DeleteConfirmed()">Confirm Delete</button>
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>NO DRUG SELECTED</td>
+                                </tr>
+                            }
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (ViewBag.IssuedQuantityIsGreater == true)
+    {
+        <div class="panel panel-primary caresoft-panel" style="padding:0px;">
+            <div class="panel-heading custom-navbar">
+                <p style="color:black ; margin-left:5px">
+                    <strong>Issued Quantity is Greater than the current stock!</strong>
+                </p>
+            </div>
+            <div class="panel-body">
+                <div class="">
+                    <div class="">
+
+                        <table class="table-form">
+                            @if (Model != null)
+                            {
+                                <tr>
+                                    <td colspan="2" style="text-align:center">
+                                       
+                                       
+                                        <p>
+                                            The required Quantity is <b>@Model.Quantity</b> and the current stock is <b> @ViewBag.CurrentStock. </b>
+                                            If you proceed only the quantity in current stock will be Billed.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Drug Name</td>
+                                    <td>
+                                        <input id="EditDrugName" disabled class="text-box" value="@Model.DrugName" />
+                                        <input type="hidden" id="MedicationId" value="@Model.Id" />
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Batch No</td>
+                                    <td>
+                                        <input id="EditBatchNo" disabled class="text-box" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Rate</td>
+                                    <td>
+                                        <input id="EditRate" disabled class="text-box" value="@Model.UnitPrice" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Units Requested</td>
+                                    <td>
+                                        <input id="EditUnits" disabled class="text-box" value="@Model.Quantity" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Amount</td>
+                                    <td>
+                                        <input id="EditAmount" disabled class="text-box" value="@Model.Subtotal" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Expiry Date</td>
+                                    <td>
+                                        <input id="EditExpiryDate" disabled class="text-box" value="@Model.TimeAdded.ToString("dd-MM-yyyy")" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Dose</td>
+                                    <td>
+                                        <input id="EditDose" disabled class="text-box" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Number of Days</td>
+                                    <td>
+                                        <input id="EditDays" disabled class="text-box" value="@Model.Day" />
+                                    </td>
+                                </tr>
+                                @*<tr>
+                                        <td>Issue Qty</td>
+                                        <td>
+                                            <input id="EditIssueQty" disabled class="text-box" value="@Model.Quantity" />
+                                        </td>
+                                    </tr>*@
+                                <tr>
+                                    <td>Notes</td>
+                                    <td>
+                                        <input id="EditDescription" disabled class="text-box" value="@Model.Notes" />
+                                    </td>
+                                </tr>
+                                @*<tr>
+                                        <td>Notes</td>
+                                        <td>
+                                            <input id="EditDescription" class="text-box" value="@Model.Notes" />
+                                        </td>
+                                    </tr>*@
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary pull-right" id="btnConfirmLessDrugsIssued" onclick="ConfirmToIssueLessDrugs()">Confirm for Billing</button>
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>NO DRUG SELECTED</td>
+                                </tr>
+                            }
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

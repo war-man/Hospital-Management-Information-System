@@ -1,0 +1,83 @@
+﻿<table class="table-top-menu" width="100%">
+    <tr style="background-color:#C1D8F9">
+        <td>
+            |Registration <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Index", "Home",new {Area="HIV" })">| Patient Registration <i class="fa fa-caret-right"></i></a>
+                            
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="-/HIV/Home/Index">
+                            | Order Investigation <i class="fa fa-caret-right"></i>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                           
+                            <a href="@Url.Action("Index","ViewInvestigation",new {Area="HIV" })"> | View Investigation <i class="fa fa-caret-right"></i></a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        
+                            <a href="@Url.Action("Index","HIVTreatment",new {Area="HIV" })"> | HIV Treatment <i class="fa fa-caret-right"></i></a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Index","VoluntaryTestingMaster",new {Area="HIV" })"> | Voluntary Testing Master <i class="fa fa-caret-right"></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>|Reports <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("index", "Registration")">
+                           | Patient Registration
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("PatientsList", "Registration")">
+                            | Patient List
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("DirectLab", "Registration")">
+                            | Direct Lab Registration
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            |Cancel Registration
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>|Store<i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr><td data-href="@Url.Action("PatientsList", "Registration")">|OPD Registration</td></tr>
+                    <tr><td data-href="@Url.Action("opdlist", "NurseModule")">|Nurse EMR</td></tr>
+                    <tr><td data-href="@Url.Action("opdlist", "emr")">|Outpatient Queue</td></tr>
+                </table>
+            </div>
+        </td>
+      
+    </tr>
+
+</table>
+
+
+

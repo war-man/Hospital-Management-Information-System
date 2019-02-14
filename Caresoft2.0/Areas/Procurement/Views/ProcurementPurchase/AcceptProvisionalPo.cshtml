@@ -1,0 +1,248 @@
+﻿@model IEnumerable<int>
+@{
+    ViewBag.Title = "Accept Provisional Po";
+    Layout = "~/Areas/Procurement/Views/Shared/_LayoutProcurement.cshtml";
+}
+
+<style>
+    .table-form tr {
+        height: 30px;
+    }
+
+    .text-box {
+        width: 200px;
+    }
+</style>
+
+<div>
+    <div class="col-md-10">
+        <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+            <div class="panel-heading custom-navbar">
+                <p style="color:black;margin-left:10px;"><strong>Accept Provisional Purchase Order</strong></p>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table-form">
+                            <tr>
+                                <td>Provisional PO No </td>
+                                <td>
+                                    <select class="text-box" id="ProvisionalPONo">
+                                        <option>Select Provisional PO No</option>
+                                        @foreach (var item in Model)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>Date</td>
+                                <td><input type="date" class="text-box" /></td>
+                            </tr>
+                            <tr>
+                                <td>Supplier</td>
+                                <td>
+                                    <select class="text-box" id="Supplier">
+                                        <option></option>
+                                    </select>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <div >
+                                        <form class="form-inline">
+                                            <input type="file" /><input type="button" class="btn btn-primary btn-sm" value="Upload" />
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr><td colspan="3"><strong>Provisional PO Items Detail</strong></td></tr>
+                            <tr>
+                                <td>Item Desc</td>
+                                <td>
+                                    <select class="text-box" id="ItemDesc">
+                                        <option></option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Quantity</td>
+                                <td><input type="number" id="quantity" class="text-box" /></td>
+                                <td>Cost Per Unit</td>
+                                <td><input id="CostPerUnit" type="number" class="text-box" /></td>
+                            </tr>
+                            <tr>
+                                <td>Total Cost</td>
+                                <td><input type="number" class="text-box" id="TotalCost" /></td>
+                                <td><input id="btnOk" type="button" class="btn btn-primary btn-sm" value="OK" /></td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-md-12" id="LstProvisional">
+                        <table class="table table-data">
+                            <tr>
+                                <th>Edit</th>
+                                <th>Item Desc</th>
+                                <th>Quantity</th>
+                                <th>Cost Per Unit</th>
+                                <th>Total Cost</th>
+                                <th>Delete</th>
+                            </tr>
+                         </table>
+
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btn btn-primary btn-sm">Save</button>
+                    <button class="btn btn-primary btn-sm">Add New</button>
+                </div>
+            </div>
+        
+        
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script>
+        $("#ProvisionalPONo").on('change', function () {
+            var ProvisionalPONo = $("#ProvisionalPONo").val();
+
+            if (ProvisionalPONo != null) {
+
+                var Id = ProvisionalPONo;
+                var url = "/ProcurementPurchase/AcceptProvisionalPo?Id=" + Id;
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    success: function (obj) {
+                        //console.log(obj);
+
+                        AddSuppliersToDropDown(obj.Suppliers)
+                        AddToItemsDropDownList(obj.POItemsDetail)
+
+                    },
+                    error: function (x, y, z) {
+
+                        console.log(x.responseText);
+                    }
+                })
+            }
+
+        })
+
+        function AddSuppliersToDropDown(obj) {
+
+            var Suppliers = $("#Supplier");
+            var options = "<option>Select Supplier</option>";
+
+            Suppliers.empty();
+
+            $.each(obj, function (key, value) {
+                var string = '<option value="' + value.Supplier_Code + '">' + value.Supplier_Name + '</option>';
+                options = options + string;
+
+            })
+
+            Suppliers.append(options);
+         
+        }
+
+        function AddToItemsDropDownList(obj) {
+
+            var ItemDesc = $("#ItemDesc");
+            var options = "<option>Select Item</option>";
+
+            ItemDesc.empty();
+
+            $.each(obj, function (key, value) {
+                var string = '<option data-quantity="' + value.Quantity + '"  value="' + value.DrugId + '">' + value.Drug.Name + '</option>';
+                options = options + string;
+            })
+
+            ItemDesc.append(options);
+        }
+
+        $("#ItemDesc").on('change', function () {
+
+            var ItemDesc = $("#ItemDesc");
+
+            var quantity = ItemDesc.find(':selected').data('quantity');
+           
+            $("#quantity").val(quantity);
+        })
+
+        $("#CostPerUnit").keyup(function () {
+
+            var CostPerUnit = $(this).val();
+            var quantity = $("#quantity").val();
+            var TotalCost = CostPerUnit * quantity;
+
+            $("#TotalCost").val(TotalCost);
+        })
+
+        $("#btnOk").click(function () {
+            InitializeVariables();
+
+            $.ajax({
+                type: 'POST',
+                url: '/ProcurementPurchase/AcceptProvisionalPo',
+                data: saveAcceptProvisionlPO,
+                success: function (obj) {
+                    //console.log(obj);
+                    $("#LstProvisional").empty();
+                    $("#LstProvisional").append(obj);
+                },
+                error: function (x, y, z) {
+
+                    console.log(x.responseText);
+                }
+            })
+
+        })
+
+        var saveAcceptProvisionlPO = null;
+
+        function InitializeVariables()
+        {
+            var ProvisionalNumber = $("#ProvisionalPONo").val();
+            var POItemDetailsNumber = $("#ItemDesc").find(':selected').val();
+            var CostPerUnit = $("#CostPerUnit").val();
+            var TotalCost = $("#TotalCost").val();
+
+            saveAcceptProvisionlPO = {
+                                        ProvisionalNumber: ProvisionalNumber,
+                                        POItemDetailsNumber: POItemDetailsNumber,
+                                        CostPerUnit: CostPerUnit,
+                                        TotalCost: TotalCost
+             }
+
+        }
+
+        $("#BtnSave").click(function () {
+            console.log("Saved");
+
+            $.ajax({
+                type: 'POST',
+                url: '/ProcurementPurchase/CompleteProvisionalPo',
+                success: function (obj) {
+                    //console.log(obj);
+                    $("#LstProvisional").empty();
+                    $("#LstProvisional").append(obj);
+                },
+                error: function (x, y, z) {
+
+                    console.log(x.responseText);
+                }
+            })
+
+        });
+
+    </script>
+    
+    }

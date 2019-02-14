@@ -1,0 +1,187 @@
+﻿@model PagedList.IPagedList<CaresoftHMISDataAccess.User>
+@using PagedList.Mvc;
+@using CaresoftHMISDataAccess;
+
+@{
+    ViewBag.Title = "UserMaster";
+    Layout = "~/Views/Shared/_UserManagementLayout.cshtml";
+
+    var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+    AjaxOptions ajaxOptions = new AjaxOptions
+    {
+        OnBegin = "",
+        OnComplete = "",
+        OnSuccess = ""
+
+    };
+
+    var ShowUsersPassword = new CaresoftHMISEntities().KeyValuePairs.FirstOrDefault(e =>
+                e.Key_.Equals("ShowUsersPassword"))?.Value.ToLower();
+}
+
+<div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+    <div class="panel-heading">
+        User Master
+    </div>
+    <div class="panel-body">
+        <div class="tab-content" id="reg-form-holder">
+            <div id="addDept" class="tab-pane fade in active">
+
+                @using (Html.BeginForm())
+                {
+                    <table>
+                        <tr>
+
+                            <td>
+                                <label for="mainDepartment">
+                                    <strong>User Name</strong>
+                                </label>
+                            </td>
+
+                            <td>
+                                &nbsp;&nbsp;
+                                <input type="text" class="text-box text-box-lg margin-top-bottom-2" name="DName" id="DName" />
+                            </td>
+
+                            <td>
+                                <label for="DName">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <strong>Department</strong>
+
+                                </label>
+                            </td>
+                            <td>
+
+                                &nbsp;&nbsp;
+                                <select style="width:200px" name="dept" id="dept" class="text-box margin-top-bottom-2">
+                                    <option> Select Department</option>
+                                    @foreach (var dept in departments)
+                                    {
+                                        if (ViewBag.dept == dept.Id)
+                                        {
+                                            <option selected value="@dept.Id">@dept.DepartmentName</option>
+                                            continue;
+                                        }
+
+                                        <option value="@dept.Id">@dept.DepartmentName</option>
+
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                <button type="submit" id="save-btn" title="Go" class="btn btn-primary btn-sm margin-top-bottom-2">Go</button>
+                                <label id="lableAjaxSatatus" class="alert-warning"></label>
+                            </td>
+                            <td class="pull-right">
+                                <a class="btn btn-sm btn-primary" id="list-home-list" data-toggle="list" href="/UserManagement/ActiveUsers" role="tab" aria-controls="home">Active Users</a>
+                            </td>
+                        </tr>
+                    </table>
+
+                }
+
+
+
+                <table width="100%" class="table-data-pathology table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Edit</th>
+                            <th>User Name</th>
+
+                            @if (ShowUsersPassword != null &&
+                                ShowUsersPassword == "yes")
+                            {
+                                <th>Password</th>
+                            }
+                            <th>Email</th>
+                            <th>Department</th>
+                            <th>Phone</th>
+                            <th>Mobile</th>
+                            <th>User Type</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a class="btn btn-xs btn-primary" href="EditUser/@user.Id">Edit</a>
+                                    @if (user.Id != 1)
+                                    {
+                                        if (user.LoginFailureCount >= 5)
+                                        {
+                                            @Html.ActionLink("Reactivate", "Reactivate", new { id = user.Id,
+                                           page = Model.PageNumber, dept = ViewBag.dept }, new { @class="btn btn-xs btn-success"})
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("Deactivate", "Reactivate", new { id = user.Id,
+                                          page = Model.PageNumber, dept = ViewBag.dept }, new { @class="btn btn-xs btn-danger"})
+                                        }
+                                    }
+                                </td>
+                                <td>@user.Username</td>
+
+                                @if (ShowUsersPassword != null &&
+                                    ShowUsersPassword == "yes")
+                                {
+                                    <td>@user.Password</td>
+                                }
+                                <td>@user.Employee.Email</td>
+                                <td>@user.UserRole.Department.DepartmentName</td>
+                                <td>@user.Employee.Mobile</td>
+                                <td>@user.Employee.Mobile</td>
+                                <td>@user.UserRole.RoleName</td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="8">
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                                @Html.PagedListPager(Model, page => Url.Action("UserMaster", "UserManagement",
+                                    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                            </td>
+
+
+                        </tr>
+                    </tfoot>
+
+                </table>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+@section scripts{
+
+
+
+    <script>
+        function OnBeginMethod() {
+            $("lableAjaxSatatus").text("Loading ...");
+        }
+        function OnFailureMethod() {
+            $("lableAjaxSatatus").text("Failure ...");
+        }
+        function OnSuccessMethod() {
+            $("lableAjaxSatatus").text("Successful ...");
+        }
+        function OnCompleteMethod() {
+            $("lableAjaxSatatus").text("Complete ...");
+        }
+    </script>
+}

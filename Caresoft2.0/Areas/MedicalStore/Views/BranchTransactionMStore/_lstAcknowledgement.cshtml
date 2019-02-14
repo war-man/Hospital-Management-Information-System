@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.Procurement.Models.RecieveDetails>
+<table class="table table-data">
+    <tr>
+        <th>Voucher No</th>
+        <th>Received Date</th>
+        <th>Issue to</th>
+        <th>Detail</th>
+
+    </tr>
+    @if (Model.Count() < 1)
+    {
+        <tr>
+            <td colspan="4"> No data to display</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.voucherNumber</td>
+                <td>@item.RecievedDate</td>
+                <td>@item.IssueTo</td>
+                <td>@item.Detail</td>
+            </tr>
+        }
+    }
+
+</table>

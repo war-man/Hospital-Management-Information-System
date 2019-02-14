@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetSpecialServices" targetNamespace="http://tempuri.org/DataSetSpecialServices.xsd" xmlns:mstns="http://tempuri.org/DataSetSpecialServices.xsd" xmlns="http://tempuri.org/DataSetSpecialServices.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetSpecialServices" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetSpecialServices" msprop:Generator_UserDSName="DataSetSpecialServices">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SpecialServices" msprop:Generator_TableClassName="SpecialServicesDataTable" msprop:Generator_TableVarName="tableSpecialServices" msprop:Generator_TablePropName="SpecialServices" msprop:Generator_RowDeletingName="SpecialServicesRowDeleting" msprop:Generator_RowChangingName="SpecialServicesRowChanging" msprop:Generator_RowEvHandlerName="SpecialServicesRowChangeEventHandler" msprop:Generator_RowDeletedName="SpecialServicesRowDeleted" msprop:Generator_UserTableName="SpecialServices" msprop:Generator_RowChangedName="SpecialServicesRowChanged" msprop:Generator_RowEvArgName="SpecialServicesRowChangeEvent" msprop:Generator_RowClassName="SpecialServicesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NoXrayPlainWithEnhancement" msprop:Generator_ColumnVarNameInTable="columnNoXrayPlainWithEnhancement" msprop:Generator_ColumnPropNameInRow="NoXrayPlainWithEnhancement" msprop:Generator_ColumnPropNameInTable="NoXrayPlainWithEnhancementColumn" msprop:Generator_UserColumnName="NoXrayPlainWithEnhancement" type="xs:int" minOccurs="0" />
+              <xs:element name="PhysiotherapyPrivate" msprop:Generator_ColumnVarNameInTable="columnPhysiotherapyPrivate" msprop:Generator_ColumnPropNameInRow="PhysiotherapyPrivate" msprop:Generator_ColumnPropNameInTable="PhysiotherapyPrivateColumn" msprop:Generator_UserColumnName="PhysiotherapyPrivate" type="xs:int" minOccurs="0" />
+              <xs:element name="OccupationalTherapyPrivate" msprop:Generator_ColumnVarNameInTable="columnOccupationalTherapyPrivate" msprop:Generator_ColumnPropNameInRow="OccupationalTherapyPrivate" msprop:Generator_ColumnPropNameInTable="OccupationalTherapyPrivateColumn" msprop:Generator_UserColumnName="OccupationalTherapyPrivate" type="xs:int" minOccurs="0" />
+              <xs:element name="OrthopaedicTechnologyPrivatePnI" msprop:Generator_ColumnVarNameInTable="columnOrthopaedicTechnologyPrivatePnI" msprop:Generator_ColumnPropNameInRow="OrthopaedicTechnologyPrivatePnI" msprop:Generator_ColumnPropNameInTable="OrthopaedicTechnologyPrivatePnIColumn" msprop:Generator_UserColumnName="OrthopaedicTechnologyPrivatePnI" type="xs:int" minOccurs="0" />
+              <xs:element name="OrthopaedicTechnologyPrivateI" msprop:Generator_ColumnVarNameInTable="columnOrthopaedicTechnologyPrivateI" msprop:Generator_ColumnPropNameInRow="OrthopaedicTechnologyPrivateI" msprop:Generator_ColumnPropNameInTable="OrthopaedicTechnologyPrivateIColumn" msprop:Generator_UserColumnName="OrthopaedicTechnologyPrivateI" type="xs:int" minOccurs="0" />
+              <xs:element name="NoXrayEnhancementWithContrastMedia" msprop:Generator_ColumnVarNameInTable="columnNoXrayEnhancementWithContrastMedia" msprop:Generator_ColumnPropNameInRow="NoXrayEnhancementWithContrastMedia" msprop:Generator_ColumnPropNameInTable="NoXrayEnhancementWithContrastMediaColumn" msprop:Generator_UserColumnName="NoXrayEnhancementWithContrastMedia" type="xs:int" minOccurs="0" />
+              <xs:element name="NoSpecialMagneticProcessUltraSound" msprop:Generator_ColumnVarNameInTable="columnNoSpecialMagneticProcessUltraSound" msprop:Generator_ColumnPropNameInRow="NoSpecialMagneticProcessUltraSound" msprop:Generator_ColumnPropNameInTable="NoSpecialMagneticProcessUltraSoundColumn" msprop:Generator_UserColumnName="NoSpecialMagneticProcessUltraSound" type="xs:int" minOccurs="0" />
+              <xs:element name="NoSpecialWithMagneticMRICTscan" msprop:Generator_ColumnVarNameInTable="columnNoSpecialWithMagneticMRICTscan" msprop:Generator_ColumnPropNameInRow="NoSpecialWithMagneticMRICTscan" msprop:Generator_ColumnPropNameInTable="NoSpecialWithMagneticMRICTscanColumn" msprop:Generator_UserColumnName="NoSpecialWithMagneticMRICTscan" type="xs:int" minOccurs="0" />
+              <xs:element name="NoTotalRadiologicalExaminations" msprop:Generator_ColumnVarNameInTable="columnNoTotalRadiologicalExaminations" msprop:Generator_ColumnPropNameInRow="NoTotalRadiologicalExaminations" msprop:Generator_ColumnPropNameInTable="NoTotalRadiologicalExaminationsColumn" msprop:Generator_UserColumnName="NoTotalRadiologicalExaminations" type="xs:int" minOccurs="0" />
+              <xs:element name="PhyisiotherapyNonPrivate" msprop:Generator_ColumnVarNameInTable="columnPhyisiotherapyNonPrivate" msprop:Generator_ColumnPropNameInRow="PhyisiotherapyNonPrivate" msprop:Generator_ColumnPropNameInTable="PhyisiotherapyNonPrivateColumn" msprop:Generator_UserColumnName="PhyisiotherapyNonPrivate" type="xs:int" minOccurs="0" />
+              <xs:element name="OccupationalTherapyNonPrivate" msprop:Generator_ColumnVarNameInTable="columnOccupationalTherapyNonPrivate" msprop:Generator_ColumnPropNameInRow="OccupationalTherapyNonPrivate" msprop:Generator_ColumnPropNameInTable="OccupationalTherapyNonPrivateColumn" msprop:Generator_UserColumnName="OccupationalTherapyNonPrivate" type="xs:int" minOccurs="0" />
+              <xs:element name="OrthopaedicTechnologyNonPrivatePnS" msprop:Generator_ColumnVarNameInTable="columnOrthopaedicTechnologyNonPrivatePnS" msprop:Generator_ColumnPropNameInRow="OrthopaedicTechnologyNonPrivatePnS" msprop:Generator_ColumnPropNameInTable="OrthopaedicTechnologyNonPrivatePnSColumn" msprop:Generator_UserColumnName="OrthopaedicTechnologyNonPrivatePnS" type="xs:int" minOccurs="0" />
+              <xs:element name="OrthopaedicTechnologyNonPrivateP" msprop:Generator_ColumnVarNameInTable="columnOrthopaedicTechnologyNonPrivateP" msprop:Generator_ColumnPropNameInRow="OrthopaedicTechnologyNonPrivateP" msprop:Generator_ColumnPropNameInTable="OrthopaedicTechnologyNonPrivatePColumn" msprop:Generator_UserColumnName="OrthopaedicTechnologyNonPrivateP" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

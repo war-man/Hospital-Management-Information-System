@@ -1,0 +1,108 @@
+﻿@model List<CaresoftHMISDataAccess.Patient>
+@{
+    Layout = "~/Areas/HIV/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+}
+
+@*<div class="col-md-12">
+        <div class="col-md-2">
+
+
+        </div>
+    </div>*@
+<div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-primary caresoft-panel glass shadow">
+        <div class="panel-heading">
+            HIV Treatment Display
+        </div>
+
+        <div class="panel-body">
+            <form method="get">
+                <div class="form-group">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>From Date</td>
+                                <td><input value="@DateTime.Now.ToString("yyyy-MM-dd")" class="text-box marg-top-6px" style="width: 140px;margin-right:50px; margin-left:15px;margin-bottom:15px;" type="date" id="datepicker" /></td>
+
+                                <td>To Date</td>
+                                <td><input value="@DateTime.Now.ToString("yyyy-MM-dd")" class="text-box marg-top-6px" style="width:140px; margin-left:20px;margin-bottom:15px;" type="date" id="datepicker" /></td>
+
+
+                            </tr>
+                            <tr>
+                                <td>Patient Regno/Name</td>
+                                <td><input class="text-box marg-top-6px" style="width:140px; margin-right:50px; margin-left:15px;margin-bottom:15px;" type="text" id="normal" /></td>
+
+                                <td>Last Name </td>
+                                <td><input class="text-box marg-top-6px" style="width:140px; margin-left:20px; margin-bottom:15px;" type="text" id="normal" /></td>
+                            </tr>
+                            <tr>
+                                <td>HIV No </td>
+                                <td><input class="text-box marg-top-6px" style="width:140px; margin-right:50px; margin-left:15px;margin-bottom:15px;" type="text" id="normal" /></td>
+
+                                <td>Barcode </td>
+                                <td><input class="text-box marg-top-6px" style="width:140px; margin-left:20px;margin-bottom:15px;" type="text" id="normal" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+
+                    <br /> <br />
+                    <input id="Button1" class="btn btn-sm btn-primary" style="margin-left:175px; margin-bottom:15px;" type="submit" value="Search" />
+                </div>
+
+                <table class="table table-data table-bordered table-condensed">
+                    <tr>
+                        <th>Treatment</th>
+                        <th>Hiv No</th>
+                        <th>Reg No</th>
+                        <th>Name</th>
+                        <th>Reg Date</th>
+                        <th>Gender</th>
+
+
+                    </tr>
+                    <tbody style="background-color:white">
+                        @*<tr>
+                            <td>
+                                <input type="text" />
+                            </td>
+                            <td>
+                                <input name="HIVNo" class="text-box marg-top-6px" />
+                            </td>
+                            <td>
+                                <input name="RegNo" class="text-box marg-top-6px" />
+                            </td>
+                            <td>
+                                <input name="Name" class="text-box marg-top-6px" />
+                            </td>
+                            <td>
+                                <input name="RegDate" class="text-box marg-top-6px " type="date" />
+                            </td>
+                            <td>
+                                <input name="Gender" class="text-box marg-top-6px" />
+                            </td>
+
+                        </tr>*@
+                        @foreach (var item in Model.OrderByDescending(e => e.Id))
+                        {
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>@item.RegNumber</td>
+                                <td>@item.Gender @item.LName</td>
+                                <td>@item.RegDate</td>
+                                <td>@item.Gender</td>
+                            </tr>
+                        }
+                        </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+

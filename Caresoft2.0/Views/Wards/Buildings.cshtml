@@ -1,0 +1,60 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HSBuilding>
+@{
+    ViewBag.Title = "Ward Buildings Master";
+    ViewBag.FormName = ViewBag.Title;
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+}
+
+<form id="BuildingForm" action="@Url.Action("Building", "Wards")" method="POST">
+    <table class="table-form">
+        <tr>
+            <td><label>Building Name</label></td>
+            <td><input type="text" class="text-box box-lg" name="BuildingName" required/></td>
+        </tr>
+        <tr>
+            <td><label>Number of Floors</label></td>
+            <td><input type="number" class="text-box box-lg" name="NumberOfFloors" required /></td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" class="btn btn-sm btn-primary" value="Save" />
+                <input type="reset" class="btn btn-sm btn-primary" value="Clear" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<table class="table table-data table-condensed" id="wards-table">
+    <thead>
+        <tr>
+            <th>Edit</th>
+            
+            <th>Building Name</th>
+            <th>Floors</th>
+            
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @foreach(var buil in Model)
+        {
+            <tr>
+                <td>
+                    <label class="edit-table-row-item" data-item-id="@buil.Id">Edit</label>
+                </td>
+                <td>
+                    @buil.BuildingName
+                </td>
+                <td>
+                    @(buil.HSFloors.Count() - 1)
+                </td>
+                <td>
+                    <label class="delete-table-row-item" data-item-id="@buil.Id">Delete</label>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

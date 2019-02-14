@@ -1,0 +1,126 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.RenalDialysisInfo>
+
+
+@{
+
+}
+
+
+
+
+
+<table class="table table-caresoft table-condensed">
+    <thead>
+        <tr>
+            <th style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"> <b><i>OPD No</i></b></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"><b><i>User</i></b></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th style="color:fuchsia; font-family:'Times New Roman', Times, serif; font-size:larger"><b><i>Date Of Visit</i></b></th>
+            <td></td>
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+        <tr>
+            <td>@a.OPDNo</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>@a.UserId</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="color:crimson">@a.DateAdded</td>
+            <td></td>
+
+        </tr>
+        }
+
+    </tbody>
+    <td>&nbsp;</td>
+
+
+
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>B/P </th>
+            <th>Pulse </th>
+            <td> Temp</td>
+            <td>BFR</td>
+            <td>TMP</td>
+            <td>UF</td>
+            <td>VP</td>
+            <td>DP</td>
+            <td>DR</td>
+            <td>Dial Temp</td>
+            <td>Heparin</td>
+            <td>Pro. sulp</td>
+            <td>Fluids</td>
+            <td>Coag Time</td>
+            <td>Comments</td>
+
+
+
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var a in Model.OrderByDescending(a => a.Id))
+        {
+            <tr style="background-color:chartreuse">
+
+                <td>@a.Time</td>
+                <td>@a.BP</td>
+                <td>@a.Pulse</td>
+                <td>@a.Temp</td>
+                <td>@a.BFR</td>
+                <td>@a.TMP</td>
+                <td>@a.UF</td>
+                <td>@a.VP</td>
+                <td>@a.DP</td>
+                <td>@a.DR</td>
+                <td>@a.DialTemp</td>
+                <td>@a.Heparin</td>
+                <td>@a.ProSulp</td>
+                <td>@a.Fluids</td>
+                <td>@a.CoagTime</td>
+                <td>@a.Comments</td>
+
+
+
+
+
+            </tr>
+        }
+
+    </tbody>
+
+
+
+
+
+
+</table>
+
+

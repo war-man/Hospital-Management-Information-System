@@ -1,0 +1,453 @@
+﻿<style>
+</style>
+<ul class="treeView" style="font-size:12px">
+    <li>
+        <ul class="collapsibleList">
+            <li class="collapsibleListClosed" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/general.png" /> General
+                <ul class="collapsibleList" style="display: none;">
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        <a href="#" class="call-modal-form" data-action="@Url.Action("DiseaseEntryForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="diseaseEntryModalListener">Disease Entry</a>
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        <a href="@Url.Action("consultation", "emr", new { Id = ViewBag.OpdNo})"><img src="~/Content/icons/emrMenuIcons/chief-complaints.png" /> Chief Complaints</a>
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        <img src="~/Content/icons/emrMenuIcons/demography1.png" /> Demography
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        <img src="~/Content/icons/emrMenuIcons/allergies1.png" /> Allergies</a>
+
+                    </li>
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/toxicity.png" /> Toxicity
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                <a href="@Url.Action("History", "emr", new { Id = ViewBag.OpdNo})"><img src="~/Content/icons/emrMenuIcons/history.png" /> History</a>
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/examination.png" /> Examination
+                <ul class="collapsibleList" style="display: block;">
+                    <li style="user-select: none;">
+                        <a href="@Url.Action("Physicalexamination", "emr", new { Id = ViewBag.OpdNo})"><img src="~/Content/icons/emrMenuIcons/physical-exam.png" /> Physical Exmination</a>
+                    </li>
+                    <li class="lastChild" style="user-select: none;">
+                        <a href="@Url.Action("Systemexamination", "emr", new { Id = ViewBag.OpdNo})"><img src="~/Content/icons/emrMenuIcons/system-exam1.png" /> Systemic Examination</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                <a href="#" class="call-modal-form" data-action="@Url.Action("DiagnosisForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="diagnosisFormModalListener">
+                    <img src="~/Content/icons/emrMenuIcons/diagnosis.png" /> Diagnosis
+                </a>
+
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/investigation.png" /> Investigation
+                <ul class="collapsibleList" style="display: block;">
+
+                    <li style="user-select: none;">
+                        <a href="#" class="call-modal-form" data-action="@Url.Action("InvestigationForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="investigationModalListener">
+                            <img src="~/Content/icons/emrMenuIcons/work-order.png" /> Work Order
+                        </a>
+
+                    </li>
+                    <li style="user-select: none;">
+                        <a href="#" class="call-modal-form" data-action="@Url.Action("InvestigationForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="investigationModalListener">
+                            <img src="~/Content/icons/emrMenuIcons/outside-test.png" /> Outside Test
+                        </a>
+                    </li>
+                    <li style="user-select: none;">
+                        <a href="#" class="call-modal-form" data-action="@Url.Action("InvestigationForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="investigationModalListener">
+                            <img src="~/Content/icons/emrMenuIcons/view-investigation.png" /> View Investigation
+                        </a>
+                    </li>
+                    <li class="lastChild" style="user-select: none;">
+                        <img src="~/Content/icons/emrMenuIcons/edit-investigation1.png" /> Edit View Investigation
+                    </li>
+                </ul>
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/treatment1.png" /> Treatment
+                <ul class="collapsibleList" style="display: block;">
+                    <li style="user-select: none;">
+                        <a href="#" class="call-modal-form" data-action="@Url.Action("TreatmentForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="treatmentFormModalListener">
+                            <img src="~/Content/icons/emrMenuIcons/medication.png" /> Medication
+                        </a>
+                    </li>
+                    <li style="user-select: none;">
+                        <a href="#" class="call-modal-form" data-action="@Url.Action("ProcedureForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="procedureFormModalListener">
+                            <img src="~/Content/icons/emrMenuIcons/procedures.png" /> Procedure
+                        </a>
+
+                    </li>
+                    <li class="lastChild" style="user-select: none;">
+                        <a href="@Url.Action("BriefMedicationFollowUp", "emr", new { Id = ViewBag.OpdNo})" title="Brief Medication Follow Up">
+                            <img src="~/Content/icons/emrMenuIcons/brief-medication.png" /> Follow Up
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                <a href="@Url.Action("immunization", "emr", new { Id = ViewBag.OpdNo})">
+                    <img src="~/Content/icons/emrMenuIcons/immunization1.png" /> Immunization
+                </a>
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                <a class="call-modal-form" data-action="/Pathology/Reports/PatientHistory/@ViewBag.OpdNo">
+                    <img src="~/Content/icons/emrMenuIcons/patient-summary-report1.png" /> Patient Summary Report
+                </a>
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/emr-book.png" /> EMR Book
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/diagnosis.png" />  Diagnosis
+            </li>
+            <li class="collapsibleListOpen" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/ebook-record.png" />  Ebook Report
+            </li>
+            <li class=" collapsibleListOpen" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/tally-sheet.png" /> Tally Sheet
+            </li>
+            <li class="lastChild collapsibleListOpen" style="user-select: none;">
+                <a href="#" class="call-modal-form" data-action="@Url.Action("ProcedureForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="procedureFormModalListener">
+                    Procedure
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="collapsibleListOpen" style="user-select: none;">
+        <img src="~/Content/icons/emrMenuIcons/rheumatology.png" /> Rheumatology
+        <ul class="collapsibleList" style="display: none;">
+            <li class="collapsibleListOpen" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/joint-exam1.png" /> Joint Examination
+                <ul class="collapsibleList" style="display: block;">
+                    <li style="user-select: none;">
+                        <img src="~/Content/icons/emrMenuIcons/deformity.png" /> Deformity
+                    </li>
+                    <li style="user-select: none;">
+                        <img src="~/Content/icons/emrMenuIcons/fibromyalgia.png" /> Fibromyalgia
+                    </li>
+                    <li style="user-select: none;">
+                        <img src="~/Content/icons/emrMenuIcons/spine.png" /> Spine
+                    </li>
+                    <li style="user-select: none;">
+                        <img src="~/Content/icons/emrMenuIcons/hypermobility.png" /> Hypermobility
+                    </li>
+                    <li style="user-select: none;">
+                        <img src="~/Content/icons/emrMenuIcons/musculoskeletal.png" /> Musculoskeletal Deformity
+                    </li>
+                    <li style="user-select: none;">
+                        <img src="~/Content/icons/emrMenuIcons/musculoskeletal.png" /> Musculoskeltal-Brief
+                    </li>
+                    <li class="lastChild" style="user-select: none;">
+                        <img src="~/Content/icons/emrMenuIcons/musculoskeletal.png" /> Musculoskeltal
+                    </li>
+                </ul>
+            </li>
+            <li class="lastChild" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/assessments.png" /> Assessments
+            </li>
+        </ul>
+    </li>
+    <li class="collapsibleListOpen" style="user-select: none;">
+        <img src="~/Content/icons/emrMenuIcons/diet-nutrition1.png" /> Diet & Nutrition
+        <ul class="collapsibleList" style="display: none;">
+            <li>
+                <img src="~/Content/icons/emrMenuIcons/diet-chart.png" />
+                <a href="@Url.Action("Index", "NutritionRegistration" , new {id = ViewBag.OpdNo })">
+                    Adult Register
+                </a>
+            </li>
+
+            <li>
+                <img src="~/Content/icons/emrMenuIcons/diet-chart.png" />
+                <a href="@Url.Action("Index2", "NutritionRegistration", new {id = ViewBag.OpdNo })">
+                    Child Register
+                </a>
+            </li>
+
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/diet-chart.png" />
+                <a href="@Url.Action("Index2", "NutritionHome", new {OpdNo = ViewBag.OpdNo })">
+                    Nutrition Screening and Assesment
+                </a>
+            </li>
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/diet-chart.png" />
+                <a href="@Url.Action("Inde", "NutritionHome", new {OpdNo = ViewBag.OpdNo })">
+                    Diet Chart
+                </a>
+            </li>
+            <li class="lastChild" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/diet.png" />
+                <a href="#" class="call-modal-form" data-action="" data-callback="">
+                    Diet
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="collapsibleListOpen" style="user-select: none;">
+        <img src="~/Content/icons/emrMenuIcons/opthamalogy.png" /> Opthalmology
+        <ul class="collapsibleList" style="display: none;">
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/ortheva.png" /> OrthaEva
+            </li>
+            <li style="user-select: none;">
+                <a href="@Url.Action("CorneaClinic", "emr", new { Id = ViewBag.OpdNo})">
+                    <img src="~/Content/icons/emrMenuIcons/cornea-clinic.png" /> CorneaClinic
+                </a>
+            </li>
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/retina.png" /> RetinaClinic
+            </li>
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/lasik-clinic.png" /> Lasik Clinic
+            </li>
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/glucoma-performa.png" /> Glucorma Performa
+            </li>
+            <li class="lastChild" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/optha-exam.png" /> OpthaExam
+            </li>
+        </ul>
+    </li>
+    <li class=" collapsibleListOpen" style="user-select: none;">
+        <img src="~/Content/icons/emrMenuIcons/obst-gynae.png" /> M C H
+        <ul class="collapsibleList" style="display: none;">
+            <li style="user-select: none;">
+                <a href="@Url.Action("MaternalProfile", "mch", new { Id = ViewBag.OpdNo})">
+                    Maternal Profile
+                </a>
+            </li>
+            <li style="user-select: none;">
+                <a href="@Url.Action("MedicalAndSergicalHistory", "mch", new { Id = ViewBag.OpdNo})">
+                    Medical & Sergical History
+                </a>
+            </li>
+            <li style="user-select: none;">
+                <a href="@Url.Action("PreviousPregnancy", "mch", new { Id = ViewBag.OpdNo})">
+                    Previous Pregnancy
+                </a>
+            </li>
+
+
+            <li style="user-select: none;">
+                <a href="@Url.Action("ClinicalNotes", "mch", new { Id = ViewBag.OpdNo})">
+                    Clinical Notes
+                </a>
+            </li>
+
+            <li style="user-select: none;">
+                <a href="@Url.Action("PhysicalExam", "mch", new { Id = ViewBag.OpdNo})">
+                    Physical Exam
+                </a>
+            </li>
+
+            <li style="user-select: none;">
+                <a href="@Url.Action("AntenatalProfile", "mch", new { Id = ViewBag.OpdNo})">
+                    Antenatal Profile
+                </a>
+            </li>
+            <li style="user-select: none;">
+                <a href="@Url.Action("PresentPregnancy", "mch", new { Id = ViewBag.OpdNo})">
+                    Present Pregnancy
+                </a>
+            </li>
+            <li style="user-select: none;">
+                <a href="@Url.Action("WeightGainChart", "mch", new { Id = ViewBag.OpdNo})">
+                    Weight Gain Chart
+                </a>
+            </li>
+
+            <li style="user-select: none;">
+                <a href="@Url.Action("PreventativeServices", "mch", new { Id = ViewBag.OpdNo})">
+                    Preventative Services
+                </a>
+            </li>
+
+            <li style="user-select: none;">
+                <a href="@Url.Action("Delivery", "mch", new { Id = ViewBag.OpdNo})">
+                    Delivery
+                </a>
+            </li>
+            <li style="user-select: none;">
+                <a href="@Url.Action("PostNatalExam", "mch", new { Id = ViewBag.OpdNo})">Post Natal Exam</a>
+            </li>
+            <li class="lastChild" style="user-select: none;">
+                <a href="@Url.Action("Immunization", "emr", new { Id = ViewBag.OpdNo})">Immunization</a>
+            </li>
+            <li class="lastChild" style="user-select: none;">
+                <a href="@Url.Action("FamilyPlanning", "mch", new { Id = ViewBag.OpdNo})">Family Planning</a>
+            </li>
+        </ul>
+    </li>
+    <li class=" collapsibleListOpen" style="user-select: none;">
+        <img src="~/Content/icons/emrMenuIcons/obst-gynae.png" />Renal Haemodialysis
+
+        <ul class="collapsibleList" style="display: none;">
+            <li style="user-select: none;">
+                <a href="@Url.Action("PatientProfile", "RenalHaemodialysis", new { Id = ViewBag.OpdNo})">
+                    Patient Profile
+                </a>
+            </li>
+            <li style="user-select: none;">
+                <a href="@Url.Action("DialysisOrder", "RenalHaemodialysis", new { Id = ViewBag.OpdNo})">
+                    Dialysis Orders
+                </a>
+            </li>
+            <li style="user-select: none;">
+                <a href="@Url.Action("MachineChecks", "RenalHaemodialysis", new { Id = ViewBag.OpdNo})">
+                    Machine Checks
+                </a>
+            </li>
+
+
+
+
+            <li style="user-select: none;">
+                <a href="@Url.Action("DialysisInfo", "RenalHaemodialysis", new { Id = ViewBag.OpdNo})">
+                    Dialysis Details
+                </a>
+            </li>
+
+            <li style="user-select: none;">
+                <a href="@Url.Action("PostDialysisObservation", "RenalHaemodialysis", new { Id = ViewBag.OpdNo})">
+                    Post-Dialysis Observation
+                </a>
+            </li>
+
+        </ul>
+    </li>
+    <li class=" collapsibleListOpen" style="user-select: none;">
+        <img src="~/Content/icons/emrMenuIcons/obst-gynae.png" /> Obst & Gynae
+        <ul class="collapsibleList" style="display: none;">
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/papsmear.png" /> PapSmear
+            </li>
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/gynae-exam.png" /> GynaeExam
+            </li>
+            <li style="user-select: none;">
+                <a href="@Url.Action("Colposcopy", "mch", new { Id = ViewBag.OpdNo})">
+                    <img src="~/Content/icons/emrMenuIcons/colposcopy.png" /> Colposcopy
+                </a>
+            </li>
+            <li style="user-select: none;">
+                <a href="@Url.Action("AntenatalCareVisit", "mch", new { Id = ViewBag.OpdNo})">
+                    <img src="~/Content/icons/emrMenuIcons/antenatal.png" /> Antenatal Care
+                </a>
+            </li>
+            <li style="user-select: none;">Delivery Sheet</li>
+            <li style="user-select: none;">Obstetric History</li>
+            <li style="user-select: none;">See &amp; Treat </li>
+            <li style="user-select: none;">
+                <a href="@Url.Action("PostNatalExam", "mch", new { Id = ViewBag.OpdNo})">Post Natal Exam</a>
+            </li>
+            <li class="lastChild" style="user-select: none;">
+                <a href="@Url.Action("FamilyPlanning", "mch", new { Id = ViewBag.OpdNo})">Family Planning</a>
+            </li>
+        </ul>
+    </li>
+    <li class="collapsibleListOpen" style="user-select: none;">
+        <img src="~/Content/icons/emrMenuIcons/dental-new.png" /> Dental
+        <ul class="collapsibleList" style="display: none;">
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/dental-new.png" /> Dental New
+            </li>
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/dental-new.png" /> Dental
+            </li>
+            <li class="lastChild" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/dental-treatment-plan.png" /> Dental TreatmentPlan
+            </li>
+        </ul>
+    </li>
+    <li class="collapsibleListOpen" style="user-select: none;">
+        <img src="~/Content/icons/emrMenuIcons/ipd3.png" />  IPD
+        <ul class="collapsibleList" style="display: none;">
+
+            @if (new CaresoftHMISDataAccess.CaresoftHMISEntities().OpdRegisters.Find(@ViewBag.OpdNo).IsIPD)
+            {
+                <li style="user-select: none;">
+                    <img src="~/Content/icons/emrMenuIcons/diet-chart.png" />
+                    <a href="#" class="call-modal-form" data-action="/NurseModule/NurseBilling/@ViewBag.OpdNo" data-callback="treatmentFormModalListener">
+                        IPD Nurse Drug Request
+                    </a>
+                </li>
+            }
+            <li style="user-select: none;">
+                <a href="@Url.Action("DischargeSummary", "Reports", new { Id = ViewBag.OpdNo})">
+                    <img src="~/Content/icons/emrMenuIcons/discharge-summary2.png" /> Discharge Summary
+                </a>
+            </li>
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/neonatal-summary.png" /> Neontal Summary
+            </li>
+            <li style="user-select: none;">
+                <a href="@Url.Action("MedicationAdministrationRecord", "EMR", new { Id = ViewBag.OpdNo})">
+                    <img src="~/Content/icons/emrMenuIcons/MAR.png" /> MAR
+                </a>
+            </li>
+            <li class="lastChild" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/operation-note.png" /> Operational Notes
+            </li>
+        </ul>
+    </li>
+    <li class="collapsibleListOpen" style="user-select: none;">
+        <img src="~/Content/icons/emrMenuIcons/cardiology.png" /> Cardiology
+        <ul class="collapsibleList" style="display: none;">
+            <li class="lastChild" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/coronary-heart-diseases1.png" /> CoronoryHeartDisease Assesment
+            </li>
+        </ul>
+    </li>
+    <li class="collapsibleListOpen" style="user-select: none;">
+        <img src="~/Content/icons/emrMenuIcons/physiotherapy.png" /> Physiotherapy
+        <ul class="collapsibleList" style="display: none;">
+            <li class="lastChild" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/physiotherapy.png" /> Physiotherapy
+            </li>
+        </ul>
+    </li>
+    <li class=" collapsibleListOpen" style="user-select: none;">
+        <img src="~/Content/icons/emrMenuIcons/other.png" />  Other
+        <ul class="collapsibleList" style="display: none;">
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/other.png" /> Other Diagnosis
+            </li>
+            <li style="user-select: none;">Questionnaire 1b</li>
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/remarks-for-nurse.png" /> Remark For Nurse
+            </li>
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/triage.png" /> Triage
+            </li>
+            <li style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/fall-risk.png" /> Fall Risk
+            </li>
+            <li class="lastChild" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/image1.png" /> Upload File
+            </li>
+        </ul>
+    </li>
+    <li class="lastChild"></li>
+</ul>
+
+
+
+@section scripts{
+    <script src="Scripts/CollapsibleLists.js"></script>
+    <script>
+        CollapsibleLists.apply();
+
+
+        // make the list with the ID 'newList' collapsible
+        //CollapsibleLists.applyTo(document.getElementById('newList'));
+
+    </script>
+}
+
+

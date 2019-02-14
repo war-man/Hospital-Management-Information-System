@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+    <title>@ViewBag.Title</title>
+    @{var companyName = "we"; var username = "User"; var marquee = ""; var EMRPaid = "#FEFE32"; var EMRRead = "#DFEDFD"; var EMRUnpaid = "#C20017"; var EMREmergency = "#90FF41"; }
+
+    @{
+
+        {
+
+            using (LabsDataAccess.CareSoftLabsEntities entity = new LabsDataAccess.CareSoftLabsEntities())
+            {
+
+                var marq = entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("RadiologyDepartmentMarquee"));
+                if (marq != null)
+                {
+                    marquee = marq.Value;
+                }
+
+                var depName = entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("RadiologyDepartmentName"));
+                if (depName != null)
+                {
+                    companyName = depName.Value;
+                }
+            }
+
+            using (LabsDataAccess.CareSoftLabsEntities entity = new LabsDataAccess.CareSoftLabsEntities())
+            {
+    <style>
+        :root {
+
+                --LabsQueueColorSeen: @entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsQueueColorSeen")).Value;
+
+                --LabsColorBillPaid: @entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsColorBillPaid")).Value;
+                --LabsColorPartialBillPaid:@entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsColorPartialBillPaid")).Value;
+                --LabsColorPendingBill:@entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsColorPendingBill")).Value;
+                --LabsColorSampleCollectionPending: @entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsColorSampleCollectionPending")).Value;
+                --LabsColorSampleCollectionDone: @entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsColorSampleCollectionDone")).Value;
+
+
+                --LabsColorRegistered: @entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsColorRegistered")).Value;
+                --LabsColorTested:@entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsColorTested")).Value;
+                --LabsColorAuthorized:@entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsColorAuthorized")).Value;
+                --LabsColorPartialAuthorized: @entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsColorPartialAuthorized")).Value;
+                --LabsColorPartialTested: @entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsColorPartialTested")).Value;
+
+                --LabsColorPartiallyPrinted:@entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsColorPartiallyPrinted")).Value;
+                --LabsColorPrinted: @entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsColorPrinted")).Value;
+
+                --LabsColorAccessionDonePatient:@entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsColorAccessionDonePatient")).Value;
+                --LabsColorAccessionPendingPatient: @entity.PathKeyValuePairs.FirstOrDefault(e => e.Key_.Equals("LabsColorAccessionPendingPatient")).Value;
+
+            }
+    </style>
+            }
+
+            using (CaresoftHMISDataAccess.CaresoftHMISEntities entity = new CaresoftHMISDataAccess.CaresoftHMISEntities())
+            {
+                var userId = Session["UserId"].ToString();
+                username = entity.Users.Find(int.Parse(userId)).Username;
+                ViewBag.Username = username;
+                var primaryColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("PrimaryColor")).Value;
+                var primaryLightColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("PrimaryLightColor")).Value;
+                var primaryDarkColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("PrimaryDarkColor")).Value;
+                var accentColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("AccentColor")).Value;
+                var emergencyColor = entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EmergencyColor")).Value;
+
+                <style>
+            :root {
+                    --outline-color: #009EE0;
+                    --normal-range: #08BF14;
+                    --abnormal-range:#FF2008;
+                    --panic-range:#2190FF;
+
+                    --accent-color: @accentColor;
+                    --primary-color: @primaryColor;
+                    --primary-light-color: @primaryLightColor;
+                    --primary-dark-color: @primaryDarkColor;
+                    --Emergency:@emergencyColor;
+
+                    --EMRPaid: @entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRPaid")).Value;
+                    --EMRRead:@entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRRead")).Value;
+                    --EMRunread:@entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRunread")).Value;
+                    --EMRUnpaid: @entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMRUnpaid")).Value;
+                    --EMREmergency: @entity.KeyValuePairs.FirstOrDefault(e => e.Key_.Equals("EMREmergency")).Value;
+
+
+                }
+                </style>
+
+
+            }
+        }
+
+
+    }
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/ckeditor")
+</head>
+<body style="background:#fff; padding:.8em;">
+
+
+
+    <style>
+        tr#header td {
+            padding: .8em;
+        }
+    </style>
+    <table width="100%" style="border:2px solid #009EE0">
+        <tr>
+            <td colspan="3" style="background: #009EE0; color:#fff">
+                <marquee>@marquee</marquee>
+            </td>
+        </tr>
+        <tr id="header">
+            <td id="company-one-logo">
+                <img src="http://kiambucounty.quanta-his.com/MasterForms/Patient%20Demographic/Images/Master/logo-img.png" />
+            </td>
+            <td align="center" id="header-center">
+                <table width="100%">
+                    <tr>
+                        <td id="facility-name" colspan="2" align="center" style="text-transform:uppercase; color:#0099FF; font-family: Tahoma; font-size:24px; font-weight:700">
+                            @companyName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="greetings-username" style="color:#0033cc; font-family: Verdana; font-size:12px; font-weight:400">
+                            Welcome : @username
+                        </td>
+                        <td align="right">
+                            <img src="http://kiambucounty.quanta-his.com/MasterForms/Patient%20Demographic/ButtonIcon/message1.png" />
+                            <img src="http://kiambucounty.quanta-his.com/MasterForms/Patient%20Demographic/ButtonIcon/mainpanel.png" title="Main Panel" data-href="/" class="img-link" />
+                            <img src="http://kiambucounty.quanta-his.com/MasterForms/Patient%20Demographic/ButtonIcon/home.png" title="Home" data-href="/hms" class="img-link" />
+                            <img src="~/Content/icons/signout.png" title="Logout" data-href="/login/logout" class="img-link" />
+                            <img data-toggle="modal" data-target="#chenge-password-modal" - src="http://kiambucounty.quanta-his.com/MasterForms/Patient%20Demographic/ButtonIcon/change_password.png" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td id="company-two-logo" align="right">
+                <img src="~/Content/icons/Softcom-logo.png" />
+            </td>
+        </tr>
+
+        @{ if (ViewBag.ShowTopMenu != null)
+            {
+                <tr style="border-top:2px solid  #009EE0">
+                    <td id="render-body" colspan="3">
+                        @Html.Partial("_NavRadiology")
+                    </td>
+                </tr>
+            }
+        }
+
+        <tr style="border-top:2px solid  #009EE0">
+            <td id="render-body" colspan="3" style="background:#DDECFE; padding-top:.5em; ">
+                <div style="min-height:60vh;">
+                    <!-- Modal -->
+                    <div class="modal fade" data-backdrop="static" id="UniversalModal" tabindex="-1" role="dialog" aria-labelledby="UniversalModal" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-body" id="UniversalModalView">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div style="elevation:above" data-backdrop="static" class="modal fade" id="UniversalModal2" tabindex="-1" role="dialog" aria-labelledby="UniversalModal2" aria-hidden="true">
+                        <div class="modal-dialog  modal-xl" role="document">
+                            <div class="modal-body" id="UniversalModal2View">
+                            </div>
+                        </div>
+                    </div>
+                    @RenderBody()
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td id="footer" colspan="3">
+                @Html.Partial("~/Views/Shared/_Footer.cshtml")
+            </td>
+        </tr>
+    </table>
+
+    <div id="notification">
+        <div class="close" style="float: right;" id="close-notification">&times;</div>
+        <div id="notification-message"></div>
+    </div>
+
+
+    <div id="loadingElement" class="loader collapse">
+        <img src="~/Content/icons/loader.gif" />
+        <p><em>Please wait...</em></p>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/Caresoft.js"></script>
+    <script src="~/Scripts/notify.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+        $("table.dropdown-table tr td").each(function () {
+            var hovered = $(this);
+            var sidekick = hovered.find(".sidekick-table-holder");
+            hovered.mouseover(function () {
+                sidekick.css("left", ($(this).width() + 10));
+            });
+
+        });
+
+
+        function RequestFormLoaderShow(context) {
+            $('.loader').show();
+
+        };
+
+        function RequestFormLoaderHide(context) {
+            $('.loader').hide();
+
+            //if (context.responseText == 1) {
+            //    $('modal').modal('hide');
+            //    alert(context.responseText);
+
+            //}
+
+
+        };
+
+        function refreshpage(context) {
+            $('#UniversalModalView').html(context)
+        };
+
+
+        $("table.dropdown-table tr td").each(function () {
+            var hovered = $(this);
+            var sidekick = hovered.find(".sidekick-table-holder");
+            hovered.mouseover(function () {
+                sidekick.css("left", ($(this).width() + 28));
+                sidekick.css({ marginTop: '-24px' });
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>

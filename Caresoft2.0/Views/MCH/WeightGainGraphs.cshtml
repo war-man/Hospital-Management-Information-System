@@ -1,0 +1,62 @@
+﻿
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	theme: "light1",
+	animationEnabled: true,
+	title: {
+		text: "Blood Pressure & Body Temperature Readings over a Day"
+	},
+	axisY: {
+		title: "Pressure (in mmHg)",
+		maximum: 190,
+		gridThickness: 0
+	},
+	axisY2: {
+		title: "Body Temperature (in °C)",
+		includeZero: false,
+		suffix: " °C",
+		gridThickness: 0
+	},
+	toolTip: {
+		shared: true
+	},
+	data: [{
+		type: "rangeSplineArea",
+		xValueFormatString: "hh:MM TT",
+		yValueFormatString: "# mmHg",
+		toolTipContent: "{x}<br><b>Systolic:</b> {y[0]}<br><b>Diastolic:</b> {y[1]}",
+		xValueType: "dateTime",
+		dataPoints:  @Html.Raw(ViewBag.DataPoints1)
+	}, {
+		type: "spline",
+		axisYType: "secondary",
+		name: "Body Temperature",
+		yValueFormatString: "#.0 °C",
+		toolTipContent: "<b>{name}:</b> {y}",
+		xValueType: "dateTime",
+		dataPoints:  @Html.Raw(ViewBag.DataPoints2)
+	}]
+});
+chart.render();
+
+}
+	</script>
+</head>
+<body>
+    <div id="chartContainer" style="height: 370px; width: 75%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery-ui.1.11.2.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+
+</body>
+</html>                           

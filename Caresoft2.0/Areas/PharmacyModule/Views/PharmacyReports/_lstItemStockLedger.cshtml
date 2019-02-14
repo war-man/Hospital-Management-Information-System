@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.PharmacyModule.ViewModel.PharmacyStockPosition>
+
+
+<table class="table table-data table-condensed" style="background-color:white">
+    <tr>
+        <th>Opening Stock</th>
+        <th>Closing Stock</th>
+        <th>Date</th>
+        <th>Item Name</th>
+        <th>Batch No</th>
+        <th>Total Purchase Quantity</th>
+        <th>Total Issue Quantity</th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="7">No data to display</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OpeningStock</td>
+                    <td>@item.ClosingStock</td>
+                    <td>@item.Date.Value.ToString("dd-MM-yyyy")</td>
+                    <td>@item.ItemName</td>
+                    <td>@item.BatchNumber</td>
+                    <td>@item.TotalPurchaseQuantity</td>
+                    <td>@item.TotalIssueQuantity</td>
+                    
+            </tr>
+        }
+    }
+
+</table>
+

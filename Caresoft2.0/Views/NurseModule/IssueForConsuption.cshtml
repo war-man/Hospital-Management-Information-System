@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Issue For Consumption";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                <form>
+                    <table class="table-form">
+                        <tr>
+                            <td><label title="Item Description">Item Desc.</label></td>
+                            <td colspan="3">
+                                <input type="text" class="text-box box-xlg" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Batch No</label>
+                                <input type="text" class="text-box box-lg" />
+                            </td>
+                            <td>
+                                <label title="Issue Quantity">Issue Qty</label>
+                                <input type="text" class="text-box box-lg" />
+                            </td>
+                            <td>
+                                <label>Current Stock</label>
+                                <input type="text" class="text-box box-lg" />
+                            </td>
+
+                            <td>
+                                <label>Exp Date</label>
+                                <input type="date" class="text-box box-lg" />
+                            </td>
+                            <td>
+                                <input type="button" class="btn btn-sm btn-primary" value="Save" />
+                            </td>
+                         </tr>
+                    </table>
+                </form>
+
+                <table class="table table-data table-condensed marg-top-16px">
+                    <thead>
+                        <tr>
+                            <th>Edit</th>
+                            <th>Item Name</th>
+                            <th>Batch No</th>
+                            <th>Unit</th>
+                            <th>Expiry Date</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr>
+                            <td colspan="6" align="center"><label>No data to display</label></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="marg-top-16px">
+                    <input type="button" class="btn btn-sm btn-default" value="Issue Drugs" disabled/>
+                    <input type="button" class="btn btn-sm btn-primary" value="Issue Drugs Report" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

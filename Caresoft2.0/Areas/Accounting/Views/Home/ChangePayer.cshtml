@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "ChangePayer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+
+}
+
+<div class="col-md-2">
+</div>
+<div class="col-md-7">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Change Scheme Payer/Category
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-6">
+                        <fieldset class="col-md-12">
+                            <legend>From</legend>
+                            <div class="col-md-12">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            Account No:
+                                        </td>
+                                        <td>
+                                            <select name="AccNoFrom" class="text-box margin-top-bottom-2" style="width:100%">
+                                                <option>--Select--</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Scheme Name:
+                                        </td>
+                                        <td>
+                                            <input name="SchemeNameFrom" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Scheme Payer:
+                                        </td>
+                                        <td>
+                                            <input name="SchemePayer" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br />
+                            </div>
+                        </fieldset>
+
+                    </div>
+                    <div class="col-md-6">
+                        <fieldset class="col-md-12">
+                            <legend>To</legend>
+                            <div class="col-md-12">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            Account No:
+                                        </td>
+                                        <td>
+                                            <select name="AccNoTo" class="text-box margin-top-bottom-2" style="width:100%">
+                                                <option>--Select--</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Payer Name:
+                                        </td>
+                                        <td>
+                                            <input name="PayerName" class="text-box margin-top-bottom-2" style="width:100%" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br />
+                            </div>
+                        </fieldset>
+
+                    </div>
+                    <br />
+                    <div class="col-md-12 marg-top-16px">
+                        <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Change Payer</button>
+                        <button type="reset" class="btn btn-default margin-top-bottom-2">Refresh</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

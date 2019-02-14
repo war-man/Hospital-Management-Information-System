@@ -1,0 +1,77 @@
+﻿@model IEnumerable<LabsDataAccess.ShortForm>
+
+
+
+@{
+    ViewBag.Title = "Short Form";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Areas/Radiology/Views/Shared/_LayoutRadiology.cshtml";
+
+}
+
+<div class="container">
+    <div class="col-xs-offset-1 col-xs-10 CustomLabel">
+        <div class=" col-xs-offset-0 col-xs-12">
+            <div class="panel panel-primary caresoft-panel">
+
+                <div class="panel-heading">
+                    @ViewBag.Title
+                </div>
+                <div class="panel-body">
+                    <div class="Radiology-border" style="background:white;">
+                        <table class="table table-condensed table-bordered table-data-Radiology">
+                            <tr>
+                                <th style="width:30%">
+                                    Test Name
+                                </th>
+                                <th style="width:20%">
+                                    Short Form
+                                </th>
+                                <th style="width:40%">
+                                    Description
+                                </th>
+                                <th style="width:10%">
+                                    Delete
+                                </th>
+                            </tr>
+
+                            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LabTest.Test)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Short_Form)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+}
+
+                        </table>
+
+
+                    </div>
+                    <p style="padding-top:20px;">
+                        @Ajax.ActionLink("Add New", "ShortFormEntry", null, new AjaxOptions
+        {
+            UpdateTargetId = "UniversalModalView",
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            LoadingElementId = "loadingElement",
+            OnSuccess = "$('#UniversalModal').modal('show');"
+        }, new { @class = "btn btn-sm btn-primary" })
+
+                        @*@Html.ActionLink("Create New", "ShortFormEntry", null, new { @class = "btn btn-sm btn-primary" })*@
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

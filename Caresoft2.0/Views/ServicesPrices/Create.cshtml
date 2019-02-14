@@ -1,0 +1,370 @@
+﻿@model Caresoft2._0.CustomData.TariffData
+
+@{
+    ViewBag.Title = "Tariff Price List";
+    Layout = "~/Views/Shared/_MasterForms.cshtml";
+    ViewBag.FormName = "Tariff Pricing";
+    ViewBag.Wide = true;
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <fieldset>
+            <table width="100%">
+                <tr>
+                    <td><label for="company">Company</label></td>
+                    <td>
+                        <select name="company" id="company" class="text-box box-lg">
+                            @foreach (var company in Model.CompaniesList)
+                            {
+                                <option value="@company.Id">@company.CompanyName</option>
+                            }
+                        </select>
+                    </td>
+                    <td><label for="tariff">Tariff</label></td>
+                    <td>
+                        <select name="tariff" id="tariff" class="text-box box-lg">
+                            @foreach (var tariff in Model.Tariffs)
+                            {
+                                <option value="@tariff.Id">@tariff.TariffName</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            @*@Html.DropDownListFor(model => model.Service.DepartmentId, new SelectList(Model.DepartmentsList, "Id", "DepartmentName"), "Select Department", htmlAttributes: new { @class = "form-control" })*@
+        </fieldset>
+    </div>
+
+    <div class="col-sm-6">
+        <fieldset>
+            <table width="100%">
+                <tr>
+                    <td><label for="department">Department</label></td>
+                    <td>
+                        <select name="department" id="department" class="text-box box-lg">
+                            @foreach (var department in Model.DepartmentsList)
+                            {
+                                <option value="@department.Id">@department.DepartmentName</option>
+                            }
+                        </select>
+                    </td>
+
+                </tr>
+            </table>
+            @*@Html.DropDownListFor(model => model.Service.DepartmentId, new SelectList(Model.DepartmentsList, "Id", "DepartmentName"), "Select Department", htmlAttributes: new { @class = "form-control" })*@
+        </fieldset>
+    </div>
+
+</div>
+
+<br />
+
+<div id="priceList"></div>
+
+
+@section scripts{
+    <script>
+        sessionStorage.hasChanges = false;
+
+        function hasUnsavedChanges() {
+            if (sessionStorage.hasUnsavedChanges) {
+                var r = confirm("You have unsaved changes!\n\nWould you like to save before proceeding?");
+                if (r == true) {
+                    //save and proceed
+                } else {
+                    //discard and proceed
+                }
+            }
+        }
+
+        tableReloadListener();
+
+        $("select").each(function () {
+            $(this).on("change", function () {
+                var changed = $(this).attr("id");
+                switch (changed) {
+                    case "company":
+                        filterTariffs($("#" + changed).val());
+                        break;
+                    case "tariff":
+                        reloadPriceList();
+                        break;
+                    case "department":
+                        reloadPriceList();
+                        break;
+                }
+            });
+        });
+
+        reloadPriceList();
+
+        function reloadPriceList() {
+            progressBar(90, $("#priceList"));
+
+           var tariffId = $("#tariff").val();
+            var department = $("#department").val();
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ReloadPriceList", "Master")',
+                data: { TariffId: tariffId, DepartmentId: department},
+                success: function (result) {
+                    $("#priceList").html(result);
+                    tableReloadListener();
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $("#priceList").html("<h3>An error occured!</h3><h4>Unable to retieve pricelist at the moment</h4>");
+                    console.log(xmlhttprequest.responseText);
+                }
+
+            });
+        }
+
+        function filterTariffs(companyId) {
+            var tariffDropDown = $("#tariff");
+            tariffDropDown.html("<option>Please wait</option>");
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("FilterTariffs", "Master")'+"/" + companyId,
+                success: function (result) {
+                    console.log(result);
+                    tariffDropDown.html(result);
+
+                    reloadPriceList();
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    console.log(xmlhttprequest.responseText);
+                }
+
+            });
+
+        }
+
+        function tableReloadListener() {
+            $("#btn-update-tariff-pricing").click(function () {
+                $(".alert").remove();
+
+                confirmUpdate();
+            });
+
+            $("#td-add-new-service").click(function () {
+                showAddServiceModal();
+            });
+        }
+
+        function confirmUpdate() {
+            var dept = $("#department option:selected").text();
+            var comp = $("#company option:selected").text();
+            var tariff = $("#tariff option:selected").text();
+
+            $("#comp-name").text(comp);
+            $("#tariff-name").text(tariff);
+            $("#dept-name").text(dept);
+
+            $("#confirmUpdate").modal("show");
+
+            $("#btn-update-confirmed").click(function () {
+                updateConfirmed();
+            });
+        }
+
+        
+
+        function updateConfirmed() {
+            var target = $("#footer-update");
+            var resetContent = target.html();
+
+            progressBar(98, target, "Saving changes...");
+            var tariffValue = $("#tariff").val();
+            var deptValue = $("#department").val();
+            var prices = []; var alteredCashPrices = [];
+            $('#priceList > tbody  > tr').each(function () {
+                var serviceId = $(this).attr("data-service-id");
+                var cashPrice = parseFloat($(this).find("td.cash-price").text()) || 0;
+                var awardUnit = $('input[name=awardUnit-' + serviceId + ']:checked').val();
+                var award = $("#award-" + serviceId).text();
+                var docFeeUnit = $('input[name=docFeeUnit-' + serviceId + ']:checked').val();
+                var docFee = $("#docFee-" + serviceId).text();
+
+                var price = {
+                    "Id": 0,
+                    "TariffId": tariffValue,
+                    "ServiceId": serviceId,
+                    "Award": award,
+                    "AwardUnit": awardUnit,
+                    "DoctorFee": docFee,
+                    "DoctorFeeUnit": docFeeUnit
+                };
+
+                var alteredCashPrice = {
+                    "ServiceId": serviceId,
+                    "CashPrice": cashPrice,
+                };
+                //push to array
+                prices.push(price);
+                alteredCashPrices.push(alteredCashPrice);
+                console.log(price);
+
+            });
+
+            //make ajax request
+
+             $.ajax({
+                type: "POST",
+                url: '@Url.Action("Create", "ServicesPrices")',
+                 data: {
+                     "ServicesPrices": prices, "AlteredPrices": alteredCashPrices,
+                     TariffId: $('#tariff').val()
+                 },
+                success: function (result) {
+                    target.html(resetContent);
+                    target.prepend('<div class="alert alert-success  text-left">' + result + '</div>');
+                    console.log(result);
+
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    target.html(resetContent);
+                    target.prepend('<div class="alert alert-danger text-left"><h4>Error!</h4>Unable to save changes at the moment.</div>');
+                    console.log(xmlhttprequest.responseText);
+                }
+
+            });
+
+        }
+
+
+
+
+        function showAddServiceModal() {
+            var deptNmae = $("#department option:selected").text();
+            var deptId = $("#department").val();
+            $("span#dept-name").text(deptNmae);
+            $("#DepartmentId").val(deptId);
+            $("#new-service-modal").modal("show");
+
+        }
+
+        $("#btn-add-service").click(function () {
+            var target = $("#add-service-footer");
+            var resetContent = target.html();
+            progressBar(94, target, "Adding service...");
+            var data = $("#form-new-service").serialize();
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ServiceOnTheFly", "Master")',
+                data: data,
+                success: function (result) {
+                    target.html(resetContent);
+                    target.prepend('<div class="alert alert-success  text-left">' + result.Message + '</div>');
+                    if (result.Status) {//status is a bool
+
+
+                        appendServiceForPricing(result.ServiceId, result.ServiceName, result.CashPrice);
+                    }
+                    console.log(result);
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    target.html(resetContent);
+                    target.prepend('<div class="alert alert-danger text-left"><h4>Error!</h4>Unable to add serrvice at the moment.</div>');
+                    console.log(xmlhttprequest.responseText);
+                }
+
+            });
+
+        });
+
+        function appendServiceForPricing(ServiceId, ServiceName, CashPrice) {
+            /*We could simply reload the price list table and find the newly added service, but this will mae the usser loose all unsaved changes, so we do this instead*/
+
+            var row = '<tr data-service-id="' + ServiceId+'">'+
+
+            '<td>'+
+               ServiceName +
+                        '</td>' +
+                        '<td>' +
+                CashPrice +
+                        '</td>' +
+                '<td contenteditable="true" align="center" style="border:1px dotted grey;" id="award-' + ServiceId+'">0</td>' +
+                        '<td>' +
+                        '   <label for="awardAmount-' + ServiceId+'">Amount</label>' +
+                '  <input type="radio" name="awardUnit-' + ServiceId + '" id="awardAmount-' + ServiceId +'" checked value="Amount" />' +
+
+                        ' <label for="awardUnitPercent-' + ServiceId+'">Percent </label>' +
+                        '<input type="radio" name="awardUnit-' + ServiceId+'" id="awardUnitPercent-' + ServiceId+'" value="Percent" />' +
+
+                        '    </td>' +
+                        '   <td contenteditable="true" align="center" style="border:1px dotted grey;" id="docFee-' + ServiceId+'">0</td>' +
+           ' <td>'+
+            '    <label for="docFeeUnitAmount-' + ServiceId+'">Amount</label>'+
+                '   <input type="radio" name="docFeeUnit-' + ServiceId+'" id="docFeeUnitAmount-' + ServiceId+'" checked value="Amount" />' +
+
+                    '  <label for="docFeeUnitPercent-' + ServiceId+'">Percent </label>' +
+                    ' <input type="radio" name="docFeeUnit-' + ServiceId+'" id="docFeeUnitPercent-' + ServiceId+'" value="Percent" />' +
+                    '</td>' +
+                '</tr>';
+
+                $('#priceList').find('tbody').append(row);
+
+                $("#form-new-service")[0].reset();
+
+
+            tableReloadListener();
+        }
+
+    </script>
+}
+
+<div class="modal fade" data-backdrop="static" id="confirmUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Mass Update</h5>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to update tariff prices for <br />
+                <b>Company </b><span id="comp-name"></span><br />
+                <b>Tariff </b><span id="tariff-name"></span><br />
+                <b>Department </b><span id="dept-name"></span>
+                <p></p>
+            </div>
+            <div class="modal-footer" id="footer-update">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="btn-update-confirmed">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" data-backdrop="static" id="new-service-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add new service to <b><span id="dept-name">[]</span></b> department.</h5>
+            </div>
+            <div class="modal-body">
+                <form id="form-new-service">
+                    <input type="hidden" name="DepartmentId" id="DepartmentId" />
+                    <input type="hidden" name="Id" id="Id" value="0" />
+                    <div class="form-group">
+                        <label for="serviceName">Service Name</label><br />
+                        <input type="text" class="text-box" id="serviceName" name="ServiceName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="cashPrice">Price</label><br />
+                        <input type="number" class="text-box" name="CashPrice" id="CashPrice" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" id="add-service-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btn-add-service">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

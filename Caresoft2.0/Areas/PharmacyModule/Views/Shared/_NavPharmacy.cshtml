@@ -1,0 +1,187 @@
+﻿<table class="table-top-menu" width="100%">
+    <tr style="background-color:#C1D8F9">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td width="200px">
+            | Master (Pharmacy) <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("RequestAnItem", "PharmacyMaster")">
+                            | Request An Item
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("SearchRequestedItem", "PharmacyMaster")">
+                            | Search Requested Item
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("RackMaster", "PharmacyMaster")">
+                            | Rack Master
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("SetItemLocation", "PharmacyMaster")">
+                            | Set Item Location
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td width="200px">
+            | Patient Transaction (Pharmacy)  <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("SearchPatientIssueVoucher", "PharmacyPatientTransaction")">
+                            | Patient Issue Voucher
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("EditPatientIssueVoucher", "PharmacyPatientTransaction")">
+                            | Search Patient Voucher
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("SearchCanceledIssueVoucher", "PharmacyPatientTransaction")">
+                            | Cancel Issue Voucher
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("CancelVoucherReqFromNurse", "PharmacyPatientTransaction")">
+                            | Cancel Issue Voucher Request by Nurse
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ItemRefund", "PharmacyPatientTransaction")">
+                            | Item Refund
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("StockAdjustment", "PharmacyPatientTransaction")">
+                            | Stock Adjustment
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("IssueToDepartment", "PharmacyPatientTransaction")">
+                            | Issue Drugs To Department
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("SearchDepartmentIssuedVouchers", "PharmacyPatientTransaction")">
+                            | Search  Department Issued Vouchers
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </td>
+
+        <td width="200px">
+            | Reports (Pharmacy) <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            | Stock Report <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("StockPosition", "PharmacyReports")">| Stock Ledger</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("CurrentStock", "PharmacyReports")"> | Current Stock</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("ItemStockPosition", "PharmacyReports")">| Item Stock Ledger</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("StockSummary", "PharmacyReports")">| Stock Summary</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("StockReport", "PharmacyReports")">
+                                            | Stock Movement
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Patient Report <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("CashSummaryReport", "PharmacyReports")">| Cash Summary</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("PatientReportSummary", "PharmacyReports")">| Patient Summary Report</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            | Issue/Sales Report <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("DrugWiseReport", "PharmacyReports")">| Item Wise Report</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("BillWiseDailySalesReport", "PharmacyReports")">| Bill Wise/Daily Sales Report</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("CashRegisterReport", "PharmacyReports")" >| Cash Register Report</td>
+                                    </tr>
+                                    <tr>
+                                        
+                                        <td data-href="@Url.Action("SalesProfitReport", "PharmacyReports")">| Sales Profit Report</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            | Donor Wise Report <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        
+                                        <td data-href="@Url.Action("DonorWiseSupplierReport", "PharmacyReports")">| Donor Wise Supplier Report</td>
+                                    </tr>
+                                    <tr>
+                                        
+                                        <td data-href="@Url.Action("DonorWiseIssueReport", "PharmacyReports")">| Donor Wise Issue Report</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                    </tr>
+                   
+                </table>
+            </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+</table>
+
+
+
+
+
+
+
+
+

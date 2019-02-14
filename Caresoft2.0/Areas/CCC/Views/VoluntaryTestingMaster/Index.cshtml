@@ -1,0 +1,112 @@
+﻿
+
+@{
+    Layout = "~/Areas/HIV/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+}
+@*<div class="col-md-12">
+    <div class="col-md-2">
+
+
+    </div>
+</div>*@
+<div class="col-md-10 col-md-offset-1"> 
+    <div class="panel panel-primary caresoft-panel glass shadow">
+        <div class="panel-heading">
+            Voluntary Testing Master
+        </div>
+    
+    <div class="panel-body">
+    <form method="post">
+        
+        <div class="form-group">
+        <table>
+            <tbody>
+                <tr>
+
+                    <td>For Month</td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:-170px; margin-right:15px; margin-bottom:15px;" type="date" id="datepicker" /></td>
+                </tr>
+                <tr>
+
+
+                    <th></th>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Male</th>
+
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Total Female</th>
+                </tr>
+                <tr>
+                    <td>Number of pre-test counseled</td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px;" type="text" id="normal"name="NumberOfPreTestCounseledTotalMale" /></td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px" type="text" id="normal"name="NumberOfPreTestCounseledTotalFemale"  /></td>
+                </tr>
+                <tr>
+
+                    <td>Number of post-test counseled</td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px;" type="text" id="normal"name="NumberOfPostTestCounseledTotalMale"  /></td>
+                    <td><input class="text-box margin-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px;" type="text" id="normal"name="NumberOfPostTestCounseledTotalFemale"  /></td>
+
+                </tr>
+                <tr>
+                    <td>Number of counseled without test</td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px; margin-bottom:15px;" type="text" id="normal"name="NumberOfCounseledWithoutTestTotalMale" /></td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px;" type="text" id="normal"name="NumberOfConseledWithoutTestTotalFemale"  /></td>
+                </tr>
+                <tr>
+                    <td>Number of PLHIV Dropped in</td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px;" type="text" id="normal"name="NumberOfPLHIVDroppedInTotalMale"  /></td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px;" type="text" id="normal"name="NumberOfPLHIVDroppedInTotalFemale"  /></td>
+                </tr>
+                <tr>
+                    <td>Number of follow-up counseling</td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px;" type="text" id="normal" name="NumberOfFollowUpCounselingTotalMale" /></td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px;" type="text" id="normal"name="NumberOfFollowUpCOunselingTotalFemale" /></td>
+                </tr>
+                <tr>
+                    <td>Number of PLHIV involved in counseling</td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px;" type="text" id="normal" name="NumberOfPLHIVInvolvedInCounselingTotalMale" /></td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px;" type="text" id="normal" name="NumberOfPLHIVInvolvedInCounselingTotalFemale"/></td>
+                </tr>
+                <tr>
+                    <td>Number of people tested through outreaching</td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px;" type="text" id="normal"name="NumberOfPeopleTestedThroughOutreachingTotalMale" /></td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px;" type="text" id="normal" name="NumberOfPeopleTestedThroughOutreachingTotalFemale" /></td>
+                </tr>
+                <tr>
+                    <td>Number of PLHIV receiving HBC</td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px" type="text" id="normal" name="NumberOfPLHIVReceivingHBCTotalMale" /></td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px" type="text" id="normal" name="NumberOfPLHIVReceivingHBCTotalFemale" /></td>
+                </tr>
+                <tr>
+                    <td>Number of HIV+ clients referrals</td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px; margin-bottom:15px;" type="text" id="normal" name="NumberOfHIVAndClientReferralsTotalMale" /></td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px; margin-bottom:15px;" type="text" id="normal" name="NumberOfHIVAndClientReferralsTotalFemale" /></td>
+                </tr>
+                <tr>
+
+                    <td colspan="3">
+                        <hr runat="server" id="testHR" style="border-color: black" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Number of male condoms distributed</td>
+                    <td><input class="text-box marg-top-6px" style="width:140px; margin-left:15px;margin-right:15px; margin-bottom:15px;" type="text" id="normal"name="NumberOfMaleCondomsDistributed" /></td>
+
+                </tr>
+                <tr>
+                    <td>Number of female condoms distributed</td>
+                    <td><input class="text-box margin-top-6px" style="width:140px; margin-left:15px;margin-right:15px;margin-bottom:15px;" type="text" id="normal" name="NumberOfFemaleCondomsDistributed" /></td>
+                </tr>
+                
+
+
+            </tbody>
+
+        </table>
+        <input id="Button1" class="btn btn-sm btn-primary" style="margin-left:327px; margin-right:15px;margin-top:15px; margin-bottom:15px;" type="submit" value="Submit" />
+            </div>
+    </form>
+    </div>
+    </div>
+    </div>
+

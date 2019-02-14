@@ -1,0 +1,608 @@
+﻿
+@{
+    ViewBag.Title = "OT Request";
+    Layout = "~/Views/Shared/_NurseModuleLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div id="nurse-request" class="tab-pane fade in active">
+                <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+                <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                <script src="~/Scripts/bootstrap.min.js"></script>
+                <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+                <link href="~/Content/Css/JQueryUI/themes/base/jquery-ui.css" rel="stylesheet" />
+
+
+
+
+
+
+                <script type="text/javascript">
+
+
+                jQuery(document).ready(function () {
+                    
+
+
+                    $("#TRegNumber").autocomplete({
+
+                            source: function (request, res) {
+
+
+                                $.ajax({
+
+                                    type: "POST",
+                                    url: "@Url.Action("SearchPatient", "NurseModule")",
+
+                                    dataType: "json",
+                                    data: { Prefix: request.term },
+
+
+                                    data: { search: $("#TRegNumber").val() },
+                                    success: function (data) {
+                                        res($.map(data, function (item) {
+                                            return {
+                                                label: item.RegNumber + "(" + item.Name + ")" + "( Visit Date : " + item.OpdDate + ")",
+                                                value: item.RegNumber,
+                                                OpdId: item.OpdId,
+                                                patientId: item.PatientId, name: item.Name, FName: item.FName, MName: item.MName
+                                                , LName: item.LNames };
+                                        }));
+                                    },
+
+                                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                                        console.log(errorthrown, "danger")
+                                        console.log(xmlhttprequest.responseText);
+                                    }
+
+                                });
+                            },
+
+                            messages: {
+                                noResults: "", results: ""
+
+                            }
+
+                        });
+
+                    $("#TRegNumber").on("autocompleteselect", function (event, ui) {
+                        $("#TPatientName").val(ui.item.name);
+                        $("#TPatientId").val(ui.item.patientId);
+                        $("#TOPDNo").val(ui.item.OpdId);
+
+
+
+                            console.log(ui);
+
+
+                        });
+            $("#ConsultantDoctor").autocomplete({
+                source: function (req, res) {
+                    $.ajax({
+                        type: "POST",
+                        minLength: 0,
+                        url: "@Url.Action("SearchDoctors", "NurseModule")",
+                        dataType: "json",
+                        data: { search: $("#ConsultantDoctor").val() },
+                        success: function (data) {
+                            res($.map(data, function (item) {
+                                return { label: item.Name, value: item.Name, doctorId: item.DoctorId };
+                            }));
+                        },
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                    });
+                }
+            });
+                    $("#TSearchAmbulance").autocomplete({
+                            source: function (req, res) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("SearchTheatre", "NurseModule")",
+                        focus: function (event, ui) {
+                            $("#TSearchAmbulance").val(ui.item.label);
+                            return false;
+                        },
+                        dataType: "json",
+
+                        select: function (event, ui) {
+                            event.preventDefault();
+                            if (ui.item.value != null) {
+                                $("#TSearchAmbulance").val(ui.item.label);
+                                $("#amb-id").val(ui.item.value);
+                                $("#amb-detail").val(ui.item.value);
+                            }
+                        },
+
+                        data: { search: $("#TSearchAmbulance").val() },
+                        success: function (data) {
+                            res($.map(data, function (item) {
+                                return {
+                                    label: item.Name, value: item.Name, Id: item.Id, Department: item.Department, PayableAmount: item.PayableAmount,
+                                    Price: item.Price };
+                            }));
+                        },
+                        error: function (xmlhttprequest, textstatus, errorthrown) {
+                            console.log(errorthrown, "danger")
+                            console.log(xmlhttprequest.responseText);
+                        }
+                });
+
+                            }
+
+
+                        });
+
+
+
+
+
+                    $("#TSearchAmbulance").on("autocompleteselect", function (event, ui) {
+
+                            $("#TServiceName").val(ui.item.label);
+                            $("#TServiceId").val(ui.item.Id);
+                            $("#TDepartment").val(ui.item.Department);
+                            $("#TPrice").val(ui.item.Price);
+
+                            console.log("AutoComplete Opened");
+
+                            var ServiceId = ui.item.Id;
+                            var data = ui.item;
+                            console.log(ui.item);
+
+                            if ($("#draft-service-" + ServiceId).data("status") === "draft") {
+                                //the request is still in draft and cannot be resent just yet
+                                showNotification("You already requested this test!", "info", true);
+                                return false;
+                            } else {
+                                console.log($("#draft-service-" + ServiceId).data("status"));
+                            }
+
+                            var selectBox = '<select class="text-box" id="priority-' + ServiceId + '">' +
+                                '<option>Normal</option>' +
+                                '<option>Urgent</option>' +
+                                '<option>Emergency</option>' +
+                                '</select>';
+
+                            var tr = "<tr id='draft-service-" + ServiceId + "' data-status='draft' data-serviceid=" + ServiceId + "><td><label class='delete-row btn btn-xs'>Delete</label></td><td>" + data.label + "</td><td>" + data.Price +  "</td><td>" + (data.PayableAmount - data.AwardedAmount) + "</td><td id='service-" + ServiceId + "-department'>" + data.Department +
+                                "</td><td>" + selectBox + "</td><td></td></tr>";
+                            $("#table-selected-tests tbody").append(tr);
+
+
+                            $(".delete-row").each(function () {
+                                $(this).unbind();
+                                $(this).click(function () {
+                                    $(this).parent().parent().remove();
+                                });
+                            })
+
+                            $.ajax({
+                                success: function () {
+                                    $("#TSearchAmbulance").val('');
+                                }
+                            });
+
+
+                        });
+
+
+
+       
+
+
+ });
+
+
+
+
+
+                </script>
+
+
+
+
+
+
+
+                <div class="panel panel-primary shadow glass caresoft-panel" style="margin-bottom:-1em;">
+
+                    <div class="panel-body">
+
+                        <div class="tab-content">
+                            <div id="work-order-tab" class="tab-pane fade in active">
+                                <fieldset>
+                                    @using (Ajax.BeginForm("SaveTheatrRequest", "NurseModule", new { }, new AjaxOptions
+                                    {
+                                        LoadingElementId = "loadingElement",
+                                        HttpMethod = "POST",
+                                        UpdateTargetId = "",
+                                        OnFailure = "showNotification('Failed', 'danger', 'false')",
+                                        OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                                    }))
+                                    {
+
+                                        <form id="ambulance-request" method="post" action="@Url.Action("SaveTheatrRequest", "NurseModule")" class="form-container">
+                                            <table width="100%">
+                                                <tr>
+                                                    <td>
+                                                        <label>RegNo</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="text-box box-lg" required id="TRegNumber" placeholder="Search Patient" />
+                                                    </td>
+                                                    <td>
+                                                        <label>Patient Name</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="text-box box-lg" id="TPatientName" required />
+                                                        <input type="hidden" id="TPatientId" name="PatientId" />
+                                                    </td>
+
+                                                </tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <tr>
+
+
+                                                    <td>
+                                                        <label>Date</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="date" name="AdmissionDate" class="text-box box-lg" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+                                                    </td>
+
+                                                </tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <tr>
+                                                    <td>
+                                                        <input type="hidden" id="TServiceName" name="ServiceName" class="text-box box-lg" value="" required />
+                                                    </td>
+                                                    <td>
+                                                        <input type="hidden" id="TDepartment" name="Department" class="text-box box-lg" value="" required />
+                                                    </td>
+                                                    <td>
+                                                        <input type="hidden" id="TOPDNo" name="OPDNo" class="text-box box-lg" value="" required />
+                                                    </td>
+                                                    <td>
+                                                        <input type="hidden" id="TServiceId" name="ServiceId" class="text-box box-lg" value="" required />
+                                                    </td>
+                                                    <td>
+                                                        <input type="hidden" id="TPrice" name="Price" class="text-box box-lg" value="" required />
+                                                    </td>
+
+                                                </tr>
+
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+
+
+                                                <tr>
+                                                    <td>Search Service From</td>
+                                                    <td class="td-value">
+
+                                                        <input type="radio" name="search-from" id="theatre" value="Theatre" checked />
+                                                        <label for="lab">Theatre</label>
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <input type="text" class="text-box box-xlg" placeholder="Search Service" id="TSearchAmbulance" />
+                                                    </td>
+                                                    <td></td>
+                                                    <td class="td-value" colspan="2"></td>
+                                                </tr>
+
+                                            </table>
+
+
+
+                                            <fieldset>
+
+                                                <legend>Selected Theatre Services</legend>
+                                                <table class="table table-data table-condensed" id="table-selected-tests">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th></th>
+
+                                                            <th>Service Name</th>
+                                                            <th>Rate</th>
+
+                                                            <th>Payable</th>
+                                                            <th>Department</th>
+
+                                                            <th>Order Priority</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="bg-white table table-data table-condensed">
+
+                                                        <tr>
+                                                            <td></td>
+                                                            <td id="ServiceId"></td>
+                                                            <td id="value"></td>
+                                                            <td id="Price"></td>
+                                                            <td id="PayableAmount"></td>
+                                                            <td id="Department"></td>
+
+                                                            <td></td>
+
+
+                                                        </tr>
+
+                                                    </tbody>
+
+                                                </table>
+                                            </fieldset>
+
+                                            <div class="row marg-top-2px">
+                                                <div class="col-xs-12">
+                                                    <button type="submit" class="btn btn-sm btn-primary" id="TbtnSubmit" name="btnSubmit">Submit Request</button>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    }
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div id="cssd-request" class="right-element">
+                            <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                            <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+                            <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                            <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                            <script src="~/Scripts/bootstrap.min.js"></script>
+                            <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                            <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+                            <script src="~/Scripts/moment.js"></script>
+
+                            <link href="~/Content/Css/JQueryUI/themes/base/jquery-ui.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <script type="text/javascript">
+
+                            jQuery(document).ready(function ($) {
+                                //  var table = $('#dataTable').DataTable();
+                                $('#cssdTable').DataTable({
+                                    "ajax": {
+                                        "url": "/NurseModule/GetTheatreRequest",
+                                        "type": "GET",
+                                        "datatype": "json",
+                                        "dataSrc": ""
+                                    },
+                                    "columns": [
+                                        { "data": "Id" },
+                                        { "data": "OPDNo" },
+                                        { "data": "RequestingNurse" },
+                                        { "data": "ServiceName" },
+                                        { "data": "Department" },
+
+                                        {
+                                            'data': 'AddedOn', 'render': function (data) {
+                                                return moment(data).format(' MMMM d, YYYY : h:mm:ss a ');
+                                            }
+                                        },
+
+
+
+
+
+                                        {
+                                            "data": function (data, type, row) {
+                                                if (data["Assigned"] == "0") {
+
+                                                    return "<span class='glyphicon glyphicon-remove'> Pending Nurse Confirmation"
+
+
+                                                }
+                                                else if (data["Assigned"] == "1") {
+
+                                                    return "Received"
+                                                }
+
+
+
+                                            }
+
+                                        },
+
+
+
+                                    ],
+                                    "createdRow": function (row, data, dataIndex) {
+                                        if (data["Assigned"] == "0") {
+                                            $(row).css("background-color", "Red");
+                                            $(row).css("color", "white");
+
+                                        }
+                                        else if (data["Assigned"] == "1") {
+                                            $(row).css("background-color", "Green");
+                                            $(row).css("color", "white");
+                                        }
+                                    },
+
+
+
+                                });
+
+                                var table = $('#cssdTable').DataTable();
+                                $('.cssdTable').on('click', 'tbody tr', function () {
+                                    console.log('API row values : ', table.row(this).data());
+
+                                    $('.nav-tabs a[href="#assign-amb"]').tab('show');
+                                    // alert();
+
+                                })
+
+
+                                $("#cssdTable tbody").on("click", ".btnEdit", function () {
+                                    var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                                    // alert(id);
+                                    //alert($(this).text());
+                                    //alert();
+                                    $.ajax({
+                                        data: { id: id },
+                                        url: '/NurseModule/ConfirmTheatre',
+                                        type: 'POST',
+                                        success: function (data) {
+                                            alert("Cleanup Approved");
+                                        }
+                                    });
+                                });
+
+                                            $("#IRegNumber").autocomplete({
+
+                            source: function (request, res) {
+
+
+                                $.ajax({
+
+                                    type: "POST",
+                                    url: "@Url.Action("SearchPatient", "NurseModule")",
+
+                                    dataType: "json",
+                                    data: { Prefix: request.term },
+
+
+                                    data: { search: $("#IRegNumber").val() },
+                                    success: function (data) {
+                                        res($.map(data, function (item) {
+                                            return {
+                                                label: item.RegNumber + "(" + item.Name + ")" + "( Visit Date : " + item.OpdDate + ")",
+                                                value: item.RegNumber,
+                                                OpdId: item.OpdId,
+                                                patientId: item.PatientId, name: item.Name, FName: item.FName, MName: item.MName
+                                                , LName: item.LNames };
+                                        }));
+                                    },
+
+                                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                                        console.log(errorthrown, "danger")
+                                        console.log(xmlhttprequest.responseText);
+                                    }
+
+                                });
+                            },
+
+                            messages: {
+                                noResults: "", results: ""
+
+                            }
+
+                        });
+
+            $("#IRegNumber").on("autocompleteselect", function (event, ui) {
+                            $("#RPatientName").val(ui.item.name);
+                            $("#PatientId").val(ui.item.patientId);
+                            $("#OpdNum").val(ui.item.OpdId);
+
+
+
+                            console.log(ui);
+
+
+                        });
+
+                            });
+
+
+
+
+
+
+
+                            </script>
+
+
+                            <h4 class="text-center text-uppercase"> Theatre request</h4>
+                            <div id="dataTable_wrapper"></div>
+
+                            <ul class="legend" style="float:right;">
+                                <li><span class="Pending"></span> <strong>Not Received</strong></li>
+
+                                <li><span class="Completed"></span> <strong>Received</strong></li>
+
+                            </ul>
+
+                            <style>
+
+                                .legend {
+                                    list-style: none;
+                                }
+
+                                    .legend li {
+                                        float: left;
+                                        margin-right: 10px;
+                                    }
+
+                                    .legend span {
+                                        border: 1px solid #ccc;
+                                        float: left;
+                                        width: 12px;
+                                        height: 12px;
+                                        margin: 2px;
+                                    }
+                                    /* your colors */
+                                    .legend .Pending {
+                                        background-color: red;
+                                    }
+
+
+                                    .legend .Completed {
+                                        background-color: green;
+                                    }
+                            </style>
+                            <table id="cssdTable" class="table table-data-pathology table-condensed">
+
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>OPDNo</th>
+                                        <th>Requesting Nurse</th>
+                                        <th>Service name</th>
+                                        <th> Department</th>
+                                        <th>Requested date</th>
+                                        <th> Status</th>
+
+
+
+
+                                    </tr>
+                                </thead>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

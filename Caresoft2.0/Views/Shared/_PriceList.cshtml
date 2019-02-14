@@ -1,0 +1,125 @@
+﻿@model Caresoft2._0.CustomData.TariffData
+@using CaresoftHMISDataAccess;
+
+@{ 
+    CaresoftHMISEntities db = new CaresoftHMISEntities();
+}
+
+<table class="table table-bordered table-data table-condensed" id="priceList">
+    <thead>
+        <tr class="bg-primary">
+            @*<th>
+                    Company
+                </th>
+                <th>
+                    Tariff
+                </th>
+                <th>
+                    Department
+                </th>*@
+            <th>
+                Service
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Award
+            </th>
+            <th>
+                Award Unit
+            </th>
+            <th>
+                Doctor Fee
+            </th>
+            <th>
+                Doctor Fee Unit
+            </th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in @Model.Services)
+        {
+
+            var award = 0.0; var awardUnit = "Amount"; var docFee = 0.0; var docFeeUnit = "Amount";
+            var pricingEntry = Model.ServicePrices.FirstOrDefault(e => e.ServiceId == item.Id);
+            if (pricingEntry != null)
+            {
+                award = pricingEntry.Award;
+                docFee = pricingEntry.DoctorFee;
+                awardUnit = pricingEntry.AwardUnit;
+                docFeeUnit = pricingEntry.DoctorFeeUnit;
+            }
+
+
+            <tr data-service-id="@item.Id">
+                @*<td>
+                      Com
+                    </td>
+                    <td>
+                      Tar
+                      </td>
+                      <td>
+                          Dep
+                      </td>*@
+                <td>
+                    @item.ServiceName
+                </td>
+                <td contenteditable="true" style="border:1px dotted grey;" class="cash-price">
+                    @if (Model.Tariff.Company.CompanyName == "Cash")
+                    {
+                        @item.CashPrice
+                    }
+                    else
+                    {
+                        var price = db.InsurancePrices.FirstOrDefault(e => 
+                        e.CompanyId == Model.Tariff.CompanyId && e.ServicesPrice.ServiceId == item.Id);
+
+                        if (price != null)
+                        {
+                            @price.Price
+                        }
+                        else
+                        {
+                            @item.CashPrice
+                        }
+                    }
+                </td>
+                <td contenteditable="true" align="center" style="border:1px dotted grey;" id="award-@item.Id">
+                    @award
+                </td>
+                <td>
+                    <label for="awardAmount-@item.Id">Amount</label>
+                    <input type="radio" name="awardUnit-@item.Id" @{if (awardUnit == "Amount") { <text> checked</text> } } id="awardAmount-@item.Id" value="Amount" />
+
+                    <label for="awardUnitPercent-@item.Id">Percent</label>
+                    <input type="radio" name="awardUnit-@item.Id" @{if (awardUnit == "Percent") { <text> checked</text> } } id="awardUnitPercent-@item.Id" value="Percent" />
+
+                </td>
+                <td contenteditable="true" align="center" style="border:1px dotted grey;" id="docFee-@item.Id">
+                    @docFee
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.DoctorFeeUnit)*@
+                    <label for="docFeeUnitAmount-@item.Id">Amount</label>
+                    <input type="radio" name="docFeeUnit-@item.Id" @{if (docFeeUnit == "Amount") { <text> checked</text> } } id="docFeeUnitAmount-@item.Id" value="Amount" />
+
+                    <label for="docFeeUnitPercent-@item.Id">Percent</label>
+                    <input type="radio" name="docFeeUnit-@item.Id" @{if (docFeeUnit == "Percent") { <text> checked</text> } } id="docFeeUnitPercent-@item.Id" value="Percent" />
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr class="bg-success">
+            <td colspan="6" id="td-add-new-service">Add</td>
+        </tr>
+    </tfoot>
+</table>
+
+<div>
+    <button class="btn btn-sm btn-primary" type="button" id="btn-update-tariff-pricing">Update All Prices</button>
+    <button class="btn btn-sm btn-primary" type="button" id="btn-cancel">Cancel</button>
+</div>

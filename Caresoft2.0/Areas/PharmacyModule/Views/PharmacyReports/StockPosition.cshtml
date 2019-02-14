@@ -1,0 +1,190 @@
+﻿@model IEnumerable<Caresoft2._0.Areas.PharmacyModule.ViewModel.PharmacyStockPosition>
+
+@{
+    ViewBag.Title = "Stock Position";
+    Layout = "~/Areas/PharmacyModule/Views/Shared/_LayoutPharmacy.cshtml";
+    var Drugs = (List<Caresoft2._0.Areas.Procurement.Models.Drug>)ViewBag.Drugs;
+}
+
+<style>
+    .text-box {
+        width: 200px;
+        margin-top: 2px;
+    }
+</style>
+
+<div class="col-md-12">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px"> <strong> Stock Ledger</strong></p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        <tr>
+                            <td>From Date</td>
+                            <td> <input type="date" class="text-box" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" id="fromDate" /></td>
+                            <td>To Date</td>
+                            <td> <input type="date" class="text-box" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" id="toDate" /></td>
+                        </tr>
+                        <tr>
+                            <td>Generic Drug</td>
+                            <td><input type="text" class="text-box" /></td>
+                        </tr>
+                        <tr>
+                            <td> Current Stock</td>
+                            <td>
+                                <input type="text" class="text-box" style="width:95px" />
+                                <select class="text-box" style="width:100px">
+                                    <option></option>
+                                </select>
+                            </td>
+                            <td> Issue Quantity</td>
+                            <td>
+                                <input type="text" class="text-box" style="width:95px" />
+                                <select class="text-box" style="width:100px">
+                                    <option></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Manufaturing Company</td>
+                            <td><input type="text" class="text-box" /></td>
+                            <td>Category</td>
+                            <td><input type="text" class="text-box" /></td>
+                        </tr>
+                        <tr>
+                            <td>Search Item Name</td>
+                            <td>
+                                @*<select class="text-box" id="SelectItemName">
+                                        <option>SELECT ITEM NAME</option>
+                                        @if(ViewBag.Items !=null)
+                                        {
+                                            foreach (var item in ViewBag.Items)
+                                            {
+                                                <option value="@item">@item</option>
+                                            }
+                                        }
+                                    </select>*@
+                                <select class="text-box" id="SelectItemName">
+                                    <option>SELECT ITEM NAME</option>
+                                    @if (ViewBag.Items != null)
+                                    {
+                                        foreach (var item in Drugs)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">View Result</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <div id="lstStock">
+                        @Html.Partial("~/Areas/PharmacyModule/Views/PharmacyReports/_lstStockPosition.cshtml", Model)
+
+                    </div>
+                </div>
+
+                <div class="col-md-10">
+                    <a href="@Url.Action("GenerateStockPositionReport")" class="btn btn-primary">Report</a>
+                    <a href="~/DefaultReport.aspx" class="btn btn-primary">Default Report </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+        $("#SelectItemName").on('change', function () {
+
+            var itemName = $(this).val();
+
+            // var url = "/PharmacyReports/SearchItem?name=" + itemName;
+            var url = "/PharmacyReports/SearchItemId?Id=" + itemName;
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                beforeSend: function () { $(".loader").show(); },
+                success: function (obj) {
+                    $(".loader").hide();
+                    var lstStock = $("#lstStock");
+                    lstStock.empty()
+                    lstStock.append(obj);
+                },
+                error: function (x, y, z) {
+                    $(".loader").hide();
+                    console.log(x.resposeText);
+                }
+            });
+        })
+
+
+        $("#fromDate").on('change', function () {
+            var fromDate = $(this).val();
+            var toDate = $("#toDate").val();
+
+            var dates = { fromDate: fromDate, toDate: toDate };
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyReports/SearchStockByDatesStockPosition",
+                data: dates,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    $("#lstStock").empty();
+                    $("#lstStock").append(obj);
+                    $(".loader").hide();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+
+        })
+
+        $("#toDate").on('change', function () {
+            var fromDate = $("#fromDate").val();
+            var toDate = $("#toDate").val();
+
+            var dates = { fromDate: fromDate, toDate: toDate };
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: "/PharmacyReports/SearchStockByDatesStockPosition",
+                data: dates,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    $("#lstStock").empty();
+                    $("#lstStock").append(obj);
+                    $(".loader").hide();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+
+        })
+
+    </script>
+
+}
+

@@ -1,0 +1,245 @@
+﻿
+
+@{
+    ViewBag.Title = "Ambulatory Master";
+    ViewBag.ShowTopMenu = true;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+
+
+
+<div class="col-md-2">
+
+    <div class="panel caresoft-panel panel-primary">
+        <div class="panel-heading">
+
+        </div>
+
+        <div class="panel-body">
+            @Html.Partial("~/Views/Ambulatory/Shared/_SideNav.cshtml")
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<div class="col-md-8">
+
+    <div class="panel caresoft-panel panel-primary">
+        <div class="panel-heading">
+            Vehicle Registration
+        </div>
+        <div class="panel-body">
+
+            <div id="services-list" class="right-element">
+                <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                <script src="~/Scripts/bootstrap.min.js"></script>
+                <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+
+
+
+
+
+                <script type="text/javascript">
+                    jQuery(document).ready(function ($) {
+                        //  var table = $('#dataTable').DataTable();
+                        $('#dataTable').DataTable({
+                            "ajax": {
+                                "url": "/Ambulatory/GetData",
+                                "type": "GET",
+                                "datatype": "json"
+                            },
+                            "columns": [
+                                { "data": "Id" },
+                                { "data": "AmbulanceType" },
+                                { "data": "VehicleNumber" },
+                                { "data": "VehicleName" },
+                                { "data": "VehicleType" },
+                                { "data": "Description" },
+                                { "data": "NetWeight" },
+                                { "data": "Power" },
+
+                                {
+                                    "data": "Engaged",
+                                    "render": function (data, type, row) {
+
+                                        return (data == false) ? "<span class='glyphicon glyphicon-ok'> available </span > "
+                                            : " <span class='glyphicon glyphicon-remove' >engaged</span > ";
+                                    }
+                                },
+
+                                {
+                                    'data': 'Engaged', 'render': function (data, type, row, meta) {
+                                        return (data == true) ? '<input type="button" value="Edit" class="btnEdit sfBtn sfPrimaryBtn sfLocale" />' : '';
+                                    }
+                                }
+
+                            ],
+                            "createdRow": function (row, data, dataIndex) {
+                                if (data["Engaged"] == "1") {
+                                    $(row).css("background-color", "Yellow");
+
+                                }
+                                else if (data["Engaged"] == "0") {
+                                    $(row).css("background-color", "Green");
+                                }
+                            },
+
+
+                        });
+                        var table = $('#dataTable').DataTable();
+                        $('.dataTable').on('click', 'tbody tr', function () {
+                            console.log('API row values : ', table.row(this).data());
+
+                            $('.nav-tabs a[href="#assign-amb"]').tab('show');
+                            // alert();
+
+                        })
+
+
+                        $("#dataTable tbody").on("click", ".btnEdit", function () {
+                            var id = $(this).closest('tr').find('td').eq(0).text(); { }
+                            // alert(id);
+                            //alert($(this).text());
+                            //alert();
+                            $.ajax({
+                                data: { id: id },
+                                url: '/Ambulatory/Releive',
+                                type: 'POST',
+                                success: function (data) {
+                                    alert("The Vehicle has become available");
+                                }
+                            });
+                        });
+
+                    });
+
+
+
+
+
+
+
+                </script>
+
+
+                <h4 class="text-center text-uppercase">All Vehicles Available</h4>
+                <div id="dataTable_wrapper"></div>
+
+                <ul class="legend" style="float:right;">
+                    <li><span class="Available"></span> <strong>Available</strong></li>
+                    <li><span class="Engaged"></span> <strong>Engaged</strong></li>
+
+                </ul>
+
+                <style>
+                   
+                    .legend {
+                        list-style: none;
+                    }
+
+                        .legend li {
+                            float: left;
+                            margin-right: 10px;
+                        }
+
+                        .legend span {
+                            border: 1px solid #ccc;
+                            float: left;
+                            width: 12px;
+                            height: 12px;
+                            margin: 2px;
+                        }
+                        /* your colors */
+                        .legend .Engaged {
+                            background-color:yellow;
+                        }
+
+                        .legend .Available {
+                            background-color:green;
+                        }
+
+
+                </style>
+                <table id="dataTable" class="table table-data-pathology table-condensed">
+
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Ambulance Type</th>
+                            <th>Vehicle Number</th>
+                            <th>Vehicle Name</th>
+                            <th>Vehicle Type</th>
+
+                            <th>Description</th>
+                            <th>Net Weight</th>
+                            <th>Power</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                </table>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+    &nbsp;
+    &nbsp;
+    &nbsp;
+
+
+
+@*
+    @section scripts{
+
+
+
+        <script>
+
+
+            getRecentInfo();
+            function getRecentInfo() {
+                $.ajax({
+                    type: "GET",
+                    url: "/EMR/GetMostRecentPhysicalExam/",
+                    datatype: "html",
+                    success: function (result) {
+                        $('#patient-recent-physical-info').html(result);
+                    }
+                });
+            }
+        </script>
+    }
+
+*@
+@section scripts{
+    <script>
+        if (location.search === "?v=results") {
+            $("#btn-investigation").trigger("click");
+        }
+
+
+    </script>
+}

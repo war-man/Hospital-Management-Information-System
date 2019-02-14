@@ -1,0 +1,134 @@
+﻿@model IEnumerable<LabsDataAccess.WorkOrder>
+@using CaresoftHMISDataAccess;
+
+@{
+
+    ViewBag.Title = "Patient Report";
+
+    Layout = "~/Areas/Pathology/Views/Shared/_ReportsLayout.cshtml";
+
+
+    var OPD = (OpdRegister)ViewBag.OPD;
+}
+
+<div class="container" style="border-bottom:solid 1px red;">
+    <table width="100%">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <td>: @OPD.Patient.Salutation @OPD.Patient.FName @OPD.Patient.LName </td>
+                <th>Reg No.</th>
+                <td>: @OPD.Patient.RegNumber</td>
+            </tr>
+            <tr>
+                <th>Age & Gender</th>
+                <td>: @OPD.Patient.DOB / @OPD.Patient.Gender</td>
+                <th>Path No</th>
+                <td>: </td>
+            </tr>
+            <tr>
+                <th>Referring Doctor</th>
+                <td>: </td>
+                <th>Sample Draw Date</th>
+                <td>: </td>
+            </tr>
+            <tr>
+                <th>Referring Cust./Lab</th>
+                <td>: </td>
+                <th>Report Date</th>
+                <td>: </td>
+            </tr>
+        </thead>
+    </table>
+
+</div>
+
+<br />
+
+<table class="table table-data table-condensed">
+    <tr>
+        <th>
+            Work Order No
+        </th>
+        <th>
+            OPDN/IPD
+        </th>
+        <th>
+            OPDN/IPD No
+        </th>
+
+        <th>
+            Time Requested
+        </th>
+
+    </tr>
+    <tbody class="bg-white">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OPDType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OPDNo)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedUtc)
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <table class="table table-data table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Test Code</th>
+                                <th>Test</th>
+                                <th>Result</th>
+                                <th>Department</th>
+                                <th>Doctor</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            @foreach (var test in item.WorkOrderTests)
+                            {
+                                <tr>
+                                    <td>@test.LabTest.Test_Code</td>
+                                    <td>@test.LabTest.Test</td>
+                                    <td>
+                                        @test.Results
+                                        @if (test.LabTest.Parameter)
+                                        {
+                                            <table class="table table-condensed">
+                                                <tr>
+                                                    <th>Parameter Code</th>
+                                                    <th>Parameter Name</th>
+                                                    <th>Result</th>
+                                                </tr>
+                                                @foreach (var param in test.WorkOrderTestParameters)
+                                                {
+                                                    <tr>
+                                                        <td>@param.Parameter1.Parameter_Code</td>
+                                                        <td>@param.Parameter1.Parameter_Name</td>
+                                                        <td>@param.Results</td>
+                                                    </tr>
+                                                }
+                                            </table>
+
+                                        }
+                                    </td>
+                                    <td>@test.LabTest.Department1.Department1</td>
+                                    <td>@test.Doctor</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

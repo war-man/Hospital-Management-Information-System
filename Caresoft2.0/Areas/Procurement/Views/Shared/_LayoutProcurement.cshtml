@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = "Procurement";
+}
+
+<style>
+    .btn{
+        margin-top:5px;
+        }
+  
+</style>
+
+<div class="container-fluid">
+    <div class="col-md-2">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p style="color:black;font:bold;margin-left:5px;">Procurement</p>
+            </div>
+            <div class="panel-body">
+                <div class="">
+
+                    <div class="">
+                        <h5>Store Name</h5>
+                        <select class="text-box" style="width:149px;" id="StoreName"> 
+                            <option value=""> Select Store</option>
+                            <option value="MS"> Medical Store</option>
+                            <option value="HS"> HIV Store</option>
+                            <option value="GS"> Genaral Store</option>
+                            <option value="FA"> Fixed Assets</option>
+                            <option value="Lab"> Lab</option>
+                        </select> <span class="formrequired">*</span><br />
+                        <input type="button" id="btnDepartments" value="OK" class="btn btn-xs btn-primary" />
+                    </div>
+                    <div class="">
+                        <h5>Search Item Name</h5>
+                        <input type="text" class="text-box" style="width:150px;" /><br />
+                        <input type="button" id="btnSearch" class="btn btn-primary btn-xs" value="Search" />
+                    </div>
+                    <div class="">
+                        <h5>Batch Number</h5>
+                        <input type="text" class="text-box" style="width:150px;" /><br />
+                        <input type="button" id="btnSearch2" class="btn btn-primary btn-xs " value="Search" />
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
+        </div>
+
+            <div class="col-md-10">
+                <div class="row">
+                    @RenderBody()
+                </div>
+
+            </div>
+        </div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script src="~/Scripts/Caresoft.js"></script>
+@RenderSection("scripts", required: false)

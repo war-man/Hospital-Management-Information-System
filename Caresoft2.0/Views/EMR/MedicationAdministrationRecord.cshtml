@@ -1,0 +1,286 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+@{
+    ViewBag.WideView = true;
+    ViewBag.Title = "Medication Administration Record";
+    Layout = "~/Views/Shared/_EMRForms.cshtml";
+}
+
+<div class="panel panel-primary shadow glass caresoft-panel">
+    <div class="panel-heading custom-navbar">
+        <p>MAR</p>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-pills">
+            <li class="active top-tab"><a data-toggle="pill" href="#drugs">Drugs</a></li>
+            <li class="top-tab"><a data-toggle="pill" href="#procedures">Procedures</a></li>
+            <li class="top-tab"><a data-toggle="pill" href="#doctor-notes">Doctor Notes</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="drugs" class="tab-pane fade in active">
+                <fieldset>
+                    <form id="prescription-form" class="collapse">
+                        <input type="hidden" id="OPDNo" name="OPDNo" value="@Model.OpdRegister.Id" />
+                        <table class="table-form">
+
+                            <tr>
+                                <td>
+                                    <label>Generic Drug</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box" name="GenerericDrug" id="GenericDrug" />
+                                </td>
+                            </tr>e
+                            <tr>
+                                <td>
+                                    <label>Brand Name</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-xlg" name="DrugName" id="BrandName" />
+                                    <input type="hidden" id="DrugId" name="DrugId" />
+                                    <input type="hidden" name="UnitPrice" id="UnitPrice" />
+                                </td>
+                                <td>
+                                    <label>Current Stock</label>
+                                    <input type="text" readonly id="Instock" name="Instock" />
+                                </td>
+                            </tr>
+                        </table>
+                        <style>
+                            .box-sm {
+                                width: 100%
+                            }
+                        </style>
+                        <table class="table table-form">
+                            <tr>
+
+                                <td>Start Date</td>
+                                <td>Routing Admin</td>
+                                <td>Frequency</td>
+                                <td>Day</td>
+                                <td>End Date</td>
+                                <td>Qty</td>
+                                <td>Notes</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+
+                                <td><input type="date" class="text-box box-sm" name="StartDate" id="StartDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" /></td>
+                                <td>
+                                    <select class="text-box box-sm" name="RoutingAdmin" id="RoutingAdmin">
+                                        <option>Select</option>
+                                        @*@foreach(var x in Model.RoutingAdmins)
+                            {
+                                <option value="@x.Id">@x.RoutingAdminName</option>
+                            }*@
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="text-box box-sm" name="Frequency" id="Frequency">
+                                        <option>Select</option>
+                                        @*@foreach (var y in Model.Frequencies)
+                            {
+                                <option value="@y.Id" data-quantity="@y.Value">@y.DisplayText</option>
+                            }*@
+                                    </select>
+                                </td>
+                                <td><input type="number" class="text-box box-sm" name="Day" id="Day" min="1" /></td>
+                                <td><input type="date" class="text-box box-sm" id="EndDate" name="EndDate" /></td>
+                                <td><input type="number" class="text-box box-sm" id="Quantity" name="Quantity" min="0" /></td>
+                                <td><textarea class="text-box" name="Notes" id="Notes"></textarea></td>
+                                <td><button type="button" class="btn btn-primary btn-xs" id="btn-add-prescription">OK</button></td>
+                            </tr>
+
+                        </table>
+                    </form>
+                    <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("TreatmentForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="treatmentFormModalListener">Add Medication</button>
+
+                    @{var medications = Model.OpdRegister.Medications; }
+                    <table class="table table-stripped table-data table-hover table-condensed" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Drug Name</th>
+                                <th>Dose</th>
+                                <th>Dose Standard</th>
+                                <th>Routing Admin</th>
+                                <th>Last Admin</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            @foreach (var med in medications)
+            {
+                <tr>
+                    <td style="white-space:normal">@med.DrugName</td>
+                    <td>@med.Quantity</td>
+                    <td>@med.Frequency</td>
+                    <td>@med.RoutingAdmin</td>
+                    <td id="last-admin-@med.Id" class="human-time">
+                        @if (med.MedicalAdministrationEntries.Count() > 0)
+        {
+            var lastAdmin = med.MedicalAdministrationEntries.OrderByDescending(e => e.Id).FirstOrDefault();
+            if (lastAdmin != null)
+            {
+                <lable>@lastAdmin.DateApplied</lable>
+                <br />
+}
+}
+else
+{
+                <em><small>Never</small></em>
+}
+                    </td>
+                    <td>
+                        <lable class="btn btn-xs btn-admin-medication" data-medication-id="@med.Id">Administer</lable>
+                    </td>
+                </tr>
+}
+                        </tbody>
+                    </table>
+
+                </fieldset>
+            </div>
+            <div id="procedures" class="tab-pane fade">
+                <fieldset>
+                    <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("ProcedureForm", "EMR", new { id= ViewBag.OpdNo })"
+                            data-callback="procedureFormModalListener">Add Procedure</button>
+
+                    <table class="table table-data table-condensed table-hover">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>Procedure</th>
+                                <th>Date</th>
+                                <th>Doctor</th>
+                                <th>Qty</th>
+                                <th>Award</th>
+                                <th>Total</th>
+                                <th>Is Nurse</th>
+                                <th>Apply</th>
+                            </tr>
+                            @*<tr class="table-primary-row filter-row">
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td></td>
+                </tr>*@
+                        </thead>
+                        <tbody class="bg-white">
+                            @foreach (var procedure in Model.OpdRegister.BillServices.Where(e=>e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim().Equals("procedure")))
+                            {
+                            <tr class="">
+                                <td>@procedure.ServiceName</td>
+                                <td>@procedure.DateAdded</td>
+                                <td></td>
+                                <td>@procedure.Quatity</td>
+                                <td>@procedure.Award</td>
+                                <td>@(procedure.Quatity * procedure.Quatity)</td>
+                                <td>@procedure.IsNurse</td>
+                                <td><button type="button" class="btn btn-xs btn-primary">Apply</button></td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+            <div id="doctor-notes" class="tab-pane fade">
+                <fieldset>
+                    <form id="form-doctor-notes">
+                        <input type="hidden" name="IpdOpdNo" value="@ViewBag.OpdNo" />
+                        <table class="table-form">
+
+                            <tr>
+                                <td>
+                                    <textarea name="DoctorNote1" id="DoctorNote" class="text-box box-xlg" placeholder="Write some note..."></textarea>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Add Note</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    <div id="doctorNotesList">
+                        @Html.Partial("~/Views/IPD/DoctorNotesList.cshtml", Model.OpdRegister.DoctorNotes.OrderByDescending(e=>e.Id))
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        getRecentInfo();
+        applyHumanTime();
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+                datatype: "html",
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                }
+            });
+        }
+
+        $(".btn-admin-medication").each(function () {
+            $(this).click(function () {
+                $(".loader").show();
+                var medicationId = $(this).data("medication-id");
+                $.ajax({
+                    url: '@Url.Action("AdministerMedication", "IPD")/' + medicationId,
+                    method: 'get',
+                    success: function (result) {
+                        $(".loader").hide();
+                        if (result.status === 'success') {
+                            $("#last-admin-" + medicationId).removeClass("applied");
+                            $("#last-admin-" + medicationId).html('<em><small>' + result.lastAdmin + '</small></em>');
+                            console.log(result);
+                            applyHumanTime();
+                        }
+
+                    },
+                    error: function (x, h, r) {
+                        $(".loader").hide();
+                        console.log(x.responseText())
+                    }
+
+                })
+            })
+        })
+
+        $("#form-doctor-notes").submit(function (e) {
+            if ($("#DoctorNote").val().trim() === "") {
+                showNotification("Write in some note", "warning", true);
+                return false;
+            }
+            $(".loader").show();
+            e.preventDefault();
+            var data = $(this).serialize();
+            $.ajax({
+                method: "post",
+                url: "@Url.Action("AddDoctorNotes", "IPD")",
+                data: data,
+                success: function (result) {
+                    $(".loader").hide();
+                    $("#DoctorNote").val("");
+                    $("#doctorNotesList").html(result);
+                    applyHumanTime();
+                },
+                error: function (e, x, h) {
+                    $(".loader").hide();
+                    showNotification("An error occured!", "danger", true);
+                    console.log(e.responseText());
+                }
+            })
+        })
+    </script>
+}
+

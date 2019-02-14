@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "Advanced Payment";
+    ViewBag.ShowTopMenu = true;
+}
+
+
+<div class="col-xs-6 col-sm-offset-3">
+    <div class="panel panel-primary caresoft-panel ">
+        <div class="panel-heading">
+            @ViewBag.Title
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <legend>Search Patient</legend>
+                <input type="text" class="text-box box-xlg" id="SearchPatient" />
+            </fieldset>
+            <fieldset>
+                <legend>Patient Details</legend>
+                <table class="table-form">
+                    
+                    <tr>
+                        <td>
+                            <label>Patient Reg No</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-lg" id="RegNumber" readonly />
+                        </td>
+                        <td>
+                            <label>Patient Name</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-lg" id="Name" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Gender</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-lg" id="Gender" readonly />
+                        </td>
+                        <td>
+                            <label>Mobile</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-lg" id="Mobile" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Home Address</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-box box-lg" id="HomeAddress" readonly />
+                        </td>
+                    </tr>
+                </table>
+
+            </fieldset>
+            <fieldset>
+                <legend>Payment</legend>
+                <form id="AdvancedPayment">
+                    <input type="hidden" class="text-box box-lg" id="PatientId" name="PatientId" />
+                    <table class="table-form">
+                        <tr>
+                            <td style="color:yellowgreen" colspan="2">
+                                <h5>
+                                    Available Balance Ksh: <span class="money" id="EwalletBalance">0</span>
+                                </h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="ReceivedAmount">Received Amount</label>
+                            </td>
+                            <td>
+                                <input type="number" min="1" class="text-box box-lg text-right" id="ReceivedAmount" name="ReceivedAmount" required />
+                            </td>
+                            <td>
+                                <label for="PaymentMode">Payment Mode</label>
+                            </td>
+                            <td>
+                                <select class="text-box box-lg" id="PaymentMode" name="PaymentMode" required>
+                                    <option>Cash</option>
+                                    <option>Mpesa</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <button class="btn btn-sm btn-primary marg-top-16px" type="submit">Confirm Payment</button>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        markRequiredFields();
+        $("#AdvancedPayment").submit(function (e) {
+            e.preventDefault();
+            var data = $(this).serializeObject();
+
+            if ((parseInt(data.PatientId) || 0) < 1) {
+                showNotification("Please search and select a patient before continuing.", "warning", true);
+                return false;
+            }
+
+            if (!isValidForm($(this)) || (parseFloat(data.ReceivedAmount) || 0) < 1 ) {
+                return false;
+            }
+
+
+            $(".loader").show();
+            $.ajax({
+                url: "@Url.Action("SaveAdvancedPayment", "Billing")",
+                method: "POST",
+                data: data,
+                success: function (res) {
+                    showNotification(res.Message, res.Status, true);
+                    $("#ReceivedAmount").val("");
+                    $("#EwalletBalance").text(parseFloat(res.EWalletBalance) || 0);
+                    $("#EwalletBalance").removeClass("moneyfied");
+                    moneyfy();
+                    $(".loader").hide();
+                },
+                error: function (e, x, r) {
+                    $(".loader").hide();
+                    showNotification("An error occured", "danger", true);
+                    console.log(e.responseText);
+                }
+            })
+        });
+
+        $("#SearchPatient").autocomplete({
+            source: function (req, res) {
+                var data = $("#SearchPatient").val();
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("SearchPatient", "Billing")",
+                    data: { search: data },
+
+                    success: function (data) {
+                        res($.map(data, function (item) {
+                            return { label: item.Name, value: item.Name, PatId: item.PatientId, RegNumber: item.RegNumber, Gender: item.Gender, HomeAddress: item.HomeAddress, EWalletBalance: item.EWalletBalance};
+                        }));
+                    },
+                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                        console.log(errorthrown, "danger")
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+            }
+        });
+
+        $("#SearchPatient").on("autocompleteselect", function (event, ui) {
+                console.log(ui);
+            $("#PatientId").val(ui.item.PatId);
+            $("#RegNumber").val(ui.item.RegNumber);
+            $("#Name").val(ui.item.label);
+            $("#Gender").val(ui.item.Gender);
+            $("#RegNumber").val(ui.item.RegNumber);
+            $("#Mobile").val(ui.item.RegNumber);
+            $("#HomeAddress").val(ui.item.HomeAddress); 
+
+            $("#EwalletBalance").text(parseFloat(ui.item.EWalletBalance) || 0);
+            $("#EwalletBalance").removeClass("moneyfied");
+            moneyfy();
+        });
+
+    </script>
+}
