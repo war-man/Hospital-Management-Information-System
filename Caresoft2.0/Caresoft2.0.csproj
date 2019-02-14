@@ -725,6 +725,7 @@
     <Compile Include="NotificationHub.cs" />
     <Compile Include="OwinStartup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="temp.cs" />
     <Compile Include="UniversalHelpers\Methods.cs" />
     <Compile Include="Utils\AgeCalculator.cs" />
     <Compile Include="Utils\QueueTimeCalculator.cs" />
