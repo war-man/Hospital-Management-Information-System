@@ -7,6 +7,7 @@ using System.Web;
 
 namespace Caresoft2._0.UniversalHelpers
 {
+	//kogi test
     public class Methods
     {
         private CaresoftHMISEntities db = new CaresoftHMISEntities();
