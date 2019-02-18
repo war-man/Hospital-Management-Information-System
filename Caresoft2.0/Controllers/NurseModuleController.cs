@@ -396,7 +396,7 @@ namespace Caresoft2._0.Controllers
                      x.VehicleNumber,
                      x.RequestedRoute,
                     x.AssignedDriver,
-                     x.OpdRegister.BillServices1.FirstOrDefault(e => e.Service.Department.DepartmentName.ToLower().Equals("ambulatory")).Paid,
+                    Paid = x.OpdRegister.BillServices1.Any(e => e.Service.Department.DepartmentName.ToLower().Equals("ambulatory")),
                   name =   x.OpdRegister.Patient.FName + " " + x.OpdRegister.Patient.LName
 
                 }).ToList();

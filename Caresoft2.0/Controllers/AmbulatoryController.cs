@@ -301,7 +301,7 @@ namespace Caresoft2._0.Controllers
                 pa.Engaged = true;
                 nursereq.Assigned = true;
 
-                var ambulance = db.Services.FirstOrDefault(e => e.DepartmentId == 59);
+                var ambulance = db.Services.FirstOrDefault(e => e.Department.DepartmentName.Trim().ToLower().Contains("ambula"));
                 var billService = new BillService();
 
                 billService.OPDNo = data.OPDNo;
