@@ -2190,7 +2190,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.PatientClaim' does not have a pri
           <Property Name="Heparin" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ProSulp" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Fluids" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CoagTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="CoagTime" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Comments" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="BranchId" Type="int" Nullable="false" />
@@ -2202,7 +2202,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.PatientClaim' does not have a pri
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OPDNo" Type="int" Nullable="false" />
-          <Property Name="TreatmentTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TreatmentTime" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Priming" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DialysisSolution" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Dialyzer" Type="varchar" MaxLength="50" Nullable="false" />
@@ -2219,8 +2219,8 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.PatientClaim' does not have a pri
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OPDNo" Type="int" Nullable="false" />
-          <Property Name="BloodLeak" Type="time" Precision="7" Nullable="false" />
-          <Property Name="AirDetect" Type="time" Precision="7" Nullable="false" />
+          <Property Name="BloodLeak" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AirDetect" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Temperature" Type="int" Nullable="false" />
           <Property Name="Conductivity" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DialysisP" Type="varchar" MaxLength="50" Nullable="false" />
@@ -9276,7 +9276,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="Heparin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ProSulp" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Fluids" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CoagTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="CoagTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Comments" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="BranchId" Type="Int32" Nullable="false" />
@@ -9289,7 +9289,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OPDNo" Type="Int32" Nullable="false" />
-          <Property Name="TreatmentTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TreatmentTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Priming" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DialysisSolution" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Dialyzer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -9307,8 +9307,8 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OPDNo" Type="Int32" Nullable="false" />
-          <Property Name="BloodLeak" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="AirDetect" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="BloodLeak" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AirDetect" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Temperature" Type="Int32" Nullable="false" />
           <Property Name="Conductivity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DialysisP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />

@@ -43,7 +43,7 @@
                             </label>
                         </td>
                         <td>
-                            <input name="ScreeningDate" required type="date" class="text-box box-lg" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                            <input name="ScreeningDate" required type="date" class="text-box box-lg" value="@DateTime.Today.ToString(" yyyy-MM-dd")" />
                         </td>
                         <td>
                             <label>
@@ -118,7 +118,7 @@
                 <input type="submit" class="btn btn-sm btn-primary " value="Save" />
 
                 @Html.ActionLink("Continue", "DialysisOrder", new { id = @Model.OpdRegister.Id }, new { @class="btn btn-primary btn-sm",
-               @style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
+                @style = "background-color: inherit;float: right;border: none;outline: none;cursor: pointer;padding: 14px 16px;transition: 0.3s;"})
 
 
 

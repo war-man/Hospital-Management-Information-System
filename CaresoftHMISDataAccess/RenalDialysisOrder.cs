@@ -16,7 +16,7 @@ namespace CaresoftHMISDataAccess
     {
         public int Id { get; set; }
         public int OPDNo { get; set; }
-        public System.TimeSpan TreatmentTime { get; set; }
+        public string TreatmentTime { get; set; }
         public string Priming { get; set; }
         public string DialysisSolution { get; set; }
         public string Dialyzer { get; set; }

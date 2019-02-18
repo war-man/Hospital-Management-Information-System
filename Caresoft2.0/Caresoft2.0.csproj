@@ -26,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,9 +49,24 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="DataTables.AspNet.Core, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataTables.AspNet.Core.2.0.2\lib\net45\DataTables.AspNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DataTables.AspNet.Mvc5, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataTables.AspNet.Mvc5.2.0.2\lib\net45\DataTables.AspNet.Mvc5.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -84,18 +100,16 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -139,6 +153,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -648,6 +663,11 @@
     <Compile Include="CrystalReports\UserManagement\Datasets\ActiveUser.Designer.cs" />
     <Compile Include="CrystalReports\UserManagement\Datasets\ActiveUser1.Designer.cs" />
     <Compile Include="CrystalReports\WaiverReport\DataSetWaivers.Designer.cs" />
+    <Compile Include="CrystalReports\WaiverReport\DataSetWaivers1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetWaivers.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CrystalReports\WaiverReport\RptWaiverReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4008,6 +4028,12 @@
     <Content Include="Areas\Pathology\Images\Signatures\5.PNG" />
     <Content Include="Areas\Pathology\Images\Signatures\6.PNG" />
     <Content Include="Areas\Pathology\Images\Signatures\9.png" />
+    <Content Include="Areas\Pathology\Views\TestResultsEntry\AbnormalResults.cshtml" />
+    <Content Include="Areas\Pathology\Views\TestResultsEntry\AccesionList.cshtml" />
+    <Content Include="Areas\Pathology\Views\TestResultsEntry\Index.cshtml" />
+    <Content Include="Areas\Pathology\Views\TestResultsEntry\LabTestsList.cshtml" />
+    <Content Include="Areas\Pathology\Views\TestResultsEntry\PanicResults.cshtml" />
+    <Content Include="Areas\Pathology\Views\TestResultsEntry\ResultsEntry.cshtml" />
     <Content Include="Areas\Procurement\Reports\court of arms.jpg" />
     <Content Include="Areas\Procurement\Scripts\AddNewInvoice.js" />
     <Content Include="Areas\Procurement\Scripts\AddNewInvoiceScript.js" />
@@ -4048,6 +4074,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\caresoft-default.css" />
+    <Content Include="Content\dataTables.bootstrap4.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\icons\11dc0b8fde0af4e0752222c8524a42a0.png" />
@@ -4055,6 +4082,7 @@
     <Content Include="Content\icons\change_password.png" />
     <Content Include="Content\icons\Coat_of_arms_of_Kenya.png" />
     <Content Include="Content\icons\dashboard\Accounting.png" />
+    <Content Include="Content\icons\dashboard\ambulance.png" />
     <Content Include="Content\icons\dashboard\Bank Reconciliation.png" />
     <Content Include="Content\icons\dashboard\Bankin.jpg" />
     <Content Include="Content\icons\dashboard\banking.png" />
@@ -4528,12 +4556,6 @@
     <Content Include="Areas\Pathology\Views\Shared\_LayoutPathology.cshtml" />
     <Content Include="Areas\Pathology\Views\Shared\_NavPathology.cshtml" />
     <Content Include="Areas\Pathology\Views\Shared\_ReportsLayout.cshtml" />
-    <Content Include="Areas\Pathology\Views\TestResultsEntry\AbnormalResults.cshtml" />
-    <Content Include="Areas\Pathology\Views\TestResultsEntry\AccesionList.cshtml" />
-    <Content Include="Areas\Pathology\Views\TestResultsEntry\Index.cshtml" />
-    <Content Include="Areas\Pathology\Views\TestResultsEntry\LabTestsList.cshtml" />
-    <Content Include="Areas\Pathology\Views\TestResultsEntry\PanicResults.cshtml" />
-    <Content Include="Areas\Pathology\Views\TestResultsEntry\ResultsEntry.cshtml" />
     <Content Include="Areas\Pathology\Views\web.config" />
     <Content Include="Areas\Pathology\Views\WorkOrders\Create.cshtml" />
     <Content Include="Areas\Pathology\Views\WorkOrders\Delete.cshtml" />
@@ -4978,6 +5000,9 @@
     <Content Include="Areas\MISReports\Views\Shared\_LeftNav.cshtml" />
     <Content Include="Areas\MISReports\Views\Shared\_TopNav.cshtml" />
     <Content Include="Areas\MISReports\Views\web.config" />
+    <Content Include="Areas\MISReports\Views\Home\BIReport.cshtml" />
+    <Content Include="Areas\MISReports\Views\Home\DiseaseOccurence.cshtml" />
+    <Content Include="Areas\MISReports\Views\Home\RevenuePatientAggregation.cshtml" />
     <None Include="Areas\PharmacyModule\Reports\BillWiseDailyReportSale\BillWiseDailyDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>BillWiseDailyDataSet1.Designer.cs</LastGenOutput>
@@ -5786,6 +5811,7 @@
     <Content Include="Scripts\ckeditor\skins\moono-lisa\images\refresh.png" />
     <Content Include="Scripts\ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="Scripts\ckeditor\styles.js" />
+    <Content Include="Scripts\dataTables.bootstrap4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
@@ -5819,6 +5845,7 @@
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.loading.js" />
     <Content Include="Scripts\jQuery.print.js" />
     <Content Include="Scripts\jquery.signalR-2.4.0.js" />
@@ -5850,7 +5877,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -6567,9 +6596,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>62572</DevelopmentServerPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:62572/</IISUrl>
+          <IISUrl>http://localhost:59017/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
