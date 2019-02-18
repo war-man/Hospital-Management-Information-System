@@ -19,5 +19,23 @@ namespace Caresoft2._0.Areas.MISReports.Controllers
 
             return View();
         }
+
+        public ActionResult BIReport()
+        {
+
+            return View();
+        }
+
+        public ActionResult DiseaseOccurence()
+        {
+
+            return View();
+        }
+
+        public ActionResult RevenuePatientAggregation()
+        {
+
+            return View();
+        }
     }
 }

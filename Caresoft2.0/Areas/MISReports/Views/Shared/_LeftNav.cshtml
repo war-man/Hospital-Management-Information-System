@@ -62,11 +62,11 @@
 
                                 @foreach (var d in ((List<CaresoftHMISDataAccess.Department>)ViewBag.departmets).Where(f => f.DepartmentType1.DepartmnetType.ToLower().Equals("revenue")))
                                 {
-                                <li>
-                                    <a href="#">@d.DepartmentName</a>
-                                </li>
+                                    <li>
+                                        <a href="#">@d.DepartmentName</a>
+                                    </li>
                                 }
-                                
+
                             </ul>
                         </li>
                         <li>
@@ -104,6 +104,27 @@
                         </li>
                     </ul>
                 </li>
+
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">swap_calls</i>
+                        <span>Business Intelligence Report </span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="@Url.Action("BIReport")">Patient Details</a>
+
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("DiseaseOccurence")">Disease Occurence Track</a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("RevenuePatientAggregration")">Disease Occurence Track</a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">assignment</i>
@@ -113,7 +134,7 @@
                         <li>
                             <a href="#">To Be Included later</a>
                         </li>
-                        
+
                     </ul>
                 </li>
                 <li>
@@ -125,12 +146,12 @@
 
                         @foreach (var d in (List<CaresoftHMISDataAccess.Department>)ViewBag.departmets)
                         {
-                        <li>
-                            <a href="#">@d.DepartmentName </a>
-                        </li>
+                            <li>
+                                <a href="#">@d.DepartmentName </a>
+                            </li>
                         }
 
-                       
+
                     </ul>
                 </li>
                 <li>
@@ -172,31 +193,31 @@
                     </ul>
                 </li>
                 @*<li>
-                    <a href="javascript:void(0);" class="menu-toggle">
-                        <i class="material-icons">content_copy</i>
-                        <span>Example Pages</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="pages/examples/sign-in.html">Sign In</a>
-                        </li>
-                        <li>
-                            <a href="pages/examples/sign-up.html">Sign Up</a>
-                        </li>
-                        <li>
-                            <a href="pages/examples/forgot-password.html">Forgot Password</a>
-                        </li>
-                        <li>
-                            <a href="pages/examples/blank.html">Blank Page</a>
-                        </li>
-                        <li>
-                            <a href="pages/examples/404.html">404 - Not Found</a>
-                        </li>
-                        <li>
-                            <a href="pages/examples/500.html">500 - Server Error</a>
-                        </li>
-                    </ul>
-                </li>*@
+            <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">content_copy</i>
+                <span>Example Pages</span>
+            </a>
+            <ul class="ml-menu">
+                <li>
+                    <a href="pages/examples/sign-in.html">Sign In</a>
+                </li>
+                <li>
+                    <a href="pages/examples/sign-up.html">Sign Up</a>
+                </li>
+                <li>
+                    <a href="pages/examples/forgot-password.html">Forgot Password</a>
+                </li>
+                <li>
+                    <a href="pages/examples/blank.html">Blank Page</a>
+                </li>
+                <li>
+                    <a href="pages/examples/404.html">404 - Not Found</a>
+                </li>
+                <li>
+                    <a href="pages/examples/500.html">500 - Server Error</a>
+                </li>
+            </ul>
+        </li>*@
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">map</i>
@@ -209,13 +230,28 @@
                         <li>
                             <a href="#">Desease Tread Maps</a>
                         </li>
-                       
+
                     </ul>
                 </li>
                 @*<li>
+            <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">trending_down</i>
+                <span>Multi Level Menu</span>
+            </a>
+            <ul class="ml-menu">
+                <li>
+                    <a href="javascript:void(0);">
+                        <span>Menu Item</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">
+                        <span>Menu Item - 2</span>
+                    </a>
+                </li>
+                <li>
                     <a href="javascript:void(0);" class="menu-toggle">
-                        <i class="material-icons">trending_down</i>
-                        <span>Multi Level Menu</span>
+                        <span>Level - 2</span>
                     </a>
                     <ul class="ml-menu">
                         <li>
@@ -224,42 +260,27 @@
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);">
-                                <span>Menu Item - 2</span>
-                            </a>
-                        </li>
-                        <li>
                             <a href="javascript:void(0);" class="menu-toggle">
-                                <span>Level - 2</span>
+                                <span>Level - 3</span>
                             </a>
                             <ul class="ml-menu">
                                 <li>
                                     <a href="javascript:void(0);">
-                                        <span>Menu Item</span>
+                                        <span>Level - 4</span>
                                     </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" class="menu-toggle">
-                                        <span>Level - 3</span>
-                                    </a>
-                                    <ul class="ml-menu">
-                                        <li>
-                                            <a href="javascript:void(0);">
-                                                <span>Level - 4</span>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="pages/changelogs.html">
-                        <i class="material-icons">update</i>
-                        <span>Changelogs</span>
-                    </a>
-                </li>*@
+            </ul>
+        </li>
+        <li>
+            <a href="pages/changelogs.html">
+                <i class="material-icons">update</i>
+                <span>Changelogs</span>
+            </a>
+        </li>*@
                 <li class="header">Complaints Box</li>
                 <li>
                     <a href="javascript:void(0);">
@@ -273,7 +294,7 @@
                         <span>Patients'</span>
                     </a>
                 </li>
-                
+
             </ul>
         </div>
         <!-- #Menu -->

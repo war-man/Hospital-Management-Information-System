@@ -38,12 +38,12 @@
                 <table class="table-form marg-top-16px">
                     <tr>
                         <td>
-                            <label for="Date">
+                            <label>
                                 Treatment Time
                             </label>
                         </td>
                         <td>
-                            <input name="TreatmentTime" required type="time" class="text-box box-lg" />
+                            <input name="TreatmentTime" required type="text" class="text-box box-lg" />
                         </td>
                         <td>
                             <label>
@@ -59,7 +59,7 @@
                             </label>
                         </td>
                         <td>
-                            <input type="text" name="DialysisSolution" class="text-box box-lg" required />
+                            <input type="text" name="DialysisSolution" class="text-box box-lg" value="Bicarbonate" required />
                         </td>
                     </tr>
                     <td>&nbsp;</td>
@@ -69,7 +69,11 @@
                             <label>Dialyzer</label>
                         </td>
                         <td>
-                            <input type="text" name="Dialyzer" class="text-box box-lg" required />
+                            <select class="text-box box-lg" name="Dialyzer">
+                                <option>High Flux</option>
+                                <option>Low Flux</option>
+                            </select>
+
                         </td>
                         <td>
                             <label>Bath K+</label>

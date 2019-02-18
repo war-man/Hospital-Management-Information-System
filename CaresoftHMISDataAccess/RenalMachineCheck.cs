@@ -16,8 +16,8 @@ namespace CaresoftHMISDataAccess
     {
         public int Id { get; set; }
         public int OPDNo { get; set; }
-        public System.TimeSpan BloodLeak { get; set; }
-        public System.TimeSpan AirDetect { get; set; }
+        public string BloodLeak { get; set; }
+        public string AirDetect { get; set; }
         public int Temperature { get; set; }
         public string Conductivity { get; set; }
         public string DialysisP { get; set; }

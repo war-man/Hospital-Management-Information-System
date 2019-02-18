@@ -135,6 +135,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<NurseTheatreRequest> NurseTheatreRequests { get; set; }
         public virtual DbSet<NutritionAdultRegister> NutritionAdultRegisters { get; set; }
         public virtual DbSet<NutritionChildRegister> NutritionChildRegisters { get; set; }
+        public virtual DbSet<NutritionDietchart> NutritionDietcharts { get; set; }
         public virtual DbSet<NutritionScreeningDetail> NutritionScreeningDetails { get; set; }
         public virtual DbSet<OpdRegister> OpdRegisters { get; set; }
         public virtual DbSet<OutsideTest> OutsideTests { get; set; }
@@ -199,6 +200,5 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<InvoiceMedicationBill> InvoiceMedicationBills { get; set; }
         public virtual DbSet<PatientDetail> PatientDetails { get; set; }
         public virtual DbSet<vw_ServiceChatter> vw_ServiceChatter { get; set; }
-        public virtual DbSet<NutritionDietchart> NutritionDietcharts { get; set; }
     }
 }

@@ -23,5 +23,6 @@ namespace CaresoftHMISDataAccess
         public string OldNewCase { get; set; }
     
         public virtual OpdRegister OpdRegister { get; set; }
+        public virtual User User { get; set; }
     }
 }

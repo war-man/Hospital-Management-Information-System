@@ -30,7 +30,7 @@ namespace CaresoftHMISDataAccess
         public string Heparin { get; set; }
         public string ProSulp { get; set; }
         public string Fluids { get; set; }
-        public System.TimeSpan CoagTime { get; set; }
+        public string CoagTime { get; set; }
         public string Comments { get; set; }
         public int UserId { get; set; }
         public int BranchId { get; set; }

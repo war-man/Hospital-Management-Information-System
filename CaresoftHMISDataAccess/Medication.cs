@@ -69,5 +69,6 @@ namespace CaresoftHMISDataAccess
         public virtual Waiver Waiver { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RefundedItem> RefundedItems { get; set; }
+        public virtual User User { get; set; }
     }
 }

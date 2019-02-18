@@ -2058,6 +2058,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.PatientClaim' does not have a pri
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="Computer" Type="varchar" MaxLength="50" />
           <Property Name="BranchId" Type="int" />
+          <Property Name="Opdid" Type="int" />
         </EntityType>
         <EntityType Name="QuestionnaireMultichoices">
           <Key>
@@ -2189,7 +2190,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.PatientClaim' does not have a pri
           <Property Name="Heparin" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ProSulp" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Fluids" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CoagTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="CoagTime" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Comments" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="BranchId" Type="int" Nullable="false" />
@@ -2201,7 +2202,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.PatientClaim' does not have a pri
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OPDNo" Type="int" Nullable="false" />
-          <Property Name="TreatmentTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TreatmentTime" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Priming" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DialysisSolution" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Dialyzer" Type="varchar" MaxLength="50" Nullable="false" />
@@ -2218,8 +2219,8 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.PatientClaim' does not have a pri
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OPDNo" Type="int" Nullable="false" />
-          <Property Name="BloodLeak" Type="time" Precision="7" Nullable="false" />
-          <Property Name="AirDetect" Type="time" Precision="7" Nullable="false" />
+          <Property Name="BloodLeak" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AirDetect" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Temperature" Type="int" Nullable="false" />
           <Property Name="Conductivity" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DialysisP" Type="varchar" MaxLength="50" Nullable="false" />
@@ -2741,6 +2742,64 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.PatientDetails' does not have a p
           <Property Name="MemberPatientRelationShip" Type="varchar" MaxLength="50" />
           <Property Name="InvoiceVerifyUserName" Type="varchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'CaresoftHMIS.dbo.PatientDetailsTemp' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="PatientDetailsTemp">
+          <Property Name="Id" Type="int" />
+          <Property Name="OpdId" Type="int" />
+          <Property Name="RegNumber" Type="varchar" MaxLength="50" />
+          <Property Name="Salutation" Type="varchar" MaxLength="10" />
+          <Property Name="FName" Type="varchar" MaxLength="50" />
+          <Property Name="MName" Type="varchar" MaxLength="50" />
+          <Property Name="LName" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" MaxLength="1" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" />
+          <Property Name="HomeAddress" Type="varchar(max)" />
+          <Property Name="OpdDateTime" Type="datetime" />
+          <Property Name="TariffName" Type="varchar" MaxLength="50" />
+          <Property Name="ConsultantDoctor" Type="varchar" MaxLength="150" />
+          <Property Name="ReferringDoctor" Type="varchar" MaxLength="150" />
+          <Property Name="Department" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" />
+          <Property Name="MemberPatientRelationShip" Type="varchar" MaxLength="50" />
+          <Property Name="CardNo" Type="varchar" MaxLength="50" />
+          <Property Name="InvoiceNumber" Type="int" />
+          <Property Name="InvoiceDate" Type="datetime" />
+          <Property Name="InvoiceVerifyUserName" Type="varchar" MaxLength="50" />
+          <Property Name="InvoiceVerifyUserId" Type="int" />
+          <Property Name="MembershipNo" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyTypeId" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'CaresoftHMIS.dbo.PatientDetailsx' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="PatientDetailsx">
+          <Property Name="OpdId" Type="int" />
+          <Property Name="RegNumber" Type="varchar" MaxLength="50" />
+          <Property Name="Salutation" Type="varchar" MaxLength="10" />
+          <Property Name="FName" Type="varchar" MaxLength="50" />
+          <Property Name="MName" Type="varchar" MaxLength="50" />
+          <Property Name="LName" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" MaxLength="1" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" />
+          <Property Name="HomeAddress" Type="varchar(max)" />
+          <Property Name="OpdDateTime" Type="datetime" />
+          <Property Name="CompanyTypeName" Type="varchar" MaxLength="50" />
+          <Property Name="TariffName" Type="varchar" MaxLength="50" />
+          <Property Name="ConsultantDoctor" Type="varchar" MaxLength="150" />
+          <Property Name="ReferringDoctor" Type="varchar" MaxLength="150" />
+          <Property Name="Department" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" />
+          <Property Name="MemberPatientRelationShip" Type="varchar" MaxLength="50" />
+          <Property Name="CardNo" Type="varchar" MaxLength="50" />
+          <Property Name="InvoiceNumber" Type="int" />
+          <Property Name="InvoiceDate" Type="datetime" />
+          <Property Name="InvoiceVerifyUserName" Type="varchar" MaxLength="50" />
+          <Property Name="InvoiceVerifyUserId" Type="int" />
+          <Property Name="MembershipNo" Type="varchar" MaxLength="50" />
+          <Property Name="Id" Type="int" />
+        </EntityType>-->
         <!--Errors Found During Generation:
 warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_ServiceChatter">
@@ -3976,6 +4035,18 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OpdId_OpdRegisters">
+          <End Role="OpdRegisters" Type="Self.OpdRegisters" Multiplicity="0..1" />
+          <End Role="PhysicalExaminations" Type="Self.PhysicalExaminations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OpdRegisters">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhysicalExaminations">
+              <PropertyRef Name="Opdid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OpdRegister_HSBeds">
           <End Role="HSBeds" Type="Self.HSBeds" Multiplicity="0..1" />
           <End Role="OpdRegisters" Type="Self.OpdRegisters" Multiplicity="*" />
@@ -4780,6 +4851,30 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserId_Medications">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Medications" Type="Self.Medications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Medications">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserId_PatientDiagnosis">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="PatientDiagnosis" Type="Self.PatientDiagnosis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientDiagnosis">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserRoles_Departments">
           <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
           <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
@@ -5552,6 +5647,10 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             <End Role="Users" EntitySet="Users" />
             <End Role="NutritionScreeningDetails" EntitySet="NutritionScreeningDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_OpdId_OpdRegisters" Association="Self.FK_OpdId_OpdRegisters">
+            <End Role="OpdRegisters" EntitySet="OpdRegisters" />
+            <End Role="PhysicalExaminations" EntitySet="PhysicalExaminations" />
+          </AssociationSet>
           <AssociationSet Name="FK_OpdRegister_HSBeds" Association="Self.FK_OpdRegister_HSBeds">
             <End Role="HSBeds" EntitySet="HSBeds" />
             <End Role="OpdRegisters" EntitySet="OpdRegisters" />
@@ -5820,6 +5919,14 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             <End Role="Users" EntitySet="Users" />
             <End Role="TheatrePatientBioData" EntitySet="TheatrePatientBioData" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserId_Medications" Association="Self.FK_UserId_Medications">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Medications" EntitySet="Medications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserId_PatientDiagnosis" Association="Self.FK_UserId_PatientDiagnosis">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="PatientDiagnosis" EntitySet="PatientDiagnosis" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserRoles_Departments" Association="Self.FK_UserRoles_Departments">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="UserRoles" EntitySet="UserRoles" />
@@ -5964,6 +6071,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySet Name="NurseTheatreRequests" EntityType="CaresoftHMISModel.NurseTheatreRequest" />
           <EntitySet Name="NutritionAdultRegisters" EntityType="CaresoftHMISModel.NutritionAdultRegister" />
           <EntitySet Name="NutritionChildRegisters" EntityType="CaresoftHMISModel.NutritionChildRegister" />
+          <EntitySet Name="NutritionDietcharts" EntityType="CaresoftHMISModel.NutritionDietchart" />
           <EntitySet Name="NutritionScreeningDetails" EntityType="CaresoftHMISModel.NutritionScreeningDetail" />
           <EntitySet Name="OpdRegisters" EntityType="CaresoftHMISModel.OpdRegister" />
           <EntitySet Name="OutsideTests" EntityType="CaresoftHMISModel.OutsideTest" />
@@ -6460,6 +6568,10 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             <End Role="Medication" EntitySet="Medications" />
             <End Role="RefundedItem" EntitySet="RefundedItems" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserId_Medications" Association="CaresoftHMISModel.FK_UserId_Medications">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Medication" EntitySet="Medications" />
+          </AssociationSet>
           <AssociationSet Name="FK_MorgAdmissions_MorgCabinets" Association="CaresoftHMISModel.FK_MorgAdmissions_MorgCabinets">
             <End Role="MorgCabinet" EntitySet="MorgCabinets" />
             <End Role="MorgAdmission" EntitySet="MorgAdmissions" />
@@ -6487,6 +6599,10 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <AssociationSet Name="FK_NutritionScreeningDetails_Users" Association="CaresoftHMISModel.FK_NutritionScreeningDetails_Users">
             <End Role="User" EntitySet="Users" />
             <End Role="NutritionScreeningDetail" EntitySet="NutritionScreeningDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OpdId_OpdRegisters" Association="CaresoftHMISModel.FK_OpdId_OpdRegisters">
+            <End Role="OpdRegister" EntitySet="OpdRegisters" />
+            <End Role="PhysicalExamination" EntitySet="PhysicalExaminations" />
           </AssociationSet>
           <AssociationSet Name="FK_OpdRegister_Patients" Association="CaresoftHMISModel.FK_OpdRegister_Patients">
             <End Role="Patient" EntitySet="Patients" />
@@ -6587,6 +6703,10 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <AssociationSet Name="FK_PatientAppointments_Users" Association="CaresoftHMISModel.FK_PatientAppointments_Users">
             <End Role="User" EntitySet="Users" />
             <End Role="PatientAppointment" EntitySet="PatientAppointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserId_PatientDiagnosis" Association="CaresoftHMISModel.FK_UserId_PatientDiagnosis">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PatientDiagnosi" EntitySet="PatientDiagnosis" />
           </AssociationSet>
           <AssociationSet Name="FK_PatientReferals_Users" Association="CaresoftHMISModel.FK_PatientReferals_Users">
             <End Role="User" EntitySet="Users" />
@@ -6732,7 +6852,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             <End Role="User" EntitySet="Users" />
             <End Role="Waiver" EntitySet="Waivers" />
           </AssociationSet>
-          <EntitySet Name="NutritionDietcharts" EntityType="CaresoftHMISModel.NutritionDietchart" />
         </EntityContainer>
         <EntityType Name="AdmissionRecommendation">
           <Key>
@@ -8496,6 +8615,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <NavigationProperty Name="OpdRegister" Relationship="CaresoftHMISModel.FK_Medication_OpdRegister" FromRole="Medication" ToRole="OpdRegister" />
           <NavigationProperty Name="Waiver" Relationship="CaresoftHMISModel.FK_Medications_Waivers" FromRole="Medication" ToRole="Waiver" />
           <NavigationProperty Name="RefundedItems" Relationship="CaresoftHMISModel.FK_RefundedItems_Medications" FromRole="Medication" ToRole="RefundedItem" />
+          <NavigationProperty Name="User" Relationship="CaresoftHMISModel.FK_UserId_Medications" FromRole="Medication" ToRole="User" />
         </EntityType>
         <EntityType Name="MorgAdmission">
           <Key>
@@ -8668,6 +8788,25 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="Initials" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="date_time" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="NutritionDietchart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="OPDIPDID" Type="Int32" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Precision="0" />
+          <Property Name="start_time" Type="Time" Precision="7" />
+          <Property Name="end_date" Type="DateTime" Precision="0" />
+          <Property Name="end_time" Type="Time" Precision="7" />
+          <Property Name="meal_time" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="item_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="quantity" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="format_id" Type="Int32" />
+          <Property Name="format_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="total_calories" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="date_time" Type="DateTime" Precision="3" />
+        </EntityType>
         <EntityType Name="NutritionScreeningDetail">
           <Key>
             <PropertyRef Name="id" />
@@ -8776,6 +8915,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <NavigationProperty Name="MedicalHistoryResponses" Relationship="CaresoftHMISModel.FK_MedicalHistoryResponses_OpdRegister" FromRole="OpdRegister" ToRole="MedicalHistoryRespons" />
           <NavigationProperty Name="Medications" Relationship="CaresoftHMISModel.FK_Medication_OpdRegister" FromRole="OpdRegister" ToRole="Medication" />
           <NavigationProperty Name="NutritionScreeningDetails" Relationship="CaresoftHMISModel.FK_NutritionScreeningDetails_OpdRegisters" FromRole="OpdRegister" ToRole="NutritionScreeningDetail" />
+          <NavigationProperty Name="PhysicalExaminations" Relationship="CaresoftHMISModel.FK_OpdId_OpdRegisters" FromRole="OpdRegister" ToRole="PhysicalExamination" />
           <NavigationProperty Name="Patient" Relationship="CaresoftHMISModel.FK_OpdRegister_Patients" FromRole="OpdRegister" ToRole="Patient" />
           <NavigationProperty Name="Tariff" Relationship="CaresoftHMISModel.FK_OpdRegister_PaymentModes" FromRole="OpdRegister" ToRole="Tariff" />
           <NavigationProperty Name="OutsideTests" Relationship="CaresoftHMISModel.FK_OutsideTests_OutsideTests" FromRole="OpdRegister" ToRole="OutsideTest" />
@@ -8858,6 +8998,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="TimeAdded" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="OldNewCase" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OpdRegister" Relationship="CaresoftHMISModel.FK_PatientDiagnosis_OpdRegister" FromRole="PatientDiagnosi" ToRole="OpdRegister" />
+          <NavigationProperty Name="User" Relationship="CaresoftHMISModel.FK_UserId_PatientDiagnosis" FromRole="PatientDiagnosi" ToRole="User" />
         </EntityType>
         <EntityType Name="PatientReferal">
           <Key>
@@ -8979,6 +9120,8 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="Computer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="BranchId" Type="Int32" />
+          <Property Name="Opdid" Type="Int32" />
+          <NavigationProperty Name="OpdRegister" Relationship="CaresoftHMISModel.FK_OpdId_OpdRegisters" FromRole="PhysicalExamination" ToRole="OpdRegister" />
           <NavigationProperty Name="Patient" Relationship="CaresoftHMISModel.FK_PhysicalExaminations_Patients" FromRole="PhysicalExamination" ToRole="Patient" />
           <NavigationProperty Name="User" Relationship="CaresoftHMISModel.FK_PhysicalExaminations_Users" FromRole="PhysicalExamination" ToRole="User" />
         </EntityType>
@@ -9133,7 +9276,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="Heparin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ProSulp" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Fluids" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CoagTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="CoagTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Comments" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="BranchId" Type="Int32" Nullable="false" />
@@ -9146,7 +9289,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OPDNo" Type="Int32" Nullable="false" />
-          <Property Name="TreatmentTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TreatmentTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Priming" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DialysisSolution" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Dialyzer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -9164,8 +9307,8 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OPDNo" Type="Int32" Nullable="false" />
-          <Property Name="BloodLeak" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="AirDetect" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="BloodLeak" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AirDetect" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Temperature" Type="Int32" Nullable="false" />
           <Property Name="Conductivity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DialysisP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -9571,11 +9714,13 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <NavigationProperty Name="MCHPreventativeServices" Relationship="CaresoftHMISModel.FK_MCHPreventativeServices_Users" FromRole="User" ToRole="MCHPreventativeService1" />
           <NavigationProperty Name="MCHPreviousPregnancies" Relationship="CaresoftHMISModel.FK_MCHPreviousPregnancies_Users" FromRole="User" ToRole="MCHPreviousPregnancy" />
           <NavigationProperty Name="MedicalAdministrationEntries" Relationship="CaresoftHMISModel.FK_MedicalAdministrationEntries_Users" FromRole="User" ToRole="MedicalAdministrationEntry" />
+          <NavigationProperty Name="Medications" Relationship="CaresoftHMISModel.FK_UserId_Medications" FromRole="User" ToRole="Medication" />
           <NavigationProperty Name="MorgAdmissions" Relationship="CaresoftHMISModel.FK_MorgAdmissions_Users" FromRole="User" ToRole="MorgAdmission" />
           <NavigationProperty Name="NutritionScreeningDetails" Relationship="CaresoftHMISModel.FK_NutritionScreeningDetails_Users" FromRole="User" ToRole="NutritionScreeningDetail" />
           <NavigationProperty Name="OutsideTests" Relationship="CaresoftHMISModel.FK_OutsideTests_Users" FromRole="User" ToRole="OutsideTest" />
           <NavigationProperty Name="PatientAllergies" Relationship="CaresoftHMISModel.FK_PatientAllergies_Users" FromRole="User" ToRole="PatientAllergy" />
           <NavigationProperty Name="PatientAppointments" Relationship="CaresoftHMISModel.FK_PatientAppointments_Users" FromRole="User" ToRole="PatientAppointment" />
+          <NavigationProperty Name="PatientDiagnosis" Relationship="CaresoftHMISModel.FK_UserId_PatientDiagnosis" FromRole="User" ToRole="PatientDiagnosi" />
           <NavigationProperty Name="PatientReferals" Relationship="CaresoftHMISModel.FK_PatientReferals_Users" FromRole="User" ToRole="PatientReferal" />
           <NavigationProperty Name="PatientReferals1" Relationship="CaresoftHMISModel.FK_PatientReferals_Users1" FromRole="User" ToRole="PatientReferal" />
           <NavigationProperty Name="Patients" Relationship="CaresoftHMISModel.FK_Patient_UserRegistrer" FromRole="User" ToRole="Patient" />
@@ -11098,6 +11243,18 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserId_Medications">
+          <End Type="CaresoftHMISModel.User" Role="User" Multiplicity="1" />
+          <End Type="CaresoftHMISModel.Medication" Role="Medication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Medication">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MorgAdmissions_MorgCabinets">
           <End Type="CaresoftHMISModel.MorgCabinet" Role="MorgCabinet" Multiplicity="0..1" />
           <End Type="CaresoftHMISModel.MorgAdmission" Role="MorgAdmission" Multiplicity="*" />
@@ -11179,6 +11336,18 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             </Principal>
             <Dependent Role="NutritionScreeningDetail">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OpdId_OpdRegisters">
+          <End Type="CaresoftHMISModel.OpdRegister" Role="OpdRegister" Multiplicity="0..1" />
+          <End Type="CaresoftHMISModel.PhysicalExamination" Role="PhysicalExamination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OpdRegister">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhysicalExamination">
+              <PropertyRef Name="Opdid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11479,6 +11648,18 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             </Principal>
             <Dependent Role="PatientAppointment">
               <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserId_PatientDiagnosis">
+          <End Type="CaresoftHMISModel.User" Role="User" Multiplicity="1" />
+          <End Type="CaresoftHMISModel.PatientDiagnosi" Role="PatientDiagnosi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientDiagnosi">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11914,25 +12095,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="NutritionDietchart">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="OPDIPDID" Type="Int32" Nullable="false" />
-          <Property Name="start_date" Type="DateTime" Precision="0" />
-          <Property Name="start_time" Type="Time" Precision="7" />
-          <Property Name="end_date" Type="DateTime" Precision="0" />
-          <Property Name="end_time" Type="Time" Precision="7" />
-          <Property Name="meal_time" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="item_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="quantity" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="format_id" Type="Int32" />
-          <Property Name="format_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="total_calories" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="date_time" Type="DateTime" Precision="3" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -13836,6 +13998,26 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="NutritionDietcharts">
+            <EntityTypeMapping TypeName="CaresoftHMISModel.NutritionDietchart">
+              <MappingFragment StoreEntitySet="NutritionDietchart">
+                <ScalarProperty Name="date_time" ColumnName="date_time" />
+                <ScalarProperty Name="total_calories" ColumnName="total_calories" />
+                <ScalarProperty Name="format_name" ColumnName="format_name" />
+                <ScalarProperty Name="format_id" ColumnName="format_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="meal_time" ColumnName="meal_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="OPDIPDID" ColumnName="OPDIPDID" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="NutritionScreeningDetails">
             <EntityTypeMapping TypeName="CaresoftHMISModel.NutritionScreeningDetail">
               <MappingFragment StoreEntitySet="NutritionScreeningDetails">
@@ -14054,6 +14236,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySetMapping Name="PhysicalExaminations">
             <EntityTypeMapping TypeName="CaresoftHMISModel.PhysicalExamination">
               <MappingFragment StoreEntitySet="PhysicalExaminations">
+                <ScalarProperty Name="Opdid" ColumnName="Opdid" />
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="Computer" ColumnName="Computer" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -14793,26 +14976,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
                 <ScalarProperty Name="CashPrice" ColumnName="CashPrice" />
                 <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NutritionDietcharts">
-            <EntityTypeMapping TypeName="CaresoftHMISModel.NutritionDietchart">
-              <MappingFragment StoreEntitySet="NutritionDietchart">
-                <ScalarProperty Name="date_time" ColumnName="date_time" />
-                <ScalarProperty Name="total_calories" ColumnName="total_calories" />
-                <ScalarProperty Name="format_name" ColumnName="format_name" />
-                <ScalarProperty Name="format_id" ColumnName="format_id" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-                <ScalarProperty Name="item_name" ColumnName="item_name" />
-                <ScalarProperty Name="meal_time" ColumnName="meal_time" />
-                <ScalarProperty Name="end_time" ColumnName="end_time" />
-                <ScalarProperty Name="end_date" ColumnName="end_date" />
-                <ScalarProperty Name="start_time" ColumnName="start_time" />
-                <ScalarProperty Name="start_date" ColumnName="start_date" />
-                <ScalarProperty Name="OPDIPDID" ColumnName="OPDIPDID" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
