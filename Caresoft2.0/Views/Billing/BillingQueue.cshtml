@@ -188,7 +188,8 @@
 
 
                 <td align="right">
-                    <a href="@Url.Action("Index", "Billing", new { id = item.Id })" class="btn btn-xs btn-primary">Select</a>
+                    <a href="@Url.Action("Index", "Billing" , new { id=item.Id })" class="btn btn-xs btn-primary">Select</a>
+                    <a href="@Url.Action("FinalizepatientInvoice", "Invoicing", new { id = item.Id })" class="btn btn-xs btn-primary">Invoice</a>
                 </td>
             </tr>
         }

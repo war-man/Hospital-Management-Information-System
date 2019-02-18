@@ -147,20 +147,28 @@
                                                         </td>
                                                     }
                                                         <td>
-                                                            @foreach (var peG in Model.PhysicalExaminations.GroupBy(e => e.UserId))
+                                                            @if (i.PhysicalExaminations.Count() == 0)
                                                             {
-                                                                <p class="container-fluid">
-                                                                    <u ><b>
-                                                                        <div class="col-md-12" style="color:darkblue!important">
-                                                                            @peG.FirstOrDefault().User.Employee.FName.ToUpper()
-                                                                            @peG.FirstOrDefault().User.Employee.OtherName.ToUpper()
-                                                                            <span style="color:gray">(@peG.FirstOrDefault().User.Username.ToUpper())</span>
+                                                                <div class="text-success text-center"> <strong>Note</strong> : <strong>This Data is not likend to a specific OPD/IPD Number</strong></div>
 
-                                                                        </div>
+                                                                foreach (var peG in Model.PhysicalExaminations?.GroupBy(e => e.UserId))
+                                                                {
+                                                                <p class="container-fluid">
+                                                                    <u>
+                                                                        <b>
+                                                                            <div class="col-md-12" style="color:darkblue!important">
+                                                                                @peG.FirstOrDefault().User.Employee.FName.ToUpper()
+                                                                                @peG.FirstOrDefault().User.Employee.OtherName.ToUpper()
+                                                                                <span style="color:gray">(@peG.FirstOrDefault().User.Username.ToUpper())</span>
+
+                                                                            </div>
                                                                         </b>
                                                                     </u>
                                                                     @foreach (var pe in peG)
                                                                     {
+                                                                        <div class="col-xs-12">
+                                                                            <b>Date</b> : @pe.Date
+                                                                        </div>
                                                                         <div class="col-xs-4">
                                                                             <b>Temperature</b> : @pe.Temperature
                                                                         </div>
@@ -188,12 +196,69 @@
                                                                         <div class="col-xs-4">
                                                                             <b>BPSYSTOLIC Supine</b> : @pe.BPSYSTOLICSupine
                                                                         </div>
+                                                                        <div class="col-xs-12">
+                                                                            <hr style="margin:5px" />
+                                                                        </div>
+
                                                                     }
 
 
                                                                 </p>
+                                                                }
+                                                            }
+                                                            @foreach (var peG in i.PhysicalExaminations?.GroupBy(e => e.UserId))
+                                                            {
+                                                                <p class="container-fluid">
+                                                                    <u>
+                                                                        <b>
+                                                                            <div class="col-md-12" style="color:darkblue!important">
+                                                                                @peG.FirstOrDefault().User.Employee.FName.ToUpper()
+                                                                                @peG.FirstOrDefault().User.Employee.OtherName.ToUpper()
+                                                                                <span style="color:gray">(@peG.FirstOrDefault().User.Username.ToUpper())</span>
+
+                                                                            </div>
+                                                                        </b>
+                                                                    </u>
+                                                                    @foreach (var pe in peG)
+                                                                    {
+                                                                        <div class="col-xs-12">
+                                                                            <b>Date</b> : @pe.Date
+                                                                        </div>
+                                                                        <div class="col-xs-4">
+                                                                            <b>Temperature</b> : @pe.Temperature
+                                                                        </div>
+                                                                        <div class="col-xs-4">
+                                                                            <b>Height</b> : @pe.Height
+                                                                        </div>
+                                                                        <div class="col-xs-4">
+                                                                            <b>Weight</b> : @pe.Weight
+                                                                        </div>
+                                                                        <div class="col-xs-4">
+                                                                            <b>BMI</b> :
+                                                                        </div>
+                                                                        <div class="col-xs-4">
+                                                                            <b>Pulse</b> : @pe.Pulse
+                                                                        </div>
+                                                                        <div class="col-xs-4">
+                                                                            <b>BPDIASTOLICS Sitting</b> : @pe.BPDIASTOLICSSitting
+                                                                        </div>
+                                                                        <div class="col-xs-4">
+                                                                            <b>BPSDIASTOLIC Supine</b> : @pe.BPSDIASTOLICSupine
+                                                                        </div>
+                                                                        <div class="col-xs-4">
+                                                                            <b>BPSYSTOLICS Sitting</b> : @pe.BPSYSTOLICSSitting
+                                                                        </div>
+                                                                        <div class="col-xs-4">
+                                                                            <b>BPSYSTOLIC Supine</b> : @pe.BPSYSTOLICSupine
+                                                                        </div>
+                                                                        <div class="col-xs-12">
+                                                                            <hr style="margin:5px" />
+                                                                        </div>
+
+                                                                    }
 
 
+                                                                </p>
                                                             }
                                                         </td>
 

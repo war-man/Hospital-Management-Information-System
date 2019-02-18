@@ -2058,6 +2058,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.PatientClaim' does not have a pri
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="Computer" Type="varchar" MaxLength="50" />
           <Property Name="BranchId" Type="int" />
+          <Property Name="Opdid" Type="int" />
         </EntityType>
         <EntityType Name="QuestionnaireMultichoices">
           <Key>
@@ -4034,6 +4035,18 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OpdId_OpdRegisters">
+          <End Role="OpdRegisters" Type="Self.OpdRegisters" Multiplicity="0..1" />
+          <End Role="PhysicalExaminations" Type="Self.PhysicalExaminations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OpdRegisters">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhysicalExaminations">
+              <PropertyRef Name="Opdid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OpdRegister_HSBeds">
           <End Role="HSBeds" Type="Self.HSBeds" Multiplicity="0..1" />
           <End Role="OpdRegisters" Type="Self.OpdRegisters" Multiplicity="*" />
@@ -5634,6 +5647,10 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             <End Role="Users" EntitySet="Users" />
             <End Role="NutritionScreeningDetails" EntitySet="NutritionScreeningDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_OpdId_OpdRegisters" Association="Self.FK_OpdId_OpdRegisters">
+            <End Role="OpdRegisters" EntitySet="OpdRegisters" />
+            <End Role="PhysicalExaminations" EntitySet="PhysicalExaminations" />
+          </AssociationSet>
           <AssociationSet Name="FK_OpdRegister_HSBeds" Association="Self.FK_OpdRegister_HSBeds">
             <End Role="HSBeds" EntitySet="HSBeds" />
             <End Role="OpdRegisters" EntitySet="OpdRegisters" />
@@ -6582,6 +6599,10 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <AssociationSet Name="FK_NutritionScreeningDetails_Users" Association="CaresoftHMISModel.FK_NutritionScreeningDetails_Users">
             <End Role="User" EntitySet="Users" />
             <End Role="NutritionScreeningDetail" EntitySet="NutritionScreeningDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OpdId_OpdRegisters" Association="CaresoftHMISModel.FK_OpdId_OpdRegisters">
+            <End Role="OpdRegister" EntitySet="OpdRegisters" />
+            <End Role="PhysicalExamination" EntitySet="PhysicalExaminations" />
           </AssociationSet>
           <AssociationSet Name="FK_OpdRegister_Patients" Association="CaresoftHMISModel.FK_OpdRegister_Patients">
             <End Role="Patient" EntitySet="Patients" />
@@ -8894,6 +8915,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <NavigationProperty Name="MedicalHistoryResponses" Relationship="CaresoftHMISModel.FK_MedicalHistoryResponses_OpdRegister" FromRole="OpdRegister" ToRole="MedicalHistoryRespons" />
           <NavigationProperty Name="Medications" Relationship="CaresoftHMISModel.FK_Medication_OpdRegister" FromRole="OpdRegister" ToRole="Medication" />
           <NavigationProperty Name="NutritionScreeningDetails" Relationship="CaresoftHMISModel.FK_NutritionScreeningDetails_OpdRegisters" FromRole="OpdRegister" ToRole="NutritionScreeningDetail" />
+          <NavigationProperty Name="PhysicalExaminations" Relationship="CaresoftHMISModel.FK_OpdId_OpdRegisters" FromRole="OpdRegister" ToRole="PhysicalExamination" />
           <NavigationProperty Name="Patient" Relationship="CaresoftHMISModel.FK_OpdRegister_Patients" FromRole="OpdRegister" ToRole="Patient" />
           <NavigationProperty Name="Tariff" Relationship="CaresoftHMISModel.FK_OpdRegister_PaymentModes" FromRole="OpdRegister" ToRole="Tariff" />
           <NavigationProperty Name="OutsideTests" Relationship="CaresoftHMISModel.FK_OutsideTests_OutsideTests" FromRole="OpdRegister" ToRole="OutsideTest" />
@@ -9098,6 +9120,8 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="Computer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="BranchId" Type="Int32" />
+          <Property Name="Opdid" Type="Int32" />
+          <NavigationProperty Name="OpdRegister" Relationship="CaresoftHMISModel.FK_OpdId_OpdRegisters" FromRole="PhysicalExamination" ToRole="OpdRegister" />
           <NavigationProperty Name="Patient" Relationship="CaresoftHMISModel.FK_PhysicalExaminations_Patients" FromRole="PhysicalExamination" ToRole="Patient" />
           <NavigationProperty Name="User" Relationship="CaresoftHMISModel.FK_PhysicalExaminations_Users" FromRole="PhysicalExamination" ToRole="User" />
         </EntityType>
@@ -11312,6 +11336,18 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             </Principal>
             <Dependent Role="NutritionScreeningDetail">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OpdId_OpdRegisters">
+          <End Type="CaresoftHMISModel.OpdRegister" Role="OpdRegister" Multiplicity="0..1" />
+          <End Type="CaresoftHMISModel.PhysicalExamination" Role="PhysicalExamination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OpdRegister">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhysicalExamination">
+              <PropertyRef Name="Opdid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -14200,6 +14236,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySetMapping Name="PhysicalExaminations">
             <EntityTypeMapping TypeName="CaresoftHMISModel.PhysicalExamination">
               <MappingFragment StoreEntitySet="PhysicalExaminations">
+                <ScalarProperty Name="Opdid" ColumnName="Opdid" />
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="Computer" ColumnName="Computer" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />

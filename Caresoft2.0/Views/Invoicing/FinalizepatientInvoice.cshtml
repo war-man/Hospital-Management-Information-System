@@ -31,7 +31,7 @@
                         Edit Insurance Details
                     </button>
                     <input hidden name="valid" id="valid" />
-                    <input id="CompanyId" />
+                    <input type="number" id="CompanyId" />
 
                     <table width="100%">
                         <tbody>
@@ -75,7 +75,8 @@
 
 
 @section scripts{
-    <script>
+<script>
+ 
 
         function editInsuranceOnLoad() {
             opdRegistrationCallBack();
@@ -177,7 +178,7 @@
                     $("#printInvoiceReport").attr("href", "/Invoicing/printInvoiceReport/" + $("#OPDNumber").val() + "?CompanyId="
                         + $("#CompanyId").val());
                 }
-               
+
 
                 var IPDServices = $("#previousInvoices").attr("data-action") + ui.item.OPD;
                 $("#previousInvoices").attr("data-action", IPDServices);
@@ -227,7 +228,7 @@
             $(".selectService").change(function () {
 
                 allocateToSpicificTests(parseInt($("#AmountToAward").val()));
-               
+
             });
         }
 
@@ -235,7 +236,7 @@
             source: function (request, response) {
                 $("#valid").val("");
 
-                if ($('#OPDNumber').val() == "") {        
+                if ($('#OPDNumber').val() == "") {
                     showNotification("Please select a Patient", "danger", true);
                     return null;
                 }
@@ -254,7 +255,7 @@
                                 Id: item.Id,
                                 AccNo: item.AccNo,
                                 valid: item.valid,
-                               
+
                             };
                         }));
                     }
@@ -316,25 +317,27 @@
                         + '</td>' +
                         '</tr >';
                 }
-                
-            
+
+
 
                 $("#insuranceTablesBody").prepend(tr);
 
 
                 setUpIsuranceClicks();
 
-                
+
             }
         });
 
+    setUpIsuranceClicks();
         function setUpIsuranceClicks() {
             $(".tableRemove").click(function () {
                 $(this).parent().parent().parent().remove();
             });
 
             $(".selectedInsurance").click(function () {
-                var CompanyId = $(this).parent().siblings(".insurance-acc_no").text();
+                var CompanyId = parseInt($(this).parent().siblings(".insurance-acc_no").text());
+
                 var VisitNo = $("#OPDNumber").val();
                 $("#CompanyId").val(CompanyId);
 
@@ -345,8 +348,7 @@
 
             });
 
-        }
-
+    }
 
         function checkIfInsuranceValid(VisitNo, CompanyId){
 
@@ -369,7 +371,7 @@
             var TotalBill = parseInt($("#TotalBill").val());
 
             var amoutAwarded = parseInt($(this).val());
-            
+
             //var nhifrebate = parseInt($(this).val()) * parseInt($("#NoOfDays").val());
             //var nhifdiff = parseInt($("#NHIFRebate").val()) - amoutAwarded
 
@@ -378,6 +380,7 @@
             $("#NetValue").val(0);
             $("#Refund").val();
             $("#AmountToAward").val(amoutAwarded);
+            $("#TotalAwarded").val(amoutAwarded);
 
             allocateToSpicificTests(amoutAwarded);
 
@@ -393,8 +396,9 @@
             } else {
                 $("#AmountToAward").prop("readonly", true);
                 $("#AmountToAward").val(0);
+                $("#TotalAwarded").val(0);
 
-                $("#nhif-category").attr("disabled", false); 
+                $("#nhif-category").attr("disabled", false);
 
             }
         });
@@ -417,12 +421,14 @@
             $("#NHIFRebate").val(nhifrebate);
             $("#NHIFDiff").val(TotalBill - nhifrebate);
             $("#NetValue").val(0);
+            $("#TotalAwarded").val(0);
+
             $("#Refund").val();
 
             allocateToSpicificTests(nhifrebate);
 
         });
-        
+
         function allocateToSpicificTests(nhifrebate) {
             var AmountToAllocate = nhifrebate;
 
@@ -449,7 +455,7 @@
                     }
 
                 }
-               
+
             });
         }
 
@@ -462,7 +468,7 @@
                 var Type = $(this).find('td.type').text();
 
                 var second_array = {};
-                
+
                 // Empty array for our use.
 
                 second_array.BSID = parseInt(BSID);
@@ -473,13 +479,13 @@
 
             });
 
-            
+
 
             data = {};
             data["AllocationArray"] = myArray;
             data["OPDId"] = parseInt($("#OPDNumber").val());
             data["NHIFRebate"] = parseInt($("#NHIFRebate").val());
-            data["TotalAmount"] = parseInt($("#NetValue").val());
+            data["TotalAmount"] = parseInt($("#TotalAwarded").val());
             data["NHIFDiff"] = parseInt($("#NHIFDiff").val());
             data["CompanyId"] = parseInt($("#CompanyId").val());
 
@@ -491,7 +497,7 @@
 
             }
 
-     
+
 
             if (!(parseInt(data.OPDId)>0)) {
                 showNotification('Please Select a Patient', 'danger', true);
@@ -515,7 +521,12 @@
                 return null;
 
             }
+            if (data.TotalAmount > 0) {
 
+            } else {
+                showNotification('Please Set the Amount to award', 'danger', true);
+                return;
+            }
 
             var txt;
             if (confirm("Finalize Invoice?" )) {
@@ -527,9 +538,10 @@
             if (txt == 'Yes') {
 
                 postAllocatedServices(data, type);
+                console.log(data);
 
             }
-           
+
 
 
         }
@@ -538,7 +550,7 @@
         //Post Allocated Services to DB
         function postAllocatedServices(data, type) {
 
-            
+
             $('.loader').show();
             var url = "FinalizepatientInvoice?type=" + type;
             $.ajax({
@@ -564,14 +576,14 @@
 
                             var second_array = {};
 
-                            // Clear 
+                            // Clear
                             if (BillAmount != 0) {
                                 $(this).find('td.billamount').text(BillAmount - AllocatedAmount);
 
-                                
+
                             }
                             $('.billbalance').text(BillBalance - AllocatedAmount)
-                            
+
 
                         });
 
@@ -659,6 +671,6 @@
         $EXPORT.text(JSON.stringify(data));
     });
 
-    </script>
+</script>
 
 }

@@ -232,10 +232,7 @@ else
                 <td></td>
                 <td></td>
                 <td class="billamount">
-
-                    @((item2.UnitPrice * item2.Quantity) - (item2.OpdRegister?.InsuranceInvoices?
-                .Where(x => x.OpdId == item2.OPDNo).Sum(y => y.InvoiceServiceAllocations.Where(i => i.BillServiceId == item2.DrugId)
-                .Sum(f => f.AmountAllocated)) - (item2.IPDBillPartialPayments?.Sum(e => e.AllocatedAmount)) - (item2.WaivedAmount ?? 0)))
+                    @((item2.UnitPrice * item2.Quantity) - (item2.IPDBillPartialPayments?.Sum(e => e.AllocatedAmount)) - (item2.WaivedAmount ?? 0))
                 </td>
                 <td class="allocated">
                     @((item2.OpdRegister?.InsuranceInvoices?.Where(x => x.OpdId == item2.OPDNo)

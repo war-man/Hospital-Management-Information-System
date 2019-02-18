@@ -51,6 +51,7 @@ namespace CaresoftHMISDataAccess
             this.MedicalHistoryResponses = new HashSet<MedicalHistoryRespons>();
             this.Medications = new HashSet<Medication>();
             this.NutritionScreeningDetails = new HashSet<NutritionScreeningDetail>();
+            this.PhysicalExaminations = new HashSet<PhysicalExamination>();
             this.OutsideTests = new HashSet<OutsideTest>();
             this.PatientAppointments = new HashSet<PatientAppointment>();
             this.PatientClaims = new HashSet<PatientClaim>();
@@ -170,6 +171,8 @@ namespace CaresoftHMISDataAccess
         public virtual ICollection<Medication> Medications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NutritionScreeningDetail> NutritionScreeningDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhysicalExamination> PhysicalExaminations { get; set; }
         public virtual Patient Patient { get; set; }
         public virtual Tariff Tariff { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

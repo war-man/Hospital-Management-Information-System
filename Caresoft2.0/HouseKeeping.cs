@@ -134,7 +134,7 @@ namespace Caresoft2._0
                 - (e.WaivedAmount ?? 0) - (e.Award * e.Quatity) - (e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)));
 
                 var myUnpaidMeds = myLastVisit.Medications.Where(e => !e.Paid).Sum(e => (e.QuantityIssued * e.UnitPrice)
-                  - e.WaivedAmount - (e.Award * e.QuantityIssued) - (e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)));
+                  - e.WaivedAmount??0 - (e.Award * e.QuantityIssued) - (e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)));
 
                 bill = myUnpaidBills + (myUnpaidMeds ?? 0);
             }

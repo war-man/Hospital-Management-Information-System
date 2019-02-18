@@ -25,6 +25,25 @@ namespace Caresoft2._0.Controllers.API
 
         }
 
+        public double OutStandingBill(OpdRegister opd)
+        {
+            var bill = 0.0;
+            double temp = 0;
+
+            if (opd != null)
+            {
+                var myUnpaidBills = opd.BillServices.Where(b => !b.Paid).Sum(e => (e.Quatity * e.Price)
+                - (e.WaivedAmount ?? temp) - (e.Award * e.Quatity) - (e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount)));
+
+                var myUnpaidMeds = (opd.Medications.Where(e => !e.Paid && e.Available==true).Sum(e => (e.QuantityIssued * e.UnitPrice)
+                   - (e.Award * e.QuantityIssued) - (e.IPDBillPartialPayments.Sum(a => a.AllocatedAmount))- ((e.WaivedAmount)?? temp)));
+
+                bill = myUnpaidBills + (myUnpaidMeds ?? temp);
+            }
+
+            return bill;
+        }
+
         //Get patient with bill amount
         public ActionResult Get(int id)
         {
@@ -45,8 +64,7 @@ namespace Caresoft2._0.Controllers.API
 
             if (Patient != null)
             {
-                var opd = Patient.OpdRegisters
-                .OrderByDescending(f => f.Id).FirstOrDefault();
+                var opd = OPD;
 
                 if (opd == null)
                 {
@@ -64,7 +82,7 @@ namespace Caresoft2._0.Controllers.API
                 data.OPDNo = opd.Id;
                 data.Status = "Success";
 
-                data.BillAmount = hs.OutStandingBill(pat.Id);
+                data.BillAmount = OutStandingBill(OPD);
 
                 var MyUnusedJPays = opd.JPayments.Where(e => e.Status.ToLower() == "unused").ToList();
 

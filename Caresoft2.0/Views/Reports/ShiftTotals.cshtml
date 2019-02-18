@@ -56,14 +56,14 @@
                 <td>@shift.Id</td>
                 <td>@shift.User.Username</td>
                 <td>@shift.BillPayments.Count()</td>
-                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cash")).Sum(e => e.PaidAmount)</td>
-                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cheque")).Sum(e => e.PaidAmount)</td>
-                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.ToLower().Trim().Equals("ccard")).Sum(e => e.PaidAmount)</td>
-                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.ToLower().Trim().Equals("mpesa")).Sum(e => e.PaidAmount)</td>
-                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.Equals("Jambo Pay")).Sum(e => e.PaidAmount)</td>
-                <td class="money">@{@(shift.BillPayments.Sum(e => e.PaidAmount) - shift.BillPayments.Sum(e => e.AmountFromWallet))} </td>
+                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cash")).Sum(e => (e.PaidAmount - e.AmountFromWallet - e.AwardedAmount -e.Discount))</td>
+                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cheque")).Sum(e => (e.PaidAmount - e.AmountFromWallet - e.AwardedAmount -e.Discount))</td>
+                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.ToLower().Trim().Equals("ccard")).Sum(e => (e.PaidAmount - e.AmountFromWallet - e.AwardedAmount -e.Discount))</td>
+                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.ToLower().Trim().Equals("mpesa")).Sum(e => (e.PaidAmount - e.AmountFromWallet - e.AwardedAmount -e.Discount))</td>
+                <td class="money">@shift.BillPayments.Where(e => e.PaymentMode.PaymentModeName.Equals("Jambo Pay")).Sum(e => (e.PaidAmount - e.AmountFromWallet - e.AwardedAmount -e.Discount))</td>
+                <td class="money">@{@(shift.BillPayments.Sum(e => (e.PaidAmount - e.AmountFromWallet - e.AwardedAmount - e.Discount)))} </td>
                 <th class="money text-danger" style="text-align:right !important">@shift.Refunds.Sum(e => e.RefundedAmount)</th>
-                <td class="money">@{@(shift.BillPayments.Sum(e => e.PaidAmount) - shift.BillPayments.Sum(e => e.AmountFromWallet) - shift.Refunds.Sum(e => e.RefundedAmount))}</td>
+                <td class="money">@{@(shift.BillPayments.Sum(e => (e.PaidAmount - e.AmountFromWallet - e.AwardedAmount - e.Discount)) - shift.Refunds.Sum(e => e.RefundedAmount))}</td>
                 <td>@shift.StartTime</td>
                 <td>@shift.Endtime</td>
                 <td>
@@ -81,14 +81,14 @@
             <tr class="report-title gray-hr-bottom">
                 <th colspan="3">Total</th>
                 <th>@Model.Shifts.Sum(e => e.BillPayments.Count())</th>
-                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cash")).Sum(a => a.PaidAmount))}</th>
-                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cheque")).Sum(a => a.PaidAmount))}</th>
-                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.ToLower().Trim().Equals("ccard")).Sum(a => a.PaidAmount))}</th>
-                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.ToLower().Trim().Equals("mpesa")).Sum(a => a.PaidAmount))}</th>
-                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.Equals("Jambo Pay")).Sum(a => a.PaidAmount))}</th>
-                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Sum(ba => ba.PaidAmount) - e.BillPayments.Sum(ba => ba.AmountFromWallet))}</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cash")).Sum(a => (a.PaidAmount - a.AmountFromWallet - a.AwardedAmount - a.Discount)))}</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.ToLower().Trim().Equals("cheque")).Sum(a => (a.PaidAmount - a.AmountFromWallet - a.AwardedAmount - a.Discount)))}</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.ToLower().Trim().Equals("ccard")).Sum(a => (a.PaidAmount - a.AmountFromWallet - a.AwardedAmount - a.Discount)))}</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.ToLower().Trim().Equals("mpesa")).Sum(a => (a.PaidAmount - a.AmountFromWallet - a.AwardedAmount - a.Discount)))}</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Where(m => m.PaymentMode.PaymentModeName.Equals("Jambo Pay")).Sum(a => (a.PaidAmount - a.AmountFromWallet - a.AwardedAmount - a.Discount)))}</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Sum(a => (a.PaidAmount - a.AmountFromWallet - a.AwardedAmount - a.Discount)))}</th>
                 <th class="money">@{@Model.Shifts.Sum(e => e.Refunds.Sum(f => f.RefundedAmount))}</th>
-                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Sum(ba => ba.PaidAmount) - e.BillPayments.Sum(ba => ba.AmountFromWallet) - Model.Shifts.Sum(s => s.Refunds.Sum(f => f.RefundedAmount))) }</th>
+                <th class="money">@{@Model.Shifts.Sum(e => e.BillPayments.Sum(a => (a.PaidAmount - a.AmountFromWallet - a.AwardedAmount - a.Discount)) - Model.Shifts.Sum(s => s.Refunds.Sum(f => f.RefundedAmount))) }</th>
                 <th colspan="3"></th>
             </tr>
         </tfoot>

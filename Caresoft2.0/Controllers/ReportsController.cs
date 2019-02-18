@@ -270,11 +270,11 @@ namespace Caresoft2._0.Controllers
                 ViewBag.WalkinEntries = procDB.Walkings.Where(e => e.PatientIdentifierId == data.WalkinId);
             }
 
-            if(data.OpdRegister!=null && data.OpdRegister.IsIPD && trans.Trim()=="")
+            //if(data.OpdRegister!=null && data.OpdRegister.IsIPD && trans.Trim()=="")
 
-            {
-                return RedirectToAction("Receipt", new { id = data.OpdRegister.Id, size, trans = "entire" });
-            }
+            //{
+            //    return RedirectToAction("Receipt", new { id = data.OpdRegister.Id, size, trans = "entire" });
+            //}
             
             return PartialView(size, data);
         }
