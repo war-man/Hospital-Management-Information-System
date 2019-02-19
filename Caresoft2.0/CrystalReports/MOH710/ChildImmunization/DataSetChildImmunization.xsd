@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetChildImmunization" targetNamespace="http://tempuri.org/DataSetChildImmunization.xsd" xmlns:mstns="http://tempuri.org/DataSetChildImmunization.xsd" xmlns="http://tempuri.org/DataSetChildImmunization.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetChildImmunization" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetChildImmunization" msprop:Generator_UserDSName="DataSetChildImmunization">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ChildImmunization" msprop:Generator_TableClassName="ChildImmunizationDataTable" msprop:Generator_TableVarName="tableChildImmunization" msprop:Generator_TablePropName="ChildImmunization" msprop:Generator_RowDeletingName="ChildImmunizationRowDeleting" msprop:Generator_RowChangingName="ChildImmunizationRowChanging" msprop:Generator_RowEvHandlerName="ChildImmunizationRowChangeEventHandler" msprop:Generator_RowDeletedName="ChildImmunizationRowDeleted" msprop:Generator_UserTableName="ChildImmunization" msprop:Generator_RowChangedName="ChildImmunizationRowChanged" msprop:Generator_RowEvArgName="ChildImmunizationRowChangeEvent" msprop:Generator_RowClassName="ChildImmunizationRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NameOfImmunization" msprop:Generator_ColumnVarNameInTable="columnNameOfImmunization" msprop:Generator_ColumnPropNameInRow="NameOfImmunization" msprop:Generator_ColumnPropNameInTable="NameOfImmunizationColumn" msprop:Generator_UserColumnName="NameOfImmunization" type="xs:string" minOccurs="0" />
+              <xs:element name="CountGreaterThanOneYear" msprop:Generator_ColumnVarNameInTable="columnCountGreaterThanOneYear" msprop:Generator_ColumnPropNameInRow="CountGreaterThanOneYear" msprop:Generator_ColumnPropNameInTable="CountGreaterThanOneYearColumn" msprop:Generator_UserColumnName="CountGreaterThanOneYear" type="xs:int" minOccurs="0" />
+              <xs:element name="CountLessThanOneYear" msprop:Generator_ColumnVarNameInTable="columnCountLessThanOneYear" msprop:Generator_ColumnPropNameInRow="CountLessThanOneYear" msprop:Generator_ColumnPropNameInTable="CountLessThanOneYearColumn" msprop:Generator_UserColumnName="CountLessThanOneYear" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

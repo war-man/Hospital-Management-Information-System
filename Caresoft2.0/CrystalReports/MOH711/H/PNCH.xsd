@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PNCH" targetNamespace="http://tempuri.org/PNCH.xsd" xmlns:mstns="http://tempuri.org/PNCH.xsd" xmlns="http://tempuri.org/PNCH.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PNCH" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PNCH" msprop:Generator_UserDSName="PNCH">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PNC" msprop:Generator_TableClassName="PNCDataTable" msprop:Generator_TableVarName="tablePNC" msprop:Generator_RowChangedName="PNCRowChanged" msprop:Generator_TablePropName="PNC" msprop:Generator_RowDeletingName="PNCRowDeleting" msprop:Generator_RowChangingName="PNCRowChanging" msprop:Generator_RowEvHandlerName="PNCRowChangeEventHandler" msprop:Generator_RowDeletedName="PNCRowDeleted" msprop:Generator_RowClassName="PNCRow" msprop:Generator_UserTableName="PNC" msprop:Generator_RowEvArgName="PNCRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BreastExam" msprop:Generator_ColumnVarNameInTable="columnBreastExam" msprop:Generator_ColumnPropNameInRow="BreastExam" msprop:Generator_ColumnPropNameInTable="BreastExamColumn" msprop:Generator_UserColumnName="BreastExam" type="xs:int" minOccurs="0" />
+              <xs:element name="WomenCounselled" msprop:Generator_ColumnVarNameInTable="columnWomenCounselled" msprop:Generator_ColumnPropNameInRow="WomenCounselled" msprop:Generator_ColumnPropNameInTable="WomenCounselledColumn" msprop:Generator_UserColumnName="WomenCounselled" type="xs:int" minOccurs="0" />
+              <xs:element name="CasesOfFistula" msprop:Generator_ColumnVarNameInTable="columnCasesOfFistula" msprop:Generator_ColumnPropNameInRow="CasesOfFistula" msprop:Generator_ColumnPropNameInTable="CasesOfFistulaColumn" msprop:Generator_UserColumnName="CasesOfFistula" type="xs:int" minOccurs="0" />
+              <xs:element name="PNCExercisePositive" msprop:Generator_ColumnVarNameInTable="columnPNCExercisePositive" msprop:Generator_ColumnPropNameInRow="PNCExercisePositive" msprop:Generator_ColumnPropNameInTable="PNCExercisePositiveColumn" msprop:Generator_UserColumnName="PNCExercisePositive" type="xs:int" minOccurs="0" />
+              <xs:element name="CervicalScreening" msprop:Generator_ColumnVarNameInTable="columnCervicalScreening" msprop:Generator_ColumnPropNameInRow="CervicalScreening" msprop:Generator_ColumnPropNameInTable="CervicalScreeningColumn" msprop:Generator_UserColumnName="CervicalScreening" type="xs:int" minOccurs="0" />
+              <xs:element name="Within2To3Days" msprop:Generator_ColumnVarNameInTable="columnWithin2To3Days" msprop:Generator_ColumnPropNameInRow="Within2To3Days" msprop:Generator_ColumnPropNameInTable="Within2To3DaysColumn" msprop:Generator_UserColumnName="Within2To3Days" type="xs:int" minOccurs="0" />
+              <xs:element name="Within6Days" msprop:Generator_ColumnVarNameInTable="columnWithin6Days" msprop:Generator_ColumnPropNameInRow="Within6Days" msprop:Generator_ColumnPropNameInTable="Within6DaysColumn" msprop:Generator_UserColumnName="Within6Days" type="xs:int" minOccurs="0" />
+              <xs:element name="FromHealthFacility" msprop:Generator_ColumnVarNameInTable="columnFromHealthFacility" msprop:Generator_ColumnPropNameInRow="FromHealthFacility" msprop:Generator_ColumnPropNameInTable="FromHealthFacilityColumn" msprop:Generator_UserColumnName="FromHealthFacility" type="xs:int" minOccurs="0" />
+              <xs:element name="FromCommunityUnit" msprop:Generator_ColumnVarNameInTable="columnFromCommunityUnit" msprop:Generator_ColumnPropNameInRow="FromCommunityUnit" msprop:Generator_ColumnPropNameInTable="FromCommunityUnitColumn" msprop:Generator_UserColumnName="FromCommunityUnit" type="xs:int" minOccurs="0" />
+              <xs:element name="ToHealthFacility" msprop:Generator_ColumnVarNameInTable="columnToHealthFacility" msprop:Generator_ColumnPropNameInRow="ToHealthFacility" msprop:Generator_ColumnPropNameInTable="ToHealthFacilityColumn" msprop:Generator_UserColumnName="ToHealthFacility" type="xs:int" minOccurs="0" />
+              <xs:element name="ToCommunityUnit" msprop:Generator_ColumnVarNameInTable="columnToCommunityUnit" msprop:Generator_ColumnPropNameInRow="ToCommunityUnit" msprop:Generator_ColumnPropNameInTable="ToCommunityUnitColumn" msprop:Generator_UserColumnName="ToCommunityUnit" type="xs:int" minOccurs="0" />
+              <xs:element name="PNCExerciseNegative" msprop:Generator_ColumnVarNameInTable="columnPNCExerciseNegative" msprop:Generator_ColumnPropNameInRow="PNCExerciseNegative" msprop:Generator_ColumnPropNameInTable="PNCExerciseNegativeColumn" msprop:Generator_UserColumnName="PNCExerciseNegative" type="xs:int" minOccurs="0" />
+              <xs:element name="_x0032_To3DaysM" msprop:Generator_ColumnVarNameInTable="column2To3DaysM" msprop:Generator_ColumnPropNameInRow="_2To3DaysM" msprop:Generator_ColumnPropNameInTable="_2To3DaysMColumn" msprop:Generator_UserColumnName="2To3DaysM" type="xs:int" minOccurs="0" />
+              <xs:element name="_x0036_DaysM" msprop:Generator_ColumnVarNameInTable="column6DaysM" msprop:Generator_ColumnPropNameInRow="_6DaysM" msprop:Generator_ColumnPropNameInTable="_6DaysMColumn" msprop:Generator_UserColumnName="6DaysM" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

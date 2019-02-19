@@ -49,17 +49,14 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine">
+      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
+    <Reference Include="CrystalDecisions.ReportSource">
+      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.Shared.dll</HintPath>
+    <Reference Include="CrystalDecisions.Shared">
+      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.Shared.dll</HintPath>
     </Reference>
     <Reference Include="DataTables.AspNet.Core, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DataTables.AspNet.Core.2.0.2\lib\net45\DataTables.AspNet.Core.dll</HintPath>
@@ -624,7 +621,66 @@
     <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Controllers\Utils\TurnAroundTimeController.cs" />
     <Compile Include="Controllers\WardsController.cs" />
+    <Compile Include="CrystalReports\AdmittedPatients\Admitted.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\AdmittedPatients\Admitted.Designer.cs">
+      <DependentUpon>Admitted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\AdmittedPatients\Admitted1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Admitted.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\AdmittedPatients\AdmittedController.cs" />
+    <Compile Include="CrystalReports\AdmittedPatients\PatientsAdmitted.Designer.cs" />
+    <Compile Include="CrystalReports\DischargedPatients\DischargedController.cs" />
+    <Compile Include="CrystalReports\DischargedPatients\Dischargedp\Dischargedpatients.Designer.cs" />
+    <Compile Include="CrystalReports\DischargedPatients\DischargedReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\DischargedPatients\DischargedReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DischargedReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\DoctorsReport\DocDataset.cs" />
+    <Compile Include="CrystalReports\DoctorsReport\DoctorController.cs" />
+    <Compile Include="CrystalReports\DoctorsReport\Doctors\Doc.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\DoctorsReport\Doctors\Doc1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Doc.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\DoctorsReport\Doctors\Doctor.Designer.cs" />
+    <Compile Include="CrystalReports\Finance\BillPaymentsController.cs" />
+    <Compile Include="CrystalReports\Finance\BillPaymentsDataSet.Designer.cs" />
+    <Compile Include="CrystalReports\Finance\BillPyments.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Finance\BillPyments1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BillPyments.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrystalReports\HeaderAndFooterForReports.cs" />
+    <Compile Include="CrystalReports\InpatientsBillSummary\IPD.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\InpatientsBillSummary\IPD1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IPD.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\InpatientsBillSummary\IPDController.cs" />
+    <Compile Include="CrystalReports\InpatientsBillSummary\NewIpd.Designer.cs" />
     <Compile Include="CrystalReports\InsuranceInvoice\DSInsuranceInvoic.Designer.cs" />
     <Compile Include="CrystalReports\InsuranceInvoice\InsuranceInvoice.cs">
       <AutoGen>True</AutoGen>
@@ -638,6 +694,172 @@
     </Compile>
     <Compile Include="CrystalReports\MOH705A\MOH705A.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH710\ChildImmunization\ChildImmunization.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChildImmunization.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH710\ChildImmunization\ChildImmunization2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH710\ChildImmunization\DataSetChildImmunization.Designer.cs" />
+    <Compile Include="CrystalReports\MOH710\Main.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH710\Main1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Main.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH710\MOH710Controller.cs" />
+    <Compile Include="CrystalReports\MOH711\A\ANC.Designer.cs" />
+    <Compile Include="CrystalReports\MOH711\A\MOH711.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\A\MOH7111.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MOH711.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\B\MAndD.cs">
+      <DependentUpon>MAndD.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\B\MAndD.Designer.cs">
+      <DependentUpon>MAndD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\B\MOH711B.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\B\MOH711B1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MOH711B.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\C\SGBV.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\C\SGBV1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SGBV.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\C\SGBVCCC.Designer.cs" />
+    <Compile Include="CrystalReports\MOH711\D\FamilyPlanningD.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\D\FamilyPlanningD1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FamilyPlanningD.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\D\FP.Designer.cs" />
+    <Compile Include="CrystalReports\MOH711\E\DatasetE.Designer.cs" />
+    <Compile Include="CrystalReports\MOH711\E\PACServicesE.cs">
+      <DependentUpon>PACServicesE.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\E\PACServicesE.Designer.cs">
+      <DependentUpon>PACServicesE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\E\PACServicesE1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PACServicesE.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\F1\CHANISF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\F1\CHANISF1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CHANISF.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\F1\ChildHealth.Designer.cs" />
+    <Compile Include="CrystalReports\MOH711\F1\DataSetF.Designer.cs" />
+    <Compile Include="CrystalReports\MOH711\G\CervicalCancerG.cs">
+      <DependentUpon>CervicalCancerG.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\G\CervicalCancerG.Designer.cs">
+      <DependentUpon>CervicalCancerG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\G\CervicalCancerG1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CervicalCancerG.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\H\PNCH.Designer.cs" />
+    <Compile Include="CrystalReports\MOH711\H\PostNatalCareH.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\H\PostNatalCareH1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PostNatalCareH.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\I\RehabI.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\I\RehabI1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RehabI.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\I\RehabServicesI.Designer.cs" />
+    <Compile Include="CrystalReports\MOH711\J\MSocialWorkJ.cs">
+      <DependentUpon>MSocialworkJ.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\J\MSocialworkJ.Designer.cs">
+      <DependentUpon>MSocialWorkJ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\J\MSocialWorkJ1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MSocialWorkJ.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\K\Physiotherapy Service.Designer.cs" />
+    <Compile Include="CrystalReports\MOH711\K\PhysiotherapyService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\K\PhysiotherapyService1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhysiotherapyService.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\Main.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\Main1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Main.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\MOH711Controller.cs" />
+    <Compile Include="CrystalReports\Opthamology\Opthamology.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Opthamology.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Opthamology\Opthamology.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Opthamology.xsd</DependentUpon>
     </Compile>
     <Compile Include="CrystalReports\OutsideTest\DSOT.Designer.cs" />
     <Compile Include="CrystalReports\OutsideTest\DSOutsideTest.cs">
@@ -5386,6 +5608,41 @@
     <Content Include="CrystalReports\InsuranceInvoice\DSInsuranceInvoic.xsc">
       <DependentUpon>DSInsuranceInvoic.xsd</DependentUpon>
     </Content>
+    <Content Include="CrystalReports\AdmittedPatients\PatientsAdmitted.xsc">
+      <DependentUpon>PatientsAdmitted.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\AdmittedPatients\PatientsAdmitted.xsd" />
+    <Content Include="CrystalReports\AdmittedPatients\PatientsAdmitted.xss">
+      <DependentUpon>PatientsAdmitted.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\DischargedPatients\Dischargedp\Dischargedpatients.xsc">
+      <DependentUpon>Dischargedpatients.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\DischargedPatients\Dischargedp\Dischargedpatients.xsd" />
+    <Content Include="CrystalReports\DischargedPatients\Dischargedp\Dischargedpatients.xss">
+      <DependentUpon>Dischargedpatients.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\DoctorsReport\Doctors\Doctor.xsc">
+      <DependentUpon>Doctor.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\DoctorsReport\Doctors\Doctor.xsd" />
+    <Content Include="CrystalReports\DoctorsReport\Doctors\Doctor.xss">
+      <DependentUpon>Doctor.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\Finance\BillPaymentsDataSet.xsc">
+      <DependentUpon>BillPaymentsDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\Finance\BillPaymentsDataSet.xsd" />
+    <Content Include="CrystalReports\Finance\BillPaymentsDataSet.xss">
+      <DependentUpon>BillPaymentsDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\InpatientsBillSummary\NewIpd.xsc">
+      <DependentUpon>NewIpd.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\InpatientsBillSummary\NewIpd.xsd" />
+    <Content Include="CrystalReports\InpatientsBillSummary\NewIpd.xss">
+      <DependentUpon>NewIpd.xsd</DependentUpon>
+    </Content>
     <None Include="CrystalReports\InsuranceInvoice\DSInsuranceInvoic.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DSInsuranceInvoic1.Designer.cs</LastGenOutput>
@@ -5407,6 +5664,115 @@
     </Content>
     <Content Include="CrystalReports\OutsideTest\DSOT.xsc">
       <DependentUpon>DSOT.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH710\ChildImmunization\DataSetChildImmunization.xsc">
+      <DependentUpon>DataSetChildImmunization.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH710\ChildImmunization\DataSetChildImmunization.xsd" />
+    <Content Include="CrystalReports\MOH710\ChildImmunization\DataSetChildImmunization.xss">
+      <DependentUpon>DataSetChildImmunization.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH711\A\ANC.xsc">
+      <DependentUpon>ANC.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH711\A\ANC.xsd" />
+    <Content Include="CrystalReports\MOH711\A\ANC.xss">
+      <DependentUpon>ANC.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH711\B\MAndD.xsc">
+      <DependentUpon>MAndD.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH711\B\MAndD.xsd" />
+    <Content Include="CrystalReports\MOH711\B\MAndD.xss">
+      <DependentUpon>MAndD.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH711\C\SGBVCCC.xsc">
+      <DependentUpon>SGBVCCC.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH711\C\SGBVCCC.xsd" />
+    <Content Include="CrystalReports\MOH711\C\SGBVCCC.xss">
+      <DependentUpon>SGBVCCC.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH711\D\FP.xsc">
+      <DependentUpon>FP.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH711\D\FP.xsd" />
+    <Content Include="CrystalReports\MOH711\D\FP.xss">
+      <DependentUpon>FP.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH711\E\DatasetE.xsc">
+      <DependentUpon>DatasetE.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH711\E\DatasetE.xsd" />
+    <Content Include="CrystalReports\MOH711\E\DatasetE.xss">
+      <DependentUpon>DatasetE.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH711\E\PACServicesE.xsc">
+      <DependentUpon>PACServicesE.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH711\E\PACServicesE.xsd" />
+    <Content Include="CrystalReports\MOH711\E\PACServicesE.xss">
+      <DependentUpon>PACServicesE.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH711\F1\ChildHealth.xsc">
+      <DependentUpon>ChildHealth.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH711\F1\ChildHealth.xsd" />
+    <Content Include="CrystalReports\MOH711\F1\ChildHealth.xss">
+      <DependentUpon>ChildHealth.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH711\F1\DataSetF.xsc">
+      <DependentUpon>DataSetF.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH711\F1\DataSetF.xsd" />
+    <Content Include="CrystalReports\MOH711\F1\DataSetF.xss">
+      <DependentUpon>DataSetF.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH711\G\CervicalCancerG.xsc">
+      <DependentUpon>CervicalCancerG.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH711\G\CervicalCancerG.xsd" />
+    <Content Include="CrystalReports\MOH711\G\CervicalCancerG.xss">
+      <DependentUpon>CervicalCancerG.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH711\H\PNCH.xsc">
+      <DependentUpon>PNCH.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH711\H\PNCH.xsd" />
+    <Content Include="CrystalReports\MOH711\H\PNCH.xss">
+      <DependentUpon>PNCH.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH711\I\RehabServicesI.xsc">
+      <DependentUpon>RehabServicesI.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH711\I\RehabServicesI.xsd" />
+    <Content Include="CrystalReports\MOH711\I\RehabServicesI.xss">
+      <DependentUpon>RehabServicesI.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH711\J\MSocialworkJ.xsc">
+      <DependentUpon>MSocialworkJ.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH711\J\MSocialworkJ.xsd" />
+    <Content Include="CrystalReports\MOH711\J\MSocialworkJ.xss">
+      <DependentUpon>MSocialworkJ.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH711\K\Physiotherapy Service.xsc">
+      <DependentUpon>Physiotherapy Service.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH711\K\Physiotherapy Service.xsd" />
+    <Content Include="CrystalReports\MOH711\K\Physiotherapy Service.xss">
+      <DependentUpon>Physiotherapy Service.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\Opthamology\Opthamology.xsc">
+      <DependentUpon>Opthamology.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\Opthamology\Opthamology.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Opthamology.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="CrystalReports\Opthamology\Opthamology.xss">
+      <DependentUpon>Opthamology.xsd</DependentUpon>
     </Content>
     <None Include="CrystalReports\OutsideTest\DSOT.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -6129,6 +6495,12 @@
     <Content Include="Views\Reports\ReceiptReport\ReceiptsDataSet.xsc">
       <DependentUpon>ReceiptsDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="Views\Admitted\Index.cshtml" />
+    <Content Include="Views\BillPayments\Index.cshtml" />
+    <Content Include="Views\Discharged\Index.cshtml" />
+    <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\MOH710\Index.cshtml" />
+    <Content Include="Views\MOH711\Index.cshtml" />
     <None Include="Views\Reports\ReceiptReport\ReceiptsDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ReceiptsDataSet1.Designer.cs</LastGenOutput>
@@ -6504,6 +6876,26 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ProvisionalReport1.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\AdmittedPatients\Admitted.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Admitted1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\DischargedPatients\DischargedReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DischargedReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\DoctorsReport\Doctors\Doc.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Doc1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Finance\BillPyments.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BillPyments1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\InpatientsBillSummary\IPD.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>IPD1.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReports\InsuranceInvoice\InsuranceInvoice.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InsuranceInvoice.cs</LastGenOutput>
@@ -6514,6 +6906,66 @@
     <EmbeddedResource Include="CrystalReports\MOH705A\MOH705A.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>MOH705A1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\MOH710\ChildImmunization\ChildImmunization.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ChildImmunization.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\MOH710\Main.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Main1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\MOH711\A\MOH711.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MOH7111.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\MOH711\B\MOH711B.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MOH711B1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\MOH711\C\SGBV.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SGBV1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\MOH711\D\FamilyPlanningD.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FamilyPlanningD1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\MOH711\E\PACServicesE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PACServicesE1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\MOH711\F1\CHANISF.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CHANISF1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\MOH711\G\CervicalCancerG.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CervicalCancerG1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\MOH711\H\PostNatalCareH.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PostNatalCareH1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\MOH711\I\RehabI.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RehabI1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\MOH711\J\MSocialWorkJ.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MSocialWorkJ1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\MOH711\K\PhysiotherapyService.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PhysiotherapyService1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\MOH711\Main.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Main1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Opthamology\Opthamology.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Opthamology.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReports\OutsideTest\RPTOT.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
