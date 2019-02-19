@@ -847,7 +847,8 @@ namespace Caresoft2._0.Controllers
 
             foreach (var us in allUser)
             {
-                ds.DTActiveUser.AddDTActiveUserRow(us.Id.ToString(), us.Username, us.LastRefresh.Value.ToString(), us.Status, us.Employee.RollNo, "");
+                ds.DTActiveUser.AddDTActiveUserRow(us.Id.ToString(), 
+                    us.Username, us.LastRefresh.Value.ToString(), us.Status, us.Employee.RollNo, "");
 
             }
             ReportDocument rd = new ReportDocument();

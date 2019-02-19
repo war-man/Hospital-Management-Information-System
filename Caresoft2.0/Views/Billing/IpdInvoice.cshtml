@@ -1,6 +1,6 @@
 ﻿@model CaresoftHMISDataAccess.OpdRegister
 @{
-    ViewBag.Title = "Ipd Invoicing";
+    ViewBag.Title = "Ipd Patient Bill Summary";
     ViewBag.ShowTopMenu = true;
 
     var db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
@@ -186,15 +186,15 @@
 
             </table>
             <p style="float:right">
-                @Html.ActionLink("Interim Invoice", "downloadIpdInvoice", new {id=Model.Id, type = "interim" }, new { @class = "btn btn-sm btn-primary" })
-                @if (TTBal == 0)
+                @Html.ActionLink("Download Bill Summary", "downloadIpdInvoice", new {id=Model.Id, type = "interim" }, new { @class = "btn btn-sm btn-primary" })
+                @*@if (TTBal == 0)
                 {
                     @Html.ActionLink("Final Invoice", "downloadIpdInvoice", new { id = Model.Id, type = "final" }, new { @class = "btn btn-sm btn-primary " })
                 }
                 else
                 {
                     @Html.ActionLink("Final Invoice", "downloadIpdInvoice", new { id = Model.Id, type = "final" }, new { @class = "btn btn-sm btn-primary disabled" })
-                }
+                }*@
             </p>
         </div>
     </div>

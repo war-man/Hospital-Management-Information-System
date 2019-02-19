@@ -124,7 +124,7 @@
                         <button type="button" class="btn btn-primary btn-sm" disabled id="btn-insurance-claim" onclick="prepareInsuranceInvoice()">Insurance Claim</button>
                         @if (Model.OpdRegister.IsIPD)
                         {
-                            <a href="@Url.Action("IpdInvoice", "Billing", new { id = Model.OpdRegister.Id, type = "ipdinvoice" })" class="btn btn-primary btn-sm">Invoice for IPD</a>
+                        <a href="@Url.Action("IpdInvoice", "Billing", new { id = Model.OpdRegister.Id, type = "ipdinvoice" })" class="btn btn-primary btn-sm"> Bill Summary</a>
                         }
                     </div>
 
