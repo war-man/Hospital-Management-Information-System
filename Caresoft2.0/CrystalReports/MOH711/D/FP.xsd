@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FP" targetNamespace="http://tempuri.org/FP.xsd" xmlns:mstns="http://tempuri.org/FP.xsd" xmlns="http://tempuri.org/FP.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="FP" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="FP" msprop:Generator_UserDSName="FP">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FamilyPlanningD" msprop:Generator_TableClassName="FamilyPlanningDDataTable" msprop:Generator_TableVarName="tableFamilyPlanningD" msprop:Generator_TablePropName="FamilyPlanningD" msprop:Generator_RowDeletingName="FamilyPlanningDRowDeleting" msprop:Generator_RowChangingName="FamilyPlanningDRowChanging" msprop:Generator_RowEvHandlerName="FamilyPlanningDRowChangeEventHandler" msprop:Generator_RowDeletedName="FamilyPlanningDRowDeleted" msprop:Generator_UserTableName="FamilyPlanningD" msprop:Generator_RowChangedName="FamilyPlanningDRowChanged" msprop:Generator_RowEvArgName="FamilyPlanningDRowChangeEvent" msprop:Generator_RowClassName="FamilyPlanningDRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="New1" msprop:Generator_ColumnVarNameInTable="columnNew1" msprop:Generator_ColumnPropNameInRow="New1" msprop:Generator_ColumnPropNameInTable="New1Column" msprop:Generator_UserColumnName="New1" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit1" msprop:Generator_ColumnVarNameInTable="columnRevisit1" msprop:Generator_ColumnPropNameInRow="Revisit1" msprop:Generator_ColumnPropNameInTable="Revisit1Column" msprop:Generator_UserColumnName="Revisit1" type="xs:int" minOccurs="0" />
+              <xs:element name="New2" msprop:Generator_ColumnVarNameInTable="columnNew2" msprop:Generator_ColumnPropNameInRow="New2" msprop:Generator_ColumnPropNameInTable="New2Column" msprop:Generator_UserColumnName="New2" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit2" msprop:Generator_ColumnVarNameInTable="columnRevisit2" msprop:Generator_ColumnPropNameInRow="Revisit2" msprop:Generator_ColumnPropNameInTable="Revisit2Column" msprop:Generator_UserColumnName="Revisit2" type="xs:int" minOccurs="0" />
+              <xs:element name="New3" msprop:Generator_ColumnVarNameInTable="columnNew3" msprop:Generator_ColumnPropNameInRow="New3" msprop:Generator_ColumnPropNameInTable="New3Column" msprop:Generator_UserColumnName="New3" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit3" msprop:Generator_ColumnVarNameInTable="columnRevisit3" msprop:Generator_ColumnPropNameInRow="Revisit3" msprop:Generator_ColumnPropNameInTable="Revisit3Column" msprop:Generator_UserColumnName="Revisit3" type="xs:int" minOccurs="0" />
+              <xs:element name="New4" msprop:Generator_ColumnVarNameInTable="columnNew4" msprop:Generator_ColumnPropNameInRow="New4" msprop:Generator_ColumnPropNameInTable="New4Column" msprop:Generator_UserColumnName="New4" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit4" msprop:Generator_ColumnVarNameInTable="columnRevisit4" msprop:Generator_ColumnPropNameInRow="Revisit4" msprop:Generator_ColumnPropNameInTable="Revisit4Column" msprop:Generator_UserColumnName="Revisit4" type="xs:int" minOccurs="0" />
+              <xs:element name="New5" msprop:Generator_ColumnVarNameInTable="columnNew5" msprop:Generator_ColumnPropNameInRow="New5" msprop:Generator_ColumnPropNameInTable="New5Column" msprop:Generator_UserColumnName="New5" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit5" msprop:Generator_ColumnVarNameInTable="columnRevisit5" msprop:Generator_ColumnPropNameInRow="Revisit5" msprop:Generator_ColumnPropNameInTable="Revisit5Column" msprop:Generator_UserColumnName="Revisit5" type="xs:int" minOccurs="0" />
+              <xs:element name="New6" msprop:Generator_ColumnVarNameInTable="columnNew6" msprop:Generator_ColumnPropNameInRow="New6" msprop:Generator_ColumnPropNameInTable="New6Column" msprop:Generator_UserColumnName="New6" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit6" msprop:Generator_ColumnVarNameInTable="columnRevisit6" msprop:Generator_ColumnPropNameInRow="Revisit6" msprop:Generator_ColumnPropNameInTable="Revisit6Column" msprop:Generator_UserColumnName="Revisit6" type="xs:int" minOccurs="0" />
+              <xs:element name="New7" msprop:Generator_ColumnVarNameInTable="columnNew7" msprop:Generator_ColumnPropNameInRow="New7" msprop:Generator_ColumnPropNameInTable="New7Column" msprop:Generator_UserColumnName="New7" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit7" msprop:Generator_ColumnVarNameInTable="columnRevisit7" msprop:Generator_ColumnPropNameInRow="Revisit7" msprop:Generator_ColumnPropNameInTable="Revisit7Column" msprop:Generator_UserColumnName="Revisit7" type="xs:int" minOccurs="0" />
+              <xs:element name="New8" msprop:Generator_ColumnVarNameInTable="columnNew8" msprop:Generator_ColumnPropNameInRow="New8" msprop:Generator_ColumnPropNameInTable="New8Column" msprop:Generator_UserColumnName="New8" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit8" msprop:Generator_ColumnVarNameInTable="columnRevisit8" msprop:Generator_ColumnPropNameInRow="Revisit8" msprop:Generator_ColumnPropNameInTable="Revisit8Column" msprop:Generator_UserColumnName="Revisit8" type="xs:int" minOccurs="0" />
+              <xs:element name="New9" msprop:Generator_ColumnVarNameInTable="columnNew9" msprop:Generator_ColumnPropNameInRow="New9" msprop:Generator_ColumnPropNameInTable="New9Column" msprop:Generator_UserColumnName="New9" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit9" msprop:Generator_ColumnVarNameInTable="columnRevisit9" msprop:Generator_ColumnPropNameInRow="Revisit9" msprop:Generator_ColumnPropNameInTable="Revisit9Column" msprop:Generator_UserColumnName="Revisit9" type="xs:int" minOccurs="0" />
+              <xs:element name="New10" msprop:Generator_ColumnVarNameInTable="columnNew10" msprop:Generator_ColumnPropNameInRow="New10" msprop:Generator_ColumnPropNameInTable="New10Column" msprop:Generator_UserColumnName="New10" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit10" msprop:Generator_ColumnVarNameInTable="columnRevisit10" msprop:Generator_ColumnPropNameInRow="Revisit10" msprop:Generator_ColumnPropNameInTable="Revisit10Column" msprop:Generator_UserColumnName="Revisit10" type="xs:int" minOccurs="0" />
+              <xs:element name="New11" msprop:Generator_ColumnVarNameInTable="columnNew11" msprop:Generator_ColumnPropNameInRow="New11" msprop:Generator_ColumnPropNameInTable="New11Column" msprop:Generator_UserColumnName="New11" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit11" msprop:Generator_ColumnVarNameInTable="columnRevisit11" msprop:Generator_ColumnPropNameInRow="Revisit11" msprop:Generator_ColumnPropNameInTable="Revisit11Column" msprop:Generator_UserColumnName="Revisit11" type="xs:int" minOccurs="0" />
+              <xs:element name="New12" msprop:Generator_ColumnVarNameInTable="columnNew12" msprop:Generator_ColumnPropNameInRow="New12" msprop:Generator_ColumnPropNameInTable="New12Column" msprop:Generator_UserColumnName="New12" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit12" msprop:Generator_ColumnVarNameInTable="columnRevisit12" msprop:Generator_ColumnPropNameInRow="Revisit12" msprop:Generator_ColumnPropNameInTable="Revisit12Column" msprop:Generator_UserColumnName="Revisit12" type="xs:int" minOccurs="0" />
+              <xs:element name="New13" msprop:Generator_ColumnVarNameInTable="columnNew13" msprop:Generator_ColumnPropNameInRow="New13" msprop:Generator_ColumnPropNameInTable="New13Column" msprop:Generator_UserColumnName="New13" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit13" msprop:Generator_ColumnVarNameInTable="columnRevisit13" msprop:Generator_ColumnPropNameInRow="Revisit13" msprop:Generator_ColumnPropNameInTable="Revisit13Column" msprop:Generator_UserColumnName="Revisit13" type="xs:int" minOccurs="0" />
+              <xs:element name="New14" msprop:Generator_ColumnVarNameInTable="columnNew14" msprop:Generator_ColumnPropNameInRow="New14" msprop:Generator_ColumnPropNameInTable="New14Column" msprop:Generator_UserColumnName="New14" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit14" msprop:Generator_ColumnVarNameInTable="columnRevisit14" msprop:Generator_ColumnPropNameInRow="Revisit14" msprop:Generator_ColumnPropNameInTable="Revisit14Column" msprop:Generator_UserColumnName="Revisit14" type="xs:int" minOccurs="0" />
+              <xs:element name="New15" msprop:Generator_ColumnVarNameInTable="columnNew15" msprop:Generator_ColumnPropNameInRow="New15" msprop:Generator_ColumnPropNameInTable="New15Column" msprop:Generator_UserColumnName="New15" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit15" msprop:Generator_ColumnVarNameInTable="columnRevisit15" msprop:Generator_ColumnPropNameInRow="Revisit15" msprop:Generator_ColumnPropNameInTable="Revisit15Column" msprop:Generator_UserColumnName="Revisit15" type="xs:int" minOccurs="0" />
+              <xs:element name="New16" msprop:Generator_ColumnVarNameInTable="columnNew16" msprop:Generator_ColumnPropNameInRow="New16" msprop:Generator_ColumnPropNameInTable="New16Column" msprop:Generator_UserColumnName="New16" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit16" msprop:Generator_ColumnVarNameInTable="columnRevisit16" msprop:Generator_ColumnPropNameInRow="Revisit16" msprop:Generator_ColumnPropNameInTable="Revisit16Column" msprop:Generator_UserColumnName="Revisit16" type="xs:int" minOccurs="0" />
+              <xs:element name="New17" msprop:Generator_ColumnVarNameInTable="columnNew17" msprop:Generator_ColumnPropNameInRow="New17" msprop:Generator_ColumnPropNameInTable="New17Column" msprop:Generator_UserColumnName="New17" type="xs:int" minOccurs="0" />
+              <xs:element name="Revisit17" msprop:Generator_ColumnVarNameInTable="columnRevisit17" msprop:Generator_ColumnPropNameInRow="Revisit17" msprop:Generator_ColumnPropNameInTable="Revisit17Column" msprop:Generator_UserColumnName="Revisit17" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

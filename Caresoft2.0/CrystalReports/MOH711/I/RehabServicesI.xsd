@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="RehabServicesI" targetNamespace="http://tempuri.org/RehabServicesI.xsd" xmlns:mstns="http://tempuri.org/RehabServicesI.xsd" xmlns="http://tempuri.org/RehabServicesI.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="RehabServicesI" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="RehabServicesI" msprop:Generator_UserDSName="RehabServicesI">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RehabI" msprop:Generator_TableClassName="RehabIDataTable" msprop:Generator_TableVarName="tableRehabI" msprop:Generator_TablePropName="RehabI" msprop:Generator_RowDeletingName="RehabIRowDeleting" msprop:Generator_RowChangingName="RehabIRowChanging" msprop:Generator_RowEvHandlerName="RehabIRowChangeEventHandler" msprop:Generator_RowDeletedName="RehabIRowDeleted" msprop:Generator_UserTableName="RehabI" msprop:Generator_RowChangedName="RehabIRowChanged" msprop:Generator_RowEvArgName="RehabIRowChangeEvent" msprop:Generator_RowClassName="RehabIRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NumberAssesed" msprop:Generator_ColumnVarNameInTable="columnNumberAssesed" msprop:Generator_ColumnPropNameInRow="NumberAssesed" msprop:Generator_ColumnPropNameInTable="NumberAssesedColumn" msprop:Generator_UserColumnName="NumberAssesed" type="xs:int" minOccurs="0" />
+              <xs:element name="NumberTreated" msprop:Generator_ColumnVarNameInTable="columnNumberTreated" msprop:Generator_ColumnPropNameInRow="NumberTreated" msprop:Generator_ColumnPropNameInTable="NumberTreatedColumn" msprop:Generator_UserColumnName="NumberTreated" type="xs:int" minOccurs="0" />
+              <xs:element name="NumberRehabilitated" msprop:Generator_ColumnVarNameInTable="columnNumberRehabilitated" msprop:Generator_ColumnPropNameInRow="NumberRehabilitated" msprop:Generator_ColumnPropNameInTable="NumberRehabilitatedColumn" msprop:Generator_UserColumnName="NumberRehabilitated" type="xs:int" minOccurs="0" />
+              <xs:element name="NumberReferredForFurtherInterventions" msprop:Generator_ColumnVarNameInTable="columnNumberReferredForFurtherInterventions" msprop:Generator_ColumnPropNameInRow="NumberReferredForFurtherInterventions" msprop:Generator_ColumnPropNameInTable="NumberReferredForFurtherInterventionsColumn" msprop:Generator_UserColumnName="NumberReferredForFurtherInterventions" type="xs:int" minOccurs="0" />
+              <xs:element name="NumberIntergratedToCommunities" msprop:Generator_ColumnVarNameInTable="columnNumberIntergratedToCommunities" msprop:Generator_ColumnPropNameInRow="NumberIntergratedToCommunities" msprop:Generator_ColumnPropNameInTable="NumberIntergratedToCommunitiesColumn" msprop:Generator_UserColumnName="NumberIntergratedToCommunities" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
