@@ -16,12 +16,12 @@ namespace Caresoft2._0
 {
     public class Auth : ActionFilterAttribute
     {
-        public CaresoftHMISEntities Db;
+        //public CaresoftHMISEntities Db;
 
 
         public Auth()
         {
-            Db = new CaresoftHMISEntities();
+           // Db = new CaresoftHMISEntities();
         }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -74,7 +74,7 @@ namespace Caresoft2._0
                 var actionName = filterContext.ActionDescriptor.ActionName;
 
 
-                var user = Db.Users.FirstOrDefault(e=>e.Id == userId);
+                var user = new CaresoftHMISEntities().Users.FirstOrDefault(e=>e.Id == userId);
 
                 if (session["ChangePasswordRequest"] !=null)
                 {
@@ -129,7 +129,7 @@ namespace Caresoft2._0
                 }
 
                 //query db to get the action id
-                var Action= Db.TblControllers.Any(e => e.Action == actionName && 
+                var Action= new CaresoftHMISEntities().TblControllers.Any(e => e.Action == actionName && 
                 (e.Area + "." + e.Name) == Controller);
 
                 if(!Action)
@@ -140,8 +140,8 @@ namespace Caresoft2._0
                 //var ActionId = Db.TblControllers.FirstOrDefault(p => p.Name == controllerName && p.Action == actionName).Id;
 
                 //compare the actionid and the role id using a db query
-                var _user = Db.Users.FirstOrDefault(e => e.Id == (int)LoggedInUser);
-                var RoleRightsActions = Db.GroupRights.Any(p => p.RoleRight.RoleRightsActions
+                var _user = new CaresoftHMISEntities().Users.FirstOrDefault(e => e.Id == (int)LoggedInUser);
+                var RoleRightsActions = new CaresoftHMISEntities().GroupRights.Any(p => p.RoleRight.RoleRightsActions
                 .Any(e => e.TblController.Action == actionName &&
                 (e.TblController.Area + "." + e.TblController.Name ) == Controller &&
                 p.UserRoleId == _user.UserRoleId));
@@ -149,7 +149,7 @@ namespace Caresoft2._0
 
                 string[] allowedRoles = new string[] { "dev", "sa" };
 
-                if (allowedRoles.Contains(Db.Users.FirstOrDefault(e=> e.Id == (int)LoggedInUser).UserRole.RoleName.ToLower().Trim()))
+                if (allowedRoles.Contains(new CaresoftHMISEntities().Users.FirstOrDefault(e=> e.Id == (int)LoggedInUser).UserRole.RoleName.ToLower().Trim()))
                 {
                     //allow access
                 } else if (RoleRightsActions)

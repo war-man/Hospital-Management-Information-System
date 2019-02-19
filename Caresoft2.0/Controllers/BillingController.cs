@@ -1371,7 +1371,7 @@ namespace Caresoft2._0.Controllers
                 opd.Tariff.Company.CompanyName.ToUpper(),
                 opd.Tariff.TariffName.ToUpper(),
                 opd.Patient.RegNumber,
-                type.ToUpper()
+                id.ToString()
                 );
 
 

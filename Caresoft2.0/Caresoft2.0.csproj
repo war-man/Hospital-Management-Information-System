@@ -6900,10 +6900,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InsuranceInvoice.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\IpdInvoice\RPTIpdInvoice.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+    <Content Include="CrystalReports\IpdInvoice\RPTIpdInvoice.rpt">
       <LastGenOutput>RPTIpdInvoice1.cs</LastGenOutput>
-    </EmbeddedResource>
+    </Content>
     <EmbeddedResource Include="CrystalReports\MOH705A\MOH705A.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>MOH705A1.cs</LastGenOutput>
@@ -6981,7 +6980,6 @@
       <LastGenOutput>RptReportHeader1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReports\UserManagement\ActiveUsers.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ActiveUsers2.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReports\WaiverReport\RptWaiverReport.rpt">
