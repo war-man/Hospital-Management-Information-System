@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewRefunds" targetNamespace="http://tempuri.org/NewRefunds.xsd" xmlns:mstns="http://tempuri.org/NewRefunds.xsd" xmlns="http://tempuri.org/NewRefunds.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NewRefunds" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NewRefunds" msprop:Generator_UserDSName="NewRefunds">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NewRefunds" msprop:Generator_TableClassName="NewRefundsDataTable" msprop:Generator_TableVarName="tableNewRefunds" msprop:Generator_TablePropName="_NewRefunds" msprop:Generator_RowDeletingName="NewRefundsRowDeleting" msprop:Generator_RowChangingName="NewRefundsRowChanging" msprop:Generator_RowEvHandlerName="NewRefundsRowChangeEventHandler" msprop:Generator_RowDeletedName="NewRefundsRowDeleted" msprop:Generator_UserTableName="NewRefunds" msprop:Generator_RowChangedName="NewRefundsRowChanged" msprop:Generator_RowEvArgName="NewRefundsRowChangeEvent" msprop:Generator_RowClassName="NewRefundsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PatientName" msprop:Generator_ColumnVarNameInTable="columnPatientName" msprop:Generator_ColumnPropNameInRow="PatientName" msprop:Generator_ColumnPropNameInTable="PatientNameColumn" msprop:Generator_UserColumnName="PatientName" type="xs:string" minOccurs="0" />
+              <xs:element name="DateOfRefund" msprop:Generator_ColumnVarNameInTable="columnDateOfRefund" msprop:Generator_ColumnPropNameInRow="DateOfRefund" msprop:Generator_ColumnPropNameInTable="DateOfRefundColumn" msprop:Generator_UserColumnName="DateOfRefund" type="xs:string" minOccurs="0" />
+              <xs:element name="ReceiptNo" msprop:Generator_ColumnVarNameInTable="columnReceiptNo" msprop:Generator_ColumnPropNameInRow="ReceiptNo" msprop:Generator_ColumnPropNameInTable="ReceiptNoColumn" msprop:Generator_UserColumnName="ReceiptNo" type="xs:string" minOccurs="0" />
+              <xs:element name="RefundedAmount" msprop:Generator_ColumnVarNameInTable="columnRefundedAmount" msprop:Generator_ColumnPropNameInRow="RefundedAmount" msprop:Generator_ColumnPropNameInTable="RefundedAmountColumn" msprop:Generator_UserColumnName="RefundedAmount" type="xs:string" minOccurs="0" />
+              <xs:element name="RefundedItemsCount" msprop:Generator_ColumnVarNameInTable="columnRefundedItemsCount" msprop:Generator_ColumnPropNameInRow="RefundedItemsCount" msprop:Generator_ColumnPropNameInTable="RefundedItemsCountColumn" msprop:Generator_UserColumnName="RefundedItemsCount" type="xs:string" minOccurs="0" />
+              <xs:element name="ReasonForRefund" msprop:Generator_ColumnVarNameInTable="columnReasonForRefund" msprop:Generator_ColumnPropNameInRow="ReasonForRefund" msprop:Generator_ColumnPropNameInTable="ReasonForRefundColumn" msprop:Generator_UserColumnName="ReasonForRefund" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,6 +1,4 @@
-﻿
-using Caresoft2._0.Areas.ActiveUsers.Models;
-using CaresoftHMISDataAccess;
+﻿using CaresoftHMISDataAccess;
 using CrystalDecisions.CrystalReports.Engine;
 using System;
 using System.Collections.Generic;

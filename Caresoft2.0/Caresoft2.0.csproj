@@ -631,10 +631,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Admitted.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReports\AdmittedPatients\AdmittedController.cs" />
     <Compile Include="CrystalReports\AdmittedPatients\PatientsAdmitted.Designer.cs" />
+    <Compile Include="CrystalReports\CorporateAndInsuranceReport\CorporateInsurance.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CorporateInsurance.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\CorporateAndInsuranceReport\Insurance.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Insurance.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\CorporateAndInsuranceReport\InsuranceController.cs" />
     <Compile Include="CrystalReports\DischargedPatients\DischargedController.cs" />
     <Compile Include="CrystalReports\DischargedPatients\Dischargedp\Dischargedpatients.Designer.cs" />
     <Compile Include="CrystalReports\DischargedPatients\DischargedReport.cs">
@@ -644,17 +655,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DischargedReport.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReports\DoctorsReport\DocDataset.cs" />
     <Compile Include="CrystalReports\DoctorsReport\DoctorController.cs" />
     <Compile Include="CrystalReports\DoctorsReport\Doctors\Doc.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CrystalReports\DoctorsReport\Doctors\Doc1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Doc.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReports\DoctorsReport\Doctors\Doctor.Designer.cs" />
@@ -663,20 +667,8 @@
     <Compile Include="CrystalReports\Finance\BillPyments.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\Finance\BillPyments1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BillPyments.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CrystalReports\HeaderAndFooterForReports.cs" />
     <Compile Include="CrystalReports\InpatientsBillSummary\IPD.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CrystalReports\InpatientsBillSummary\IPD1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>IPD.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReports\InpatientsBillSummary\IPDController.cs" />
@@ -701,9 +693,7 @@
       <DependentUpon>ChildImmunization.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH710\ChildImmunization\ChildImmunization2.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="CrystalReports\MOH710\ChildImmunization\ChildImmunization2.cs" />
     <Compile Include="CrystalReports\MOH710\ChildImmunization\DataSetChildImmunization.Designer.cs" />
     <Compile Include="CrystalReports\MOH710\Main.cs">
       <SubType>Component</SubType>
@@ -712,17 +702,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Main.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReports\MOH710\MOH710Controller.cs" />
     <Compile Include="CrystalReports\MOH711\A\ANC.Designer.cs" />
     <Compile Include="CrystalReports\MOH711\A\MOH711.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CrystalReports\MOH711\A\MOH7111.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MOH711.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReports\MOH711\B\MAndD.cs">
@@ -734,29 +717,11 @@
     <Compile Include="CrystalReports\MOH711\B\MOH711B.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\B\MOH711B1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MOH711B.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CrystalReports\MOH711\C\SGBV.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CrystalReports\MOH711\C\SGBV1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SGBV.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReports\MOH711\C\SGBVCCC.Designer.cs" />
     <Compile Include="CrystalReports\MOH711\D\FamilyPlanningD.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CrystalReports\MOH711\D\FamilyPlanningD1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FamilyPlanningD.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReports\MOH711\D\FP.Designer.cs" />
@@ -768,19 +733,7 @@
     <Compile Include="CrystalReports\MOH711\E\PACServicesE.Designer.cs">
       <DependentUpon>PACServicesE.cs</DependentUpon>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\E\PACServicesE1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PACServicesE.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CrystalReports\MOH711\F1\CHANISF.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CrystalReports\MOH711\F1\CHANISF1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CHANISF.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReports\MOH711\F1\ChildHealth.Designer.cs" />
@@ -792,29 +745,11 @@
     <Compile Include="CrystalReports\MOH711\G\CervicalCancerG.Designer.cs">
       <DependentUpon>CervicalCancerG.cs</DependentUpon>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\G\CervicalCancerG1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CervicalCancerG.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CrystalReports\MOH711\H\PNCH.Designer.cs" />
     <Compile Include="CrystalReports\MOH711\H\PostNatalCareH.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\H\PostNatalCareH1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PostNatalCareH.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CrystalReports\MOH711\I\RehabI.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CrystalReports\MOH711\I\RehabI1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RehabI.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReports\MOH711\I\RehabServicesI.Designer.cs" />
@@ -825,29 +760,11 @@
     <Compile Include="CrystalReports\MOH711\J\MSocialworkJ.Designer.cs">
       <DependentUpon>MSocialWorkJ.cs</DependentUpon>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\J\MSocialWorkJ1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MSocialWorkJ.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CrystalReports\MOH711\K\Physiotherapy Service.Designer.cs" />
     <Compile Include="CrystalReports\MOH711\K\PhysiotherapyService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\K\PhysiotherapyService1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PhysiotherapyService.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CrystalReports\MOH711\Main.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CrystalReports\MOH711\Main1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Main.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReports\MOH711\MOH711Controller.cs" />
@@ -855,6 +772,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Opthamology.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReports\Opthamology\Opthamology.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -871,6 +789,18 @@
     <Compile Include="CrystalReports\OutsideTest\RPTOT.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReports\RefundsReport\NewRefunds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewRefunds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\RefundsReport\Refunds.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Refunds.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\RefundsReport\RefundsController.cs" />
     <Compile Include="CrystalReports\ReportFooter\DataSetFooter.Designer.cs" />
     <Compile Include="CrystalReports\ReportFooter\RptReportFooter.cs">
       <SubType>Component</SubType>
@@ -5618,6 +5548,17 @@
     <Content Include="CrystalReports\DischargedPatients\Dischargedp\Dischargedpatients.xsc">
       <DependentUpon>Dischargedpatients.xsd</DependentUpon>
     </Content>
+    <Content Include="CrystalReports\CorporateAndInsuranceReport\Insurance.xsc">
+      <DependentUpon>Insurance.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\CorporateAndInsuranceReport\Insurance.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Insurance.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="CrystalReports\CorporateAndInsuranceReport\Insurance.xss">
+      <DependentUpon>Insurance.xsd</DependentUpon>
+    </Content>
     <None Include="CrystalReports\DischargedPatients\Dischargedp\Dischargedpatients.xsd" />
     <Content Include="CrystalReports\DischargedPatients\Dischargedp\Dischargedpatients.xss">
       <DependentUpon>Dischargedpatients.xsd</DependentUpon>
@@ -5795,6 +5736,17 @@
     </Content>
     <Content Include="CrystalReports\ReportFooter\DataSetFooter.xsc">
       <DependentUpon>DataSetFooter.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\RefundsReport\NewRefunds.xsc">
+      <DependentUpon>NewRefunds.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\RefundsReport\NewRefunds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewRefunds.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="CrystalReports\RefundsReport\NewRefunds.xss">
+      <DependentUpon>NewRefunds.xsd</DependentUpon>
     </Content>
     <None Include="CrystalReports\ReportFooter\DataSetFooter.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -6501,6 +6453,8 @@
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\MOH710\Index.cshtml" />
     <Content Include="Views\MOH711\Index.cshtml" />
+    <Content Include="Views\Refunds\Index.cshtml" />
+    <Content Include="Views\Insurance\Index.cshtml" />
     <None Include="Views\Reports\ReceiptReport\ReceiptsDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ReceiptsDataSet1.Designer.cs</LastGenOutput>
@@ -6880,6 +6834,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Admitted1.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\CorporateAndInsuranceReport\CorporateInsurance.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CorporateInsurance.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReports\DischargedPatients\DischargedReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>DischargedReport1.cs</LastGenOutput>
@@ -6970,6 +6928,10 @@
     <EmbeddedResource Include="CrystalReports\OutsideTest\RPTOT.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPTOT1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\RefundsReport\Refunds.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Refunds.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReports\ReportFooter\RptReportFooter.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

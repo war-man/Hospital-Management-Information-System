@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Caresoft2._0.CrystalReports.InpatientsBillSummary {
+namespace Caresoft2._0.CrystalReports.RefundsReport {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace Caresoft2._0.CrystalReports.InpatientsBillSummary {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class IPD : ReportClass {
+    public class Refunds : ReportClass {
         
-        public IPD() {
+        public Refunds() {
         }
         
         public override string ResourceName {
             get {
-                return "IPD.rpt";
+                return "Refunds.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Caresoft2._0.CrystalReports.InpatientsBillSummary {
         
         public override string FullResourceName {
             get {
-                return "Caresoft2._0.CrystalReports.InpatientsBillSummary.IPD.rpt";
+                return "Caresoft2._0.CrystalReports.RefundsReport.Refunds.rpt";
             }
             set {
                 // Do nothing
@@ -87,12 +87,28 @@ namespace Caresoft2._0.CrystalReports.InpatientsBillSummary {
                 return this.ReportDefinition.Sections[4];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_fromDate {
+            get {
+                return this.DataDefinition.ParameterFields[0];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_ToDate {
+            get {
+                return this.DataDefinition.ParameterFields[1];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedIPD : Component, ICachedReport {
+    public class CachedRefunds : Component, ICachedReport {
         
-        public CachedIPD() {
+        public CachedRefunds() {
         }
         
         [Browsable(false)]
@@ -129,7 +145,7 @@ namespace Caresoft2._0.CrystalReports.InpatientsBillSummary {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            IPD rpt = new IPD();
+            Refunds rpt = new Refunds();
             rpt.Site = this.Site;
             return rpt;
         }

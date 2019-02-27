@@ -66,7 +66,7 @@ namespace Caresoft2._0.CrystalReports.MOH710
                         {
                             immunizationData.CountGreaterThanOneYear++;
                         }
-                        else
+                        else 
                         {
                             immunizationData.CountLessThanOneYear++;
                         }
@@ -78,8 +78,6 @@ namespace Caresoft2._0.CrystalReports.MOH710
                 lstImmunizationData.Add(immunizationData);
 
             }
-
-            
 
 
             rd.Subreports["ChildImmunization.rpt"].SetDataSource(GetChildImmunizationData(lstImmunizationData));

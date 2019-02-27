@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Caresoft2._0.CrystalReports.MOH711.G {
+namespace Caresoft2._0.CrystalReports.CorporateAndInsuranceReport {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace Caresoft2._0.CrystalReports.MOH711.G {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CervicalCancerG : ReportClass {
+    public class CorporateInsurance : ReportClass {
         
-        public CervicalCancerG() {
+        public CorporateInsurance() {
         }
         
         public override string ResourceName {
             get {
-                return "CervicalCancerG.rpt";
+                return "CorporateInsurance.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Caresoft2._0.CrystalReports.MOH711.G {
         
         public override string FullResourceName {
             get {
-                return "Caresoft2._0.CrystalReports.MOH711.G.CervicalCancerG.rpt";
+                return "Caresoft2._0.CrystalReports.CorporateAndInsuranceReport.CorporateInsurance.rpt";
             }
             set {
                 // Do nothing
@@ -87,12 +87,28 @@ namespace Caresoft2._0.CrystalReports.MOH711.G {
                 return this.ReportDefinition.Sections[4];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_fromDate {
+            get {
+                return this.DataDefinition.ParameterFields[0];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_ToDate {
+            get {
+                return this.DataDefinition.ParameterFields[1];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCervicalCancerG : Component, ICachedReport {
+    public class CachedCorporateInsurance : Component, ICachedReport {
         
-        public CachedCervicalCancerG() {
+        public CachedCorporateInsurance() {
         }
         
         [Browsable(false)]
@@ -129,7 +145,7 @@ namespace Caresoft2._0.CrystalReports.MOH711.G {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CervicalCancerG rpt = new CervicalCancerG();
+            CorporateInsurance rpt = new CorporateInsurance();
             rpt.Site = this.Site;
             return rpt;
         }

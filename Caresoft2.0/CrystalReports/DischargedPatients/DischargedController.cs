@@ -45,6 +45,8 @@ namespace Caresoft2._0.CrystalReports.DischargedPatients
             rd.Load(Path.Combine(Server.MapPath(@"~\CrystalReports\DischargedPatients\DischargedReport.rpt")));
             rd.Subreports["RptReportHeader.rpt"].SetDataSource(CrystalReports.HeaderAndFooterForReports.GetAllReportHeader());
             rd.SetDataSource(Discharged);
+            rd.SetParameterValue("fromDate", FromDate);
+            rd.SetParameterValue("toDate", ToDate);
 
 
             Response.Buffer = false;
@@ -79,11 +81,12 @@ namespace Caresoft2._0.CrystalReports.DischargedPatients
                     //}
                     var PatientId = pat.PatientId;
                     var pt=db.Patients.FirstOrDefault(e=>e.Id==PatientId);
+                    var dg = db.PatientDiagnosis.FirstOrDefault(p => p.Id != 0);
                     dischargedpatients.Discharged.AddDischargedRow(pt.FName + 
                         " " + pt.LName, pat.AdmissionDate.ToString()
                         , pat.DischargeDate.ToString(),
                         pt.RegNumber, pat.PatientId.ToString(),
-                        pt.PatientCategory, "null",
+                        pt.PatientCategory, dg.FinalDiagnosis.ToString(),
                         pat.HSBed.HSWard.WardName.ToString(),
                         pat.HSBed.BedName.ToString());
 

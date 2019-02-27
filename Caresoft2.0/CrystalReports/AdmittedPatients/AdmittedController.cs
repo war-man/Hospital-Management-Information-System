@@ -54,8 +54,8 @@ namespace Caresoft2._0.CrystalReports.AdmittedPatients
 
             rd.SetDataSource(Admitted);
             rd.Subreports["RptReportHeader.rpt"].SetDataSource(CrystalReports.HeaderAndFooterForReports.GetAllReportHeader());
-            //rd.SetParameterValue("fromDate", FromDate);
-            //rd.SetParameterValue("toDate", ToDate);
+            rd.SetParameterValue("fromDate", FromDate);
+            rd.SetParameterValue("toDate", ToDate);
 
             Response.Buffer = false;
             Response.ClearContent();
@@ -80,8 +80,9 @@ namespace Caresoft2._0.CrystalReports.AdmittedPatients
                 {
                     var PatientId = pat.PatientId;
                     var pt = db.Patients.FirstOrDefault(e => e.Id == PatientId);
+                    var dg = db.PatientDiagnosis.FirstOrDefault(p => p.Id != 0);
                     admittedPatients._PatientsAdmitted.AddPatientsAdmittedRow(pat.AdmissionDate.ToString(), pt.FName +
-                        " " + pt.LName, pt.RegNumber, pat.HSBed.HSWard.WardName.ToString(), pat.HSBed.BedName.ToString(), pt.PatientCategory, "null", pat.ConsultantDoctor);
+                        " " + pt.LName, pt.RegNumber, pat.HSBed.HSWard.WardName.ToString(), pat.HSBed.BedName.ToString(), pt.PatientCategory, dg.FinalDiagnosis, pat.ConsultantDoctor);
                 }
                 return admittedPatients;
             }

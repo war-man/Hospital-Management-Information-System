@@ -668,15 +668,21 @@
                             |IPD Reports <i class="fa fa-caret-right"></i>
                             <div class="sidekick-table-holder inverse-dropdown">
                                 <table class="sidekick-table" width="100%">
+                                    
                                     <tr>
-                                        <td>|Admitted Patients</td>
+                                        <td data-href="@Url.Action("Index", "Admitted")">
+                                            Admitted Patients
+                                        </td>
+</td>
                                     </tr>
-                                    <tr>
-                                        <td>|Shifted Patients</td>
-                                    </tr>
-                                    <tr>
-                                        <td>|Discharged Patients </td>
-                                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("Index", "Discharged")">
+                            Discharged Patients
+                        </td>
+                    </tr>
+
+                                    
+                                     
                                     <tr>
                                         <td>|IPD Advanced Collection Report</td>
                                     </tr>
@@ -728,7 +734,7 @@
                                     <tr>
                                         <td data-href="@Url.Action("Index", "Reports" )">Finance</td>
                                     </tr>
-                                    
+
                                     <tr>
                                         <td data-href="@Url.Action("Jpayments", "Reports")">Jambo Pay - Received</td>
                                     </tr>
@@ -760,21 +766,28 @@
                                         <td data-href="@Url.Action("WaiverSummaryReport", "Reports")">| Waiver Summary Report</td>
                                     </tr>
                                     <tr>
-                                        <td>|Corporate Company Report</td>
+                                        <td data-href="@Url.Action("Index", "Insurance")">| Insurance and Corporate Summary Report</td>
                                     </tr>
+
                                     <tr>
-                                        <td>|Refund Summary Report</td>
+                                        <td data-href="@Url.Action("Index", "Refunds")">|  Refunds Summary Report</td>
                                     </tr>
                                 </table>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td data-href="/caresoftreports/homereports/moh505">
-                            |MOH Reports@*<i class="fa fa-caret-right"></i>*@
+                        <td>
+                            |MOH Reports<i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder inverse-dropdown">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("Index", "MOH710" )">MOH710</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("Index", "MOH711" )">MOH711</td>
+                                    </tr>
 
-                        </td>
-                    </tr>
                 </table>
             </div>
         </td>
