@@ -50,13 +50,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+      <HintPath>..\..\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.ReportSource">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
+      <HintPath>..\..\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.Shared">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.Shared.dll</HintPath>
+      <HintPath>..\..\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.Shared.dll</HintPath>
     </Reference>
     <Reference Include="DataTables.AspNet.Core, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DataTables.AspNet.Core.2.0.2\lib\net45\DataTables.AspNet.Core.dll</HintPath>
@@ -309,6 +309,11 @@
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\DataSetMoh717MaternityOperations1.Designer.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\DataSetPharmacyMortuaryMedicalRecord.Designer.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\DataSetSpecialServices.Designer.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\MOH717\DataSetSpecialServices1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetSpecialServices.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\OutPatientServices.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -333,6 +338,11 @@
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\RptMaternityServices.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH717\RptMaternityServices1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptMaternityServices.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\RptMCH.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -341,6 +351,11 @@
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\RptMOH717.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH717\RptMOH7171.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptMOH717.rpt</DependentUpon>
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\RptMortuary.cs">
       <SubType>Component</SubType>
@@ -359,6 +374,11 @@
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\RptSpecialServices.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH717\RptSpecialServices1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptSpecialServices.rpt</DependentUpon>
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOHMonthlyCash\DataSetMohMonthlyCashAnalysis.Designer.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\MOHMonthlyCash\RptMonthlyCashAnalysis.cs">
@@ -708,14 +728,18 @@
     <Compile Include="CrystalReports\MOH711\A\MOH711.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\B\MAndD.cs">
-      <DependentUpon>MAndD.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="CrystalReports\MOH711\B\MAndD.Designer.cs">
-      <DependentUpon>MAndD.cs</DependentUpon>
-    </Compile>
     <Compile Include="CrystalReports\MOH711\B\MOH711B.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\B\MOH711B1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MOH711B.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\B\NewMAndD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewMAndD.xsd</DependentUpon>
     </Compile>
     <Compile Include="CrystalReports\MOH711\C\SGBV.cs">
       <SubType>Component</SubType>
@@ -766,6 +790,11 @@
     </Compile>
     <Compile Include="CrystalReports\MOH711\Main.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\MOH711\Main1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Main.rpt</DependentUpon>
     </Compile>
     <Compile Include="CrystalReports\MOH711\MOH711Controller.cs" />
     <Compile Include="CrystalReports\Opthamology\Opthamology.cs">
@@ -5620,15 +5649,19 @@
     <Content Include="CrystalReports\MOH711\A\ANC.xss">
       <DependentUpon>ANC.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH711\B\MAndD.xsc">
-      <DependentUpon>MAndD.xsd</DependentUpon>
-    </Content>
-    <None Include="CrystalReports\MOH711\B\MAndD.xsd" />
-    <Content Include="CrystalReports\MOH711\B\MAndD.xss">
-      <DependentUpon>MAndD.xsd</DependentUpon>
-    </Content>
     <Content Include="CrystalReports\MOH711\C\SGBVCCC.xsc">
       <DependentUpon>SGBVCCC.xsd</DependentUpon>
+    </Content>
+    <Content Include="CrystalReports\MOH711\B\NewMAndD.xsc">
+      <DependentUpon>NewMAndD.xsd</DependentUpon>
+    </Content>
+    <None Include="CrystalReports\MOH711\B\NewMAndD.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewMAndD.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="CrystalReports\MOH711\B\NewMAndD.xss">
+      <DependentUpon>NewMAndD.xsd</DependentUpon>
     </Content>
     <None Include="CrystalReports\MOH711\C\SGBVCCC.xsd" />
     <Content Include="CrystalReports\MOH711\C\SGBVCCC.xss">

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewMAndD" targetNamespace="http://tempuri.org/NewMAndD.xsd" xmlns:mstns="http://tempuri.org/NewMAndD.xsd" xmlns="http://tempuri.org/NewMAndD.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NewMAndD" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NewMAndD" msprop:Generator_UserDSName="NewMAndD">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NewMAndD" msprop:Generator_TableClassName="NewMAndDDataTable" msprop:Generator_TableVarName="tableNewMAndD" msprop:Generator_TablePropName="_NewMAndD" msprop:Generator_RowDeletingName="NewMAndDRowDeleting" msprop:Generator_RowChangingName="NewMAndDRowChanging" msprop:Generator_RowEvHandlerName="NewMAndDRowChangeEventHandler" msprop:Generator_RowDeletedName="NewMAndDRowDeleted" msprop:Generator_UserTableName="NewMAndD" msprop:Generator_RowChangedName="NewMAndDRowChanged" msprop:Generator_RowEvArgName="NewMAndDRowChangeEvent" msprop:Generator_RowClassName="NewMAndDRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MaternityServices" msprop:Generator_ColumnVarNameInTable="columnMaternityServices" msprop:Generator_ColumnPropNameInRow="MaternityServices" msprop:Generator_ColumnPropNameInTable="MaternityServicesColumn" msprop:Generator_UserColumnName="MaternityServices" type="xs:string" minOccurs="0" />
+              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -10,6 +10,8 @@
 
 #pragma warning disable 1591
 
+using System;
+
 namespace Caresoft2._0.CrystalReports.MOH711.A {
     
     
@@ -757,6 +759,11 @@ namespace Caresoft2._0.CrystalReports.MOH711.A {
                 }
                 xs.Add(dsSchema);
                 return type;
+            }
+
+            internal void AddA_ANC_PMCT1Row(object newClients, object revisits, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9, int v10, int v11, int v12, int v13, int v14, int v15)
+            {
+                throw new NotImplementedException();
             }
         }
         

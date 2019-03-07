@@ -19,7 +19,7 @@
                             | Reports 2
                         </td>
                     </tr>
-                   
+
                 </table>
             </div>
         </td>
@@ -110,13 +110,18 @@
                             | Insurance Report
                         </td>
                     </tr>
-                    
+
                     <tr>
                         <td data-href="@Url.Action("ServicesAndPrices","MISReports", new { Area="CareSoftReports"})">
                             | Services and Prices Report
                         </td>
                     </tr>
-                </table>
+                    <tr>
+                    <td> data-href="@Url.Action("TBReport","MISReports", new { Area="CareSoftReports"})">
+                        | TBReport
+                    </td>
+    </tr>
+</table>
             </div>
         </td>
         <td></td>

@@ -34,7 +34,7 @@ namespace Caresoft2._0.CrystalReports.MOH710
                                     .Where(p=>p.DateGiven>=fromDate && p.DateGiven<=toDate)
                                     .ToList();
 
-            var allTypesOfImmunization = db.ImmunizationCategories.ToList();
+            var allTypesOfImmunization = db.ImmunizationMasters.ToList();
 
             List<ImmunizationData> lstImmunizationData = new List<ImmunizationData>();
 
@@ -44,17 +44,14 @@ namespace Caresoft2._0.CrystalReports.MOH710
 
                 ImmunizationData immunizationData = new ImmunizationData()
                 {
-                    Name = typeImmunization.ImmunizationCategoryName
+                    Name = typeImmunization.ImmunizationName
 
                 };
 
 
                 foreach (var pat in PatientImmunizeds)
                 {
-                    
-
-                    
-                    
+                   
 
                     var dateOfBirth = pat.OpdRegister.Patient.DOB;
 
@@ -88,7 +85,7 @@ namespace Caresoft2._0.CrystalReports.MOH710
 
             Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             stream.Seek(0, SeekOrigin.Begin);
-            string fileName = "Report Sample-" + DateTime.Today + ".pdf";
+            string fileName = "MOH 710" + DateTime.Today + ".pdf";
             return File(stream, "application/pdf", fileName);
         }
 
