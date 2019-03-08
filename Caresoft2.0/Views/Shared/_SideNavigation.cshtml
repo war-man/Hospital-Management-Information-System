@@ -214,8 +214,69 @@
             </li>
         </ul>
     </li>
-    <li class=" collapsibleListOpen" style="user-select: none;">
-        <img src="~/Content/icons/emrMenuIcons/obst-gynae.png" /> M C H
+
+    <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header panel-heading custom-navbar" >
+          <h5>MCH Attendance Type</h5> 
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          @using (Ajax.BeginForm("SaveAttendanceType", "mch", new { }, new AjaxOptions
+          {
+              LoadingElementId = "loadingElement",
+              HttpMethod = "POST",
+              UpdateTargetId = "",
+              OnFailure = "showNotification('Failed', 'danger', 'false')",
+              OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+          }))
+          {
+              <form method="post" action="@Url.Action("SaveAttendanceType", "mch")">
+                  <input type="hidden" name="OPDNo" value="@ViewBag.OpdNo" />
+                  <table class="table-form">
+                      <tr>
+                          <td>
+                              <label>Attendance Type</label>
+                          </td>
+                          <td>
+                              <select class="text-box box-lg" name="AttendanceType">
+                                  <option>CWC Attendance</option>
+                                  <option>ANC Attendance</option>
+                                  <option>PNC Attendance</option>
+                                  <option>FP Attendance</option>
+                              </select>
+                          </td>
+                      </tr>
+                  </table>
+                  <div class="modal-footer">
+                      <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit" name="btnSubmit">Save</button>
+
+                      <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Close</button>
+
+                  </div>
+              </form>
+          }
+
+          </div>
+
+    </div>
+  </div>
+</div>
+    <style>
+        .btnm {
+            border: none;
+            background-color: inherit;
+            cursor: pointer;
+            display: inline-block;
+            
+        }
+    </style>
+
+    <li class=" collapsibleListOpen" style="user-select: none;" >
+        <img src="~/Content/icons/emrMenuIcons/obst-gynae.png" data-toggle="modal" data-target="#exampleModal" /><button class="btnm" data-toggle="modal" data-target="#exampleModal">MCH</button>
         <ul class="collapsibleList" style="display: none;">
             <li style="user-select: none;">
                 <a href="@Url.Action("MaternalProfile", "mch", new { Id = ViewBag.OpdNo})">

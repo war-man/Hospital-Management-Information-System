@@ -1,0 +1,64 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "MOH711";
+    Layout = "~/Areas/CareSoftReports/Views/Shared/_LayoutReports.cshtml";
+    ViewBag.ReportName = "MOH 711";
+}
+
+
+<div class="col-sm-6 col-sm-offset-3">
+    <div class="panel panel-primary glass caresoft-panel">
+        <div class="panel-heading">
+            <h4>@ViewBag.ReportName</h4>
+            Set report parameters and click generate.
+        </div>
+        <div class="panel-body">
+            <form name="ReportFilter" method="get" action="@Url.Action("GenerateReport","MOH711",new { Area="CareSoftReports"})">
+                <table class="table-form">
+                    <tr>
+                        <td>
+                            <lable>Start Date</lable>
+                        </td>
+                        <td>
+                            <input class="text-box box-lg" type="date" name="StartDate" value="@DateTime.Now.AddDays(-6).ToString("yyyy-MM-dd")" />
+                        </td>
+                        <td>
+                            <lable>End Date</lable>
+                        </td>
+                        <td>
+                            <input class="text-box box-lg" type="date" name="EndDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="" align="left">
+                            <br />
+                            @*<a href="@Url.Action("GetMOH505Report","HomeReports",new { Area="CareSoftReports"})" class="btn btn-primary btn-sm" id=""> Get MOH 505 Report</a>*@
+                            <button type="submit" class="btn btn-primary btn-sm">Get MOH 711 Report</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+
+
+            @if (ViewBag.DatesNotSet != null)
+            {
+                <p class="label label-danger">Please Select the requred dates</p>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+
+    </script>
+
+
+}
+

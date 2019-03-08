@@ -285,6 +285,11 @@
     <Compile Include="Areas\CareSoftReports\Reports\MOH705A\RptMOH705A.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH705A\RptMOH705A1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptMOH705A.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH705B\DataSetMOH705B.Designer.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\MOH705B\RptMOH705B.cs">
       <SubType>Component</SubType>
@@ -298,6 +303,66 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH706\RptUrineAnalysis.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\A\MOH7111.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MOH711.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\C\SGBV1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SGBV.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\D\FamilyPlanningD1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FamilyPlanningD.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\E\PACServicesE1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PACServicesE.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\F1\CHANISF1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CHANISF.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\G\CervicalCancerG1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CervicalCancerG.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\H\PostNatalCareH1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PostNatalCareH.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\I\RehabI1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RehabI.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\J\MSocialWorkJ1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MSocialWorkJ.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\K\PhysiotherapyService1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhysiotherapyService.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\DataSetA6ToA12.Designer.cs" />
@@ -387,7 +452,15 @@
     <Compile Include="Areas\CareSoftReports\Reports\RptMOH717.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Areas\CareSoftReports\Reports\TrialSubReport\TheMainReport.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\StatementPerScheme\StatementOfAccountPerDepartment\NewStatementOfAccount.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewStatementOfAccount.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\StatementPerScheme\StatementOfAccountPerDepartment\StatementOfAccount.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StatementOfAccount.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\UserRolesAndRights\DataSetUserRolesAndRights.Designer.cs" />
@@ -707,96 +780,99 @@
     <Compile Include="CrystalReports\MOH705A\MOH705A.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH710\ChildImmunization\ChildImmunization.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH710\ChildImmunization\ChildImmunization.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ChildImmunization.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH710\ChildImmunization\ChildImmunization2.cs" />
-    <Compile Include="CrystalReports\MOH710\ChildImmunization\DataSetChildImmunization.Designer.cs" />
-    <Compile Include="CrystalReports\MOH710\Main.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH710\ChildImmunization\ChildImmunization2.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\MOH710\ChildImmunization\DataSetChildImmunization.Designer.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\MOH710\Main.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH710\Main1.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH710\Main1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Main.rpt</DependentUpon>
-    </Compile>
-    <Compile Include="CrystalReports\MOH710\MOH710Controller.cs" />
-    <Compile Include="CrystalReports\MOH711\A\ANC.Designer.cs" />
-    <Compile Include="CrystalReports\MOH711\A\MOH711.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\B\MOH711B.cs">
+    <Compile Include="Areas\CareSoftReports\Controllers\MOH710Controller.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\A\ANC.Designer.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\A\MOH711.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\B\MOH711B1.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\B\MOH711B.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\B\MOH711B1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MOH711B.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\B\NewMAndD.Designer.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\B\NewMAndD.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NewMAndD.xsd</DependentUpon>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\C\SGBV.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\C\SGBV.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\C\SGBVCCC.Designer.cs" />
-    <Compile Include="CrystalReports\MOH711\D\FamilyPlanningD.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\C\SGBVCCC.Designer.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\D\FamilyPlanningD.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\D\FP.Designer.cs" />
-    <Compile Include="CrystalReports\MOH711\E\DatasetE.Designer.cs" />
-    <Compile Include="CrystalReports\MOH711\E\PACServicesE.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\D\FP.Designer.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\E\DatasetE.Designer.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\E\PACServicesE.cs">
       <DependentUpon>PACServicesE.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\E\PACServicesE.Designer.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\E\PACServicesE.Designer.cs">
       <DependentUpon>PACServicesE.cs</DependentUpon>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\F1\CHANISF.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\F1\CHANISF.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\F1\ChildHealth.Designer.cs" />
-    <Compile Include="CrystalReports\MOH711\F1\DataSetF.Designer.cs" />
-    <Compile Include="CrystalReports\MOH711\G\CervicalCancerG.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\F1\ChildHealth.Designer.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\F1\DataSetF.Designer.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\G\CervicalCancerG.cs">
       <DependentUpon>CervicalCancerG.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\G\CervicalCancerG.Designer.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\G\CervicalCancerG.Designer.cs">
       <DependentUpon>CervicalCancerG.cs</DependentUpon>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\H\PNCH.Designer.cs" />
-    <Compile Include="CrystalReports\MOH711\H\PostNatalCareH.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\H\PNCH.Designer.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\H\PostNatalCareH.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\I\RehabI.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\I\RehabI.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\I\RehabServicesI.Designer.cs" />
-    <Compile Include="CrystalReports\MOH711\J\MSocialWorkJ.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\I\RehabServicesI.Designer.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\J\MSocialWorkJ.cs">
       <DependentUpon>MSocialworkJ.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\J\MSocialworkJ.Designer.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\J\MSocialworkJ.Designer.cs">
       <DependentUpon>MSocialWorkJ.cs</DependentUpon>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\K\Physiotherapy Service.Designer.cs" />
-    <Compile Include="CrystalReports\MOH711\K\PhysiotherapyService.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\K\Physiotherapy Service.Designer.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\K\PhysiotherapyService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\Main.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\Main.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\Main1.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\Main1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Main.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReports\MOH711\MOH711Controller.cs" />
+    <Compile Include="Areas\CareSoftReports\Controllers\MOH711Controller.cs" />
     <Compile Include="CrystalReports\Opthamology\Opthamology.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -5038,6 +5114,17 @@
     <Content Include="Areas\CareSoftReports\Reports\UserRolesAndRights\DataSetUserRolesAndRights.xsc">
       <DependentUpon>DataSetUserRolesAndRights.xsd</DependentUpon>
     </Content>
+    <Content Include="Areas\CareSoftReports\Reports\StatementPerScheme\StatementOfAccountPerDepartment\NewStatementOfAccount.xsc">
+      <DependentUpon>NewStatementOfAccount.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\StatementPerScheme\StatementOfAccountPerDepartment\NewStatementOfAccount.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewStatementOfAccount.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\StatementPerScheme\StatementOfAccountPerDepartment\NewStatementOfAccount.xss">
+      <DependentUpon>NewStatementOfAccount.xsd</DependentUpon>
+    </Content>
     <None Include="Areas\CareSoftReports\Reports\UserRolesAndRights\DataSetUserRolesAndRights.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DataSetUserRolesAndRights2.Designer.cs</LastGenOutput>
@@ -5064,8 +5151,6 @@
     <Content Include="Areas\CareSoftReports\Views\MISReports\PatientListSheetNewRevisit.cshtml" />
     <Content Include="Areas\CareSoftReports\Views\MISReports\ServicesAndPrices.cshtml" />
     <Content Include="Areas\CareSoftReports\Views\MISReports\TbReport.cshtml" />
-    <Content Include="Areas\CareSoftReports\Views\Shared\_LayoutReports.cshtml" />
-    <Content Include="Areas\CareSoftReports\Views\Shared\_NavCaresoftReports.cshtml" />
     <Content Include="Areas\CareSoftReports\Views\web.config" />
     <Content Include="Areas\MISReports\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css.map" />
     <Content Include="Areas\MISReports\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css.map" />
@@ -5184,6 +5269,11 @@
     <Content Include="Areas\MISReports\Views\Home\BIReport.cshtml" />
     <Content Include="Areas\MISReports\Views\Home\DiseaseOccurence.cshtml" />
     <Content Include="Areas\MISReports\Views\Home\RevenuePatientAggregation.cshtml" />
+    <Content Include="Areas\CareSoftReports\Views\Shared\_LayoutReports.cshtml" />
+    <Content Include="Areas\CareSoftReports\Views\Shared\_NavCaresoftReports.cshtml" />
+    <Content Include="Areas\CareSoftReports\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\CareSoftReports\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CareSoftReports\Views\MOH711\MOH711A.cshtml" />
     <None Include="Areas\PharmacyModule\Reports\BillWiseDailyReportSale\BillWiseDailyDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>BillWiseDailyDataSet1.Designer.cs</LastGenOutput>
@@ -5635,106 +5725,106 @@
     <Content Include="CrystalReports\OutsideTest\DSOT.xsc">
       <DependentUpon>DSOT.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH710\ChildImmunization\DataSetChildImmunization.xsc">
+    <Content Include="Areas\CareSoftReports\Reports\MOH710\ChildImmunization\DataSetChildImmunization.xsc">
       <DependentUpon>DataSetChildImmunization.xsd</DependentUpon>
     </Content>
-    <None Include="CrystalReports\MOH710\ChildImmunization\DataSetChildImmunization.xsd" />
-    <Content Include="CrystalReports\MOH710\ChildImmunization\DataSetChildImmunization.xss">
+    <None Include="Areas\CareSoftReports\Reports\MOH710\ChildImmunization\DataSetChildImmunization.xsd" />
+    <Content Include="Areas\CareSoftReports\Reports\MOH710\ChildImmunization\DataSetChildImmunization.xss">
       <DependentUpon>DataSetChildImmunization.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH711\A\ANC.xsc">
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\A\ANC.xsc">
       <DependentUpon>ANC.xsd</DependentUpon>
     </Content>
-    <None Include="CrystalReports\MOH711\A\ANC.xsd" />
-    <Content Include="CrystalReports\MOH711\A\ANC.xss">
+    <None Include="Areas\CareSoftReports\Reports\MOH711\A\ANC.xsd" />
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\A\ANC.xss">
       <DependentUpon>ANC.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH711\C\SGBVCCC.xsc">
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\C\SGBVCCC.xsc">
       <DependentUpon>SGBVCCC.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH711\B\NewMAndD.xsc">
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\B\NewMAndD.xsc">
       <DependentUpon>NewMAndD.xsd</DependentUpon>
     </Content>
-    <None Include="CrystalReports\MOH711\B\NewMAndD.xsd">
+    <None Include="Areas\CareSoftReports\Reports\MOH711\B\NewMAndD.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>NewMAndD.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="CrystalReports\MOH711\B\NewMAndD.xss">
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\B\NewMAndD.xss">
       <DependentUpon>NewMAndD.xsd</DependentUpon>
     </Content>
-    <None Include="CrystalReports\MOH711\C\SGBVCCC.xsd" />
-    <Content Include="CrystalReports\MOH711\C\SGBVCCC.xss">
+    <None Include="Areas\CareSoftReports\Reports\MOH711\C\SGBVCCC.xsd" />
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\C\SGBVCCC.xss">
       <DependentUpon>SGBVCCC.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH711\D\FP.xsc">
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\D\FP.xsc">
       <DependentUpon>FP.xsd</DependentUpon>
     </Content>
-    <None Include="CrystalReports\MOH711\D\FP.xsd" />
-    <Content Include="CrystalReports\MOH711\D\FP.xss">
+    <None Include="Areas\CareSoftReports\Reports\MOH711\D\FP.xsd" />
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\D\FP.xss">
       <DependentUpon>FP.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH711\E\DatasetE.xsc">
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\E\DatasetE.xsc">
       <DependentUpon>DatasetE.xsd</DependentUpon>
     </Content>
-    <None Include="CrystalReports\MOH711\E\DatasetE.xsd" />
-    <Content Include="CrystalReports\MOH711\E\DatasetE.xss">
+    <None Include="Areas\CareSoftReports\Reports\MOH711\E\DatasetE.xsd" />
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\E\DatasetE.xss">
       <DependentUpon>DatasetE.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH711\E\PACServicesE.xsc">
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\E\PACServicesE.xsc">
       <DependentUpon>PACServicesE.xsd</DependentUpon>
     </Content>
-    <None Include="CrystalReports\MOH711\E\PACServicesE.xsd" />
-    <Content Include="CrystalReports\MOH711\E\PACServicesE.xss">
+    <None Include="Areas\CareSoftReports\Reports\MOH711\E\PACServicesE.xsd" />
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\E\PACServicesE.xss">
       <DependentUpon>PACServicesE.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH711\F1\ChildHealth.xsc">
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\F1\ChildHealth.xsc">
       <DependentUpon>ChildHealth.xsd</DependentUpon>
     </Content>
-    <None Include="CrystalReports\MOH711\F1\ChildHealth.xsd" />
-    <Content Include="CrystalReports\MOH711\F1\ChildHealth.xss">
+    <None Include="Areas\CareSoftReports\Reports\MOH711\F1\ChildHealth.xsd" />
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\F1\ChildHealth.xss">
       <DependentUpon>ChildHealth.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH711\F1\DataSetF.xsc">
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\F1\DataSetF.xsc">
       <DependentUpon>DataSetF.xsd</DependentUpon>
     </Content>
-    <None Include="CrystalReports\MOH711\F1\DataSetF.xsd" />
-    <Content Include="CrystalReports\MOH711\F1\DataSetF.xss">
+    <None Include="Areas\CareSoftReports\Reports\MOH711\F1\DataSetF.xsd" />
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\F1\DataSetF.xss">
       <DependentUpon>DataSetF.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH711\G\CervicalCancerG.xsc">
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\G\CervicalCancerG.xsc">
       <DependentUpon>CervicalCancerG.xsd</DependentUpon>
     </Content>
-    <None Include="CrystalReports\MOH711\G\CervicalCancerG.xsd" />
-    <Content Include="CrystalReports\MOH711\G\CervicalCancerG.xss">
+    <None Include="Areas\CareSoftReports\Reports\MOH711\G\CervicalCancerG.xsd" />
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\G\CervicalCancerG.xss">
       <DependentUpon>CervicalCancerG.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH711\H\PNCH.xsc">
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\H\PNCH.xsc">
       <DependentUpon>PNCH.xsd</DependentUpon>
     </Content>
-    <None Include="CrystalReports\MOH711\H\PNCH.xsd" />
-    <Content Include="CrystalReports\MOH711\H\PNCH.xss">
+    <None Include="Areas\CareSoftReports\Reports\MOH711\H\PNCH.xsd" />
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\H\PNCH.xss">
       <DependentUpon>PNCH.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH711\I\RehabServicesI.xsc">
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\I\RehabServicesI.xsc">
       <DependentUpon>RehabServicesI.xsd</DependentUpon>
     </Content>
-    <None Include="CrystalReports\MOH711\I\RehabServicesI.xsd" />
-    <Content Include="CrystalReports\MOH711\I\RehabServicesI.xss">
+    <None Include="Areas\CareSoftReports\Reports\MOH711\I\RehabServicesI.xsd" />
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\I\RehabServicesI.xss">
       <DependentUpon>RehabServicesI.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH711\J\MSocialworkJ.xsc">
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\J\MSocialworkJ.xsc">
       <DependentUpon>MSocialworkJ.xsd</DependentUpon>
     </Content>
-    <None Include="CrystalReports\MOH711\J\MSocialworkJ.xsd" />
-    <Content Include="CrystalReports\MOH711\J\MSocialworkJ.xss">
+    <None Include="Areas\CareSoftReports\Reports\MOH711\J\MSocialworkJ.xsd" />
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\J\MSocialworkJ.xss">
       <DependentUpon>MSocialworkJ.xsd</DependentUpon>
     </Content>
-    <Content Include="CrystalReports\MOH711\K\Physiotherapy Service.xsc">
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\K\Physiotherapy Service.xsc">
       <DependentUpon>Physiotherapy Service.xsd</DependentUpon>
     </Content>
-    <None Include="CrystalReports\MOH711\K\Physiotherapy Service.xsd" />
-    <Content Include="CrystalReports\MOH711\K\Physiotherapy Service.xss">
+    <None Include="Areas\CareSoftReports\Reports\MOH711\K\Physiotherapy Service.xsd" />
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\K\Physiotherapy Service.xss">
       <DependentUpon>Physiotherapy Service.xsd</DependentUpon>
     </Content>
     <Content Include="CrystalReports\Opthamology\Opthamology.xsc">
@@ -6484,8 +6574,7 @@
     <Content Include="Views\BillPayments\Index.cshtml" />
     <Content Include="Views\Discharged\Index.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
-    <Content Include="Views\MOH710\Index.cshtml" />
-    <Content Include="Views\MOH711\Index.cshtml" />
+    <Content Include="Areas\CareSoftReports\Views\HomeReports\Index.cshtml" />
     <Content Include="Views\Refunds\Index.cshtml" />
     <Content Include="Views\Insurance\Index.cshtml" />
     <None Include="Views\Reports\ReceiptReport\ReceiptsDataSet.xsd">
@@ -6610,6 +6699,7 @@
     <Folder Include="Areas\Theatre\Models\" />
     <Folder Include="Views\AddressBooks\" />
     <Folder Include="Views\JPay\" />
+    <Folder Include="Views\MOH711\" />
     <Folder Include="Views\OPD\" />
     <Folder Include="Views\TurnAroundTime\" />
   </ItemGroup>
@@ -6783,9 +6873,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptMOH7171.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Areas\CareSoftReports\Reports\TrialSubReport\TheMainReport.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\StatementPerScheme\StatementOfAccountPerDepartment\StatementOfAccount.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>TheMainReport1.cs</LastGenOutput>
+      <LastGenOutput>StatementOfAccount.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Areas\CareSoftReports\Reports\UserRolesAndRights\RptUserRolesAndRights.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -6898,59 +6988,59 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>MOH705A1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\MOH710\ChildImmunization\ChildImmunization.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH710\ChildImmunization\ChildImmunization.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ChildImmunization.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\MOH710\Main.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH710\Main.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Main1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\MOH711\A\MOH711.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH711\A\MOH711.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>MOH7111.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\MOH711\B\MOH711B.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH711\B\MOH711B.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>MOH711B1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\MOH711\C\SGBV.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH711\C\SGBV.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SGBV1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\MOH711\D\FamilyPlanningD.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH711\D\FamilyPlanningD.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FamilyPlanningD1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\MOH711\E\PACServicesE.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH711\E\PACServicesE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PACServicesE1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\MOH711\F1\CHANISF.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH711\F1\CHANISF.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CHANISF1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\MOH711\G\CervicalCancerG.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH711\G\CervicalCancerG.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CervicalCancerG1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\MOH711\H\PostNatalCareH.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH711\H\PostNatalCareH.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PostNatalCareH1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\MOH711\I\RehabI.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH711\I\RehabI.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RehabI1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\MOH711\J\MSocialWorkJ.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH711\J\MSocialWorkJ.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>MSocialWorkJ1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\MOH711\K\PhysiotherapyService.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH711\K\PhysiotherapyService.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PhysiotherapyService1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReports\MOH711\Main.rpt">
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH711\Main.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Main1.cs</LastGenOutput>
     </EmbeddedResource>

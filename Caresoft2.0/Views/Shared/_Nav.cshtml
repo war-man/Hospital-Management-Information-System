@@ -5,6 +5,18 @@
             <div class="dropdown-table-holder">
                 <table class="dropdown-table" width="100%">
                     <tr>
+                        <td data-href="@Url.Action("Index", "KeyValuePairs")">
+                            |Key Value Pair
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("Index", "Branches")">
+                            |Branches
+                        </td>
+                    </tr>
+
+
+                    <tr>
                         <td>
                             |Patient Demographic Master <i class="fa fa-caret-right"></i>
                             <div class="sidekick-table-holder">
@@ -668,21 +680,13 @@
                             |IPD Reports <i class="fa fa-caret-right"></i>
                             <div class="sidekick-table-holder inverse-dropdown">
                                 <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("Index", "Admitted" )">Admitted Patients</td>
+                                    </tr>
                                     
                                     <tr>
-                                        <td data-href="@Url.Action("Index", "Admitted")">
-                                            Admitted Patients
-                                        </td>
-</td>
+                                        <td data-href="@Url.Action("Index", "Discharged" )">Discharged Patients</td>
                                     </tr>
-                    <tr>
-                        <td data-href="@Url.Action("Index", "Discharged")">
-                            Discharged Patients
-                        </td>
-                    </tr>
-
-                                    
-                                     
                                     <tr>
                                         <td>|IPD Advanced Collection Report</td>
                                     </tr>
@@ -734,7 +738,7 @@
                                     <tr>
                                         <td data-href="@Url.Action("Index", "Reports" )">Finance</td>
                                     </tr>
-
+                                    
                                     <tr>
                                         <td data-href="@Url.Action("Jpayments", "Reports")">Jambo Pay - Received</td>
                                     </tr>
@@ -766,28 +770,21 @@
                                         <td data-href="@Url.Action("WaiverSummaryReport", "Reports")">| Waiver Summary Report</td>
                                     </tr>
                                     <tr>
-                                        <td data-href="@Url.Action("Index", "Insurance")">| Insurance and Corporate Summary Report</td>
+                                        <td>|Corporate Company Report</td>
                                     </tr>
-
                                     <tr>
-                                        <td data-href="@Url.Action("Index", "Refunds")">|  Refunds Summary Report</td>
+                                        <td>|Refund Summary Report</td>
                                     </tr>
                                 </table>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            |MOH Reports<i class="fa fa-caret-right"></i>
-                            <div class="sidekick-table-holder inverse-dropdown">
-                                <table class="sidekick-table" width="100%">
-                                    <tr>
-                                        <td data-href="@Url.Action("Index", "MOH710" )">MOH710</td>
-                                    </tr>
-                                    <tr>
-                                        <td data-href="@Url.Action("Index", "MOH711" )">MOH711</td>
-                                    </tr>
+                        <td data-href="/caresoftreports/homereports/moh505">
+                            |MOH Reports@*<i class="fa fa-caret-right"></i>*@
 
+                        </td>
+                    </tr>
                 </table>
             </div>
         </td>
