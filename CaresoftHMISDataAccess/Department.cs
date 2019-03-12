@@ -41,5 +41,7 @@ namespace CaresoftHMISDataAccess
         public virtual ICollection<Service> Services { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRole> UserRoles { get; set; }
+        public string NameOfDepartment { get; set; }
+        public int DaysOfTheMonth { get; set; }
     }
 }

@@ -27,7 +27,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         private NewAccountPerDeptDataTable tableNewAccountPerDept;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-        
+        internal static NewStatementOfAccount newStatementOfAccount;
+
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public NewStatementOfAccount() {
@@ -115,7 +116,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
                 return base.Relations;
             }
         }
-        
+
+        public int[] DaysOfTheMonth { get; internal set; }
+        public string NameOfDepartment { get; internal set; }
+
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         protected override void InitializeDerivedDataSet() {
@@ -279,9 +283,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class NewAccountPerDeptDataTable : global::System.Data.TypedTableBase<NewAccountPerDeptRow> {
             
-            private global::System.Data.DataColumn columnMonth;
-            
-            private global::System.Data.DataColumn columnYear;
+            private global::System.Data.DataColumn columnDepartment;
             
             private global::System.Data.DataColumn columnDay1;
             
@@ -345,10 +347,6 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             
             private global::System.Data.DataColumn columnDay31;
             
-            private global::System.Data.DataColumn columnDepartment;
-            
-            private global::System.Data.DataColumn columnTotal;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public NewAccountPerDeptDataTable() {
@@ -384,17 +382,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn MonthColumn {
+            public global::System.Data.DataColumn DepartmentColumn {
                 get {
-                    return this.columnMonth;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn YearColumn {
-                get {
-                    return this.columnYear;
+                    return this.columnDepartment;
                 }
             }
             
@@ -648,22 +638,6 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn DepartmentColumn {
-                get {
-                    return this.columnDepartment;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn TotalColumn {
-                get {
-                    return this.columnTotal;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -700,8 +674,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public NewAccountPerDeptRow AddNewAccountPerDeptRow(
-                        string Month, 
-                        string Year, 
+                        string Department, 
                         int Day1, 
                         int Day2, 
                         int Day3, 
@@ -732,13 +705,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
                         int Day28, 
                         int Day29, 
                         int Day30, 
-                        int Day31, 
-                        string Department, 
-                        int Total) {
+                        int Day31) {
                 NewAccountPerDeptRow rowNewAccountPerDeptRow = ((NewAccountPerDeptRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Month,
-                        Year,
+                        Department,
                         Day1,
                         Day2,
                         Day3,
@@ -769,9 +739,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
                         Day28,
                         Day29,
                         Day30,
-                        Day31,
-                        Department,
-                        Total};
+                        Day31};
                 rowNewAccountPerDeptRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowNewAccountPerDeptRow);
                 return rowNewAccountPerDeptRow;
@@ -794,8 +762,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnMonth = base.Columns["Month"];
-                this.columnYear = base.Columns["Year"];
+                this.columnDepartment = base.Columns["Department"];
                 this.columnDay1 = base.Columns["Day1"];
                 this.columnDay2 = base.Columns["Day2"];
                 this.columnDay3 = base.Columns["Day3"];
@@ -827,17 +794,13 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
                 this.columnDay29 = base.Columns["Day29"];
                 this.columnDay30 = base.Columns["Day30"];
                 this.columnDay31 = base.Columns["Day31"];
-                this.columnDepartment = base.Columns["Department"];
-                this.columnTotal = base.Columns["Total"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnMonth = new global::System.Data.DataColumn("Month", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMonth);
-                this.columnYear = new global::System.Data.DataColumn("Year", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnYear);
+                this.columnDepartment = new global::System.Data.DataColumn("Department", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDepartment);
                 this.columnDay1 = new global::System.Data.DataColumn("Day1", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDay1);
                 this.columnDay2 = new global::System.Data.DataColumn("Day2", typeof(int), null, global::System.Data.MappingType.Element);
@@ -900,10 +863,6 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
                 base.Columns.Add(this.columnDay30);
                 this.columnDay31 = new global::System.Data.DataColumn("Day31", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDay31);
-                this.columnDepartment = new global::System.Data.DataColumn("Department", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDepartment);
-                this.columnTotal = new global::System.Data.DataColumn("Total", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTotal);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1046,33 +1005,17 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Month {
+            public string Department {
                 get {
                     try {
-                        return ((string)(this[this.tableNewAccountPerDept.MonthColumn]));
+                        return ((string)(this[this.tableNewAccountPerDept.DepartmentColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Month\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Department\' in table \'NewAccountPerDept\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.MonthColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Year {
-                get {
-                    try {
-                        return ((string)(this[this.tableNewAccountPerDept.YearColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Year\' in table \'NewAccountPerDept\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNewAccountPerDept.YearColumn] = value;
+                    this[this.tableNewAccountPerDept.DepartmentColumn] = value;
                 }
             }
             
@@ -1574,58 +1517,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Department {
-                get {
-                    try {
-                        return ((string)(this[this.tableNewAccountPerDept.DepartmentColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Department\' in table \'NewAccountPerDept\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNewAccountPerDept.DepartmentColumn] = value;
-                }
+            public bool IsDepartmentNull() {
+                return this.IsNull(this.tableNewAccountPerDept.DepartmentColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Total {
-                get {
-                    try {
-                        return ((int)(this[this.tableNewAccountPerDept.TotalColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Total\' in table \'NewAccountPerDept\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNewAccountPerDept.TotalColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsMonthNull() {
-                return this.IsNull(this.tableNewAccountPerDept.MonthColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetMonthNull() {
-                this[this.tableNewAccountPerDept.MonthColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsYearNull() {
-                return this.IsNull(this.tableNewAccountPerDept.YearColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetYearNull() {
-                this[this.tableNewAccountPerDept.YearColumn] = global::System.Convert.DBNull;
+            public void SetDepartmentNull() {
+                this[this.tableNewAccountPerDept.DepartmentColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1998,30 +1897,6 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetDay31Null() {
                 this[this.tableNewAccountPerDept.Day31Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDepartmentNull() {
-                return this.IsNull(this.tableNewAccountPerDept.DepartmentColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDepartmentNull() {
-                this[this.tableNewAccountPerDept.DepartmentColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTotalNull() {
-                return this.IsNull(this.tableNewAccountPerDept.TotalColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTotalNull() {
-                this[this.tableNewAccountPerDept.TotalColumn] = global::System.Convert.DBNull;
             }
         }
         

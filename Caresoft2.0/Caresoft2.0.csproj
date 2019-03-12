@@ -216,6 +216,7 @@
     <Compile Include="Areas\BloodBank\BloodBankAreaRegistration.cs" />
     <Compile Include="Areas\BloodBank\Controllers\HomeController.cs" />
     <Compile Include="Areas\CareSoftReports\CareSoftReportsAreaRegistration.cs" />
+    <Compile Include="Areas\CareSoftReports\Controllers\AccountPerDepartmentController.cs" />
     <Compile Include="Areas\CareSoftReports\Controllers\HomeReportsController.cs" />
     <Compile Include="Areas\CareSoftReports\Controllers\MISReportsController.cs" />
     <Compile Include="Areas\CareSoftReports\DateTimeExtensions.cs" />
@@ -5274,6 +5275,7 @@
     <Content Include="Areas\CareSoftReports\Views\_ViewStart.cshtml" />
     <Content Include="Areas\CareSoftReports\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\CareSoftReports\Views\MOH711\MOH711A.cshtml" />
+    <Content Include="Areas\CareSoftReports\Views\AccountPerDepartment\Index.cshtml" />
     <None Include="Areas\PharmacyModule\Reports\BillWiseDailyReportSale\BillWiseDailyDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>BillWiseDailyDataSet1.Designer.cs</LastGenOutput>

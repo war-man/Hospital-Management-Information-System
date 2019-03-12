@@ -15,8 +15,7 @@
         <xs:element name="NewAccountPerDept" msprop:Generator_TableClassName="NewAccountPerDeptDataTable" msprop:Generator_TableVarName="tableNewAccountPerDept" msprop:Generator_TablePropName="NewAccountPerDept" msprop:Generator_RowDeletingName="NewAccountPerDeptRowDeleting" msprop:Generator_RowChangingName="NewAccountPerDeptRowChanging" msprop:Generator_RowEvHandlerName="NewAccountPerDeptRowChangeEventHandler" msprop:Generator_RowDeletedName="NewAccountPerDeptRowDeleted" msprop:Generator_UserTableName="NewAccountPerDept" msprop:Generator_RowChangedName="NewAccountPerDeptRowChanged" msprop:Generator_RowEvArgName="NewAccountPerDeptRowChangeEvent" msprop:Generator_RowClassName="NewAccountPerDeptRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Month" msprop:Generator_ColumnVarNameInTable="columnMonth" msprop:Generator_ColumnPropNameInRow="Month" msprop:Generator_ColumnPropNameInTable="MonthColumn" msprop:Generator_UserColumnName="Month" type="xs:string" minOccurs="0" />
-              <xs:element name="Year" msprop:Generator_ColumnVarNameInTable="columnYear" msprop:Generator_ColumnPropNameInRow="Year" msprop:Generator_ColumnPropNameInTable="YearColumn" msprop:Generator_UserColumnName="Year" type="xs:string" minOccurs="0" />
+              <xs:element name="Department" msprop:Generator_ColumnVarNameInTable="columnDepartment" msprop:Generator_ColumnPropNameInRow="Department" msprop:Generator_ColumnPropNameInTable="DepartmentColumn" msprop:Generator_UserColumnName="Department" type="xs:string" minOccurs="0" />
               <xs:element name="Day1" msprop:Generator_ColumnVarNameInTable="columnDay1" msprop:Generator_ColumnPropNameInRow="Day1" msprop:Generator_ColumnPropNameInTable="Day1Column" msprop:Generator_UserColumnName="Day1" type="xs:int" minOccurs="0" />
               <xs:element name="Day2" msprop:Generator_ColumnVarNameInTable="columnDay2" msprop:Generator_ColumnPropNameInRow="Day2" msprop:Generator_ColumnPropNameInTable="Day2Column" msprop:Generator_UserColumnName="Day2" type="xs:int" minOccurs="0" />
               <xs:element name="Day3" msprop:Generator_ColumnVarNameInTable="columnDay3" msprop:Generator_ColumnPropNameInRow="Day3" msprop:Generator_ColumnPropNameInTable="Day3Column" msprop:Generator_UserColumnName="Day3" type="xs:int" minOccurs="0" />
@@ -48,8 +47,6 @@
               <xs:element name="Day29" msprop:Generator_ColumnVarNameInTable="columnDay29" msprop:Generator_ColumnPropNameInRow="Day29" msprop:Generator_ColumnPropNameInTable="Day29Column" msprop:Generator_UserColumnName="Day29" type="xs:int" minOccurs="0" />
               <xs:element name="Day30" msprop:Generator_ColumnVarNameInTable="columnDay30" msprop:Generator_ColumnPropNameInRow="Day30" msprop:Generator_ColumnPropNameInTable="Day30Column" msprop:Generator_UserColumnName="Day30" type="xs:int" minOccurs="0" />
               <xs:element name="Day31" msprop:Generator_ColumnVarNameInTable="columnDay31" msprop:Generator_ColumnPropNameInRow="Day31" msprop:Generator_ColumnPropNameInTable="Day31Column" msprop:Generator_UserColumnName="Day31" type="xs:int" minOccurs="0" />
-              <xs:element name="Department" msprop:Generator_ColumnVarNameInTable="columnDepartment" msprop:Generator_ColumnPropNameInRow="Department" msprop:Generator_ColumnPropNameInTable="DepartmentColumn" msprop:Generator_UserColumnName="Department" type="xs:string" minOccurs="0" />
-              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
