@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.StatementOfAccountPerDepartment {
+namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
     
     
     /// <summary>
@@ -20,17 +20,17 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("NewStatementOfAccount")]
+    [global::System.Xml.Serialization.XmlRootAttribute("ClientsServed")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class NewStatementOfAccount : global::System.Data.DataSet {
+    public partial class ClientsServed : global::System.Data.DataSet {
         
-        private NewAccountPerDeptDataTable tableNewAccountPerDept;
+        private ClientsServedDataTable tableClientsServed;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public NewStatementOfAccount() {
+        public ClientsServed() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected NewStatementOfAccount(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected ClientsServed(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["NewAccountPerDept"] != null)) {
-                    base.Tables.Add(new NewAccountPerDeptDataTable(ds.Tables["NewAccountPerDept"]));
+                if ((ds.Tables["ClientsServed"] != null)) {
+                    base.Tables.Add(new ClientsServedDataTable(ds.Tables["ClientsServed"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public NewAccountPerDeptDataTable NewAccountPerDept {
+        public ClientsServedDataTable _ClientsServed {
             get {
-                return this.tableNewAccountPerDept;
+                return this.tableClientsServed;
             }
         }
         
@@ -127,7 +127,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            NewStatementOfAccount cln = ((NewStatementOfAccount)(base.Clone()));
+            ClientsServed cln = ((ClientsServed)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["NewAccountPerDept"] != null)) {
-                    base.Tables.Add(new NewAccountPerDeptDataTable(ds.Tables["NewAccountPerDept"]));
+                if ((ds.Tables["ClientsServed"] != null)) {
+                    base.Tables.Add(new ClientsServedDataTable(ds.Tables["ClientsServed"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableNewAccountPerDept = ((NewAccountPerDeptDataTable)(base.Tables["NewAccountPerDept"]));
+            this.tableClientsServed = ((ClientsServedDataTable)(base.Tables["ClientsServed"]));
             if ((initTable == true)) {
-                if ((this.tableNewAccountPerDept != null)) {
-                    this.tableNewAccountPerDept.InitVars();
+                if ((this.tableClientsServed != null)) {
+                    this.tableClientsServed.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "NewStatementOfAccount";
+            this.DataSetName = "ClientsServed";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/NewStatementOfAccount.xsd";
+            this.Namespace = "http://tempuri.org/ClientsServed.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableNewAccountPerDept = new NewAccountPerDeptDataTable();
-            base.Tables.Add(this.tableNewAccountPerDept);
+            this.tableClientsServed = new ClientsServedDataTable();
+            base.Tables.Add(this.tableClientsServed);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeNewAccountPerDept() {
+        private bool ShouldSerialize_ClientsServed() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            NewStatementOfAccount ds = new NewStatementOfAccount();
+            ClientsServed ds = new ClientsServed();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,87 +270,103 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void NewAccountPerDeptRowChangeEventHandler(object sender, NewAccountPerDeptRowChangeEvent e);
+        public delegate void ClientsServedRowChangeEventHandler(object sender, ClientsServedRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class NewAccountPerDeptDataTable : global::System.Data.TypedTableBase<NewAccountPerDeptRow> {
+        public partial class ClientsServedDataTable : global::System.Data.TypedTableBase<ClientsServedRow> {
             
-            private global::System.Data.DataColumn columnDepartment;
+            private global::System.Data.DataColumn columnNMPAdult;
             
-            private global::System.Data.DataColumn columnDay1;
+            private global::System.Data.DataColumn columnNFPAdult;
             
-            private global::System.Data.DataColumn columnDay2;
+            private global::System.Data.DataColumn columnNMP15To17;
             
-            private global::System.Data.DataColumn columnDay3;
+            private global::System.Data.DataColumn columnNFP15To17;
             
-            private global::System.Data.DataColumn columnDay4;
+            private global::System.Data.DataColumn columnNMPPost;
             
-            private global::System.Data.DataColumn columnDay5;
+            private global::System.Data.DataColumn columnNFPPost;
             
-            private global::System.Data.DataColumn columnDay6;
+            private global::System.Data.DataColumn columnNMP0To59M;
             
-            private global::System.Data.DataColumn columnDay7;
+            private global::System.Data.DataColumn columnNFP0To59M;
             
-            private global::System.Data.DataColumn columnDay8;
+            private global::System.Data.DataColumn columnNMP5To15;
             
-            private global::System.Data.DataColumn columnDay9;
+            private global::System.Data.DataColumn columnNFP5To15;
             
-            private global::System.Data.DataColumn columnDay10;
+            private global::System.Data.DataColumn columnNPReadmission;
             
-            private global::System.Data.DataColumn columnDay11;
+            private global::System.Data.DataColumn columnNPRelapse;
             
-            private global::System.Data.DataColumn columnDay12;
+            private global::System.Data.DataColumn columnNPLinkedOVC;
             
-            private global::System.Data.DataColumn columnDay13;
+            private global::System.Data.DataColumn columnNMNAdult;
             
-            private global::System.Data.DataColumn columnDay14;
+            private global::System.Data.DataColumn columnNFNAdult;
             
-            private global::System.Data.DataColumn columnDay15;
+            private global::System.Data.DataColumn columnNMN15To17;
             
-            private global::System.Data.DataColumn columnDay16;
+            private global::System.Data.DataColumn columnNFN15To17;
             
-            private global::System.Data.DataColumn columnDay17;
+            private global::System.Data.DataColumn columnNMNPost;
             
-            private global::System.Data.DataColumn columnDay18;
+            private global::System.Data.DataColumn columnNFNPost;
             
-            private global::System.Data.DataColumn columnDay19;
+            private global::System.Data.DataColumn columnNMN0To59M;
             
-            private global::System.Data.DataColumn columnDay20;
+            private global::System.Data.DataColumn columnNFN0To59M;
             
-            private global::System.Data.DataColumn columnDay21;
+            private global::System.Data.DataColumn columnNMN5To15;
             
-            private global::System.Data.DataColumn columnDay22;
+            private global::System.Data.DataColumn columnNFN5To15;
             
-            private global::System.Data.DataColumn columnDay23;
+            private global::System.Data.DataColumn columnNNReadmission;
             
-            private global::System.Data.DataColumn columnDay24;
+            private global::System.Data.DataColumn columnNNRelapse;
             
-            private global::System.Data.DataColumn columnDay25;
+            private global::System.Data.DataColumn columnNNLinkedOVC;
             
-            private global::System.Data.DataColumn columnDay26;
+            private global::System.Data.DataColumn columnRPAdult;
             
-            private global::System.Data.DataColumn columnDay27;
+            private global::System.Data.DataColumn columnRP15To17;
             
-            private global::System.Data.DataColumn columnDay28;
+            private global::System.Data.DataColumn columnRPPost;
             
-            private global::System.Data.DataColumn columnDay29;
+            private global::System.Data.DataColumn columnRP0To59M;
             
-            private global::System.Data.DataColumn columnDay30;
+            private global::System.Data.DataColumn columnRP5To15;
             
-            private global::System.Data.DataColumn columnDay31;
+            private global::System.Data.DataColumn columnRPReadmission;
             
-            private global::System.Data.DataColumn columnMonth;
+            private global::System.Data.DataColumn columnRPRelapse;
             
-            private global::System.Data.DataColumn columnYear;
+            private global::System.Data.DataColumn columnRPLinkedOVC;
+            
+            private global::System.Data.DataColumn columnRNAdult;
+            
+            private global::System.Data.DataColumn columnRN15To17;
+            
+            private global::System.Data.DataColumn columnRNPost;
+            
+            private global::System.Data.DataColumn columnRN0To59M;
+            
+            private global::System.Data.DataColumn columnRN5To15;
+            
+            private global::System.Data.DataColumn columnRNReadmission;
+            
+            private global::System.Data.DataColumn columnRNRelapse;
+            
+            private global::System.Data.DataColumn columnRNLinkedOVC;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAccountPerDeptDataTable() {
-                this.TableName = "NewAccountPerDept";
+            public ClientsServedDataTable() {
+                this.TableName = "ClientsServed";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -358,7 +374,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal NewAccountPerDeptDataTable(global::System.Data.DataTable table) {
+            internal ClientsServedDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -375,280 +391,344 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected NewAccountPerDeptDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ClientsServedDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn DepartmentColumn {
+            public global::System.Data.DataColumn NMPAdultColumn {
                 get {
-                    return this.columnDepartment;
+                    return this.columnNMPAdult;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day1Column {
+            public global::System.Data.DataColumn NFPAdultColumn {
                 get {
-                    return this.columnDay1;
+                    return this.columnNFPAdult;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day2Column {
+            public global::System.Data.DataColumn NMP15To17Column {
                 get {
-                    return this.columnDay2;
+                    return this.columnNMP15To17;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day3Column {
+            public global::System.Data.DataColumn NFP15To17Column {
                 get {
-                    return this.columnDay3;
+                    return this.columnNFP15To17;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day4Column {
+            public global::System.Data.DataColumn NMPPostColumn {
                 get {
-                    return this.columnDay4;
+                    return this.columnNMPPost;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day5Column {
+            public global::System.Data.DataColumn NFPPostColumn {
                 get {
-                    return this.columnDay5;
+                    return this.columnNFPPost;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day6Column {
+            public global::System.Data.DataColumn NMP0To59MColumn {
                 get {
-                    return this.columnDay6;
+                    return this.columnNMP0To59M;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day7Column {
+            public global::System.Data.DataColumn NFP0To59MColumn {
                 get {
-                    return this.columnDay7;
+                    return this.columnNFP0To59M;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day8Column {
+            public global::System.Data.DataColumn NMP5To15Column {
                 get {
-                    return this.columnDay8;
+                    return this.columnNMP5To15;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day9Column {
+            public global::System.Data.DataColumn NFP5To15Column {
                 get {
-                    return this.columnDay9;
+                    return this.columnNFP5To15;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day10Column {
+            public global::System.Data.DataColumn NPReadmissionColumn {
                 get {
-                    return this.columnDay10;
+                    return this.columnNPReadmission;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day11Column {
+            public global::System.Data.DataColumn NPRelapseColumn {
                 get {
-                    return this.columnDay11;
+                    return this.columnNPRelapse;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day12Column {
+            public global::System.Data.DataColumn NPLinkedOVCColumn {
                 get {
-                    return this.columnDay12;
+                    return this.columnNPLinkedOVC;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day13Column {
+            public global::System.Data.DataColumn NMNAdultColumn {
                 get {
-                    return this.columnDay13;
+                    return this.columnNMNAdult;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day14Column {
+            public global::System.Data.DataColumn NFNAdultColumn {
                 get {
-                    return this.columnDay14;
+                    return this.columnNFNAdult;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day15Column {
+            public global::System.Data.DataColumn NMN15To17Column {
                 get {
-                    return this.columnDay15;
+                    return this.columnNMN15To17;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day16Column {
+            public global::System.Data.DataColumn NFN15To17Column {
                 get {
-                    return this.columnDay16;
+                    return this.columnNFN15To17;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day17Column {
+            public global::System.Data.DataColumn NMNPostColumn {
                 get {
-                    return this.columnDay17;
+                    return this.columnNMNPost;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day18Column {
+            public global::System.Data.DataColumn NFNPostColumn {
                 get {
-                    return this.columnDay18;
+                    return this.columnNFNPost;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day19Column {
+            public global::System.Data.DataColumn NMN0To59MColumn {
                 get {
-                    return this.columnDay19;
+                    return this.columnNMN0To59M;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day20Column {
+            public global::System.Data.DataColumn NFN0To59MColumn {
                 get {
-                    return this.columnDay20;
+                    return this.columnNFN0To59M;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day21Column {
+            public global::System.Data.DataColumn NMN5To15Column {
                 get {
-                    return this.columnDay21;
+                    return this.columnNMN5To15;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day22Column {
+            public global::System.Data.DataColumn NFN5To15Column {
                 get {
-                    return this.columnDay22;
+                    return this.columnNFN5To15;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day23Column {
+            public global::System.Data.DataColumn NNReadmissionColumn {
                 get {
-                    return this.columnDay23;
+                    return this.columnNNReadmission;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day24Column {
+            public global::System.Data.DataColumn NNRelapseColumn {
                 get {
-                    return this.columnDay24;
+                    return this.columnNNRelapse;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day25Column {
+            public global::System.Data.DataColumn NNLinkedOVCColumn {
                 get {
-                    return this.columnDay25;
+                    return this.columnNNLinkedOVC;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day26Column {
+            public global::System.Data.DataColumn RPAdultColumn {
                 get {
-                    return this.columnDay26;
+                    return this.columnRPAdult;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day27Column {
+            public global::System.Data.DataColumn RP15To17Column {
                 get {
-                    return this.columnDay27;
+                    return this.columnRP15To17;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day28Column {
+            public global::System.Data.DataColumn RPPostColumn {
                 get {
-                    return this.columnDay28;
+                    return this.columnRPPost;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day29Column {
+            public global::System.Data.DataColumn RP0To59MColumn {
                 get {
-                    return this.columnDay29;
+                    return this.columnRP0To59M;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day30Column {
+            public global::System.Data.DataColumn RP5To15Column {
                 get {
-                    return this.columnDay30;
+                    return this.columnRP5To15;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day31Column {
+            public global::System.Data.DataColumn RPReadmissionColumn {
                 get {
-                    return this.columnDay31;
+                    return this.columnRPReadmission;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn MonthColumn {
+            public global::System.Data.DataColumn RPRelapseColumn {
                 get {
-                    return this.columnMonth;
+                    return this.columnRPRelapse;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn YearColumn {
+            public global::System.Data.DataColumn RPLinkedOVCColumn {
                 get {
-                    return this.columnYear;
+                    return this.columnRPLinkedOVC;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RNAdultColumn {
+                get {
+                    return this.columnRNAdult;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RN15To17Column {
+                get {
+                    return this.columnRN15To17;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RNPostColumn {
+                get {
+                    return this.columnRNPost;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RN0To59MColumn {
+                get {
+                    return this.columnRN0To59M;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RN5To15Column {
+                get {
+                    return this.columnRN5To15;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RNReadmissionColumn {
+                get {
+                    return this.columnRNReadmission;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RNRelapseColumn {
+                get {
+                    return this.columnRNRelapse;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RNLinkedOVCColumn {
+                get {
+                    return this.columnRNLinkedOVC;
                 }
             }
             
@@ -663,112 +743,128 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAccountPerDeptRow this[int index] {
+            public ClientsServedRow this[int index] {
                 get {
-                    return ((NewAccountPerDeptRow)(this.Rows[index]));
+                    return ((ClientsServedRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event NewAccountPerDeptRowChangeEventHandler NewAccountPerDeptRowChanging;
+            public event ClientsServedRowChangeEventHandler ClientsServedRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event NewAccountPerDeptRowChangeEventHandler NewAccountPerDeptRowChanged;
+            public event ClientsServedRowChangeEventHandler ClientsServedRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event NewAccountPerDeptRowChangeEventHandler NewAccountPerDeptRowDeleting;
+            public event ClientsServedRowChangeEventHandler ClientsServedRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event NewAccountPerDeptRowChangeEventHandler NewAccountPerDeptRowDeleted;
+            public event ClientsServedRowChangeEventHandler ClientsServedRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddNewAccountPerDeptRow(NewAccountPerDeptRow row) {
+            public void AddClientsServedRow(ClientsServedRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAccountPerDeptRow AddNewAccountPerDeptRow(
-                        string Department, 
-                        int Day1, 
-                        int Day2, 
-                        int Day3, 
-                        int Day4, 
-                        int Day5, 
-                        int Day6, 
-                        int Day7, 
-                        int Day8, 
-                        int Day9, 
-                        int Day10, 
-                        int Day11, 
-                        int Day12, 
-                        int Day13, 
-                        int Day14, 
-                        int Day15, 
-                        int Day16, 
-                        int Day17, 
-                        int Day18, 
-                        int Day19, 
-                        int Day20, 
-                        int Day21, 
-                        int Day22, 
-                        int Day23, 
-                        int Day24, 
-                        int Day25, 
-                        int Day26, 
-                        int Day27, 
-                        int Day28, 
-                        int Day29, 
-                        int Day30, 
-                        int Day31, 
-                        string Month, 
-                        string Year) {
-                NewAccountPerDeptRow rowNewAccountPerDeptRow = ((NewAccountPerDeptRow)(this.NewRow()));
+            public ClientsServedRow AddClientsServedRow(
+                        string NMPAdult, 
+                        string NFPAdult, 
+                        string NMP15To17, 
+                        string NFP15To17, 
+                        string NMPPost, 
+                        string NFPPost, 
+                        string NMP0To59M, 
+                        string NFP0To59M, 
+                        string NMP5To15, 
+                        string NFP5To15, 
+                        string NPReadmission, 
+                        string NPRelapse, 
+                        string NPLinkedOVC, 
+                        string NMNAdult, 
+                        string NFNAdult, 
+                        string NMN15To17, 
+                        string NFN15To17, 
+                        string NMNPost, 
+                        string NFNPost, 
+                        string NMN0To59M, 
+                        string NFN0To59M, 
+                        string NMN5To15, 
+                        string NFN5To15, 
+                        string NNReadmission, 
+                        string NNRelapse, 
+                        string NNLinkedOVC, 
+                        string RPAdult, 
+                        string RP15To17, 
+                        string RPPost, 
+                        string RP0To59M, 
+                        string RP5To15, 
+                        string RPReadmission, 
+                        string RPRelapse, 
+                        string RPLinkedOVC, 
+                        string RNAdult, 
+                        string RN15To17, 
+                        string RNPost, 
+                        string RN0To59M, 
+                        string RN5To15, 
+                        string RNReadmission, 
+                        string RNRelapse, 
+                        string RNLinkedOVC) {
+                ClientsServedRow rowClientsServedRow = ((ClientsServedRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Department,
-                        Day1,
-                        Day2,
-                        Day3,
-                        Day4,
-                        Day5,
-                        Day6,
-                        Day7,
-                        Day8,
-                        Day9,
-                        Day10,
-                        Day11,
-                        Day12,
-                        Day13,
-                        Day14,
-                        Day15,
-                        Day16,
-                        Day17,
-                        Day18,
-                        Day19,
-                        Day20,
-                        Day21,
-                        Day22,
-                        Day23,
-                        Day24,
-                        Day25,
-                        Day26,
-                        Day27,
-                        Day28,
-                        Day29,
-                        Day30,
-                        Day31,
-                        Month,
-                        Year};
-                rowNewAccountPerDeptRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowNewAccountPerDeptRow);
-                return rowNewAccountPerDeptRow;
+                        NMPAdult,
+                        NFPAdult,
+                        NMP15To17,
+                        NFP15To17,
+                        NMPPost,
+                        NFPPost,
+                        NMP0To59M,
+                        NFP0To59M,
+                        NMP5To15,
+                        NFP5To15,
+                        NPReadmission,
+                        NPRelapse,
+                        NPLinkedOVC,
+                        NMNAdult,
+                        NFNAdult,
+                        NMN15To17,
+                        NFN15To17,
+                        NMNPost,
+                        NFNPost,
+                        NMN0To59M,
+                        NFN0To59M,
+                        NMN5To15,
+                        NFN5To15,
+                        NNReadmission,
+                        NNRelapse,
+                        NNLinkedOVC,
+                        RPAdult,
+                        RP15To17,
+                        RPPost,
+                        RP0To59M,
+                        RP5To15,
+                        RPReadmission,
+                        RPRelapse,
+                        RPLinkedOVC,
+                        RNAdult,
+                        RN15To17,
+                        RNPost,
+                        RN0To59M,
+                        RN5To15,
+                        RNReadmission,
+                        RNRelapse,
+                        RNLinkedOVC};
+                rowClientsServedRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowClientsServedRow);
+                return rowClientsServedRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                NewAccountPerDeptDataTable cln = ((NewAccountPerDeptDataTable)(base.Clone()));
+                ClientsServedDataTable cln = ((ClientsServedDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -776,145 +872,171 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new NewAccountPerDeptDataTable();
+                return new ClientsServedDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnDepartment = base.Columns["Department"];
-                this.columnDay1 = base.Columns["Day1"];
-                this.columnDay2 = base.Columns["Day2"];
-                this.columnDay3 = base.Columns["Day3"];
-                this.columnDay4 = base.Columns["Day4"];
-                this.columnDay5 = base.Columns["Day5"];
-                this.columnDay6 = base.Columns["Day6"];
-                this.columnDay7 = base.Columns["Day7"];
-                this.columnDay8 = base.Columns["Day8"];
-                this.columnDay9 = base.Columns["Day9"];
-                this.columnDay10 = base.Columns["Day10"];
-                this.columnDay11 = base.Columns["Day11"];
-                this.columnDay12 = base.Columns["Day12"];
-                this.columnDay13 = base.Columns["Day13"];
-                this.columnDay14 = base.Columns["Day14"];
-                this.columnDay15 = base.Columns["Day15"];
-                this.columnDay16 = base.Columns["Day16"];
-                this.columnDay17 = base.Columns["Day17"];
-                this.columnDay18 = base.Columns["Day18"];
-                this.columnDay19 = base.Columns["Day19"];
-                this.columnDay20 = base.Columns["Day20"];
-                this.columnDay21 = base.Columns["Day21"];
-                this.columnDay22 = base.Columns["Day22"];
-                this.columnDay23 = base.Columns["Day23"];
-                this.columnDay24 = base.Columns["Day24"];
-                this.columnDay25 = base.Columns["Day25"];
-                this.columnDay26 = base.Columns["Day26"];
-                this.columnDay27 = base.Columns["Day27"];
-                this.columnDay28 = base.Columns["Day28"];
-                this.columnDay29 = base.Columns["Day29"];
-                this.columnDay30 = base.Columns["Day30"];
-                this.columnDay31 = base.Columns["Day31"];
-                this.columnMonth = base.Columns["Month"];
-                this.columnYear = base.Columns["Year"];
+                this.columnNMPAdult = base.Columns["NMPAdult"];
+                this.columnNFPAdult = base.Columns["NFPAdult"];
+                this.columnNMP15To17 = base.Columns["NMP15To17"];
+                this.columnNFP15To17 = base.Columns["NFP15To17"];
+                this.columnNMPPost = base.Columns["NMPPost"];
+                this.columnNFPPost = base.Columns["NFPPost"];
+                this.columnNMP0To59M = base.Columns["NMP0To59M"];
+                this.columnNFP0To59M = base.Columns["NFP0To59M"];
+                this.columnNMP5To15 = base.Columns["NMP5To15"];
+                this.columnNFP5To15 = base.Columns["NFP5To15"];
+                this.columnNPReadmission = base.Columns["NPReadmission"];
+                this.columnNPRelapse = base.Columns["NPRelapse"];
+                this.columnNPLinkedOVC = base.Columns["NPLinkedOVC"];
+                this.columnNMNAdult = base.Columns["NMNAdult"];
+                this.columnNFNAdult = base.Columns["NFNAdult"];
+                this.columnNMN15To17 = base.Columns["NMN15To17"];
+                this.columnNFN15To17 = base.Columns["NFN15To17"];
+                this.columnNMNPost = base.Columns["NMNPost"];
+                this.columnNFNPost = base.Columns["NFNPost"];
+                this.columnNMN0To59M = base.Columns["NMN0To59M"];
+                this.columnNFN0To59M = base.Columns["NFN0To59M"];
+                this.columnNMN5To15 = base.Columns["NMN5To15"];
+                this.columnNFN5To15 = base.Columns["NFN5To15"];
+                this.columnNNReadmission = base.Columns["NNReadmission"];
+                this.columnNNRelapse = base.Columns["NNRelapse"];
+                this.columnNNLinkedOVC = base.Columns["NNLinkedOVC"];
+                this.columnRPAdult = base.Columns["RPAdult"];
+                this.columnRP15To17 = base.Columns["RP15To17"];
+                this.columnRPPost = base.Columns["RPPost"];
+                this.columnRP0To59M = base.Columns["RP0To59M"];
+                this.columnRP5To15 = base.Columns["RP5To15"];
+                this.columnRPReadmission = base.Columns["RPReadmission"];
+                this.columnRPRelapse = base.Columns["RPRelapse"];
+                this.columnRPLinkedOVC = base.Columns["RPLinkedOVC"];
+                this.columnRNAdult = base.Columns["RNAdult"];
+                this.columnRN15To17 = base.Columns["RN15To17"];
+                this.columnRNPost = base.Columns["RNPost"];
+                this.columnRN0To59M = base.Columns["RN0To59M"];
+                this.columnRN5To15 = base.Columns["RN5To15"];
+                this.columnRNReadmission = base.Columns["RNReadmission"];
+                this.columnRNRelapse = base.Columns["RNRelapse"];
+                this.columnRNLinkedOVC = base.Columns["RNLinkedOVC"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnDepartment = new global::System.Data.DataColumn("Department", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDepartment);
-                this.columnDay1 = new global::System.Data.DataColumn("Day1", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay1);
-                this.columnDay2 = new global::System.Data.DataColumn("Day2", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay2);
-                this.columnDay3 = new global::System.Data.DataColumn("Day3", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay3);
-                this.columnDay4 = new global::System.Data.DataColumn("Day4", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay4);
-                this.columnDay5 = new global::System.Data.DataColumn("Day5", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay5);
-                this.columnDay6 = new global::System.Data.DataColumn("Day6", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay6);
-                this.columnDay7 = new global::System.Data.DataColumn("Day7", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay7);
-                this.columnDay8 = new global::System.Data.DataColumn("Day8", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay8);
-                this.columnDay9 = new global::System.Data.DataColumn("Day9", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay9);
-                this.columnDay10 = new global::System.Data.DataColumn("Day10", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay10);
-                this.columnDay11 = new global::System.Data.DataColumn("Day11", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay11);
-                this.columnDay12 = new global::System.Data.DataColumn("Day12", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay12);
-                this.columnDay13 = new global::System.Data.DataColumn("Day13", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay13);
-                this.columnDay14 = new global::System.Data.DataColumn("Day14", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay14);
-                this.columnDay15 = new global::System.Data.DataColumn("Day15", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay15);
-                this.columnDay16 = new global::System.Data.DataColumn("Day16", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay16);
-                this.columnDay17 = new global::System.Data.DataColumn("Day17", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay17);
-                this.columnDay18 = new global::System.Data.DataColumn("Day18", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay18);
-                this.columnDay19 = new global::System.Data.DataColumn("Day19", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay19);
-                this.columnDay20 = new global::System.Data.DataColumn("Day20", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay20);
-                this.columnDay21 = new global::System.Data.DataColumn("Day21", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay21);
-                this.columnDay22 = new global::System.Data.DataColumn("Day22", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay22);
-                this.columnDay23 = new global::System.Data.DataColumn("Day23", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay23);
-                this.columnDay24 = new global::System.Data.DataColumn("Day24", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay24);
-                this.columnDay25 = new global::System.Data.DataColumn("Day25", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay25);
-                this.columnDay26 = new global::System.Data.DataColumn("Day26", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay26);
-                this.columnDay27 = new global::System.Data.DataColumn("Day27", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay27);
-                this.columnDay28 = new global::System.Data.DataColumn("Day28", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay28);
-                this.columnDay29 = new global::System.Data.DataColumn("Day29", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay29);
-                this.columnDay30 = new global::System.Data.DataColumn("Day30", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay30);
-                this.columnDay31 = new global::System.Data.DataColumn("Day31", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay31);
-                this.columnMonth = new global::System.Data.DataColumn("Month", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMonth);
-                this.columnYear = new global::System.Data.DataColumn("Year", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnYear);
+                this.columnNMPAdult = new global::System.Data.DataColumn("NMPAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNMPAdult);
+                this.columnNFPAdult = new global::System.Data.DataColumn("NFPAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNFPAdult);
+                this.columnNMP15To17 = new global::System.Data.DataColumn("NMP15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNMP15To17);
+                this.columnNFP15To17 = new global::System.Data.DataColumn("NFP15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNFP15To17);
+                this.columnNMPPost = new global::System.Data.DataColumn("NMPPost", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNMPPost);
+                this.columnNFPPost = new global::System.Data.DataColumn("NFPPost", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNFPPost);
+                this.columnNMP0To59M = new global::System.Data.DataColumn("NMP0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNMP0To59M);
+                this.columnNFP0To59M = new global::System.Data.DataColumn("NFP0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNFP0To59M);
+                this.columnNMP5To15 = new global::System.Data.DataColumn("NMP5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNMP5To15);
+                this.columnNFP5To15 = new global::System.Data.DataColumn("NFP5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNFP5To15);
+                this.columnNPReadmission = new global::System.Data.DataColumn("NPReadmission", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNPReadmission);
+                this.columnNPRelapse = new global::System.Data.DataColumn("NPRelapse", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNPRelapse);
+                this.columnNPLinkedOVC = new global::System.Data.DataColumn("NPLinkedOVC", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNPLinkedOVC);
+                this.columnNMNAdult = new global::System.Data.DataColumn("NMNAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNMNAdult);
+                this.columnNFNAdult = new global::System.Data.DataColumn("NFNAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNFNAdult);
+                this.columnNMN15To17 = new global::System.Data.DataColumn("NMN15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNMN15To17);
+                this.columnNFN15To17 = new global::System.Data.DataColumn("NFN15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNFN15To17);
+                this.columnNMNPost = new global::System.Data.DataColumn("NMNPost", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNMNPost);
+                this.columnNFNPost = new global::System.Data.DataColumn("NFNPost", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNFNPost);
+                this.columnNMN0To59M = new global::System.Data.DataColumn("NMN0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNMN0To59M);
+                this.columnNFN0To59M = new global::System.Data.DataColumn("NFN0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNFN0To59M);
+                this.columnNMN5To15 = new global::System.Data.DataColumn("NMN5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNMN5To15);
+                this.columnNFN5To15 = new global::System.Data.DataColumn("NFN5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNFN5To15);
+                this.columnNNReadmission = new global::System.Data.DataColumn("NNReadmission", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNNReadmission);
+                this.columnNNRelapse = new global::System.Data.DataColumn("NNRelapse", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNNRelapse);
+                this.columnNNLinkedOVC = new global::System.Data.DataColumn("NNLinkedOVC", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNNLinkedOVC);
+                this.columnRPAdult = new global::System.Data.DataColumn("RPAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRPAdult);
+                this.columnRP15To17 = new global::System.Data.DataColumn("RP15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRP15To17);
+                this.columnRPPost = new global::System.Data.DataColumn("RPPost", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRPPost);
+                this.columnRP0To59M = new global::System.Data.DataColumn("RP0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRP0To59M);
+                this.columnRP5To15 = new global::System.Data.DataColumn("RP5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRP5To15);
+                this.columnRPReadmission = new global::System.Data.DataColumn("RPReadmission", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRPReadmission);
+                this.columnRPRelapse = new global::System.Data.DataColumn("RPRelapse", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRPRelapse);
+                this.columnRPLinkedOVC = new global::System.Data.DataColumn("RPLinkedOVC", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRPLinkedOVC);
+                this.columnRNAdult = new global::System.Data.DataColumn("RNAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRNAdult);
+                this.columnRN15To17 = new global::System.Data.DataColumn("RN15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRN15To17);
+                this.columnRNPost = new global::System.Data.DataColumn("RNPost", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRNPost);
+                this.columnRN0To59M = new global::System.Data.DataColumn("RN0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRN0To59M);
+                this.columnRN5To15 = new global::System.Data.DataColumn("RN5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRN5To15);
+                this.columnRNReadmission = new global::System.Data.DataColumn("RNReadmission", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRNReadmission);
+                this.columnRNRelapse = new global::System.Data.DataColumn("RNRelapse", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRNRelapse);
+                this.columnRNLinkedOVC = new global::System.Data.DataColumn("RNLinkedOVC", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRNLinkedOVC);
+                this.ExtendedProperties.Add("Generator_TablePropName", "_ClientsServed");
+                this.ExtendedProperties.Add("Generator_UserTableName", "ClientsServed");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAccountPerDeptRow NewNewAccountPerDeptRow() {
-                return ((NewAccountPerDeptRow)(this.NewRow()));
+            public ClientsServedRow NewClientsServedRow() {
+                return ((ClientsServedRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new NewAccountPerDeptRow(builder);
+                return new ClientsServedRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(NewAccountPerDeptRow);
+                return typeof(ClientsServedRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.NewAccountPerDeptRowChanged != null)) {
-                    this.NewAccountPerDeptRowChanged(this, new NewAccountPerDeptRowChangeEvent(((NewAccountPerDeptRow)(e.Row)), e.Action));
+                if ((this.ClientsServedRowChanged != null)) {
+                    this.ClientsServedRowChanged(this, new ClientsServedRowChangeEvent(((ClientsServedRow)(e.Row)), e.Action));
                 }
             }
             
@@ -922,8 +1044,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.NewAccountPerDeptRowChanging != null)) {
-                    this.NewAccountPerDeptRowChanging(this, new NewAccountPerDeptRowChangeEvent(((NewAccountPerDeptRow)(e.Row)), e.Action));
+                if ((this.ClientsServedRowChanging != null)) {
+                    this.ClientsServedRowChanging(this, new ClientsServedRowChangeEvent(((ClientsServedRow)(e.Row)), e.Action));
                 }
             }
             
@@ -931,8 +1053,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.NewAccountPerDeptRowDeleted != null)) {
-                    this.NewAccountPerDeptRowDeleted(this, new NewAccountPerDeptRowChangeEvent(((NewAccountPerDeptRow)(e.Row)), e.Action));
+                if ((this.ClientsServedRowDeleted != null)) {
+                    this.ClientsServedRowDeleted(this, new ClientsServedRowChangeEvent(((ClientsServedRow)(e.Row)), e.Action));
                 }
             }
             
@@ -940,14 +1062,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.NewAccountPerDeptRowDeleting != null)) {
-                    this.NewAccountPerDeptRowDeleting(this, new NewAccountPerDeptRowChangeEvent(((NewAccountPerDeptRow)(e.Row)), e.Action));
+                if ((this.ClientsServedRowDeleting != null)) {
+                    this.ClientsServedRowDeleting(this, new ClientsServedRowChangeEvent(((ClientsServedRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveNewAccountPerDeptRow(NewAccountPerDeptRow row) {
+            public void RemoveClientsServedRow(ClientsServedRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -956,7 +1078,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NewStatementOfAccount ds = new NewStatementOfAccount();
+                ClientsServed ds = new ClientsServed();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -974,7 +1096,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "NewAccountPerDeptDataTable";
+                attribute2.FixedValue = "ClientsServedDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1018,967 +1140,1191 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class NewAccountPerDeptRow : global::System.Data.DataRow {
+        public partial class ClientsServedRow : global::System.Data.DataRow {
             
-            private NewAccountPerDeptDataTable tableNewAccountPerDept;
+            private ClientsServedDataTable tableClientsServed;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal NewAccountPerDeptRow(global::System.Data.DataRowBuilder rb) : 
+            internal ClientsServedRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableNewAccountPerDept = ((NewAccountPerDeptDataTable)(this.Table));
+                this.tableClientsServed = ((ClientsServedDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Department {
+            public string NMPAdult {
                 get {
                     try {
-                        return ((string)(this[this.tableNewAccountPerDept.DepartmentColumn]));
+                        return ((string)(this[this.tableClientsServed.NMPAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Department\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NMPAdult\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.DepartmentColumn] = value;
+                    this[this.tableClientsServed.NMPAdultColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day1 {
+            public string NFPAdult {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day1Column]));
+                        return ((string)(this[this.tableClientsServed.NFPAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day1\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NFPAdult\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day1Column] = value;
+                    this[this.tableClientsServed.NFPAdultColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day2 {
+            public string NMP15To17 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day2Column]));
+                        return ((string)(this[this.tableClientsServed.NMP15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day2\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NMP15To17\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day2Column] = value;
+                    this[this.tableClientsServed.NMP15To17Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day3 {
+            public string NFP15To17 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day3Column]));
+                        return ((string)(this[this.tableClientsServed.NFP15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day3\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NFP15To17\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day3Column] = value;
+                    this[this.tableClientsServed.NFP15To17Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day4 {
+            public string NMPPost {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day4Column]));
+                        return ((string)(this[this.tableClientsServed.NMPPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day4\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NMPPost\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day4Column] = value;
+                    this[this.tableClientsServed.NMPPostColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day5 {
+            public string NFPPost {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day5Column]));
+                        return ((string)(this[this.tableClientsServed.NFPPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day5\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NFPPost\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day5Column] = value;
+                    this[this.tableClientsServed.NFPPostColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day6 {
+            public string NMP0To59M {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day6Column]));
+                        return ((string)(this[this.tableClientsServed.NMP0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day6\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NMP0To59M\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day6Column] = value;
+                    this[this.tableClientsServed.NMP0To59MColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day7 {
+            public string NFP0To59M {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day7Column]));
+                        return ((string)(this[this.tableClientsServed.NFP0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day7\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NFP0To59M\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day7Column] = value;
+                    this[this.tableClientsServed.NFP0To59MColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day8 {
+            public string NMP5To15 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day8Column]));
+                        return ((string)(this[this.tableClientsServed.NMP5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day8\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NMP5To15\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day8Column] = value;
+                    this[this.tableClientsServed.NMP5To15Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day9 {
+            public string NFP5To15 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day9Column]));
+                        return ((string)(this[this.tableClientsServed.NFP5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day9\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NFP5To15\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day9Column] = value;
+                    this[this.tableClientsServed.NFP5To15Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day10 {
+            public string NPReadmission {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day10Column]));
+                        return ((string)(this[this.tableClientsServed.NPReadmissionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day10\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NPReadmission\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day10Column] = value;
+                    this[this.tableClientsServed.NPReadmissionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day11 {
+            public string NPRelapse {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day11Column]));
+                        return ((string)(this[this.tableClientsServed.NPRelapseColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day11\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NPRelapse\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day11Column] = value;
+                    this[this.tableClientsServed.NPRelapseColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day12 {
+            public string NPLinkedOVC {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day12Column]));
+                        return ((string)(this[this.tableClientsServed.NPLinkedOVCColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day12\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NPLinkedOVC\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day12Column] = value;
+                    this[this.tableClientsServed.NPLinkedOVCColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day13 {
+            public string NMNAdult {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day13Column]));
+                        return ((string)(this[this.tableClientsServed.NMNAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day13\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NMNAdult\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day13Column] = value;
+                    this[this.tableClientsServed.NMNAdultColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day14 {
+            public string NFNAdult {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day14Column]));
+                        return ((string)(this[this.tableClientsServed.NFNAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day14\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NFNAdult\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day14Column] = value;
+                    this[this.tableClientsServed.NFNAdultColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day15 {
+            public string NMN15To17 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day15Column]));
+                        return ((string)(this[this.tableClientsServed.NMN15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day15\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NMN15To17\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day15Column] = value;
+                    this[this.tableClientsServed.NMN15To17Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day16 {
+            public string NFN15To17 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day16Column]));
+                        return ((string)(this[this.tableClientsServed.NFN15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day16\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NFN15To17\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day16Column] = value;
+                    this[this.tableClientsServed.NFN15To17Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day17 {
+            public string NMNPost {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day17Column]));
+                        return ((string)(this[this.tableClientsServed.NMNPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day17\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NMNPost\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day17Column] = value;
+                    this[this.tableClientsServed.NMNPostColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day18 {
+            public string NFNPost {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day18Column]));
+                        return ((string)(this[this.tableClientsServed.NFNPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day18\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NFNPost\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day18Column] = value;
+                    this[this.tableClientsServed.NFNPostColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day19 {
+            public string NMN0To59M {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day19Column]));
+                        return ((string)(this[this.tableClientsServed.NMN0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day19\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NMN0To59M\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day19Column] = value;
+                    this[this.tableClientsServed.NMN0To59MColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day20 {
+            public string NFN0To59M {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day20Column]));
+                        return ((string)(this[this.tableClientsServed.NFN0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day20\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NFN0To59M\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day20Column] = value;
+                    this[this.tableClientsServed.NFN0To59MColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day21 {
+            public string NMN5To15 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day21Column]));
+                        return ((string)(this[this.tableClientsServed.NMN5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day21\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NMN5To15\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day21Column] = value;
+                    this[this.tableClientsServed.NMN5To15Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day22 {
+            public string NFN5To15 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day22Column]));
+                        return ((string)(this[this.tableClientsServed.NFN5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day22\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NFN5To15\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day22Column] = value;
+                    this[this.tableClientsServed.NFN5To15Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day23 {
+            public string NNReadmission {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day23Column]));
+                        return ((string)(this[this.tableClientsServed.NNReadmissionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day23\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NNReadmission\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day23Column] = value;
+                    this[this.tableClientsServed.NNReadmissionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day24 {
+            public string NNRelapse {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day24Column]));
+                        return ((string)(this[this.tableClientsServed.NNRelapseColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day24\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NNRelapse\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day24Column] = value;
+                    this[this.tableClientsServed.NNRelapseColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day25 {
+            public string NNLinkedOVC {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day25Column]));
+                        return ((string)(this[this.tableClientsServed.NNLinkedOVCColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day25\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NNLinkedOVC\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day25Column] = value;
+                    this[this.tableClientsServed.NNLinkedOVCColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day26 {
+            public string RPAdult {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day26Column]));
+                        return ((string)(this[this.tableClientsServed.RPAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day26\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RPAdult\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day26Column] = value;
+                    this[this.tableClientsServed.RPAdultColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day27 {
+            public string RP15To17 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day27Column]));
+                        return ((string)(this[this.tableClientsServed.RP15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day27\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RP15To17\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day27Column] = value;
+                    this[this.tableClientsServed.RP15To17Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day28 {
+            public string RPPost {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day28Column]));
+                        return ((string)(this[this.tableClientsServed.RPPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day28\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RPPost\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day28Column] = value;
+                    this[this.tableClientsServed.RPPostColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day29 {
+            public string RP0To59M {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day29Column]));
+                        return ((string)(this[this.tableClientsServed.RP0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day29\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RP0To59M\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day29Column] = value;
+                    this[this.tableClientsServed.RP0To59MColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day30 {
+            public string RP5To15 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day30Column]));
+                        return ((string)(this[this.tableClientsServed.RP5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day30\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RP5To15\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day30Column] = value;
+                    this[this.tableClientsServed.RP5To15Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day31 {
+            public string RPReadmission {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day31Column]));
+                        return ((string)(this[this.tableClientsServed.RPReadmissionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day31\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RPReadmission\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day31Column] = value;
+                    this[this.tableClientsServed.RPReadmissionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Month {
+            public string RPRelapse {
                 get {
                     try {
-                        return ((string)(this[this.tableNewAccountPerDept.MonthColumn]));
+                        return ((string)(this[this.tableClientsServed.RPRelapseColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Month\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RPRelapse\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.MonthColumn] = value;
+                    this[this.tableClientsServed.RPRelapseColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Year {
+            public string RPLinkedOVC {
                 get {
                     try {
-                        return ((string)(this[this.tableNewAccountPerDept.YearColumn]));
+                        return ((string)(this[this.tableClientsServed.RPLinkedOVCColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Year\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RPLinkedOVC\' in table \'ClientsServed\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.YearColumn] = value;
+                    this[this.tableClientsServed.RPLinkedOVCColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDepartmentNull() {
-                return this.IsNull(this.tableNewAccountPerDept.DepartmentColumn);
+            public string RNAdult {
+                get {
+                    try {
+                        return ((string)(this[this.tableClientsServed.RNAdultColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RNAdult\' in table \'ClientsServed\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableClientsServed.RNAdultColumn] = value;
+                }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RN15To17 {
+                get {
+                    try {
+                        return ((string)(this[this.tableClientsServed.RN15To17Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RN15To17\' in table \'ClientsServed\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableClientsServed.RN15To17Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RNPost {
+                get {
+                    try {
+                        return ((string)(this[this.tableClientsServed.RNPostColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RNPost\' in table \'ClientsServed\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableClientsServed.RNPostColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RN0To59M {
+                get {
+                    try {
+                        return ((string)(this[this.tableClientsServed.RN0To59MColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RN0To59M\' in table \'ClientsServed\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableClientsServed.RN0To59MColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RN5To15 {
+                get {
+                    try {
+                        return ((string)(this[this.tableClientsServed.RN5To15Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RN5To15\' in table \'ClientsServed\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableClientsServed.RN5To15Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RNReadmission {
+                get {
+                    try {
+                        return ((string)(this[this.tableClientsServed.RNReadmissionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RNReadmission\' in table \'ClientsServed\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableClientsServed.RNReadmissionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RNRelapse {
+                get {
+                    try {
+                        return ((string)(this[this.tableClientsServed.RNRelapseColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RNRelapse\' in table \'ClientsServed\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableClientsServed.RNRelapseColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RNLinkedOVC {
+                get {
+                    try {
+                        return ((string)(this[this.tableClientsServed.RNLinkedOVCColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RNLinkedOVC\' in table \'ClientsServed\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableClientsServed.RNLinkedOVCColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNMPAdultNull() {
+                return this.IsNull(this.tableClientsServed.NMPAdultColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNMPAdultNull() {
+                this[this.tableClientsServed.NMPAdultColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNFPAdultNull() {
+                return this.IsNull(this.tableClientsServed.NFPAdultColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNFPAdultNull() {
+                this[this.tableClientsServed.NFPAdultColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNMP15To17Null() {
+                return this.IsNull(this.tableClientsServed.NMP15To17Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNMP15To17Null() {
+                this[this.tableClientsServed.NMP15To17Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNFP15To17Null() {
+                return this.IsNull(this.tableClientsServed.NFP15To17Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNFP15To17Null() {
+                this[this.tableClientsServed.NFP15To17Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNMPPostNull() {
+                return this.IsNull(this.tableClientsServed.NMPPostColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNMPPostNull() {
+                this[this.tableClientsServed.NMPPostColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNFPPostNull() {
+                return this.IsNull(this.tableClientsServed.NFPPostColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNFPPostNull() {
+                this[this.tableClientsServed.NFPPostColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNMP0To59MNull() {
+                return this.IsNull(this.tableClientsServed.NMP0To59MColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNMP0To59MNull() {
+                this[this.tableClientsServed.NMP0To59MColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNFP0To59MNull() {
+                return this.IsNull(this.tableClientsServed.NFP0To59MColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNFP0To59MNull() {
+                this[this.tableClientsServed.NFP0To59MColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNMP5To15Null() {
+                return this.IsNull(this.tableClientsServed.NMP5To15Column);
+            }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDepartmentNull() {
-                this[this.tableNewAccountPerDept.DepartmentColumn] = global::System.Convert.DBNull;
+            public void SetNMP5To15Null() {
+                this[this.tableClientsServed.NMP5To15Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay1Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day1Column);
+            public bool IsNFP5To15Null() {
+                return this.IsNull(this.tableClientsServed.NFP5To15Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay1Null() {
-                this[this.tableNewAccountPerDept.Day1Column] = global::System.Convert.DBNull;
+            public void SetNFP5To15Null() {
+                this[this.tableClientsServed.NFP5To15Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay2Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day2Column);
+            public bool IsNPReadmissionNull() {
+                return this.IsNull(this.tableClientsServed.NPReadmissionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay2Null() {
-                this[this.tableNewAccountPerDept.Day2Column] = global::System.Convert.DBNull;
+            public void SetNPReadmissionNull() {
+                this[this.tableClientsServed.NPReadmissionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay3Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day3Column);
+            public bool IsNPRelapseNull() {
+                return this.IsNull(this.tableClientsServed.NPRelapseColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay3Null() {
-                this[this.tableNewAccountPerDept.Day3Column] = global::System.Convert.DBNull;
+            public void SetNPRelapseNull() {
+                this[this.tableClientsServed.NPRelapseColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay4Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day4Column);
+            public bool IsNPLinkedOVCNull() {
+                return this.IsNull(this.tableClientsServed.NPLinkedOVCColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay4Null() {
-                this[this.tableNewAccountPerDept.Day4Column] = global::System.Convert.DBNull;
+            public void SetNPLinkedOVCNull() {
+                this[this.tableClientsServed.NPLinkedOVCColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay5Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day5Column);
+            public bool IsNMNAdultNull() {
+                return this.IsNull(this.tableClientsServed.NMNAdultColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay5Null() {
-                this[this.tableNewAccountPerDept.Day5Column] = global::System.Convert.DBNull;
+            public void SetNMNAdultNull() {
+                this[this.tableClientsServed.NMNAdultColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay6Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day6Column);
+            public bool IsNFNAdultNull() {
+                return this.IsNull(this.tableClientsServed.NFNAdultColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay6Null() {
-                this[this.tableNewAccountPerDept.Day6Column] = global::System.Convert.DBNull;
+            public void SetNFNAdultNull() {
+                this[this.tableClientsServed.NFNAdultColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay7Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day7Column);
+            public bool IsNMN15To17Null() {
+                return this.IsNull(this.tableClientsServed.NMN15To17Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay7Null() {
-                this[this.tableNewAccountPerDept.Day7Column] = global::System.Convert.DBNull;
+            public void SetNMN15To17Null() {
+                this[this.tableClientsServed.NMN15To17Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay8Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day8Column);
+            public bool IsNFN15To17Null() {
+                return this.IsNull(this.tableClientsServed.NFN15To17Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay8Null() {
-                this[this.tableNewAccountPerDept.Day8Column] = global::System.Convert.DBNull;
+            public void SetNFN15To17Null() {
+                this[this.tableClientsServed.NFN15To17Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay9Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day9Column);
+            public bool IsNMNPostNull() {
+                return this.IsNull(this.tableClientsServed.NMNPostColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay9Null() {
-                this[this.tableNewAccountPerDept.Day9Column] = global::System.Convert.DBNull;
+            public void SetNMNPostNull() {
+                this[this.tableClientsServed.NMNPostColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay10Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day10Column);
+            public bool IsNFNPostNull() {
+                return this.IsNull(this.tableClientsServed.NFNPostColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay10Null() {
-                this[this.tableNewAccountPerDept.Day10Column] = global::System.Convert.DBNull;
+            public void SetNFNPostNull() {
+                this[this.tableClientsServed.NFNPostColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay11Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day11Column);
+            public bool IsNMN0To59MNull() {
+                return this.IsNull(this.tableClientsServed.NMN0To59MColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay11Null() {
-                this[this.tableNewAccountPerDept.Day11Column] = global::System.Convert.DBNull;
+            public void SetNMN0To59MNull() {
+                this[this.tableClientsServed.NMN0To59MColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay12Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day12Column);
+            public bool IsNFN0To59MNull() {
+                return this.IsNull(this.tableClientsServed.NFN0To59MColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay12Null() {
-                this[this.tableNewAccountPerDept.Day12Column] = global::System.Convert.DBNull;
+            public void SetNFN0To59MNull() {
+                this[this.tableClientsServed.NFN0To59MColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay13Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day13Column);
+            public bool IsNMN5To15Null() {
+                return this.IsNull(this.tableClientsServed.NMN5To15Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay13Null() {
-                this[this.tableNewAccountPerDept.Day13Column] = global::System.Convert.DBNull;
+            public void SetNMN5To15Null() {
+                this[this.tableClientsServed.NMN5To15Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay14Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day14Column);
+            public bool IsNFN5To15Null() {
+                return this.IsNull(this.tableClientsServed.NFN5To15Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay14Null() {
-                this[this.tableNewAccountPerDept.Day14Column] = global::System.Convert.DBNull;
+            public void SetNFN5To15Null() {
+                this[this.tableClientsServed.NFN5To15Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay15Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day15Column);
+            public bool IsNNReadmissionNull() {
+                return this.IsNull(this.tableClientsServed.NNReadmissionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay15Null() {
-                this[this.tableNewAccountPerDept.Day15Column] = global::System.Convert.DBNull;
+            public void SetNNReadmissionNull() {
+                this[this.tableClientsServed.NNReadmissionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay16Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day16Column);
+            public bool IsNNRelapseNull() {
+                return this.IsNull(this.tableClientsServed.NNRelapseColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay16Null() {
-                this[this.tableNewAccountPerDept.Day16Column] = global::System.Convert.DBNull;
+            public void SetNNRelapseNull() {
+                this[this.tableClientsServed.NNRelapseColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay17Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day17Column);
+            public bool IsNNLinkedOVCNull() {
+                return this.IsNull(this.tableClientsServed.NNLinkedOVCColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay17Null() {
-                this[this.tableNewAccountPerDept.Day17Column] = global::System.Convert.DBNull;
+            public void SetNNLinkedOVCNull() {
+                this[this.tableClientsServed.NNLinkedOVCColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay18Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day18Column);
+            public bool IsRPAdultNull() {
+                return this.IsNull(this.tableClientsServed.RPAdultColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay18Null() {
-                this[this.tableNewAccountPerDept.Day18Column] = global::System.Convert.DBNull;
+            public void SetRPAdultNull() {
+                this[this.tableClientsServed.RPAdultColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay19Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day19Column);
+            public bool IsRP15To17Null() {
+                return this.IsNull(this.tableClientsServed.RP15To17Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay19Null() {
-                this[this.tableNewAccountPerDept.Day19Column] = global::System.Convert.DBNull;
+            public void SetRP15To17Null() {
+                this[this.tableClientsServed.RP15To17Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay20Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day20Column);
+            public bool IsRPPostNull() {
+                return this.IsNull(this.tableClientsServed.RPPostColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay20Null() {
-                this[this.tableNewAccountPerDept.Day20Column] = global::System.Convert.DBNull;
+            public void SetRPPostNull() {
+                this[this.tableClientsServed.RPPostColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay21Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day21Column);
+            public bool IsRP0To59MNull() {
+                return this.IsNull(this.tableClientsServed.RP0To59MColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay21Null() {
-                this[this.tableNewAccountPerDept.Day21Column] = global::System.Convert.DBNull;
+            public void SetRP0To59MNull() {
+                this[this.tableClientsServed.RP0To59MColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay22Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day22Column);
+            public bool IsRP5To15Null() {
+                return this.IsNull(this.tableClientsServed.RP5To15Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay22Null() {
-                this[this.tableNewAccountPerDept.Day22Column] = global::System.Convert.DBNull;
+            public void SetRP5To15Null() {
+                this[this.tableClientsServed.RP5To15Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay23Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day23Column);
+            public bool IsRPReadmissionNull() {
+                return this.IsNull(this.tableClientsServed.RPReadmissionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay23Null() {
-                this[this.tableNewAccountPerDept.Day23Column] = global::System.Convert.DBNull;
+            public void SetRPReadmissionNull() {
+                this[this.tableClientsServed.RPReadmissionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay24Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day24Column);
+            public bool IsRPRelapseNull() {
+                return this.IsNull(this.tableClientsServed.RPRelapseColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay24Null() {
-                this[this.tableNewAccountPerDept.Day24Column] = global::System.Convert.DBNull;
+            public void SetRPRelapseNull() {
+                this[this.tableClientsServed.RPRelapseColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay25Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day25Column);
+            public bool IsRPLinkedOVCNull() {
+                return this.IsNull(this.tableClientsServed.RPLinkedOVCColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay25Null() {
-                this[this.tableNewAccountPerDept.Day25Column] = global::System.Convert.DBNull;
+            public void SetRPLinkedOVCNull() {
+                this[this.tableClientsServed.RPLinkedOVCColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay26Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day26Column);
+            public bool IsRNAdultNull() {
+                return this.IsNull(this.tableClientsServed.RNAdultColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay26Null() {
-                this[this.tableNewAccountPerDept.Day26Column] = global::System.Convert.DBNull;
+            public void SetRNAdultNull() {
+                this[this.tableClientsServed.RNAdultColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay27Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day27Column);
+            public bool IsRN15To17Null() {
+                return this.IsNull(this.tableClientsServed.RN15To17Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay27Null() {
-                this[this.tableNewAccountPerDept.Day27Column] = global::System.Convert.DBNull;
+            public void SetRN15To17Null() {
+                this[this.tableClientsServed.RN15To17Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay28Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day28Column);
+            public bool IsRNPostNull() {
+                return this.IsNull(this.tableClientsServed.RNPostColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay28Null() {
-                this[this.tableNewAccountPerDept.Day28Column] = global::System.Convert.DBNull;
+            public void SetRNPostNull() {
+                this[this.tableClientsServed.RNPostColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay29Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day29Column);
+            public bool IsRN0To59MNull() {
+                return this.IsNull(this.tableClientsServed.RN0To59MColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay29Null() {
-                this[this.tableNewAccountPerDept.Day29Column] = global::System.Convert.DBNull;
+            public void SetRN0To59MNull() {
+                this[this.tableClientsServed.RN0To59MColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay30Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day30Column);
+            public bool IsRN5To15Null() {
+                return this.IsNull(this.tableClientsServed.RN5To15Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay30Null() {
-                this[this.tableNewAccountPerDept.Day30Column] = global::System.Convert.DBNull;
+            public void SetRN5To15Null() {
+                this[this.tableClientsServed.RN5To15Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay31Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day31Column);
+            public bool IsRNReadmissionNull() {
+                return this.IsNull(this.tableClientsServed.RNReadmissionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay31Null() {
-                this[this.tableNewAccountPerDept.Day31Column] = global::System.Convert.DBNull;
+            public void SetRNReadmissionNull() {
+                this[this.tableClientsServed.RNReadmissionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsMonthNull() {
-                return this.IsNull(this.tableNewAccountPerDept.MonthColumn);
+            public bool IsRNRelapseNull() {
+                return this.IsNull(this.tableClientsServed.RNRelapseColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetMonthNull() {
-                this[this.tableNewAccountPerDept.MonthColumn] = global::System.Convert.DBNull;
+            public void SetRNRelapseNull() {
+                this[this.tableClientsServed.RNRelapseColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsYearNull() {
-                return this.IsNull(this.tableNewAccountPerDept.YearColumn);
+            public bool IsRNLinkedOVCNull() {
+                return this.IsNull(this.tableClientsServed.RNLinkedOVCColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetYearNull() {
-                this[this.tableNewAccountPerDept.YearColumn] = global::System.Convert.DBNull;
+            public void SetRNLinkedOVCNull() {
+                this[this.tableClientsServed.RNLinkedOVCColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1986,22 +2332,22 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class NewAccountPerDeptRowChangeEvent : global::System.EventArgs {
+        public class ClientsServedRowChangeEvent : global::System.EventArgs {
             
-            private NewAccountPerDeptRow eventRow;
+            private ClientsServedRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAccountPerDeptRowChangeEvent(NewAccountPerDeptRow row, global::System.Data.DataRowAction action) {
+            public ClientsServedRowChangeEvent(ClientsServedRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAccountPerDeptRow Row {
+            public ClientsServedRow Row {
                 get {
                     return this.eventRow;
                 }

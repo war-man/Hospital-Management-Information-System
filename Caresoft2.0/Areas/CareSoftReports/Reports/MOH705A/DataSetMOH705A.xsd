@@ -12,7 +12,7 @@
   <xs:element name="DataSetMOH705A" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetMOH705A" msprop:Generator_UserDSName="DataSetMOH705A">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DiseasesWithDates" msprop:Generator_TableClassName="DiseasesWithDatesDataTable" msprop:Generator_TableVarName="tableDiseasesWithDates" msprop:Generator_RowChangedName="DiseasesWithDatesRowChanged" msprop:Generator_TablePropName="DiseasesWithDates" msprop:Generator_RowDeletingName="DiseasesWithDatesRowDeleting" msprop:Generator_RowChangingName="DiseasesWithDatesRowChanging" msprop:Generator_RowEvHandlerName="DiseasesWithDatesRowChangeEventHandler" msprop:Generator_RowDeletedName="DiseasesWithDatesRowDeleted" msprop:Generator_RowClassName="DiseasesWithDatesRow" msprop:Generator_UserTableName="DiseasesWithDates" msprop:Generator_RowEvArgName="DiseasesWithDatesRowChangeEvent">
+        <xs:element name="DiseasesWithDates" msprop:Generator_TableClassName="DiseasesWithDatesDataTable" msprop:Generator_TableVarName="tableDiseasesWithDates" msprop:Generator_TablePropName="DiseasesWithDates" msprop:Generator_RowDeletingName="DiseasesWithDatesRowDeleting" msprop:Generator_RowChangingName="DiseasesWithDatesRowChanging" msprop:Generator_RowEvHandlerName="DiseasesWithDatesRowChangeEventHandler" msprop:Generator_RowDeletedName="DiseasesWithDatesRowDeleted" msprop:Generator_UserTableName="DiseasesWithDates" msprop:Generator_RowChangedName="DiseasesWithDatesRowChanged" msprop:Generator_RowEvArgName="DiseasesWithDatesRowChangeEvent" msprop:Generator_RowClassName="DiseasesWithDatesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="DiseaseName" msprop:Generator_ColumnVarNameInTable="columnDiseaseName" msprop:Generator_ColumnPropNameInRow="DiseaseName" msprop:Generator_ColumnPropNameInTable="DiseaseNameColumn" msprop:Generator_UserColumnName="DiseaseName" type="xs:string" minOccurs="0" />
@@ -50,7 +50,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="HospitalInfo" msprop:Generator_TableClassName="HospitalInfoDataTable" msprop:Generator_TableVarName="tableHospitalInfo" msprop:Generator_TablePropName="HospitalInfo" msprop:Generator_RowDeletingName="HospitalInfoRowDeleting" msprop:Generator_RowChangingName="HospitalInfoRowChanging" msprop:Generator_RowEvHandlerName="HospitalInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="HospitalInfoRowDeleted" msprop:Generator_UserTableName="HospitalInfo" msprop:Generator_RowChangedName="HospitalInfoRowChanged" msprop:Generator_RowEvArgName="HospitalInfoRowChangeEvent" msprop:Generator_RowClassName="HospitalInfoRow">
+        <xs:element name="HospitalInfo" msprop:Generator_TableClassName="HospitalInfoDataTable" msprop:Generator_TableVarName="tableHospitalInfo" msprop:Generator_RowChangedName="HospitalInfoRowChanged" msprop:Generator_TablePropName="HospitalInfo" msprop:Generator_RowDeletingName="HospitalInfoRowDeleting" msprop:Generator_RowChangingName="HospitalInfoRowChanging" msprop:Generator_RowEvHandlerName="HospitalInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="HospitalInfoRowDeleted" msprop:Generator_RowClassName="HospitalInfoRow" msprop:Generator_UserTableName="HospitalInfo" msprop:Generator_RowEvArgName="HospitalInfoRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="HealthFacility" msprop:Generator_ColumnVarNameInTable="columnHealthFacility" msprop:Generator_ColumnPropNameInRow="HealthFacility" msprop:Generator_ColumnPropNameInTable="HealthFacilityColumn" msprop:Generator_UserColumnName="HealthFacility" type="xs:string" minOccurs="0" />
@@ -68,4 +68,9 @@
       </xs:choice>
     </xs:complexType>
   </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="HospitalInfo_DiseasesWithDates" msdata:parent="HospitalInfo" msdata:child="DiseasesWithDates" msdata:parentkey="HealthFacility" msdata:childkey="DiseaseName" msprop:Generator_UserChildTable="DiseasesWithDates" msprop:Generator_ChildPropName="GetDiseasesWithDatesRows" msprop:Generator_UserRelationName="HospitalInfo_DiseasesWithDates" msprop:Generator_RelationVarName="relationHospitalInfo_DiseasesWithDates" msprop:Generator_UserParentTable="HospitalInfo" msprop:Generator_ParentPropName="HospitalInfoRow" />
+    </xs:appinfo>
+  </xs:annotation>
 </xs:schema>

@@ -118,7 +118,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             foreach (var item in theReport)
             {
                 dataSetMOH705A.DiseasesWithDates.AddDiseasesWithDatesRow(
-                     item.NameOfDisease,
+                    item.NameOfDisease,
                     item.DaysOfTheMonth[0],
                     item.DaysOfTheMonth[1],
                     item.DaysOfTheMonth[2],

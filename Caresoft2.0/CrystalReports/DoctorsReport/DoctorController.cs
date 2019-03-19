@@ -110,7 +110,8 @@ namespace Caresoft2._0.CrystalReports.Doctors
                 var lstDoctorsCliniciansNurses = db.Users.Where(e =>
                 e.Employee.Designation.DesignationName.ToLower().Contains("Nurse") ||
                 e.Employee.Designation.DesignationName.ToLower().Contains("Doctor") ||
-                e.Employee.Designation.DesignationName.ToLower().Contains("Clinician")).ToList();
+                e.Employee.Designation.DesignationName.ToLower().Contains("Clinician") ||
+                e.Employee.Designation.DesignationName.ToLower().Contains("Lab Technician")).ToList();
 
 
 

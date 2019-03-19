@@ -217,6 +217,7 @@
     <Compile Include="Areas\BloodBank\Controllers\HomeController.cs" />
     <Compile Include="Areas\CareSoftReports\CareSoftReportsAreaRegistration.cs" />
     <Compile Include="Areas\CareSoftReports\Controllers\AccountPerDepartmentController.cs" />
+    <Compile Include="Areas\CareSoftReports\Controllers\DayAmount.cs" />
     <Compile Include="Areas\CareSoftReports\Controllers\HomeReportsController.cs" />
     <Compile Include="Areas\CareSoftReports\Controllers\MISReportsController.cs" />
     <Compile Include="Areas\CareSoftReports\DateTimeExtensions.cs" />
@@ -382,6 +383,11 @@
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\OutPatientServices.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH717\OutPatientServices1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OutPatientServices.rpt</DependentUpon>
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\RptAdmissions.cs">
       <SubType>Component</SubType>

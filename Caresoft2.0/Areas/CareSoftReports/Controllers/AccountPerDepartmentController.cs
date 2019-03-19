@@ -16,51 +16,59 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
         // GET: CareSoftReports/AccountPerDepartment
         CaresoftHMISEntities db = new CaresoftHMISEntities();
         private object statementOfAccount;
-
+        
         public ActionResult Index()
+
         {
+
+            ViewBag.Insurance = db.Companies.ToList();
             return View();
         }
-        public class StatementOfAccount
+        public class StatementOfAccountViewModel
         {
             public string NameOfDepartment { get; set; }
             public int[] DaysOfTheMonth { get; set; }
+            public int? Month { get; set; }
+            public int Year { get; set; }
         }
-        //public ActionResult AccountPerDepartmentReport(DateTime FromDate, DateTime ToDate, string Department, string Format, int Year, int selectMonth)
-        //{
-        //    var newStatementOfAccount = GetAccountsPerDepartmentReport(FromDate, ToDate, Department, Year, selectMonth);
+        
 
-        //    var insuranceCompanies = db.Companies.Where(p => p.CompanyType.CompanyTypeName.ToLower().Trim() == "insurance").ToList();
-        //    return View(insuranceCompanies);
-        //}
-
-        //private object GetAccountsPerDepartmentReport(DateTime fromDate, DateTime toDate, string department, int year, int selectMonth)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        public ActionResult GetAccountsPerDepartmentReport(DateTime? FromDate, DateTime ?ToDate, string Department, string Format, int Year, int selectMonth)
+        public ActionResult StatementOfAccountReport()
         {
             var insuranceCompanies = db.Companies.Where(p => p.CompanyType.CompanyTypeName.ToLower().Trim() == "insurance").ToList();
-            var amount = db.BillServices.Where(p => p.DateAdded.Year == Year && p.DateAdded.Month == selectMonth).ToList();
-            var allDepartments = db.Departments.ToList();
-            var CrystalReportData = new List<StatementOfAccount>();
+            return View(insuranceCompanies);
+        }
 
-            var NumberOfDays = DateTime.DaysInMonth(Year, selectMonth);
+
+        public ActionResult GetAccountsPerDepartmentReport( int Year, int SelectMonth,string Department)
+        {
+          
+            var amount = db.BillServices.Where(p => p.DateAdded.Year == Year && p.DateAdded.Month == SelectMonth).ToList();
+            var allDepartments = db.Departments.ToList();
+            var CrystalReportData = new List<StatementOfAccountViewModel>();
+
+            // var NumberOfDays = DateTime.DaysInMonth(Month,Year);
+            var NumberOfDays = DateTime.DaysInMonth(Year, SelectMonth);
+            
 
             foreach (var item in allDepartments)
             {
-                StatementOfAccount statementOfAccount = new StatementOfAccount()
+                StatementOfAccountViewModel statementOfAccount = new StatementOfAccountViewModel()
                 {
                     NameOfDepartment = item.DepartmentName,
-                    DaysOfTheMonth = new int[31]
+                    DaysOfTheMonth = new int[31],
+                    
                 };
                 int[] AllDaysOfTheMonth = new int[31];
                 for (int i = 1; i <= NumberOfDays; i++)
                 {
                     var theDay = i;
-                    var AmountInDay = allDepartments.Where(p => p.DepartmentName.Contains(item.DepartmentName) && p.DateAdded.Day == theDay).Count();
-                    AllDaysOfTheMonth[i - 1] = AmountInDay;
+
+                    //var AmountInDay=amount.Where(p=>p.Award.Equals(amount)&& p.DateAdded.Day==theDay).Count();
+                    var AmountInDay = amount.Where(p => p.DepartmentId == item.Id && p.DateAdded.Day == theDay && p.DateAdded.Month == SelectMonth
+                     && p.DateAdded.Year == Year).Sum(p => (p.Price * p.Quatity));
+                  
+                    AllDaysOfTheMonth[i - 1] = Convert.ToInt32(AmountInDay);
                 }
                 if (AllDaysOfTheMonth.Count() < 31)
                 {
@@ -112,17 +120,36 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                     item.DaysOfTheMonth[27],
                     item.DaysOfTheMonth[28],
                     item.DaysOfTheMonth[29],
-                    item.DaysOfTheMonth[30]
-                     );
-                newStatementOfAccount.NewAccountPerDept.AddNewAccountPerDeptRow("", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                    item.DaysOfTheMonth[30],
+                    item.Month.ToString(),
+                    item.Year.ToString()
+                    );
+
+               
             }
-            return View(insuranceCompanies);
+
+            ReportDocument Rd = new ReportDocument();
+            Rd.Load(Path.Combine(Server.MapPath("~/Areas/CareSoftReports/Reports/StatementPerScheme/StatementOfAccountPerDepartment/StatementOfAccount.rpt")));
+            Rd.SetDataSource(newStatementOfAccount);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+
+            Stream Stream = Rd.ExportToStream(
+                CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            Stream.Seek(0, SeekOrigin.Begin);
+            string FileName = "Statement of Account per Department Report" + DateTime.Now.ToString("dd-MM-yyyy") + ".pdf";
+
+            return File(Stream, "application/pdf", FileName);
 
         }
-        
+         
+
+     }
+         
        
     }
-}
+
         
 
                     

@@ -1426,7 +1426,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             var dataSet = new DataSetTbReport();
             var lstTBViewModel = new List<TBDataViewModel>();
 
-            var data = db2.TBScreeningResponses
+           var data = db2.TBScreeningResponses
                 .Where(p => DbFunctions.TruncateTime(p.DateAdded)>= FromDate && DbFunctions.TruncateTime(p.DateAdded) <= ToDate)
                 .DistinctBy(x=>x.OPDNo)
                 .ToList();

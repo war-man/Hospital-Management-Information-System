@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.StatementOfAccountPerDepartment {
+namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ARTAndCoexistingInfections {
     
     
     /// <summary>
@@ -20,17 +20,17 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("NewStatementOfAccount")]
+    [global::System.Xml.Serialization.XmlRootAttribute("ARTAndCoexisting")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class NewStatementOfAccount : global::System.Data.DataSet {
+    public partial class ARTAndCoexisting : global::System.Data.DataSet {
         
-        private NewAccountPerDeptDataTable tableNewAccountPerDept;
+        private ARTAndCoexistingDataTable tableARTAndCoexisting;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public NewStatementOfAccount() {
+        public ARTAndCoexisting() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected NewStatementOfAccount(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected ARTAndCoexisting(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["NewAccountPerDept"] != null)) {
-                    base.Tables.Add(new NewAccountPerDeptDataTable(ds.Tables["NewAccountPerDept"]));
+                if ((ds.Tables["ARTAndCoexisting"] != null)) {
+                    base.Tables.Add(new ARTAndCoexistingDataTable(ds.Tables["ARTAndCoexisting"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public NewAccountPerDeptDataTable NewAccountPerDept {
+        public ARTAndCoexistingDataTable _ARTAndCoexisting {
             get {
-                return this.tableNewAccountPerDept;
+                return this.tableARTAndCoexisting;
             }
         }
         
@@ -127,7 +127,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            NewStatementOfAccount cln = ((NewStatementOfAccount)(base.Clone()));
+            ARTAndCoexisting cln = ((ARTAndCoexisting)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["NewAccountPerDept"] != null)) {
-                    base.Tables.Add(new NewAccountPerDeptDataTable(ds.Tables["NewAccountPerDept"]));
+                if ((ds.Tables["ARTAndCoexisting"] != null)) {
+                    base.Tables.Add(new ARTAndCoexistingDataTable(ds.Tables["ARTAndCoexisting"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableNewAccountPerDept = ((NewAccountPerDeptDataTable)(base.Tables["NewAccountPerDept"]));
+            this.tableARTAndCoexisting = ((ARTAndCoexistingDataTable)(base.Tables["ARTAndCoexisting"]));
             if ((initTable == true)) {
-                if ((this.tableNewAccountPerDept != null)) {
-                    this.tableNewAccountPerDept.InitVars();
+                if ((this.tableARTAndCoexisting != null)) {
+                    this.tableARTAndCoexisting.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "NewStatementOfAccount";
+            this.DataSetName = "ARTAndCoexisting";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/NewStatementOfAccount.xsd";
+            this.Namespace = "http://tempuri.org/ARTAndCoexisting.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableNewAccountPerDept = new NewAccountPerDeptDataTable();
-            base.Tables.Add(this.tableNewAccountPerDept);
+            this.tableARTAndCoexisting = new ARTAndCoexistingDataTable();
+            base.Tables.Add(this.tableARTAndCoexisting);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeNewAccountPerDept() {
+        private bool ShouldSerialize_ARTAndCoexisting() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            NewStatementOfAccount ds = new NewStatementOfAccount();
+            ARTAndCoexisting ds = new ARTAndCoexisting();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,87 +270,79 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void NewAccountPerDeptRowChangeEventHandler(object sender, NewAccountPerDeptRowChangeEvent e);
+        public delegate void ARTAndCoexistingRowChangeEventHandler(object sender, ARTAndCoexistingRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class NewAccountPerDeptDataTable : global::System.Data.TypedTableBase<NewAccountPerDeptRow> {
+        public partial class ARTAndCoexistingDataTable : global::System.Data.TypedTableBase<ARTAndCoexistingRow> {
             
-            private global::System.Data.DataColumn columnDepartment;
+            private global::System.Data.DataColumn columnNTBAdult;
             
-            private global::System.Data.DataColumn columnDay1;
+            private global::System.Data.DataColumn columnNTB15To17;
             
-            private global::System.Data.DataColumn columnDay2;
+            private global::System.Data.DataColumn columnNTBPost;
             
-            private global::System.Data.DataColumn columnDay3;
+            private global::System.Data.DataColumn columnNTB0To59M;
             
-            private global::System.Data.DataColumn columnDay4;
+            private global::System.Data.DataColumn columnNTB5To15;
             
-            private global::System.Data.DataColumn columnDay5;
+            private global::System.Data.DataColumn columnNDiarrhoeaAdult;
             
-            private global::System.Data.DataColumn columnDay6;
+            private global::System.Data.DataColumn columnNDiarrhoea15To17;
             
-            private global::System.Data.DataColumn columnDay7;
+            private global::System.Data.DataColumn columnNDiarrhoeaPost;
             
-            private global::System.Data.DataColumn columnDay8;
+            private global::System.Data.DataColumn columnNDiarrhoea0To59M;
             
-            private global::System.Data.DataColumn columnDay9;
+            private global::System.Data.DataColumn columnNDiarrhoea5To15;
             
-            private global::System.Data.DataColumn columnDay10;
+            private global::System.Data.DataColumn columnNOtherOIsAdult;
             
-            private global::System.Data.DataColumn columnDay11;
+            private global::System.Data.DataColumn columnNOtherOIs15To17;
             
-            private global::System.Data.DataColumn columnDay12;
+            private global::System.Data.DataColumn columnNOtherOIsPost;
             
-            private global::System.Data.DataColumn columnDay13;
+            private global::System.Data.DataColumn columnNOtherOIs0To59M;
             
-            private global::System.Data.DataColumn columnDay14;
+            private global::System.Data.DataColumn columnNOtherOIs5To15;
             
-            private global::System.Data.DataColumn columnDay15;
+            private global::System.Data.DataColumn columnRTBAdult;
             
-            private global::System.Data.DataColumn columnDay16;
+            private global::System.Data.DataColumn columnRTB15To17;
             
-            private global::System.Data.DataColumn columnDay17;
+            private global::System.Data.DataColumn columnRTBPost;
             
-            private global::System.Data.DataColumn columnDay18;
+            private global::System.Data.DataColumn columnRTB0To59M;
             
-            private global::System.Data.DataColumn columnDay19;
+            private global::System.Data.DataColumn columnRTB5To15;
             
-            private global::System.Data.DataColumn columnDay20;
+            private global::System.Data.DataColumn columnRDiarrhoeaAdult;
             
-            private global::System.Data.DataColumn columnDay21;
+            private global::System.Data.DataColumn columnRDiarrhoea15To17;
             
-            private global::System.Data.DataColumn columnDay22;
+            private global::System.Data.DataColumn columnRDiarrhoeaPost;
             
-            private global::System.Data.DataColumn columnDay23;
+            private global::System.Data.DataColumn columnRDiarrhoea0To59M;
             
-            private global::System.Data.DataColumn columnDay24;
+            private global::System.Data.DataColumn columnRDiarrhoea5To15;
             
-            private global::System.Data.DataColumn columnDay25;
+            private global::System.Data.DataColumn columnROtherOIsAdult;
             
-            private global::System.Data.DataColumn columnDay26;
+            private global::System.Data.DataColumn columnROtherOIs15To17;
             
-            private global::System.Data.DataColumn columnDay27;
+            private global::System.Data.DataColumn columnROtherOIsPost;
             
-            private global::System.Data.DataColumn columnDay28;
+            private global::System.Data.DataColumn columnROtherOIs0To59;
             
-            private global::System.Data.DataColumn columnDay29;
-            
-            private global::System.Data.DataColumn columnDay30;
-            
-            private global::System.Data.DataColumn columnDay31;
-            
-            private global::System.Data.DataColumn columnMonth;
-            
-            private global::System.Data.DataColumn columnYear;
+            private global::System.Data.DataColumn columnROtherOIs5To15;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAccountPerDeptDataTable() {
-                this.TableName = "NewAccountPerDept";
+            public ARTAndCoexistingDataTable() {
+                this.TableName = "ARTAndCoexisting";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -358,7 +350,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal NewAccountPerDeptDataTable(global::System.Data.DataTable table) {
+            internal ARTAndCoexistingDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -375,280 +367,248 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected NewAccountPerDeptDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ARTAndCoexistingDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn DepartmentColumn {
+            public global::System.Data.DataColumn NTBAdultColumn {
                 get {
-                    return this.columnDepartment;
+                    return this.columnNTBAdult;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day1Column {
+            public global::System.Data.DataColumn NTB15To17Column {
                 get {
-                    return this.columnDay1;
+                    return this.columnNTB15To17;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day2Column {
+            public global::System.Data.DataColumn NTBPostColumn {
                 get {
-                    return this.columnDay2;
+                    return this.columnNTBPost;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day3Column {
+            public global::System.Data.DataColumn NTB0To59MColumn {
                 get {
-                    return this.columnDay3;
+                    return this.columnNTB0To59M;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day4Column {
+            public global::System.Data.DataColumn NTB5To15Column {
                 get {
-                    return this.columnDay4;
+                    return this.columnNTB5To15;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day5Column {
+            public global::System.Data.DataColumn NDiarrhoeaAdultColumn {
                 get {
-                    return this.columnDay5;
+                    return this.columnNDiarrhoeaAdult;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day6Column {
+            public global::System.Data.DataColumn NDiarrhoea15To17Column {
                 get {
-                    return this.columnDay6;
+                    return this.columnNDiarrhoea15To17;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day7Column {
+            public global::System.Data.DataColumn NDiarrhoeaPostColumn {
                 get {
-                    return this.columnDay7;
+                    return this.columnNDiarrhoeaPost;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day8Column {
+            public global::System.Data.DataColumn NDiarrhoea0To59MColumn {
                 get {
-                    return this.columnDay8;
+                    return this.columnNDiarrhoea0To59M;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day9Column {
+            public global::System.Data.DataColumn NDiarrhoea5To15Column {
                 get {
-                    return this.columnDay9;
+                    return this.columnNDiarrhoea5To15;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day10Column {
+            public global::System.Data.DataColumn NOtherOIsAdultColumn {
                 get {
-                    return this.columnDay10;
+                    return this.columnNOtherOIsAdult;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day11Column {
+            public global::System.Data.DataColumn NOtherOIs15To17Column {
                 get {
-                    return this.columnDay11;
+                    return this.columnNOtherOIs15To17;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day12Column {
+            public global::System.Data.DataColumn NOtherOIsPostColumn {
                 get {
-                    return this.columnDay12;
+                    return this.columnNOtherOIsPost;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day13Column {
+            public global::System.Data.DataColumn NOtherOIs0To59MColumn {
                 get {
-                    return this.columnDay13;
+                    return this.columnNOtherOIs0To59M;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day14Column {
+            public global::System.Data.DataColumn NOtherOIs5To15Column {
                 get {
-                    return this.columnDay14;
+                    return this.columnNOtherOIs5To15;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day15Column {
+            public global::System.Data.DataColumn RTBAdultColumn {
                 get {
-                    return this.columnDay15;
+                    return this.columnRTBAdult;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day16Column {
+            public global::System.Data.DataColumn RTB15To17Column {
                 get {
-                    return this.columnDay16;
+                    return this.columnRTB15To17;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day17Column {
+            public global::System.Data.DataColumn RTBPostColumn {
                 get {
-                    return this.columnDay17;
+                    return this.columnRTBPost;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day18Column {
+            public global::System.Data.DataColumn RTB0To59MColumn {
                 get {
-                    return this.columnDay18;
+                    return this.columnRTB0To59M;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day19Column {
+            public global::System.Data.DataColumn RTB5To15Column {
                 get {
-                    return this.columnDay19;
+                    return this.columnRTB5To15;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day20Column {
+            public global::System.Data.DataColumn RDiarrhoeaAdultColumn {
                 get {
-                    return this.columnDay20;
+                    return this.columnRDiarrhoeaAdult;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day21Column {
+            public global::System.Data.DataColumn RDiarrhoea15To17Column {
                 get {
-                    return this.columnDay21;
+                    return this.columnRDiarrhoea15To17;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day22Column {
+            public global::System.Data.DataColumn RDiarrhoeaPostColumn {
                 get {
-                    return this.columnDay22;
+                    return this.columnRDiarrhoeaPost;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day23Column {
+            public global::System.Data.DataColumn RDiarrhoea0To59MColumn {
                 get {
-                    return this.columnDay23;
+                    return this.columnRDiarrhoea0To59M;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day24Column {
+            public global::System.Data.DataColumn RDiarrhoea5To15Column {
                 get {
-                    return this.columnDay24;
+                    return this.columnRDiarrhoea5To15;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day25Column {
+            public global::System.Data.DataColumn ROtherOIsAdultColumn {
                 get {
-                    return this.columnDay25;
+                    return this.columnROtherOIsAdult;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day26Column {
+            public global::System.Data.DataColumn ROtherOIs15To17Column {
                 get {
-                    return this.columnDay26;
+                    return this.columnROtherOIs15To17;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day27Column {
+            public global::System.Data.DataColumn ROtherOIsPostColumn {
                 get {
-                    return this.columnDay27;
+                    return this.columnROtherOIsPost;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day28Column {
+            public global::System.Data.DataColumn ROtherOIs0To59Column {
                 get {
-                    return this.columnDay28;
+                    return this.columnROtherOIs0To59;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day29Column {
+            public global::System.Data.DataColumn ROtherOIs5To15Column {
                 get {
-                    return this.columnDay29;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day30Column {
-                get {
-                    return this.columnDay30;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Day31Column {
-                get {
-                    return this.columnDay31;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn MonthColumn {
-                get {
-                    return this.columnMonth;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn YearColumn {
-                get {
-                    return this.columnYear;
+                    return this.columnROtherOIs5To15;
                 }
             }
             
@@ -663,112 +623,104 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAccountPerDeptRow this[int index] {
+            public ARTAndCoexistingRow this[int index] {
                 get {
-                    return ((NewAccountPerDeptRow)(this.Rows[index]));
+                    return ((ARTAndCoexistingRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event NewAccountPerDeptRowChangeEventHandler NewAccountPerDeptRowChanging;
+            public event ARTAndCoexistingRowChangeEventHandler ARTAndCoexistingRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event NewAccountPerDeptRowChangeEventHandler NewAccountPerDeptRowChanged;
+            public event ARTAndCoexistingRowChangeEventHandler ARTAndCoexistingRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event NewAccountPerDeptRowChangeEventHandler NewAccountPerDeptRowDeleting;
+            public event ARTAndCoexistingRowChangeEventHandler ARTAndCoexistingRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event NewAccountPerDeptRowChangeEventHandler NewAccountPerDeptRowDeleted;
+            public event ARTAndCoexistingRowChangeEventHandler ARTAndCoexistingRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddNewAccountPerDeptRow(NewAccountPerDeptRow row) {
+            public void AddARTAndCoexistingRow(ARTAndCoexistingRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAccountPerDeptRow AddNewAccountPerDeptRow(
-                        string Department, 
-                        int Day1, 
-                        int Day2, 
-                        int Day3, 
-                        int Day4, 
-                        int Day5, 
-                        int Day6, 
-                        int Day7, 
-                        int Day8, 
-                        int Day9, 
-                        int Day10, 
-                        int Day11, 
-                        int Day12, 
-                        int Day13, 
-                        int Day14, 
-                        int Day15, 
-                        int Day16, 
-                        int Day17, 
-                        int Day18, 
-                        int Day19, 
-                        int Day20, 
-                        int Day21, 
-                        int Day22, 
-                        int Day23, 
-                        int Day24, 
-                        int Day25, 
-                        int Day26, 
-                        int Day27, 
-                        int Day28, 
-                        int Day29, 
-                        int Day30, 
-                        int Day31, 
-                        string Month, 
-                        string Year) {
-                NewAccountPerDeptRow rowNewAccountPerDeptRow = ((NewAccountPerDeptRow)(this.NewRow()));
+            public ARTAndCoexistingRow AddARTAndCoexistingRow(
+                        string NTBAdult, 
+                        string NTB15To17, 
+                        string NTBPost, 
+                        string NTB0To59M, 
+                        string NTB5To15, 
+                        string NDiarrhoeaAdult, 
+                        string NDiarrhoea15To17, 
+                        string NDiarrhoeaPost, 
+                        string NDiarrhoea0To59M, 
+                        string NDiarrhoea5To15, 
+                        string NOtherOIsAdult, 
+                        string NOtherOIs15To17, 
+                        string NOtherOIsPost, 
+                        string NOtherOIs0To59M, 
+                        string NOtherOIs5To15, 
+                        string RTBAdult, 
+                        string RTB15To17, 
+                        string RTBPost, 
+                        string RTB0To59M, 
+                        string RTB5To15, 
+                        string RDiarrhoeaAdult, 
+                        string RDiarrhoea15To17, 
+                        string RDiarrhoeaPost, 
+                        string RDiarrhoea0To59M, 
+                        string RDiarrhoea5To15, 
+                        string ROtherOIsAdult, 
+                        string ROtherOIs15To17, 
+                        string ROtherOIsPost, 
+                        string ROtherOIs0To59, 
+                        string ROtherOIs5To15) {
+                ARTAndCoexistingRow rowARTAndCoexistingRow = ((ARTAndCoexistingRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Department,
-                        Day1,
-                        Day2,
-                        Day3,
-                        Day4,
-                        Day5,
-                        Day6,
-                        Day7,
-                        Day8,
-                        Day9,
-                        Day10,
-                        Day11,
-                        Day12,
-                        Day13,
-                        Day14,
-                        Day15,
-                        Day16,
-                        Day17,
-                        Day18,
-                        Day19,
-                        Day20,
-                        Day21,
-                        Day22,
-                        Day23,
-                        Day24,
-                        Day25,
-                        Day26,
-                        Day27,
-                        Day28,
-                        Day29,
-                        Day30,
-                        Day31,
-                        Month,
-                        Year};
-                rowNewAccountPerDeptRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowNewAccountPerDeptRow);
-                return rowNewAccountPerDeptRow;
+                        NTBAdult,
+                        NTB15To17,
+                        NTBPost,
+                        NTB0To59M,
+                        NTB5To15,
+                        NDiarrhoeaAdult,
+                        NDiarrhoea15To17,
+                        NDiarrhoeaPost,
+                        NDiarrhoea0To59M,
+                        NDiarrhoea5To15,
+                        NOtherOIsAdult,
+                        NOtherOIs15To17,
+                        NOtherOIsPost,
+                        NOtherOIs0To59M,
+                        NOtherOIs5To15,
+                        RTBAdult,
+                        RTB15To17,
+                        RTBPost,
+                        RTB0To59M,
+                        RTB5To15,
+                        RDiarrhoeaAdult,
+                        RDiarrhoea15To17,
+                        RDiarrhoeaPost,
+                        RDiarrhoea0To59M,
+                        RDiarrhoea5To15,
+                        ROtherOIsAdult,
+                        ROtherOIs15To17,
+                        ROtherOIsPost,
+                        ROtherOIs0To59,
+                        ROtherOIs5To15};
+                rowARTAndCoexistingRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowARTAndCoexistingRow);
+                return rowARTAndCoexistingRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                NewAccountPerDeptDataTable cln = ((NewAccountPerDeptDataTable)(base.Clone()));
+                ARTAndCoexistingDataTable cln = ((ARTAndCoexistingDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -776,145 +728,135 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new NewAccountPerDeptDataTable();
+                return new ARTAndCoexistingDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnDepartment = base.Columns["Department"];
-                this.columnDay1 = base.Columns["Day1"];
-                this.columnDay2 = base.Columns["Day2"];
-                this.columnDay3 = base.Columns["Day3"];
-                this.columnDay4 = base.Columns["Day4"];
-                this.columnDay5 = base.Columns["Day5"];
-                this.columnDay6 = base.Columns["Day6"];
-                this.columnDay7 = base.Columns["Day7"];
-                this.columnDay8 = base.Columns["Day8"];
-                this.columnDay9 = base.Columns["Day9"];
-                this.columnDay10 = base.Columns["Day10"];
-                this.columnDay11 = base.Columns["Day11"];
-                this.columnDay12 = base.Columns["Day12"];
-                this.columnDay13 = base.Columns["Day13"];
-                this.columnDay14 = base.Columns["Day14"];
-                this.columnDay15 = base.Columns["Day15"];
-                this.columnDay16 = base.Columns["Day16"];
-                this.columnDay17 = base.Columns["Day17"];
-                this.columnDay18 = base.Columns["Day18"];
-                this.columnDay19 = base.Columns["Day19"];
-                this.columnDay20 = base.Columns["Day20"];
-                this.columnDay21 = base.Columns["Day21"];
-                this.columnDay22 = base.Columns["Day22"];
-                this.columnDay23 = base.Columns["Day23"];
-                this.columnDay24 = base.Columns["Day24"];
-                this.columnDay25 = base.Columns["Day25"];
-                this.columnDay26 = base.Columns["Day26"];
-                this.columnDay27 = base.Columns["Day27"];
-                this.columnDay28 = base.Columns["Day28"];
-                this.columnDay29 = base.Columns["Day29"];
-                this.columnDay30 = base.Columns["Day30"];
-                this.columnDay31 = base.Columns["Day31"];
-                this.columnMonth = base.Columns["Month"];
-                this.columnYear = base.Columns["Year"];
+                this.columnNTBAdult = base.Columns["NTBAdult"];
+                this.columnNTB15To17 = base.Columns["NTB15To17"];
+                this.columnNTBPost = base.Columns["NTBPost"];
+                this.columnNTB0To59M = base.Columns["NTB0To59M"];
+                this.columnNTB5To15 = base.Columns["NTB5To15"];
+                this.columnNDiarrhoeaAdult = base.Columns["NDiarrhoeaAdult"];
+                this.columnNDiarrhoea15To17 = base.Columns["NDiarrhoea15To17"];
+                this.columnNDiarrhoeaPost = base.Columns["NDiarrhoeaPost"];
+                this.columnNDiarrhoea0To59M = base.Columns["NDiarrhoea0To59M"];
+                this.columnNDiarrhoea5To15 = base.Columns["NDiarrhoea5To15"];
+                this.columnNOtherOIsAdult = base.Columns["NOtherOIsAdult"];
+                this.columnNOtherOIs15To17 = base.Columns["NOtherOIs15To17"];
+                this.columnNOtherOIsPost = base.Columns["NOtherOIsPost"];
+                this.columnNOtherOIs0To59M = base.Columns["NOtherOIs0To59M"];
+                this.columnNOtherOIs5To15 = base.Columns["NOtherOIs5To15"];
+                this.columnRTBAdult = base.Columns["RTBAdult"];
+                this.columnRTB15To17 = base.Columns["RTB15To17"];
+                this.columnRTBPost = base.Columns["RTBPost"];
+                this.columnRTB0To59M = base.Columns["RTB0To59M"];
+                this.columnRTB5To15 = base.Columns["RTB5To15"];
+                this.columnRDiarrhoeaAdult = base.Columns["RDiarrhoeaAdult"];
+                this.columnRDiarrhoea15To17 = base.Columns["RDiarrhoea15To17"];
+                this.columnRDiarrhoeaPost = base.Columns["RDiarrhoeaPost"];
+                this.columnRDiarrhoea0To59M = base.Columns["RDiarrhoea0To59M"];
+                this.columnRDiarrhoea5To15 = base.Columns["RDiarrhoea5To15"];
+                this.columnROtherOIsAdult = base.Columns["ROtherOIsAdult"];
+                this.columnROtherOIs15To17 = base.Columns["ROtherOIs15To17"];
+                this.columnROtherOIsPost = base.Columns["ROtherOIsPost"];
+                this.columnROtherOIs0To59 = base.Columns["ROtherOIs0To59"];
+                this.columnROtherOIs5To15 = base.Columns["ROtherOIs5To15"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnDepartment = new global::System.Data.DataColumn("Department", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDepartment);
-                this.columnDay1 = new global::System.Data.DataColumn("Day1", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay1);
-                this.columnDay2 = new global::System.Data.DataColumn("Day2", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay2);
-                this.columnDay3 = new global::System.Data.DataColumn("Day3", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay3);
-                this.columnDay4 = new global::System.Data.DataColumn("Day4", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay4);
-                this.columnDay5 = new global::System.Data.DataColumn("Day5", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay5);
-                this.columnDay6 = new global::System.Data.DataColumn("Day6", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay6);
-                this.columnDay7 = new global::System.Data.DataColumn("Day7", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay7);
-                this.columnDay8 = new global::System.Data.DataColumn("Day8", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay8);
-                this.columnDay9 = new global::System.Data.DataColumn("Day9", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay9);
-                this.columnDay10 = new global::System.Data.DataColumn("Day10", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay10);
-                this.columnDay11 = new global::System.Data.DataColumn("Day11", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay11);
-                this.columnDay12 = new global::System.Data.DataColumn("Day12", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay12);
-                this.columnDay13 = new global::System.Data.DataColumn("Day13", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay13);
-                this.columnDay14 = new global::System.Data.DataColumn("Day14", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay14);
-                this.columnDay15 = new global::System.Data.DataColumn("Day15", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay15);
-                this.columnDay16 = new global::System.Data.DataColumn("Day16", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay16);
-                this.columnDay17 = new global::System.Data.DataColumn("Day17", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay17);
-                this.columnDay18 = new global::System.Data.DataColumn("Day18", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay18);
-                this.columnDay19 = new global::System.Data.DataColumn("Day19", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay19);
-                this.columnDay20 = new global::System.Data.DataColumn("Day20", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay20);
-                this.columnDay21 = new global::System.Data.DataColumn("Day21", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay21);
-                this.columnDay22 = new global::System.Data.DataColumn("Day22", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay22);
-                this.columnDay23 = new global::System.Data.DataColumn("Day23", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay23);
-                this.columnDay24 = new global::System.Data.DataColumn("Day24", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay24);
-                this.columnDay25 = new global::System.Data.DataColumn("Day25", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay25);
-                this.columnDay26 = new global::System.Data.DataColumn("Day26", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay26);
-                this.columnDay27 = new global::System.Data.DataColumn("Day27", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay27);
-                this.columnDay28 = new global::System.Data.DataColumn("Day28", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay28);
-                this.columnDay29 = new global::System.Data.DataColumn("Day29", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay29);
-                this.columnDay30 = new global::System.Data.DataColumn("Day30", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay30);
-                this.columnDay31 = new global::System.Data.DataColumn("Day31", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDay31);
-                this.columnMonth = new global::System.Data.DataColumn("Month", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMonth);
-                this.columnYear = new global::System.Data.DataColumn("Year", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnYear);
+                this.columnNTBAdult = new global::System.Data.DataColumn("NTBAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNTBAdult);
+                this.columnNTB15To17 = new global::System.Data.DataColumn("NTB15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNTB15To17);
+                this.columnNTBPost = new global::System.Data.DataColumn("NTBPost", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNTBPost);
+                this.columnNTB0To59M = new global::System.Data.DataColumn("NTB0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNTB0To59M);
+                this.columnNTB5To15 = new global::System.Data.DataColumn("NTB5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNTB5To15);
+                this.columnNDiarrhoeaAdult = new global::System.Data.DataColumn("NDiarrhoeaAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNDiarrhoeaAdult);
+                this.columnNDiarrhoea15To17 = new global::System.Data.DataColumn("NDiarrhoea15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNDiarrhoea15To17);
+                this.columnNDiarrhoeaPost = new global::System.Data.DataColumn("NDiarrhoeaPost", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNDiarrhoeaPost);
+                this.columnNDiarrhoea0To59M = new global::System.Data.DataColumn("NDiarrhoea0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNDiarrhoea0To59M);
+                this.columnNDiarrhoea5To15 = new global::System.Data.DataColumn("NDiarrhoea5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNDiarrhoea5To15);
+                this.columnNOtherOIsAdult = new global::System.Data.DataColumn("NOtherOIsAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNOtherOIsAdult);
+                this.columnNOtherOIs15To17 = new global::System.Data.DataColumn("NOtherOIs15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNOtherOIs15To17);
+                this.columnNOtherOIsPost = new global::System.Data.DataColumn("NOtherOIsPost", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNOtherOIsPost);
+                this.columnNOtherOIs0To59M = new global::System.Data.DataColumn("NOtherOIs0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNOtherOIs0To59M);
+                this.columnNOtherOIs5To15 = new global::System.Data.DataColumn("NOtherOIs5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNOtherOIs5To15);
+                this.columnRTBAdult = new global::System.Data.DataColumn("RTBAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRTBAdult);
+                this.columnRTB15To17 = new global::System.Data.DataColumn("RTB15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRTB15To17);
+                this.columnRTBPost = new global::System.Data.DataColumn("RTBPost", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRTBPost);
+                this.columnRTB0To59M = new global::System.Data.DataColumn("RTB0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRTB0To59M);
+                this.columnRTB5To15 = new global::System.Data.DataColumn("RTB5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRTB5To15);
+                this.columnRDiarrhoeaAdult = new global::System.Data.DataColumn("RDiarrhoeaAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRDiarrhoeaAdult);
+                this.columnRDiarrhoea15To17 = new global::System.Data.DataColumn("RDiarrhoea15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRDiarrhoea15To17);
+                this.columnRDiarrhoeaPost = new global::System.Data.DataColumn("RDiarrhoeaPost", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRDiarrhoeaPost);
+                this.columnRDiarrhoea0To59M = new global::System.Data.DataColumn("RDiarrhoea0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRDiarrhoea0To59M);
+                this.columnRDiarrhoea5To15 = new global::System.Data.DataColumn("RDiarrhoea5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRDiarrhoea5To15);
+                this.columnROtherOIsAdult = new global::System.Data.DataColumn("ROtherOIsAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnROtherOIsAdult);
+                this.columnROtherOIs15To17 = new global::System.Data.DataColumn("ROtherOIs15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnROtherOIs15To17);
+                this.columnROtherOIsPost = new global::System.Data.DataColumn("ROtherOIsPost", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnROtherOIsPost);
+                this.columnROtherOIs0To59 = new global::System.Data.DataColumn("ROtherOIs0To59", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnROtherOIs0To59);
+                this.columnROtherOIs5To15 = new global::System.Data.DataColumn("ROtherOIs5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnROtherOIs5To15);
+                this.ExtendedProperties.Add("Generator_TablePropName", "_ARTAndCoexisting");
+                this.ExtendedProperties.Add("Generator_UserTableName", "ARTAndCoexisting");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAccountPerDeptRow NewNewAccountPerDeptRow() {
-                return ((NewAccountPerDeptRow)(this.NewRow()));
+            public ARTAndCoexistingRow NewARTAndCoexistingRow() {
+                return ((ARTAndCoexistingRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new NewAccountPerDeptRow(builder);
+                return new ARTAndCoexistingRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(NewAccountPerDeptRow);
+                return typeof(ARTAndCoexistingRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.NewAccountPerDeptRowChanged != null)) {
-                    this.NewAccountPerDeptRowChanged(this, new NewAccountPerDeptRowChangeEvent(((NewAccountPerDeptRow)(e.Row)), e.Action));
+                if ((this.ARTAndCoexistingRowChanged != null)) {
+                    this.ARTAndCoexistingRowChanged(this, new ARTAndCoexistingRowChangeEvent(((ARTAndCoexistingRow)(e.Row)), e.Action));
                 }
             }
             
@@ -922,8 +864,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.NewAccountPerDeptRowChanging != null)) {
-                    this.NewAccountPerDeptRowChanging(this, new NewAccountPerDeptRowChangeEvent(((NewAccountPerDeptRow)(e.Row)), e.Action));
+                if ((this.ARTAndCoexistingRowChanging != null)) {
+                    this.ARTAndCoexistingRowChanging(this, new ARTAndCoexistingRowChangeEvent(((ARTAndCoexistingRow)(e.Row)), e.Action));
                 }
             }
             
@@ -931,8 +873,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.NewAccountPerDeptRowDeleted != null)) {
-                    this.NewAccountPerDeptRowDeleted(this, new NewAccountPerDeptRowChangeEvent(((NewAccountPerDeptRow)(e.Row)), e.Action));
+                if ((this.ARTAndCoexistingRowDeleted != null)) {
+                    this.ARTAndCoexistingRowDeleted(this, new ARTAndCoexistingRowChangeEvent(((ARTAndCoexistingRow)(e.Row)), e.Action));
                 }
             }
             
@@ -940,14 +882,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.NewAccountPerDeptRowDeleting != null)) {
-                    this.NewAccountPerDeptRowDeleting(this, new NewAccountPerDeptRowChangeEvent(((NewAccountPerDeptRow)(e.Row)), e.Action));
+                if ((this.ARTAndCoexistingRowDeleting != null)) {
+                    this.ARTAndCoexistingRowDeleting(this, new ARTAndCoexistingRowChangeEvent(((ARTAndCoexistingRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveNewAccountPerDeptRow(NewAccountPerDeptRow row) {
+            public void RemoveARTAndCoexistingRow(ARTAndCoexistingRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -956,7 +898,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NewStatementOfAccount ds = new NewStatementOfAccount();
+                ARTAndCoexisting ds = new ARTAndCoexisting();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -974,7 +916,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "NewAccountPerDeptDataTable";
+                attribute2.FixedValue = "ARTAndCoexistingDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1018,967 +960,855 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class NewAccountPerDeptRow : global::System.Data.DataRow {
+        public partial class ARTAndCoexistingRow : global::System.Data.DataRow {
             
-            private NewAccountPerDeptDataTable tableNewAccountPerDept;
+            private ARTAndCoexistingDataTable tableARTAndCoexisting;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal NewAccountPerDeptRow(global::System.Data.DataRowBuilder rb) : 
+            internal ARTAndCoexistingRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableNewAccountPerDept = ((NewAccountPerDeptDataTable)(this.Table));
+                this.tableARTAndCoexisting = ((ARTAndCoexistingDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Department {
+            public string NTBAdult {
                 get {
                     try {
-                        return ((string)(this[this.tableNewAccountPerDept.DepartmentColumn]));
+                        return ((string)(this[this.tableARTAndCoexisting.NTBAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Department\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NTBAdult\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.DepartmentColumn] = value;
+                    this[this.tableARTAndCoexisting.NTBAdultColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day1 {
+            public string NTB15To17 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day1Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.NTB15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day1\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NTB15To17\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day1Column] = value;
+                    this[this.tableARTAndCoexisting.NTB15To17Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day2 {
+            public string NTBPost {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day2Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.NTBPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day2\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NTBPost\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day2Column] = value;
+                    this[this.tableARTAndCoexisting.NTBPostColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day3 {
+            public string NTB0To59M {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day3Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.NTB0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day3\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NTB0To59M\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day3Column] = value;
+                    this[this.tableARTAndCoexisting.NTB0To59MColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day4 {
+            public string NTB5To15 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day4Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.NTB5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day4\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NTB5To15\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day4Column] = value;
+                    this[this.tableARTAndCoexisting.NTB5To15Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day5 {
+            public string NDiarrhoeaAdult {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day5Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.NDiarrhoeaAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day5\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NDiarrhoeaAdult\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day5Column] = value;
+                    this[this.tableARTAndCoexisting.NDiarrhoeaAdultColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day6 {
+            public string NDiarrhoea15To17 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day6Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.NDiarrhoea15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day6\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NDiarrhoea15To17\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day6Column] = value;
+                    this[this.tableARTAndCoexisting.NDiarrhoea15To17Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day7 {
+            public string NDiarrhoeaPost {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day7Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.NDiarrhoeaPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day7\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NDiarrhoeaPost\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day7Column] = value;
+                    this[this.tableARTAndCoexisting.NDiarrhoeaPostColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day8 {
+            public string NDiarrhoea0To59M {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day8Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.NDiarrhoea0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day8\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NDiarrhoea0To59M\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day8Column] = value;
+                    this[this.tableARTAndCoexisting.NDiarrhoea0To59MColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day9 {
+            public string NDiarrhoea5To15 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day9Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.NDiarrhoea5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day9\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NDiarrhoea5To15\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day9Column] = value;
+                    this[this.tableARTAndCoexisting.NDiarrhoea5To15Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day10 {
+            public string NOtherOIsAdult {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day10Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.NOtherOIsAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day10\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NOtherOIsAdult\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day10Column] = value;
+                    this[this.tableARTAndCoexisting.NOtherOIsAdultColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day11 {
+            public string NOtherOIs15To17 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day11Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.NOtherOIs15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day11\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NOtherOIs15To17\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day11Column] = value;
+                    this[this.tableARTAndCoexisting.NOtherOIs15To17Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day12 {
+            public string NOtherOIsPost {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day12Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.NOtherOIsPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day12\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NOtherOIsPost\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day12Column] = value;
+                    this[this.tableARTAndCoexisting.NOtherOIsPostColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day13 {
+            public string NOtherOIs0To59M {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day13Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.NOtherOIs0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day13\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NOtherOIs0To59M\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day13Column] = value;
+                    this[this.tableARTAndCoexisting.NOtherOIs0To59MColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day14 {
+            public string NOtherOIs5To15 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day14Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.NOtherOIs5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day14\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NOtherOIs5To15\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day14Column] = value;
+                    this[this.tableARTAndCoexisting.NOtherOIs5To15Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day15 {
+            public string RTBAdult {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day15Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.RTBAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day15\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RTBAdult\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day15Column] = value;
+                    this[this.tableARTAndCoexisting.RTBAdultColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day16 {
+            public string RTB15To17 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day16Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.RTB15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day16\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RTB15To17\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day16Column] = value;
+                    this[this.tableARTAndCoexisting.RTB15To17Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day17 {
+            public string RTBPost {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day17Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.RTBPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day17\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RTBPost\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day17Column] = value;
+                    this[this.tableARTAndCoexisting.RTBPostColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day18 {
+            public string RTB0To59M {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day18Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.RTB0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day18\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RTB0To59M\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day18Column] = value;
+                    this[this.tableARTAndCoexisting.RTB0To59MColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day19 {
+            public string RTB5To15 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day19Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.RTB5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day19\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RTB5To15\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day19Column] = value;
+                    this[this.tableARTAndCoexisting.RTB5To15Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day20 {
+            public string RDiarrhoeaAdult {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day20Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.RDiarrhoeaAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day20\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RDiarrhoeaAdult\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day20Column] = value;
+                    this[this.tableARTAndCoexisting.RDiarrhoeaAdultColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day21 {
+            public string RDiarrhoea15To17 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day21Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.RDiarrhoea15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day21\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RDiarrhoea15To17\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day21Column] = value;
+                    this[this.tableARTAndCoexisting.RDiarrhoea15To17Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day22 {
+            public string RDiarrhoeaPost {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day22Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.RDiarrhoeaPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day22\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RDiarrhoeaPost\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day22Column] = value;
+                    this[this.tableARTAndCoexisting.RDiarrhoeaPostColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day23 {
+            public string RDiarrhoea0To59M {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day23Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.RDiarrhoea0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day23\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RDiarrhoea0To59M\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day23Column] = value;
+                    this[this.tableARTAndCoexisting.RDiarrhoea0To59MColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day24 {
+            public string RDiarrhoea5To15 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day24Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.RDiarrhoea5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day24\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RDiarrhoea5To15\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day24Column] = value;
+                    this[this.tableARTAndCoexisting.RDiarrhoea5To15Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day25 {
+            public string ROtherOIsAdult {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day25Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.ROtherOIsAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day25\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ROtherOIsAdult\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day25Column] = value;
+                    this[this.tableARTAndCoexisting.ROtherOIsAdultColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day26 {
+            public string ROtherOIs15To17 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day26Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.ROtherOIs15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day26\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ROtherOIs15To17\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day26Column] = value;
+                    this[this.tableARTAndCoexisting.ROtherOIs15To17Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day27 {
+            public string ROtherOIsPost {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day27Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.ROtherOIsPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day27\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ROtherOIsPost\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day27Column] = value;
+                    this[this.tableARTAndCoexisting.ROtherOIsPostColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day28 {
+            public string ROtherOIs0To59 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day28Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.ROtherOIs0To59Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day28\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ROtherOIs0To59\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day28Column] = value;
+                    this[this.tableARTAndCoexisting.ROtherOIs0To59Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day29 {
+            public string ROtherOIs5To15 {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day29Column]));
+                        return ((string)(this[this.tableARTAndCoexisting.ROtherOIs5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day29\' in table \'NewAccountPerDept\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ROtherOIs5To15\' in table \'ARTAndCoexisting\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAccountPerDept.Day29Column] = value;
+                    this[this.tableARTAndCoexisting.ROtherOIs5To15Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day30 {
-                get {
-                    try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day30Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day30\' in table \'NewAccountPerDept\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNewAccountPerDept.Day30Column] = value;
-                }
+            public bool IsNTBAdultNull() {
+                return this.IsNull(this.tableARTAndCoexisting.NTBAdultColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Day31 {
-                get {
-                    try {
-                        return ((int)(this[this.tableNewAccountPerDept.Day31Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Day31\' in table \'NewAccountPerDept\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNewAccountPerDept.Day31Column] = value;
-                }
+            public void SetNTBAdultNull() {
+                this[this.tableARTAndCoexisting.NTBAdultColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Month {
-                get {
-                    try {
-                        return ((string)(this[this.tableNewAccountPerDept.MonthColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Month\' in table \'NewAccountPerDept\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNewAccountPerDept.MonthColumn] = value;
-                }
+            public bool IsNTB15To17Null() {
+                return this.IsNull(this.tableARTAndCoexisting.NTB15To17Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Year {
-                get {
-                    try {
-                        return ((string)(this[this.tableNewAccountPerDept.YearColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Year\' in table \'NewAccountPerDept\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNewAccountPerDept.YearColumn] = value;
-                }
+            public void SetNTB15To17Null() {
+                this[this.tableARTAndCoexisting.NTB15To17Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDepartmentNull() {
-                return this.IsNull(this.tableNewAccountPerDept.DepartmentColumn);
+            public bool IsNTBPostNull() {
+                return this.IsNull(this.tableARTAndCoexisting.NTBPostColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDepartmentNull() {
-                this[this.tableNewAccountPerDept.DepartmentColumn] = global::System.Convert.DBNull;
+            public void SetNTBPostNull() {
+                this[this.tableARTAndCoexisting.NTBPostColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay1Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day1Column);
+            public bool IsNTB0To59MNull() {
+                return this.IsNull(this.tableARTAndCoexisting.NTB0To59MColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay1Null() {
-                this[this.tableNewAccountPerDept.Day1Column] = global::System.Convert.DBNull;
+            public void SetNTB0To59MNull() {
+                this[this.tableARTAndCoexisting.NTB0To59MColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay2Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day2Column);
+            public bool IsNTB5To15Null() {
+                return this.IsNull(this.tableARTAndCoexisting.NTB5To15Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay2Null() {
-                this[this.tableNewAccountPerDept.Day2Column] = global::System.Convert.DBNull;
+            public void SetNTB5To15Null() {
+                this[this.tableARTAndCoexisting.NTB5To15Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay3Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day3Column);
+            public bool IsNDiarrhoeaAdultNull() {
+                return this.IsNull(this.tableARTAndCoexisting.NDiarrhoeaAdultColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay3Null() {
-                this[this.tableNewAccountPerDept.Day3Column] = global::System.Convert.DBNull;
+            public void SetNDiarrhoeaAdultNull() {
+                this[this.tableARTAndCoexisting.NDiarrhoeaAdultColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay4Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day4Column);
+            public bool IsNDiarrhoea15To17Null() {
+                return this.IsNull(this.tableARTAndCoexisting.NDiarrhoea15To17Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay4Null() {
-                this[this.tableNewAccountPerDept.Day4Column] = global::System.Convert.DBNull;
+            public void SetNDiarrhoea15To17Null() {
+                this[this.tableARTAndCoexisting.NDiarrhoea15To17Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay5Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day5Column);
+            public bool IsNDiarrhoeaPostNull() {
+                return this.IsNull(this.tableARTAndCoexisting.NDiarrhoeaPostColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay5Null() {
-                this[this.tableNewAccountPerDept.Day5Column] = global::System.Convert.DBNull;
+            public void SetNDiarrhoeaPostNull() {
+                this[this.tableARTAndCoexisting.NDiarrhoeaPostColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay6Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day6Column);
+            public bool IsNDiarrhoea0To59MNull() {
+                return this.IsNull(this.tableARTAndCoexisting.NDiarrhoea0To59MColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay6Null() {
-                this[this.tableNewAccountPerDept.Day6Column] = global::System.Convert.DBNull;
+            public void SetNDiarrhoea0To59MNull() {
+                this[this.tableARTAndCoexisting.NDiarrhoea0To59MColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay7Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day7Column);
+            public bool IsNDiarrhoea5To15Null() {
+                return this.IsNull(this.tableARTAndCoexisting.NDiarrhoea5To15Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay7Null() {
-                this[this.tableNewAccountPerDept.Day7Column] = global::System.Convert.DBNull;
+            public void SetNDiarrhoea5To15Null() {
+                this[this.tableARTAndCoexisting.NDiarrhoea5To15Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay8Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day8Column);
+            public bool IsNOtherOIsAdultNull() {
+                return this.IsNull(this.tableARTAndCoexisting.NOtherOIsAdultColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay8Null() {
-                this[this.tableNewAccountPerDept.Day8Column] = global::System.Convert.DBNull;
+            public void SetNOtherOIsAdultNull() {
+                this[this.tableARTAndCoexisting.NOtherOIsAdultColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay9Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day9Column);
+            public bool IsNOtherOIs15To17Null() {
+                return this.IsNull(this.tableARTAndCoexisting.NOtherOIs15To17Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay9Null() {
-                this[this.tableNewAccountPerDept.Day9Column] = global::System.Convert.DBNull;
+            public void SetNOtherOIs15To17Null() {
+                this[this.tableARTAndCoexisting.NOtherOIs15To17Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay10Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day10Column);
+            public bool IsNOtherOIsPostNull() {
+                return this.IsNull(this.tableARTAndCoexisting.NOtherOIsPostColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay10Null() {
-                this[this.tableNewAccountPerDept.Day10Column] = global::System.Convert.DBNull;
+            public void SetNOtherOIsPostNull() {
+                this[this.tableARTAndCoexisting.NOtherOIsPostColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay11Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day11Column);
+            public bool IsNOtherOIs0To59MNull() {
+                return this.IsNull(this.tableARTAndCoexisting.NOtherOIs0To59MColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay11Null() {
-                this[this.tableNewAccountPerDept.Day11Column] = global::System.Convert.DBNull;
+            public void SetNOtherOIs0To59MNull() {
+                this[this.tableARTAndCoexisting.NOtherOIs0To59MColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay12Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day12Column);
+            public bool IsNOtherOIs5To15Null() {
+                return this.IsNull(this.tableARTAndCoexisting.NOtherOIs5To15Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay12Null() {
-                this[this.tableNewAccountPerDept.Day12Column] = global::System.Convert.DBNull;
+            public void SetNOtherOIs5To15Null() {
+                this[this.tableARTAndCoexisting.NOtherOIs5To15Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay13Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day13Column);
+            public bool IsRTBAdultNull() {
+                return this.IsNull(this.tableARTAndCoexisting.RTBAdultColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay13Null() {
-                this[this.tableNewAccountPerDept.Day13Column] = global::System.Convert.DBNull;
+            public void SetRTBAdultNull() {
+                this[this.tableARTAndCoexisting.RTBAdultColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay14Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day14Column);
+            public bool IsRTB15To17Null() {
+                return this.IsNull(this.tableARTAndCoexisting.RTB15To17Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay14Null() {
-                this[this.tableNewAccountPerDept.Day14Column] = global::System.Convert.DBNull;
+            public void SetRTB15To17Null() {
+                this[this.tableARTAndCoexisting.RTB15To17Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay15Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day15Column);
+            public bool IsRTBPostNull() {
+                return this.IsNull(this.tableARTAndCoexisting.RTBPostColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay15Null() {
-                this[this.tableNewAccountPerDept.Day15Column] = global::System.Convert.DBNull;
+            public void SetRTBPostNull() {
+                this[this.tableARTAndCoexisting.RTBPostColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay16Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day16Column);
+            public bool IsRTB0To59MNull() {
+                return this.IsNull(this.tableARTAndCoexisting.RTB0To59MColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay16Null() {
-                this[this.tableNewAccountPerDept.Day16Column] = global::System.Convert.DBNull;
+            public void SetRTB0To59MNull() {
+                this[this.tableARTAndCoexisting.RTB0To59MColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay17Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day17Column);
+            public bool IsRTB5To15Null() {
+                return this.IsNull(this.tableARTAndCoexisting.RTB5To15Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay17Null() {
-                this[this.tableNewAccountPerDept.Day17Column] = global::System.Convert.DBNull;
+            public void SetRTB5To15Null() {
+                this[this.tableARTAndCoexisting.RTB5To15Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay18Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day18Column);
+            public bool IsRDiarrhoeaAdultNull() {
+                return this.IsNull(this.tableARTAndCoexisting.RDiarrhoeaAdultColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay18Null() {
-                this[this.tableNewAccountPerDept.Day18Column] = global::System.Convert.DBNull;
+            public void SetRDiarrhoeaAdultNull() {
+                this[this.tableARTAndCoexisting.RDiarrhoeaAdultColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay19Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day19Column);
+            public bool IsRDiarrhoea15To17Null() {
+                return this.IsNull(this.tableARTAndCoexisting.RDiarrhoea15To17Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay19Null() {
-                this[this.tableNewAccountPerDept.Day19Column] = global::System.Convert.DBNull;
+            public void SetRDiarrhoea15To17Null() {
+                this[this.tableARTAndCoexisting.RDiarrhoea15To17Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay20Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day20Column);
+            public bool IsRDiarrhoeaPostNull() {
+                return this.IsNull(this.tableARTAndCoexisting.RDiarrhoeaPostColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay20Null() {
-                this[this.tableNewAccountPerDept.Day20Column] = global::System.Convert.DBNull;
+            public void SetRDiarrhoeaPostNull() {
+                this[this.tableARTAndCoexisting.RDiarrhoeaPostColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay21Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day21Column);
+            public bool IsRDiarrhoea0To59MNull() {
+                return this.IsNull(this.tableARTAndCoexisting.RDiarrhoea0To59MColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay21Null() {
-                this[this.tableNewAccountPerDept.Day21Column] = global::System.Convert.DBNull;
+            public void SetRDiarrhoea0To59MNull() {
+                this[this.tableARTAndCoexisting.RDiarrhoea0To59MColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay22Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day22Column);
+            public bool IsRDiarrhoea5To15Null() {
+                return this.IsNull(this.tableARTAndCoexisting.RDiarrhoea5To15Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay22Null() {
-                this[this.tableNewAccountPerDept.Day22Column] = global::System.Convert.DBNull;
+            public void SetRDiarrhoea5To15Null() {
+                this[this.tableARTAndCoexisting.RDiarrhoea5To15Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay23Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day23Column);
+            public bool IsROtherOIsAdultNull() {
+                return this.IsNull(this.tableARTAndCoexisting.ROtherOIsAdultColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay23Null() {
-                this[this.tableNewAccountPerDept.Day23Column] = global::System.Convert.DBNull;
+            public void SetROtherOIsAdultNull() {
+                this[this.tableARTAndCoexisting.ROtherOIsAdultColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay24Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day24Column);
+            public bool IsROtherOIs15To17Null() {
+                return this.IsNull(this.tableARTAndCoexisting.ROtherOIs15To17Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay24Null() {
-                this[this.tableNewAccountPerDept.Day24Column] = global::System.Convert.DBNull;
+            public void SetROtherOIs15To17Null() {
+                this[this.tableARTAndCoexisting.ROtherOIs15To17Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay25Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day25Column);
+            public bool IsROtherOIsPostNull() {
+                return this.IsNull(this.tableARTAndCoexisting.ROtherOIsPostColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay25Null() {
-                this[this.tableNewAccountPerDept.Day25Column] = global::System.Convert.DBNull;
+            public void SetROtherOIsPostNull() {
+                this[this.tableARTAndCoexisting.ROtherOIsPostColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay26Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day26Column);
+            public bool IsROtherOIs0To59Null() {
+                return this.IsNull(this.tableARTAndCoexisting.ROtherOIs0To59Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay26Null() {
-                this[this.tableNewAccountPerDept.Day26Column] = global::System.Convert.DBNull;
+            public void SetROtherOIs0To59Null() {
+                this[this.tableARTAndCoexisting.ROtherOIs0To59Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay27Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day27Column);
+            public bool IsROtherOIs5To15Null() {
+                return this.IsNull(this.tableARTAndCoexisting.ROtherOIs5To15Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay27Null() {
-                this[this.tableNewAccountPerDept.Day27Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay28Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day28Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay28Null() {
-                this[this.tableNewAccountPerDept.Day28Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay29Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day29Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay29Null() {
-                this[this.tableNewAccountPerDept.Day29Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay30Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day30Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay30Null() {
-                this[this.tableNewAccountPerDept.Day30Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDay31Null() {
-                return this.IsNull(this.tableNewAccountPerDept.Day31Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDay31Null() {
-                this[this.tableNewAccountPerDept.Day31Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsMonthNull() {
-                return this.IsNull(this.tableNewAccountPerDept.MonthColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetMonthNull() {
-                this[this.tableNewAccountPerDept.MonthColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsYearNull() {
-                return this.IsNull(this.tableNewAccountPerDept.YearColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetYearNull() {
-                this[this.tableNewAccountPerDept.YearColumn] = global::System.Convert.DBNull;
+            public void SetROtherOIs5To15Null() {
+                this[this.tableARTAndCoexisting.ROtherOIs5To15Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -1986,22 +1816,22 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.StatementPerScheme.Statemen
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class NewAccountPerDeptRowChangeEvent : global::System.EventArgs {
+        public class ARTAndCoexistingRowChangeEvent : global::System.EventArgs {
             
-            private NewAccountPerDeptRow eventRow;
+            private ARTAndCoexistingRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAccountPerDeptRowChangeEvent(NewAccountPerDeptRow row, global::System.Data.DataRowAction action) {
+            public ARTAndCoexistingRowChangeEvent(ARTAndCoexistingRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAccountPerDeptRow Row {
+            public ARTAndCoexistingRow Row {
                 get {
                     return this.eventRow;
                 }
