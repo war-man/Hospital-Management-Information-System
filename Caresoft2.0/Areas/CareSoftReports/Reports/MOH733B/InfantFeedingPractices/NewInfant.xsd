@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewInfant" targetNamespace="http://tempuri.org/NewInfant.xsd" xmlns:mstns="http://tempuri.org/NewInfant.xsd" xmlns="http://tempuri.org/NewInfant.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NewInfant" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NewInfant" msprop:Generator_UserDSName="NewInfant">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NewInfant" msprop:Generator_TableClassName="NewInfantDataTable" msprop:Generator_TableVarName="tableNewInfant" msprop:Generator_TablePropName="_NewInfant" msprop:Generator_RowDeletingName="NewInfantRowDeleting" msprop:Generator_RowChangingName="NewInfantRowChanging" msprop:Generator_RowEvHandlerName="NewInfantRowChangeEventHandler" msprop:Generator_RowDeletedName="NewInfantRowDeleted" msprop:Generator_UserTableName="NewInfant" msprop:Generator_RowChangedName="NewInfantRowChanged" msprop:Generator_RowEvArgName="NewInfantRowChangeEvent" msprop:Generator_RowClassName="NewInfantRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EBF" msprop:Generator_ColumnVarNameInTable="columnEBF" msprop:Generator_ColumnPropNameInRow="EBF" msprop:Generator_ColumnPropNameInTable="EBFColumn" msprop:Generator_UserColumnName="EBF" type="xs:int" minOccurs="0" />
+              <xs:element name="ERF" msprop:Generator_ColumnVarNameInTable="columnERF" msprop:Generator_ColumnPropNameInRow="ERF" msprop:Generator_ColumnPropNameInTable="ERFColumn" msprop:Generator_UserColumnName="ERF" type="xs:int" minOccurs="0" />
+              <xs:element name="MF" msprop:Generator_ColumnVarNameInTable="columnMF" msprop:Generator_ColumnPropNameInRow="MF" msprop:Generator_ColumnPropNameInTable="MFColumn" msprop:Generator_UserColumnName="MF" type="xs:int" minOccurs="0" />
+              <xs:element name="BF" msprop:Generator_ColumnVarNameInTable="columnBF" msprop:Generator_ColumnPropNameInRow="BF" msprop:Generator_ColumnPropNameInTable="BFColumn" msprop:Generator_UserColumnName="BF" type="xs:int" minOccurs="0" />
+              <xs:element name="NBF" msprop:Generator_ColumnVarNameInTable="columnNBF" msprop:Generator_ColumnPropNameInRow="NBF" msprop:Generator_ColumnPropNameInTable="NBFColumn" msprop:Generator_UserColumnName="NBF" type="xs:int" minOccurs="0" />
+              <xs:element name="NK" msprop:Generator_ColumnVarNameInTable="columnNK" msprop:Generator_ColumnPropNameInRow="NK" msprop:Generator_ColumnPropNameInTable="NKColumn" msprop:Generator_UserColumnName="NK" type="xs:int" minOccurs="0" />
+              <xs:element name="BCF" msprop:Generator_ColumnVarNameInTable="columnBCF" msprop:Generator_ColumnPropNameInRow="BCF" msprop:Generator_ColumnPropNameInTable="BCFColumn" msprop:Generator_UserColumnName="BCF" type="xs:int" minOccurs="0" />
+              <xs:element name="EBF1" msprop:Generator_ColumnVarNameInTable="columnEBF1" msprop:Generator_ColumnPropNameInRow="EBF1" msprop:Generator_ColumnPropNameInTable="EBF1Column" msprop:Generator_UserColumnName="EBF1" type="xs:int" minOccurs="0" />
+              <xs:element name="ERF1" msprop:Generator_ColumnVarNameInTable="columnERF1" msprop:Generator_ColumnPropNameInRow="ERF1" msprop:Generator_ColumnPropNameInTable="ERF1Column" msprop:Generator_UserColumnName="ERF1" type="xs:int" minOccurs="0" />
+              <xs:element name="MF1" msprop:Generator_ColumnVarNameInTable="columnMF1" msprop:Generator_ColumnPropNameInRow="MF1" msprop:Generator_ColumnPropNameInTable="MF1Column" msprop:Generator_UserColumnName="MF1" type="xs:int" minOccurs="0" />
+              <xs:element name="BF1" msprop:Generator_ColumnVarNameInTable="columnBF1" msprop:Generator_ColumnPropNameInRow="BF1" msprop:Generator_ColumnPropNameInTable="BF1Column" msprop:Generator_UserColumnName="BF1" type="xs:int" minOccurs="0" />
+              <xs:element name="NBF1" msprop:Generator_ColumnVarNameInTable="columnNBF1" msprop:Generator_ColumnPropNameInRow="NBF1" msprop:Generator_ColumnPropNameInTable="NBF1Column" msprop:Generator_UserColumnName="NBF1" type="xs:int" minOccurs="0" />
+              <xs:element name="NK1" msprop:Generator_ColumnVarNameInTable="columnNK1" msprop:Generator_ColumnPropNameInRow="NK1" msprop:Generator_ColumnPropNameInTable="NK1Column" msprop:Generator_UserColumnName="NK1" type="xs:int" minOccurs="0" />
+              <xs:element name="BCF1" msprop:Generator_ColumnVarNameInTable="columnBCF1" msprop:Generator_ColumnPropNameInRow="BCF1" msprop:Generator_ColumnPropNameInTable="BCF1Column" msprop:Generator_UserColumnName="BCF1" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

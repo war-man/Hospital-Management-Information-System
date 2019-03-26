@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewHospitalDetails" targetNamespace="http://tempuri.org/NewHospitalDetails.xsd" xmlns:mstns="http://tempuri.org/NewHospitalDetails.xsd" xmlns="http://tempuri.org/NewHospitalDetails.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NewHospitalDetails" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NewHospitalDetails" msprop:Generator_UserDSName="NewHospitalDetails">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NewHDetails" msprop:Generator_TableClassName="NewHDetailsDataTable" msprop:Generator_TableVarName="tableNewHDetails" msprop:Generator_TablePropName="NewHDetails" msprop:Generator_RowDeletingName="NewHDetailsRowDeleting" msprop:Generator_RowChangingName="NewHDetailsRowChanging" msprop:Generator_RowEvHandlerName="NewHDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="NewHDetailsRowDeleted" msprop:Generator_UserTableName="NewHDetails" msprop:Generator_RowChangedName="NewHDetailsRowChanged" msprop:Generator_RowEvArgName="NewHDetailsRowChangeEvent" msprop:Generator_RowClassName="NewHDetailsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="County" msprop:Generator_ColumnVarNameInTable="columnCounty" msprop:Generator_ColumnPropNameInRow="County" msprop:Generator_ColumnPropNameInTable="CountyColumn" msprop:Generator_UserColumnName="County" type="xs:string" minOccurs="0" />
+              <xs:element name="Subcounty" msprop:Generator_ColumnVarNameInTable="columnSubcounty" msprop:Generator_ColumnPropNameInRow="Subcounty" msprop:Generator_ColumnPropNameInTable="SubcountyColumn" msprop:Generator_UserColumnName="Subcounty" type="xs:string" minOccurs="0" />
+              <xs:element name="SiteName" msprop:Generator_ColumnVarNameInTable="columnSiteName" msprop:Generator_ColumnPropNameInRow="SiteName" msprop:Generator_ColumnPropNameInTable="SiteNameColumn" msprop:Generator_UserColumnName="SiteName" type="xs:string" minOccurs="0" />
+              <xs:element name="Month" msprop:Generator_ColumnVarNameInTable="columnMonth" msprop:Generator_ColumnPropNameInRow="Month" msprop:Generator_ColumnPropNameInTable="MonthColumn" msprop:Generator_UserColumnName="Month" type="xs:string" minOccurs="0" />
+              <xs:element name="Year" msprop:Generator_ColumnVarNameInTable="columnYear" msprop:Generator_ColumnPropNameInRow="Year" msprop:Generator_ColumnPropNameInTable="YearColumn" msprop:Generator_UserColumnName="Year" type="xs:string" minOccurs="0" />
+              <xs:element name="FacilityMFL" msprop:Generator_ColumnVarNameInTable="columnFacilityMFL" msprop:Generator_ColumnPropNameInRow="FacilityMFL" msprop:Generator_ColumnPropNameInTable="FacilityMFLColumn" msprop:Generator_UserColumnName="FacilityMFL" type="xs:string" minOccurs="0" />
+              <xs:element name="CentralSiteNamr" msprop:Generator_ColumnVarNameInTable="columnCentralSiteNamr" msprop:Generator_ColumnPropNameInRow="CentralSiteNamr" msprop:Generator_ColumnPropNameInTable="CentralSiteNamrColumn" msprop:Generator_UserColumnName="CentralSiteNamr" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

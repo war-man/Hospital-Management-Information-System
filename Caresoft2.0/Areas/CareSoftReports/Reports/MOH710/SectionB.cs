@@ -16,14 +16,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH710 {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Main : ReportClass {
+    public class SectionB : ReportClass {
         
-        public Main() {
+        public SectionB() {
         }
         
         public override string ResourceName {
             get {
-                return "Main.rpt";
+                return "SectionB.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH710 {
         
         public override string FullResourceName {
             get {
-                return "Caresoft2._0.Areas.CareSoftReports.Reports.MOH710.Main.rpt";
+                return "Caresoft2._0.Areas.CareSoftReports.Reports.MOH710.SectionB.rpt";
             }
             set {
                 // Do nothing
@@ -74,7 +74,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH710 {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection6 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -82,57 +82,17 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH710 {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection5 {
-            get {
-                return this.ReportDefinition.Sections[4];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection4 {
-            get {
-                return this.ReportDefinition.Sections[5];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection3 {
-            get {
-                return this.ReportDefinition.Sections[6];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection2 {
-            get {
-                return this.ReportDefinition.Sections[7];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
-            get {
-                return this.ReportDefinition.Sections[8];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.CrystalReports.Engine.Section Section5 {
             get {
-                return this.ReportDefinition.Sections[9];
+                return this.ReportDefinition.Sections[4];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedMain : Component, ICachedReport {
+    public class CachedSectionB : Component, ICachedReport {
         
-        public CachedMain() {
+        public CachedSectionB() {
         }
         
         [Browsable(false)]
@@ -169,7 +129,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH710 {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Main rpt = new Main();
+            SectionB rpt = new SectionB();
             rpt.Site = this.Site;
             return rpt;
         }

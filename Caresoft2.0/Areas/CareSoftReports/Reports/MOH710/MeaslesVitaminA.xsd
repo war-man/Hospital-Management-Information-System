@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MeaslesVitaminA" targetNamespace="http://tempuri.org/MeaslesVitaminA.xsd" xmlns:mstns="http://tempuri.org/MeaslesVitaminA.xsd" xmlns="http://tempuri.org/MeaslesVitaminA.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MeaslesVitaminA" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MeaslesVitaminA" msprop:Generator_UserDSName="MeaslesVitaminA">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="MeaslesVitaminA" msprop:Generator_TableClassName="MeaslesVitaminADataTable" msprop:Generator_TableVarName="tableMeaslesVitaminA" msprop:Generator_RowChangedName="MeaslesVitaminARowChanged" msprop:Generator_TablePropName="_MeaslesVitaminA" msprop:Generator_RowDeletingName="MeaslesVitaminARowDeleting" msprop:Generator_RowChangingName="MeaslesVitaminARowChanging" msprop:Generator_RowEvHandlerName="MeaslesVitaminARowChangeEventHandler" msprop:Generator_RowDeletedName="MeaslesVitaminARowDeleted" msprop:Generator_RowClassName="MeaslesVitaminARow" msprop:Generator_UserTableName="MeaslesVitaminA" msprop:Generator_RowEvArgName="MeaslesVitaminARowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NameOfImmunization" msprop:Generator_ColumnVarNameInTable="columnNameOfImmunization" msprop:Generator_ColumnPropNameInRow="NameOfImmunization" msprop:Generator_ColumnPropNameInTable="NameOfImmunizationColumn" msprop:Generator_UserColumnName="NameOfImmunization" type="xs:string" minOccurs="0" />
+              <xs:element name="Value" msprop:Generator_ColumnVarNameInTable="columnValue" msprop:Generator_ColumnPropNameInRow="Value" msprop:Generator_ColumnPropNameInTable="ValueColumn" msprop:Generator_UserColumnName="Value" type="xs:int" minOccurs="0" />
+              <xs:element name="Age" msprop:Generator_ColumnVarNameInTable="columnAge" msprop:Generator_ColumnPropNameInRow="Age" msprop:Generator_ColumnPropNameInTable="AgeColumn" msprop:Generator_UserColumnName="Age" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

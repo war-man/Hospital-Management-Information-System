@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewSAM" targetNamespace="http://tempuri.org/NewSAM.xsd" xmlns:mstns="http://tempuri.org/NewSAM.xsd" xmlns="http://tempuri.org/NewSAM.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NewSAM" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NewSAM" msprop:Generator_UserDSName="NewSAM">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NewSAM" msprop:Generator_TableClassName="NewSAMDataTable" msprop:Generator_TableVarName="tableNewSAM" msprop:Generator_TablePropName="_NewSAM" msprop:Generator_RowDeletingName="NewSAMRowDeleting" msprop:Generator_RowChangingName="NewSAMRowChanging" msprop:Generator_RowEvHandlerName="NewSAMRowChangeEventHandler" msprop:Generator_RowDeletedName="NewSAMRowDeleted" msprop:Generator_UserTableName="NewSAM" msprop:Generator_RowChangedName="NewSAMRowChanged" msprop:Generator_RowEvArgName="NewSAMRowChangeEvent" msprop:Generator_RowClassName="NewSAMRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PSAMAdult" msprop:Generator_ColumnVarNameInTable="columnPSAMAdult" msprop:Generator_ColumnPropNameInRow="PSAMAdult" msprop:Generator_ColumnPropNameInTable="PSAMAdultColumn" msprop:Generator_UserColumnName="PSAMAdult" type="xs:int" minOccurs="0" />
+              <xs:element name="PMAMAdult" msprop:Generator_ColumnVarNameInTable="columnPMAMAdult" msprop:Generator_ColumnPropNameInRow="PMAMAdult" msprop:Generator_ColumnPropNameInTable="PMAMAdultColumn" msprop:Generator_UserColumnName="PMAMAdult" type="xs:int" minOccurs="0" />
+              <xs:element name="PSAM15To17" msprop:Generator_ColumnVarNameInTable="columnPSAM15To17" msprop:Generator_ColumnPropNameInRow="PSAM15To17" msprop:Generator_ColumnPropNameInTable="PSAM15To17Column" msprop:Generator_UserColumnName="PSAM15To17" type="xs:int" minOccurs="0" />
+              <xs:element name="PMAM15To17" msprop:Generator_ColumnVarNameInTable="columnPMAM15To17" msprop:Generator_ColumnPropNameInRow="PMAM15To17" msprop:Generator_ColumnPropNameInTable="PMAM15To17Column" msprop:Generator_UserColumnName="PMAM15To17" type="xs:int" minOccurs="0" />
+              <xs:element name="PSAMPost" msprop:Generator_ColumnVarNameInTable="columnPSAMPost" msprop:Generator_ColumnPropNameInRow="PSAMPost" msprop:Generator_ColumnPropNameInTable="PSAMPostColumn" msprop:Generator_UserColumnName="PSAMPost" type="xs:int" minOccurs="0" />
+              <xs:element name="PMAMPost" msprop:Generator_ColumnVarNameInTable="columnPMAMPost" msprop:Generator_ColumnPropNameInRow="PMAMPost" msprop:Generator_ColumnPropNameInTable="PMAMPostColumn" msprop:Generator_UserColumnName="PMAMPost" type="xs:int" minOccurs="0" />
+              <xs:element name="PSAM0To59M" msprop:Generator_ColumnVarNameInTable="columnPSAM0To59M" msprop:Generator_ColumnPropNameInRow="PSAM0To59M" msprop:Generator_ColumnPropNameInTable="PSAM0To59MColumn" msprop:Generator_UserColumnName="PSAM0To59M" type="xs:int" minOccurs="0" />
+              <xs:element name="PMAM0To59M" msprop:Generator_ColumnVarNameInTable="columnPMAM0To59M" msprop:Generator_ColumnPropNameInRow="PMAM0To59M" msprop:Generator_ColumnPropNameInTable="PMAM0To59MColumn" msprop:Generator_UserColumnName="PMAM0To59M" type="xs:int" minOccurs="0" />
+              <xs:element name="PSAM5To15" msprop:Generator_ColumnVarNameInTable="columnPSAM5To15" msprop:Generator_ColumnPropNameInRow="PSAM5To15" msprop:Generator_ColumnPropNameInTable="PSAM5To15Column" msprop:Generator_UserColumnName="PSAM5To15" type="xs:int" minOccurs="0" />
+              <xs:element name="PMAM5To15" msprop:Generator_ColumnVarNameInTable="columnPMAM5To15" msprop:Generator_ColumnPropNameInRow="PMAM5To15" msprop:Generator_ColumnPropNameInTable="PMAM5To15Column" msprop:Generator_UserColumnName="PMAM5To15" type="xs:int" minOccurs="0" />
+              <xs:element name="NSAMAdult" msprop:Generator_ColumnVarNameInTable="columnNSAMAdult" msprop:Generator_ColumnPropNameInRow="NSAMAdult" msprop:Generator_ColumnPropNameInTable="NSAMAdultColumn" msprop:Generator_UserColumnName="NSAMAdult" type="xs:int" minOccurs="0" />
+              <xs:element name="NMAMAdult" msprop:Generator_ColumnVarNameInTable="columnNMAMAdult" msprop:Generator_ColumnPropNameInRow="NMAMAdult" msprop:Generator_ColumnPropNameInTable="NMAMAdultColumn" msprop:Generator_UserColumnName="NMAMAdult" type="xs:int" minOccurs="0" />
+              <xs:element name="NSAM15To17" msprop:Generator_ColumnVarNameInTable="columnNSAM15To17" msprop:Generator_ColumnPropNameInRow="NSAM15To17" msprop:Generator_ColumnPropNameInTable="NSAM15To17Column" msprop:Generator_UserColumnName="NSAM15To17" type="xs:int" minOccurs="0" />
+              <xs:element name="NMAM15To17" msprop:Generator_ColumnVarNameInTable="columnNMAM15To17" msprop:Generator_ColumnPropNameInRow="NMAM15To17" msprop:Generator_ColumnPropNameInTable="NMAM15To17Column" msprop:Generator_UserColumnName="NMAM15To17" type="xs:int" minOccurs="0" />
+              <xs:element name="NSAMPost" msprop:Generator_ColumnVarNameInTable="columnNSAMPost" msprop:Generator_ColumnPropNameInRow="NSAMPost" msprop:Generator_ColumnPropNameInTable="NSAMPostColumn" msprop:Generator_UserColumnName="NSAMPost" type="xs:int" minOccurs="0" />
+              <xs:element name="NMAMPost" msprop:Generator_ColumnVarNameInTable="columnNMAMPost" msprop:Generator_ColumnPropNameInRow="NMAMPost" msprop:Generator_ColumnPropNameInTable="NMAMPostColumn" msprop:Generator_UserColumnName="NMAMPost" type="xs:int" minOccurs="0" />
+              <xs:element name="NSAM0To59" msprop:Generator_ColumnVarNameInTable="columnNSAM0To59" msprop:Generator_ColumnPropNameInRow="NSAM0To59" msprop:Generator_ColumnPropNameInTable="NSAM0To59Column" msprop:Generator_UserColumnName="NSAM0To59" type="xs:int" minOccurs="0" />
+              <xs:element name="NMAM0To59" msprop:Generator_ColumnVarNameInTable="columnNMAM0To59" msprop:Generator_ColumnPropNameInRow="NMAM0To59" msprop:Generator_ColumnPropNameInTable="NMAM0To59Column" msprop:Generator_UserColumnName="NMAM0To59" type="xs:int" minOccurs="0" />
+              <xs:element name="NSAM5To15" msprop:Generator_ColumnVarNameInTable="columnNSAM5To15" msprop:Generator_ColumnPropNameInRow="NSAM5To15" msprop:Generator_ColumnPropNameInTable="NSAM5To15Column" msprop:Generator_UserColumnName="NSAM5To15" type="xs:int" minOccurs="0" />
+              <xs:element name="NMAM5To15" msprop:Generator_ColumnVarNameInTable="columnNMAM5To15" msprop:Generator_ColumnPropNameInRow="NMAM5To15" msprop:Generator_ColumnPropNameInTable="NMAM5To15Column" msprop:Generator_UserColumnName="NMAM5To15" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

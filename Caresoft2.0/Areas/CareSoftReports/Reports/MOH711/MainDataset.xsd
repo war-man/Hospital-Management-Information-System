@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MainDataset" targetNamespace="http://tempuri.org/MainDataset.xsd" xmlns:mstns="http://tempuri.org/MainDataset.xsd" xmlns="http://tempuri.org/MainDataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MainDataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MainDataset" msprop:Generator_UserDSName="MainDataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="HospitalD" msprop:Generator_TableClassName="HospitalDDataTable" msprop:Generator_TableVarName="tableHospitalD" msprop:Generator_TablePropName="HospitalD" msprop:Generator_RowDeletingName="HospitalDRowDeleting" msprop:Generator_RowChangingName="HospitalDRowChanging" msprop:Generator_RowEvHandlerName="HospitalDRowChangeEventHandler" msprop:Generator_RowDeletedName="HospitalDRowDeleted" msprop:Generator_UserTableName="HospitalD" msprop:Generator_RowChangedName="HospitalDRowChanged" msprop:Generator_RowEvArgName="HospitalDRowChangeEvent" msprop:Generator_RowClassName="HospitalDRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FacilityName" msprop:Generator_ColumnVarNameInTable="columnFacilityName" msprop:Generator_ColumnPropNameInRow="FacilityName" msprop:Generator_ColumnPropNameInTable="FacilityNameColumn" msprop:Generator_UserColumnName="FacilityName" type="xs:string" minOccurs="0" />
+              <xs:element name="County" msprop:Generator_ColumnVarNameInTable="columnCounty" msprop:Generator_ColumnPropNameInRow="County" msprop:Generator_ColumnPropNameInTable="CountyColumn" msprop:Generator_UserColumnName="County" type="xs:string" minOccurs="0" />
+              <xs:element name="SubCounty" msprop:Generator_ColumnVarNameInTable="columnSubCounty" msprop:Generator_ColumnPropNameInRow="SubCounty" msprop:Generator_ColumnPropNameInTable="SubCountyColumn" msprop:Generator_UserColumnName="SubCounty" type="xs:string" minOccurs="0" />
+              <xs:element name="Month" msprop:Generator_ColumnVarNameInTable="columnMonth" msprop:Generator_ColumnPropNameInRow="Month" msprop:Generator_ColumnPropNameInTable="MonthColumn" msprop:Generator_UserColumnName="Month" type="xs:string" minOccurs="0" />
+              <xs:element name="Year" msprop:Generator_ColumnVarNameInTable="columnYear" msprop:Generator_ColumnPropNameInRow="Year" msprop:Generator_ColumnPropNameInTable="YearColumn" msprop:Generator_UserColumnName="Year" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

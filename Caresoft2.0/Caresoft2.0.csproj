@@ -307,6 +307,56 @@
     <Compile Include="Areas\CareSoftReports\Reports\MOH706\RptUrineAnalysis.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH710\AdverseEvents.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdverseEvents.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH710\AdverseNew.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdverseNew.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH710\MeaslesVitaminA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MeaslesVitaminA.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH710\SectionB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SectionB.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH710\Tetanus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Tetanus.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH710\TetanusToxoid.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TetanusToxoid.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH710\VitaminA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VitaminA.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH710\VitaminAMeasles.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VitaminAMeasles.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH710\VitaminReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VitaminReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH711\A\MOH7111.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -366,6 +416,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PhysiotherapyService.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\MainDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainDataset.xsd</DependentUpon>
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\DataSetA6ToA12.Designer.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\DataSetHospitalDetailsMoh717.Designer.cs" />
@@ -451,6 +506,101 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RptSpecialServices.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\AdditionalInfor\AdditionalInfor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdditionalInfor.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\AdditionalInfor\NewAdditionalInfor.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewAdditionalInfor.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\Anaemia\Anaemia.cs">
+      <DependentUpon>Anaemia.rpt</DependentUpon>
+      <SubType>code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\Anaemia\Anaemia.Designer.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\Anaemia\NewAnaemia.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewAnaemia.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\ARTAndCoexistingInfections\ARTAndCoexisting1.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\ARTAndCoexistingInfections\ARTAndCoexisting1.Designer.cs">
+      <DependentUpon>ARTAndCoexisting1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\ARTAndCoexistingInfections\ARTAndCoexisting2.cs">
+      <DependentUpon>ARTAndCoexisting.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\ARTAndCoexistingInfections\NewART.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewART.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\ClientsServed\ClientsServed2.cs">
+      <DependentUpon>ClientsServed.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\ClientsServed\NewClientsServed.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewClientsServed.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\InfantFeedingPractices\InfantFeeding.cs">
+      <DependentUpon>InfantFeeding.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\InfantFeedingPractices\NewInfant.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewInfant.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\MainReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\NewHospitalDetails.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewHospitalDetails.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NIntervention.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NIntervention.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NutritionIntervention.cs">
+      <DependentUpon>NutritionIntervention.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\SAMMAM\NewSAM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewSAM.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\SAMMAM\SAMMAM2.cs">
+      <DependentUpon>SAMMAM.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOHMonthlyCash\DataSetMohMonthlyCashAnalysis.Designer.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\MOHMonthlyCash\RptMonthlyCashAnalysis.cs">
@@ -804,7 +954,6 @@
       <DependentUpon>Main.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Areas\CareSoftReports\Controllers\MOH710Controller.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\MOH711\A\ANC.Designer.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\MOH711\A\MOH711.cs">
       <SubType>Component</SubType>
@@ -879,7 +1028,6 @@
       <DependentUpon>Main.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Areas\CareSoftReports\Controllers\MOH711Controller.cs" />
     <Compile Include="CrystalReports\Opthamology\Opthamology.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -5022,6 +5170,61 @@
     <Content Include="Areas\CareSoftReports\Reports\MOH717\DataSetA6ToA12.xsc">
       <DependentUpon>DataSetA6ToA12.xsd</DependentUpon>
     </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH710\MeaslesVitaminA.xsc">
+      <DependentUpon>MeaslesVitaminA.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH710\AdverseNew.xsc">
+      <DependentUpon>AdverseNew.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH710\AdverseNew.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AdverseNew.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH710\AdverseNew.xss">
+      <DependentUpon>AdverseNew.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH710\MeaslesVitaminA.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MeaslesVitaminA.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH710\MeaslesVitaminA.xss">
+      <DependentUpon>MeaslesVitaminA.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH710\Tetanus.xsc">
+      <DependentUpon>Tetanus.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH710\Tetanus.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Tetanus.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH710\Tetanus.xss">
+      <DependentUpon>Tetanus.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH710\VitaminA.xsc">
+      <DependentUpon>VitaminA.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH710\VitaminA.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VitaminA.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH710\VitaminA.xss">
+      <DependentUpon>VitaminA.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\MainDataset.xsc">
+      <DependentUpon>MainDataset.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH711\MainDataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MainDataset.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\MainDataset.xss">
+      <DependentUpon>MainDataset.xsd</DependentUpon>
+    </Content>
     <None Include="Areas\CareSoftReports\Reports\MOH717\DataSetA6ToA12.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DataSetA6ToA121.Designer.cs</LastGenOutput>
@@ -5109,6 +5312,94 @@
     </Content>
     <Content Include="Areas\CareSoftReports\Reports\MOHMonthlyCash\DataSetMohMonthlyCashAnalysis.xsc">
       <DependentUpon>DataSetMohMonthlyCashAnalysis.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\AdditionalInfor\NewAdditionalInfor.xsc">
+      <DependentUpon>NewAdditionalInfor.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH733B\AdditionalInfor\NewAdditionalInfor.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewAdditionalInfor.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\AdditionalInfor\NewAdditionalInfor.xss">
+      <DependentUpon>NewAdditionalInfor.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\ClientsServed\NewClientsServed.xsc">
+      <DependentUpon>NewClientsServed.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\ARTAndCoexistingInfections\NewART.xsc">
+      <DependentUpon>NewART.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\Anaemia\NewAnaemia.xsc">
+      <DependentUpon>NewAnaemia.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH733B\Anaemia\NewAnaemia.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewAnaemia.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\Anaemia\NewAnaemia.xss">
+      <DependentUpon>NewAnaemia.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH733B\ARTAndCoexistingInfections\NewART.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewART.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\ARTAndCoexistingInfections\NewART.xss">
+      <DependentUpon>NewART.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH733B\ClientsServed\NewClientsServed.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewClientsServed.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\ClientsServed\NewClientsServed.xss">
+      <DependentUpon>NewClientsServed.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NIntervention.xsc">
+      <DependentUpon>NIntervention.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\InfantFeedingPractices\NewInfant.xsc">
+      <DependentUpon>NewInfant.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH733B\InfantFeedingPractices\NewInfant.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewInfant.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\InfantFeedingPractices\NewInfant.xss">
+      <DependentUpon>NewInfant.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\NewHospitalDetails.xsc">
+      <DependentUpon>NewHospitalDetails.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH733B\NewHospitalDetails.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewHospitalDetails.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\NewHospitalDetails.xss">
+      <DependentUpon>NewHospitalDetails.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NIntervention.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NIntervention.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NIntervention.xss">
+      <DependentUpon>NIntervention.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\SAMMAM\NewSAM.xsc">
+      <DependentUpon>NewSAM.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH733B\SAMMAM\NewSAM.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewSAM.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\SAMMAM\NewSAM.xss">
+      <DependentUpon>NewSAM.xsd</DependentUpon>
     </Content>
     <None Include="Areas\CareSoftReports\Reports\MOHMonthlyCash\DataSetMohMonthlyCashAnalysis.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -5280,8 +5571,10 @@
     <Content Include="Areas\CareSoftReports\Views\Shared\_NavCaresoftReports.cshtml" />
     <Content Include="Areas\CareSoftReports\Views\_ViewStart.cshtml" />
     <Content Include="Areas\CareSoftReports\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\CareSoftReports\Views\MOH711\MOH711A.cshtml" />
     <Content Include="Areas\CareSoftReports\Views\AccountPerDepartment\Index.cshtml" />
+    <Content Include="Areas\CareSoftReports\Views\HomeReports\MOH733B.cshtml" />
+    <Content Include="Areas\CareSoftReports\Views\HomeReports\MOH710.cshtml" />
+    <Content Include="Areas\CareSoftReports\Views\HomeReports\MOH711.cshtml" />
     <None Include="Areas\PharmacyModule\Reports\BillWiseDailyReportSale\BillWiseDailyDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>BillWiseDailyDataSet1.Designer.cs</LastGenOutput>
@@ -6582,7 +6875,6 @@
     <Content Include="Views\BillPayments\Index.cshtml" />
     <Content Include="Views\Discharged\Index.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
-    <Content Include="Areas\CareSoftReports\Views\HomeReports\Index.cshtml" />
     <Content Include="Views\Refunds\Index.cshtml" />
     <Content Include="Views\Insurance\Index.cshtml" />
     <None Include="Views\Reports\ReceiptReport\ReceiptsDataSet.xsd">
@@ -6805,6 +7097,26 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptUrineAnalysis1.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH710\AdverseEvents.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AdverseEvents.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH710\SectionB.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SectionB.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH710\TetanusToxoid.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TetanusToxoid.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH710\VitaminAMeasles.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VitaminAMeasles.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH710\VitaminReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VitaminReport.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH717\OutPatientServices.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>OutPatientServices1.cs</LastGenOutput>
@@ -6872,6 +7184,38 @@
     <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH717\RptSpecialServices.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptSpecialServices1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH733B\AdditionalInfor\AdditionalInfor.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AdditionalInfor.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH733B\Anaemia\Anaemia.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Anaemia.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH733B\ARTAndCoexistingInfections\ARTAndCoexisting.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ARTAndCoexisting2.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH733B\ClientsServed\ClientsServed.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ClientsServed2.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH733B\InfantFeedingPractices\InfantFeeding.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InfantFeeding.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH733B\MainReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MainReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NutritionIntervention.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>NutritionIntervention.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH733B\SAMMAM\SAMMAM.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SAMMAM2.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOHMonthlyCash\RptMonthlyCashAnalysis.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

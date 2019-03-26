@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH710 {
+namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH710 {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Main : ReportClass {
+    public class AdditionalInfor : ReportClass {
         
-        public Main() {
+        public AdditionalInfor() {
         }
         
         public override string ResourceName {
             get {
-                return "Main.rpt";
+                return "AdditionalInfor.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH710 {
         
         public override string FullResourceName {
             get {
-                return "Caresoft2._0.Areas.CareSoftReports.Reports.MOH710.Main.rpt";
+                return "Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor.AdditionalInfo" +
+                    "r.rpt";
             }
             set {
                 // Do nothing
@@ -74,7 +75,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH710 {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection6 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -82,57 +83,17 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH710 {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection5 {
-            get {
-                return this.ReportDefinition.Sections[4];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection4 {
-            get {
-                return this.ReportDefinition.Sections[5];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection3 {
-            get {
-                return this.ReportDefinition.Sections[6];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection2 {
-            get {
-                return this.ReportDefinition.Sections[7];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
-            get {
-                return this.ReportDefinition.Sections[8];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.CrystalReports.Engine.Section Section5 {
             get {
-                return this.ReportDefinition.Sections[9];
+                return this.ReportDefinition.Sections[4];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedMain : Component, ICachedReport {
+    public class CachedAdditionalInfor : Component, ICachedReport {
         
-        public CachedMain() {
+        public CachedAdditionalInfor() {
         }
         
         [Browsable(false)]
@@ -169,7 +130,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH710 {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Main rpt = new Main();
+            AdditionalInfor rpt = new AdditionalInfor();
             rpt.Site = this.Site;
             return rpt;
         }

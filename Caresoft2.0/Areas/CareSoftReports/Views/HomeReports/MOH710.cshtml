@@ -1,0 +1,41 @@
+﻿
+@{
+
+    ViewBag.Title = "MOH710";
+    Layout = "~/Areas/CareSoftReports/Views/Shared/_LayoutReports.cshtml";
+    ViewBag.ReportName = "MOH 710";
+}
+
+<div class="col-sm-6 col-sm-offset-3">
+    <div class="panel panel-primary glass caresoft-panel">
+        <div class="panel-heading">
+            <h4>@ViewBag.ReportName</h4>
+            Set report parameters and click generate.
+        </div>
+        <div class="panel-body">
+            <form name="ReportFilter" method="get" action="@Url.Action("Generate710Report","HomeReports",new {Area="CareSoftReports"})">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label> Select From Date</label>
+                            <input class="text-box" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" name="FromDate" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label> Select End Date</label>
+                            <input class="text-box" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" name="ToDate" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <br />
+                    <button type="submit" class="btn btn-primary btn-sm ">Download MOH 710 Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

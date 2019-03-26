@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AdverseNew" targetNamespace="http://tempuri.org/AdverseNew.xsd" xmlns:mstns="http://tempuri.org/AdverseNew.xsd" xmlns="http://tempuri.org/AdverseNew.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AdverseNew" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AdverseNew" msprop:Generator_UserDSName="AdverseNew">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Adverse" msprop:Generator_TableClassName="AdverseDataTable" msprop:Generator_TableVarName="tableAdverse" msprop:Generator_TablePropName="Adverse" msprop:Generator_RowDeletingName="AdverseRowDeleting" msprop:Generator_RowChangingName="AdverseRowChanging" msprop:Generator_RowEvHandlerName="AdverseRowChangeEventHandler" msprop:Generator_RowDeletedName="AdverseRowDeleted" msprop:Generator_UserTableName="Adverse" msprop:Generator_RowChangedName="AdverseRowChanged" msprop:Generator_RowEvArgName="AdverseRowChangeEvent" msprop:Generator_RowClassName="AdverseRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LessThanOneYear" msprop:Generator_ColumnVarNameInTable="columnLessThanOneYear" msprop:Generator_ColumnPropNameInRow="LessThanOneYear" msprop:Generator_ColumnPropNameInTable="LessThanOneYearColumn" msprop:Generator_UserColumnName="LessThanOneYear" type="xs:int" minOccurs="0" />
+              <xs:element name="GreaterThanOneYear" msprop:Generator_ColumnVarNameInTable="columnGreaterThanOneYear" msprop:Generator_ColumnPropNameInRow="GreaterThanOneYear" msprop:Generator_ColumnPropNameInTable="GreaterThanOneYearColumn" msprop:Generator_UserColumnName="GreaterThanOneYear" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
