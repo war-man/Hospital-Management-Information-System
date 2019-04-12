@@ -16,14 +16,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
         // GET: CareSoftReports/AccountPerDepartment
         CaresoftHMISEntities db = new CaresoftHMISEntities();
         private object statementOfAccount;
-        
-        public ActionResult Index()
 
-        {
 
-            ViewBag.Insurance = db.Companies.ToList();
-            return View();
-        }
         public class StatementOfAccountViewModel
         {
             public string NameOfDepartment { get; set; }
@@ -31,25 +25,28 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             public int? Month { get; set; }
             public int Year { get; set; }
         }
-        
+
 
         public ActionResult StatementOfAccountReport()
         {
+            ViewBag.Insurance = db.Companies.ToList();
             var insuranceCompanies = db.Companies.Where(p => p.CompanyType.CompanyTypeName.ToLower().Trim() == "insurance").ToList();
             return View(insuranceCompanies);
         }
 
-
-        public ActionResult GetAccountsPerDepartmentReport( int Year, int SelectMonth,string Department)
+        public ActionResult GetAccountsPerDepartmentReport(int Year, int SelectMonth, string Department, string Insurance)
         {
-          
-            var amount = db.BillServices.Where(p => p.DateAdded.Year == Year && p.DateAdded.Month == SelectMonth).ToList();
-            var allDepartments = db.Departments.ToList();
+
+            var NumberOfDays = DateTime.DaysInMonth(Year, SelectMonth);
+            
+            var amount = db.BillServices.Where(p => p.DateAdded.Year == Year && p.DateAdded.Month == SelectMonth && p.OpdRegister.Tariff.Company.CompanyName == Insurance).ToList();
+            var amountmed = db.Medications.Where(p => p.TimeAdded.Year == Year && p.TimeAdded.Month == SelectMonth && p.OpdRegister.Tariff.Company.CompanyName == Insurance).ToList();
+            var allDepartments = db.Departments.Where(p => p.UniversalDeptIdentifier.UniversalIdentifier.Trim().ToLower().Contains("universal")).ToList();
             var CrystalReportData = new List<StatementOfAccountViewModel>();
 
             // var NumberOfDays = DateTime.DaysInMonth(Month,Year);
-            var NumberOfDays = DateTime.DaysInMonth(Year, SelectMonth);
-            
+
+
 
             foreach (var item in allDepartments)
             {
@@ -57,19 +54,52 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                 {
                     NameOfDepartment = item.DepartmentName,
                     DaysOfTheMonth = new int[31],
-                    
+
                 };
                 int[] AllDaysOfTheMonth = new int[31];
-                for (int i = 1; i <= NumberOfDays; i++)
+                if (Insurance.ToLower() == "all")
                 {
-                    var theDay = i;
+                    var amountall = db.BillServices.Where(p => p.DateAdded.Year == Year && p.DateAdded.Month == SelectMonth).ToList();
+                    var amountmedall = db.Medications.Where(p => p.TimeAdded.Year == Year && p.TimeAdded.Month == SelectMonth).ToList();
 
-                    //var AmountInDay=amount.Where(p=>p.Award.Equals(amount)&& p.DateAdded.Day==theDay).Count();
-                    var AmountInDay = amount.Where(p => p.DepartmentId == item.Id && p.DateAdded.Day == theDay && p.DateAdded.Month == SelectMonth
-                     && p.DateAdded.Year == Year).Sum(p => (p.Price * p.Quatity));
-                  
-                    AllDaysOfTheMonth[i - 1] = Convert.ToInt32(AmountInDay);
+                    for (int i = 1; i <= NumberOfDays; i++)
+                    {
+                        var theDay = i;
+
+                        //var AmountInDay=amount.Where(p=>p.Award.Equals(amount)&& p.DateAdded.Day==theDay).Count();
+                        var AmountInDaybill = amountall.Where(p => p.DepartmentId == item.Id && p.DateAdded.Day == theDay && p.DateAdded.Month == SelectMonth
+                         && p.DateAdded.Year == Year).Sum(p => (p.Award * p.Quatity));
+
+                        var AmountInDaymed = amountmedall.Where(p => p.DepartmentId == item.Id && p.TimeAdded.Day == theDay && p.TimeAdded.Month == SelectMonth
+                        && p.TimeAdded.Year == Year).Sum(p => (p.Award * p.QuantityIssued));
+
+                        var AmountInDay = AmountInDaybill + AmountInDaymed;
+
+                        AllDaysOfTheMonth[i - 1] = Convert.ToInt32(AmountInDay);
+                    }
                 }
+                else
+                {
+                    for (int i = 1; i <= NumberOfDays; i++)
+                    {
+                        var theDay = i;
+
+                        //var AmountInDay=amount.Where(p=>p.Award.Equals(amount)&& p.DateAdded.Day==theDay).Count();
+                        var AmountInDaybill = amount.Where(p => p.DepartmentId == item.Id && p.DateAdded.Day == theDay && p.DateAdded.Month == SelectMonth
+                         && p.DateAdded.Year == Year && p.OpdRegister.Tariff.Company.CompanyName == Insurance).Sum(p => (p.Award * p.Quatity));
+
+                        var AmountInDaymed = amountmed.Where(p => p.DepartmentId == item.Id && p.TimeAdded.Day == theDay && p.TimeAdded.Month == SelectMonth
+                        && p.TimeAdded.Year == Year && p.OpdRegister.Tariff.Company.CompanyName == Insurance).Sum(p => (p.Award * p.QuantityIssued));
+
+                        var AmountInDay = AmountInDaybill + AmountInDaymed;
+
+                        AllDaysOfTheMonth[i - 1] = Convert.ToInt32(AmountInDay);
+                    }
+                }
+
+
+
+
                 if (AllDaysOfTheMonth.Count() < 31)
                 {
                     var remainingDays = 31 - AllDaysOfTheMonth.Count();
@@ -125,7 +155,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                     item.Year.ToString()
                     );
 
-               
+
             }
 
             ReportDocument Rd = new ReportDocument();
@@ -143,21 +173,6 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             return File(Stream, "application/pdf", FileName);
 
         }
-         
-
-     }
-         
-       
     }
+}
 
-        
-
-                    
-
-            
-
-
-        
-
-    
-   

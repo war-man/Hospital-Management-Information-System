@@ -219,6 +219,7 @@
     <Compile Include="Areas\CareSoftReports\Controllers\AccountPerDepartmentController.cs" />
     <Compile Include="Areas\CareSoftReports\Controllers\DayAmount.cs" />
     <Compile Include="Areas\CareSoftReports\Controllers\HomeReportsController.cs" />
+    <Compile Include="Areas\CareSoftReports\Controllers\MaternalServices.cs" />
     <Compile Include="Areas\CareSoftReports\Controllers\MISReportsController.cs" />
     <Compile Include="Areas\CareSoftReports\DateTimeExtensions.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\DataSetHospitalDetails.Designer.cs" />
@@ -233,6 +234,17 @@
     <Compile Include="Areas\CareSoftReports\Reports\MISReports\InsuranceReport\DataSetInsuranceReport.Designer.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\MISReports\InsuranceReport\RptInsurance.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MISReports\MonthlyRevenueReport\MonthlyRevenueReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MonthlyRevenueReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MISReports\MonthlyRevenueReport\NewMonthlyRevenue.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewMonthlyRevenue.xsd</DependentUpon>
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MISReports\PatientByDept\DataSetPatientsAttendantsByDepartment.Designer.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\MISReports\PatientByDept\RptPatientAttendanceByDept.cs">
@@ -363,6 +375,17 @@
       <DependentUpon>MOH711.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\B2\Referrals.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Referrals.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\B2\ReferralsReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReferralsReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH711\C\SGBV1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -421,6 +444,17 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MainDataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\B1\Maternal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Maternal.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH711\B1\MaternalComplications.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MaternalComplications.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\DataSetA6ToA12.Designer.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\MOH717\DataSetHospitalDetailsMoh717.Designer.cs" />
@@ -750,6 +784,11 @@
     <Compile Include="Areas\PharmacyModule\Reports\StockMovement\DataSetStockMovementShedule.Designer.cs" />
     <Compile Include="Areas\PharmacyModule\Reports\StockMovement\RptStockMovement.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\PharmacyModule\Reports\StockMovement\RptStockMovement1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptStockMovement.rpt</DependentUpon>
     </Compile>
     <Compile Include="Areas\PharmacyModule\Reports\StockMovement\Stock.Designer.cs" />
     <Compile Include="Areas\PharmacyModule\Reports\StockSummary\DataSetStockSummary.Designer.cs" />
@@ -4440,12 +4479,6 @@
     <Content Include="Areas\Pathology\Images\Signatures\5.PNG" />
     <Content Include="Areas\Pathology\Images\Signatures\6.PNG" />
     <Content Include="Areas\Pathology\Images\Signatures\9.png" />
-    <Content Include="Areas\Pathology\Views\TestResultsEntry\AbnormalResults.cshtml" />
-    <Content Include="Areas\Pathology\Views\TestResultsEntry\AccesionList.cshtml" />
-    <Content Include="Areas\Pathology\Views\TestResultsEntry\Index.cshtml" />
-    <Content Include="Areas\Pathology\Views\TestResultsEntry\LabTestsList.cshtml" />
-    <Content Include="Areas\Pathology\Views\TestResultsEntry\PanicResults.cshtml" />
-    <Content Include="Areas\Pathology\Views\TestResultsEntry\ResultsEntry.cshtml" />
     <Content Include="Areas\Procurement\Reports\court of arms.jpg" />
     <Content Include="Areas\Procurement\Scripts\AddNewInvoice.js" />
     <Content Include="Areas\Procurement\Scripts\AddNewInvoiceScript.js" />
@@ -5038,6 +5071,17 @@
     <Content Include="Areas\CareSoftReports\Reports\MISReports\PatientByDept\DataSetPatientsAttendantsByDepartment.xsc">
       <DependentUpon>DataSetPatientsAttendantsByDepartment.xsd</DependentUpon>
     </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MISReports\MonthlyRevenueReport\NewMonthlyRevenue.xsc">
+      <DependentUpon>NewMonthlyRevenue.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MISReports\MonthlyRevenueReport\NewMonthlyRevenue.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewMonthlyRevenue.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MISReports\MonthlyRevenueReport\NewMonthlyRevenue.xss">
+      <DependentUpon>NewMonthlyRevenue.xsd</DependentUpon>
+    </Content>
     <None Include="Areas\CareSoftReports\Reports\MISReports\PatientByDept\DataSetPatientsAttendantsByDepartment.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DataSetPatientsAttendantsByDepartment1.Designer.cs</LastGenOutput>
@@ -5217,6 +5261,17 @@
     <Content Include="Areas\CareSoftReports\Reports\MOH711\MainDataset.xsc">
       <DependentUpon>MainDataset.xsd</DependentUpon>
     </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\B2\Referrals.xsc">
+      <DependentUpon>Referrals.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH711\B2\Referrals.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Referrals.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\B2\Referrals.xss">
+      <DependentUpon>Referrals.xsd</DependentUpon>
+    </Content>
     <None Include="Areas\CareSoftReports\Reports\MOH711\MainDataset.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -5224,6 +5279,17 @@
     </None>
     <Content Include="Areas\CareSoftReports\Reports\MOH711\MainDataset.xss">
       <DependentUpon>MainDataset.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\B1\Maternal.xsc">
+      <DependentUpon>Maternal.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH711\B1\Maternal.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Maternal.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\MOH711\B1\Maternal.xss">
+      <DependentUpon>Maternal.xsd</DependentUpon>
     </Content>
     <None Include="Areas\CareSoftReports\Reports\MOH717\DataSetA6ToA12.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -5575,6 +5641,7 @@
     <Content Include="Areas\CareSoftReports\Views\HomeReports\MOH733B.cshtml" />
     <Content Include="Areas\CareSoftReports\Views\HomeReports\MOH710.cshtml" />
     <Content Include="Areas\CareSoftReports\Views\HomeReports\MOH711.cshtml" />
+    <Content Include="Areas\CareSoftReports\Views\AccountPerDepartment\StatementOfAccountReport.cshtml" />
     <None Include="Areas\PharmacyModule\Reports\BillWiseDailyReportSale\BillWiseDailyDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>BillWiseDailyDataSet1.Designer.cs</LastGenOutput>
@@ -5924,12 +5991,6 @@
     <Content Include="Areas\Radiology\Views\Shared\_NavPathology.cshtml" />
     <Content Include="Areas\Radiology\Views\Shared\_NavRadiology.cshtml" />
     <Content Include="Areas\Radiology\Views\Shared\_ReportsLayout.cshtml" />
-    <Content Include="Areas\Radiology\Views\TestResultsEntry\AbnormalResults.cshtml" />
-    <Content Include="Areas\Radiology\Views\TestResultsEntry\AccesionList.cshtml" />
-    <Content Include="Areas\Radiology\Views\TestResultsEntry\Index.cshtml" />
-    <Content Include="Areas\Radiology\Views\TestResultsEntry\LabTestsList.cshtml" />
-    <Content Include="Areas\Radiology\Views\TestResultsEntry\PanicResults.cshtml" />
-    <Content Include="Areas\Radiology\Views\TestResultsEntry\ResultsEntry.cshtml" />
     <Content Include="Areas\Radiology\Views\web.config" />
     <Content Include="Areas\Radiology\Views\WorkOrders\Create.cshtml" />
     <Content Include="Areas\Radiology\Views\WorkOrders\Delete.cshtml" />
@@ -7029,6 +7090,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptInsurance1.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MISReports\MonthlyRevenueReport\MonthlyRevenueReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MonthlyRevenueReport.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Areas\CareSoftReports\Reports\MISReports\PatientByDept\RptPatientAttendanceByDept.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptPatientAttendanceByDept1.cs</LastGenOutput>
@@ -7116,6 +7181,14 @@
     <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH710\VitaminReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>VitaminReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH711\B1\MaternalComplications.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MaternalComplications.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH711\B2\ReferralsReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReferralsReport.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Areas\CareSoftReports\Reports\MOH717\OutPatientServices.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

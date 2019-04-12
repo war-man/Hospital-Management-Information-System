@@ -23,6 +23,7 @@ namespace CaresoftHMISDataAccess
         public int UserId { get; set; }
         public int BranchId { get; set; }
     
+        public virtual ImmunizationMaster ImmunizationMaster { get; set; }
         public virtual OpdRegister OpdRegister { get; set; }
         public virtual User User { get; set; }
     }

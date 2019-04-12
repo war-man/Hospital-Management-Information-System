@@ -16,16 +16,14 @@ namespace CaresoftHMISDataAccess
     {
         public int Id { get; set; }
         public Nullable<int> InvoiceId { get; set; }
-        public Nullable<int> BillServiceId { get; set; }
+        public int BillServiceId { get; set; }
         public string ServiceName { get; set; }
         public double AmountAllocated { get; set; }
         public int BranchId { get; set; }
         public System.DateTime CreatedDate { get; set; }
-        public Nullable<int> MedicationId { get; set; }
     
         public virtual BillService BillService { get; set; }
         public virtual Branch Branch { get; set; }
         public virtual InsuranceInvoice InsuranceInvoice { get; set; }
-        public virtual Medication Medication { get; set; }
     }
 }

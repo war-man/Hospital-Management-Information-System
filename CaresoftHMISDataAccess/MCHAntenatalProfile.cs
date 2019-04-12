@@ -28,6 +28,7 @@ namespace CaresoftHMISDataAccess
         public int UserId { get; set; }
         public int BranchId { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
+        public string HIVTest { get; set; }
     
         public virtual OpdRegister OpdRegister { get; set; }
         public virtual User User { get; set; }

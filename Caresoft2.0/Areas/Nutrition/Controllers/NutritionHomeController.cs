@@ -45,7 +45,7 @@ namespace Caresoft2._0.Areas.Nutrition.Controllers
 
             int uid = Convert.ToInt32(Session["UserId"]);
             diet.user_id = uid;
-            diet.date_time = DateTime.Today;
+          // diet.date_time = DateTime.Today;
 
             if (ModelState.IsValid)
             {

@@ -770,48 +770,48 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public NewClientsServedRow AddNewClientsServedRow(
-                        string NMPAdult, 
-                        string NFPAdult, 
-                        string NMP15To17, 
-                        string NFP15To17, 
-                        string NMPPost, 
-                        string NFPPost, 
-                        string NMP0To59M, 
-                        string NFP0To59M, 
-                        string NMP5To15, 
-                        string NFP5To15, 
-                        string NPReadmission, 
-                        string NPRelapse, 
-                        string NPLinkedOVC, 
-                        string NMNAdult, 
-                        string NFNAdult, 
-                        string NMN15To17, 
-                        string NFN15To17, 
-                        string NMNPost, 
-                        string NFNPost, 
-                        string NMN0To59M, 
-                        string NFN0To59M, 
-                        string NMN5To15, 
-                        string NFN5To15, 
-                        string NNReadmission, 
-                        string NNRelapse, 
-                        string NNLinkedOVC, 
-                        string RPAdult, 
-                        string RP15To17, 
-                        string RPPost, 
-                        string RP0To59M, 
-                        string RP5To15, 
-                        string RPReadmission, 
-                        string RPRelapse, 
-                        string RPLinkedOVC, 
-                        string RNAdult, 
-                        string RN15To17, 
-                        string RNPost, 
-                        string RN0To59M, 
-                        string RN5To15, 
-                        string RNReadmission, 
-                        string RNRelapse, 
-                        string RNLinkedOVC) {
+                        int NMPAdult, 
+                        int NFPAdult, 
+                        int NMP15To17, 
+                        int NFP15To17, 
+                        int NMPPost, 
+                        int NFPPost, 
+                        int NMP0To59M, 
+                        int NFP0To59M, 
+                        int NMP5To15, 
+                        int NFP5To15, 
+                        int NPReadmission, 
+                        int NPRelapse, 
+                        int NPLinkedOVC, 
+                        int NMNAdult, 
+                        int NFNAdult, 
+                        int NMN15To17, 
+                        int NFN15To17, 
+                        int NMNPost, 
+                        int NFNPost, 
+                        int NMN0To59M, 
+                        int NFN0To59M, 
+                        int NMN5To15, 
+                        int NFN5To15, 
+                        int NNReadmission, 
+                        int NNRelapse, 
+                        int NNLinkedOVC, 
+                        int RPAdult, 
+                        int RP15To17, 
+                        int RPPost, 
+                        int RP0To59M, 
+                        int RP5To15, 
+                        int RPReadmission, 
+                        int RPRelapse, 
+                        int RPLinkedOVC, 
+                        int RNAdult, 
+                        int RN15To17, 
+                        int RNPost, 
+                        int RN0To59M, 
+                        int RN5To15, 
+                        int RNReadmission, 
+                        int RNRelapse, 
+                        int RNLinkedOVC) {
                 NewClientsServedRow rowNewClientsServedRow = ((NewClientsServedRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         NMPAdult,
@@ -925,89 +925,89 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnNMPAdult = new global::System.Data.DataColumn("NMPAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNMPAdult = new global::System.Data.DataColumn("NMPAdult", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNMPAdult);
-                this.columnNFPAdult = new global::System.Data.DataColumn("NFPAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNFPAdult = new global::System.Data.DataColumn("NFPAdult", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNFPAdult);
-                this.columnNMP15To17 = new global::System.Data.DataColumn("NMP15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNMP15To17 = new global::System.Data.DataColumn("NMP15To17", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNMP15To17);
-                this.columnNFP15To17 = new global::System.Data.DataColumn("NFP15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNFP15To17 = new global::System.Data.DataColumn("NFP15To17", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNFP15To17);
-                this.columnNMPPost = new global::System.Data.DataColumn("NMPPost", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNMPPost = new global::System.Data.DataColumn("NMPPost", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNMPPost);
-                this.columnNFPPost = new global::System.Data.DataColumn("NFPPost", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNFPPost = new global::System.Data.DataColumn("NFPPost", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNFPPost);
-                this.columnNMP0To59M = new global::System.Data.DataColumn("NMP0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNMP0To59M = new global::System.Data.DataColumn("NMP0To59M", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNMP0To59M);
-                this.columnNFP0To59M = new global::System.Data.DataColumn("NFP0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNFP0To59M = new global::System.Data.DataColumn("NFP0To59M", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNFP0To59M);
-                this.columnNMP5To15 = new global::System.Data.DataColumn("NMP5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNMP5To15 = new global::System.Data.DataColumn("NMP5To15", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNMP5To15);
-                this.columnNFP5To15 = new global::System.Data.DataColumn("NFP5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNFP5To15 = new global::System.Data.DataColumn("NFP5To15", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNFP5To15);
-                this.columnNPReadmission = new global::System.Data.DataColumn("NPReadmission", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNPReadmission = new global::System.Data.DataColumn("NPReadmission", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNPReadmission);
-                this.columnNPRelapse = new global::System.Data.DataColumn("NPRelapse", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNPRelapse = new global::System.Data.DataColumn("NPRelapse", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNPRelapse);
-                this.columnNPLinkedOVC = new global::System.Data.DataColumn("NPLinkedOVC", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNPLinkedOVC = new global::System.Data.DataColumn("NPLinkedOVC", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNPLinkedOVC);
-                this.columnNMNAdult = new global::System.Data.DataColumn("NMNAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNMNAdult = new global::System.Data.DataColumn("NMNAdult", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNMNAdult);
-                this.columnNFNAdult = new global::System.Data.DataColumn("NFNAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNFNAdult = new global::System.Data.DataColumn("NFNAdult", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNFNAdult);
-                this.columnNMN15To17 = new global::System.Data.DataColumn("NMN15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNMN15To17 = new global::System.Data.DataColumn("NMN15To17", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNMN15To17);
-                this.columnNFN15To17 = new global::System.Data.DataColumn("NFN15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNFN15To17 = new global::System.Data.DataColumn("NFN15To17", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNFN15To17);
-                this.columnNMNPost = new global::System.Data.DataColumn("NMNPost", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNMNPost = new global::System.Data.DataColumn("NMNPost", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNMNPost);
-                this.columnNFNPost = new global::System.Data.DataColumn("NFNPost", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNFNPost = new global::System.Data.DataColumn("NFNPost", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNFNPost);
-                this.columnNMN0To59M = new global::System.Data.DataColumn("NMN0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNMN0To59M = new global::System.Data.DataColumn("NMN0To59M", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNMN0To59M);
-                this.columnNFN0To59M = new global::System.Data.DataColumn("NFN0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNFN0To59M = new global::System.Data.DataColumn("NFN0To59M", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNFN0To59M);
-                this.columnNMN5To15 = new global::System.Data.DataColumn("NMN5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNMN5To15 = new global::System.Data.DataColumn("NMN5To15", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNMN5To15);
-                this.columnNFN5To15 = new global::System.Data.DataColumn("NFN5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNFN5To15 = new global::System.Data.DataColumn("NFN5To15", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNFN5To15);
-                this.columnNNReadmission = new global::System.Data.DataColumn("NNReadmission", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNNReadmission = new global::System.Data.DataColumn("NNReadmission", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNNReadmission);
-                this.columnNNRelapse = new global::System.Data.DataColumn("NNRelapse", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNNRelapse = new global::System.Data.DataColumn("NNRelapse", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNNRelapse);
-                this.columnNNLinkedOVC = new global::System.Data.DataColumn("NNLinkedOVC", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnNNLinkedOVC = new global::System.Data.DataColumn("NNLinkedOVC", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNNLinkedOVC);
-                this.columnRPAdult = new global::System.Data.DataColumn("RPAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRPAdult = new global::System.Data.DataColumn("RPAdult", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRPAdult);
-                this.columnRP15To17 = new global::System.Data.DataColumn("RP15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRP15To17 = new global::System.Data.DataColumn("RP15To17", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRP15To17);
-                this.columnRPPost = new global::System.Data.DataColumn("RPPost", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRPPost = new global::System.Data.DataColumn("RPPost", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRPPost);
-                this.columnRP0To59M = new global::System.Data.DataColumn("RP0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRP0To59M = new global::System.Data.DataColumn("RP0To59M", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRP0To59M);
-                this.columnRP5To15 = new global::System.Data.DataColumn("RP5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRP5To15 = new global::System.Data.DataColumn("RP5To15", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRP5To15);
-                this.columnRPReadmission = new global::System.Data.DataColumn("RPReadmission", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRPReadmission = new global::System.Data.DataColumn("RPReadmission", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRPReadmission);
-                this.columnRPRelapse = new global::System.Data.DataColumn("RPRelapse", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRPRelapse = new global::System.Data.DataColumn("RPRelapse", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRPRelapse);
-                this.columnRPLinkedOVC = new global::System.Data.DataColumn("RPLinkedOVC", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRPLinkedOVC = new global::System.Data.DataColumn("RPLinkedOVC", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRPLinkedOVC);
-                this.columnRNAdult = new global::System.Data.DataColumn("RNAdult", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRNAdult = new global::System.Data.DataColumn("RNAdult", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRNAdult);
-                this.columnRN15To17 = new global::System.Data.DataColumn("RN15To17", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRN15To17 = new global::System.Data.DataColumn("RN15To17", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRN15To17);
-                this.columnRNPost = new global::System.Data.DataColumn("RNPost", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRNPost = new global::System.Data.DataColumn("RNPost", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRNPost);
-                this.columnRN0To59M = new global::System.Data.DataColumn("RN0To59M", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRN0To59M = new global::System.Data.DataColumn("RN0To59M", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRN0To59M);
-                this.columnRN5To15 = new global::System.Data.DataColumn("RN5To15", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRN5To15 = new global::System.Data.DataColumn("RN5To15", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRN5To15);
-                this.columnRNReadmission = new global::System.Data.DataColumn("RNReadmission", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRNReadmission = new global::System.Data.DataColumn("RNReadmission", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRNReadmission);
-                this.columnRNRelapse = new global::System.Data.DataColumn("RNRelapse", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRNRelapse = new global::System.Data.DataColumn("RNRelapse", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRNRelapse);
-                this.columnRNLinkedOVC = new global::System.Data.DataColumn("RNLinkedOVC", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRNLinkedOVC = new global::System.Data.DataColumn("RNLinkedOVC", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRNLinkedOVC);
                 this.ExtendedProperties.Add("Generator_TablePropName", "_NewClientsServed");
                 this.ExtendedProperties.Add("Generator_UserTableName", "NewClientsServed");
@@ -1153,10 +1153,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NMPAdult {
+            public int NMPAdult {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NMPAdultColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NMPAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NMPAdult\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1169,10 +1169,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NFPAdult {
+            public int NFPAdult {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NFPAdultColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NFPAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NFPAdult\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1185,10 +1185,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NMP15To17 {
+            public int NMP15To17 {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NMP15To17Column]));
+                        return ((int)(this[this.tableNewClientsServed.NMP15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NMP15To17\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1201,10 +1201,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NFP15To17 {
+            public int NFP15To17 {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NFP15To17Column]));
+                        return ((int)(this[this.tableNewClientsServed.NFP15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NFP15To17\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1217,10 +1217,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NMPPost {
+            public int NMPPost {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NMPPostColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NMPPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NMPPost\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1233,10 +1233,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NFPPost {
+            public int NFPPost {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NFPPostColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NFPPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NFPPost\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1249,10 +1249,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NMP0To59M {
+            public int NMP0To59M {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NMP0To59MColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NMP0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NMP0To59M\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1265,10 +1265,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NFP0To59M {
+            public int NFP0To59M {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NFP0To59MColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NFP0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NFP0To59M\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1281,10 +1281,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NMP5To15 {
+            public int NMP5To15 {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NMP5To15Column]));
+                        return ((int)(this[this.tableNewClientsServed.NMP5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NMP5To15\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1297,10 +1297,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NFP5To15 {
+            public int NFP5To15 {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NFP5To15Column]));
+                        return ((int)(this[this.tableNewClientsServed.NFP5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NFP5To15\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1313,10 +1313,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NPReadmission {
+            public int NPReadmission {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NPReadmissionColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NPReadmissionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NPReadmission\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1329,10 +1329,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NPRelapse {
+            public int NPRelapse {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NPRelapseColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NPRelapseColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NPRelapse\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1345,10 +1345,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NPLinkedOVC {
+            public int NPLinkedOVC {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NPLinkedOVCColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NPLinkedOVCColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NPLinkedOVC\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1361,10 +1361,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NMNAdult {
+            public int NMNAdult {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NMNAdultColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NMNAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NMNAdult\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1377,10 +1377,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NFNAdult {
+            public int NFNAdult {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NFNAdultColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NFNAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NFNAdult\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1393,10 +1393,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NMN15To17 {
+            public int NMN15To17 {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NMN15To17Column]));
+                        return ((int)(this[this.tableNewClientsServed.NMN15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NMN15To17\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1409,10 +1409,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NFN15To17 {
+            public int NFN15To17 {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NFN15To17Column]));
+                        return ((int)(this[this.tableNewClientsServed.NFN15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NFN15To17\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1425,10 +1425,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NMNPost {
+            public int NMNPost {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NMNPostColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NMNPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NMNPost\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1441,10 +1441,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NFNPost {
+            public int NFNPost {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NFNPostColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NFNPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NFNPost\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1457,10 +1457,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NMN0To59M {
+            public int NMN0To59M {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NMN0To59MColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NMN0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NMN0To59M\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1473,10 +1473,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NFN0To59M {
+            public int NFN0To59M {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NFN0To59MColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NFN0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NFN0To59M\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1489,10 +1489,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NMN5To15 {
+            public int NMN5To15 {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NMN5To15Column]));
+                        return ((int)(this[this.tableNewClientsServed.NMN5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NMN5To15\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1505,10 +1505,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NFN5To15 {
+            public int NFN5To15 {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NFN5To15Column]));
+                        return ((int)(this[this.tableNewClientsServed.NFN5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NFN5To15\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1521,10 +1521,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NNReadmission {
+            public int NNReadmission {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NNReadmissionColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NNReadmissionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NNReadmission\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1537,10 +1537,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NNRelapse {
+            public int NNRelapse {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NNRelapseColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NNRelapseColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NNRelapse\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1553,10 +1553,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NNLinkedOVC {
+            public int NNLinkedOVC {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.NNLinkedOVCColumn]));
+                        return ((int)(this[this.tableNewClientsServed.NNLinkedOVCColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NNLinkedOVC\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1569,10 +1569,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RPAdult {
+            public int RPAdult {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RPAdultColumn]));
+                        return ((int)(this[this.tableNewClientsServed.RPAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RPAdult\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1585,10 +1585,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RP15To17 {
+            public int RP15To17 {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RP15To17Column]));
+                        return ((int)(this[this.tableNewClientsServed.RP15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RP15To17\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1601,10 +1601,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RPPost {
+            public int RPPost {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RPPostColumn]));
+                        return ((int)(this[this.tableNewClientsServed.RPPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RPPost\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1617,10 +1617,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RP0To59M {
+            public int RP0To59M {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RP0To59MColumn]));
+                        return ((int)(this[this.tableNewClientsServed.RP0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RP0To59M\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1633,10 +1633,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RP5To15 {
+            public int RP5To15 {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RP5To15Column]));
+                        return ((int)(this[this.tableNewClientsServed.RP5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RP5To15\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1649,10 +1649,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RPReadmission {
+            public int RPReadmission {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RPReadmissionColumn]));
+                        return ((int)(this[this.tableNewClientsServed.RPReadmissionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RPReadmission\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1665,10 +1665,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RPRelapse {
+            public int RPRelapse {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RPRelapseColumn]));
+                        return ((int)(this[this.tableNewClientsServed.RPRelapseColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RPRelapse\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1681,10 +1681,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RPLinkedOVC {
+            public int RPLinkedOVC {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RPLinkedOVCColumn]));
+                        return ((int)(this[this.tableNewClientsServed.RPLinkedOVCColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RPLinkedOVC\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1697,10 +1697,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RNAdult {
+            public int RNAdult {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RNAdultColumn]));
+                        return ((int)(this[this.tableNewClientsServed.RNAdultColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RNAdult\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1713,10 +1713,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RN15To17 {
+            public int RN15To17 {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RN15To17Column]));
+                        return ((int)(this[this.tableNewClientsServed.RN15To17Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RN15To17\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1729,10 +1729,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RNPost {
+            public int RNPost {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RNPostColumn]));
+                        return ((int)(this[this.tableNewClientsServed.RNPostColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RNPost\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1745,10 +1745,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RN0To59M {
+            public int RN0To59M {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RN0To59MColumn]));
+                        return ((int)(this[this.tableNewClientsServed.RN0To59MColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RN0To59M\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1761,10 +1761,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RN5To15 {
+            public int RN5To15 {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RN5To15Column]));
+                        return ((int)(this[this.tableNewClientsServed.RN5To15Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RN5To15\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1777,10 +1777,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RNReadmission {
+            public int RNReadmission {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RNReadmissionColumn]));
+                        return ((int)(this[this.tableNewClientsServed.RNReadmissionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RNReadmission\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1793,10 +1793,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RNRelapse {
+            public int RNRelapse {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RNRelapseColumn]));
+                        return ((int)(this[this.tableNewClientsServed.RNRelapseColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RNRelapse\' in table \'NewClientsServed\' is DBNull.", e);
@@ -1809,10 +1809,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RNLinkedOVC {
+            public int RNLinkedOVC {
                 get {
                     try {
-                        return ((string)(this[this.tableNewClientsServed.RNLinkedOVCColumn]));
+                        return ((int)(this[this.tableNewClientsServed.RNLinkedOVCColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'RNLinkedOVC\' in table \'NewClientsServed\' is DBNull.", e);

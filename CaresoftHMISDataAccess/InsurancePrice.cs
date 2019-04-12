@@ -21,6 +21,5 @@ namespace CaresoftHMISDataAccess
     
         public virtual Company Company { get; set; }
         public virtual ServicesPrice ServicesPrice { get; set; }
-        public object DateAdded { get; set; }
     }
 }

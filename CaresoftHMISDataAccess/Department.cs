@@ -17,6 +17,7 @@ namespace CaresoftHMISDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Department()
         {
+            this.Medications = new HashSet<Medication>();
             this.Employees = new HashSet<Employee>();
             this.PatientReferals = new HashSet<PatientReferal>();
             this.RoleRights = new HashSet<RoleRight>();
@@ -29,7 +30,11 @@ namespace CaresoftHMISDataAccess
         public int DepartmentType { get; set; }
         public string IsMedical { get; set; }
         public System.DateTime DateAdded { get; set; }
+        public Nullable<int> UniversalDeptId { get; set; }
     
+        public virtual UniversalDeptIdentifier UniversalDeptIdentifier { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Medication> Medications { get; set; }
         public virtual DepartmentType DepartmentType1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
@@ -41,7 +46,5 @@ namespace CaresoftHMISDataAccess
         public virtual ICollection<Service> Services { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRole> UserRoles { get; set; }
-        public string NameOfDepartment { get; set; }
-        public int DaysOfTheMonth { get; set; }
     }
 }

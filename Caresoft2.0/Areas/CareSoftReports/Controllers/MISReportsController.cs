@@ -1579,5 +1579,34 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             return dataSet;
         }
+
+        #region Monthly Revenue Report
+
+        public ActionResult MonthlyRevenue()
+        {
+            return View();
+        }
+
+        public class MonthlyReveneuModel
+        {
+            public string NameOfDepartment { get; set; } 
+            public string Months { get; set; }
+            public int Year { get; set; }
+        }
+
+
+
+        public ActionResult GetMonthlyRevenueReport(int Year, string Months)
+        {
+
+
+            var Jan = db2.BillServices.Where(p => p.DepartmentId == item.Id && p.DateAdded.Month == 1
+                          && p.DateAdded.Year == Year && p.OpdRegister.Tariff.Company.CompanyName == Insurance).Sum(p => (p.Award * p.Quatity));
+        }
+
+
+
+
+        #endregion
     }
 }

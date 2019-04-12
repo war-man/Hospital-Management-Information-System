@@ -26,6 +26,10 @@ namespace CaresoftHMISDataAccess
         public int UserId { get; set; }
         public int BranchId { get; set; }
         public System.DateTime DateAdded { get; set; }
+        public Nullable<System.DateTime> FifthFerrousFumarate { get; set; }
+        public Nullable<System.DateTime> SixthFerrousFumarate { get; set; }
+        public Nullable<System.DateTime> DewormingDate { get; set; }
+        public string Deworming { get; set; }
     
         public virtual OpdRegister OpdRegister { get; set; }
     }

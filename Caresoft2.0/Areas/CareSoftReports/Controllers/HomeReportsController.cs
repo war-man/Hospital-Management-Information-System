@@ -1,47 +1,43 @@
-﻿using Caresoft2._0.Areas.PharmacyModule.Reports.CurrentStock;
-using Caresoft2._0.Areas.PharmacyModule.Reports.PharmacyReports;
-using Caresoft2._0.Areas.PharmacyModule.ViewModel;
-using Caresoft2._0.Areas.Procurement.Models;
-using CrystalDecisions.CrystalReports.Engine;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Caresoft2._0.Areas.CareSoftReports.Reports.MOH505;
-using CaresoftHMISDataAccess;
-using Microsoft.Ajax.Utilities;
+﻿using Caresoft2._0.Areas.CareSoftReports.Reports.MOH505;
 using Caresoft2._0.Areas.CareSoftReports.Reports.MOH705A;
-using LabsDataAccess;
-using System.Globalization;
-using Caresoft2._0.Areas.CareSoftReports.Reports;
-using System.Drawing.Printing;
-using Caresoft2._0.Areas.CareSoftReports.ViewModels;
-using Caresoft2._0.Areas.CareSoftReports.Reports.MOH717;
 using Caresoft2._0.Areas.CareSoftReports.Reports.MOH706;
-using System.Data.Entity;
-using Caresoft2._0.Areas.CareSoftReports.Reports.UserRolesAndRights;
-using Caresoft2._0.CrystalReports.ReportHeader;
-using Caresoft2._0.CrystalReports;
-using Caresoft2._0.Areas.CareSoftReports.Reports.MOHMonthlyCash;
-using Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed;
+using Caresoft2._0.Areas.CareSoftReports.Reports.MOH710;
+using Caresoft2._0.Areas.CareSoftReports.Reports.MOH711.B;
+using Caresoft2._0.Areas.CareSoftReports.Reports.MOH711.B1;
+using Caresoft2._0.Areas.CareSoftReports.Reports.MOH711.B2;
+using Caresoft2._0.Areas.CareSoftReports.Reports.MOH711.J;
+using Caresoft2._0.Areas.CareSoftReports.Reports.MOH717;
 using Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor;
-using Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ARTAndCoexistingInfections;
 using Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.Anaemia;
+using Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ARTAndCoexistingInfections;
+using Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.ClientsServed;
 using Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.InfantFeedingPractices;
 using Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.NutritionIntervention;
+using Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.SAMMAM;
+using Caresoft2._0.Areas.CareSoftReports.Reports.MOHMonthlyCash;
+using Caresoft2._0.Areas.CareSoftReports.Reports.UserRolesAndRights;
+using Caresoft2._0.Areas.CareSoftReports.ViewModels;
+using Caresoft2._0.Areas.Procurement.Models;
+using Caresoft2._0.CrystalReports;
 using Caresoft2._0.CrystalReports.MOH710.ChildImmunization;
-using Caresoft2._0.Areas.CareSoftReports.Reports.MOH710;
 using Caresoft2._0.CrystalReports.MOH711.A;
-using Caresoft2._0.Areas.CareSoftReports.Reports.MOH711.J;
-using Caresoft2._0.CrystalReports.MOH711.I;
-using Caresoft2._0.CrystalReports.MOH711.H;
-using Caresoft2._0.CrystalReports.MOH711.F1;
-using Caresoft2._0.CrystalReports.MOH711.E;
-using Caresoft2._0.CrystalReports.MOH711.D;
 using Caresoft2._0.CrystalReports.MOH711.C;
-using Caresoft2._0.Areas.CareSoftReports.Reports.MOH711.B;
+using Caresoft2._0.CrystalReports.MOH711.D;
+using Caresoft2._0.CrystalReports.MOH711.E;
+using Caresoft2._0.CrystalReports.MOH711.F1;
+using Caresoft2._0.CrystalReports.MOH711.H;
+using Caresoft2._0.CrystalReports.MOH711.I;
+using Caresoft2._0.CrystalReports.ReportHeader;
+using CaresoftHMISDataAccess;
+using CrystalDecisions.CrystalReports.Engine;
+using LabsDataAccess;
+using Microsoft.Ajax.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 {
@@ -72,7 +68,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             return View();
         }
 
-        
+
         public ActionResult GetMOH705BReport(int Year, int selectMonth)
         {
 
@@ -1853,7 +1849,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                     }
                     else
                     {
-                       if (item.Patient.OpdRegisters.Count() == 1 && item.Patient.RegDate.Value.Month == today.Month)
+                        if (item.Patient.OpdRegisters.Count() == 1 && item.Patient.RegDate.Value.Month == today.Month)
                         {
                             NewFeMalePatientsUnderFive++;
                         }
@@ -4317,7 +4313,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
         }
 
         #endregion
-
+         
         #region Users and their Roles 
 
         public ActionResult UserRolesAndRights()
@@ -4492,7 +4488,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                                                              toDate.Year.ToString(),
                                                              "",
                                                              "");
-            
+
             ReportDocument Rd = new ReportDocument();
             Rd.Load(Path.Combine(Server.MapPath("~/Areas/CareSoftReports/Reports/MOH733B/MainReport.rpt")));
             Rd.SetDataSource(newHospitalDetails);
@@ -4518,36 +4514,223 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
         }
 
 
-        private object GetNewClientsServedData(DateTime fromDate, DateTime toDate)
+        private object GetNewClientsServedData(DateTime FromDate, DateTime ToDate)
         {
             NewClientsServed newClientsServed = new NewClientsServed();
-            var A = db2.NutritionAdultRegisters.Where(p => DbFunctions.TruncateTime(p.date_time) >= fromDate.Date && DbFunctions.TruncateTime(p.date_time) <= toDate.Date).ToList();
-            var C = db2.NutritionChildRegisters.Where(p => DbFunctions.TruncateTime(p.date_time) >= fromDate.Date && DbFunctions.TruncateTime(p.date_time) <= toDate.Date).ToList();
-            newClientsServed._NewClientsServed.AddNewClientsServedRow("0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+            var A = db2.NutritionAdultRegisters.Where(p => DbFunctions.TruncateTime(p.date_time) >= FromDate.Date && DbFunctions.TruncateTime(p.date_time) <= ToDate.Date).Count();
+            var C = db2.NutritionChildRegisters.Where(p => DbFunctions.TruncateTime(p.date_time) >= FromDate.Date && DbFunctions.TruncateTime(p.date_time) <= ToDate.Date).Count();
+            var NMPAdult = db2.NutritionAdultRegisters.Count(e => e.gender == "M" && e.age > 15 && e.ServicePoint=="CCC" && e.VisitType=="New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NFPAdult = db2.NutritionAdultRegisters.Count(e => e.gender == "F" && e.age > 15 && e.ServicePoint == "CCC" && e.VisitType=="New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NMP15To17 = db2.NutritionAdultRegisters.Count(e => e.gender == "M" && e.age >=15-17 && e.ServicePoint == "CCC" && e.VisitType=="New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NFP15To17 = db2.NutritionAdultRegisters.Count(e => e.gender == "F" && e.age >= 15 - 17 && e.ServicePoint == "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NMPPost = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.gender == "M" && e.ServicePoint == "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NFPPost = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.gender == "F" && e.ServicePoint == "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NMP0To59M = db2.NutritionChildRegisters.Count(e => e.gender == "M" && e.age <= 5 && e.ServicePoint == "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NFP0To59M = db2.NutritionChildRegisters.Count(e => e.gender == "F" && e.age <= 5 && e.ServicePoint == "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NMP5To15 = db2.NutritionAdultRegisters.Count(e => e.gender == "M" && e.age >= 5 - 15 && e.ServicePoint == "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NFP5To15 = db2.NutritionAdultRegisters.Count(e => e.gender == "F" && e.age >= 5 - 15 && e.ServicePoint == "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NPReadmission = db2.NutritionAdultRegisters.Count(e =>e.SamMamClients == "3-Readmission" && e.ServicePoint == "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NPRelapse = db2.NutritionAdultRegisters.Count(e => e.SamMamClients == "2-Relapse" && e.ServicePoint == "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NPLinkedOVC = db2.NutritionAdultRegisters.Count(e =>e.LinkedOVC=="Yes" && e.ServicePoint == "CCC" && e.VisitType == "New");
+            var NMNAdult = db2.NutritionAdultRegisters.Count(e => e.gender == "M" && e.age > 15 && e.ServicePoint != "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NFNAdult = db2.NutritionAdultRegisters.Count(e => e.gender == "F" && e.age > 15 && e.ServicePoint != "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NMN15To17 = db2.NutritionAdultRegisters.Count(e => e.gender == "M" && e.age >= 15 - 17 && e.ServicePoint != "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NFN15To17 = db2.NutritionAdultRegisters.Count(e => e.gender == "F" && e.age >= 15 - 17 && e.ServicePoint != "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NMNPost = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.gender == "M" && e.ServicePoint != "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NFNPost = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.gender == "F" && e.ServicePoint != "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NMN0To59M = db2.NutritionChildRegisters.Count(e => e.gender == "M" && e.age <= 5 && e.ServicePoint != "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NFN0To59M = db2.NutritionChildRegisters.Count(e => e.gender == "F" && e.age <= 5 && e.ServicePoint != "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NMN5To15 = db2.NutritionAdultRegisters.Count(e => e.gender == "M" && e.age >= 5 - 15 && e.ServicePoint != "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NFN5To15 = db2.NutritionAdultRegisters.Count(e => e.gender == "F" && e.age >= 5 - 15 && e.ServicePoint != "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NNReadmission = db2.NutritionAdultRegisters.Count(e => e.SamMamClients == "3-Readmission" && e.ServicePoint != "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NNRelapse = db2.NutritionAdultRegisters.Count(e => e.SamMamClients == "2-Relapse" && e.ServicePoint != "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NNLinkedOVC = db2.NutritionAdultRegisters.Count(e => e.LinkedOVC == "Yes" && e.ServicePoint != "CCC" && e.VisitType == "New" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RPAdult = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.ServicePoint == "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RP15To17 = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.ServicePoint == "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RPPost = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.ServicePoint == "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RP0To59M = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.ServicePoint == "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RP5To15 = db2.NutritionAdultRegisters.Count(e => e.age >= 5 - 15 && e.ServicePoint == "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RPReadmission = db2.NutritionAdultRegisters.Count(e => e.SamMamClients == "3-Readmission" && e.ServicePoint == "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RPRelapse = db2.NutritionAdultRegisters.Count(e => e.SamMamClients == "2-Relapse" && e.ServicePoint == "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RPLinkedOVC = db2.NutritionAdultRegisters.Count(e => e.LinkedOVC == "Yes" && e.ServicePoint == "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RNAdult = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.ServicePoint != "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RN15To17 = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.ServicePoint != "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RNPost = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.ServicePoint != "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RN0To59M = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.ServicePoint != "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RN5To15 = db2.NutritionAdultRegisters.Count(e => e.age >= 5 - 15 && e.ServicePoint != "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RNReadmission = db2.NutritionAdultRegisters.Count(e => e.SamMamClients == "3-Readmission" && e.ServicePoint != "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RNRelapse = db2.NutritionAdultRegisters.Count(e => e.SamMamClients == "2-Relapse" && e.ServicePoint != "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var RNLinkedOVC = db2.NutritionAdultRegisters.Count(e => e.LinkedOVC == "Yes" && e.ServicePoint != "CCC" && e.VisitType == "Revisit" && e.date_time >= FromDate && e.date_time <= ToDate);
+
+
+            newClientsServed._NewClientsServed.AddNewClientsServedRow(
+                NMPAdult,
+                NFPAdult, 
+                NMP15To17,
+                NFP15To17, 
+                NMPPost, 
+                NFPPost, 
+                NMP0To59M, 
+                NFP0To59M, 
+                NMP5To15, 
+                NFP5To15, 
+                NPReadmission, 
+                NPRelapse, 
+                NPLinkedOVC,
+                NMNAdult,
+                NFNAdult,
+                NMN15To17,
+                NFN15To17,
+                NMNPost,
+                NFNPost,
+                NMN0To59M,
+                NFN0To59M,
+                NMN5To15,
+                NFN5To15,
+                NNReadmission,
+                NNRelapse,
+                NNLinkedOVC,
+                RPAdult,
+                RP15To17,
+                RPPost,
+                RP0To59M,
+                RP5To15,
+                RPReadmission,
+                RPRelapse,
+                RPLinkedOVC,
+                RNAdult,
+                RN15To17,
+                RNPost,
+                RN0To59M,
+                RN5To15,
+                RNReadmission,
+                RNRelapse,
+                RNLinkedOVC);
             return newClientsServed;
         }
-        private object GetNewSAMData(DateTime fromDate, DateTime toDate)
+        private object GetNewSAMData(DateTime FromDate, DateTime ToDate)
+        {
+            NewSAM newSAM = new NewSAM();
+
+            var PSAMAdult = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.ServicePoint == "CCC" && e.NutritionStatus == "1=SAM"  && e.date_time >= FromDate && e.date_time <= ToDate);
+            var PMAMAdult = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.ServicePoint == "CCC" && e.NutritionStatus == "2=MAM" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var PSAM15To17 = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.ServicePoint == "CCC" && e.NutritionStatus == "1=SAM" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var PMAM15To17 = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.ServicePoint == "CCC" && e.NutritionStatus == "2=SAM" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var PSAMPost = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.NutritionStatus=="1=SAM" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var PMAMPost = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.NutritionStatus == "2=MAM" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var PSAM0To59M = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.ServicePoint == "CCC" && e.NutritionStatus == "1=SAM" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var PMAM0To59M = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.ServicePoint == "CCC" && e.NutritionStatus == "2=MAM" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var PSAM5To15 = db2.NutritionAdultRegisters.Count(e => e.NutritionStatus == "1=SAM" && e.age >= 5 - 15 && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var PMAM5To15 = db2.NutritionAdultRegisters.Count(e => e.NutritionStatus == "2=SAM" && e.age >= 5 - 15 && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NSAMAdult = db2.NutritionAdultRegisters.Count(e => e.NutritionStatus == "1=SAM" && e.age > 15 && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NMAMAdult = db2.NutritionAdultRegisters.Count(e => e.NutritionStatus == "2=SAM" && e.age > 15 && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NSAM15To17 = db2.NutritionAdultRegisters.Count(e => e.NutritionStatus == "1=SAM" && e.age >= 15 - 17 && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NMAM15To17 = db2.NutritionAdultRegisters.Count(e => e.NutritionStatus == "2=MAM" && e.age >= 15 - 17 && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NSAMPost = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.NutritionStatus == "1=SAM" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NMAMPost = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.NutritionStatus == "2=MAM" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NSAM0To59 = db2.NutritionChildRegisters.Count(e => e.NutritionStatus == "1=SAM" && e.age <= 5 && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NMAM0To59 = db2.NutritionChildRegisters.Count(e => e.NutritionStatus == "2=MAM" && e.age <= 5 && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NSAM5To15 = db2.NutritionAdultRegisters.Count(e => e.NutritionStatus == "1=SAM" && e.age >= 5 - 15 && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NMAM5To15 = db2.NutritionAdultRegisters.Count(e => e.NutritionStatus == "2=MAM" && e.age >= 5 - 15 && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            newSAM._NewSAM.AddNewSAMRow(
+                PSAMAdult,
+                PMAMAdult,
+                PSAM15To17,
+                PMAM15To17,
+                PSAMPost,
+                PMAMPost,
+                PSAM0To59M,
+                PMAM0To59M,
+                PSAM5To15,
+                PMAM5To15,
+                NSAMAdult,
+                NMAMAdult,
+                NSAM15To17, 
+                NMAM15To17, 
+                NSAMPost,
+                NMAMPost,
+                NSAM0To59,
+                NMAM0To59,
+                NSAM5To15, 
+                NMAM5To15);
+
+            return newSAM;
+        }
+        private object GetNewARTData(DateTime FromDate, DateTime ToDate)
         {
             NewART newART = new NewART();
+
+           //var NTBAdult=db2.NutritionAdultRegisters.Count(e=>e.CoexistingConditions.HasValue=="1=TB" &&e.age>15 && e.VisitType=="New" && e.date_time >= FromDate && e.date_time <= ToDate);
+
             newART._NewART.AddNewARTRow(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             return newART;
         }
-        private object GetNewARTData(DateTime fromDate, DateTime toDate)
-        {
-            NewART newART = new NewART();
-            newART._NewART.AddNewARTRow(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            return newART;
-        }
-        private object GetNewAnaemiaData(DateTime fromDate, DateTime toDate)
+        private object GetNewAnaemiaData(DateTime?  FromDate, DateTime? ToDate)
         {
             NewAnaemia newAnaemia = new NewAnaemia();
-            newAnaemia._NewAnaemia.AddNewAnaemiaRow(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+           var NSAdultP= db2.NutritionAdultRegisters.Count(e=>e.Anaemia=="1=Severe" && e.VisitType=="New" && e.ServicePoint=="CCC"&& e.age >15 && e.date_time >= FromDate && e.date_time <= ToDate); 
+           var NSAdultN= db2.NutritionAdultRegisters.Count(e => e.Anaemia == "1=Severe" && e.VisitType == "New" && e.ServicePoint != "CCC" && e.age > 15 && e.date_time >= FromDate && e.date_time <= ToDate);
+           var NSAllChildren= db2.NutritionChildRegisters.Count(e => e.Anaemia == "1=Severe" && e.VisitType == "New"  && e.age <= 15 && e.date_time >= FromDate && e.date_time <= ToDate);
+           var NMAdultP= db2.NutritionAdultRegisters.Count(e => e.Anaemia == "2=Moderate" && e.VisitType == "New" && e.ServicePoint == "CCC" && e.age > 15 && e.date_time >= FromDate && e.date_time <= ToDate);
+           var NMAdultN = db2.NutritionAdultRegisters.Count(e => e.Anaemia == "2=Moderate" && e.VisitType == "New" && e.ServicePoint != "CCC" && e.age > 15 && e.date_time >= FromDate && e.date_time <= ToDate);
+           var NMAllChildren= db2.NutritionChildRegisters.Count(e => e.Anaemia == "2=Moderate" && e.VisitType == "New" && e.age <= 15 && e.date_time >= FromDate && e.date_time <= ToDate);
+           var NMiAdultP = db2.NutritionAdultRegisters.Count(e => e.Anaemia == "3=Mild" && e.VisitType == "New" && e.ServicePoint == "CCC" && e.age > 15 && e.date_time >= FromDate && e.date_time <= ToDate);
+           var NMiAdultN = db2.NutritionAdultRegisters.Count(e => e.Anaemia == "3=Mild" && e.VisitType == "New" && e.ServicePoint != "CCC" && e.age > 15 && e.date_time >= FromDate && e.date_time <= ToDate);
+           var NMiAllChildren = db2.NutritionChildRegisters.Count(e => e.Anaemia == "3=Mild" && e.VisitType == "New" && e.age <= 15 && e.date_time >= FromDate && e.date_time <= ToDate);
+
+
+
+            newAnaemia._NewAnaemia.AddNewAnaemiaRow(
+                NSAdultP,
+                NSAdultN,
+                NSAllChildren,
+                NMAdultP,
+                NMAdultN,
+                NMAllChildren,
+                NMiAdultP,
+                NMiAdultN,
+                NMiAllChildren,
+                NSAdultP+ NSAdultN+ NSAllChildren,
+                NMAdultP+ NMAdultN+ NMAllChildren,
+                NMiAdultP+ NMiAdultN+ NMiAllChildren);
             return newAnaemia;
         }
-        private object GetNewInfantData(DateTime fromDate, DateTime toDate)
+        private object GetNewInfantData(DateTime FromDate, DateTime ToDate)
         {
             NewInfant newInfant = new NewInfant();
-            newInfant._NewInfant.AddNewInfantRow(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+            var EBF = db2.NutritionChildRegisters.Count(e=>e.First0to6Months=="Exclusive Breastfeeding" && e.ServicePoint=="CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var ERF = db2.NutritionChildRegisters.Count(e => e.First0to6Months == "Exclusive replacement feeding" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var MF = db2.NutritionChildRegisters.Count(e => e.First0to6Months == "Mixed feeding" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            //var BF = 0;
+            //var NBF = 0;
+            //var NK = 0;
+            //var BCF = 0;
+            var EBF1 = db2.NutritionChildRegisters.Count(e => e.First0to6Months == "Exclusive Breastfeeding" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var ERF1 = db2.NutritionChildRegisters.Count(e => e.First0to6Months == "Exclusive replacement feeding" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var MF1 = db2.NutritionChildRegisters.Count(e => e.First0to6Months == "Mixed feeding" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            //var BF1 = 0;
+            //var NBF1 = 0;
+            //var NK1 = 0;
+            //var BCF1 = 0;
+
+
+            newInfant._NewInfant.AddNewInfantRow(
+                EBF,
+                ERF,
+                MF,
+                0,
+                0,
+                0,
+                0,
+                EBF1,
+                ERF1,
+                MF1, 
+                0, 
+                0, 
+                0, 
+                0);
             return newInfant;
         }
 
@@ -4597,6 +4780,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             Rd.Subreports["AdverseEvents.rpt"].SetDataSource(AdverseNew);
             Rd.Subreports["VitaminReport.rpt"].SetDataSource(VitaminA);
 
+            Rd.SetParameterValue("fromDate", FromDate);
+            Rd.SetParameterValue("toDate", ToDate);
+
 
             Stream Stream = Rd.ExportToStream(
                 CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
@@ -4606,128 +4792,168 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             return File(Stream, "application/pdf", FileName);
         }
 
-        
+
 
         public class ChildImmunization
         {
+
             public string Name { get; set; }
             public int CountGreaterThanOneYear { get; set; }
             public int CountLessThanOneYear { get; set; }
+
         }
-        private DataSetChildImmunization GetChildImmunizationData(DateTime fromDate, DateTime toDate)
+        private DataSetChildImmunization GetChildImmunizationData(DateTime? fromDate, DateTime? toDate)
         {
-            var AllImmunizations = db2.ImmunizationAdmins
-                                     .Where(p => p.DateGiven >= fromDate && p.DateGiven <= toDate)
-                                     .ToList();
             var allTypesOfImmunization = db2.ImmunizationMasters.ToList();
+
+            var AllImmunizations = db2.ImmunizationAdmins
+                                    .Where(p => p.DateGiven >= fromDate && p.DateGiven <= toDate)
+                                    .ToList();
+
+            foreach (var typeImmunization in AllImmunizations)
+            {
+                var PatientImmunizeds = AllImmunizations.Where(p => p.ImmunizationMasterId == typeImmunization.Id).ToList();
+
+
+                ChildImmunization childImmunization = new ChildImmunization
+                {
+
+                };
+
+
+                foreach (var pat in PatientImmunizeds)
+                {
+
+                    var dateOfBirth = pat.OpdRegister?.Patient.DOB;
+
+
+                    if (dateOfBirth != null)
+                    {
+
+                        var age = pat.DateGiven.Year - dateOfBirth.Value.Year;
+
+                        if (age > 1)
+                        {
+                            childImmunization.CountGreaterThanOneYear++;
+                        }
+                        else
+                        {
+                            childImmunization.CountLessThanOneYear++;
+                        }
+
+                    }
+                }
+            }
+
             DataSetChildImmunization dataSetChildImmunization = new DataSetChildImmunization();
             ChildImmunization IMBCGDosesAdministered = new ChildImmunization()
             {
                 Name = "BCG doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("BCG")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("BCG"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName.Trim().ToUpper().Contains("BCG ") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName.Trim().ToUpper().Contains("BCG ") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1)
             };
             ChildImmunization IMOPVBirthDosesAdministered = new ChildImmunization()
             {
                 Name = "OPV Birth doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.ToUpper().Contains("OPV")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.ToUpper().Contains("OPV"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("POLIO VACCINE:(Bivalent Oral Polio Vaccine(bOPV))") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("DOSE AT BIRTH-2 DROPS ORALLY") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("POLIO VACCINE:(Bivalent Oral Polio Vaccine(bOPV))") && e.ImmunizationMaster.ImmunizationName.Contains("DOSE AT BIRTH-2 DROPS ORALLY") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
+
             ChildImmunization IMOPV1DosesAdministered = new ChildImmunization()
             {
                 Name = "OPV1  doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.ToUpper().Contains("OPV1||OPV 1")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.ToUpper().Contains("OPV1||OPV 1"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("POLIO VACCINE:(Bivalent Oral Polio Vaccine(bOPV))") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("FIRST DOSE AT 6 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("POLIO VACCINE:(Bivalent Oral Polio Vaccine(bOPV))") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("FIRST DOSE AT 6 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMOPV2DosesAministered = new ChildImmunization()
             {
                 Name = "OPV2  doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.ToUpper().Contains("OPV2||OPV 2")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.ToUpper().Contains("OPV2||OPV 2"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("POLIO VACCINE:(Bivalent Oral Polio Vaccine(bOPV))") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("SECOND DOSE AT 10 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("POLIO VACCINE:(Bivalent Oral Polio Vaccine(bOPV))") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("SECOND DOSE AT 10 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMOPV3DosesAdministered = new ChildImmunization()
             {
                 Name = "OPV3  doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.ToUpper().Contains("OPV3")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.ToUpper().Contains("OPV3"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("POLIO VACCINE:(Bivalent Oral Polio Vaccine(bOPV))") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("THIRD DOSE AT 14 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("POLIO VACCINE:(Bivalent Oral Polio Vaccine(bOPV))") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("THIRD DOSE AT 14 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMIPVDosesAdministered = new ChildImmunization()
             {
                 Name = "IPV doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("IPV")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("IPV"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName.ToUpper().Contains("IPV(Inactivated Polio Vaccine)") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName.ToUpper().Contains("IPV(Inactivated Polio Vaccine)") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMDPTHepHiB1DosesAdministered = new ChildImmunization()
             {
                 Name = "DPT/Hep+HiB1 doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("HiB1")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("HiB1"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("DIPTHERIA/PERTUSIS/TETANUS/HEPATITIS B/HAEMOPHILUS INFLUENZA TYPE B") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("FIRST DOSE AT 6 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("DIPTHERIA/PERTUSIS/TETANUS/HEPATITIS B/HAEMOPHILUS INFLUENZA TYPE B") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("FIRST DOSE AT 6 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMDPTHepHiB2DosesAdministered = new ChildImmunization()
             {
                 Name = "DPT/Hep+HiB2 doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("HIB2")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("HIB2"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("DIPTHERIA/PERTUSIS/TETANUS/HEPATITIS B/HAEMOPHILUS INFLUENZA TYPE B") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("SECOND DOSE AT 10 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("DIPTHERIA/PERTUSIS/TETANUS/HEPATITIS B/HAEMOPHILUS INFLUENZA TYPE B") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("SECOND DOSE AT 10 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMDPTHepHiB3DosesAdministered = new ChildImmunization()
             {
                 Name = "DPT/Hep+HiB3 doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("HIB3")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("HIB3"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("DIPTHERIA/PERTUSIS/TETANUS/HEPATITIS B/HAEMOPHILUS INFLUENZA TYPE B") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("THIRD DOSE AT 14 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("DIPTHERIA/PERTUSIS/TETANUS/HEPATITIS B/HAEMOPHILUS INFLUENZA TYPE B") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("THIRD DOSE AT 14 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMPneumococal1DosesAdministered = new ChildImmunization()
             {
                 Name = "Pnemococal 1 doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("PNEUMOCOCAL1||PNEUMACOCAL 1")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("PNEUMOCOCAL1||PNEUMACOCAL 1"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("PNEUMOCOCCAL VACCINE") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("FIRST DOSE AT 6 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("PNEUMOCOCCAL VACCINE") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("FIRST DOSE AT 6 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMPneumococal2DosesAdministered = new ChildImmunization()
             {
                 Name = "Pnemococal 2 doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("PNEUMOCOCAL2||PNEUMACOCAL 2")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("PNEUMOCOCAL2||PNEUMACOCAL 2"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("PNEUMOCOCCAL VACCINE") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("SECOND DOSE AT 10 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("PNEUMOCOCCAL VACCINE") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("SECOND DOSE AT 10 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMPneumococal3DosesAdministered = new ChildImmunization()
             {
                 Name = "Pnemococal 3 doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("PNEUMOCOCAL3||PNEUMACOCAL 3")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("PNEUMOCOCAL3||PNEUMACOCAL 1"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("PNEUMOCOCCAL VACCINE") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("THIRD DOSE AT 14 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("PNEUMOCOCCAL VACCINE") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("THIRD DOSE AT 14 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMRotavirus1 = new ChildImmunization()
             {
                 Name = "Rotavirus 1 doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("ROTAVIRUS1||ROTAVIRUS 1")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("ROTAVIRUS1||ROTAVIRUS 1"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("ROTA VIRUS(ROTARIX)") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("FIRST DOSE AT 6 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("ROTA VIRUS(ROTARIX)") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("FIRST DOSE AT 6 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMRotavirus2 = new ChildImmunization()
             {
                 Name = "Rotavirus 2 doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("ROTAVIRUS2||ROTAVIRUS 2")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("ROTAVIRUS2||ROTAVIRUS 2"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("ROTA VIRUS(ROTARIX)") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("SECOND DOSE AT 10 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("ROTA VIRUS(ROTARIX)") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("SECOND DOSE AT 10 WEEKS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMVitaminA = new ChildImmunization()
             {
                 Name = "Vitamin A at 6 months(100,000 UI)",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("VITAMINA||VITAMIN A")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("VITAMINA||VITAMIN A"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("VITAMIN A CAPSULE FROM 6 MONTHS") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("1000001U") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("VITAMIN A CAPSULE FROM 6 MONTHS") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("1000001U") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMYellowFever = new ChildImmunization()
             {
                 Name = "Yellow fever doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("YELLOWFEVER||YELLOW FEVER")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("YELLOWFEVER"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName.ToUpper().Contains("YELLOW FEVER VACCINE AT NINE MONTHS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName.ToUpper().Contains("YELLOW FEVER VACCINE AT NINE MONTHS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMMeaslesRubella = new ChildImmunization()
             {
                 Name = "Measles-Rubella 1 doses Administered",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("MEASLES")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("MEASLES"))
+                CountGreaterThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName.ToUpper().Contains("MEASLES RUBELLA VACCINE(MR) AT 9 MONTHS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 1),
+                CountLessThanOneYear = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName.ToUpper().Contains("MEASLES RUBELLA VACCINE(MR) AT 9 MONTHS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 1),
             };
             ChildImmunization IMFullyImmunized = new ChildImmunization()
             {
                 Name = "Fully Immunized Children(FIC) under 1 year",
-                CountGreaterThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("FULLY IMMUNIZED")),
-                CountLessThanOneYear = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("FULLY IMMUNIZED"))
+                CountGreaterThanOneYear = 0,
+                CountLessThanOneYear = 0
             };
 
             List<ChildImmunization> LstChildImmunization = new List<ChildImmunization>();
@@ -4750,47 +4976,15 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             LstChildImmunization.Add(IMMeaslesRubella);
             LstChildImmunization.Add(IMFullyImmunized);
 
-            foreach (var typeImmunization in allTypesOfImmunization)
-            {
-                var PatientImmunizeds = AllImmunizations.Where(p => p.ImmunizationMasterId == typeImmunization.Id).ToList();
-
-
-                ChildImmunization childImmunization = new ChildImmunization()
-                {
-
-                };
-
-                foreach (var pat in PatientImmunizeds)
-                {
-
-                    var dateOfBirth = pat.OpdRegister.Patient.DOB;
-
-                    if (dateOfBirth != null)
-                    {
-                        var age = pat.DateGiven.Year - dateOfBirth.Value.Year;
-
-                        if (age > 1)
-                        {
-                            childImmunization.CountGreaterThanOneYear++;
-                        }
-                        else
-                        {
-                            childImmunization.CountLessThanOneYear++;
-                        }
-                    }
-                }
-            }
 
             foreach (var item in LstChildImmunization)
-                {
-                    dataSetChildImmunization.ChildImmunization.AddChildImmunizationRow(item.Name, item.CountLessThanOneYear, item.CountGreaterThanOneYear);
+            {
+                dataSetChildImmunization.ChildImmunization.AddChildImmunizationRow(
+                    item.Name,
+                    item.CountLessThanOneYear,
+                    item.CountGreaterThanOneYear);
 
-                }
-
-           // dataSetChildImmunization.ChildImmunization.AddChildImmunizationRow("Immunization 1", 19, 20);
-
-
-
+            }
             return dataSetChildImmunization;
 
         }
@@ -4800,14 +4994,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             public int Value { get; set; }
             public int Age { get; set; }
         }
-        private MeaslesVitaminA GetMeaslesVitaminAData(DateTime fromDate, DateTime toDate)
+        private MeaslesVitaminA GetMeaslesVitaminAData(DateTime? fromDate, DateTime? toDate)
         {
             var AllImmunizations = db2.ImmunizationAdmins
                                     .Where(p => p.DateGiven >= fromDate && p.DateGiven <= toDate)
                                     .ToList();
             var allTypesOfImmunization = db2.ImmunizationMasters.ToList();
 
-            foreach (var typeImmunization in allTypesOfImmunization)
+            foreach (var typeImmunization in AllImmunizations)
             {
                 var PatientImmunizeds = AllImmunizations.Where(p => p.ImmunizationMasterId == typeImmunization.Id).ToList();
                 Measles measles = new Measles()
@@ -4817,7 +5011,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                 foreach (var pat in PatientImmunizeds)
                 {
 
-                    var dateOfBirth = pat.OpdRegister.Patient.DOB;
+                    var dateOfBirth = pat.OpdRegister?.Patient.DOB;
 
                     if (dateOfBirth != null)
                     {
@@ -4832,26 +5026,26 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             {
 
                 Name = "Vitamin A at 1year (200,000IU)",
-                Value = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().Contains("200,000IU")),
-                Age = 1
+                Value = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("VITAMIN A CAPSULE FROM 6 MONTHS") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("2000001U") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) == 1),
+
             };
             Measles MVitaminAAt1AndAhalf = new Measles()
             {
                 Name = "Vitamin a at 11/2 years(200,000IU)",
-                Value = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().Contains("200,000UI")),
-                Age = 11 / 2
+                Value = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("VITAMIN A CAPSULE FROM 6 MONTHS") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("2000001U") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) == 11 / 2),
+
             };
             Measles MMeaslesAt1AndAhalf = new Measles()
             {
                 Name = "Measles-Rubella 2 Dose Adm (at 11/2-2 years)",
-                Value = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("MEASLES")),
-                Age = 11 / 2 - 2
+                Value = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName.ToUpper().Contains("MEASLES RUBELLA VACCINE(MR) AT 18 MONTHS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) == 11 / 2 - 2),
+
             };
             Measles MMeaslesAtGreater2 = new Measles()
             {
                 Name = "Measles-Rubella 2 Dose Administered >2yrs",
-                Value = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("MEASLES")),
-                Age = 2
+                Value = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName.ToUpper().Contains("MEASLES RUBELLA VACCINE(MR) AT 24 MONTHS") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 2),
+
             };
 
             List<Measles> LstMeasles = new List<Measles>();
@@ -4871,6 +5065,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             return measlesVitaminA;
         }
 
+
         public class TetanusT
         {
 
@@ -4883,37 +5078,37 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
         }
 
-        private Tetanus GetTetanusData(DateTime fromDate, DateTime toDate)
+        private Tetanus GetTetanusData(DateTime? fromDate, DateTime? toDate)
         {
             var AllImmunizations = db2.ImmunizationAdmins
                                      .Where(p => p.DateGiven >= fromDate && p.DateGiven <= toDate)
                                      .ToList();
-            var allTypesOfImmunization = db2.ImmunizationMasters.ToList();
+            var allTypesOfImmunization = db2.MCHPreventativeServices.Where(p => p.DateGiven >= fromDate && p.DateGiven <= toDate).ToList();
             Tetanus tetanus = new Tetanus();
 
             TetanusT TDoses = new TetanusT()
             {
-              
-              First=allTypesOfImmunization.Count(e=>e.ImmunizationName.Trim().ToUpper().Contains("TETANUS 1ST DOSE")),
-              Second = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("TETANUS 2ND DOSE")),
-              Third = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("TETANUS 3RD DOSE")),
-              Fourth = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("TETANUS 4TH DOSE")),
-              Fifth = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("TETANUS 5TH DOSE"))
+
+                First = allTypesOfImmunization.Count(e => e.Vaccine == "TetunusToxoid1"),
+                Second = allTypesOfImmunization.Count(e => e.Vaccine == "TetunusToxoid2"),
+                Third = allTypesOfImmunization.Count(e => e.Vaccine == "TetunusToxoid3"),
+                Fourth = allTypesOfImmunization.Count(e => e.Vaccine == "TetunusToxoid4"),
+                Fifth = allTypesOfImmunization.Count(e => e.Vaccine == "TetunusToxoid5"),
             };
-            
+
 
             List<TetanusT> LstTetanusT = new List<TetanusT>();
             LstTetanusT.Add(TDoses);
-            
+
 
             foreach (var item in LstTetanusT)
             {
-                tetanus._Tetanus.AddTetanusRow(item.First,item.Second,item.Third,item.Fourth,item.Fifth);
-                
+                tetanus._Tetanus.AddTetanusRow(item.First, item.Second, item.Third, item.Fourth, item.Fifth);
+
             }
             return tetanus;
         }
-        
+
         public class Adverse
 
         {
@@ -4936,7 +5131,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             };
 
             List<Adverse> LstAdverse = new List<Adverse>();
-            LstAdverse.Add(AAdverseEvents);
+            // LstAdverse.Add(AAdverseEvents);
 
             foreach (var typeImmunization in allTypesOfImmunization)
             {
@@ -4951,7 +5146,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                 foreach (var pat in PatientImmunizeds)
                 {
 
-                    var dateOfBirth = pat.OpdRegister.Patient.DOB;
+                    var dateOfBirth = pat.OpdRegister?.Patient.DOB;
 
                     if (dateOfBirth != null)
                     {
@@ -4971,7 +5166,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                 {
                     adverseNew.Adverse.AddAdverseRow(item.CountLessThanOneYear, item.CountGreaterThanOneYear);
                 }
-                
+
             }
             return adverseNew;
         }
@@ -4997,47 +5192,48 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                 foreach (var pat in PatientImmunizeds)
                 {
 
-                    var dateOfBirth = pat.OpdRegister.Patient.DOB;
+                    var dateOfBirth = pat.OpdRegister?.Patient.DOB;
 
                     if (dateOfBirth != null)
                     {
                         var Age = pat.DateGiven.Year - dateOfBirth.Value.Year;
+                        //var Months = Age * 12;
                     }
                 }
             }
 
-                    VitaminA vitaminA = new VitaminA();
-                    Vitamin VVitaminA2To5 = new Vitamin()
-                    {
-                        Name = "Vitamin A 2 years to 5 years(200,000 IU)",
-                        Value = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().Contains("200,000 IU")),
-                        Age = 2 - 5
-                    };
-                    Vitamin VVitaminALactating = new Vitamin()
-                    {
-                        Name = "Vitamin A Supplemental Lactating Mothers (200,000IU)",
-                        Value = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains(" VITAMIN A LACTATING MOTHERS"))
-                    };
-                    Vitamin VSquint = new Vitamin()
-                    {
-                        Name = "Squint/White Eye reflection under 1 year",
-                        Value = allTypesOfImmunization.Count(e => e.ImmunizationName.Trim().ToUpper().Contains("SQUINT|| WHITE EYE REFLECTION")),
-                        Age = 1
-                    };
+            VitaminA vitaminA = new VitaminA();
+            Vitamin VVitaminA2To5 = new Vitamin()
+            {
+                Name = "Vitamin A 2 years to 5 years(200,000 IU)",
+                Value = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("VITAMIN A CAPSULE FROM 6 MONTHS") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("2000001U") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) == 2 - 5),
 
-                    List<Vitamin> LstVitamin = new List<Vitamin>();
+            };
+            Vitamin VVitaminALactating = new Vitamin()
+            {
+                Name = "Vitamin A Supplemental Lactating Mothers (200,000IU)",
+                Value = AllImmunizations.Count(e => e.ImmunizationMaster.ImmunizationCategory.ImmunizationCategoryName == ("VITAMIN A CAPSULE FROM 6 MONTHS") && e.ImmunizationMaster.ImmunizationName.Trim().ToUpper().Contains("2000001U") && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) > 2),
+            };
+            Vitamin VSquint = new Vitamin()
+            {
+                Name = "Squint/White Eye reflection under 1 year",
+                Value = 0,
 
-                    LstVitamin.Add(VVitaminA2To5);
-                    LstVitamin.Add(VVitaminALactating);
-                    LstVitamin.Add(VSquint);
+            };
 
-                    foreach (var item in LstVitamin)
-                    {
-                        vitaminA._VitaminA.AddVitaminARow(item.Name, item.Value);
-                       
-                    }
-                    return vitaminA;
-            
+            List<Vitamin> LstVitamin = new List<Vitamin>();
+
+            LstVitamin.Add(VVitaminA2To5);
+            LstVitamin.Add(VVitaminALactating);
+            LstVitamin.Add(VSquint);
+
+            foreach (var item in LstVitamin)
+            {
+                vitaminA._VitaminA.AddVitaminARow(item.Name, item.Value);
+
+            }
+            return vitaminA;
+
         }
 
 
@@ -5053,21 +5249,21 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
         public ActionResult GenerateMOH711Report(DateTime FromDate, DateTime ToDate)
         {
             var fromDate = FromDate;
-            var toDate = ToDate;
+            var toDate = ToDate.Date;
 
-           
-
-            var ANC = GetAncSampleData();
+            var ANC = GetAncSampleData(FromDate, ToDate);
             var NewMAndD = GetMaternityAndDSampleData(FromDate, ToDate);
-            var SGBVCCC = GetSGBVCCCSampleData();
-            var FP = GetFPSampleData();
-            var DatasetE = GetDatasetESampleData();
-            var DatasetF = GetDatasetFSampleData();
-            var CervicalCancerG = GetCervicalSampleData();
-            var PNCH = GetPNCHSampleData();
-            var RehabServicesI = GetRehabServicesISampleData();
-            var MSocialWorkJ = GetMSocialWorkJSampleData();
-            var PhysiotherapyService = GetPhysiotherapyServiceSampleData();
+            var Maternal = GetMaternalSampleData(FromDate, ToDate);
+            var Referrals = GetReferralsSmpleData(FromDate, ToDate);
+            var SGBVCCC = GetSGBVCCCSampleData(FromDate, ToDate);
+            var FP = GetFPSampleData(FromDate, ToDate);
+            var DatasetE = GetDatasetESampleData(FromDate, ToDate);
+            var DatasetF = GetDatasetFSampleData(FromDate, ToDate);
+            var CervicalCancerG = GetCervicalSampleData(FromDate, ToDate);
+            var PNCH = GetPNCHSampleData(FromDate, ToDate);
+            var RehabServicesI = GetRehabServicesISampleData(FromDate, ToDate);
+            var MSocialWorkJ = GetMSocialWorkJSampleData(FromDate, ToDate);
+            var PhysiotherapyService = GetPhysiotherapyServiceSampleData(FromDate, ToDate);
 
             Reports.MOH711.MainDataset mainDataset = new Reports.MOH711.MainDataset();
             var HospitalName = db2.KeyValuePairs.Where(p => p.Key_ == "FacilityName").FirstOrDefault().Value;
@@ -5085,17 +5281,19 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             rd.SetDataSource(mainDataset);
 
 
-            rd.Subreports["MOH711.rpt"].SetDataSource(GetAncSampleData());
+            rd.Subreports["MOH711.rpt"].SetDataSource(GetAncSampleData(FromDate, ToDate));
             rd.Subreports["MOH711B.rpt"].SetDataSource(GetMaternityAndDSampleData(FromDate, ToDate));
-            rd.Subreports["SGBV.rpt"].SetDataSource(GetSGBVCCCSampleData());
-            rd.Subreports["FamilyPlanningD.rpt"].SetDataSource(GetFPSampleData());
-            rd.Subreports["PACServicesE.rpt"].SetDataSource(GetDatasetESampleData());
-            rd.Subreports["CHANISF.rpt"].SetDataSource(GetDatasetFSampleData());
-            rd.Subreports["CervicalCancerG.rpt"].SetDataSource(GetCervicalSampleData());
-            rd.Subreports["PostNatalCareH.rpt"].SetDataSource(GetPNCHSampleData());
-            rd.Subreports["RehabI.rpt"].SetDataSource(GetRehabServicesISampleData());
-            rd.Subreports["MSocialWorkJ.rpt"].SetDataSource(GetMSocialWorkJSampleData());
-            rd.Subreports["PhysiotherapyService.rpt"].SetDataSource(GetPhysiotherapyServiceSampleData());
+            rd.Subreports["MaternalComplications.rpt"].SetDataSource(GetMaternalSampleData(FromDate, ToDate));
+            rd.Subreports["ReferralsReport.rpt"].SetDataSource(GetReferralsSmpleData(FromDate, ToDate));
+            rd.Subreports["SGBV.rpt"].SetDataSource(GetSGBVCCCSampleData(FromDate, ToDate));
+            rd.Subreports["FamilyPlanningD.rpt"].SetDataSource(GetFPSampleData(FromDate, ToDate));
+            rd.Subreports["PACServicesE.rpt"].SetDataSource(GetDatasetESampleData(FromDate, ToDate));
+            rd.Subreports["CHANISF.rpt"].SetDataSource(GetDatasetFSampleData(FromDate, ToDate));
+            rd.Subreports["CervicalCancerG.rpt"].SetDataSource(GetCervicalSampleData(FromDate, ToDate));
+            rd.Subreports["PostNatalCareH.rpt"].SetDataSource(GetPNCHSampleData(FromDate, ToDate));
+            rd.Subreports["RehabI.rpt"].SetDataSource(GetRehabServicesISampleData(FromDate, ToDate));
+            rd.Subreports["MSocialWorkJ.rpt"].SetDataSource(GetMSocialWorkJSampleData(FromDate, ToDate));
+            rd.Subreports["PhysiotherapyService.rpt"].SetDataSource(GetPhysiotherapyServiceSampleData(FromDate, ToDate));
 
 
             Response.Buffer = false;
@@ -5104,95 +5302,47 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             stream.Seek(0, SeekOrigin.Begin);
-            string fileName = "Report Sample-" + DateTime.Today + ".pdf";
+            string fileName = "MOH 711" + DateTime.Today + ".pdf";
             return File(stream, "application/pdf", fileName);
         }
-        private ANC GetAncSampleData()
-        {
-            ANC dataSetANC = new ANC();
-            var NewClients = db2.MCHPreventativeServices.Count(p => p.OPDNo == 1);
-            var Revisits = db2.MCHPreventativeServices.Count(p => p.OPDNo > 1);
 
-            dataSetANC.A_ANC_PMCT1.AddA_ANC_PMCT1Row(NewClients, Revisits, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        private ANC GetAncSampleData(DateTime? FromDate, DateTime? ToDate)
+        {
+            
+            ANC dataSetANC = new ANC();
+            
+            var NewClients = db2.MCHPreviousPregnancies.Count(P => P.NumberOfANCAttended == 1 && P.DateAdded >= FromDate && P.DateAdded <= ToDate);
+            var Revisits = db2.MCHPreviousPregnancies.Count(p => p.NumberOfANCAttended > 1 && p.DateAdded >= FromDate && p.DateAdded <= ToDate);
+            var TotalGivenIPTFirstDose = db2.MCHPreventativeServices.Count(e => e.Vaccine == "Malaria Prophylaxis IPT1" && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var TotalGivenIPTSecondDose = db2.MCHPreventativeServices.Count(e => e.Vaccine == "Tetunus Malaria Prophylaxis IPT2" && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var TotalWithHb = db2.MCHPresentPregnancies.Count(e => e.HB != null && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var ClientsCompleted4AntenatalVisits = db2.MCHPreventativeServices.Count(e => e.Vaccine == "Tetunus Toxoid 5" && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var WomenDoneBreastExamination = db2.MCHCancerScreenings.Count(e => e.BreastTestResult != null && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var Adolescents10To14Pregnant = db2.MCHMaternalProfiles.Where(e => (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 14 && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 10 && e.DateAdded >= FromDate && e.DateAdded <= ToDate).Count();
+            var Adolescents15To19Pregnant = db2.MCHMaternalProfiles.Where(e => (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 19 && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 15 && e.DateAdded >= FromDate && e.DateAdded <= ToDate).Count();
+
+            dataSetANC.A_ANC_PMCT1.AddA_ANC_PMCT1Row(
+                                                     (NewClients + Revisits ),
+                                                      TotalGivenIPTFirstDose,
+                                                      TotalGivenIPTSecondDose,
+                                                      TotalWithHb,
+                                                      ClientsCompleted4AntenatalVisits,
+                                                      0, 
+                                                      0,
+                                                      0, 
+                                                      0,
+                                                      0,
+                                                      WomenDoneBreastExamination, 
+                                                      0,
+                                                      Adolescents10To14Pregnant, 
+                                                      Adolescents15To19Pregnant,
+                                                      0,
+                                                      0, 
+                                                      0);
 
             return dataSetANC;
-        }
-
-
-        private object GetPhysiotherapyServiceSampleData()
-        {
-
-            var dataSet = new Caresoft2._0.CrystalReports.MOH711.K.Physiotherapy_Service();
-
-            dataSet.PysiotherapyService.AddPysiotherapyServiceRow(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-            return dataSet;
 
         }
-
-        private object GetMSocialWorkJSampleData()
-        {
-            MSocialWorkJ mSocialWorkJ = new MSocialWorkJ();
-            var dataset = new Caresoft2._0.CrystalReports.MOH711.J.MSocialworkJ();
-            dataset.MSocialWorkJ.AddMSocialWorkJRow(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-
-            return dataset;
-
-        }
-
-        private object GetRehabServicesISampleData()
-        {
-            RehabServicesI rehabServicesI = new RehabServicesI();
-            rehabServicesI.RehabI.AddRehabIRow(0, 0, 0, 0, 0);
-            return rehabServicesI;
-        }
-
-        private object GetPNCHSampleData()
-        {
-            PNCH pNCH = new PNCH();
-            pNCH.PNC.AddPNCRow(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            return pNCH;
-        }
-
-        private object GetCervicalSampleData()
-        {
-            Caresoft2._0.CrystalReports.MOH711.G.DataSet1 dataSet = new CrystalReports.MOH711.G.DataSet1();
-
-            dataSet.CervicalCancer_G.AddCervicalCancer_GRow(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-            return dataSet;
-        }
-
-        private object GetDatasetFSampleData()
-        {
-            DataSetF datasetF = new DataSetF();
-            datasetF.F.AddFRow(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            return datasetF;
-        }
-
-        private object GetDatasetESampleData()
-        {
-            DatasetE datasetE = new DatasetE();
-            datasetE._DatasetE.AddDatasetERow(0, 0);
-            return datasetE;
-
-        }
-
-        private object GetFPSampleData()
-        {
-            FP datasetFP = new FP();
-            datasetFP.FamilyPlanningD.AddFamilyPlanningDRow(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            return datasetFP;
-        }
-
-        private object GetSGBVCCCSampleData()
-        {
-            SGBVCCC datasetSGBVCCC = new SGBVCCC();
-            datasetSGBVCCC.SGBV.AddSGBVRow(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            return datasetSGBVCCC;
-        }
-        
         public class MaternityServices1
         {
             public string NameOfService { get; set; }
@@ -5207,132 +5357,135 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             NewMAndD newMAndD = new NewMAndD();
 
-            MaternityServices MSNormalDelivery = new MaternityServices()
+            MaternityServices1 MSsNormalDelivery = new MaternityServices1()
             {
-                NameOfService = "NormalDelivery",
+                NameOfService = "Normal Delivery",
                 Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("NORMAL DELIVERY"))
             };
-            MaternityServices MSCaesareanSection = new MaternityServices()
+            MaternityServices1 MSsCaesareanSection = new MaternityServices1()
             {
                 NameOfService = "Caesarean Section",
                 Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("DELIVERY CS"))
             };
-            MaternityServices MSBreechDeliveries = new MaternityServices()
+            MaternityServices1 MSsBreechDeliveries = new MaternityServices1()
             {
                 NameOfService = "Breech Deliveries",
-                Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("BREECH"))
-            };
-            MaternityServices MSAssistedVaginalDelivery = new MaternityServices()
+                Total = db2.MCHPresentPregnancies.Count(e => e.Presentation.Trim().ToLower().Contains("breech") && e.DateAdded >= FromDate && e.DateAdded <= ToDate)
+        };
+            MaternityServices1 MSsAssistedVaginalDelivery = new MaternityServices1()
             {
                 NameOfService = "Assisted Vaginal Delivery ",
-                Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("ASSISTED VAGINAL"))
+                Total = 0
             };
-            MaternityServices MSTotalDeliveries = new MaternityServices()
+            MaternityServices1 MSsTotalDeliveries = new MaternityServices1()
             {
                 NameOfService = "TOTAL DELIVERIES ",
-                Total = 0
+                Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("DELIVERY CS")) +
+                        deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("NORMAL DELIVERY"))+
+                        db2.MCHPresentPregnancies.Count(e => e.Presentation.Trim().ToLower().Contains("breech") && e.DateAdded >= FromDate && e.DateAdded <= ToDate )
+                       
         };
-            MaternityServices MSLiveBirths = new MaternityServices()
+            MaternityServices1 MSsLiveBirths = new MaternityServices1()
             {
                 NameOfService = "Live Births",
                 Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("LIVE BIRTHS"))
             };
-            MaternityServices MSFreshStillBirth = new MaternityServices()
+            MaternityServices1 MSsFreshStillBirth = new MaternityServices1()
             {
                 NameOfService = "Fresh Still Births",
-                Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("FRESH STILL BIRTHS"))
+                Total = 0
             };
-            MaternityServices MSMaceratedStillBirths = new MaternityServices()
+            MaternityServices1 MSsMaceratedStillBirths = new MaternityServices1()
             {
                 NameOfService = "Macerated Still Births",
-                Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("MACERATED STILL BIRTHS"))
+                Total = 0
             };
-            MaternityServices MSBirthWithDeformities = new MaternityServices()
+            MaternityServices1 MSsBirthWithDeformities = new MaternityServices1()
             {
                 NameOfService = "Birth with Deformities",
-                Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("BIRTH WITH DEFORMITIES"))
+                Total = 0
             };
-            MaternityServices MSLowAPGARScore = new MaternityServices()
+            MaternityServices1 MSsLowAPGARScore = new MaternityServices1()
             {
                 NameOfService = " No. of Low APGAR Score",
-                Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("LOW APGAR SCORE"))
+                Total = 0
             };
-            MaternityServices MSLowBirthWeight = new MaternityServices()
+            MaternityServices1 MSsLowBirthWeight = new MaternityServices1()
             {
                 NameOfService = "Low Birth Weight Babies(under 2500gms)",
-                Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("LOW BIRTH WEIGHT"))
+                Total = 0
             };
-            MaternityServices MSBabiesGivenTetracyclineAtBirth = new MaternityServices()
+            MaternityServices1 MSsBabiesGivenTetracyclineAtBirth = new MaternityServices1()
             {
                 NameOfService = "No. of bAbies given tetracycline at birth",
-                Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("GIVEN TETRACYCLINE AT BIRTH"))
+                Total = 0
             };
-            MaternityServices MSPreTermBabies = new MaternityServices()
+            MaternityServices1 MSsPreTermBabies = new MaternityServices1()
             {
                 NameOfService = "Pre-Term babies",
                 Total = 0
             };
-            MaternityServices MSBabiesDischargedAlive = new MaternityServices()
+            MaternityServices1 MSsBabiesDischargedAlive = new MaternityServices1()
             {
                 NameOfService = "No.of babies discharged alive",
                 Total = 0
             };
-            MaternityServices MSInfantsInitiatedOnBreastFeeding = new MaternityServices()
+            MaternityServices1 MSsInfantsInitiatedOnBreastFeeding = new MaternityServices1()
             {
                 NameOfService = "No.of infants initiated on breestfeeding within 1 hour after birth",
                 Total = 0
             };
-            MaternityServices MSTotalDeliveriesFromHIVWomen = new MaternityServices()
+            MaternityServices1 MSsTotalDeliveriesFromHIVWomen = new MaternityServices1()
             {
                 NameOfService = "Total Deliveries from HIV +ve women",
                 Total = 0
             };
-            MaternityServices MSNeotanalDeaths = new MaternityServices()
+            MaternityServices1 MSsNeotanalDeaths = new MaternityServices1()
             {
                 NameOfService = "Neotanal Deaths",
-                Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("NEOTANAL DEATHS"))
+                Total = 0
             };
-            MaternityServices MSNoOfAdolescentsMaternalDeaths = new MaternityServices()
+            MaternityServices1 MSsNoOfAdolescentsMaternalDeaths = new MaternityServices1()
             {
                 NameOfService = "No.of adolescents (10-19YRS) Maternal Deaths",
                 Total = 0
             };
-            MaternityServices MSMaternalDeaths = new MaternityServices()
+            MaternityServices1 MSsMaternalDeaths = new MaternityServices1()
             {
                 NameOfService = "MaternalDeaths",
-                Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("MATERNAL DEATHS"))
+                Total = 0
             };
-            MaternityServices MSMaternalDeathsAudited = new MaternityServices()
+            MaternityServices1 MSsMaternalDeathsAudited = new MaternityServices1()
             {
                 NameOfService = "Maternal Deaths Audited",
-                Total = deliveries.Count(e => e.Service.ServiceName.Trim().ToUpper().Contains("MATERNAL DEATHS AUDITED"))
+                Total = 0
             };
 
-            List<MaternityServices> LstMaternityServices = new List<MaternityServices>();
-            LstMaternityServices.Add(MSNormalDelivery);
-            LstMaternityServices.Add(MSCaesareanSection);
-            LstMaternityServices.Add(MSBreechDeliveries);
-            LstMaternityServices.Add(MSAssistedVaginalDelivery);
-            LstMaternityServices.Add(MSTotalDeliveries);
-            LstMaternityServices.Add(MSLiveBirths);
-            LstMaternityServices.Add(MSFreshStillBirth);
-            LstMaternityServices.Add(MSMaceratedStillBirths);
-            LstMaternityServices.Add(MSBirthWithDeformities);
-            LstMaternityServices.Add(MSLowAPGARScore);
-            LstMaternityServices.Add(MSLowBirthWeight);
-            LstMaternityServices.Add(MSBabiesGivenTetracyclineAtBirth);
-            LstMaternityServices.Add(MSPreTermBabies);
-            LstMaternityServices.Add(MSBabiesDischargedAlive);
-            LstMaternityServices.Add(MSInfantsInitiatedOnBreastFeeding);
-            LstMaternityServices.Add(MSTotalDeliveriesFromHIVWomen);
-            LstMaternityServices.Add(MSNeotanalDeaths);
-            LstMaternityServices.Add(MSNoOfAdolescentsMaternalDeaths);
-            LstMaternityServices.Add(MSMaternalDeaths);
-            LstMaternityServices.Add(MSMaternalDeathsAudited);
+            List<MaternityServices1> LstMaternityServices1 = new List<MaternityServices1>();
+            LstMaternityServices1.Add(MSsNormalDelivery);
+            LstMaternityServices1.Add(MSsCaesareanSection);
+            LstMaternityServices1.Add(MSsBreechDeliveries);
+            LstMaternityServices1.Add(MSsAssistedVaginalDelivery);
+            LstMaternityServices1.Add(MSsTotalDeliveries);
+            LstMaternityServices1.Add(MSsLiveBirths);
+            LstMaternityServices1.Add(MSsFreshStillBirth);
+            LstMaternityServices1.Add(MSsMaceratedStillBirths);
+            LstMaternityServices1.Add(MSsBirthWithDeformities);
+            LstMaternityServices1.Add(MSsLowAPGARScore);
+            LstMaternityServices1.Add(MSsLowBirthWeight);
+            LstMaternityServices1.Add(MSsBabiesGivenTetracyclineAtBirth);
+            LstMaternityServices1.Add(MSsPreTermBabies);
+            LstMaternityServices1.Add(MSsBabiesDischargedAlive);
+            LstMaternityServices1.Add(MSsInfantsInitiatedOnBreastFeeding);
+            LstMaternityServices1.Add(MSsTotalDeliveriesFromHIVWomen);
+            LstMaternityServices1.Add(MSsNeotanalDeaths);
+            LstMaternityServices1.Add(MSsNoOfAdolescentsMaternalDeaths);
+            LstMaternityServices1.Add(MSsMaternalDeaths);
+            LstMaternityServices1.Add(MSsMaternalDeathsAudited);
 
 
 
-            foreach (var item in LstMaternityServices)
+            foreach (var item in LstMaternityServices1)
             {
                 newMAndD._NewMAndD.AddNewMAndDRow(
                         item.NameOfService,
@@ -5343,7 +5496,402 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             return newMAndD;
         }
-        private ActionResult DataSet()
+
+        public class MaternalServices
+        {
+            public string Name { get; set; }
+            public int Alive { get; set; }
+            public int Deaths { get; set; }
+
+        }
+        private Maternal GetMaternalSampleData(DateTime? FromDate, DateTime? ToDate)
+        {
+            
+
+            Maternal maternal = new Maternal();
+            MaternalServices MSAPH = new MaternalServices
+            {
+                Name = "A.P.H.(Ante Partum Haemorrhage",
+                Alive = 0,
+                Deaths = 0
+
+            };
+            MaternalServices MSPPH = new MaternalServices
+            {
+                Name = "P.P.H.(Post Partum Hemorrhage",
+                Alive = 0,
+                Deaths = 0
+            };
+            MaternalServices MSEclampsia = new MaternalServices
+            {
+                Name = "Eclampsia",
+                Alive = db2.MCHDeliveries.Count(e => e.Eclampsia != null),
+                Deaths = 0
+
+            };
+            MaternalServices MSRupturedUterus = new MaternalServices
+            {
+                Name = "Ruptured Uterus",
+                Alive = 0,
+                Deaths = 0
+
+            };
+            MaternalServices MSObstructedLabour = new MaternalServices
+            {
+                Name = "Obstructed Labour",
+                Alive = db2.MCHDeliveries.Count(e=>e.ObstractedLabour != null),
+                Deaths = 0
+
+            };
+            MaternalServices MSSepsis = new MaternalServices
+            {
+                Name = "Sepsis",
+                Alive = 0,
+                Deaths = 0
+            };
+            List<MaternalServices> LstMaternalServices = new List<MaternalServices>();
+            LstMaternalServices.Add(MSAPH);
+            LstMaternalServices.Add(MSPPH);
+            LstMaternalServices.Add(MSEclampsia);
+            LstMaternalServices.Add(MSRupturedUterus);
+            LstMaternalServices.Add(MSObstructedLabour);
+            LstMaternalServices.Add(MSSepsis);
+
+            foreach (var item in LstMaternalServices)
+            {
+                maternal._Maternal.AddMaternalRow(
+                    item.Name,
+                    item.Alive,
+                    item.Deaths);
+            }
+
+            return maternal;
+        }
+        private Referrals GetReferralsSmpleData(DateTime? FromDate, DateTime? ToDate)
+        {
+
+            Referrals referrals = new Referrals();
+            referrals._Referrals.AddReferralsRow(
+                0,
+                0,
+                0,
+                0);
+
+            return referrals;
+        }
+
+        private object GetPhysiotherapyServiceSampleData(DateTime? FromDate, DateTime? ToDate)
+        {
+
+            var dataSet = new Caresoft2._0.CrystalReports.MOH711.K.Physiotherapy_Service();
+
+            dataSet.PysiotherapyService.AddPysiotherapyServiceRow(
+                0, 
+                0,
+                0,
+                0,
+                0,
+                0,
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0,
+                0, 
+                0,
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0,
+                0);
+
+            return dataSet;
+
+        }
+
+        private object GetMSocialWorkJSampleData(DateTime? FromDate, DateTime? ToDate)
+        {
+            MSocialWorkJ mSocialWorkJ = new MSocialWorkJ();
+            var dataset = new Caresoft2._0.CrystalReports.MOH711.J.MSocialworkJ();
+            dataset.MSocialWorkJ.AddMSocialWorkJRow(
+                0,
+                0,
+                0,
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0);
+
+            return dataset;
+
+        }
+
+        private object GetRehabServicesISampleData(DateTime? FromDate, DateTime? ToDate)
+        {
+            RehabServicesI rehabServicesI = new RehabServicesI();
+            rehabServicesI.RehabI.AddRehabIRow(0, 0, 0, 0, 0);
+            return rehabServicesI;
+        }
+
+        private object GetPNCHSampleData(DateTime? FromDate, DateTime? ToDate)
+        {
+            PNCH pNCH = new PNCH();
+
+            var TotalBreastExam = db2.MCHPhysicalExaminations.Count(e => e.Breasts != null &&  e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var WomenCounselled = db2.MCHMotherPostNatalExams.Count(e=>e.FamilyPlanning !=null && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FromOtherHealthFacility = db2.MCHCancerScreenings.Count(e=>e.Referral=="From Other Health Facility" && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FromCommunityUnit= db2.MCHCancerScreenings.Count(e=>e.Referral=="From Community Unit" && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var ToOtherHealthFacility = db2.MCHCancerScreenings.Count (e=>e.Referral=="To Other Health Facility" && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var ToCommunityUnit = db2.MCHCancerScreenings.Count(e => e.Referral == "To Community Unit" && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+
+
+            pNCH.PNC.AddPNCRow(
+                TotalBreastExam,
+                WomenCounselled,
+                0,
+                0,
+                0, 
+                0,
+                0,
+                0,
+                0, 
+                0,
+                FromOtherHealthFacility,
+                FromCommunityUnit,
+                ToOtherHealthFacility,
+                ToCommunityUnit);
+
+            return pNCH;
+        }
+        public class Cervical
+        {
+            public int LessThan25Years { get; set; }    
+            public int TwentyFiveTo49Years {get;set;}
+            public int FiftyYearsPlus { get; set; }
+    }
+
+        private object GetCervicalSampleData(DateTime? FromDate, DateTime? ToDate)
+        {
+            Caresoft2._0.CrystalReports.MOH711.G.DataSet1 dataSet = new CrystalReports.MOH711.G.DataSet1();
+
+            var ClientsReceivingVIA25 = db2.MCHCancerScreenings.Where(e =>e.CervixTreatment != null && DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year< 25 && e.DateAdded >= FromDate && e.DateAdded <= ToDate).Count();
+            var ClientsReceivingVIA25To49 = db2.MCHCancerScreenings.Where(e => e.CervixTreatment != null && DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year <= 49 && DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year >= 25 && e.DateAdded >= FromDate && e.DateAdded <= ToDate).Count();
+            var ClientsReceivingVIA50Plus = db2.MCHCancerScreenings.Where(e => e.CervixTreatment != null && DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year >= 50 && e.DateAdded >= FromDate && e.DateAdded <= ToDate).Count();
+            var ScreenedForPapSmear25 = db2.MCHCancerScreenings.Where(e => e.PapSmearTestResult != null && DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year < 25 && e.DateAdded >= FromDate && e.DateAdded <= ToDate).Count();
+            var ScreenedForPapSmear25To49 = db2.MCHCancerScreenings.Where(e => e.PapSmearTestResult != null && DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year <= 49 && DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year >= 25 && e.DateAdded >= FromDate && e.DateAdded <= ToDate).Count();
+            var ScreenedForPapSmear50Plus = db2.MCHCancerScreenings.Where(e => e.PapSmearTestResult != null && DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year >= 50 && e.DateAdded >= FromDate && e.DateAdded <= ToDate).Count();
+            var ClientsWithPositiveVIAResult25 = db2.MCHCancerScreenings.Where(e => e.VIATestResult =="Positive" && DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year < 25 && e.DateAdded >= FromDate && e.DateAdded <= ToDate).Count();
+            var ClientsWithPositiveVIAResult25To49 = db2.MCHCancerScreenings.Where(e => e.VIATestResult =="Positive" && DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year <= 49 && DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year >= 25 && e.DateAdded >= FromDate && e.DateAdded <= ToDate).Count();
+            var ClientsWithPositiveVIAResult50Plus = db2.MCHCancerScreenings.Where(e => e.VIATestResult== "Positive" && DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year >= 50 && e.DateAdded >= FromDate && e.DateAdded <= ToDate).Count();
+
+
+            dataSet.CervicalCancer_G.AddCervicalCancer_GRow(
+                ClientsReceivingVIA25,
+                ClientsReceivingVIA25To49,
+                ClientsReceivingVIA50Plus,
+                ScreenedForPapSmear25,
+                ScreenedForPapSmear25To49,
+                ScreenedForPapSmear50Plus,
+                ClientsWithPositiveVIAResult25,
+                ClientsWithPositiveVIAResult25To49,
+                ClientsWithPositiveVIAResult50Plus, 
+                0, 
+                0,
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0,
+                0, 
+                0,
+                0, 
+                0, 
+                0, 
+                0, 
+                0);
+
+            return dataSet;
+        }
+
+        public class CHANIS
+        {
+            public int Female { get; set; }
+            public int Male { get; set; }
+            public int Total { get; set; }
+        }
+
+        private object GetDatasetFSampleData(DateTime? FromDate, DateTime? ToDate)
+        {
+
+            DataSetF datasetF = new DataSetF();
+
+            
+            datasetF.F.AddFRow(0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0);
+            return datasetF;
+        }
+
+        private object GetDatasetESampleData(DateTime? FromDate, DateTime? ToDate)
+        {
+            DatasetE datasetE = new DatasetE();
+            datasetE._DatasetE.AddDatasetERow(0, 0);
+            return datasetE;
+
+        }
+
+        private object GetFPSampleData(DateTime? FromDate, DateTime? ToDate)
+        {
+            FP datasetFP = new FP();
+           
+           // var NumberOfClientsNew = db2.MCHFamilyPlanings.Count(e => e.OpdRegister.Patient.Equals(1) && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            //var NumberOfClientsRevisit = db2.MCHFamilyPlanings.Count(e => e.OpdRegister.Patient && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            //var Adolescents10To14New= db2.MCHFamilyPlanings.Count(e=>e.OpdRegister.Patient.Equals(1) && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 14 && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 10 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            //var Adolescents15To19New= db2.MCHFamilyPlanings.Count(e => e.OpdRegister.Patient.Equals(1) && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 19 && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 15 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            //var YouthClients20To24New= db2.MCHMaternalProfiles.Count(e =>e.OpdRegister.Patient.Equals(1)  && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) < 24 && (DateTime.Now.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 20 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+
+            datasetFP.FamilyPlanningD.AddFamilyPlanningDRow(
+                0,
+                0,
+                0,
+                0,
+                0, 
+                0,
+                0, 
+                0,
+                0, 
+                0, 
+                0,
+                0, 
+                0,
+                0,
+                0, 
+                0,
+                0, 
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0, 
+                0,
+                0, 
+                0,
+                0, 
+                0,
+                0,
+                0,
+                0,
+                0);
+            return datasetFP;
+        }
+
+        private object GetSGBVCCCSampleData(DateTime? FromDate, DateTime? ToDate)
+        {
+            SGBVCCC datasetSGBVCCC = new SGBVCCC();
+            datasetSGBVCCC.SGBV.AddSGBVRow(
+                0,
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0,
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0);
+            return datasetSGBVCCC;
+        }
+        
+        
+        private ActionResult DataSet(DateTime? FromDate, DateTime? ToDate)
         {
             //throw new NotImplementedException();
             return null;

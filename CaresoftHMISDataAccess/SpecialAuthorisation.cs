@@ -12,10 +12,16 @@ namespace CaresoftHMISDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class vw_ServiceChatter
+    public partial class SpecialAuthorisation
     {
-        public string DepartmentName { get; set; }
-        public string ServiceName { get; set; }
-        public double CashPrice { get; set; }
+        public int Id { get; set; }
+        public int OPDno { get; set; }
+        public int UserId { get; set; }
+        public int BranchId { get; set; }
+        public Nullable<System.DateTime> FromDate { get; set; }
+        public Nullable<System.DateTime> ToDate { get; set; }
+        public string Name { get; set; }
+        public string RegNo { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     }
 }

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Referrals" targetNamespace="http://tempuri.org/Referrals.xsd" xmlns:mstns="http://tempuri.org/Referrals.xsd" xmlns="http://tempuri.org/Referrals.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Referrals" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Referrals" msprop:Generator_UserDSName="Referrals">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Referrals" msprop:Generator_TableClassName="ReferralsDataTable" msprop:Generator_TableVarName="tableReferrals" msprop:Generator_RowChangedName="ReferralsRowChanged" msprop:Generator_TablePropName="_Referrals" msprop:Generator_RowDeletingName="ReferralsRowDeleting" msprop:Generator_RowChangingName="ReferralsRowChanging" msprop:Generator_RowEvHandlerName="ReferralsRowChangeEventHandler" msprop:Generator_RowDeletedName="ReferralsRowDeleted" msprop:Generator_RowClassName="ReferralsRow" msprop:Generator_UserTableName="Referrals" msprop:Generator_RowEvArgName="ReferralsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Total1" msprop:Generator_ColumnVarNameInTable="columnTotal1" msprop:Generator_ColumnPropNameInRow="Total1" msprop:Generator_ColumnPropNameInTable="Total1Column" msprop:Generator_UserColumnName="Total1" type="xs:int" minOccurs="0" />
+              <xs:element name="Total2" msprop:Generator_ColumnVarNameInTable="columnTotal2" msprop:Generator_ColumnPropNameInRow="Total2" msprop:Generator_ColumnPropNameInTable="Total2Column" msprop:Generator_UserColumnName="Total2" type="xs:int" minOccurs="0" />
+              <xs:element name="Total3" msprop:Generator_ColumnVarNameInTable="columnTotal3" msprop:Generator_ColumnPropNameInRow="Total3" msprop:Generator_ColumnPropNameInTable="Total3Column" msprop:Generator_UserColumnName="Total3" type="xs:int" minOccurs="0" />
+              <xs:element name="Total4" msprop:Generator_ColumnVarNameInTable="columnTotal4" msprop:Generator_ColumnPropNameInRow="Total4" msprop:Generator_ColumnPropNameInTable="Total4Column" msprop:Generator_UserColumnName="Total4" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

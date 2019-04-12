@@ -27,6 +27,6 @@ namespace CaresoftHMISDataAccess
         public Nullable<int> format_id { get; set; }
         public string format_name { get; set; }
         public string total_calories { get; set; }
-        public Nullable<System.DateTime> date_time { get; set; }
+        public byte[] date_time { get; set; }
     }
 }

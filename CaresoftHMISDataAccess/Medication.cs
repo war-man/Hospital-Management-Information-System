@@ -18,7 +18,6 @@ namespace CaresoftHMISDataAccess
         public Medication()
         {
             this.BillAdjustmentLogs = new HashSet<BillAdjustmentLog>();
-            this.InvoiceServiceAllocations = new HashSet<InvoiceServiceAllocation>();
             this.IPDBillPartialPayments = new HashSet<IPDBillPartialPayment>();
             this.MedicalAdministrationEntries = new HashSet<MedicalAdministrationEntry>();
             this.RefundedItems = new HashSet<RefundedItem>();
@@ -55,12 +54,12 @@ namespace CaresoftHMISDataAccess
         public Nullable<int> TransactionId { get; set; }
         public Nullable<bool> DrugIsNotInItemMaster { get; set; }
         public Nullable<int> OriginalDrugId { get; set; }
+        public Nullable<int> DepartmentId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillAdjustmentLog> BillAdjustmentLogs { get; set; }
         public virtual BillPayment BillPayment { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InvoiceServiceAllocation> InvoiceServiceAllocations { get; set; }
+        public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IPDBillPartialPayment> IPDBillPartialPayments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -69,6 +68,5 @@ namespace CaresoftHMISDataAccess
         public virtual Waiver Waiver { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RefundedItem> RefundedItems { get; set; }
-        public virtual User User { get; set; }
     }
 }

@@ -25,5 +25,6 @@ namespace CaresoftHMISDataAccess
         public bool Status { get; set; }
     
         public virtual OpdRegister OpdRegister { get; set; }
+        public virtual OpdRegister OpdRegister1 { get; set; }
     }
 }

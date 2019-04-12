@@ -1767,7 +1767,7 @@ namespace Caresoft2._0.Areas.PharmacyModule.Controllers
 
         }
 
-        //From Babra
+       
 
         public ActionResult StockReport()
         {

@@ -17,6 +17,7 @@ namespace CaresoftHMISDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
+            this.LeaveLetters = new HashSet<LeaveLetter>();
             this.Users = new HashSet<User>();
         }
     
@@ -39,6 +40,8 @@ namespace CaresoftHMISDataAccess
         public virtual Department Department { get; set; }
         public virtual Designation Designation { get; set; }
         public virtual Designation Designation1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LeaveLetter> LeaveLetters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
     }

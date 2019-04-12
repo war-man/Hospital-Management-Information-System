@@ -26,6 +26,7 @@ namespace CaresoftHMISDataAccess
         }
     
         public virtual DbSet<AdmissionRecommendation> AdmissionRecommendations { get; set; }
+        public virtual DbSet<Allergy> Allergies { get; set; }
         public virtual DbSet<AmbulanceMaster> AmbulanceMasters { get; set; }
         public virtual DbSet<AmbulanceRequest> AmbulanceRequests { get; set; }
         public virtual DbSet<AMCMaster> AMCMasters { get; set; }
@@ -53,6 +54,8 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<CSSDIssueToPatient> CSSDIssueToPatients { get; set; }
         public virtual DbSet<CSSDRequest> CSSDRequests { get; set; }
         public virtual DbSet<DashboardIcon> DashboardIcons { get; set; }
+        public virtual DbSet<DeathCertificate> DeathCertificates { get; set; }
+        public virtual DbSet<Deformity> Deformities { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<DepartmentType> DepartmentTypes { get; set; }
         public virtual DbSet<Designation> Designations { get; set; }
@@ -68,36 +71,45 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<FamilyHealthOverview> FamilyHealthOverviews { get; set; }
         public virtual DbSet<FamilyMedicalHistoryQuestion> FamilyMedicalHistoryQuestions { get; set; }
         public virtual DbSet<FamilyMedicalHistoryRespons> FamilyMedicalHistoryResponses { get; set; }
+        public virtual DbSet<Fibromyalgia> Fibromyalgias { get; set; }
         public virtual DbSet<FieldMeta> FieldMetas { get; set; }
         public virtual DbSet<FinanceBanking> FinanceBankings { get; set; }
         public virtual DbSet<FinanceBank> FinanceBanks { get; set; }
         public virtual DbSet<FinanceCashPointReconciliation> FinanceCashPointReconciliations { get; set; }
         public virtual DbSet<FinanceComfirmBanking> FinanceComfirmBankings { get; set; }
         public virtual DbSet<FinanceDirectBanking> FinanceDirectBankings { get; set; }
+        public virtual DbSet<FitnessCertificate> FitnessCertificates { get; set; }
         public virtual DbSet<FreeFormMarkup> FreeFormMarkups { get; set; }
         public virtual DbSet<FreeFormMarkupType> FreeFormMarkupTypes { get; set; }
         public virtual DbSet<FreeForm> FreeForms { get; set; }
         public virtual DbSet<FreeFormSelectOption> FreeFormSelectOptions { get; set; }
+        public virtual DbSet<GlucomaPerfomaEntry> GlucomaPerfomaEntries { get; set; }
         public virtual DbSet<GroupRight> GroupRights { get; set; }
         public virtual DbSet<HSBed> HSBeds { get; set; }
         public virtual DbSet<HSBuilding> HSBuildings { get; set; }
         public virtual DbSet<HSFloor> HSFloors { get; set; }
         public virtual DbSet<HSWardCategory> HSWardCategories { get; set; }
         public virtual DbSet<HSWard> HSWards { get; set; }
+        public virtual DbSet<Hypermobility> Hypermobilities { get; set; }
         public virtual DbSet<IdentificationType> IdentificationTypes { get; set; }
         public virtual DbSet<ImmunizationAdmin> ImmunizationAdmins { get; set; }
         public virtual DbSet<ImmunizationCategory> ImmunizationCategories { get; set; }
         public virtual DbSet<ImmunizationMaster> ImmunizationMasters { get; set; }
         public virtual DbSet<ImmunizationType> ImmunizationTypes { get; set; }
+        public virtual DbSet<InformedConsent> InformedConsents { get; set; }
+        public virtual DbSet<InfusionTherapy> InfusionTherapies { get; set; }
         public virtual DbSet<InsuranceCard> InsuranceCards { get; set; }
         public virtual DbSet<InsuranceInvoice> InsuranceInvoices { get; set; }
         public virtual DbSet<InsurancePrice> InsurancePrices { get; set; }
         public virtual DbSet<InvoiceServiceAllocation> InvoiceServiceAllocations { get; set; }
         public virtual DbSet<IPDBillPartialPayment> IPDBillPartialPayments { get; set; }
+        public virtual DbSet<IPDDischargeType> IPDDischargeTypes { get; set; }
         public virtual DbSet<ItemName> ItemNames { get; set; }
         public virtual DbSet<JPayAutoPayment> JPayAutoPayments { get; set; }
         public virtual DbSet<JPayment> JPayments { get; set; }
         public virtual DbSet<KeyValuePair> KeyValuePairs { get; set; }
+        public virtual DbSet<LasikClinicEntry> LasikClinicEntries { get; set; }
+        public virtual DbSet<LeaveLetter> LeaveLetters { get; set; }
         public virtual DbSet<LinenRequest> LinenRequests { get; set; }
         public virtual DbSet<MaintenaceWorkType> MaintenaceWorkTypes { get; set; }
         public virtual DbSet<MaintenanceAssignment> MaintenanceAssignments { get; set; }
@@ -109,6 +121,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<MasterContraceptive> MasterContraceptives { get; set; }
         public virtual DbSet<MasterPostNatalTest> MasterPostNatalTests { get; set; }
         public virtual DbSet<MCHAntenatalProfile> MCHAntenatalProfiles { get; set; }
+        public virtual DbSet<MCHAttendanceType> MCHAttendanceTypes { get; set; }
         public virtual DbSet<MCHBabyPostNatalEXam> MCHBabyPostNatalEXams { get; set; }
         public virtual DbSet<MCHCancerScreening> MCHCancerScreenings { get; set; }
         public virtual DbSet<MCHClinicalNote> MCHClinicalNotes { get; set; }
@@ -125,6 +138,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<MCHWeightGainChart> MCHWeightGainCharts { get; set; }
         public virtual DbSet<MealType> MealTypes { get; set; }
         public virtual DbSet<MedicalAdministrationEntry> MedicalAdministrationEntries { get; set; }
+        public virtual DbSet<MedicalCertificate> MedicalCertificates { get; set; }
         public virtual DbSet<MedicalHistoryQuestion> MedicalHistoryQuestions { get; set; }
         public virtual DbSet<MedicalHistoryRespons> MedicalHistoryResponses { get; set; }
         public virtual DbSet<MedicationFrequency> MedicationFrequencies { get; set; }
@@ -132,16 +146,21 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<MorgAdmission> MorgAdmissions { get; set; }
         public virtual DbSet<MorgCabinet> MorgCabinets { get; set; }
         public virtual DbSet<MorgColdroom> MorgColdrooms { get; set; }
+        public virtual DbSet<NurseNote> NurseNotes { get; set; }
         public virtual DbSet<NurseTheatreRequest> NurseTheatreRequests { get; set; }
         public virtual DbSet<NutritionAdultRegister> NutritionAdultRegisters { get; set; }
         public virtual DbSet<NutritionChildRegister> NutritionChildRegisters { get; set; }
         public virtual DbSet<NutritionDietchart> NutritionDietcharts { get; set; }
         public virtual DbSet<NutritionScreeningDetail> NutritionScreeningDetails { get; set; }
+        public virtual DbSet<OffDuty> OffDuties { get; set; }
         public virtual DbSet<OpdRegister> OpdRegisters { get; set; }
+        public virtual DbSet<OpthalmologyExaminationEntry> OpthalmologyExaminationEntries { get; set; }
+        public virtual DbSet<OrthaEvaEntry> OrthaEvaEntries { get; set; }
         public virtual DbSet<OutsideTest> OutsideTests { get; set; }
         public virtual DbSet<PatientAllergy> PatientAllergies { get; set; }
         public virtual DbSet<PatientAppointment> PatientAppointments { get; set; }
         public virtual DbSet<PatientDiagnosi> PatientDiagnosis { get; set; }
+        public virtual DbSet<PatientModulePatientRequest> PatientModulePatientRequests { get; set; }
         public virtual DbSet<PatientReferal> PatientReferals { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<PatientTurnAroundTime> PatientTurnAroundTimes { get; set; }
@@ -154,6 +173,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<QuestionnaireResponseType> QuestionnaireResponseTypes { get; set; }
         public virtual DbSet<Questionnaire> Questionnaires { get; set; }
         public virtual DbSet<Rebate> Rebates { get; set; }
+        public virtual DbSet<ReferenceLetter> ReferenceLetters { get; set; }
         public virtual DbSet<RefundedItem> RefundedItems { get; set; }
         public virtual DbSet<Refund> Refunds { get; set; }
         public virtual DbSet<RegularComplaint> RegularComplaints { get; set; }
@@ -164,6 +184,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<RenalMachineCheck> RenalMachineChecks { get; set; }
         public virtual DbSet<RenalPatientProfile> RenalPatientProfiles { get; set; }
         public virtual DbSet<RenalPostDialysisObservation> RenalPostDialysisObservations { get; set; }
+        public virtual DbSet<RetinaClinicEntry> RetinaClinicEntries { get; set; }
         public virtual DbSet<RightsAllocation> RightsAllocations { get; set; }
         public virtual DbSet<RoleRight> RoleRights { get; set; }
         public virtual DbSet<RoleRightsAction> RoleRightsActions { get; set; }
@@ -175,6 +196,8 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<ServicesPrice> ServicesPrices { get; set; }
         public virtual DbSet<Shift> Shifts { get; set; }
+        public virtual DbSet<SpecialAuthorisation> SpecialAuthorisations { get; set; }
+        public virtual DbSet<spine> spines { get; set; }
         public virtual DbSet<SystemExamCategory> SystemExamCategories { get; set; }
         public virtual DbSet<SystemicExamResult> SystemicExamResults { get; set; }
         public virtual DbSet<SystemRight> SystemRights { get; set; }
@@ -184,21 +207,23 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<TBScreeningQuestion> TBScreeningQuestions { get; set; }
         public virtual DbSet<TBScreeningRespons> TBScreeningResponses { get; set; }
         public virtual DbSet<temp> temps { get; set; }
+        public virtual DbSet<ThanksLetter> ThanksLetters { get; set; }
         public virtual DbSet<TheatreDepartment> TheatreDepartments { get; set; }
         public virtual DbSet<TheatreDesignation> TheatreDesignations { get; set; }
         public virtual DbSet<TheatreOperationPersonel> TheatreOperationPersonels { get; set; }
         public virtual DbSet<TheatrePatientBioData> TheatrePatientBioDatas { get; set; }
+        public virtual DbSet<Toxicity> Toxicities { get; set; }
+        public virtual DbSet<UniversalDeptIdentifier> UniversalDeptIdentifiers { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<VitalRanx> VitalRanges { get; set; }
         public virtual DbSet<WaiverReason> WaiverReasons { get; set; }
         public virtual DbSet<Waiver> Waivers { get; set; }
         public virtual DbSet<WardTypeCharge> WardTypeCharges { get; set; }
+        public virtual DbSet<BloodBankCrossMatch> BloodBankCrossMatches { get; set; }
+        public virtual DbSet<BloodBankMasterSetting> BloodBankMasterSettings { get; set; }
+        public virtual DbSet<BloodBankPatientBloodGrouping> BloodBankPatientBloodGroupings { get; set; }
         public virtual DbSet<PatientClaim> PatientClaims { get; set; }
         public virtual DbSet<SystemExamParticular> SystemExamParticulars { get; set; }
-        public virtual DbSet<InvoiceBill> InvoiceBills { get; set; }
-        public virtual DbSet<InvoiceMedicationBill> InvoiceMedicationBills { get; set; }
-        public virtual DbSet<PatientDetail> PatientDetails { get; set; }
-        public virtual DbSet<vw_ServiceChatter> vw_ServiceChatter { get; set; }
     }
 }

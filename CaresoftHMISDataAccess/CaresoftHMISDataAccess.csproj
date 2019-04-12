@@ -84,6 +84,9 @@
     <Compile Include="AdmissionRecommendation.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Allergy.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AmbulanceMaster.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -117,6 +120,9 @@
     <Compile Include="BloodBankCampOrganizer.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BloodBankCrossMatch.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BloodBankDonorBloodBankTest.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -127,6 +133,12 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BloodBankInformation.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BloodBankMasterSetting.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BloodBankPatientBloodGrouping.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BloodBankPatientRequisition.cs">
@@ -180,6 +192,12 @@
     <Compile Include="DashboardIcon.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DeathCertificate.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Deformity.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Department.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -225,6 +243,9 @@
     <Compile Include="FamilyMedicalHistoryRespons.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Fibromyalgia.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FieldMeta.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -243,6 +264,9 @@
     <Compile Include="FinanceDirectBanking.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FitnessCertificate.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FreeForm.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -253,6 +277,9 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FreeFormSelectOption.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GlucomaPerfomaEntry.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GroupRight.cs">
@@ -273,6 +300,9 @@
     <Compile Include="HSWardCategory.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Hypermobility.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="IdentificationType.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -288,6 +318,12 @@
     <Compile Include="ImmunizationType.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="InformedConsent.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InfusionTherapy.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="InsuranceCard.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -297,16 +333,13 @@
     <Compile Include="InsurancePrice.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="InvoiceBill.cs">
-      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="InvoiceMedicationBill.cs">
-      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="InvoiceServiceAllocation.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="IPDBillPartialPayment.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IPDDischargeType.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemName.cs">
@@ -319,6 +352,12 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KeyValuePair.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LasikClinicEntry.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveLetter.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LinenRequest.cs">
@@ -352,6 +391,9 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MCHAntenatalProfile.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MCHAttendanceType.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MCHBabyPostNatalEXam.cs">
@@ -402,6 +444,9 @@
     <Compile Include="MedicalAdministrationEntry.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MedicalCertificate.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MedicalHistoryQuestion.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -423,6 +468,9 @@
     <Compile Include="MorgColdroom.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="NurseNote.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="NurseTheatreRequest.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -438,7 +486,16 @@
     <Compile Include="NutritionScreeningDetail.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="OffDuty.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="OpdRegister.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpthalmologyExaminationEntry.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrthaEvaEntry.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OutsideTest.cs">
@@ -456,10 +513,10 @@
     <Compile Include="PatientClaim.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PatientDetail.cs">
+    <Compile Include="PatientDiagnosi.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PatientDiagnosi.cs">
+    <Compile Include="PatientModulePatientRequest.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientReferal.cs">
@@ -496,6 +553,9 @@
     <Compile Include="Rebate.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReferenceLetter.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Refund.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -524,6 +584,9 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RenalPostDialysisObservation.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RetinaClinicEntry.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RightsAllocation.cs">
@@ -559,6 +622,12 @@
     <Compile Include="Shift.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SpecialAuthorisation.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spine.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SystemExamCategory.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -589,6 +658,9 @@
     <Compile Include="temp.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ThanksLetter.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TheatreDepartment.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -601,6 +673,12 @@
     <Compile Include="TheatrePatientBioData.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Toxicity.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UniversalDeptIdentifier.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -608,9 +686,6 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VitalRanx.cs">
-      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="vw_ServiceChatter.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Waiver.cs">

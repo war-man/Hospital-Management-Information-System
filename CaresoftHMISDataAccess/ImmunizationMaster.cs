@@ -14,6 +14,12 @@ namespace CaresoftHMISDataAccess
     
     public partial class ImmunizationMaster
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ImmunizationMaster()
+        {
+            this.ImmunizationAdmins = new HashSet<ImmunizationAdmin>();
+        }
+    
         public int Id { get; set; }
         public int ImmunizationCategoryId { get; set; }
         public string ImmunizationType { get; set; }
@@ -26,6 +32,8 @@ namespace CaresoftHMISDataAccess
         public int BranchId { get; set; }
         public System.DateTime DateAdded { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ImmunizationAdmin> ImmunizationAdmins { get; set; }
         public virtual ImmunizationCategory ImmunizationCategory { get; set; }
         public virtual User User { get; set; }
     }

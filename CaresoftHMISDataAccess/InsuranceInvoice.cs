@@ -31,7 +31,6 @@ namespace CaresoftHMISDataAccess
         public bool Finalized { get; set; }
         public int UserId { get; set; }
         public System.DateTime CreatedTime { get; set; }
-        public Nullable<bool> Preouth { get; set; }
     
         public virtual Branch Branch { get; set; }
         public virtual Company Company { get; set; }

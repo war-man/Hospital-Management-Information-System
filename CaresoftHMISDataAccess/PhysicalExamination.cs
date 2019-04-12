@@ -36,7 +36,7 @@ namespace CaresoftHMISDataAccess
         public int UserId { get; set; }
         public string Computer { get; set; }
         public Nullable<int> BranchId { get; set; }
-        public Nullable<int> Opdid { get; set; }
+        public Nullable<int> OpdId { get; set; }
     
         public virtual OpdRegister OpdRegister { get; set; }
         public virtual Patient Patient { get; set; }

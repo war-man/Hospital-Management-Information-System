@@ -31,5 +31,7 @@ namespace CaresoftHMISDataAccess
         public int UserId { get; set; }
         public int BranchId { get; set; }
         public System.DateTime DateAdded { get; set; }
+    
+        public virtual OpdRegister OpdRegister { get; set; }
     }
 }
