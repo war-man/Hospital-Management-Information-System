@@ -2123,7 +2123,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.BloodBankPatientBloodGroupings' d
           <Property Name="Serostatus" Type="varchar(max)" />
           <Property Name="SamMamClients" Type="varchar(max)" />
           <Property Name="OnARVs" Type="varchar(max)" />
-          <Property Name="CoexistingConditions" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CoexistingConditions" Type="varchar(max)" />
           <Property Name="Anaemia" Type="varchar(max)" />
           <Property Name="MetabolicDisorders" Type="varchar(max)" />
           <Property Name="AllergiesIntolerance" Type="numeric" Precision="18" Scale="0" />
@@ -2170,7 +2170,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.BloodBankPatientBloodGroupings' d
           <Property Name="Serostatus" Type="varchar(max)" />
           <Property Name="SamMamClients" Type="varchar(max)" />
           <Property Name="OnARVs" Type="varchar(max)" />
-          <Property Name="CoexistingConditions" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CoexistingConditions" Type="varchar" MaxLength="50" />
           <Property Name="Anaemia" Type="varchar(max)" />
           <Property Name="MetabolicDisorders" Type="numeric" Precision="18" Scale="0" />
           <Property Name="AllergiesIntolerance" Type="numeric" Precision="18" Scale="0" />
@@ -10193,7 +10193,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.SystemExamParticulars' does not h
           <Property Name="Serostatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="SamMamClients" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="OnARVs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CoexistingConditions" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CoexistingConditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Anaemia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="MetabolicDisorders" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="AllergiesIntolerance" Type="Decimal" Precision="18" Scale="0" />
@@ -10240,7 +10240,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.SystemExamParticulars' does not h
           <Property Name="Serostatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="SamMamClients" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="OnARVs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CoexistingConditions" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CoexistingConditions" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Anaemia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="MetabolicDisorders" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="AllergiesIntolerance" Type="Decimal" Precision="18" Scale="0" />

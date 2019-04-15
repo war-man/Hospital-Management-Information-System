@@ -37,7 +37,7 @@ namespace CaresoftHMISDataAccess
         public string Serostatus { get; set; }
         public string SamMamClients { get; set; }
         public string OnARVs { get; set; }
-        public Nullable<decimal> CoexistingConditions { get; set; }
+        public string CoexistingConditions { get; set; }
         public string Anaemia { get; set; }
         public Nullable<decimal> MetabolicDisorders { get; set; }
         public Nullable<decimal> AllergiesIntolerance { get; set; }
