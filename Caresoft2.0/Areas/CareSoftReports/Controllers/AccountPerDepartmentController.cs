@@ -38,7 +38,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
         {
 
             var NumberOfDays = DateTime.DaysInMonth(Year, SelectMonth);
-            
+           
             var amount = db.BillServices.Where(p => p.DateAdded.Year == Year && p.DateAdded.Month == SelectMonth && p.OpdRegister.Tariff.Company.CompanyName == Insurance).ToList();
             var amountmed = db.Medications.Where(p => p.TimeAdded.Year == Year && p.TimeAdded.Month == SelectMonth && p.OpdRegister.Tariff.Company.CompanyName == Insurance).ToList();
             var allDepartments = db.Departments.Where(p => p.UniversalDeptIdentifier.UniversalIdentifier.Trim().ToLower().Contains("universal")).ToList();

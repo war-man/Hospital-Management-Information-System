@@ -39,7 +39,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
         {
             PatientListDataModel patientListDataModel = new PatientListDataModel()
             {
-                          
+
                 Employees = db2.Employees
                                 .Where(p => p.Users.FirstOrDefault().UserRole.RoleName == "Consultant Doctor")
                                 .OrderBy(p => p.FName)
@@ -47,9 +47,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                 Companies = db2.Companies
                                 .Where(p => p.CompanyType.CompanyTypeName == "Insurance")
                                 .ToList(),
-                Departments  = db2.Departments
+                Departments = db2.Departments
                                 .Where(p => p.IsMedical == "Yes").ToList()
-        };
+            };
             return View(patientListDataModel);
         }
 
@@ -70,7 +70,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
         public ActionResult GeneratePatientListReport(DateTime FromDate, DateTime ToDate, string Clinician, string Department, string InsuranceCompany, string selectedDiv)
         {
 
-            var dataSet = GetPatientListData(FromDate,ToDate,Clinician, Department,InsuranceCompany,selectedDiv);
+            var dataSet = GetPatientListData(FromDate, ToDate, Clinician, Department, InsuranceCompany, selectedDiv);
 
 
 
@@ -86,11 +86,11 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                 "ABC FACILITY", "P.O.BOX 12345", "+254 71234567890");
             }
 
-           
+
 
             ReportDocument Rd = new ReportDocument();
 
-            if(selectedDiv == "Clinician")
+            if (selectedDiv == "Clinician")
             {
                 Rd.Load(Path.Combine(Server.MapPath("~/Areas/CareSoftReports/Reports/MISReports/PatientList/RptPatientLstClinician.rpt")));
             }
@@ -118,7 +118,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             return File(Stream, "application/pdf", FileName);
         }
 
-        private DataSetPatientList GetPatientListData(DateTime FromDate, DateTime ToDate, string Clinician, string Department, string InsuranceCompany,string selectedOption)
+        private DataSetPatientList GetPatientListData(DateTime FromDate, DateTime ToDate, string Clinician, string Department, string InsuranceCompany, string selectedOption)
         {
             DataSetPatientList dataSetPatientList = new DataSetPatientList();
 
@@ -211,15 +211,15 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
         {
             var opdRegister = new List<OpdRegister>();
 
-            if (FromDate!=null && ToDate!=null)
+            if (FromDate != null && ToDate != null)
             {
                 if (Department != "All")
                 {
-                    opdRegister = db2.OpdRegisters.Where(p => p.Department == Department && p.Date >= FromDate && p.Date <= ToDate).DistinctBy(p=>p.PatientId).ToList();
+                    opdRegister = db2.OpdRegisters.Where(p => p.Department == Department && p.Date >= FromDate && p.Date <= ToDate).DistinctBy(p => p.PatientId).ToList();
                 }
-                else if(Department == "All")
+                else if (Department == "All")
                 {
-                    opdRegister = db2.OpdRegisters.Where(p => p.Date >= FromDate && p.Date <= ToDate).DistinctBy(p=>p.PatientId).ToList();
+                    opdRegister = db2.OpdRegisters.Where(p => p.Date >= FromDate && p.Date <= ToDate).DistinctBy(p => p.PatientId).ToList();
                 }
             }
 
@@ -280,7 +280,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                        regDate
                        );
                 }
-                
+
             }
 
             if (Session["UserId"] != null)
@@ -295,7 +295,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             ReportDocument Rd = new ReportDocument();
 
-        
+
             Rd.Load(Path.Combine(Server.MapPath("~/Areas/CareSoftReports/Reports/MISReports/PatientByDept/RptPatientAttendanceByDept.rpt")));
             Rd.SetDataSource(dataSet);
             Rd.Subreports["RptReportHeader.rpt"].SetDataSource(HeaderAndFooterForReports.GetAllReportHeader());
@@ -462,9 +462,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             if (FromDate != null && ToDate != null)
             {
-            
-               opdRegister = db2.OpdRegisters.Where(p => p.Date >= FromDate && p.Date <= ToDate &&p.Patient.OpdRegisters.Count()==1).DistinctBy(p => p.PatientId).ToList();
-                
+
+                opdRegister = db2.OpdRegisters.Where(p => p.Date >= FromDate && p.Date <= ToDate && p.Patient.OpdRegisters.Count() == 1).DistinctBy(p => p.PatientId).ToList();
+
             }
 
             Reports.MISReports.PatientListSheetNewRevisit.DataSetPatientsAttendantsByDepartment dataSet = new Reports.MISReports.PatientListSheetNewRevisit.DataSetPatientsAttendantsByDepartment();
@@ -576,7 +576,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             return File(Stream, "application/pdf", FileName);
         }
-        
+
         public ActionResult DepartmentOutPatientAttendance()
         {
             return View();
@@ -598,7 +598,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             public int MOverSixtyYearsN { get; set; }
             public int MOverSixtyYearsR { get; set; }
 
-            public int  FUnderOneYearN { get; set; }
+            public int FUnderOneYearN { get; set; }
             public int FUnderOneYearR { get; set; }
             public int FOneToFourYearsN { get; set; }
             public int FOneToFourYearsR { get; set; }
@@ -625,7 +625,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             if (FromDate != null && ToDate != null)
             {
-                opdRegister = db2.OpdRegisters.Where(p => p.Date >= FromDate && p.Date <= ToDate && p.IsIPD==false).ToList();
+                opdRegister = db2.OpdRegisters.Where(p => p.Date >= FromDate && p.Date <= ToDate && p.IsIPD == false).ToList();
             }
 
 
@@ -633,305 +633,305 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             {
                 DepartmentOutPatientAttendanceViewModel model = new DepartmentOutPatientAttendanceViewModel();
 
-                    model.DepartmentName = item.DepartmentName;
+                model.DepartmentName = item.DepartmentName;
 
-                    foreach (var opd in opdRegister)
+                foreach (var opd in opdRegister)
+                {
+                    if (item.DepartmentName == "OUTPATIENT" || item.DepartmentName == null || item.DepartmentName == "")
                     {
-                        if (item.DepartmentName == "OUTPATIENT" || item.DepartmentName == null || item.DepartmentName=="")
+
+                        if (opd.Patient.Gender == "M")
                         {
-
-                            if (opd.Patient.Gender == "M")
+                            if (opd.Patient.OpdRegisters.Count() > 1)
                             {
-                                if (opd.Patient.OpdRegisters.Count() > 1)
+                                if (opd.Patient.DOB.HasValue)
                                 {
-                                    if (opd.Patient.DOB.HasValue)
+                                    var pat = opd.Patient;
+
+                                    var calcAge = FromDate.Year - pat.DOB.Value.Year;
+
+                                    if (calcAge < 1)
                                     {
-                                        var pat = opd.Patient;
-
-                                        var calcAge = FromDate.Year - pat.DOB.Value.Year;
-
-                                        if (calcAge < 1)
-                                        {
-                                            model.MUnderOneYearR++;
-                                        }
-                                        else if (calcAge > 0 && calcAge < 5)
-                                        {
-                                            model.MOneToFourYearsR++;
-                                        }
-                                        else if (calcAge > 4 && calcAge < 15)
-                                        {
-                                            model.MFiveToFourteenYearsR++;
-                                        }
-                                        else if (calcAge > 14 && calcAge < 46)
-                                        {
-                                            model.MFifteenToFourtyYearsR++;
-                                        }
-                                        else if (calcAge > 44 && calcAge < 61)
-                                        {
-                                            model.MFortyFiveToSixtyYearsR++;
-                                        }
-                                        else if (calcAge > 60)
-                                        {
-                                            model.MOverSixtyYearsR++;
-                                        }
+                                        model.MUnderOneYearR++;
                                     }
-                                }
-                                else
-                                {
-                                    if (opd.Patient.DOB.HasValue)
+                                    else if (calcAge > 0 && calcAge < 5)
                                     {
-                                        var pat = opd.Patient;
-
-                                        var calcAge = FromDate.Year - pat.DOB.Value.Year;
-
-                                        if (calcAge < 1)
-                                        {
-                                            model.MUnderOneYearN++;
-                                        }
-                                        else if (calcAge > 0 && calcAge < 5)
-                                        {
-                                            model.MOneToFourYearsN++;
-                                        }
-                                        else if (calcAge > 4 && calcAge < 15)
-                                        {
-                                            model.MFiveToFourteenYearsN++;
-                                        }
-                                        else if (calcAge > 14 && calcAge < 46)
-                                        {
-                                            model.MFifteenToFortyFourYearsN++;
-                                        }
-                                        else if (calcAge > 44 && calcAge < 61)
-                                        {
-                                            model.MFortyFiveToSixtyYearsN++;
-                                        }
-                                        else if (calcAge > 60)
-                                        {
-                                            model.MOverSixtyYearsN++;
-                                        }
+                                        model.MOneToFourYearsR++;
+                                    }
+                                    else if (calcAge > 4 && calcAge < 15)
+                                    {
+                                        model.MFiveToFourteenYearsR++;
+                                    }
+                                    else if (calcAge > 14 && calcAge < 46)
+                                    {
+                                        model.MFifteenToFourtyYearsR++;
+                                    }
+                                    else if (calcAge > 44 && calcAge < 61)
+                                    {
+                                        model.MFortyFiveToSixtyYearsR++;
+                                    }
+                                    else if (calcAge > 60)
+                                    {
+                                        model.MOverSixtyYearsR++;
                                     }
                                 }
                             }
-                            else if (opd.Patient.Gender == "F")
+                            else
                             {
-                                if (opd.Patient.OpdRegisters.Count() > 1)
+                                if (opd.Patient.DOB.HasValue)
                                 {
-                                    if (opd.Patient.DOB.HasValue)
+                                    var pat = opd.Patient;
+
+                                    var calcAge = FromDate.Year - pat.DOB.Value.Year;
+
+                                    if (calcAge < 1)
                                     {
-                                        var pat = opd.Patient;
-
-                                        var calcAge = FromDate.Year - pat.DOB.Value.Year;
-
-                                        if (calcAge < 1)
-                                        {
-                                            model.FUnderOneYearR++;
-                                        }
-                                        else if (calcAge > 0 && calcAge < 5)
-                                        {
-                                            model.FOneToFourYearsR++;
-                                        }
-                                        else if (calcAge > 4 && calcAge < 15)
-                                        {
-                                            model.FFiveToFourteenYearsR++;
-                                        }
-                                        else if (calcAge > 14 && calcAge < 46)
-                                        {
-                                            model.FFifteenToFourtyYearsR++;
-                                        }
-                                        else if (calcAge > 44 && calcAge < 61)
-                                        {
-                                            model.FFortyFiveToSixtyYearsR++;
-                                        }
-                                        else if (calcAge > 60)
-                                        {
-                                            model.FOverSixtyYearsR++;
-                                        }
+                                        model.MUnderOneYearN++;
                                     }
-                                }
-                                else
-                                {
-                                    if (opd.Patient.DOB.HasValue)
+                                    else if (calcAge > 0 && calcAge < 5)
                                     {
-                                        var pat = opd.Patient;
-
-                                        var calcAge = FromDate.Year - pat.DOB.Value.Year;
-
-                                        if (calcAge < 1)
-                                        {
-                                            model.FUnderOneYearN++;
-                                        }
-                                        else if (calcAge > 0 && calcAge < 5)
-                                        {
-                                            model.FOneToFourYearsN++;
-                                        }
-                                        else if (calcAge > 4 && calcAge < 15)
-                                        {
-                                            model.FFiveToFourteenYearsN++;
-                                        }
-                                        else if (calcAge > 14 && calcAge < 46)
-                                        {
-                                            model.FFifteenToFortyFourYearsN++;
-                                        }
-                                        else if (calcAge > 44 && calcAge < 61)
-                                        {
-                                            model.FFortyFiveToSixtyYearsN++;
-                                        }
-                                        else if (calcAge > 60)
-                                        {
-                                            model.FOverSixtyYearsN++;
-                                        }
+                                        model.MOneToFourYearsN++;
+                                    }
+                                    else if (calcAge > 4 && calcAge < 15)
+                                    {
+                                        model.MFiveToFourteenYearsN++;
+                                    }
+                                    else if (calcAge > 14 && calcAge < 46)
+                                    {
+                                        model.MFifteenToFortyFourYearsN++;
+                                    }
+                                    else if (calcAge > 44 && calcAge < 61)
+                                    {
+                                        model.MFortyFiveToSixtyYearsN++;
+                                    }
+                                    else if (calcAge > 60)
+                                    {
+                                        model.MOverSixtyYearsN++;
                                     }
                                 }
                             }
                         }
-                        else if (item.DepartmentName == opd.Department)
+                        else if (opd.Patient.Gender == "F")
                         {
-                            if (opd.Patient.Gender == "M")
+                            if (opd.Patient.OpdRegisters.Count() > 1)
                             {
-                                if (opd.Patient.OpdRegisters.Count() > 1)
+                                if (opd.Patient.DOB.HasValue)
                                 {
-                                    if (opd.Patient.DOB.HasValue)
+                                    var pat = opd.Patient;
+
+                                    var calcAge = FromDate.Year - pat.DOB.Value.Year;
+
+                                    if (calcAge < 1)
                                     {
-                                        var pat = opd.Patient;
-
-                                        var calcAge = FromDate.Year - pat.DOB.Value.Year;
-
-                                        if (calcAge < 1)
-                                        {
-                                            model.MUnderOneYearR++;
-                                        }
-                                        else if (calcAge > 0 && calcAge < 5)
-                                        {
-                                            model.MOneToFourYearsR++;
-                                        }
-                                        else if (calcAge > 4 && calcAge < 15)
-                                        {
-                                            model.MFiveToFourteenYearsR++;
-                                        }
-                                        else if (calcAge > 14 && calcAge < 46)
-                                        {
-                                            model.MFifteenToFourtyYearsR++;
-                                        }
-                                        else if (calcAge > 44 && calcAge < 61)
-                                        {
-                                            model.MFortyFiveToSixtyYearsR++;
-                                        }
-                                        else if (calcAge > 60)
-                                        {
-                                            model.MOverSixtyYearsR++;
-                                        }
+                                        model.FUnderOneYearR++;
                                     }
-                                }
-                                else
-                                {
-                                    if (opd.Patient.DOB.HasValue)
+                                    else if (calcAge > 0 && calcAge < 5)
                                     {
-                                        var pat = opd.Patient;
-
-                                        var calcAge = FromDate.Year - pat.DOB.Value.Year;
-
-                                        if (calcAge < 1)
-                                        {
-                                            model.MUnderOneYearN++;
-                                        }
-                                        else if (calcAge > 0 && calcAge < 5)
-                                        {
-                                            model.MOneToFourYearsN++;
-                                        }
-                                        else if (calcAge > 4 && calcAge < 15)
-                                        {
-                                            model.MFiveToFourteenYearsN++;
-                                        }
-                                        else if (calcAge > 14 && calcAge < 46)
-                                        {
-                                            model.MFifteenToFortyFourYearsN++;
-                                        }
-                                        else if (calcAge > 44 && calcAge < 61)
-                                        {
-                                            model.MFortyFiveToSixtyYearsN++;
-                                        }
-                                        else if (calcAge > 60)
-                                        {
-                                            model.MOverSixtyYearsN++;
-                                        }
+                                        model.FOneToFourYearsR++;
+                                    }
+                                    else if (calcAge > 4 && calcAge < 15)
+                                    {
+                                        model.FFiveToFourteenYearsR++;
+                                    }
+                                    else if (calcAge > 14 && calcAge < 46)
+                                    {
+                                        model.FFifteenToFourtyYearsR++;
+                                    }
+                                    else if (calcAge > 44 && calcAge < 61)
+                                    {
+                                        model.FFortyFiveToSixtyYearsR++;
+                                    }
+                                    else if (calcAge > 60)
+                                    {
+                                        model.FOverSixtyYearsR++;
                                     }
                                 }
                             }
-                            else if (opd.Patient.Gender == "F")
+                            else
                             {
-                                if (opd.Patient.OpdRegisters.Count() > 1)
+                                if (opd.Patient.DOB.HasValue)
                                 {
-                                    if (opd.Patient.DOB.HasValue)
+                                    var pat = opd.Patient;
+
+                                    var calcAge = FromDate.Year - pat.DOB.Value.Year;
+
+                                    if (calcAge < 1)
                                     {
-                                        var pat = opd.Patient;
-
-                                        var calcAge = FromDate.Year - pat.DOB.Value.Year;
-
-                                        if (calcAge < 1)
-                                        {
-                                            model.FUnderOneYearR++;
-                                        }
-                                        else if (calcAge > 0 && calcAge < 5)
-                                        {
-                                            model.FOneToFourYearsR++;
-                                        }
-                                        else if (calcAge > 4 && calcAge < 15)
-                                        {
-                                            model.FFiveToFourteenYearsR++;
-                                        }
-                                        else if (calcAge > 14 && calcAge < 46)
-                                        {
-                                            model.FFifteenToFourtyYearsR++;
-                                        }
-                                        else if (calcAge > 44 && calcAge < 61)
-                                        {
-                                            model.FFortyFiveToSixtyYearsR++;
-                                        }
-                                        else if (calcAge > 60)
-                                        {
-                                            model.FOverSixtyYearsR++;
-                                        }
+                                        model.FUnderOneYearN++;
                                     }
-                                }
-                                else
-                                {
-                                    if (opd.Patient.DOB.HasValue)
+                                    else if (calcAge > 0 && calcAge < 5)
                                     {
-                                        var pat = opd.Patient;
-
-                                        var calcAge = FromDate.Year - pat.DOB.Value.Year;
-
-                                        if (calcAge < 1)
-                                        {
-                                            model.FUnderOneYearN++;
-                                        }
-                                        else if (calcAge > 0 && calcAge < 5)
-                                        {
-                                            model.FOneToFourYearsN++;
-                                        }
-                                        else if (calcAge > 4 && calcAge < 15)
-                                        {
-                                            model.FFiveToFourteenYearsN++;
-                                        }
-                                        else if (calcAge > 14 && calcAge < 46)
-                                        {
-                                            model.FFifteenToFortyFourYearsN++;
-                                        }
-                                        else if (calcAge > 44 && calcAge < 61)
-                                        {
-                                            model.FFortyFiveToSixtyYearsN++;
-                                        }
-                                        else if (calcAge > 60)
-                                        {
-                                            model.FOverSixtyYearsN++;
-                                        }
+                                        model.FOneToFourYearsN++;
+                                    }
+                                    else if (calcAge > 4 && calcAge < 15)
+                                    {
+                                        model.FFiveToFourteenYearsN++;
+                                    }
+                                    else if (calcAge > 14 && calcAge < 46)
+                                    {
+                                        model.FFifteenToFortyFourYearsN++;
+                                    }
+                                    else if (calcAge > 44 && calcAge < 61)
+                                    {
+                                        model.FFortyFiveToSixtyYearsN++;
+                                    }
+                                    else if (calcAge > 60)
+                                    {
+                                        model.FOverSixtyYearsN++;
                                     }
                                 }
                             }
                         }
                     }
+                    else if (item.DepartmentName == opd.Department)
+                    {
+                        if (opd.Patient.Gender == "M")
+                        {
+                            if (opd.Patient.OpdRegisters.Count() > 1)
+                            {
+                                if (opd.Patient.DOB.HasValue)
+                                {
+                                    var pat = opd.Patient;
 
-                    viewModels.Add(model);
-               
+                                    var calcAge = FromDate.Year - pat.DOB.Value.Year;
+
+                                    if (calcAge < 1)
+                                    {
+                                        model.MUnderOneYearR++;
+                                    }
+                                    else if (calcAge > 0 && calcAge < 5)
+                                    {
+                                        model.MOneToFourYearsR++;
+                                    }
+                                    else if (calcAge > 4 && calcAge < 15)
+                                    {
+                                        model.MFiveToFourteenYearsR++;
+                                    }
+                                    else if (calcAge > 14 && calcAge < 46)
+                                    {
+                                        model.MFifteenToFourtyYearsR++;
+                                    }
+                                    else if (calcAge > 44 && calcAge < 61)
+                                    {
+                                        model.MFortyFiveToSixtyYearsR++;
+                                    }
+                                    else if (calcAge > 60)
+                                    {
+                                        model.MOverSixtyYearsR++;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (opd.Patient.DOB.HasValue)
+                                {
+                                    var pat = opd.Patient;
+
+                                    var calcAge = FromDate.Year - pat.DOB.Value.Year;
+
+                                    if (calcAge < 1)
+                                    {
+                                        model.MUnderOneYearN++;
+                                    }
+                                    else if (calcAge > 0 && calcAge < 5)
+                                    {
+                                        model.MOneToFourYearsN++;
+                                    }
+                                    else if (calcAge > 4 && calcAge < 15)
+                                    {
+                                        model.MFiveToFourteenYearsN++;
+                                    }
+                                    else if (calcAge > 14 && calcAge < 46)
+                                    {
+                                        model.MFifteenToFortyFourYearsN++;
+                                    }
+                                    else if (calcAge > 44 && calcAge < 61)
+                                    {
+                                        model.MFortyFiveToSixtyYearsN++;
+                                    }
+                                    else if (calcAge > 60)
+                                    {
+                                        model.MOverSixtyYearsN++;
+                                    }
+                                }
+                            }
+                        }
+                        else if (opd.Patient.Gender == "F")
+                        {
+                            if (opd.Patient.OpdRegisters.Count() > 1)
+                            {
+                                if (opd.Patient.DOB.HasValue)
+                                {
+                                    var pat = opd.Patient;
+
+                                    var calcAge = FromDate.Year - pat.DOB.Value.Year;
+
+                                    if (calcAge < 1)
+                                    {
+                                        model.FUnderOneYearR++;
+                                    }
+                                    else if (calcAge > 0 && calcAge < 5)
+                                    {
+                                        model.FOneToFourYearsR++;
+                                    }
+                                    else if (calcAge > 4 && calcAge < 15)
+                                    {
+                                        model.FFiveToFourteenYearsR++;
+                                    }
+                                    else if (calcAge > 14 && calcAge < 46)
+                                    {
+                                        model.FFifteenToFourtyYearsR++;
+                                    }
+                                    else if (calcAge > 44 && calcAge < 61)
+                                    {
+                                        model.FFortyFiveToSixtyYearsR++;
+                                    }
+                                    else if (calcAge > 60)
+                                    {
+                                        model.FOverSixtyYearsR++;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (opd.Patient.DOB.HasValue)
+                                {
+                                    var pat = opd.Patient;
+
+                                    var calcAge = FromDate.Year - pat.DOB.Value.Year;
+
+                                    if (calcAge < 1)
+                                    {
+                                        model.FUnderOneYearN++;
+                                    }
+                                    else if (calcAge > 0 && calcAge < 5)
+                                    {
+                                        model.FOneToFourYearsN++;
+                                    }
+                                    else if (calcAge > 4 && calcAge < 15)
+                                    {
+                                        model.FFiveToFourteenYearsN++;
+                                    }
+                                    else if (calcAge > 14 && calcAge < 46)
+                                    {
+                                        model.FFifteenToFortyFourYearsN++;
+                                    }
+                                    else if (calcAge > 44 && calcAge < 61)
+                                    {
+                                        model.FFortyFiveToSixtyYearsN++;
+                                    }
+                                    else if (calcAge > 60)
+                                    {
+                                        model.FOverSixtyYearsN++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                viewModels.Add(model);
+
             }
 
             DataSetDepartmentalOuptaptient dataSet = new DataSetDepartmentalOuptaptient();
@@ -1022,13 +1022,13 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             var allDiseases = db2.Diseases.ToList();
             var AllDiagnosis = new List<PatientDiagnosi>();
 
-            if (Department == null || Department == "" ||Department=="All")
+            if (Department == null || Department == "" || Department == "All")
             {
                 AllDiagnosis = db2.PatientDiagnosis.Where(p => p.TimeAdded > FromDate && p.TimeAdded <= ToDate).ToList();
             }
             else
             {
-                AllDiagnosis = db2.PatientDiagnosis.Where(p => p.TimeAdded > FromDate && p.TimeAdded <= ToDate && p.OpdRegister.Department==Department).ToList();
+                AllDiagnosis = db2.PatientDiagnosis.Where(p => p.TimeAdded > FromDate && p.TimeAdded <= ToDate && p.OpdRegister.Department == Department).ToList();
             }
 
             foreach (var disease in allDiseases)
@@ -1047,7 +1047,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                 }
 
                 lstModel.Add(model);
-                
+
             }
 
             var totalNumberOfCases = lstModel.Sum(p => p.NumberOfCases);
@@ -1104,12 +1104,12 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             string FileName = "Diagnosis Mobidity " + DateTime.Now.ToString("dd-MM-yyyy") + " .pdf";
 
             return File(Stream, "application/pdf", FileName);
-            
+
         }
 
         public ActionResult PatientListDiagnosisCommentsRevisit()
         {
-            
+
             return View();
         }
 
@@ -1123,31 +1123,31 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                 {
                     opdRegister = db2.OpdRegisters.Where(p => p.Department == Department && p.Date >= FromDate && p.Date <= ToDate).DistinctBy(p => p.PatientId).ToList();
                 }
-                else if (Department == "All" ||Department==null)
+                else if (Department == "All" || Department == null)
                 {
                     opdRegister = db2.OpdRegisters.Where(p => p.Date >= FromDate && p.Date <= ToDate).DistinctBy(p => p.PatientId).ToList();
                 }
             }
 
-           var dataSet = new DataSetPatientDiagnosisWithDoctorsComments();
-           var facilityDataSet = HeaderAndFooterForReports.GetAllReportHeader();
+            var dataSet = new DataSetPatientDiagnosisWithDoctorsComments();
+            var facilityDataSet = HeaderAndFooterForReports.GetAllReportHeader();
 
-           foreach (var item in opdRegister)
+            foreach (var item in opdRegister)
             {
-               
-                    var pat = item.Patient;
-                    var name = pat.FName + " " + pat.MName + " " + pat.LName;
 
-                    var chiefComplaints = item.Complaints.Where(p=>p.OpdIpdNumber == item.Id).FirstOrDefault()?.ChiefComplaints;
-                    var patientDiagnosis = item.PatientDiagnosis.Where(p => p.OPDNo == item.Id).FirstOrDefault()?.FinalDiagnosis;
+                var pat = item.Patient;
+                var name = pat.FName + " " + pat.MName + " " + pat.LName;
 
-                    dataSet.PatientsAttendance.AddPatientsAttendanceRow(
-                        item.Patient.RegNumber,
-                        name,
-                        chiefComplaints,
-                        item.TimeAdded.Value.ToString("dd-MMM-yyyy"),
-                        patientDiagnosis
-                        );
+                var chiefComplaints = item.Complaints.Where(p => p.OpdIpdNumber == item.Id).FirstOrDefault()?.ChiefComplaints;
+                var patientDiagnosis = item.PatientDiagnosis.Where(p => p.OPDNo == item.Id).FirstOrDefault()?.FinalDiagnosis;
+
+                dataSet.PatientsAttendance.AddPatientsAttendanceRow(
+                    item.Patient.RegNumber,
+                    name,
+                    chiefComplaints,
+                    item.TimeAdded.Value.ToString("dd-MMM-yyyy"),
+                    patientDiagnosis
+                    );
             }
 
             if (Session["UserId"] != null)
@@ -1182,7 +1182,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             return File(Stream, "application/pdf", FileName);
         }
 
-        
+
         private DataSetFacilityInformation GetAllReportHeader()
         {
 
@@ -1207,7 +1207,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
         public ActionResult InsuranceReport()
         {
-
+            ViewBag.Insurance = db2.Companies.ToList();
             var insuranceCompanies = db2.Companies.Where(p => p.CompanyType.CompanyTypeName.ToLower().Trim() == "insurance").ToList();
 
             return View(insuranceCompanies);
@@ -1227,7 +1227,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             public double drugs { get; set; }
         }
 
-        public ActionResult GetInsuranceReport(DateTime FromDate, DateTime ToDate, string Department,string Format)
+        public ActionResult GetInsuranceReport(DateTime FromDate, DateTime ToDate, string Department, string Format)
         {
             var dataSet = GetInsuranceReportData(FromDate, ToDate, Department);
             InsuranceReportsViewModel viewModel = new InsuranceReportsViewModel();
@@ -1263,7 +1263,6 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             }
         }
 
-
         public class InsuranceReportVM
         {
             public int InvoiceNo { get; set; }
@@ -1284,13 +1283,13 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
         public DataSetInsuranceReport GetInsuranceReportData(DateTime FromDate, DateTime ToDate, string Insurance)
         {
-            ToDate = ToDate.AddDays(1);
+            // ToDate = ToDate.AddDays(1);
             var dataSet = new DataSetInsuranceReport();
-
+           
             var data = new List<InsuranceReportVM>();
-            var lServices = db2.BillServices.Where(e => ((e.Award > 0 && e.DateAdded>=FromDate && e.DateAdded<ToDate) ||
-            (e.OpdRegister.Medications.Any(f => f.Award > 0 && e.DateAdded >= FromDate && e.DateAdded < ToDate)) )).ToList();
-            var meds = db2.Medications.Where(e => e.Award > 0 && e.TimeAdded>=FromDate && e.TimeAdded<ToDate).ToList();
+            var lServices = db2.BillServices.Where(e => ((e.Award > 0 && e.DateAdded >= FromDate && e.DateAdded < ToDate) ||
+            (e.OpdRegister.Medications.Any(f => f.Award > 0 && e.DateAdded >= FromDate && e.DateAdded < ToDate)))).ToList();
+            var meds = db2.Medications.Where(e => e.Award > 0 && e.TimeAdded >= FromDate && e.TimeAdded < ToDate).ToList();
 
             if (Insurance.ToLower() != "all")
             {
@@ -1345,7 +1344,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             dataSet.InsuranceDetails.AddInsuranceDetailsRow(
                 Insurance,
                 FromDate.ToString("dd-MMM-yyyy"),
-                ToDate.AddDays(-1).ToString("dd-MMM-yyyy"));
+                ToDate.ToString("dd-MMM-yyyy"));
 
 
             foreach (var item in data)
@@ -1364,10 +1363,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                   );
             }
 
-          
-
             return dataSet;
         }
+    
        
         public ActionResult TbReport()
         {
@@ -1596,13 +1594,13 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
 
 
-        public ActionResult GetMonthlyRevenueReport(int Year, string Months)
-        {
+        //public ActionResult GetMonthlyRevenueReport(int Year, string Months)
+        //{
 
 
-            var Jan = db2.BillServices.Where(p => p.DepartmentId == item.Id && p.DateAdded.Month == 1
-                          && p.DateAdded.Year == Year && p.OpdRegister.Tariff.Company.CompanyName == Insurance).Sum(p => (p.Award * p.Quatity));
-        }
+        //    var Jan = db2.BillServices.Where(p => p.DepartmentId == item.Id && p.DateAdded.Month == 1
+        //                  && p.DateAdded.Year == Year && p.OpdRegister.Tariff.Company.CompanyName == Insurance).Sum(p => (p.Award * p.Quatity));
+        //}
 
 
 

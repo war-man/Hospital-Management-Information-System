@@ -20,17 +20,17 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("NewAdditionalInfor")]
+    [global::System.Xml.Serialization.XmlRootAttribute("NewAdditional")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class NewAdditionalInfor : global::System.Data.DataSet {
+    public partial class NewAdditional : global::System.Data.DataSet {
         
-        private NewAdditionalInforDataTable tableNewAdditionalInfor;
+        private NewAdditionalDataTable tableNewAdditional;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public NewAdditionalInfor() {
+        public NewAdditional() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected NewAdditionalInfor(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected NewAdditional(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["NewAdditionalInfor"] != null)) {
-                    base.Tables.Add(new NewAdditionalInforDataTable(ds.Tables["NewAdditionalInfor"]));
+                if ((ds.Tables["NewAdditional"] != null)) {
+                    base.Tables.Add(new NewAdditionalDataTable(ds.Tables["NewAdditional"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public NewAdditionalInforDataTable _NewAdditionalInfor {
+        public NewAdditionalDataTable _NewAdditional {
             get {
-                return this.tableNewAdditionalInfor;
+                return this.tableNewAdditional;
             }
         }
         
@@ -127,7 +127,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            NewAdditionalInfor cln = ((NewAdditionalInfor)(base.Clone()));
+            NewAdditional cln = ((NewAdditional)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["NewAdditionalInfor"] != null)) {
-                    base.Tables.Add(new NewAdditionalInforDataTable(ds.Tables["NewAdditionalInfor"]));
+                if ((ds.Tables["NewAdditional"] != null)) {
+                    base.Tables.Add(new NewAdditionalDataTable(ds.Tables["NewAdditional"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableNewAdditionalInfor = ((NewAdditionalInforDataTable)(base.Tables["NewAdditionalInfor"]));
+            this.tableNewAdditional = ((NewAdditionalDataTable)(base.Tables["NewAdditional"]));
             if ((initTable == true)) {
-                if ((this.tableNewAdditionalInfor != null)) {
-                    this.tableNewAdditionalInfor.InitVars();
+                if ((this.tableNewAdditional != null)) {
+                    this.tableNewAdditional.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "NewAdditionalInfor";
+            this.DataSetName = "NewAdditional";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/NewAdditionalInfor.xsd";
+            this.Namespace = "http://tempuri.org/NewAdditional.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableNewAdditionalInfor = new NewAdditionalInforDataTable();
-            base.Tables.Add(this.tableNewAdditionalInfor);
+            this.tableNewAdditional = new NewAdditionalDataTable();
+            base.Tables.Add(this.tableNewAdditional);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerialize_NewAdditionalInfor() {
+        private bool ShouldSerialize_NewAdditional() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            NewAdditionalInfor ds = new NewAdditionalInfor();
+            NewAdditional ds = new NewAdditional();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,14 +270,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void NewAdditionalInforRowChangeEventHandler(object sender, NewAdditionalInforRowChangeEvent e);
+        public delegate void NewAdditionalRowChangeEventHandler(object sender, NewAdditionalRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class NewAdditionalInforDataTable : global::System.Data.TypedTableBase<NewAdditionalInforRow> {
+        public partial class NewAdditionalDataTable : global::System.Data.TypedTableBase<NewAdditionalRow> {
             
             private global::System.Data.DataColumn columnOne;
             
@@ -301,8 +301,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAdditionalInforDataTable() {
-                this.TableName = "NewAdditionalInfor";
+            public NewAdditionalDataTable() {
+                this.TableName = "NewAdditional";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -310,7 +310,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal NewAdditionalInforDataTable(global::System.Data.DataTable table) {
+            internal NewAdditionalDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -327,7 +327,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected NewAdditionalInforDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected NewAdditionalDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -423,34 +423,34 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAdditionalInforRow this[int index] {
+            public NewAdditionalRow this[int index] {
                 get {
-                    return ((NewAdditionalInforRow)(this.Rows[index]));
+                    return ((NewAdditionalRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event NewAdditionalInforRowChangeEventHandler NewAdditionalInforRowChanging;
+            public event NewAdditionalRowChangeEventHandler NewAdditionalRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event NewAdditionalInforRowChangeEventHandler NewAdditionalInforRowChanged;
+            public event NewAdditionalRowChangeEventHandler NewAdditionalRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event NewAdditionalInforRowChangeEventHandler NewAdditionalInforRowDeleting;
+            public event NewAdditionalRowChangeEventHandler NewAdditionalRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event NewAdditionalInforRowChangeEventHandler NewAdditionalInforRowDeleted;
+            public event NewAdditionalRowChangeEventHandler NewAdditionalRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddNewAdditionalInforRow(NewAdditionalInforRow row) {
+            public void AddNewAdditionalRow(NewAdditionalRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAdditionalInforRow AddNewAdditionalInforRow(int One, int Two, int Three, int Four, int Five, int Six, int Seven, int Eight, int Nine, int Ten) {
-                NewAdditionalInforRow rowNewAdditionalInforRow = ((NewAdditionalInforRow)(this.NewRow()));
+            public NewAdditionalRow AddNewAdditionalRow(int One, int Two, int Three, int Four, int Five, int Six, int Seven, int Eight, int Nine, int Ten) {
+                NewAdditionalRow rowNewAdditionalRow = ((NewAdditionalRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         One,
                         Two,
@@ -462,15 +462,15 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
                         Eight,
                         Nine,
                         Ten};
-                rowNewAdditionalInforRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowNewAdditionalInforRow);
-                return rowNewAdditionalInforRow;
+                rowNewAdditionalRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowNewAdditionalRow);
+                return rowNewAdditionalRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                NewAdditionalInforDataTable cln = ((NewAdditionalInforDataTable)(base.Clone()));
+                NewAdditionalDataTable cln = ((NewAdditionalDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -478,7 +478,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new NewAdditionalInforDataTable();
+                return new NewAdditionalDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -519,34 +519,34 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
                 base.Columns.Add(this.columnNine);
                 this.columnTen = new global::System.Data.DataColumn("Ten", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTen);
-                this.ExtendedProperties.Add("Generator_TablePropName", "_NewAdditionalInfor");
-                this.ExtendedProperties.Add("Generator_UserTableName", "NewAdditionalInfor");
+                this.ExtendedProperties.Add("Generator_TablePropName", "_NewAdditional");
+                this.ExtendedProperties.Add("Generator_UserTableName", "NewAdditional");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAdditionalInforRow NewNewAdditionalInforRow() {
-                return ((NewAdditionalInforRow)(this.NewRow()));
+            public NewAdditionalRow NewNewAdditionalRow() {
+                return ((NewAdditionalRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new NewAdditionalInforRow(builder);
+                return new NewAdditionalRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(NewAdditionalInforRow);
+                return typeof(NewAdditionalRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.NewAdditionalInforRowChanged != null)) {
-                    this.NewAdditionalInforRowChanged(this, new NewAdditionalInforRowChangeEvent(((NewAdditionalInforRow)(e.Row)), e.Action));
+                if ((this.NewAdditionalRowChanged != null)) {
+                    this.NewAdditionalRowChanged(this, new NewAdditionalRowChangeEvent(((NewAdditionalRow)(e.Row)), e.Action));
                 }
             }
             
@@ -554,8 +554,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.NewAdditionalInforRowChanging != null)) {
-                    this.NewAdditionalInforRowChanging(this, new NewAdditionalInforRowChangeEvent(((NewAdditionalInforRow)(e.Row)), e.Action));
+                if ((this.NewAdditionalRowChanging != null)) {
+                    this.NewAdditionalRowChanging(this, new NewAdditionalRowChangeEvent(((NewAdditionalRow)(e.Row)), e.Action));
                 }
             }
             
@@ -563,8 +563,8 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.NewAdditionalInforRowDeleted != null)) {
-                    this.NewAdditionalInforRowDeleted(this, new NewAdditionalInforRowChangeEvent(((NewAdditionalInforRow)(e.Row)), e.Action));
+                if ((this.NewAdditionalRowDeleted != null)) {
+                    this.NewAdditionalRowDeleted(this, new NewAdditionalRowChangeEvent(((NewAdditionalRow)(e.Row)), e.Action));
                 }
             }
             
@@ -572,14 +572,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.NewAdditionalInforRowDeleting != null)) {
-                    this.NewAdditionalInforRowDeleting(this, new NewAdditionalInforRowChangeEvent(((NewAdditionalInforRow)(e.Row)), e.Action));
+                if ((this.NewAdditionalRowDeleting != null)) {
+                    this.NewAdditionalRowDeleting(this, new NewAdditionalRowChangeEvent(((NewAdditionalRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveNewAdditionalInforRow(NewAdditionalInforRow row) {
+            public void RemoveNewAdditionalRow(NewAdditionalRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -588,7 +588,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NewAdditionalInfor ds = new NewAdditionalInfor();
+                NewAdditional ds = new NewAdditional();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -606,7 +606,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "NewAdditionalInforDataTable";
+                attribute2.FixedValue = "NewAdditionalDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -650,15 +650,15 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class NewAdditionalInforRow : global::System.Data.DataRow {
+        public partial class NewAdditionalRow : global::System.Data.DataRow {
             
-            private NewAdditionalInforDataTable tableNewAdditionalInfor;
+            private NewAdditionalDataTable tableNewAdditional;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal NewAdditionalInforRow(global::System.Data.DataRowBuilder rb) : 
+            internal NewAdditionalRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableNewAdditionalInfor = ((NewAdditionalInforDataTable)(this.Table));
+                this.tableNewAdditional = ((NewAdditionalDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -666,14 +666,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             public int One {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAdditionalInfor.OneColumn]));
+                        return ((int)(this[this.tableNewAdditional.OneColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'One\' in table \'NewAdditionalInfor\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'One\' in table \'NewAdditional\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAdditionalInfor.OneColumn] = value;
+                    this[this.tableNewAdditional.OneColumn] = value;
                 }
             }
             
@@ -682,14 +682,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             public int Two {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAdditionalInfor.TwoColumn]));
+                        return ((int)(this[this.tableNewAdditional.TwoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Two\' in table \'NewAdditionalInfor\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Two\' in table \'NewAdditional\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAdditionalInfor.TwoColumn] = value;
+                    this[this.tableNewAdditional.TwoColumn] = value;
                 }
             }
             
@@ -698,14 +698,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             public int Three {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAdditionalInfor.ThreeColumn]));
+                        return ((int)(this[this.tableNewAdditional.ThreeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Three\' in table \'NewAdditionalInfor\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Three\' in table \'NewAdditional\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAdditionalInfor.ThreeColumn] = value;
+                    this[this.tableNewAdditional.ThreeColumn] = value;
                 }
             }
             
@@ -714,14 +714,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             public int Four {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAdditionalInfor.FourColumn]));
+                        return ((int)(this[this.tableNewAdditional.FourColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Four\' in table \'NewAdditionalInfor\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Four\' in table \'NewAdditional\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAdditionalInfor.FourColumn] = value;
+                    this[this.tableNewAdditional.FourColumn] = value;
                 }
             }
             
@@ -730,14 +730,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             public int Five {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAdditionalInfor.FiveColumn]));
+                        return ((int)(this[this.tableNewAdditional.FiveColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Five\' in table \'NewAdditionalInfor\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Five\' in table \'NewAdditional\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAdditionalInfor.FiveColumn] = value;
+                    this[this.tableNewAdditional.FiveColumn] = value;
                 }
             }
             
@@ -746,14 +746,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             public int Six {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAdditionalInfor.SixColumn]));
+                        return ((int)(this[this.tableNewAdditional.SixColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Six\' in table \'NewAdditionalInfor\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Six\' in table \'NewAdditional\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAdditionalInfor.SixColumn] = value;
+                    this[this.tableNewAdditional.SixColumn] = value;
                 }
             }
             
@@ -762,14 +762,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             public int Seven {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAdditionalInfor.SevenColumn]));
+                        return ((int)(this[this.tableNewAdditional.SevenColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Seven\' in table \'NewAdditionalInfor\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Seven\' in table \'NewAdditional\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAdditionalInfor.SevenColumn] = value;
+                    this[this.tableNewAdditional.SevenColumn] = value;
                 }
             }
             
@@ -778,14 +778,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             public int Eight {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAdditionalInfor.EightColumn]));
+                        return ((int)(this[this.tableNewAdditional.EightColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Eight\' in table \'NewAdditionalInfor\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Eight\' in table \'NewAdditional\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAdditionalInfor.EightColumn] = value;
+                    this[this.tableNewAdditional.EightColumn] = value;
                 }
             }
             
@@ -794,14 +794,14 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             public int Nine {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAdditionalInfor.NineColumn]));
+                        return ((int)(this[this.tableNewAdditional.NineColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Nine\' in table \'NewAdditionalInfor\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Nine\' in table \'NewAdditional\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAdditionalInfor.NineColumn] = value;
+                    this[this.tableNewAdditional.NineColumn] = value;
                 }
             }
             
@@ -810,135 +810,135 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
             public int Ten {
                 get {
                     try {
-                        return ((int)(this[this.tableNewAdditionalInfor.TenColumn]));
+                        return ((int)(this[this.tableNewAdditional.TenColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Ten\' in table \'NewAdditionalInfor\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Ten\' in table \'NewAdditional\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableNewAdditionalInfor.TenColumn] = value;
+                    this[this.tableNewAdditional.TenColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsOneNull() {
-                return this.IsNull(this.tableNewAdditionalInfor.OneColumn);
+                return this.IsNull(this.tableNewAdditional.OneColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetOneNull() {
-                this[this.tableNewAdditionalInfor.OneColumn] = global::System.Convert.DBNull;
+                this[this.tableNewAdditional.OneColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsTwoNull() {
-                return this.IsNull(this.tableNewAdditionalInfor.TwoColumn);
+                return this.IsNull(this.tableNewAdditional.TwoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetTwoNull() {
-                this[this.tableNewAdditionalInfor.TwoColumn] = global::System.Convert.DBNull;
+                this[this.tableNewAdditional.TwoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsThreeNull() {
-                return this.IsNull(this.tableNewAdditionalInfor.ThreeColumn);
+                return this.IsNull(this.tableNewAdditional.ThreeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetThreeNull() {
-                this[this.tableNewAdditionalInfor.ThreeColumn] = global::System.Convert.DBNull;
+                this[this.tableNewAdditional.ThreeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsFourNull() {
-                return this.IsNull(this.tableNewAdditionalInfor.FourColumn);
+                return this.IsNull(this.tableNewAdditional.FourColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetFourNull() {
-                this[this.tableNewAdditionalInfor.FourColumn] = global::System.Convert.DBNull;
+                this[this.tableNewAdditional.FourColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsFiveNull() {
-                return this.IsNull(this.tableNewAdditionalInfor.FiveColumn);
+                return this.IsNull(this.tableNewAdditional.FiveColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetFiveNull() {
-                this[this.tableNewAdditionalInfor.FiveColumn] = global::System.Convert.DBNull;
+                this[this.tableNewAdditional.FiveColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsSixNull() {
-                return this.IsNull(this.tableNewAdditionalInfor.SixColumn);
+                return this.IsNull(this.tableNewAdditional.SixColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetSixNull() {
-                this[this.tableNewAdditionalInfor.SixColumn] = global::System.Convert.DBNull;
+                this[this.tableNewAdditional.SixColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsSevenNull() {
-                return this.IsNull(this.tableNewAdditionalInfor.SevenColumn);
+                return this.IsNull(this.tableNewAdditional.SevenColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetSevenNull() {
-                this[this.tableNewAdditionalInfor.SevenColumn] = global::System.Convert.DBNull;
+                this[this.tableNewAdditional.SevenColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsEightNull() {
-                return this.IsNull(this.tableNewAdditionalInfor.EightColumn);
+                return this.IsNull(this.tableNewAdditional.EightColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetEightNull() {
-                this[this.tableNewAdditionalInfor.EightColumn] = global::System.Convert.DBNull;
+                this[this.tableNewAdditional.EightColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsNineNull() {
-                return this.IsNull(this.tableNewAdditionalInfor.NineColumn);
+                return this.IsNull(this.tableNewAdditional.NineColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetNineNull() {
-                this[this.tableNewAdditionalInfor.NineColumn] = global::System.Convert.DBNull;
+                this[this.tableNewAdditional.NineColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsTenNull() {
-                return this.IsNull(this.tableNewAdditionalInfor.TenColumn);
+                return this.IsNull(this.tableNewAdditional.TenColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetTenNull() {
-                this[this.tableNewAdditionalInfor.TenColumn] = global::System.Convert.DBNull;
+                this[this.tableNewAdditional.TenColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -946,22 +946,22 @@ namespace Caresoft2._0.Areas.CareSoftReports.Reports.MOH733B.AdditionalInfor {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class NewAdditionalInforRowChangeEvent : global::System.EventArgs {
+        public class NewAdditionalRowChangeEvent : global::System.EventArgs {
             
-            private NewAdditionalInforRow eventRow;
+            private NewAdditionalRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAdditionalInforRowChangeEvent(NewAdditionalInforRow row, global::System.Data.DataRowAction action) {
+            public NewAdditionalRowChangeEvent(NewAdditionalRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NewAdditionalInforRow Row {
+            public NewAdditionalRow Row {
                 get {
                     return this.eventRow;
                 }

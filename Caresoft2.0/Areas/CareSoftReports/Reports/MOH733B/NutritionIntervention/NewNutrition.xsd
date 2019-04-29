@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="NIntervention" targetNamespace="http://tempuri.org/NIntervention.xsd" xmlns:mstns="http://tempuri.org/NIntervention.xsd" xmlns="http://tempuri.org/NIntervention.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="NewNutrition" targetNamespace="http://tempuri.org/NewNutrition.xsd" xmlns:mstns="http://tempuri.org/NewNutrition.xsd" xmlns="http://tempuri.org/NewNutrition.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -9,10 +9,10 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="NIntervention" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NIntervention" msprop:Generator_UserDSName="NIntervention">
+  <xs:element name="NewNutrition" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NewNutrition" msprop:Generator_UserDSName="NewNutrition">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="NIntervention" msprop:Generator_TableClassName="NInterventionDataTable" msprop:Generator_TableVarName="tableNIntervention" msprop:Generator_TablePropName="_NIntervention" msprop:Generator_RowDeletingName="NInterventionRowDeleting" msprop:Generator_RowChangingName="NInterventionRowChanging" msprop:Generator_RowEvHandlerName="NInterventionRowChangeEventHandler" msprop:Generator_RowDeletedName="NInterventionRowDeleted" msprop:Generator_UserTableName="NIntervention" msprop:Generator_RowChangedName="NInterventionRowChanged" msprop:Generator_RowEvArgName="NInterventionRowChangeEvent" msprop:Generator_RowClassName="NInterventionRow">
+        <xs:element name="NewIntervention" msprop:Generator_TableClassName="NewInterventionDataTable" msprop:Generator_TableVarName="tableNewIntervention" msprop:Generator_TablePropName="NewIntervention" msprop:Generator_RowDeletingName="NewInterventionRowDeleting" msprop:Generator_RowChangingName="NewInterventionRowChanging" msprop:Generator_RowEvHandlerName="NewInterventionRowChangeEventHandler" msprop:Generator_RowDeletedName="NewInterventionRowDeleted" msprop:Generator_UserTableName="NewIntervention" msprop:Generator_RowChangedName="NewInterventionRowChanged" msprop:Generator_RowEvArgName="NewInterventionRowChangeEvent" msprop:Generator_RowClassName="NewInterventionRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="One" msprop:Generator_ColumnVarNameInTable="columnOne" msprop:Generator_ColumnPropNameInRow="One" msprop:Generator_ColumnPropNameInTable="OneColumn" msprop:Generator_UserColumnName="One" type="xs:int" minOccurs="0" />
@@ -154,8 +154,7 @@
               <xs:element name="Hundred37" msprop:Generator_ColumnVarNameInTable="columnHundred37" msprop:Generator_ColumnPropNameInRow="Hundred37" msprop:Generator_ColumnPropNameInTable="Hundred37Column" msprop:Generator_UserColumnName="Hundred37" type="xs:int" minOccurs="0" />
               <xs:element name="Hundred38" msprop:Generator_ColumnVarNameInTable="columnHundred38" msprop:Generator_ColumnPropNameInRow="Hundred38" msprop:Generator_ColumnPropNameInTable="Hundred38Column" msprop:Generator_UserColumnName="Hundred38" type="xs:int" minOccurs="0" />
               <xs:element name="Hundred39" msprop:Generator_ColumnVarNameInTable="columnHundred39" msprop:Generator_ColumnPropNameInRow="Hundred39" msprop:Generator_ColumnPropNameInTable="Hundred39Column" msprop:Generator_UserColumnName="Hundred39" type="xs:int" minOccurs="0" />
-              <xs:element name="Hudred40" msprop:Generator_ColumnVarNameInTable="columnHudred40" msprop:Generator_ColumnPropNameInRow="Hudred40" msprop:Generator_ColumnPropNameInTable="Hudred40Column" msprop:Generator_UserColumnName="Hudred40" type="xs:int" minOccurs="0" />
-              <xs:element name="Hundred41" msprop:Generator_ColumnVarNameInTable="columnHundred41" msprop:Generator_ColumnPropNameInRow="Hundred41" msprop:Generator_ColumnPropNameInTable="Hundred41Column" msprop:Generator_UserColumnName="Hundred41" type="xs:int" minOccurs="0" />
+              <xs:element name="Hundred40" msprop:Generator_ColumnVarNameInTable="columnHundred40" msprop:Generator_ColumnPropNameInRow="Hundred40" msprop:Generator_ColumnPropNameInTable="Hundred40Column" msprop:Generator_UserColumnName="Hundred40" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

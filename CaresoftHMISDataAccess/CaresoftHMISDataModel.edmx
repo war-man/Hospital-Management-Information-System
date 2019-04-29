@@ -2134,10 +2134,10 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.BloodBankPatientBloodGroupings' d
           <Property Name="maternalNutrition" Type="varchar(max)" />
           <Property Name="CriticalNutritionPractices" Type="varchar(max)" />
           <Property Name="TherapeuticFoods" Type="varchar(max)" />
-          <Property Name="SupplementalFoods" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="SupplementalFoods" Type="varchar(max)" />
           <Property Name="Micronutrients" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="OutcomeClient" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="ReferralsandTransfers" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="OutcomeClient" Type="varchar(max)" />
+          <Property Name="ReferralsandTransfers" Type="varchar" MaxLength="50" />
           <Property Name="TCADate" Type="date" />
           <Property Name="Designation" Type="varchar(max)" />
           <Property Name="Initials" Type="varchar(max)" />
@@ -2180,11 +2180,11 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.BloodBankPatientBloodGroupings' d
           <Property Name="Sixto12Months" Type="varchar(max)" />
           <Property Name="maternalNutrition" Type="varchar(max)" />
           <Property Name="CriticalNutritionPractices" Type="varchar(max)" />
-          <Property Name="TherapeuticFoods" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="SupplementalFoods" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TherapeuticFoods" Type="varchar(max)" />
+          <Property Name="SupplementalFoods" Type="varchar(max)" />
           <Property Name="Micronutrients" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="OutcomeClient" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="ReferralsandTransfers" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="OutcomeClient" Type="varchar" MaxLength="50" />
+          <Property Name="ReferralsandTransfers" Type="varchar(max)" />
           <Property Name="TCADate" Type="date" />
           <Property Name="Designation" Type="varchar(max)" />
           <Property Name="Initials" Type="varchar(max)" />
@@ -10204,10 +10204,10 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.SystemExamParticulars' does not h
           <Property Name="maternalNutrition" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CriticalNutritionPractices" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TherapeuticFoods" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="SupplementalFoods" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SupplementalFoods" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Micronutrients" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="OutcomeClient" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ReferralsandTransfers" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="OutcomeClient" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReferralsandTransfers" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TCADate" Type="DateTime" Precision="0" />
           <Property Name="Designation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Initials" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -10250,11 +10250,11 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.SystemExamParticulars' does not h
           <Property Name="Sixto12Months" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="maternalNutrition" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CriticalNutritionPractices" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TherapeuticFoods" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="SupplementalFoods" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TherapeuticFoods" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SupplementalFoods" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Micronutrients" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="OutcomeClient" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ReferralsandTransfers" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="OutcomeClient" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReferralsandTransfers" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TCADate" Type="DateTime" Precision="0" />
           <Property Name="Designation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Initials" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />

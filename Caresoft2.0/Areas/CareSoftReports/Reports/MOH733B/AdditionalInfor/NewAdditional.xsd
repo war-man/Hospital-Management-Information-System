@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="NewAdditionalInfor" targetNamespace="http://tempuri.org/NewAdditionalInfor.xsd" xmlns:mstns="http://tempuri.org/NewAdditionalInfor.xsd" xmlns="http://tempuri.org/NewAdditionalInfor.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="NewAdditional" targetNamespace="http://tempuri.org/NewAdditional.xsd" xmlns:mstns="http://tempuri.org/NewAdditional.xsd" xmlns="http://tempuri.org/NewAdditional.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -9,10 +9,10 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="NewAdditionalInfor" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NewAdditionalInfor" msprop:Generator_UserDSName="NewAdditionalInfor">
+  <xs:element name="NewAdditional" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NewAdditional" msprop:Generator_UserDSName="NewAdditional">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="NewAdditionalInfor" msprop:Generator_TableClassName="NewAdditionalInforDataTable" msprop:Generator_TableVarName="tableNewAdditionalInfor" msprop:Generator_RowChangedName="NewAdditionalInforRowChanged" msprop:Generator_TablePropName="_NewAdditionalInfor" msprop:Generator_RowDeletingName="NewAdditionalInforRowDeleting" msprop:Generator_RowChangingName="NewAdditionalInforRowChanging" msprop:Generator_RowEvHandlerName="NewAdditionalInforRowChangeEventHandler" msprop:Generator_RowDeletedName="NewAdditionalInforRowDeleted" msprop:Generator_RowClassName="NewAdditionalInforRow" msprop:Generator_UserTableName="NewAdditionalInfor" msprop:Generator_RowEvArgName="NewAdditionalInforRowChangeEvent">
+        <xs:element name="NewAdditional" msprop:Generator_TableClassName="NewAdditionalDataTable" msprop:Generator_TableVarName="tableNewAdditional" msprop:Generator_TablePropName="_NewAdditional" msprop:Generator_RowDeletingName="NewAdditionalRowDeleting" msprop:Generator_RowChangingName="NewAdditionalRowChanging" msprop:Generator_RowEvHandlerName="NewAdditionalRowChangeEventHandler" msprop:Generator_RowDeletedName="NewAdditionalRowDeleted" msprop:Generator_UserTableName="NewAdditional" msprop:Generator_RowChangedName="NewAdditionalRowChanged" msprop:Generator_RowEvArgName="NewAdditionalRowChangeEvent" msprop:Generator_RowClassName="NewAdditionalRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="One" msprop:Generator_ColumnVarNameInTable="columnOne" msprop:Generator_ColumnPropNameInRow="One" msprop:Generator_ColumnPropNameInTable="OneColumn" msprop:Generator_UserColumnName="One" type="xs:int" minOccurs="0" />

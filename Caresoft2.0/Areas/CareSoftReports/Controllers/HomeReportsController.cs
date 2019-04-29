@@ -256,9 +256,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             #region Number of First Attendants
             int[] FirstAttendants = new int[31];
 
-            for (int i = 0; i < NumberOfDays; i++)
+            for (int i = 1; i < NumberOfDays; i++)
             {
-                var dayOfMonth = i + 1;
+                var dayOfMonth = i;
                 FirstAttendants[i] = DiagnosisPatients.Where(p => p.OpdRegister.Patient.OpdRegisters.Count() == 1 && p.TimeAdded.Day == dayOfMonth).Count();
 
             }
@@ -305,9 +305,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             #region Number of ReAttendants
             int[] ReAttendants = new int[31];
 
-            for (int i = 0; i < NumberOfDays; i++)
+            for (int i = 1; i < NumberOfDays; i++)
             {
-                var dayOfMonth = i + 1;
+                var dayOfMonth = i;
                 ReAttendants[i] = DiagnosisPatients.Where(p => p.OpdRegister.Patient.OpdRegisters.Count() > 1 && p.TimeAdded.Day == dayOfMonth).Count();
 
             }
@@ -360,9 +360,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             int[] InsideSideRefferals = new int[31];
 
-            for (int i = 0; i < NumberOfDays; i++)
+            for (int i = 1; i < NumberOfDays; i++)
             {
-                var dayOfMonth = i + 1;
+                var dayOfMonth = i;
                 InsideSideRefferals[i] = ReferralsFromOtherHealthFacility.Where(p => p.DateAdded.Day == dayOfMonth).Count();
 
             }
@@ -412,9 +412,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             int[] OutSideRefferals = new int[31];
 
-            for (int i = 0; i < NumberOfDays; i++)
+            for (int i = 1; i < NumberOfDays; i++)
             {
-                var dayOfMonth = i + 1;
+                var dayOfMonth = i ;
                 OutSideRefferals[i] = ReferralsToOtherHealthFacility.Where(p => p.DateAdded.Day == dayOfMonth).Count();
 
             }
@@ -462,9 +462,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             int[] RefferalsFromCommunity = new int[31];
 
-            for (int i = 0; i < NumberOfDays; i++)
+            for (int i = 1; i < NumberOfDays; i++)
             {
-                var dayOfMonth = i + 1;
+                var dayOfMonth = i ;
                 RefferalsFromCommunity[i] = refferalsFromCommunity.Where(p => p.TimeAdded.Value.Day == dayOfMonth).Count();
 
             }
@@ -741,9 +741,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             #region Number of First Attendants
             int[] FirstAttendants = new int[31];
 
-            for (int i = 0; i < NumberOfDays; i++)
+            for (int i = 1; i < NumberOfDays; i++)
             {
-                var dayOfMonth = i + 1;
+                var dayOfMonth = i;
                 FirstAttendants[i] = DiagnosisPatients.Where(p => p.OpdRegister.Patient.OpdRegisters.Count() == 1 && p.TimeAdded.Day == dayOfMonth).Count();
 
             }
@@ -790,9 +790,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             #region Number of ReAttendants
             int[] ReAttendants = new int[31];
 
-            for (int i = 0; i < NumberOfDays; i++)
+            for (int i = 1; i < NumberOfDays; i++)
             {
-                var dayOfMonth = i + 1;
+                var dayOfMonth = i ;
                 ReAttendants[i] = DiagnosisPatients.Where(p => p.OpdRegister.Patient.OpdRegisters.Count() > 1 && p.TimeAdded.Day == dayOfMonth).Count();
 
             }
@@ -843,9 +843,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             int[] InsideSideRefferals = new int[31];
 
-            for (int i = 0; i < NumberOfDays; i++)
+            for (int i = 1; i < NumberOfDays; i++)
             {
-                var dayOfMonth = i + 1;
+                var dayOfMonth = i ;
                 InsideSideRefferals[i] = ReferralsFromOtherHealthFacility.Where(p => p.DateAdded.Day == dayOfMonth).Count();
 
             }
@@ -895,9 +895,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             int[] OutSideRefferals = new int[31];
 
-            for (int i = 0; i < NumberOfDays; i++)
+            for (int i = 1; i < NumberOfDays; i++)
             {
-                var dayOfMonth = i + 1;
+                var dayOfMonth = i ;
                 OutSideRefferals[i] = ReferralsToOtherHealthFacility.Where(p => p.DateAdded.Day == dayOfMonth).Count();
 
             }
@@ -945,9 +945,9 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             int[] RefferalsFromCommunity = new int[31];
 
-            for (int i = 0; i < NumberOfDays; i++)
+            for (int i = 1; i < NumberOfDays; i++)
             {
-                var dayOfMonth = i + 1;
+                var dayOfMonth = i;
                 RefferalsFromCommunity[i] = refferalsFromCommunity.Where(p => p.TimeAdded.Value.Day == dayOfMonth).Count();
 
             }
@@ -1038,7 +1038,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
         }
 
-        #endregion
+        #endregion bb
 
         #region MOH 505 Report
         public class LabaratoryDs
@@ -4823,160 +4823,147 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             var TwentySix = 0;
             var TwentySeven = 0;
             var TwentyEight = 0;
-
-
-            NIntervention nIntervention = new NIntervention();
-            nIntervention._NIntervention.AddNInterventionRow(
-                One,
-                Two,
-                Three,
-                Four,
-                Five,
-                Six,
-                Seven,
-                Eight,
-                Nine,
-                Ten,
-                Eleven,
-                Twelve,
-                Thirteen,
-                Fourteen,
-                Fifteen,
-                Sixteen,
-                Seventeen,
-                Eighteen,
-                Nineteen,
-                Twenty,
-                TwentyOne,
-                TwentyTwo,
-                TwentyThree,
-                TwentyFour,
-                TwentyFive,
-                TwentySix, 
-                TwentySeven,
-                TwentyEight, 
-                0,
-                0, 
-                0, 
-                0, 
-                0,
-                0,
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0,
-                0,
-                0, 
-                0, 
-                0,
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0,
-                0,
-                0,
-                0, 
-                0, 
-                0, 
-                0,
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0,
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0,
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0,
-                0, 
-                0, 
-                0, 
-                0,
-                0, 
-                0, 
-                0, 
-                0, 
-                0,
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0,
-                0, 
-                0, 
-                0, 
-                0,
-                0,
-                0, 
-                0, 
-                0, 
-                0,
-                0,
-                0,
-                0, 
-                0, 
-                0, 
-                0, 
-                0, 
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0);
-
-            return nIntervention;
+            var TwentyNine = db2.NutritionAdultRegisters.Count(e=>e.age >=15-17 && e.TherapeuticFoods=="2=F75||3=F100" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Thirty = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition=="2=Post-natal" && e.TherapeuticFoods == "2=F75||3=F100" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var ThirtyOne = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.TherapeuticFoods == "2=F75||3=F100" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var ThirtyTwo = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.TherapeuticFoods == "2=F75||3=F100" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var ThirtyThree = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.TherapeuticFoods == "2=F75||3=F100" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var ThirtyFour = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.TherapeuticFoods == "2=F75||3=F100" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var ThirtyFive = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.TherapeuticFoods == "2=F75||3=F100" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var ThirtySix = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.TherapeuticFoods == "1=RUTF" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var ThirtySeven = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.TherapeuticFoods == "1=RUTF" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var ThirtyEight = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.TherapeuticFoods == "1=RUTF" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var ThirtyNine = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.TherapeuticFoods == "1=RUTF" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Fourty = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.TherapeuticFoods == "1=RUTF" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FourtyOne = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.TherapeuticFoods == "1=RUTF" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FourtyTwo = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.TherapeuticFoods == "1=RUTF" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FourtyThree = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.SupplementalFoods == "RUSF" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FourtyFour = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.SupplementalFoods == "RUSF" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FourtyFive = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.SupplementalFoods == "RUSF" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FourtySix = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.SupplementalFoods == "RUSF" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FourtySeven = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.SupplementalFoods == "RUSF" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FourtyEight = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.SupplementalFoods == "RUFT" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FourtyNine = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.SupplementalFoods == "RUSF" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Fifty = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.SupplementalFoods == "FBF||CSB" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FiftyOne = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.SupplementalFoods == "FBF||CSB" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FiftyTwo = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.SupplementalFoods == "FBF||CSB" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FiftyThree = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.SupplementalFoods == "FBF||CSB" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FiftyFour = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.SupplementalFoods == "FBF||CSB" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FiftyFive = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.SupplementalFoods == "FBF||CSB" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FiftySix = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.SupplementalFoods == "FBF||CSB" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FiftySeven = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.SupplementalFoods == "Liquid Nutrition Supplements" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FiftyEight = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.SupplementalFoods == "Liquid Nutrition Supplements" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var FiftyNine = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.SupplementalFoods == "Liquid Nutrition Supplements" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Sixty = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.SupplementalFoods == "Liquid Nutrition Supplements" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SixtyOne = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.SupplementalFoods == "Liquid Nutrition Supplements" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SixtyTwo = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.SupplementalFoods == "Liquid Nutrition Supplements" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SixtyThree = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.SupplementalFoods == "Liquid Nutrition Supplements" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SixtyFour = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.Micronutrients!=null && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SixtyFive = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.Micronutrients != null && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SixtySix = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.Micronutrients != null && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SixtySeven = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.Micronutrients != null && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SixtyEight = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.Micronutrients != null && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SixtyNine = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.Micronutrients != null && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Seventy = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.Micronutrients != null && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            
+            var SeventyOne = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.TherapeuticFoods == "Others" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SeventyTwo = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.TherapeuticFoods == "Others" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SeventyThree = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.TherapeuticFoods == "Others" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SeventyFour = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.TherapeuticFoods == "Others" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SeventyFive= db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.TherapeuticFoods == "Others" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SeventySix = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.TherapeuticFoods == "Others" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SeventySeven = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.TherapeuticFoods == "Others" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SeventyEight = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.OutcomeClient=="Gaining Weight" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var SeventyNine = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.OutcomeClient == "Gaining Weight" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Eighty = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.OutcomeClient == "Gaining Weight" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var EightyOne = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.OutcomeClient == "Gaining Weight" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var EightyTwo = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.OutcomeClient == "Gaining Weight" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var EightyThree = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.OutcomeClient == "Gaining Weight" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var EightyFour = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.OutcomeClient == "Gaining Weight" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var EightyFive = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.OutcomeClient == "Loosing Weight" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var EightySix = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.OutcomeClient == "Loosing Weight" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var EightySeven = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.OutcomeClient == "Loosing Weight" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var EightyEight = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.OutcomeClient == "Loosing Weight" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var EightyNine = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.OutcomeClient == "Loosing Weight" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Ninety = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.OutcomeClient == "Loosing Weight" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NinetyOne = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.OutcomeClient == "Loosing Weight" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NinetyTwo = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.OutcomeClient == "Static Weight" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NinetyThree = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.OutcomeClient == "Static Weight" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NinetyFour = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.OutcomeClient == "Static Weight" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NinetyFive = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.OutcomeClient == "Static Weight" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NinetySix = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.OutcomeClient == "Static Weight" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NinetySeven = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.OutcomeClient == "Static Weight" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NinetyEight = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.OutcomeClient == "Static Weight" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var NinetyNine = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.OutcomeClient == "Cured" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.OutcomeClient == "Cured" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredOne = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.OutcomeClient == "Cured" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredTwo = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.OutcomeClient == "Cured" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredThree= db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.OutcomeClient == "Cured" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredFour = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.OutcomeClient == "Cured" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredFive = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.OutcomeClient == "Cured" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            
+            var HundredSix = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.OutcomeClient == "Discharged" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredSeven = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.OutcomeClient == "Discharged" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredEight = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.OutcomeClient == "Discharged" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredNine = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.OutcomeClient == "Discharged" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredTen = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.OutcomeClient == "Discharged" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredEleven = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.OutcomeClient == "Discharged" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredTwelve = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.OutcomeClient == "Discharged" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredThirteen = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.OutcomeClient == "Discharged" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredFourteen = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.OutcomeClient == "Discharged" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredFifteen = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.OutcomeClient == "Discharged" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredSixteen = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.OutcomeClient == "Discharged" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredSeventeen = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.OutcomeClient == "Discharged" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredEighteen = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.OutcomeClient == "Discharged" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredNineteen = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.OutcomeClient == "Discharged" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var HundredTwenty = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.ReferralsandTransfers=="Referral for in-patient care||Referral to other clinics" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred21 = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.ReferralsandTransfers == "Referral for in-patient care||Referral to other clinics" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred22 = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.ReferralsandTransfers == "Referral for in-patient care||Referral to other clinics" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred23 = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.ReferralsandTransfers == "Referral for in-patient care||Referral to other clinics" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred24 = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.ReferralsandTransfers == "Referral for in-patient care||Referral to other clinics" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred25= db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.ReferralsandTransfers == "Referral for in-patient care||Referral to other clinics" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred26 = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.ReferralsandTransfers == "Referral for in-patient care||Referral to other clinics" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred27 = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.ReferralsandTransfers == "Referral for livelihood support(food insecure)" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred28 = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.ReferralsandTransfers == "Referral for livelihood support(food insecure)" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred29 = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.ReferralsandTransfers == "Referral for livelihood support(food insecure)" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred30 = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.ReferralsandTransfers == "Referral for livelihood support(food insecure)" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred31 = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.ReferralsandTransfers == "Referral for livelihood support(food insecure)" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred32 = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.ReferralsandTransfers == "Referral for livelihood support(food insecure)" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred33 = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.ReferralsandTransfers == "Referral for livelihood support(food insecure)" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred34 = db2.NutritionAdultRegisters.Count(e => e.age >= 15 - 17 && e.ReferralsandTransfers == "Transferred" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred35 = db2.NutritionAdultRegisters.Count(e => e.maternalNutrition == "2=Post-natal" && e.ReferralsandTransfers == "Transferred" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred36 = db2.NutritionAdultRegisters.Count(e => e.age > 15 && e.ReferralsandTransfers == "Transferred" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred37 = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.ReferralsandTransfers == "Transferred" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred38 = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.ReferralsandTransfers == "Transferred" && e.ServicePoint == "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred39 = db2.NutritionChildRegisters.Count(e => e.age <= 5 && e.ReferralsandTransfers == "Transferred" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            var Hundred40 = db2.NutritionChildRegisters.Count(e => e.age >= 5 - 15 && e.ReferralsandTransfers == "Transferred" && e.ServicePoint != "CCC" && e.date_time >= FromDate && e.date_time <= ToDate);
+            
+            NewNutrition newNutrition = new NewNutrition();
+            newNutrition.NewIntervention.AddNewInterventionRow(
+                One,Two,Three,Four,Five,Six,Seven,Eight,Nine,Ten,
+                Eleven,Twelve,Thirteen,Fourteen,Fifteen,Sixteen,Seventeen,Eighteen,Nineteen,Twenty,
+                TwentyOne,TwentyTwo,TwentyThree,TwentyFour,TwentyFive,TwentySix,TwentySeven,TwentyEight,TwentyNine,Thirty,
+                ThirtyOne,ThirtyTwo,ThirtyThree,ThirtyFour,ThirtyFive,ThirtySix,ThirtySeven,ThirtyEight,ThirtyNine,Fourty,
+                FourtyOne,FourtyTwo,FourtyThree,FourtyFour,FourtyFive,FourtySix,FourtySeven,FourtyEight,FourtyNine,Fifty,
+                FiftyOne,FiftyTwo,FiftyThree,FiftyFour,FiftyFive,FiftySix,FiftySeven,FiftyEight,FiftyNine,Sixty,
+                SixtyOne,SixtyTwo,SixtyThree,SixtyFour,SixtyFive,SixtySix,SixtySeven,SixtyEight,SixtyNine,Seventy,
+                SeventyOne,SeventyTwo,SeventyThree,SeventyFour,SeventyFive,SeventySix,SeventySeven,SeventyEight,SeventyNine,Eighty,
+                EightyOne,EightyTwo,EightyThree,EightyFour,EightyFive,EightySix,EightySeven,EightyEight,EightyNine,Ninety,
+                NinetyOne,NinetyTwo,NinetyThree,NinetyFour,NinetyFive,NinetySix,NinetySeven,NinetyEight,NinetyNine,Hundred,
+                HundredOne,HundredTwo,HundredThree,HundredFour,HundredFive,HundredSix,HundredSeven,HundredEight,HundredNine,HundredTen,
+                HundredEleven,HundredTwelve,HundredThirteen,HundredFourteen,HundredFifteen,HundredSixteen,HundredSeventeen,HundredEighteen,HundredNineteen,HundredTwenty,
+                Hundred21,Hundred22,Hundred23,Hundred24,Hundred25,Hundred26,Hundred27,Hundred28,Hundred29,Hundred30,
+                Hundred31,Hundred32,Hundred33,Hundred34,Hundred35,Hundred36,Hundred37,Hundred38,Hundred39,Hundred40
+                );
+              
+            return newNutrition;
         }
 
 
-        private object GetNewAdditionalInforData(DateTime fromDate, DateTime toDate)
+        private object GetNewAdditionalInforData(DateTime FromDate, DateTime ToDate)
         {
-            NewAdditionalInfor newAdditionalInfor = new NewAdditionalInfor();
-            newAdditionalInfor._NewAdditionalInfor.AddNewAdditionalInforRow(
+           NewAdditional  newAdditional = new NewAdditional();
+            newAdditional._NewAdditional.AddNewAdditionalRow(
                 0,
                 0,
                 0,
@@ -4987,7 +4974,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                 0, 
                 0, 
                 0);
-            return newAdditionalInfor;
+            return newAdditional;
         }
 
         #endregion

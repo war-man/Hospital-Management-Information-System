@@ -235,6 +235,11 @@
     <Compile Include="Areas\CareSoftReports\Reports\MISReports\InsuranceReport\RptInsurance.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MISReports\InsuranceReport\RptInsurance1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptInsurance.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MISReports\MonthlyRevenueReport\MonthlyRevenueReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -307,6 +312,11 @@
     <Compile Include="Areas\CareSoftReports\Reports\MOH705B\DataSetMOH705B.Designer.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\MOH705B\RptMOH705B.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\MOH705B\RptMOH705B1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptMOH705B.rpt</DependentUpon>
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH706\DataSetBloodChemistry.Designer.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\MOH706\DataSetUrineAnalysis.Designer.cs" />
@@ -547,14 +557,14 @@
       <DependentUpon>AdditionalInfor.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\AdditionalInfor\NewAdditionalInfor.Designer.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\AdditionalInfor\NewAdditional.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NewAdditionalInfor.xsd</DependentUpon>
+      <DependentUpon>NewAdditional.xsd</DependentUpon>
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH733B\Anaemia\Anaemia.cs">
       <DependentUpon>Anaemia.rpt</DependentUpon>
-      <SubType>code</SubType>
+      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -614,10 +624,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NewHospitalDetails.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NIntervention.Designer.cs">
+    <Compile Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NewNutrition.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NIntervention.xsd</DependentUpon>
+      <DependentUpon>NewNutrition.xsd</DependentUpon>
     </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NutritionIntervention.cs">
       <DependentUpon>NutritionIntervention.rpt</DependentUpon>
@@ -679,6 +689,7 @@
     <Compile Include="Areas\CCC\Controllers\ViewInvestigationController.cs" />
     <Compile Include="Areas\CCC\Controllers\VoluntaryTestingMasterController.cs" />
     <Compile Include="Areas\CCC\Controllers\WorkOrderController.cs" />
+    <Compile Include="Areas\Discharge\HomeController.cs" />
     <Compile Include="Areas\Finance\Controllers\HomeController.cs" />
     <Compile Include="Areas\Finance\FinanceAreaRegistration.cs" />
     <Compile Include="Areas\FixedAssets\Controllers\MasterFixedAssetsController.cs" />
@@ -5379,16 +5390,16 @@
     <Content Include="Areas\CareSoftReports\Reports\MOHMonthlyCash\DataSetMohMonthlyCashAnalysis.xsc">
       <DependentUpon>DataSetMohMonthlyCashAnalysis.xsd</DependentUpon>
     </Content>
-    <Content Include="Areas\CareSoftReports\Reports\MOH733B\AdditionalInfor\NewAdditionalInfor.xsc">
-      <DependentUpon>NewAdditionalInfor.xsd</DependentUpon>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\AdditionalInfor\NewAdditional.xsc">
+      <DependentUpon>NewAdditional.xsd</DependentUpon>
     </Content>
-    <None Include="Areas\CareSoftReports\Reports\MOH733B\AdditionalInfor\NewAdditionalInfor.xsd">
+    <None Include="Areas\CareSoftReports\Reports\MOH733B\AdditionalInfor\NewAdditional.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>NewAdditionalInfor.Designer.cs</LastGenOutput>
+      <LastGenOutput>NewAdditional.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Areas\CareSoftReports\Reports\MOH733B\AdditionalInfor\NewAdditionalInfor.xss">
-      <DependentUpon>NewAdditionalInfor.xsd</DependentUpon>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\AdditionalInfor\NewAdditional.xss">
+      <DependentUpon>NewAdditional.xsd</DependentUpon>
     </Content>
     <Content Include="Areas\CareSoftReports\Reports\MOH733B\ClientsServed\NewClientsServed.xsc">
       <DependentUpon>NewClientsServed.xsd</DependentUpon>
@@ -5423,9 +5434,6 @@
     <Content Include="Areas\CareSoftReports\Reports\MOH733B\ClientsServed\NewClientsServed.xss">
       <DependentUpon>NewClientsServed.xsd</DependentUpon>
     </Content>
-    <Content Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NIntervention.xsc">
-      <DependentUpon>NIntervention.xsd</DependentUpon>
-    </Content>
     <Content Include="Areas\CareSoftReports\Reports\MOH733B\InfantFeedingPractices\NewInfant.xsc">
       <DependentUpon>NewInfant.xsd</DependentUpon>
     </Content>
@@ -5448,13 +5456,16 @@
     <Content Include="Areas\CareSoftReports\Reports\MOH733B\NewHospitalDetails.xss">
       <DependentUpon>NewHospitalDetails.xsd</DependentUpon>
     </Content>
-    <None Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NIntervention.xsd">
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NewNutrition.xsc">
+      <DependentUpon>NewNutrition.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NewNutrition.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>NIntervention.Designer.cs</LastGenOutput>
+      <LastGenOutput>NewNutrition.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NIntervention.xss">
-      <DependentUpon>NIntervention.xsd</DependentUpon>
+    <Content Include="Areas\CareSoftReports\Reports\MOH733B\NutritionIntervention\NewNutrition.xss">
+      <DependentUpon>NewNutrition.xsd</DependentUpon>
     </Content>
     <Content Include="Areas\CareSoftReports\Reports\MOH733B\SAMMAM\NewSAM.xsc">
       <DependentUpon>NewSAM.xsd</DependentUpon>
@@ -5642,6 +5653,9 @@
     <Content Include="Areas\CareSoftReports\Views\HomeReports\MOH710.cshtml" />
     <Content Include="Areas\CareSoftReports\Views\HomeReports\MOH711.cshtml" />
     <Content Include="Areas\CareSoftReports\Views\AccountPerDepartment\StatementOfAccountReport.cshtml" />
+    <Content Include="Areas\Discharge\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Discharge\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Discharge\Views\Home\Index.cshtml" />
     <None Include="Areas\PharmacyModule\Reports\BillWiseDailyReportSale\BillWiseDailyDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>BillWiseDailyDataSet1.Designer.cs</LastGenOutput>

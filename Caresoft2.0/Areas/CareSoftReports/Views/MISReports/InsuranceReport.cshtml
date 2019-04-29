@@ -1,6 +1,10 @@
 ﻿@model IEnumerable<CaresoftHMISDataAccess.Company>
+
 @{
-    ViewBag.Title = "Patient List By Department";
+    var Model = (List<CaresoftHMISDataAccess.Company>)ViewBag.Insurance;
+}
+@{
+    ViewBag.Title = "Insurance Report";
     Layout = "~/Areas/CareSoftReports/Views/Shared/_LayoutReports.cshtml";
     ViewBag.ReportName = "Insurance Report";
 }
@@ -44,7 +48,7 @@
                                 <label class="">Insurance Scheme   &nbsp;   </label>
                             </div>
                             <div class="col-md-7">
-                                <select name="Department" id="dept" class="text-box">
+                                <select name="Department" class="text-box">
                                     <option>All</option>
                                     @foreach (var item in Model)
                                     {
@@ -54,9 +58,9 @@
                             </div>
                         </div>
                     </div>
-                    </div>
+                </div>
                 <div class="col-md-12">
-                    
+
                     <div id="Department" class="form-inline">
                         <div class="col-md-6">
                             <div class="col-md-5">

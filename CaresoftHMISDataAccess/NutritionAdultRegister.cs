@@ -48,10 +48,10 @@ namespace CaresoftHMISDataAccess
         public string maternalNutrition { get; set; }
         public string CriticalNutritionPractices { get; set; }
         public string TherapeuticFoods { get; set; }
-        public Nullable<decimal> SupplementalFoods { get; set; }
+        public string SupplementalFoods { get; set; }
         public Nullable<decimal> Micronutrients { get; set; }
-        public Nullable<decimal> OutcomeClient { get; set; }
-        public Nullable<decimal> ReferralsandTransfers { get; set; }
+        public string OutcomeClient { get; set; }
+        public string ReferralsandTransfers { get; set; }
         public Nullable<System.DateTime> TCADate { get; set; }
         public string Designation { get; set; }
         public string Initials { get; set; }
