@@ -1,0 +1,205 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRStaffBioData>
+@{
+               
+                ViewBag.Title = "Bio Data";
+                ViewBag.showTopMenu = true;
+                ViewBag.WideView = true;
+                Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_StaffResumeNav.cshtml")
+</div>
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Bio Data
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <form id="tests" method="post" action="@Url.Action("SaveStaffBioData","Home",new {Area="HumanResource"})">
+                        <label> <strong>ENTER THE REQUIRED INFORMATION </strong></label>
+                        <table>
+                            <tr>
+                                <td><label>Staff Id</label></td>
+                                <td>
+                                    <input type="number" name="StaffId" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td>
+                                    <label>Gender</label>
+                                </td>
+                                <td>
+                                    <select name="Gender" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+
+                                    </select>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Height</label></td>
+                                <td>
+                                    <input type="text" name="Height" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Weight</label></td>
+                                <td>
+                                    <input type="text" name="Weight" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>DOB</label></td>
+                                <td>
+                                    <input type="date" name="DOB" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td>
+                                    <label>Marital Status</label>
+                                </td>
+                                <td>
+                                    <select name="MaritalStatus" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Single</option>
+                                        <option>Married</option>
+                                        <option>Divorced</option>
+                                        <option>Widowed</option>
+                                        <option>Priest</option>
+                                        <option>Nun</option>
+                                    </select>
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td><label>National Id No</label></td>
+                                <td>
+                                    <input type="number" name="NationalIdNo" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td>
+                                    <label>Ethnicity</label>
+                                </td>
+                                <td>
+                                    <select name="Ethnicity" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Christian</option>
+                                        <option>Muslim</option>
+                                        <option>Hindu</option>
+                                    </select>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Passport No</label></td>
+                                <td>
+                                    <input type="number" name="PassportNo" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td>
+
+                                    <label>Nationality</label>
+                                </td>
+                                <td>
+                                    <select name="Nationality" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><label>Postal Address</label></td>
+                                <td>
+                                    <input type="number" name="PostalAddress" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Postal Code</label></td>
+                                <td>
+                                    <input type="number" name="PostalCode" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>City</label></td>
+                                <td>
+                                    <input type="text" name="City" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Town</label></td>
+                                <td>
+                                    <input type="text" name="Town" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Email Address</label></td>
+                                <td>
+                                    <input type="text" name="EmailAddress" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Current Residence</label></td>
+                                <td>
+                                    <input type="text" name="CurrentResidence" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>NHIF No</label></td>
+                                <td>
+                                    <input type="number" name="NHIFNo" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>NSSF No</label></td>
+                                <td>
+                                    <input type="number" name="NSSFNo" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                        </table>
+                        <label> <strong>ENTER INFROMATION IF MARRIED </strong></label>
+                        <table>
+                            <tr>
+                                <td><label>Spouse Name</label></td>
+                                <td>
+                                    <input type="text" name="SpouseName" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Birth Date</label></td>
+                                <td>
+                                    <input type="date" name="BirthDate" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>JobStatus</label>
+                                </td>
+                                <td>
+                                    <select name="JobStatus" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Employed</option>
+                                        <option>Unemployed</option>
+                                    </select>
+                                </td>
+                                <td><label>ID No</label></td>
+                                <td>
+                                    <input type="number" name="IDNo" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                        </table>
+                        <br /><br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br /><br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("StaffBioDataGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

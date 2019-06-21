@@ -25,6 +25,7 @@ namespace CaresoftHMISDataAccess
         public string BedName { get; set; }
         public int UserId { get; set; }
         public System.DateTime DateAdded { get; set; }
+        public string Status { get; set; }
     
         public virtual HSWard HSWard { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

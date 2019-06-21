@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRPerformanceVariable>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.IndicatorId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndicatorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndicatorQuantifiableAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndicatorPercentage)
+        </th>
+        
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IndicatorId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IndicatorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IndicatorQuantifiableAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IndicatorPercentage)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+

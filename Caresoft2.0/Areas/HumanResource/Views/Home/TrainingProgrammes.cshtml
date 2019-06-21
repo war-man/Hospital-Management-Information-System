@@ -1,0 +1,98 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRTrainingProgramme>
+@{
+                
+                ViewBag.Title = "Training Programmes";
+                ViewBag.showTopMenu = true;
+                ViewBag.WideView = true;
+                Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+@{
+    var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+}
+
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveTrainingProgrammeData","Home",new {Area="HumanResource"})">
+
+                        <label> <strong>PLEASE REGISTER TRAINING PROGRAMMES HERE </strong></label>
+                        <table class="form-class">
+                            <tr>
+                                <td><label>Programme Id</label></td>
+                                <td>
+                                    <input type="number" name="ProgrammeId" class="text-box box-lg " />
+                                </td>
+
+                                <td class="">
+                                    <p>Department Name</p>
+                                </td>
+                                <td>
+                                    <select name="Department" class="text-box box-lg ">
+                                        <option>All</option>
+                                        @foreach (var r in departments)
+                                        {
+                                            <option>@r.DepartmentName</option>
+                                        }
+                                    </select>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Sections</label>
+                                </td>
+                                <td>
+                                    <select name="Sections" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                                <td><label>Training Period(days)</label></td>
+                                <td>
+                                    <input type="number" name="TrainingPeriod" class="text-box box-lg " />
+                                </td>
+
+                            </tr>
+
+                        </table>
+                        <div class="form-group">
+                            <label class="info-title col-md-12" for="black_name">Programme Description <span><font color="black"><b></b></font></span></label>
+                            <span id='message_full_name'></span>
+                            <textarea style="width: 50%;height:70px;" name="ProgrammeDescription" class="text-box unicase-form-control text-input" id="extension_number"
+                                      placeholder="Enter plan">
+                                        
+                                    </textarea>
+
+                            <br />
+                            <br />
+                            <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                        </div>
+                    </form>
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("TrainingProgrammesGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

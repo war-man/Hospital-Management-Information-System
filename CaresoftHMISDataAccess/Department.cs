@@ -19,6 +19,7 @@ namespace CaresoftHMISDataAccess
         {
             this.Medications = new HashSet<Medication>();
             this.Employees = new HashSet<Employee>();
+            this.Medications1 = new HashSet<Medication>();
             this.PatientReferals = new HashSet<PatientReferal>();
             this.RoleRights = new HashSet<RoleRight>();
             this.Services = new HashSet<Service>();
@@ -36,8 +37,11 @@ namespace CaresoftHMISDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Medication> Medications { get; set; }
         public virtual DepartmentType DepartmentType1 { get; set; }
+        public virtual UniversalDeptIdentifier UniversalDeptIdentifier1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Medication> Medications1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PatientReferal> PatientReferals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1,0 +1,204 @@
+﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
+
+@{
+
+
+    var final = (IEnumerable<CaresoftHMISDataAccess.FinalDischarge>)ViewBag.FinalDischarge;
+
+    var dat = final.Where(r => r.OPDNo == Model.OpdRegister.Id);
+}
+<div class="panel panel-primary shadow glass caresoft-panel" style="margin-bottom:-1em;">
+    <div class="panel-heading">
+        @ViewBag.Mode  Final Discharge
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12 ">
+                <form id="final-discharge" method="post" action="@Url.Action("SaveFinalDischarge", "IPD")">
+
+                    <table class="table-form">
+                        <tbody class="">
+
+                            <tr>
+                                <td><label>Reg Number</label></td>
+                                <td>
+                                    <input type="text" name="RegNumber" value="@Model.Patient.RegNumber" class="text-box box-lg " readonly />
+                                </td>
+                                <td><label>Discharge Date</label></td>
+                                <td>
+                                    <input type="date" name="DischargeDate" class="text-box box-lg" readonly />
+                                    <input type="number" name="OPDNo" class="text-box box-lg" hidden  value="@Model.OpdRegister.Id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Patient Name</label></td>
+                                <td>
+                                    <input type="text" name="PatientName" value="@Model.Patient.FName  @Model.Patient.LName" class="text-box box-lg" readonly />
+                                </td>
+                                <td><label>Review Date</label></td>
+                                <td>
+                                    <input type="date" name="ReviewDate" class="text-box box-lg" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Visit Number</label></td>
+                                <td>
+                                    <input type="text" name="VisitNumber" class="text-box box-lg" readonly />
+                                </td>
+                                <td><label>Discharge Method</label></td>
+                                <td>
+                                    <select name="DischargeMethod" class="text-box box-lg">
+                                        <option>Alive</option>
+                                        <option>Dead</option>
+                                        <option>Refferred</option>
+                                        <option>Abscondee</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><label>Diagnosis</label></td>
+                                <td>
+                                    <input type="text" name="Diagnosis" @*value="@Model.OpdRegister.PatientDiagnosis.FirstOrDefault().FinalDiagnosis"*@ class="text-box box-lg" />
+                                </td>
+                                <td><label>State of Patient</label></td>
+                                <td>
+                                    <input type="text" name="StateOfPatient" class="text-box box-lg" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Ward</label></td>
+                                <td>
+                                    <input type="text" name="Ward" value="@Model.OpdRegister.HSBed.HSWard.WardName" class="text-box box-lg" />
+                                </td>
+                                <td><label>Doctor</label></td>
+                                <td>
+                                    <input type="text" name="Doctor" value="@Model.Patient.User.Employee.FName @Model.Patient.User.Employee.OtherName" class="text-box box-lg" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Bed No</label></td>
+                                <td>
+                                    <input type="text" name="BedNo" value="@Model.OpdRegister.HSBed.BedName" class="text-box box-lg" />
+                                </td>
+                                <td><label>Patient A/C Balance</label></td>
+                                <td>
+                                    <input type="text" name="AccountBalance" @*value="@Model.OpdRegister.BillPayments.FirstOrDefault().Balance"*@ class="text-box box-lg" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Date Admitted</label></td>
+                                <td>
+                                    <input type="date" name="DateAdmitted" value="@Model.OpdRegister.AdmissionDate" class="text-box box-lg" />
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td><label>Compute NHIF</label> <input type="radio" /> </td>
+                                <td><label>Member No</label></td>
+                                <td>
+                                    <input type="text" class="text-box box-lg" style="margin-left:-200px" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><label>No. of Days</label></td>
+                                <td>
+                                    <input type="text" name="NoOfDays" class="text-box box-lg" style="margin-left:-200px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><label>Nhif Claim</label></td>
+                                <td>
+                                    <input type="text" name="NHIFClaim" class="text-box box-lg" style="margin-left:-200px" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><label>Net Balance</label></td>
+                                <td>
+                                    <input type="text" name="NetBalance" class="text-box box-lg" style="margin-left:-200px" />
+                                </td>
+                            </tr>
+
+                    </table>
+                    <div class="form-group">
+                        <label class="info-title col-md-12" for="black_name">Reason for Review <span><font color="black"><b></b></font></span></label>
+                        <span id='message_full_name'></span>
+                        <textarea style="width: 50%;height:70px;" name="ReasonForReview" class="text-box unicase-form-control text-input" id="extension_number"
+                                  placeholder="Enter plan">
+                                        
+                                    </textarea>
+
+                        <br /><br />
+
+                        <button class="btn btn-sm btn-primary" type="button" onclick="dischargeMe(@Model.OpdRegister.Id, this)">
+                            Save
+                        </button>
+
+                    </div>
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("DischargeGrid", dat)
+                    </div>
+                    <div align="right">
+
+                        <a class="call-modal-form" data-action="/IPD/FinalDischargeReport/@ViewBag.OPDNo">
+
+                        </a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        function dischargeMe(ipdNo, obj) {
+            $(".loader").show();
+            $.ajax({
+                method: "get",
+                url: "@Url.Action("SaveFinalDischarge", "IPD")/" + ipdNo,
+                success: function (res) {
+                    $(".loader").hide();
+                    showNotification(res.Message, res.Status, true);
+                    if (res.Status === "success") {
+                        $(obj).parent().parent().remove();
+                    }
+                },
+                error: function (e, x, r) {
+                    $(".loader").hide();
+                    console.log(e.responseText);
+                }
+            })
+        }
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+

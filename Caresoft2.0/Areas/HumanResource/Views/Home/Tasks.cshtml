@@ -1,0 +1,143 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRTaskAndAdministration>
+@{
+
+    ViewBag.Title = "Tasks and Administration";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+@{
+    var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+}
+
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveTasksData","Home",new {Area="HumanResource"})">
+                        <label><strong>Data Utilization Utility</strong></label>
+                        <table class="table-form">
+                            <tr>
+                                <td><label>Task Id</label></td>
+                                <td>
+                                    <input type="number" name="TaskId" class="text-box box-lg " />
+                                </td>
+                                <td><label>New Task</label></td>
+                                <td>
+                                    <input type="text" name="NewTask" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="">
+                                    <p>Department Name</p>
+                                </td>
+                                <td>
+                                    <select name="Department" class="text-box box-lg ">
+                                        <option>All</option>
+                                        @foreach (var r in departments)
+                                        {
+                                            <option>@r.DepartmentName</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                    <label>Section</label>
+                                </td>
+                                <td>
+                                    <select name="Section" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Duty Station</label>
+                                </td>
+                                <td>
+                                    <select name="DutyStation" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                                <td>
+                                    <label>RetrieveTask</label>
+                                </td>
+                                <td>
+                                    <select name="RetrieveTask" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Task Description</label></td>
+                                <td>
+                                    <input type="text" name="TaskDescription" class="text-box box-lg" />
+                                </td>
+                                <td><label>MeetingVenues</label></td>
+                                <td>
+                                    <input type="text" name="MeetingVenues" class="text-box box-lg " />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><label>Due Date</label></td>
+                                <td>
+                                    <input type="date" name="DueDate" class="text-box box-lg " />
+                                </td>
+                                <td><label>Start Date</label></td>
+                                <td>
+                                    <input type="date" name="StartDate" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Expected Completion Date</label></td>
+                                <td>
+                                    <input type="date" name="ExpectedCompletionDate" class="text-box box-lg " />
+                                </td>
+                                <td><label>Staff Resposible For Task Execution</label></td>
+                                <td>
+                                    <input type="text" name="StaffResposibleForTaskExecution" class="text-box box-lg " />
+                                </td>
+                            </tr>
+
+                        </table>
+                        <br />
+                        
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("TasksGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

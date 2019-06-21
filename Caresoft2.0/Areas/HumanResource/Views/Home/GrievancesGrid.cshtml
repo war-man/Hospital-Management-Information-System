@@ -1,0 +1,89 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRGrievanceResolution>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.GrievanceId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemoId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceivingAuthority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GrievanceDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SettlementCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateSettled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SettlementDescription)
+        </th>
+        
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrievanceId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemoId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Section)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReceivingAuthority)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrievanceDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SettlementCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateSettled)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SettlementDescription)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+

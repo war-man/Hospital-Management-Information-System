@@ -1,0 +1,67 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRDisplinaryAction>
+@{
+
+    ViewBag.Title = "Displinary Action Reasons";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveDisplinaryReasonData","Home",new {Area="HumanResource"})">
+
+                        <label> <strong>PLEASE ENTER THE STARDARD REASONS </strong></label>
+                        <table class="form-class">
+                            <tr>
+                                <td><label>Reason Code</label></td>
+                                <td>
+                                    <input type="number" name="ReasonCode" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Description</label></td>
+                                <td>
+                                    <input type="text" name="Description" class="text-box box-lg " />
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+                        <br />
+                        <br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+
+                    </form>
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("DisplinaryReasonGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

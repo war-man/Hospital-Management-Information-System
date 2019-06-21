@@ -1,0 +1,62 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRDistrict>
+@{
+
+    ViewBag.Title = "District";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="branches" method="post" action="@Url.Action("SaveDistrictData","Home",new {Area="HumanResource"})">
+
+                        <label> <strong>ENTER CODE & NAME OF THE DISTRICT HERE</strong></label>
+
+                        <table class="form-class">
+                            <tr>
+                                <td><label>Code</label></td>
+                                <td>
+                                    <input type="number" name="Code" class="text-box box-sm " style="margin-bottom:3px" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>District</label></td>
+                                <td>
+                                    <input type="text" name="District" class="text-box box-sm " style="margin-right:15px;margin-bottom:3px" />
+                                </td>
+
+                            </tr>
+                        </table>
+
+                        <br /><br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+
+                    </form>
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("DistrictGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

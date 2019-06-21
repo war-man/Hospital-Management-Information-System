@@ -22,6 +22,7 @@ namespace CaresoftHMISDataAccess
         public string Remarks { get; set; }
         public int UserId { get; set; }
         public int BranchId { get; set; }
+        public Nullable<int> AgeCategory { get; set; }
     
         public virtual ImmunizationMaster ImmunizationMaster { get; set; }
         public virtual OpdRegister OpdRegister { get; set; }

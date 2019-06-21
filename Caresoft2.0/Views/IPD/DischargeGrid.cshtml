@@ -1,0 +1,116 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.FinalDischarge>
+
+
+<table class="table table-data table-condensed">
+ 
+<tr>
+    <th>Edit</th>
+    <th>
+        @Html.DisplayNameFor(model => model.PatientName
+   )
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.VisitNumber)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Diagnosis)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Ward)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.BedNo)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.DateAdmitted)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.ReviewDate)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.DischargeMethod)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.StateOfPatient)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Doctor)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.AccountBalance)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.NHIFMemberNo)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.NoOfDays)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.NHIFClaim)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.NetBalance)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.ReasonForReview)
+    </th>
+
+<tbody class="bg-white">
+    @foreach (var item in Model.OrderByDescending(e => e.Id))
+    {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VisitNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diagnosis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ward)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BedNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAdmitted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DischargeMethod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StateOfPatient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountBalance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NHIFMemberNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoOfDays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NHIFClaim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetBalance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReasonForReview)
+            </td>
+
+        </tr>
+    }
+</tbody>
+</table>
+

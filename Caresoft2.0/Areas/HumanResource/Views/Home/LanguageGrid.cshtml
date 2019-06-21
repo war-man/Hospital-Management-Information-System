@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRExtraMural>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.LanguageId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LanguageName)
+        </th>
+       
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.LanguageId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LanguageName)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+

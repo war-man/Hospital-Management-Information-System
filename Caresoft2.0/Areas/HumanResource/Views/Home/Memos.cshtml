@@ -1,0 +1,98 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRMemo>
+@{
+
+    ViewBag.Title = "Memos";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveMemosData","Home",new {Area="HumanResource"})">
+
+                        <table class="table-form">
+
+                            <tr>
+                                <td><label>Date Of Memo</label></td>
+                                <td>
+                                    <input type="date" name="DateOfMemo" class="text-box box-lg" />
+                                </td>
+                                <td><label>Code</label></td>
+                                <td>
+                                    <input type="number" name="Code" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td><label>Subject</label></td>
+                                <td>
+                                    <input type="text" name="Subject" class="text-box box-lg" />
+                                </td>
+                                <td>
+                                    <label>Grading Of Memo</label>
+                                </td>
+                                <td>
+                                    <select name="GradingOfMemo" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Immediate</option>
+                                        <option>Urgent</option>
+                                        <option>Very Important</option>
+                                        
+                                    </select>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Memo Details<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="MemoDetails" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("MemosGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

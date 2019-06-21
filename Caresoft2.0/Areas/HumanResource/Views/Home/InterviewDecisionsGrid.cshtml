@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRApplication>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.InterviewDecisionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterviewDecision)
+        </th>
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.InterviewDecisionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InterviewDecision)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

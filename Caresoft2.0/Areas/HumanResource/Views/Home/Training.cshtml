@@ -1,0 +1,132 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRTraining>
+@{
+
+    ViewBag.Title = "Training Programme";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveTrainingData","Home",new {Area="HumanResource"})">
+
+                        <table class="table-form">
+                            <tr><td><label><strong>Enter Details About Training</strong></label></td></tr>
+                            <tr>
+                                <td><label>Training Course Id</label></td>
+                                <td>
+                                    <input type="number" name="TrainingCourseId" class="text-box box-lg" />
+                                </td>
+                                <td><label>Course Objective</label></td>
+                                <td>
+                                    <input type="text" name="CourseObjective" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>BeginDate</label></td>
+                                <td>
+                                    <input type="date" name="BeginDate" class="text-box box-lg" />
+                                </td>
+                                <td><label>EndDate</label></td>
+                                <td>
+                                    <input type="date" name="EndDate" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Venue Of Training</label></td>
+                                <td>
+                                    <input type="text" name="VenueOfTraining" class="text-box box-lg" />
+                                </td>
+                                <td><label>Expected Cost</label></td>
+                                <td>
+                                    <input type="number" name="ExpectedCost" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Expected Travel Cost</label></td>
+                                <td>
+                                    <input type="number" name="ExpectedTravelCost" class="text-box box-lg" />
+                                </td>
+                                <td><label>Expected Allowance PerPerson</label></td>
+                                <td>
+                                    <input type="number" name="ExpectedAllowancePerPerson" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr><td><label><strong>Attendees</strong></label></td></tr>
+                            <tr>
+                                <td><label>StaffId</label></td>
+                                <td>
+                                    <input type="number" name="StaffId" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>End Date</label></td>
+                                <td>
+                                    <input type="date" name="EndDate1" class="text-box box-lg" />
+                                </td>
+                                <td><label>Begin Date</label></td>
+                                <td>
+                                    <input type="date" name="BeginDate1" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Country</label></td>
+                                <td>
+                                    <input type="text" name="Country" class="text-box box-lg" />
+                                </td>
+                                <td><label>City</label></td>
+                                <td>
+                                    <input type="text" name="City" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Travel Date</label></td>
+                                <td>
+                                    <input type="date" name="TravelDate" class="text-box box-lg" />
+                                </td>
+                                <td><label>Return Date</label></td>
+                                <td>
+                                    <input type="date" name="ReturnDate" class="text-box box-lg" />
+                                </td>
+                            </tr>
+
+                        </table>
+                        <br />
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("TrainingGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

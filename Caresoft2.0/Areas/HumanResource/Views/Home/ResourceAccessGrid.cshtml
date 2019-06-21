@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRResourseAccess>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ResourceId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResourceType)
+        </th>
+
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResourceId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResourceType)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+

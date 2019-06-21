@@ -1,0 +1,113 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRUnionRegistration>
+@{
+               
+                ViewBag.Title = "Union Registration";
+                ViewBag.showTopMenu = true;
+                ViewBag.WideView = true;
+                Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveUnionRegistrationData","Home",new {Area="HumanResource"})">
+                       <label>Union Id</label>
+                        
+                       <input type="number" name="UnionId" class="text-box box-lg" />
+                        
+                        <label><strong>Register Staff To Union</strong></label>
+                        <table class="table-form">
+
+                            <tr>
+                                <td><label>Staff Id</label></td>
+                                <td>
+                                    <input type="number" name="StaffId" class="text-box box-lg" />
+                                </td>
+                                <td><label>Staff Name</label></td>
+                                <td>
+                                    <input type="text" name="StaffName" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td><label>Date</label></td>
+                                <td>
+                                    <input type="date" name="Date" class="text-box box-lg" />
+                                </td>
+                                <td><label>Union RegId</label></td>
+                                <td>
+                                    <input type="number" name="UnionRegId" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td><label>Subscription Fee</label></td>
+                                <td>
+                                    <input type="number" name="SubscriptionFee" class="text-box box-lg" />
+                                </td>
+                                <td><label>Registration Fee</label></td>
+                                <td>
+                                    <input type="number" name="RegistrationFee" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Subscription Periodicity</label>
+                                </td>
+                                <td>
+                                    <select name="SubscriptionPeriodicity" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Daily</option>
+                                        <option>Weekly</option>
+                                        <option>Monthly</option>
+                                        <option>Yearly</option>
+                                    </select>
+                                </td>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Remarks<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("UnionRegistrationGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

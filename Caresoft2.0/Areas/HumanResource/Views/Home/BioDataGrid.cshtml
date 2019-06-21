@@ -1,0 +1,120 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRBioData>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicantId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaritalStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NationalIdNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ethnicity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PassportNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nationality)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelNo1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelNo2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostalAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Town)
+        </th>
+       
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+        <td>Edit</td>
+        <td>Delete</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicantId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaritalStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NationalIdNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ethnicity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PassportNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nationality)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelNo1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelNo2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostalAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostalCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Town)
+        </td>
+       
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

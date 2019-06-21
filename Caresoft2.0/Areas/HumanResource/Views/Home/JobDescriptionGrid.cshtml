@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRJobDesc>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.JobIdNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sections)
+        </th>
+        
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobIdNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sections)
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+

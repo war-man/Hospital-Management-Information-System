@@ -1,0 +1,99 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRTraining>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.TrainingCourseId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseObjective)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeginDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VenueOfTraining)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedTravelCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedAllowancePerPerson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TravelDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.TrainingCourseId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseObjective)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeginDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VenueOfTraining)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedTravelCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedAllowancePerPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TravelDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReturnDate)
+        </td>
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,171 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRContractManagement>
+@{
+
+    ViewBag.Title = "Contract Management";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+@{
+    var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+}
+
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveContractManagementData","Home",new {Area="HumanResource"})">
+
+                        <table class="form-class">
+                            <tr>
+                                <td><label>Contract Id</label></td>
+                                <td>
+                                    <input type="number" name="ContractId" class="text-box box-lg " />
+                                </td>
+                                <td><label>Staff Id</label></td>
+                                <td>
+                                    <input type="number" name="StaffId" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="">
+                                    <p>Department Name</p>
+                                </td>
+                                <td>
+                                    <select name="Department" class="text-box box-lg ">
+                                        <option>All</option>
+                                        @foreach (var r in departments)
+                                        {
+                                            <option>@r.DepartmentName</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                    <label>Section</label>
+                                </td>
+                                <td>
+                                    <select name="Section" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Designation</label>
+                                </td>
+                                <td>
+                                    <select name="Designation" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                                <td><label>Expected Expiry Date</label></td>
+                                <td>
+                                    <input type="date" name="ExpectedExpiryDate" class="text-box box-lg " />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Access Control Pass Id</label>
+                                </td>
+                                <td>
+                                    <select name="AccessControlPassId" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Bonding</option>
+                                        <option>Equipment</option>
+                                        <option>Government</option>
+                                        <option>Security</option>
+                                    </select>
+                                </td>
+                                <td><label>Begin Date</label></td>
+                                <td>
+                                    <input type="date" name="BeginDate" class="text-box box-lg " />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Access Control Pass Status</label>
+                                </td>
+                                <td>
+                                    <select name="AccessControlPassStatus" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Valid</option>
+                                        <option>Invalid</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Contractual Amount</label></td>
+                                <td>
+                                    <input type="number" name="ContractualAmount" class="text-box box-lg " />
+                                </td>
+                                <td><label>Monthly Payment</label></td>
+                                <td>
+                                    <input type="number" name="MonthlyPayment" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                            <td><label>Final Dues For Payment</label></td>
+                            <td>
+                                <input type="number" name="FinalDuesForPayment" class="text-box box-lg " />
+                            </td>
+                            <td><label>Final Payment Amount</label></td>
+                            <td>
+                                <input type="number" name="FinalPaymentAmount" class="text-box box-lg " />
+                            </td>
+                            </tr>
+                            <tr>
+                                <td><label>Renewable</label></td>
+                                <td>
+                                    <input type="radio" name="Renewable" />
+                                </td>
+                                <td><label>Final Date Of Payment</label></td>
+                                <td>
+                                    <input type="date" name="FinalDateOfPayment" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form-group">
+                            <label class="info-title col-md-12" for="black_name">Requirements For Contract <span><font color="black"><b></b></font></span></label>
+                            <span id='message_full_name'></span>
+                            <textarea style="width:150%;height:70px;" name="RequirementsForContract" class="text-box unicase-form-control text-input" id="extension_number"
+                                      placeholder="Enter plan">
+                                        
+                                    </textarea>
+
+                            <br />
+                            <br />
+                            <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                        </div>
+                    </form>
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("ContractManagementGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

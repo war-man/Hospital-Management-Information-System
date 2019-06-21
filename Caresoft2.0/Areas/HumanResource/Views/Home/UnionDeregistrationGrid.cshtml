@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRUnionDeregistration>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.UnionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeregisterStaff)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfDeregistration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeregisteringAuthority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CommentOnDeregistrationReasons)
+        </th>
+       
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeregisterStaff)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reason)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfDeregistration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeregisteringAuthority)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommentOnDeregistrationReasons)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+

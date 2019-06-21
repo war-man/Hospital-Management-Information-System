@@ -1,0 +1,91 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HREmploymentBenefit>
+@{
+               
+                ViewBag.Title = "Employment Benefits";
+                ViewBag.showTopMenu = true;
+                ViewBag.WideView = true;
+                Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+@{
+    var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveEmploymentBenefitsData","Home",new {Area="HumanResource"})">
+
+                        <label> <strong>PLEASE REGISTER EMPLOYMENT BENEFITS HERE </strong></label>
+                        <table class="form-class">
+                            <tr>
+                                <td><label>Benefit Id</label></td>
+                                <td>
+                                    <input type="number" name="BenefitId" class="text-box box-lg " />
+                                </td>
+
+                                <td><label>Benafit Title</label></td>
+                                <td>
+                                    <input type="text" name="BenafitTitle" class="text-box box-lg " />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="">
+                                    <p>Department</p>
+                                </td>
+                                <td>
+                                    <select name="Departments" class="text-box box-lg ">
+                                        <option>All</option>
+                                        @foreach (var r in departments)
+                                        {
+                                            <option>@r.DepartmentName</option>
+                                        }
+                                    </select>
+
+                                </td>
+                            </tr>
+
+                        </table>
+                        <div class="form-group">
+                            <label class="info-title col-md-12" for="black_name">Remarks<span><font color="black"><b></b></font></span></label>
+                            <span id='message_full_name'></span>
+                            <textarea style="width: 50%;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
+                                      placeholder="Enter plan">
+                                        
+                                    </textarea>
+
+                            <br />
+                            <br />
+                            <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                        </div>
+                    </form>
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("EmploymentBenefitsGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

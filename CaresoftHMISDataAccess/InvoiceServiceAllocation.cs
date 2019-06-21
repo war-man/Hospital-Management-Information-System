@@ -21,6 +21,7 @@ namespace CaresoftHMISDataAccess
         public double AmountAllocated { get; set; }
         public int BranchId { get; set; }
         public System.DateTime CreatedDate { get; set; }
+        public Nullable<int> MedicationId { get; set; }
     
         public virtual BillService BillService { get; set; }
         public virtual Branch Branch { get; set; }

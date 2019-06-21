@@ -1,0 +1,83 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRFileInformation>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        <th>Edit</th>
+
+        <th>Delete</th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicantId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequisitionNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfApplication)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationReceiptDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherNames)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationSource)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PositionAppliedFor)
+        </th>
+        
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+                <td>Edit</td>
+
+                <td>Delete</td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicantId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequisitionNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfApplication)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationReceiptDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OtherNames)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationSource)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PositionAppliedFor)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+

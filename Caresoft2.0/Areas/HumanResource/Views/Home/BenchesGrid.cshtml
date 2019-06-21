@@ -1,0 +1,37 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRBench>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.BenchId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BenchName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BenchLeader)
+        </th>
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.BenchId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BenchName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BenchLeader)
+        </td>
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRApplicationForm>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        <th>Edit</th>
+
+        <th>Delete</th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicantId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+                <td>Edit</td>
+
+                <td>Delete</td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicantId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+

@@ -1,0 +1,124 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRFileDetail>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        <th>Edit</th>
+        <th>Delete</th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FileId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Designation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherNames)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterviewDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobGroup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HireDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobGrade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FieldOfSpecialization)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PositionAppliedFor)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+        <td>Edit</td>
+        <td>Delete</td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.FileId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Designation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Section)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherNames)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterviewDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobGroup)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HireDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobGrade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FieldOfSpecialization)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PositionAppliedFor)
+        </td>
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+

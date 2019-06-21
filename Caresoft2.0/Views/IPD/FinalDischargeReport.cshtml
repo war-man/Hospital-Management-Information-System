@@ -1,0 +1,153 @@
+﻿
+@model CaresoftHMISDataAccess.FinalDischarge
+@using CaresoftHMISDataAccess
+@{
+    ViewBag.Title = "Final Discharge Report ";
+    var rHeader = "_DefaultReportsHeader";
+
+    var db = new CaresoftHMISEntities();
+    ViewBag.Size = "A4";
+}
+
+
+<div class="col-xs-12">
+
+    <div class="panel panel-primary caresoft-panel">
+        <div class="panel panel-heading">
+            <button class="btn btn-xs btn-warning" title="Print Report" onclick="$('page').print()"><i class="fa fa-print"></i></button>
+            &nbsp;
+            <button class="btn btn-xs btn-danger" title="Download PDF Report"><i class="fa fa-file-pdf-o"></i></button>
+            &nbsp;
+            <button class="btn btn-xs btn-success" title="Export to Excel"><i class="fa fa-file-excel-o"></i></button>
+
+        </div>
+        <page size="@ViewBag.Size" orientation="@ViewBag.Orientation">
+            @Html.Partial(rHeader)
+
+            <div style=" padding:5px; " class="text-center">
+                
+            </div>
+            <div>
+                <div style="width:100%; background:red!important; height:2px!important;"></div>
+
+                <div style=" margin:5px; ">
+                    <strong style="color:blue;">
+                        Patient Information:
+                    </strong>
+                    <div style=" margin:5px; ">
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <th><strong style="color:red!important;"> Patient Name: </strong> &nbsp; &nbsp; @Model.PatientName</th>
+
+                                    <th><strong style="color:red!important;"> Visit Number: </strong>  &nbsp; @Model.VisitNumber</th>
+
+                                    <th><strong style="color:red!important;"> Diagnosis: </strong>  &nbsp; &nbsp;@Model.Diagnosis</th>
+
+                                    <th><strong style="color:red!important;"> Ward: </strong> &nbsp; &nbsp;@Model.Ward</th>
+
+                                </tr>
+                                <tr>
+                                    <th><strong style="color:red!important;"> Bed No: </strong> &nbsp; &nbsp;@Model.BedNo</th>
+
+                                    <th><strong style="color:red!important;"> Date Admitted: </strong> &nbsp; &nbsp; @Model.DateAdmitted</th>
+
+                                    <th><strong style="color:red!important;">Review Date: &nbsp; &nbsp; </strong> @Model.ReviewDate</th>
+
+                                    <th> <strong style="color:red!important;"> Discharge Method: </strong> &nbsp; &nbsp;</th>
+
+                                </tr>
+                                <tr>
+                                    <th><strong style="color:red!important;"> State Of Patient:</strong> &nbsp; &nbsp; @Model.StateOfPatient</th>
+
+                                    <th><strong style="color:red!important;"> Doctor: </strong> &nbsp; &nbsp; @Model.Doctor</th>
+
+                                    <th><strong style="color:red!important;"> Account Balance: </strong>  &nbsp; &nbsp;</th>
+
+                                    <th><strong style="color:red!important;"> NHIF Member No: </strong> &nbsp; &nbsp; @Model.NHIFMemberNo</th>
+
+                                    <th><strong style="color:red!important;"> No Of Days: </strong>  &nbsp; &nbsp;</th>
+
+                                    <th><strong style="color:red!important;"> NHIF Claim: </strong> &nbsp; &nbsp; @Model.NHIFClaim</th>
+
+                                    <th><strong style="color:red!important;"> NetBalance:</strong> &nbsp; &nbsp; @Model.NetBalance</th>
+
+                                    <th><strong style="color:red!important;"> ReasonForReview: </strong> &nbsp; &nbsp; @Model.ReasonForReview</th>
+
+                                </tr>
+
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+
+                <div style="width:100%; background:red!important; height:2px!important;"></div>
+
+
+
+
+
+                <h5 class="report-section-heading">Final Discharge Report</h5>
+                <table width="100%" class="table-hover table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Patient Name</th>
+                            <th>Visit Number</th>
+                            <th>Diagnosis</th>
+                            <th>Ward</th>
+                            <th>Bed No</th>
+                            <th>Date Admitted</th>
+                            <th>Review Date</th>
+                            <th>Discharge Method</th>
+                            <th>State Of Patient</th>
+                            <th>Doctor</th>
+                            <th>Account Balance</th>
+                            <th>NHIF Member No</th>
+                            <th>No Of Days</th>
+                            <th>NHIF Claim</th>
+                            <th>Net Balance</th>
+                            <th>Reason For Review</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{var x = 1;}
+                        @foreach (var finald in Model.OpdRegister.FinalDischarges.OrderByDescending(e => e.Id))
+                        {
+                        <tr>
+                            <td>@x</td>
+                            <td>@finald.PatientName</td>
+                            <td>@finald.VisitNumber</td>
+                            <td>@finald.Diagnosis</td>
+                            <td>@finald.Ward</td>
+                            <td>@finald.BedNo</td>
+                            <td>@finald.DateAdmitted</td>
+                            <td>@finald.ReviewDate</td>
+                            <td>@finald.DischargeMethod</td>
+                            <td>@finald.StateOfPatient</td>
+                            <td>@finald.Doctor</td>
+                            <td>@finald.AccountBalance</td>
+                            <td>@finald.NHIFMemberNo</td>
+                            <td>@finald.NoOfDays</td>
+                            <td>@finald.NHIFClaim</td>
+                            <td>@finald.NetBalance</td>
+                            <td>@finald.ReasonForReview</td>
+                        </tr>
+                            x++;
+                        }
+                    </tbody>
+
+
+                </table>
+
+
+
+
+
+            </div>
+        </page>
+    </div>
+</div>
+
+

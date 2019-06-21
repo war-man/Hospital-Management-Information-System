@@ -1,0 +1,132 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRInterviewSetUp>
+@{
+               
+                ViewBag.Title = "Interview Details";
+                ViewBag.showTopMenu = true;
+                ViewBag.WideView = true;
+                Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+@{
+    var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+}
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Interview Details
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <form id="branches" method="post" action="@Url.Action("SaveInterviewDetailsData","Home",new {Area="HumanResource"})">
+
+                        <table>
+                            <tr>
+                                <td><label>Interview Id</label></td>
+                                <td>
+                                    <input type="number" name="InterviewId" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td class="">
+                                    <p>Department</p>
+                                </td>
+                                <td>
+                                    <select name="Department" class="text-box box-lg ">
+                                        <option>All</option>
+                                        @foreach (var r in departments)
+                                        {
+                                            <option>@r.DepartmentName</option>
+                                        }
+                                    </select>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Ref Interview Id</label></td>
+                                <td>
+                                    <input type="number" name="RefInterviewId" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td>
+                                    <label>Interview Type</label>
+                                </td>
+                                <td>
+                                    <select name="InterviewType" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Aptitude</option>
+                                        <option>Oral</option>
+                                        <option>WalkIn</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Section</label>
+                                </td>
+                                <td>
+                                    <select name="Section" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                                <td><label>Interview Venue</label></td>
+                                <td>
+                                    <input type="text" name="InterviewVenue" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Interview Date</label></td>
+                                <td>
+                                    <input type="date" name="InterviewDate" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Expected Start Time</label></td>
+                                <td>
+                                    <input type="datetime" name="ExpectedStartTime" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name"><strong>Potential Interviewers</strong><span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width: 150%;height:120px;" name="PotentialInterviewers" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                                </tr>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name"><strong>Appointed Interviewers</strong><span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width: 150%;height:120px;" name="AppointedInterviewers" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br /><br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br /><br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("InterviewDetailsGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

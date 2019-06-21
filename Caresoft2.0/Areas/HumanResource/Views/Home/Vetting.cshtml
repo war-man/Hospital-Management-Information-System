@@ -1,0 +1,107 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRRecruitmentProcessing>
+@{
+
+    ViewBag.Title = "Recruitment Processing";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Recruitment Processing
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <form id="branches" method="post" action="@Url.Action("SaveVettingData","Home",new {Area="HumanResource"})">
+                        <label> <strong>VETTING</strong></label>
+                        <table>
+                            <tr>
+                                <td><label>SearchingCriteria</label></td>
+                                <td>
+                                    <input type="text" name="SearchingCriteria" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>RequisitionNo</label></td>
+                                <td>
+                                    <input type="number" name="RequisitionNo" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Educational Qualifications</label></td>
+                                <td>
+                                    <input type="text" name="EducationalQualifications" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Professional Qualificatons</label></td>
+                                <td>
+                                    <input type="text" name="ProfessionalQualificatons" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td><label>Experiences</label></td>
+                                <td>
+                                    <input type="text" name="Experiences" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>FileId</label></td>
+                                <td>
+                                    <input type="number" name="" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>First Name</label></td>
+                                <td>
+                                    <input type="text" name="FirstName" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Second Name</label></td>
+                                <td>
+                                    <input type="text" name="SecondName" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                
+                            </tr>
+                            <tr>
+                                <td><label>Last Name</label></td>
+                                <td>
+                                    <input type="text" name="LastName" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td>
+                                    <label>Requisition Status</label>
+                                </td>
+                                <td>
+                                    <select name="RequisitionStatus" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Filed</option>
+                                        <option>Closed</option>
+                                        <option>Withdrawn</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br /><br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br /><br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("VettingGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

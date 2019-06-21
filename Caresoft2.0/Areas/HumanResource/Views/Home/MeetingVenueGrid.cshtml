@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRMeetingVenue>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.VenueIdNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VenueName)
+        </th>
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.VenueIdNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VenueName)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

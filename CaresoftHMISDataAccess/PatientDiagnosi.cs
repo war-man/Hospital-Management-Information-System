@@ -14,6 +14,12 @@ namespace CaresoftHMISDataAccess
     
     public partial class PatientDiagnosi
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PatientDiagnosi()
+        {
+            this.FinalDischarges = new HashSet<FinalDischarge>();
+        }
+    
         public int Id { get; set; }
         public int OPDNo { get; set; }
         public string FinalDiagnosis { get; set; }
@@ -22,6 +28,8 @@ namespace CaresoftHMISDataAccess
         public System.DateTime TimeAdded { get; set; }
         public string OldNewCase { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FinalDischarge> FinalDischarges { get; set; }
         public virtual OpdRegister OpdRegister { get; set; }
         public virtual User User { get; set; }
     }

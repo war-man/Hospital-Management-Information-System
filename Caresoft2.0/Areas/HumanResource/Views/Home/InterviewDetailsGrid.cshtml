@@ -1,0 +1,86 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRInterviewSetUp>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.InterviewId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RefInterviewId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterviewType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterviewVenue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterviewDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedStartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PotentialInterviewers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointedInterviewers)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.InterviewId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RefInterviewId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterviewType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Section)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterviewVenue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterviewDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedStartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PotentialInterviewers)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointedInterviewers)
+        </td>
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+

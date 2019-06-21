@@ -1,0 +1,88 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRAbsentism>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DutyStation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Designation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cause)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeginDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Section)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DutyStation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Designation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cause)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeginDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRSection>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.SectionIdNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SectionDescription)
+        </th>
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.SectionIdNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SectionDescription)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

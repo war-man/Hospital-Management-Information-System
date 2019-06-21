@@ -1,0 +1,41 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRExtraMural>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ActivityId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActivityDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActivityRemarks)
+        </th>
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActivityId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActivityDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActivityRemarks)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+

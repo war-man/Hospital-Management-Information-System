@@ -18,36 +18,43 @@
     <tbody class="bg-white">
         @foreach (var pat in Model)
         {
-            <tr>
-                <td>
-                   <button class="btn btn-xs btn-primary" type="button" onclick="dischargeMe(@pat.Id, this)">
-                       Discharge
-                   </button>
-                </td>
-                <td>@pat.Patient.RegNumber</td>
-                <td>@pat.Id.ToString().PadLeft(4, '0')</td>
-                <td>
-                    @pat.Patient.Salutation
-                    @pat.Patient.FName
-                    @pat.Patient.MName
-                    @pat.Patient.LName
-                </td>
-                <td>
-                    @pat.ConsultantDoctor
-                </td>
-                <td>
-                    @if (pat.AdmissionDate != null)
-                     {
-                        @pat.AdmissionDate.Value.ToShortDateString()
-                     }
-                   
-                </td>
-                <td>
-                    @{var recomender = pat.DischargeRecommendations.FirstOrDefault(e => e.Status.ToLower().Trim().Equals("pending")).User.Employee;}
-                    @recomender.Salutation @recomender.FName @recomender.OtherName
-                </td>
-                <td>@pat.DischargeRecommendations.FirstOrDefault(e => e.Status.ToLower().Trim().Equals("pending")).Remarks</td>
-            </tr>
+        <tr>
+            <td>
+                @*<td>
+               <button class="btn btn-xs btn-primary" type="button" onclick="dischargeMe(@pat.Id, this)">
+               Discharge
+               </button>
+                </td>*@
+                <button class="call-modal-form btn btn-xs btn-primary"
+                        data-action="@Url.Action("GetFinalDischarge", "IPD",
+            new { id = pat.Id, QueueType = "IPD" })" data-callback="finalDischargeCallBack">
+                    Discharge
+                </button>
+            </td>
+            <td>@pat.Patient.RegNumber</td>
+            <td>@pat.Id.ToString().PadLeft(4, '0')</td>
+            <td>
+                @pat.Patient.Salutation
+                @pat.Patient.FName
+                @pat.Patient.MName
+                @pat.Patient.LName
+            </td>
+            <td>
+                @pat.ConsultantDoctor
+            </td>
+            <td>
+                @if (pat.AdmissionDate != null)
+                {
+                    @pat.AdmissionDate.Value.ToShortDateString()
+                }
+
+            </td>
+            <td>
+                @{var recomender = pat.DischargeRecommendations.FirstOrDefault(e => e.Status.ToLower().Trim().Equals("pending")).User.Employee;}
+                @recomender.Salutation @recomender.FName @recomender.OtherName
+            </td>
+            <td>@pat.DischargeRecommendations.FirstOrDefault(e => e.Status.ToLower().Trim().Equals("pending")).Remarks</td>
+        </tr>
         }
     </tbody>
 </table>

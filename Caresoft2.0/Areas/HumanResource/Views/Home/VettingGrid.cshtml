@@ -1,0 +1,89 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRRecruitmentProcessing>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>
+            @Html.DisplayNameFor(model => model.SearchingCriteria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequisitionNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EducationalQualifications)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfessionalQualificatons)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Experiences)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequisitionStatus)
+        </th>
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+                <td>Edit</td>
+                <td>Delete</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SearchingCriteria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequisitionNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EducationalQualifications)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProfessionalQualificatons)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Experiences)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequisitionStatus)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

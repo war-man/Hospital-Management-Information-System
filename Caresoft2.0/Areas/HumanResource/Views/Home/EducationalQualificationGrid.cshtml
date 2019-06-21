@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRStaffEducationQualification>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QualificationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QualificationDescription)
+        </th>
+       
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+                <td>Edit</td>
+                <td>Delete</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QualificationId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QualificationDescription)
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

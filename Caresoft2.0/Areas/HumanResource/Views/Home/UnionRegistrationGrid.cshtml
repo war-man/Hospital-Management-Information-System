@@ -1,0 +1,83 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRUnionRegistration>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.UnionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnionRegId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubscriptionFee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegistrationFee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubscriptionPeriodicity)
+        </th>
+        
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnionRegId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubscriptionFee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationFee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubscriptionPeriodicity)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+

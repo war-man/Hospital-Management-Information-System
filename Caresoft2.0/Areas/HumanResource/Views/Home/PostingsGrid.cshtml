@@ -1,0 +1,91 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRPosting>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfPosting)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DutyStation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RolesAndResposibilities)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Designation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TermsOfService)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedDateOfAppraisal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Session)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedKPIs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfPosting)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DutyStation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RolesAndResposibilities)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Designation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TermsOfService)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedDateOfAppraisal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Session)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedKPIs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+

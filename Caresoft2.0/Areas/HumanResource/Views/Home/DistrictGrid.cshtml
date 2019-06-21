@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRDistrict>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.District)
+        </th>
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.District)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

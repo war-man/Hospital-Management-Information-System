@@ -1,0 +1,38 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRInsuranceCover>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.PolicyDesription1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffNames)
+        </th>
+        
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PolicyDesription1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffNames)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+

@@ -432,7 +432,76 @@ namespace Caresoft2._0.Controllers
 
             return Json(new { Status = "success", Message = "Patient Discharged Successfully!" }, JsonRequestBehavior.AllowGet);
         }
+        #region Final Discharge
+        public ActionResult GetFinalDischarge(int id)
+        {
+            ViewBag.FinalDischarge = db.FinalDischarges.ToList();
+            //var data = db.FinalDischarges.ToList();
+            /// data.OpdRegister.FinalDischarges = db.FinalDischarges.ToList();
+            /// 
+            var data = new EMR_OPD_Data();
 
-     
+            data.OpdRegister = db.OpdRegisters.Find(id);
+            data.Patient = data.OpdRegister.Patient;
+
+            return PartialView(data);
+        }
+
+        [HttpPost]
+        public ActionResult SaveFinalDischarge (FinalDischarge data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            
+            db.FinalDischarges.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("GetFinalDischarge");
+        }
+        #endregion
+        #region Pedriatic Admission
+        public ActionResult Ped()
+        {
+            ViewBag.PedriaticAdmission = db.PedriaticAdmissions.ToList();
+            var data = db.PedriaticAdmissions.ToList();
+            
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SavePediatricAdmissionData(PedriaticAdmission data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+
+            db.PedriaticAdmissions.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("Pedriatic");
+        }
+        #endregion
+        #region Pedriatic Admission Record
+        public ActionResult Pedriatic()
+        {
+            ViewBag.PedriaticAdmissionRecord = db.PedriaticAdmissionRecords.ToList();
+            var data = db.PedriaticAdmissionRecords.ToList();
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SavePediatricAdmissionRecordsData(PedriaticAdmissionRecord data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+            db.PedriaticAdmissionRecords.Add(data);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Pedriatic");
+        }
+        #endregion
+
     }
 }

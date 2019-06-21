@@ -1,0 +1,38 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRCountry>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.CountryID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Citizenship)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.CountryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Citizenship)
+        </td>
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+

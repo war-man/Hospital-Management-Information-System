@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRGeoLocation>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.LocationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationName)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationName)
+        </td>
+
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+

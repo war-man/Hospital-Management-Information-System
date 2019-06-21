@@ -1,0 +1,74 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRHealthAndSafety>
+@{
+
+    ViewBag.Title = "Safety Equipments";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveSafetyEquipmentsData","Home",new {Area="HumanResource"})">
+
+                        @*<label> <strong>PLEASE ENTER DISPLINARY ACTION TAKEN </strong></label>*@
+                        <table class="form-class">
+                            <tr>
+                                <td><label>Equipment Code</label></td>
+                                <td>
+                                    <input type="number" name="EquipmentCode" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Equipment Name</label></td>
+                                <td>
+                                    <input type="text" name="EquipmentName" class="text-box box-lg " />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Operating Training Required</label></td>
+                                <td>
+                                    <input type="text" name="OperatingTrainingRequired" class="text-box box-lg " />
+                                </td>
+
+                            </tr>
+                        </table>
+
+                        <br />
+                        <br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+
+                    </form>
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("SafetyEquipmentsGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

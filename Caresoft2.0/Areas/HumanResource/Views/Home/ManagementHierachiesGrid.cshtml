@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRManagement>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ManagementLevelId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MainManagementLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagementLevelDesignation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.ManagementLevelId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Section)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MainManagementLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManagementLevelDesignation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </td>
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+

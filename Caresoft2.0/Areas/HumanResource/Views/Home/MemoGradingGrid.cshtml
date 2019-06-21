@@ -1,0 +1,37 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRPerformanceVariable>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.MemoSource)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade)
+        </th>
+       
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemoSource)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+

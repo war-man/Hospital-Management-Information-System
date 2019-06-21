@@ -1,0 +1,98 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRTaskAndAdministration>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.TaskId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NewTask)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RetrieveTask)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DutyStation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedCompletionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffResposibleForTaskExecution)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MeetingVenues)
+        </th>
+       
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NewTask)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RetrieveTask)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Section)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DutyStation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpectedCompletionDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffResposibleForTaskExecution)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeetingVenues)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+

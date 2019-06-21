@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRDutyStation>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.StationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeographicalLocation)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.StationId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeographicalLocation)
+        </td>
+
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+

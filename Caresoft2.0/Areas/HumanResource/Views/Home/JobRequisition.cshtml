@@ -1,0 +1,65 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRJobFunction>
+@{
+               
+                ViewBag.Title = "Job Requisition Types ";
+                ViewBag.showTopMenu = true;
+                ViewBag.WideView = true;
+                Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Job Requisition Types
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <form id="branches" method="post" action="@Url.Action("SaveJobRequsitionData","Home",new {Area="HumanResource"})">
+
+                        <label> <strong>PLEASE REGISTER JOB REQUISITION TYPES HERE</strong></label>
+
+                        <table>
+                            <tr>
+                                <td><label>Requistion Id </label></td>
+                                <td>
+                                    <input type="number" name="RequistionId" class="text-box box-sm " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Requisition Type </label></td>
+                                <td>
+                                    <input type="text" name="RequisitionType" class="text-box box-sm " style="margin-bottom:3px" />
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+                        <br /><br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+
+                    </form>
+
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("JobRequisitionGrid")
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

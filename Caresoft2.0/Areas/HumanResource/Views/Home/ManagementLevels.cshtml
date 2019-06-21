@@ -1,0 +1,64 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRManagement>
+@{
+              
+                ViewBag.Title = "Authorities";
+                ViewBag.showTopMenu = true;
+                ViewBag.WideView = true;
+                Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Authorities
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <form id="task" method="post" action="@Url.Action(" SaveManagementLevelsData","Home",new {Area="HumanResource"})">
+
+                        <label> <strong>PLEASE REGISTER DIFFERENT LEVELS OF MANAGEMENT</strong></label>
+
+                        <table>
+                            <tr>
+                                <td><label>Management Code</label></td>
+                                <td>
+                                    <input type="number" name="ManagementCode" class="text-box box-sm " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Management Level</label></td>
+                                <td>
+                                    <input type="text" name="ManagementLevel" class="text-box box-sm " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                        </table>
+                        
+                            <br /><br />
+                            <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                       
+                    </form>
+
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("ManagementLevelsGrid")
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

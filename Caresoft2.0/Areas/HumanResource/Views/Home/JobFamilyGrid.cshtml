@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRJobFamily>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.JobFamilyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FamilyDescription)
+        </th>
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobFamilyId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FamilyDescription)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

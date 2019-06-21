@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRLeaveType>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.LeaveId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeaveType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeaveDescription)
+        </th>
+        
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.LeaveId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LeaveType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LeaveDescription)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+

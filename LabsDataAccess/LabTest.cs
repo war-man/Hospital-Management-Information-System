@@ -55,6 +55,7 @@ namespace LabsDataAccess
         public bool Available { get; set; }
         public int DepartmentRadPath { get; set; }
         public int BranchId { get; set; }
+        public string Type { get; set; }
     
         public virtual Department Department1 { get; set; }
         public virtual Gender Gender { get; set; }

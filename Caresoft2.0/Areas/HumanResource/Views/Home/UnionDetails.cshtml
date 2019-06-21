@@ -1,0 +1,134 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRUnionDetail>
+@{
+
+    ViewBag.Title = "Union Information";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveUnionDetailsData","Home",new {Area="HumanResource"})">
+                        <label><strong>Enter Details About The Union</strong></label>
+                        <table class="table-form">
+
+                            <tr>
+                                <td><label>Union Id</label></td>
+                                <td>
+                                    <input type="number" name="UnionId" class="text-box box-lg" />
+                                </td>
+                                <td><label>Union Name</label></td>
+                                <td>
+                                    <input type="text" name="UnionName" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Union Type</label>
+                                </td>
+                                <td>
+                                    <select name="UnionType" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                                <td><label>Union Offices</label></td>
+                                <td>
+                                    <input type="text" name="UnionOffices" class="text-box box-lg" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><label>Union Certificate Id</label></td>
+                                <td>
+                                    <input type="number" name="UnionCertificateId" class="text-box box-lg" />
+                                </td>
+
+                                <td><label>Geographical</label></td>
+                                <td>
+                                    <input type="text" name="Geographical" class="text-box box-lg " />
+                                </td>
+                            <tr>
+                                <td><label>OfficeBearers</label></td>
+                                <td>
+                                    <input type="text" name="OfficeBearers" class="text-box box-lg " />
+                                </td>
+                                <td><label>Chapter</label></td>
+                                <td>
+                                    <input type="text" name="Chapter" class="text-box box-lg " />
+                                </td>
+                            </tr>
+
+                        </table>
+                        <label><strong>Bearer"s Information</strong></label>
+                        <table class="table-form">
+                            <tr>
+                                <td><label>Staff Id</label></td>
+                                <td>
+                                    <input type="number" name="StaffId" class="text-box box-lg " />
+                                </td>
+                                <td><label>Staff Name</label></td>
+                                <td>
+                                    <input type="text" name="StaffName" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Date</label></td>
+                                <td>
+                                    <input type="date" name="Date" class="text-box box-lg " />
+                                </td>
+                                <td><label>Union RegNo</label></td>
+                                <td>
+                                    <input type="number" name="UnionRegNo" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Registration Fee</label></td>
+                                <td>
+                                    <input type="number" name="RegistrationFee" class="text-box box-lg " />
+                                </td>
+                                <td><label>Subscription Fee</label></td>
+                                <td>
+                                    <input type="number" name="SubscriptionFee" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("UnionDetailsGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

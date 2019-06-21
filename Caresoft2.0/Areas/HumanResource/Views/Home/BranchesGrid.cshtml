@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.BranchMaster>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        <th>Edit</th>
+
+        <th>Delete</th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.BranchId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeographicalLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchName)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+        <td>Edit</td>
+
+        <td>Delete</td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeographicalLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchName)
+        </td>
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\Web\V3\caresoft-web-app-code-v3\LabsDataAccess\LabsDataModel.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\barbz_caresoft2.0_2019\LabsDataAccess\LabsDataModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

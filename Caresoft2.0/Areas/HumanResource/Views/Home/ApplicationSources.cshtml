@@ -1,0 +1,66 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRApplication>
+@{
+
+    ViewBag.Title = "Application Sources ";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Application Sources
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <form id="branches" method="post" action="@Url.Action("SaveJobRequsitionData","Home",new {Area="HumanResource"})">
+
+                        <label> <strong>SET UP YOUR DIFFERENT SOURCES OF JOB APPLICATIONS</strong></label>
+
+                        <table class="table-form">
+                            <tr>
+                                <td><label>SourceCode</label></td>
+                                <td>
+                                    <input type="number" name="SourceCode" class="text-box box-sm " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>SourceDesription</label></td>
+                                <td>
+                                    <input type="text" name="SourceDesription" class="text-box box-sm " style="margin-bottom:3px" />
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+                        <br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("ApplicationSourcesGrid")
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

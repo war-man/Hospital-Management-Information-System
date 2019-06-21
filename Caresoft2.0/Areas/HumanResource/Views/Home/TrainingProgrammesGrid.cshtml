@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRTrainingProgramme>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ProgrammeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sections)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrainingPeriod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgrammeDescription)
+        </th>
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ProgrammeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sections)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainingPeriod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProgrammeDescription)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+

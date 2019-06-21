@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRSaccoAndStaffLoan>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ModeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RepaymentType)
+        </th>
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RepaymentType)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+

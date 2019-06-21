@@ -56,5 +56,7 @@ namespace CaresoftHMISDataAccess
         public string Designation { get; set; }
         public string Initials { get; set; }
         public Nullable<System.DateTime> date_time { get; set; }
+        public int UserId { get; set; }
+        public int BranchId { get; set; }
     }
 }

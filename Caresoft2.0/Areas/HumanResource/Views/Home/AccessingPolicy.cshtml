@@ -1,0 +1,68 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRInsuranceCover>
+@{
+
+    ViewBag.Title = "Staff Accessing Policies";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveAccessingPolicyData","Home",new {Area="HumanResource"})">
+
+                        <label> <strong>PLEASE REGISTER STAFF ACCESSING COVER </strong></label>
+                        <table class="table-form">
+                            <tr>
+                                <td>
+                                    <label>Policy Desription</label>
+                                </td>
+                                <td>
+                                    <select name="PolicyDesription1" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                                <td><label>Staff Names</label></td>
+                                <td>
+                                    <input type="text" name="StaffNames" class="text-box box-lg " />
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+                        <br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("AccessingPolicyGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

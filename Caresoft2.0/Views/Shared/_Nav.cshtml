@@ -164,6 +164,16 @@
                             | Patient List
                         </td>
                     </tr>
+                    @*<tr>
+                        <td data-href="@Url.Action("index", "Pediatric")">
+                            | Pediatric Admission
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("Pedriatic", "Pediatric")">
+                            | Pediatric Admission Record
+                        </td>
+                    </tr>*@
                     <tr>
                         <td data-href="@Url.Action("DirectLab", "Registration")">
                             | Direct Lab Registration
@@ -195,9 +205,11 @@
                     <tr><td data-href="@Url.Action("index", "IPD")">|IPD Dashboard</td></tr>
                     <tr><td data-href="@Url.Action("IPDRegister", "IPD")">|IPD Register</td></tr>
                     <tr><td data-href="@Url.Action("AdmitRecommended", "IPD")">|Admit Recommended Patient</td></tr>
+                    <tr><td data-href="@Url.Action("Ped", "IPD")">|Pedriatic Admission</td></tr>
+                    <tr><td data-href="@Url.Action("Pedriatic", "IPD")">|Pedriatic Admission Record</td></tr>
                     <tr><td>|Cancel Admission</td></tr>
                     <tr><td data-href="@Url.Action("DischargeRecommended", "IPD")">|Discharge Recommended Patient</td></tr>
-                    <tr><td>|Discharge Patient List</td></tr>
+                    @*<tr><td data-href="@Url.Action("GetFinalDischarge", "IPD")">|FinalDischarge</td></tr>*@
                 </table>
             </div>
         </td>

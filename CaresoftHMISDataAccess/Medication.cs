@@ -60,6 +60,7 @@ namespace CaresoftHMISDataAccess
         public virtual ICollection<BillAdjustmentLog> BillAdjustmentLogs { get; set; }
         public virtual BillPayment BillPayment { get; set; }
         public virtual Department Department { get; set; }
+        public virtual Department Department1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IPDBillPartialPayment> IPDBillPartialPayments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

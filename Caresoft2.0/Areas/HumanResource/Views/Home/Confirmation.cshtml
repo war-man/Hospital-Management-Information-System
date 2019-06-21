@@ -1,0 +1,155 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRConfirmation>
+@{
+               
+                ViewBag.Title = "Confirmations";
+                ViewBag.showTopMenu = true;
+                ViewBag.WideView = true;
+                Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Confirmations
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <form id="branches" method="post" action="@Url.Action("SaveConfirmationData","Home",new {Area="HumanResource"})">
+
+                        
+                            <label>Applicant Id</label>
+                            
+                           <input type="number" name="ApplicantId" class="text-box box-lg " style="margin-bottom:3px" />
+                        <br />
+                        <br />
+                            
+                        <label> <strong>Confirmation of Academic/Professional Records </strong></label>
+                        <table>
+                            <tr>
+                                <td><label>Level</label></td>
+                                <td>
+                                    <input type="number" name="Level1" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Institution Name</label></td>
+                                <td>
+                                    <input type="text" name="InstitutionName" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Contacted Person</label></td>
+                                <td>
+                                    <input type="number" name="ContactedPerson" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Date Confirmed</label></td>
+                                <td>
+                                    <input type="date" name="DateConfirmed" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td><label>Reviewer</label></td>
+                                <td>
+                                    <input type="text" name="Reviewer" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+
+                                <td><label>Results Obtained</label></td>
+                                <td>
+                                    <input type="text" name="ResultsObtained" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name"><strong>Remarks</strong><strong></strong><span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width: 250%;height:120px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+
+                            </tr>
+                        </table>
+                        <label> <strong>Confirmation of Referees/Previous Employers </strong></label>
+                        <table>
+
+                            <tr>
+                                <td><label>Name</label></td>
+                                <td>
+                                    <input type="text" name="Name" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+
+                                <td><label>Title</label></td>
+                                <td>
+                                    <input type="text" name="Level1" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Institution</label></td>
+                                <td>
+                                    <input type="text" name="Instiution" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+
+                                <td><label>Telephone</label></td>
+                                <td>
+                                    <input type="tel" name="ContactedPerson" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>PostalAddress</label></td>
+                                <td>
+                                    <input type="text" name="DateConfirmed" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+
+
+                                <td><label>Results Obtained</label></td>
+                                <td>
+                                    <input type="text" name="ResultsObtained1" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+
+                                <td><label>Date</label></td>
+                                <td>
+                                    <input type="text" name="Date" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name"><strong>Remarks</strong><strong></strong><span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width: 250%;height:120px;" name="Remarks1" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+
+                            </tr>
+                        </table>
+                        <br /><br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br /><br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("ConfirmationGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

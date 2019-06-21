@@ -1,0 +1,75 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRStaffProfessionalQualification>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfQualification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Institution)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+                <td>Edit</td>
+                <td>Delete</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfQualification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Institution)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+

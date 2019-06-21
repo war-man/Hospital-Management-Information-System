@@ -1,0 +1,34 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRUnion>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.PeriodicityCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PeriodicityDescription)
+        </th>
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PeriodicityCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PeriodicityDescription)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+

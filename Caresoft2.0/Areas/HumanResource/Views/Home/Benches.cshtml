@@ -1,0 +1,68 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRBench>
+@{
+
+    ViewBag.Title = "Section Layout";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveBenchesData","Home",new {Area="HumanResource"})">
+
+                        <label> <strong>PLEASE REGISTER YOUR BENCHES IN SELECTED SECTION </strong></label>
+                        <table class="form-class">
+                            <tr>
+                                <td class="">
+                                    <p>Department</p>
+                                </td>
+                                <td>
+                                    <select name="departments" class="text-box box-lg ">
+                                        <option>All</option>
+                                        @foreach (var r in departments)
+                                        {
+                                            <option>@r.DepartmentName</option>
+                                        }
+                                    </select>
+
+                                </td>
+                            </tr>
+                        </table>
+
+
+                        <br />
+                        <br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+
+                    </form>
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("BenchesGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

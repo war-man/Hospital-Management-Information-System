@@ -28,6 +28,6 @@ namespace CaresoftHMISDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestionnaireMultichoice> QuestionnaireMultichoices { get; set; }
         public virtual QuestionnaireResponseType QuestionnaireResponseType { get; set; }
-        public virtual Questionnaire Questionnaire { get; set; }
+        public virtual Questionnaire1 Questionnaire { get; set; }
     }
 }

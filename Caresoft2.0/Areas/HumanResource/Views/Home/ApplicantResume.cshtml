@@ -1,0 +1,110 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRFileInformation>
+@{
+    ViewBag.Title = "Basic Information";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_ApplicantResumeNav.cshtml")
+</div>
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Basic Information
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <form id="branches" method="post" action="@Url.Action("SaveApplicantResumeData","Home",new {Area="HumanResource"})">
+
+                        <table class="table-form">
+                            <tr>
+                                <td><label>Applicant Id</label></td>
+                                <td>
+                                    <input type="number" name="ApplicantId" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Requisition No</label></td>
+                                <td>
+                                    <input type="number" name="RequisitionNo" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Surname</label></td>
+                                <td>
+                                    <input type="text" name="Surname" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Date Of Application</label></td>
+                                <td>
+                                    <input type="date" name="DateOfApplication" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>First Name</label></td>
+                                <td>
+                                    <input type="text" name="FirstName" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Application Receipt Date</label></td>
+                                <td>
+                                    <input type="date" name="ApplicationReceiptDate" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Other Names</label></td>
+                                <td>
+                                    <input type="text" name="OtherNames" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td>
+                                    <label>Application Source</label>
+                                </td>
+                                <td>
+                                    <select name="ApplicationSource" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Employee Referral</option>
+                                        <option>Employment Agency</option>
+                                        <option>Executive Search</option>
+                                        <option>Job Fair</option>
+                                        <option>Local News Ad</option>
+                                        <option>Regional National News Ad</option>
+                                        <option>Walk In</option>
+                                        <option>Other Sources</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Position Applied For</label>
+                                </td>
+                                <td>
+                                    <select name="PositionAppliedFor" class="text-box box-lg">
+                                        <option>Select</option>
+                                        </select>
+                                    </td>
+                            </tr>
+                        </table>
+
+                        <br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("ApplicationResumeGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,106 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRContractManagement>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Designation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedExpiryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccessControlPassId)
+        </th>
+       <th>
+        @Html.DisplayNameFor(model => model.AccessControlPassStatus)
+        </th>
+        <th>
+        @Html.DisplayNameFor(model => model.ContractualAmount)
+        </th>
+        <th>
+        @Html.DisplayNameFor(model => model.MonthlyPayment)
+        </th>
+        <th>
+        @Html.DisplayNameFor(model => model.FinalDuesForPayment)
+        </th>
+        <th>
+        @Html.DisplayNameFor(model => model.FinalPaymentAmount)
+        </th>
+        <th>
+        @Html.DisplayNameFor(model => model.Renewable)
+        </th>
+       <th>
+        @Html.DisplayNameFor(model => model.FinalDateOfPayment)
+        </th>
+        <th>
+        @Html.DisplayNameFor(model => model.RequirementsForContract)
+        </th>
+        <th>
+        @Html.DisplayNameFor(model => model.BeginDate)
+        </th>
+       
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Section)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Designation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedExpiryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessControlPassId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessControlPassStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractualAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonthlyPayment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinalDuesForPayment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinalPaymentAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Renewable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinalDateOfPayment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequirementsForContract)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeginDate)
+            </td>
+            
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+

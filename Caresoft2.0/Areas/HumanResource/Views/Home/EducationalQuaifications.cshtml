@@ -1,0 +1,86 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRStaffEducationQualification>
+@{
+
+    ViewBag.Title = "Educational Qualification";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_StaffResumeNav.cshtml")
+</div>
+@{
+    var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+}
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Educational Qualification
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <form id="tests" method="post" action="@Url.Action("SaveStaffBioData","Home",new {Area="HumanResource"})">
+                        <label> <strong>ENTER THE REQUIRED INFORMATION </strong></label>
+                        <table>
+                            <tr>
+                                <td><label>Staff Id</label></td>
+                                <td>
+                                    <input type="number" name="StaffId" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+
+                                <td><label>Qualification Id</label></td>
+                                <td>
+                                    <input type="number" name="QualificationId" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                            <tr>
+                                <td class="">
+                                    <p>Department Where Qualification is Required </p>
+                                </td>
+                                <td>
+                                    <select name="Department" class="text-box box-lg ">
+                                        <option>All</option>
+                                        @foreach (var r in departments)
+                                        {
+                                            <option>@r.DepartmentName</option>
+                                        }
+                                    </select>
+
+                                </td>
+                                <td><label>Qualification Description</label></td>
+                                <td>
+                                    <input type="text" name="QualificationDescription" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                        </table>
+                        <br /><br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br /><br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("EducationalQualificationGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

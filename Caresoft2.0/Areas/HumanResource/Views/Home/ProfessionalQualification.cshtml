@@ -1,0 +1,89 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRApplicantQualification>
+@{
+
+    ViewBag.Title = "Professional Qualification";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+@{
+    var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+}
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Professional Qualification
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <form id="qualifications" method="post" action="@Url.Action("SaveProfessionalQualificationData","Home",new {Area="HumanResource"})">
+
+                        <label> <strong>PLEASE REGISTER PROFESSIONAL  QUALIFICATIONS HERE</strong></label>
+
+                        <table>
+                            <tr>
+                                <td><label>Qualification Id</label></td>
+                                <td>
+                                    <input type="number" name="QualificationId" class="text-box box-sm " style="margin-bottom:3px" />
+                                </td>
+                                <td class="">
+                                    <p>Department</p>
+                                </td>
+                                <td>
+                                    <select name="Department" class="text-box box-lg ">
+                                        <option>All</option>
+                                        @foreach (var r in departments)
+                                        {
+                                            <option>@r.DepartmentName</option>
+                                        }
+                                    </select>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Qualification Description</label></td>
+                                <td>
+                                    <input type="number" name="QualificationDescription" class="text-box box-sm " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+
+                        </table>
+                        <div class="form-group">
+                            <label class="info-title col-md-12" for="black_name">Remarks<span><font color="black"><b></b></font></span></label>
+                            <span id='message_full_name'></span>
+                            <textarea style="width: 50%;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
+                                      placeholder="Enter plan">
+                                        
+                                    </textarea>
+                            <br /><br />
+                            <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                        </div>
+                    </form>
+
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("ProfessionalQualificationGrid")
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

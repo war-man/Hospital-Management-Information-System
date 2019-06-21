@@ -42,10 +42,12 @@ namespace CaresoftHMISDataAccess
             this.InfusionTherapies = new HashSet<InfusionTherapy>();
             this.InsuranceCards = new HashSet<InsuranceCard>();
             this.InsuranceInvoices = new HashSet<InsuranceInvoice>();
+            this.IntakeInputOutputs = new HashSet<IntakeInputOutput>();
             this.JPayAutoPayments = new HashSet<JPayAutoPayment>();
             this.JPayments = new HashSet<JPayment>();
             this.LasikClinicEntries = new HashSet<LasikClinicEntry>();
             this.LeaveLetters = new HashSet<LeaveLetter>();
+            this.MCHAdmissionExaminations = new HashSet<MCHAdmissionExamination>();
             this.MCHAntenatalProfiles = new HashSet<MCHAntenatalProfile>();
             this.MCHAttendanceTypes = new HashSet<MCHAttendanceType>();
             this.MCHBabyPostNatalEXams = new HashSet<MCHBabyPostNatalEXam>();
@@ -53,10 +55,12 @@ namespace CaresoftHMISDataAccess
             this.MCHClinicalNotes = new HashSet<MCHClinicalNote>();
             this.MCHDeliveries = new HashSet<MCHDelivery>();
             this.MCHFamilyPlanings = new HashSet<MCHFamilyPlaning>();
+            this.MCHFirstDeliveries = new HashSet<MCHFirstDelivery>();
             this.MCHMaternalProfiles = new HashSet<MCHMaternalProfile>();
             this.MCHMedicalAndSergicalHistories = new HashSet<MCHMedicalAndSergicalHistory>();
             this.MCHMotherPostNatalExams = new HashSet<MCHMotherPostNatalExam>();
             this.MCHPhysicalExaminations = new HashSet<MCHPhysicalExamination>();
+            this.MCHPostNatalServices = new HashSet<MCHPostNatalService>();
             this.MCHPresentPregnancies = new HashSet<MCHPresentPregnancy>();
             this.MCHPreventativeServices = new HashSet<MCHPreventativeService>();
             this.MCHPreventativeServices1 = new HashSet<MCHPreventativeService1>();
@@ -66,6 +70,9 @@ namespace CaresoftHMISDataAccess
             this.MedicalHistoryResponses = new HashSet<MedicalHistoryRespons>();
             this.Medications = new HashSet<Medication>();
             this.NurseNotes = new HashSet<NurseNote>();
+            this.NurseRemarks = new HashSet<NurseRemark>();
+            this.NurseTurningCharts = new HashSet<NurseTurningChart>();
+            this.NutritionEntries = new HashSet<NutritionEntry>();
             this.NutritionScreeningDetails = new HashSet<NutritionScreeningDetail>();
             this.OffDuties = new HashSet<OffDuty>();
             this.PhysicalExaminations = new HashSet<PhysicalExamination>();
@@ -77,6 +84,7 @@ namespace CaresoftHMISDataAccess
             this.PatientDiagnosis = new HashSet<PatientDiagnosi>();
             this.PatientReferals = new HashSet<PatientReferal>();
             this.PatientTurnAroundTimes = new HashSet<PatientTurnAroundTime>();
+            this.Questionnaires = new HashSet<Questionnaire>();
             this.QuestionnaireResponses = new HashSet<QuestionnaireRespons>();
             this.ReferenceLetters = new HashSet<ReferenceLetter>();
             this.RenalDialysisInfoes = new HashSet<RenalDialysisInfo>();
@@ -92,6 +100,7 @@ namespace CaresoftHMISDataAccess
             this.ThanksLetters = new HashSet<ThanksLetter>();
             this.TheatrePatientBioDatas = new HashSet<TheatrePatientBioData>();
             this.Toxicities = new HashSet<Toxicity>();
+            this.UploadedFiles = new HashSet<UploadedFile>();
             this.Waivers = new HashSet<Waiver>();
         }
     
@@ -127,6 +136,7 @@ namespace CaresoftHMISDataAccess
         public string FromDept { get; set; }
         public string DischargeType { get; set; }
         public string Dischargetypeipd { get; set; }
+        public string VisitNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdmissionRecommendation> AdmissionRecommendations { get; set; }
@@ -180,6 +190,8 @@ namespace CaresoftHMISDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InsuranceInvoice> InsuranceInvoices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<IntakeInputOutput> IntakeInputOutputs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JPayAutoPayment> JPayAutoPayments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JPayment> JPayments { get; set; }
@@ -187,6 +199,8 @@ namespace CaresoftHMISDataAccess
         public virtual ICollection<LasikClinicEntry> LasikClinicEntries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LeaveLetter> LeaveLetters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MCHAdmissionExamination> MCHAdmissionExaminations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MCHAntenatalProfile> MCHAntenatalProfiles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -202,6 +216,8 @@ namespace CaresoftHMISDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MCHFamilyPlaning> MCHFamilyPlanings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MCHFirstDelivery> MCHFirstDeliveries { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MCHMaternalProfile> MCHMaternalProfiles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MCHMedicalAndSergicalHistory> MCHMedicalAndSergicalHistories { get; set; }
@@ -209,6 +225,8 @@ namespace CaresoftHMISDataAccess
         public virtual ICollection<MCHMotherPostNatalExam> MCHMotherPostNatalExams { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MCHPhysicalExamination> MCHPhysicalExaminations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MCHPostNatalService> MCHPostNatalServices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MCHPresentPregnancy> MCHPresentPregnancies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -227,6 +245,12 @@ namespace CaresoftHMISDataAccess
         public virtual ICollection<Medication> Medications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NurseNote> NurseNotes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NurseRemark> NurseRemarks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NurseTurningChart> NurseTurningCharts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NutritionEntry> NutritionEntries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NutritionScreeningDetail> NutritionScreeningDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -255,6 +279,8 @@ namespace CaresoftHMISDataAccess
         public virtual ICollection<PatientReferal> PatientReferals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PatientTurnAroundTime> PatientTurnAroundTimes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Questionnaire> Questionnaires { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestionnaireRespons> QuestionnaireResponses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -285,6 +311,8 @@ namespace CaresoftHMISDataAccess
         public virtual ICollection<TheatrePatientBioData> TheatrePatientBioDatas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Toxicity> Toxicities { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UploadedFile> UploadedFiles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Waiver> Waivers { get; set; }
     }

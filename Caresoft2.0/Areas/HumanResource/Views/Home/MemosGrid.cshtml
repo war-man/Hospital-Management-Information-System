@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRMemo>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfMemo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GradingOfMemo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemoDetails)
+        </th>
+        
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfMemo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GradingOfMemo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemoDetails)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+

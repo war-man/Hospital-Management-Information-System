@@ -1,0 +1,146 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRGrievanceResolution>
+@{
+
+    ViewBag.Title = "Grievances Resolution";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+@{
+    var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+}
+
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveGrievancesData","Home",new {Area="HumanResource"})">
+
+                        <table class="table-form">
+                            <tr><td><label><strong>Enter The Required Details</strong></label></td></tr>
+                            <tr>
+                                <td><label>Grievance Id</label></td>
+                                <td>
+                                    <input type="number" name="GrievanceId" class="text-box box-lg" />
+                                </td>
+                                <td><label>Date</label></td>
+                                <td>
+                                    <input type="date" name="Date" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Memo Id</label></td>
+                                <td>
+                                    <input type="number" name="MemoId" class="text-box box-lg" />
+                                </td>
+                                <td class="">
+                                    <p>Department</p>
+                                </td>
+                                <td>
+                                    <select name="Department" class="text-box box-lg ">
+                                        <option>All</option>
+                                        @foreach (var r in departments)
+                                        {
+                                            <option>@r.DepartmentName</option>
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Section</label>
+                                </td>
+                                <td>
+                                    <select name="Section" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+
+                                <td>
+                                    <label>Receiving Authority</label>
+                                </td>
+                                <td>
+                                    <select name="ReceivingAuthority" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Board Chairman</option>
+                                        <option>Junior Level Management</option>
+                                        <option>Managing Director</option>
+                                        <option>Middle Level Management</option>
+                                        <option>Senior Level Management</option>
+                                    </select>
+                                </td>
+
+                            </tr>
+                            <tr><td><label><strong>Settlement</strong></label></td></tr>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Grievance Description<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="GrievanceDescription" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Settlement Code</label></td>
+                                <td>
+                                    <input type="number" name="SettlementCode" class="text-box box-lg" />
+                                </td>
+                                <td><label>Date Settled</label></td>
+                                <td>
+                                    <input type="date" name="DateSettled" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Settlement Description<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="SettlementDescription" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("GrievancesGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

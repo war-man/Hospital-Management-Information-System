@@ -1,0 +1,392 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.PedriaticAdmissionRecord>
+@{
+    ViewBag.Title = "Pediatric Admission Record ";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+
+}
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="pediatric-admission" method="post" action="@Url.Action("SavePediatricAdmissionRecordsData", "Pediatric")">
+                        <input name="OPDNo" hidden value="@ViewBag.OpdNo"/>
+                        <fieldset class="col-sm-12">
+                            <legend>Admission Diagnosis</legend>
+                            <table>
+                                <tr>
+                                    <td><label><strong>Malaria</strong></label></td>
+                                    <td>
+                                        <input type="radio" name="Malaria" id="Severe" checked value="Severe">
+                                        <label for="Severe">Severe</label>
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        <input type="radio" name="Malaria" id="NonSev" value="NonSev">
+                                        <label for="NonSev">Non-Severe</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label><strong>Anaemia</strong></label></td>
+                                    <td>
+                                        <input type="radio" name="Anaemia" id="Sev" checked value="Sev">
+                                        <label for="Sev">Severe</label>
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+
+                                        <input type="radio" name="Anaemia" id="NonSev" value="NonSev">
+                                        <label for="NonSev">None Severe</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label><strong>Pneumonia</strong></label></td>
+                                    <td>
+                                        <input type="radio" name="Pneumonia" id="V" checked value="V">
+                                        <label for="V">V Severe</label>
+
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        <input type="radio" name="Pneumonia" id="Severe" value="Severe">
+                                        <label for="Severe">Severe</label>
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+
+                                        <input type="radio" name="Pneumonia" id="NS" value="NS">
+                                        <label for="NS">Non Severe</label>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><label><strong>Diarrhoea</strong></label></td>
+                                    <td>
+                                        <input type="radio" name="Diarrhoea" id="NonBloody" checked value="NonBloody">
+                                        <label for="">Non-Bloody</label>
+
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        <input type="radio" name="Diarrhoea" id="Bloody" value="Bloody">
+                                        <label for="Bloody"> Bloody</label>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label><strong>Dehydration</strong></label></td>
+                                    <td>
+                                        <input type="radio" name="Dehydration" id="Severe" checked value="Severe">
+                                        <label for="Dehydration">Severe</label>
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        <input type="radio" name="Dehydration" id="Some" value="Some">
+                                        <label for="Some">Some</label>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label><strong>HIV/AIDS</strong></label></td>
+                                    <td>
+                                        <input type="radio" name="HIV" id="Known" checked value="Known">
+                                        <label for="Known">Known</label>
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        <input type="radio" name="HIV" id="Possible" value="Possible">
+                                        <label for="Possible">Possible</label>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label><strong>Malnutrition</strong></label></td>
+                                    <td>
+                                        <input type="radio" name="Malnutrition" id="Kwash" checked value="Kwash">
+                                        <label for="Kwash">Kwash</label>
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        <input type="radio" name="Malnutrition" id="Marasm" value="Marasm">
+                                        <label for="Marasm">Marasm</label>
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        <input type="radio" name="Malnutrition" id="MKwash" value="MKwash">
+                                        <label for="MKwash">MKwash</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label><strong>Burns</strong></label></td>
+                                    <td>
+                                        <input type="radio" name="Burns" id="Fire" checked value="Fire">
+                                        <label for="Fire">Fire</label>
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        <input type="radio" name="Burns" id="HotLiquid" value="HotLiquid">
+                                        <label for="HotLiquid">Hot Liquid</label>
+
+                                    </td>
+                                <tr>
+                                    <td><label><strong>Menengitis</strong></label></td>
+                                    <td>
+                                        <input type="radio" name="Menengitis" id="Y" value="Y">
+                                        <label for="Y">Y</label>
+
+                                        <input type="radio" name="Menengitis" id="Neotanal Sepsis" value="Neotanal Sepsis">
+                                        <label for="Neotanal Sepsis">Neotanal Sepsis</label>
+
+                                        <input type="radio" name="Menengitis" id="BirthAsphyxia" value="BirthAsphyxia">
+                                        <label for="BirthAsphyxia">Birth Asphyxia</label>
+
+                                        <input type="radio" name="Menengitis" id="Prematurity" value="Prematurity">
+                                        <label for="Prematurity">Prematurity/VLBW</label>
+
+                                        <input type="radio" name="Menengitis" id="CalculatoryShosk" value="CalculatoryShocl">
+                                        <label for="CalculatoryShock">Calculatory Shock</label>
+
+                                        <input type="radio" name="Menengitis" id="Other" value="Other">
+                                        <label for="Other">Other</label>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </fieldset>
+
+                        <fieldset class="col-sm-12">
+                            <legend>Investigations ordered and results</legend>
+
+                            <table>
+                                <tr>
+                                    <td><label>Malaria BS</label></td>
+                                    <td>
+                                        <input type="radio" name="MalariaBS" id="Malaria" checked value="Malaria">
+                                        <label for="Malaria">Y</label>
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="MalariaBS" id="N" value="N">
+                                        <label for="N">N</label>
+
+                                    </td>
+
+                                <tr>
+                                    <td><label>Glucose</label></td>
+                                    <td>
+                                        <input type="radio" name="Glucose" id="Glucose" checked value="Glucose">
+                                        <label for="Glucose">Y</label>
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="Glucose" id="Glucose" value="Glucose">
+                                        <label for="N">N</label>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><label>HB/HCT</label></td>
+                                    <td>
+                                        <input type="radio" name="HBHCT" id="Y" checked value="BS">
+                                        <label for="HB">Y</label>
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="HBHCT" id="N" value="HB">
+                                        <label for="HB">N</label>
+
+                                    </td>
+
+                                <tr>
+                                    <td><label>LP</label></td>
+                                    <td>
+                                        <input type="radio" name="LP" id="LP" checked value="LP">
+                                        <label for="LP">Y</label>
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="LP" id="LP" value="LP">
+                                        <label for="N">N</label>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+
+                        <fieldset class="col-lg-12">
+                            <legend>Treatment supportive care and observations</legend>
+                            <table>
+                                <tr>
+
+                                    <td>
+                                        <input type="radio" name="KeepWarm" id="0" value="0">
+                                        <label for="KeepWarm">Keep Warm</label>
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="Oxygen" id="Oxygen" value="Oxygen">
+                                        <label for="Oxygen">Oxygen</label>
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <input type="radio" name="IVFluidPlan" id="IV" value="IV">
+                                        <label for="IV">IV Fluid Plan</label>
+                                    </td>
+
+                                    <td>
+                                        <input type="radio" name="BloodTransfusion" id="BT" value="BT">
+                                        <label for="BT">Blood Transfusion</label>
+                                    </td>
+
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <input type="radio" name="ORSOral" id="ORS" value="ORS">
+                                        <label for="ORS">ORS Oral/nigt plan</label>
+                                    </td>
+
+                                    <td>
+                                        <input type="radio" name="Nutrition" id="Y" value="Y">
+                                        <label for="Y">Nutrition/Feeds Plan</label>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </fieldset>
+
+                        <fieldset class="col-lg-12">
+                            <legend>Medical Review</legend>
+
+                            <table>
+                                <tr>
+
+                                    <td>
+                                        <input type="radio" name="ReassessWithinSixHours" id="Y" value="Y">
+                                        <label for="Y">Re-assess within 6hrs</label>
+                                    </td>
+
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <input type="radio" name="Routine" id="Y" value="Y">
+                                        <label for="Y">Routine</label>
+                                    </td>
+
+                                </tr>
+
+                            </table>
+                        </fieldset>
+
+                        <fieldset class="col-lg-12">
+                            <legend>Nursing Observations</legend>
+
+                            <table>
+                                <tr>
+
+                                    <td>
+                                        <input type="radio" name="HighPriority" id="Y" value="Y">
+                                        <label for="Y">High Priority</label>
+                                    </td>
+
+                                    <td>
+                                        <input type="radio" name="Routine" id="Y" value="Y">
+                                        <label for="Y">Routine</label>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </fieldset>
+
+                        <fieldset class="col-lg-12">
+                            <legend>Immunization Needed</legend>
+                            <table>
+                                <tr>
+
+                                    <td>
+                                        <input type="radio" name="BCG" id="0" value="0">
+                                        <label for="0">BCG</label>
+                                    </td>
+
+                                    <td>
+                                        <input type="radio" name="OPV" id="0" value="0">
+                                        <label for="0">OPV</label>
+                                    </td>
+
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <input type="radio" name="DTPOrPenta" id="0" value="0">
+                                        <label for="0">DTP/Penta</label>
+                                    </td>
+
+                                    <td>
+                                        <input type="radio" name="Measles" id="0" value="0">
+                                        <label for="0">Measles</label>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </fieldset>
+
+                        <br /><br />
+                        &nbsp;
+                        &nbsp;
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

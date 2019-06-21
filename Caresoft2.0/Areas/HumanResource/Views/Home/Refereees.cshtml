@@ -1,0 +1,119 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRReferee >
+@{
+
+    ViewBag.Title = "Referees";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_ApplicantResumeNav.cshtml")
+</div>
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Referees
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <form id="tests" method="post" action="@Url.Action("SaveRefereeesData","Home",new {Area="HumanResource"})">
+
+                        <label>ApplicantId</label>
+
+                        <input type="number" name="ApplicantId" class="text-box box-lg " style="margin-bottom:3px" />
+                        <br />
+                        <br />
+                        <label> <strong>Referees Details</strong></label>
+                        <br />
+                        
+                        <table class="table-form">
+                            <tr>
+                                <td><label>Name</label></td>
+                                <td>
+                                    <input type="text" name="Name" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Organization</label></td>
+                                <td>
+                                    <input type="text" name="Organization" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Title</label></td>
+                                <td>
+                                    <input type="text" name="Title" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>PostalAddress</label></td>
+                                <td>
+                                    <input type="text" name="PostalAddress" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Telephone</label></td>
+                                <td>
+                                    <input type="number" name="Telephone" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Remarks</label></td>
+                                <td>
+                                    <input type="text" name="Remarks" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                        </table>
+                        <label> <strong>Leadership</strong></label>
+                        <table>
+                            <tr>
+                                <td><label>Club</label></td>
+                                <td>
+                                    <input type="text" name="Club" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Position</label></td>
+                                <td>
+                                    <input type="text" name="Position" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>BeginDate</label></td>
+                                <td>
+                                    <input type="date" name="BeginDate" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>EndDate</label></td>
+                                <td>
+                                    <input type="date" name="EndDate" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Remarks</label></td>
+                                <td>
+                                    <input type="text" name="Remarks1" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                
+                            </tr>
+                        </table>
+                        <br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("RefereeGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

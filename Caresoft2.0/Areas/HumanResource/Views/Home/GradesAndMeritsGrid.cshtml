@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRPerformanceVariable>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.MeritId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MeritName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MeritQuantifiableAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MeritPercentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MeritRemarks)
+        </th>
+        
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeritId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeritName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeritQuantifiableAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeritPercentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeritRemarks)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+

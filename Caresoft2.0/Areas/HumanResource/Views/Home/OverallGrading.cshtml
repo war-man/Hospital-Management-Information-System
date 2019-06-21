@@ -1,0 +1,185 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRAppraisalOverrallGrading>
+@{
+              
+                ViewBag.Title = "Appraisals";
+                ViewBag.showTopMenu = true;
+                ViewBag.WideView = true;
+                Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+@{
+    var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+}
+
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveHRAppraisalOverrallGradingData","Home",new {Area="HumanResource"})">
+                        <label><strong>Data Utilization Utility</strong></label>
+                        <table class="form-class">
+                            <tr>
+                                <td><label>Staff Id</label></td>
+                                <td>
+                                    <input type="number" name="StaffId" class="text-box box-lg " />
+                                </td>
+                                <td><label>Staff Name</label></td>
+                                <td>
+                                    <input type="text" name="StaffName" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="">
+                                    <p>Department Name</p>
+                                </td>
+                                <td>
+                                    <select name="Department" class="text-box box-lg ">
+                                        <option>All</option>
+                                        @foreach (var r in departments)
+                                        {
+                                            <option>@r.DepartmentName</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                    <label>Section</label>
+                                </td>
+                                <td>
+                                    <select name="Section" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Duty Station</label>
+                                </td>
+                                <td>
+                                    <select name="DutyStation" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                                <td>
+                                    <label>Memo's Grade</label>
+                                </td>
+                                <td>
+                                    <select name="MemosGrade" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            
+                        </table>
+                        <label><strong>Training Requirements</strong></label>
+                        <table>
+                            <tr>
+                                <td><label>Course</label></td>
+                                <td>
+                                    <input type="text" name="Course" class="text-box box-lg " />
+                                </td>
+                                <td><label>Description</label></td>
+                                <td>
+                                    <input type="text" name="Description" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Availability</label></td>
+                                <td>
+                                    <input type="text" name="Availability" class="text-box box-lg " />
+                                </td>
+                                <td><label>Cost</label></td>
+                                <td>
+                                    <input type="number" name="Cost" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                            <td><label>Course Duration</label></td>
+                            <td>
+                                <input type="text" name="CourseDuration" class="text-box box-lg " />
+                            </td>
+                            <td><label>Starting Date</label></td>
+                            <td>
+                                <input type="date" name="" class="text-box box-lg " />
+                            </td>
+                            </tr>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Remarks<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                    </td>
+                            </tr>
+                        </table>
+                        <label><strong>Objectives for the coming period</strong></label>
+                        <table>
+                            <tr>
+                                <td><label>Task</label></td>
+                                <td>
+                                    <input type="text" name="Task" class="text-box box-lg " />
+                                </td>
+                                <td><label>Expected KPI</label></td>
+                                <td>
+                                    <input type="text" name="ExpectedKPI" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Remarks<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="Remarks1" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Overall Grading and Comments<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="OverallGradingAndComments" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </table>
+                                <br />
+                                <br />
+                                <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                               </form> 
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("OverallGradingGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

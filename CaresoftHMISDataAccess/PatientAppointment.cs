@@ -24,6 +24,7 @@ namespace CaresoftHMISDataAccess
         public string Explanation { get; set; }
         public int User { get; set; }
         public string AppointmentStatus { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         public virtual OpdRegister OpdRegister { get; set; }
         public virtual PatientAppointment PatientAppointments1 { get; set; }

@@ -1,0 +1,67 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRApplication>
+@{
+               
+                ViewBag.Title = "Interview Decisions ";
+                ViewBag.showTopMenu = true;
+                ViewBag.WideView = true;
+                Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Interview Decisions
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <form id="branches" method="post" action="@Url.Action("SaveInterviewDecisionsData","Home",new {Area="HumanResource"})">
+
+                        <label> <strong>PLEASE REGISTER STARNDARD INTERVIEW DECISIONS HERE</strong></label>
+
+                        <table>
+                            <tr>
+                                <td><label>Interview Decision Id </label></td>
+                                <td>
+                                    <input type="number" name="InterviewDecisionId" class="text-box box-sm " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Interview Decision </label></td>
+                                <td>
+                                    <input type="text" name="InterviewDecision" class="text-box box-sm " style="margin-bottom:3px" />
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+                        <br /><br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+
+                    </form>
+
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("InterviewDecisionsGrid")
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

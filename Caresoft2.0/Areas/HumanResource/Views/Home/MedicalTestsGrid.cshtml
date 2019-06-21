@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRHealthAndSafety>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.TestCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpertContracted)
+        </th>
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TestCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TestDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpertContracted)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

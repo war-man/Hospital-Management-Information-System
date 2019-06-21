@@ -1,0 +1,41 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRManagement>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ManagementCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagementLevel)
+        </th>
+
+
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManagementCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManagementLevel)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

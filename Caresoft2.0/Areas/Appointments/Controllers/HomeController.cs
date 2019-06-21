@@ -69,7 +69,7 @@ namespace Caresoft2._0.Areas.Appointments.Controllers
         {
             if (ModelState.IsValid)
             {
-                patientAppointment.User = (int)Session["UserId"]; 
+                patientAppointment.User = (int)Session["UserId"];
                 patientAppointment.OPD_IPD = db.Patients.FirstOrDefault(e => e.RegNumber.Equals(patientAppointment.RegNumber)).Id;
                 db.PatientAppointments.Add(patientAppointment);
 

@@ -1,0 +1,152 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRJobRequisition>
+@{
+    ViewBag.Title = "Job Requisition Information";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+@{
+    var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+}
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Job Requisition Information
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <form id="branches" method="post" action="@Url.Action("SaveJobRequisitionInforData","Home",new {Area="HumanResource"})">
+
+                        <label> <strong>ENTER THE REQUIRED INFORMATION</strong></label>
+
+                        <table class="table-form">
+                            <tr>
+                                <td><label>Requisition No</label></td>
+                                <td>
+                                    <input type="number" name="RequisitionNo" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td>
+                                    <label>Job Category</label>
+                                </td>
+                                <td>
+                                    <select name="JobCategory" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Casual</option>
+                                        <option>Seasonal</option>
+                                        <option>Permanent</option>
+                                    </select>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Requistion Type</label>
+                                </td>
+                                <td>
+                                    <select name="RequistionType" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Filling</option>
+                                        <option>New Position</option>
+                                        <option>Offer</option>
+                                        <option>Replacement</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label>Position/Title</label>
+                                </td>
+                                <td>
+                                    <select name="PositionOrTitle" class="text-box box-lg">
+                                        <option>Select</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Department Name</label>
+                                </td>
+                                <td>
+                                    <select name="Department" class="text-box box-lg ">
+                                        <option>All</option>
+                                        @foreach (var r in departments)
+                                        {
+                                            <option>@r.DepartmentName</option>
+                                        }
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label>Hiring Authority</label>
+                                </td>
+                                <td>
+                                    <select name="HiringAuthority" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Board Chairman</option>
+                                        <option>Junior Level Management</option>
+                                        <option>MD</option>
+                                        <option>Middle Level Management</option>
+                                        <option>Senior Management</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>RequisitionDate</label></td>
+                                <td>
+                                    <input type="date" name="RequisitionDate" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Date Due</label></td>
+                                <td>
+                                    <input type="date" name="DateDue" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                        </table>
+
+                        <label> <strong>REQUIREMENTS</strong></label>
+                        <table>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name"><strong>Education</strong><span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width: 150%;height:70px;" name="Education" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <label class="info-title col-md-12" for="black_name"><strong>Skills/Experience</strong><span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="SkillsOrExperience" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("JobRequisitionInforGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

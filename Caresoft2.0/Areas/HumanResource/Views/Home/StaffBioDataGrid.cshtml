@@ -1,0 +1,131 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRStaffBioData>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaritalStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NationalIdNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ethnicity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PassportNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nationality)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentResidence)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Height)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NHIFNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NSSFNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpouseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobStatus)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+        <td>Edit</td>
+        <td>Delete</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DOB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaritalStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NationalIdNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ethnicity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PassportNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nationality)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentResidence)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Height)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NHIFNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NSSFNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpouseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobStatus)
+        </td>
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

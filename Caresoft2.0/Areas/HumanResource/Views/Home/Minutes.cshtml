@@ -1,0 +1,108 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRMinutesOfMeeting>
+@{
+
+    ViewBag.Title = "Minutes Of Meetings";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveMinutesData","Home",new {Area="HumanResource"})">
+
+                        <table class="table-form">
+
+                            <tr>
+                                <td><label>Date Of Meeting</label></td>
+                                <td>
+                                    <input type="date" name="DateOfMeeting" class="text-box box-lg" />
+                                </td>
+                                <td><label>Minutes Code</label></td>
+                                <td>
+                                    <input type="number" name="MinutesCode" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td><label>Purpose Of Meeting</label></td>
+                                <td>
+                                    <input type="text" name="PurposeOfMeeting" class="text-box box-lg" />
+                                </td>
+
+                            </tr>
+                            <tr><td><label><strong>Minutes Details</strong></label></td></tr>
+                            <tr>
+                                <td><label>Item No</label></td>
+                                <td>
+                                    <input type="number" name="ItemNo" class="text-box box-lg" />
+                                </td>
+                                <td><label>Resolution</label></td>
+                                <td>
+                                    <input type="text" name="Resolution" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Expected Implementation Date</label></td>
+                                <td>
+                                    <input type="date" name="ExpectedImplementationDate" class="text-box box-lg" />
+                                </td>
+                                <td><label>Ref.No</label></td>
+                                <td>
+                                    <input type="number" name="RefNo" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Remarks<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("MinutesGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

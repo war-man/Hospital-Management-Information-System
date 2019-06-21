@@ -1,0 +1,78 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRExtraMural>
+@{
+
+    ViewBag.Title = "Recreational Facilities";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveRecreationalFacilitiesData","Home",new {Area="HumanResource"})">
+
+                        <label> <strong>PLEASE REGISTER RECREATIONAL FACILITIES HERE </strong></label>
+                        <table class="form-class">
+                            <tr>
+                                <td><label>Facility Id</label></td>
+                                <td>
+                                    <input type="number" name="FacilityId" class="text-box box-lg " />
+                                </td>
+                                <td><label>Facility Name</label></td>
+                                <td>
+                                    <input type="text" name="FacilityName" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Description<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width: 50%;height:70px;" name="FacilityDescription" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+
+                                </td>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Remarks<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width: 50%;height:70px;" name="FacilityRemarks" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </table>
+                                    <br />
+                                    <br />
+                                    <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                               
+                    </form>
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("RecreationalFacilitiesGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

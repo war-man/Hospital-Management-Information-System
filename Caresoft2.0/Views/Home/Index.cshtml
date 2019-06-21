@@ -35,14 +35,40 @@
 
     }*@
 
+@*@using (CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities())
+{
+    var sts = db.KeyValuePairs.FirstOrDefault(k => k.Key_.ToLower().Equals("paymentstatus")).Value;
+
+    if (sts.ToLower() == "notpaid")
+    {
+
+        <tr>
+            <b>
+                <p style="font-size:16" class="cm-strong text-danger text-center">
+                    You have 14 DAYS to reveiw your license payment after which Access will be revoked
+                    <br /> Be adviced some functionalities will become unavailable. Visit <a href="http://softcom.co.ke/"> softcom.co.ke </a>
+                </p>
+            </b>
+        </tr>
+
+    }
+    else
+    {
+
+    }
+
+}*@
+
+
+
 @if ((bool)Session["IsDebugMode"])
 {
-<b>
-    <p style="font-size:16" class="cm-strong text-danger text-center">
-        This is an Evaluation Solution. It is not in anyway supposed  to be used in commercial puposes.
-        <br /> Offenders Will be prosecuted. Visit <a href="http://softcom.co.ke/"> softcom.co.ke </a>
-    </p>
-</b>
+    <b>
+        <p style="font-size:16" class="cm-strong text-danger text-center">
+            This is an Evaluation Solution. It is not in anyway supposed  to be used in commercial puposes.
+            <br /> Offenders Will be prosecuted. Visit <a href="http://softcom.co.ke/"> softcom.co.ke </a>
+        </p>
+    </b>
 }
 
 @if (ChangePasswordRequest)
@@ -96,7 +122,7 @@
                 <p>Histo/Cyto</p>
             </td>
 
-            <td>
+            <td data-href="@Url.Action("Help","EMR")">
                 <img src="~/Content/icons/dashboard/help_desk.png" />
                 <p>Help Desk</p>
             </td>
@@ -141,7 +167,7 @@
                 <p>Finance/Accounting</p>
             </td>
 
-            
+
             <td data-href="PatientModule">
                 <img src="~/Content/icons/dashboard/payroll.png" />
                 <p>Patient Module</p>
@@ -192,10 +218,7 @@
         </tr>
 
         <tr>
-            <td data-href="HR">
-                <img src="~/Content/icons/dashboard/payroll.png" />
-                <p>HR & Payroll</p>
-            </td>
+           
             <td data-href="@Url.Action("AmbulatorIndex","Ambulatory")">
 
                 <img style="border:1px solid #151515; border-radius:7px;" src="~/Content/icons/dashboard/ambulance.png" />
@@ -213,6 +236,12 @@
                 <img src="~/Content/icons/dashboard/housekeeping.png" />
 
                 <p>HouseKeeping</p>
+            </td>
+            <td data-href="@Url.Action("Index","HumanResource")">
+
+                <img src="~/Content/icons/dashboard/payroll.png" />
+
+                <p>HR & Payroll</p>
             </td>
         </tr>
     </table>

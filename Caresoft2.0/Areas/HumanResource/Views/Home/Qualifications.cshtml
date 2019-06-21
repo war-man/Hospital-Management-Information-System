@@ -1,0 +1,116 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRQualification>
+@{
+
+    ViewBag.Title = "Qualifications";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_ApplicantResumeNav.cshtml")
+</div>
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Qualifications
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <form id="tests" method="post" action="@Url.Action("SaveQualificationsData","Home",new {Area="HumanResource"})">
+
+                        <table class="table-form">
+                            <tr>
+                                <td><label>Applicant Id</label></td>
+                                <td>
+                                    <input type="number" name="ApplicantId" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Education Level</label></td>
+                                <td>
+                                    <input type="text" name="EducationLevel" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Qualifications Attained</label></td>
+                                <td>
+                                    <input type="text" name="QualificationsAttained" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Grade Obtained</label></td>
+                                <td>
+                                    <input type="text" name="GradeObtained" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td><label>Institution Attended</label></td>
+                                <td>
+                                    <input type="text" name="InstitutionAttended" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td>
+                                    <label>Graduation Year</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="GraduationYear" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Remarks</label></td>
+                                <td>
+                                    <input type="text" name="Remarks" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                               
+                                <td><label>Date Of Qualification</label></td>
+                                <td>
+                                    <input type="text" name="DateOfQualification" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Institution</label></td>
+                                <td>
+                                    <input type="text" name="Institution" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Title Course</label></td>
+                                <td>
+                                    <input type="text" name="TitleCourse" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Grade</label></td>
+                                <td>
+                                    <input type="text" name="Grade" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Remarks1</label></td>
+                                <td>
+                                    <input type="text" name="Remarks1" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("QualificationGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

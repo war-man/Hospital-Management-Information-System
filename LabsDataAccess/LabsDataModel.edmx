@@ -103,6 +103,7 @@
           <Property Name="Available" Type="bit" Nullable="false" />
           <Property Name="DepartmentRadPath" Type="int" Nullable="false" />
           <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LabTestsResultsOptions">
           <Key>
@@ -112,7 +113,7 @@
           <Property Name="Test" Type="int" Nullable="false" />
           <Property Name="Parameter" Type="int" />
           <Property Name="Type" Type="int" Nullable="false" />
-          <Property Name="Result" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Result" Type="nchar" MaxLength="40" Nullable="false" />
           <Property Name="BranchId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MachineDetails">
@@ -1569,6 +1570,7 @@ warning 6002: The table/view 'CareSoftLabs.dbo.SearchPatientView\' does not have
           <Property Name="Available" Type="Boolean" Nullable="false" />
           <Property Name="DepartmentRadPath" Type="Int32" Nullable="false" />
           <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Department1" Relationship="CareSoftLabsModel.FK_LabTests_Departments" FromRole="LabTest" ToRole="Department" />
           <NavigationProperty Name="Gender" Relationship="CareSoftLabsModel.FK_LabTests_Gender" FromRole="LabTest" ToRole="Gender" />
           <NavigationProperty Name="Headings" Relationship="CareSoftLabsModel.FK_Heading_LabTests" FromRole="LabTest" ToRole="Heading" />
@@ -1593,7 +1595,7 @@ warning 6002: The table/view 'CareSoftLabs.dbo.SearchPatientView\' does not have
           <Property Name="Test" Type="Int32" Nullable="false" />
           <Property Name="Parameter" Type="Int32" />
           <Property Name="Type" Type="Int32" Nullable="false" />
-          <Property Name="Result" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Result" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
           <Property Name="BranchId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="LabOptionHtmlType" Relationship="CareSoftLabsModel.FK_LabTestsResultsOptions_LabOptionHtmlTypes" FromRole="LabTestsResultsOption" ToRole="LabOptionHtmlType" />
           <NavigationProperty Name="LabTest" Relationship="CareSoftLabsModel.FK_LabTestsResultsOptions_LabTests" FromRole="LabTestsResultsOption" ToRole="LabTest" />
@@ -2575,6 +2577,7 @@ warning 6002: The table/view 'CareSoftLabs.dbo.SearchPatientView\' does not have
           <EntitySetMapping Name="LabTests">
             <EntityTypeMapping TypeName="CareSoftLabsModel.LabTest">
               <MappingFragment StoreEntitySet="LabTests">
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="DepartmentRadPath" ColumnName="DepartmentRadPath" />
                 <ScalarProperty Name="Available" ColumnName="Available" />

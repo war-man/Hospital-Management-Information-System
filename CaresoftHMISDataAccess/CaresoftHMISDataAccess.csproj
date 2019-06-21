@@ -150,6 +150,9 @@
     <Compile Include="Branch.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BranchMaster.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CaresoftHMISDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -225,6 +228,9 @@
     <Compile Include="DoctorNote.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DoctorsLeave.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DoctorsSchedule.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -232,6 +238,9 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EWallet.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FallRisk.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FamilyHealthOverview.cs">
@@ -247,6 +256,9 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FieldMeta.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FinalDischarge.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FinanceBank.cs">
@@ -285,6 +297,273 @@
     <Compile Include="GroupRight.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="HouseKeeping.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRAbsentism.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRAddress.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRAllocationOfRole.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRApplicantQualification.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRApplication.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRApplicationForm.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRAppraisalOverrallGrading.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRAppraisalRoleAndObjective.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRAttendanceSheet.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRBench.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRBenefitsProcessing.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRBioData.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRCheckOffGuaranteering.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRClaimManagement.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRConfirmation.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRContract.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRContractManagement.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRContractTermination.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRContractTerminationCheckOff.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRContractTerminationCheckOut.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRContractTerminationReason.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRCountry.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRDemotion.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRDepartment.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRDepartmentalLayout.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRDisplinaryAction.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRDistrict.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRDutyStation.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HREmployeeSetup.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HREmploymentBenefit.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRExtraCurricular.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRExtraMural.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRFileDetail.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRFileInformation.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRGeoLocation.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRGrievanceResolution.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRHealthAndSafety.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRHealthAndSafetyPromotion.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRIncentive.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRInjury.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRInsuranceCover.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRInterviewSetUp.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRJobCategory.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRJobDesc.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRJobDesignation.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRJobFamily.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRJobFunction.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRJobRequisition.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRJobSetUp.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRJobStatu.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRLeaveScheduling.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRLeaveType.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRManagement.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRMeetingVenue.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRMemo.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRMinutesOfMeeting.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HROperatorCheckOff.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRPerformanceVariable.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRPolicy.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRPosting.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRPromotion.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRQualification.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRRecruitmentProcessing.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRReferee.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRResourceAccessControl.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRResourseAccess.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRRole.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRSaccoAndStaffLoan.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRSection.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRShiftScheduling.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRStaffBioData.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRStaffEducationQualification.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRStaffLoan.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRStaffProfessionalQualification.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRStaffReferee.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRStaffWorkExperience.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRStatutoryBody.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRSystemProcedure.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRTaskAndAdministration.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRTest.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRTown.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRTraining.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRTrainingProgramme.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRUnion.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRUnionDeregistration.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRUnionDetail.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRUnionRegistration.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRWorkExperience.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="HSBed.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -298,6 +577,9 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HSWardCategory.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HTCServiceSummary.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Hypermobility.cs">
@@ -333,6 +615,12 @@
     <Compile Include="InsurancePrice.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="IntakeInputOutput.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceBill.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="InvoiceServiceAllocation.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -343,6 +631,9 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemName.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JobStatu.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="JPayAutoPayment.cs">
@@ -390,6 +681,9 @@
     <Compile Include="MasterPostNatalTest.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MCHAdmissionExamination.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MCHAntenatalProfile.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -411,6 +705,9 @@
     <Compile Include="MCHFamilyPlaning.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MCHFirstDelivery.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MCHMaternalProfile.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -421,6 +718,9 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MCHPhysicalExamination.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MCHPostNatalService.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MCHPresentPregnancy.cs">
@@ -468,10 +768,25 @@
     <Compile Include="MorgColdroom.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="NurseDrugRequistion.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="NurseNote.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="NurseRemark.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NurseStation.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NurseStationVoucher.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="NurseTheatreRequest.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NurseTurningChart.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="NutritionAdultRegister.cs">
@@ -481,6 +796,9 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="NutritionDietchart.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NutritionEntry.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="NutritionScreeningDetail.cs">
@@ -513,6 +831,9 @@
     <Compile Include="PatientClaim.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PatientDetail.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PatientDiagnosi.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -528,6 +849,12 @@
     <Compile Include="PaymentMode.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PedriaticAdmission.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PedriaticAdmissionRecord.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Permission.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -536,6 +863,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Questionnaire.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Questionnaire1.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="QuestionnaireMultichoice.cs">
@@ -676,7 +1006,13 @@
     <Compile Include="Toxicity.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Triage.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="UniversalDeptIdentifier.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UploadedFile.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
@@ -685,7 +1021,16 @@
     <Compile Include="UserRole.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="View_1.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_2.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="VitalRanx.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_ServiceChatter.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Waiver.cs">

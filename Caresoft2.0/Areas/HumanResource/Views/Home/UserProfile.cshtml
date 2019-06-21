@@ -1,0 +1,115 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRSystemProcedure>
+@{
+
+    ViewBag.Title = "User Manager";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+@{
+    var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+}
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveUserProfileData","Home",new {Area="HumanResource"})">
+
+                        <label> <strong>CREATE USER</strong></label>
+                        <table class="form-class">
+                            <tr>
+                                <td><label>UserName</label></td>
+                                <td>
+                                    <input type="number" name="UserName" class="text-box box-lg " />
+                                </td>
+                                <td class="">
+                                    <p>Department</p>
+                                </td>
+                                <td>
+                                    <select name="Department" class="text-box box-lg ">
+                                        <option>All</option>
+                                        @foreach (var r in departments)
+                                        {
+                                            <option>@r.DepartmentName</option>
+                                        }
+                                    </select>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>First Name</label></td>
+                                <td>
+                                    <input type="text" name="FirstName" class="text-box box-lg " />
+                                </td>
+                                <td><label>Initial Password</label></td>
+                                <td>
+                                    <input type="text" name="InitialPassword" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Last Name</label></td>
+                                <td>
+                                    <input type="text" name="LastName" class="text-box box-lg " />
+                                </td>
+                                <td><label>Confirm Password</label></td>
+                                <td>
+                                    <input type="text" name="ConfirmPassword" class="text-box box-lg " />
+                                </td>
+                            </tr>
+
+                        </table>
+                        <br />
+                        <br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Create" />
+
+
+
+                        <label> <strong>REMOVE USER</strong></label>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label>UserName</label>
+                                </td>
+                                <td>
+                                    <select name="UserName" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                        </table>
+                        <br />
+                        <br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Remove" />
+
+                    </form>
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("UserProfileGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

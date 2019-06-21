@@ -1,0 +1,111 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRUnionDetail>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.UnionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnionType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnionOffices)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnionCertificateId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Geographical)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OfficeBearers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Chapter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnionRegNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegistrationFee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubscriptionFee)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.UnionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnionType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnionOffices)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnionCertificateId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Geographical)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OfficeBearers)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Chapter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnionRegNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegistrationFee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubscriptionFee)
+        </td>
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

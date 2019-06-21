@@ -1,0 +1,83 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRTest>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Objective)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfTest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Supervisor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Scores)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalWeightedScore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterviewDecisison)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+        <td>Edit</td>
+        <td>Delete</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Objective)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfTest)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supervisor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Scores)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalWeightedScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterviewDecisison)
+        </td>
+
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+

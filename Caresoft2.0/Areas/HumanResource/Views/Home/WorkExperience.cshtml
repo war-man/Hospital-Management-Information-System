@@ -1,0 +1,89 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRWorkExperience>
+@{
+
+    ViewBag.Title = "Work Experience";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_ApplicantResumeNav.cshtml")
+</div>
+
+<div class="col-md-8">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                Work Experience
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <form id="tests" method="post" action="@Url.Action("SaveWorkExperienceData","Home",new {Area="HumanResource"})">
+
+                        <table class="table-form">
+                            <tr>
+                                <td><label>Applicant Id</label></td>
+                                <td>
+                                    <input type="number" name="ApplicantId" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                
+                            </tr>
+                           
+                            <tr>
+                                <td><label>Begin Date</label></td>
+                                <td>
+                                    <input type="date" name="BeginDate" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>End Date</label></td>
+                                <td>
+                                    <input type="date" name="EndDate" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Employer</label></td>
+                                <td>
+                                    <input type="text" name="Employer" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Position</label></td>
+                                <td>
+                                    <input type="text" name="Position" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Salary</label></td>
+                                <td>
+                                    <input type="number" name="Salary" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                                <td><label>Remarks</label></td>
+                                <td>
+                                    <input type="text" name="Remarks" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br />
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("WorkExperienceGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,103 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRQualification>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicantId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EducationLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QualificationsAttained)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GradeObtained)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InstitutionAttended)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GraduationYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfQualification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Institution)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TitleCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks1)
+        </th>
+       
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+                <td>Edit</td>
+                <td>Delete</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicantId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EducationLevel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QualificationsAttained)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GradeObtained)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InstitutionAttended)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GraduationYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfQualification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Institution)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TitleCourse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks1)
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+

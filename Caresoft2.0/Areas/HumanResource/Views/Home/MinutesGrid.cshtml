@@ -1,0 +1,79 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRMinutesOfMeeting>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfMeeting)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinutesCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PurposeOfMeeting)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Resolution)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedImplementationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RefNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfMeeting)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinutesCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurposeOfMeeting)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Resolution)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedImplementationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RefNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
