@@ -1,0 +1,136 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRStaffLoanProcessingAndRepayment>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.LoanApplicationNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentMode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApprovedAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedPaymentPeriod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpendInstallmentsNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmountPerInstallment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterestPerMonth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeadlineDatesOfRepayment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PenaltiesForDefault)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RepaymentMode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InstalmentNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Interest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Balances)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccumulatedTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TermsAndConditions)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.LoanApplicationNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentMode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovedAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedPaymentPeriod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpendInstallmentsNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountPerInstallment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterestPerMonth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeadlineDatesOfRepayment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PenaltiesForDefault)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RepaymentMode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstalmentNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Interest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balances)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccumulatedTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TermsAndConditions)
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

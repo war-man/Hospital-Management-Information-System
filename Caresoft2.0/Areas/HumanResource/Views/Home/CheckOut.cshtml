@@ -1,0 +1,126 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRContractTerminationCheckOut>
+@{
+
+    ViewBag.Title = "Check Out";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveCheckOutData","Home",new {Area="HumanResource"})">
+                      <label><strong>Enter The Required Info</strong></label>
+                        <table class="table-form">
+
+                            <tr>
+                                <td><label>Date</label></td>
+                                <td>
+                                    <input type="date" name="Date" class="text-box box-lg" />
+                                </td>
+                                <td><label>Station</label></td>
+                                <td>
+                                    <input type="text" name="Station" class="text-box box-lg" />
+                                </td>
+                                <td>
+                                    <label>Received By</label>
+                                </td>
+                                <td>
+                                    <select name="ReceivedBy" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                     </table>
+                        <label><strong>Enter Details Of Items Received</strong></label>
+                        <table>
+                            <tr>
+                                <td><label>Item No</label></td>
+                                <td>
+                                    <input type="number" name="ItemNo" class="text-box box-lg" />
+                                </td>
+                                <td><label>Particulars</label></td>
+                                <td>
+                                    <input type="text" name="Particulars" class="text-box box-lg" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Quantity</label></td>
+                                <td>
+                                    <input type="number" name="Quantity" class="text-box box-lg" />
+                                </td>
+                                <td><label>Model No</label></td>
+                                <td>
+                                    <input type="number" name="ModelNo" class="text-box box-lg" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Make</label></td>
+                                <td>
+                                    <input type="text" name="Make" class="text-box box-lg" />
+                                </td>
+                                <td><label>Serial No</label></td>
+                                <td>
+                                    <input type="number" name="SerialNo" class="text-box box-lg" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Value Of Degradation</label></td>
+                                <td>
+                                    <input type="number" name="ValueOfDegradation" class="text-box box-lg" />
+                                </td>
+                                <td><label>General Status</label></td>
+                                <td>
+                                    <input type="text" name="GeneralStatus" class="text-box box-lg" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Total Amount Of Degradation</label></td>
+                                <td>
+                                    <input type="number" name="TotalAmountOfDegradation" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("CheckOutGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

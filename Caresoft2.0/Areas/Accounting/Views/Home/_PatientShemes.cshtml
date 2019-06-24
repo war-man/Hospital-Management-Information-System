@@ -1,0 +1,80 @@
+﻿
+@{
+
+
+    var db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+    var b = db.BillPayments.ToList();
+
+
+
+}
+<style>
+    #test {
+        color: olivedrab;
+        text-size-adjust:200%
+
+    }
+</style>
+
+
+@model  IEnumerable<CaresoftHMISDataAccess.BillPayment>
+<div align="right">
+
+    Total: <div id="test">@ViewBag.total</div>
+
+</div>
+
+<table id="searchTable" class="table table-data-pathology table-responsive  table-condensed">
+   
+
+ 
+    <tr>
+        <th></th>
+
+        <th>
+            Voucher Number
+        </th>
+        <th>
+            Amount
+        </th>
+        <th>
+            Scheme Name
+
+        </th>
+
+    </tr>
+    <tbody class="bg-white">
+
+        @foreach (var item in Model)
+        {
+            //var opd = from q in db.OpdRegisters where (q.TariffId == 1) select q.TariffId;
+
+            // if (db.OpdRegisters.Where(e => e.Id == item.OPDNo).Where(e => e.TariffId == 1).FirstOrDefault())
+            // {
+            if (item.OPDNo != null)
+            {
+                if (item.OpdRegister.TariffId != 1)
+                {
+                    <tr>
+                        <td></td>
+                        <td>
+                            @item.Id
+                        </td>
+                        <td>
+                            @item.AwardedAmount
+                        </td>
+                        <td>
+                            @item.OpdRegister.Tariff.TariffName
+                        </td>
+
+                    </tr>
+
+                }
+            }
+        }
+
+
+
+    </tbody>
+
+</table>

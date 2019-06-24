@@ -519,6 +519,9 @@
     <Compile Include="HRStaffLoan.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="HRStaffLoanProcessingAndRepayment.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="HRStaffProfessionalQualification.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>

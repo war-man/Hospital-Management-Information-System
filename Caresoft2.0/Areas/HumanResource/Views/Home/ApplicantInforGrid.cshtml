@@ -1,0 +1,117 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRStaffLoan>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateApplied)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeOfLoan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmountAppliedFor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnnualSalary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnnualGrossNetSalary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherLoanBalances)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gurantors)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeOfCollateral)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Particulars)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Serial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.StaffId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateApplied)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOfLoan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountAppliedFor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnnualSalary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnnualGrossNetSalary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OtherLoanBalances)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gurantors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOfCollateral)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Particulars)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Serial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

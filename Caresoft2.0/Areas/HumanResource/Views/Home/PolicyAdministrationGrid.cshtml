@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRPolicy>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.PolicyNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MatureDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PolicyType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsuranceAgent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffAccesingTheCover)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterventionDate)
+        </th>
+       
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PolicyNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MatureDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PolicyType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InsuranceAgent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffAccesingTheCover)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InterventionDate)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

@@ -26,9 +26,8 @@
                 <div class="col-sm-12">
 
                     <form id="country" method="post" action="@Url.Action("SaveGrievancesData","Home",new {Area="HumanResource"})">
-
-                        <table class="table-form">
-                            <tr><td><label><strong>Enter The Required Details</strong></label></td></tr>
+                        <label><strong>Enter The Required Details</strong></label>
+                        <table>
                             <tr>
                                 <td><label>Grievance Id</label></td>
                                 <td>
@@ -83,17 +82,22 @@
                                 </td>
 
                             </tr>
-                            <tr><td><label><strong>Settlement</strong></label></td></tr>
+                        </table>
+                        <label><strong>Settlement</strong></label>
+                        <table class="table-form">
+
                             <tr>
                                 <td class="form-group">
-                                    <label class="info-title col-md-12" for="black_name">Grievance Description<span><font color="black"><b></b></font></span></label>
+                                    <label class="info-title col-md-12" for="black_name"><strong>Grievance Description</strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
-                                    <textarea style="width:150%;height:70px;" name="GrievanceDescription" class="text-box unicase-form-control text-input" id="extension_number"
+                                    <textarea style="width:300px;height:70px;" name="GrievanceDescription" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
                                         
                                     </textarea>
                                 </td>
                             </tr>
+                            </table>
+                        <table>
                             <tr>
                                 <td><label>Settlement Code</label></td>
                                 <td>
@@ -104,11 +108,13 @@
                                     <input type="date" name="DateSettled" class="text-box box-lg" />
                                 </td>
                             </tr>
+                            </table>
+                        <table>
                             <tr>
                                 <td class="form-group">
-                                    <label class="info-title col-md-12" for="black_name">Settlement Description<span><font color="black"><b></b></font></span></label>
+                                    <label class="info-title col-md-12" for="black_name"><strong>Settlement Description</strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
-                                    <textarea style="width:150%;height:70px;" name="SettlementDescription" class="text-box unicase-form-control text-input" id="extension_number"
+                                    <textarea style="width:300px;height:70px;" name="SettlementDescription" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
                                         
                                     </textarea>

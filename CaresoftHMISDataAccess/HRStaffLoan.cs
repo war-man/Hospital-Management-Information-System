@@ -32,7 +32,6 @@ namespace CaresoftHMISDataAccess
         public Nullable<double> Value { get; set; }
         public Nullable<int> Serial { get; set; }
         public string Model { get; set; }
-        public string Value1 { get; set; }
         public string Remarks { get; set; }
     }
 }

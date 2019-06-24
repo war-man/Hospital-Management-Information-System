@@ -2737,5 +2737,276 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             return RedirectToAction("Grievances");
         }
         #endregion
+        #region Staff Loan Applicant Information
+        public ActionResult ApplicantInformation()
+        {
+           
+            ViewBag.HRStaffLoan = db.HRStaffLoans.ToList();
+            var data = db.HRStaffLoans.ToList();
+
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SaveApplicantInformationData(HRStaffLoan data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+
+
+            db.HRStaffLoans.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("ApplicantInformation");
+        }
+        #endregion
+        #region Processing & Repayment
+        public ActionResult ProcessingAndRepayment()
+        {
+
+            ViewBag.HRStaffLoanProcessingAndRepayment = db.HRStaffLoanProcessingAndRepayments.ToList();
+            var data = db.HRStaffLoanProcessingAndRepayments.ToList();
+
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SaveProcessingAndRepaymentData(HRStaffLoanProcessingAndRepayment data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+
+
+            db.HRStaffLoanProcessingAndRepayments.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("ProcessingAndRepayment");
+        }
+        #endregion
+        #region Policy Administration Operations
+        public ActionResult PolicyAdministration()
+        {
+            
+            ViewBag.HHRPolicy = db.HRPolicies.ToList();
+            var data = db.HRPolicies.ToList();
+
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SavePolicyAdministrationData(HRPolicy data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+
+
+            db.HRPolicies.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("PolicyAdministration");
+        }
+        #endregion
+        #region Benefits Processing
+        public ActionResult Benefits()
+        {
+           
+            ViewBag.HRBenefitsProcessing = db.HRBenefitsProcessings.ToList();
+            var data = db.HRBenefitsProcessings.ToList();
+
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SaveBenefitsData(HRBenefitsProcessing data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+
+
+            db.HRBenefitsProcessings.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("Benefits");
+        }
+        #endregion
+        #region Incentives
+        public ActionResult DepIncentives()
+        {
+
+            var departments = db.Departments.Where(e => e.DepartmentName != null).ToList();
+
+            return View(departments);
+        }
+        public ActionResult Incentive()
+        {
+            ViewBag.Departments = db.Departments.ToList();
+            ViewBag.HRIncentive = db.HRIncentives.ToList();
+            var data = db.HRIncentives.ToList();
+
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SaveIncentiveData(HRIncentive data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+
+
+            db.HRIncentives.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("Incentive");
+        }
+        #endregion
+        #region Contract Termination Reason
+        public ActionResult Reason()
+        {
+            
+            ViewBag.HRContractTerminationReason = db.HRContractTerminationReasons.ToList();
+            var data = db.HRContractTerminationReasons.ToList();
+
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SaveReasonData(HRContractTerminationReason data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+
+
+            db.HRContractTerminationReasons.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("Reason");
+        }
+        #endregion
+        #region Contract Termination CheckOff
+        public ActionResult CheckOff()
+        {
+
+            ViewBag.HRContractTerminationCheckOff = db.HRContractTerminationCheckOffs.ToList();
+            var data = db.HRContractTerminationCheckOffs.ToList();
+
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SaveCheckOffData(HRContractTerminationCheckOff data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+
+
+            db.HRContractTerminationCheckOffs.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("CheckOff");
+        }
+        #endregion
+        #region Contract Termination Checkout
+        public ActionResult CheckOut()
+        {
+
+            ViewBag.HRContractTerminationCheckOut = db.HRContractTerminationCheckOuts.ToList();
+            var data = db.HRContractTerminationCheckOuts.ToList();
+
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SaveCheckOutData(HRContractTerminationCheckOut data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+
+
+            db.HRContractTerminationCheckOuts.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("CheckOut");
+        }
+        #endregion
+        #region Operator Checkoff System
+        public ActionResult Operator()
+        {
+            
+            ViewBag.HROperatorCheckOff = db.HROperatorCheckOffs.ToList();
+            var data = db.HROperatorCheckOffs.ToList();
+
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SaveOperatorData(HROperatorCheckOff data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+
+
+            db.HROperatorCheckOffs.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("Operator");
+        }
+        #endregion
+        #region Check off Guaranteering
+        public ActionResult Guaranteering()
+        {
+
+            ViewBag.HRCheckOffGuaranteering = db.HRCheckOffGuaranteerings.ToList();
+            var data = db.HRCheckOffGuaranteerings.ToList();
+
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SaveGuaranteeringData(HRCheckOffGuaranteering data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+
+
+            db.HRCheckOffGuaranteerings.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("Guaranteering");
+        }
+        #endregion
+        #region Claim Management
+        public ActionResult ClaimManagement()
+        {
+           
+            ViewBag.HRClaimManagement = db.HRClaimManagements.ToList();
+            var data = db.HRClaimManagements.ToList();
+
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SaveClaimManagementData(HRClaimManagement data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+
+
+            db.HRClaimManagements.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("ClaimManagement");
+        }
+        #endregion
     }
 }

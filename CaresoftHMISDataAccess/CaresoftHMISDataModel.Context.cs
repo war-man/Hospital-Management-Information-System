@@ -161,6 +161,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<HRStaffBioData> HRStaffBioDatas { get; set; }
         public virtual DbSet<HRStaffEducationQualification> HRStaffEducationQualifications { get; set; }
         public virtual DbSet<HRStaffLoan> HRStaffLoans { get; set; }
+        public virtual DbSet<HRStaffLoanProcessingAndRepayment> HRStaffLoanProcessingAndRepayments { get; set; }
         public virtual DbSet<HRStaffProfessionalQualification> HRStaffProfessionalQualifications { get; set; }
         public virtual DbSet<HRStaffReferee> HRStaffReferees { get; set; }
         public virtual DbSet<HRStaffWorkExperience> HRStaffWorkExperiences { get; set; }

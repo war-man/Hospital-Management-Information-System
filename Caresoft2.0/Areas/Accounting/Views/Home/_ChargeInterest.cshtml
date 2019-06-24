@@ -1,0 +1,215 @@
+﻿
+@using PagedList.Mvc;
+
+
+@model PagedList.IPagedList<CaresoftHMISDataAccess.CreditTransfer>
+
+<table class="table-data-pathology table-condensed " width="100%">
+    <thead class="bg-primary">
+        <tr>
+            <th>Payer</th>
+            <th>Account No</th>
+            <th>Scheme Name</th>
+            <th>DateAdded</th>
+            <th>Amount</th>
+            <th>Calc Intetest</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody style="background:white">
+
+        @{
+            CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+            var invoice = db.CreditTransfers.FirstOrDefault().Id;
+
+
+        }
+
+        @if (invoice > 0)
+        {
+            foreach (var item in Model)
+            {
+                if (item.Amount > 0)
+                {
+        <tr @*style="background-color:hotpink"*@>
+            <td>
+                @item.Payer
+            </td>
+
+
+            <td>
+                @item.AccountNo
+            </td>
+            <td>
+                @item.SchemeName
+            </td>
+            <td>
+                @item.DateAdded.ToString("dd-MMM-yyyy")
+            </td>
+
+            <td>
+                Ksh. @item.Amount
+                <input hidden value="@item.Id" id="teeest" />
+            </td>
+            <td>
+                <div  class="class=" panel panel-primary caresoft-panel">
+                    <a  class="call-modal-form btn btn-sm btn-primary" href="@Url.Action("CalculateInterest", "/Home", new {   id = item.Id })"
+                            data-callback="test">
+                        Calc Interest
+
+                    </a>
+
+                </div>
+
+                @*<div data-callback="test">
+
+
+            @Ajax.ActionLink("Calc Interest", "CalculateInterest", "/Home", new { id = item.Id },
+                    new AjaxOptions {
+                        LoadingElementId = "loadingElement",
+                        UpdateTargetId = "UniversalModalView",
+                        OnSuccess = "$('#UniversalModal').modal('show');",
+                        HttpMethod = "GET",
+
+
+
+
+
+            }, new { @class = "call-modal-form btn btn-xs btn-primary" })
+
+
+        </div>*@
+            </td>
+
+
+
+
+        </tr>
+
+                }
+
+
+            }
+
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" style="text-align:center;font-style:italic;">
+                    No data to display
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+
+
+
+@section scripts{
+
+    <script>
+
+        function test() {
+        function calcAmountInt() {
+            var Int = 0;
+            var r = parseFloat($("#Rate").val());
+            var t = parseFloat($("#Time").val());
+            var a = parseFloat($("#Amount").val());
+            if (r > 0 && t > 0) {
+                Int = ((r / 100) * t) * a;
+            }
+
+            $("#TargetInt").val(Int.toFixed(2));
+        }
+
+        $("#Rate").change(function () {
+            calcAmountInt();
+        });
+
+        $("#Rate").keyup(function () {
+            calcAmountInt();
+        });
+
+        $("#Time").change(function () {
+            calcAmountInt();
+        });
+
+        $("#Time").keyup(function () {
+            calcAmountInt();
+        });
+        $("#Amount").change(function () {
+            calcAmountInt();
+        });
+
+        $("#Amount").keyup(function () {
+            calcAmountInt();
+        });
+
+
+        }
+
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

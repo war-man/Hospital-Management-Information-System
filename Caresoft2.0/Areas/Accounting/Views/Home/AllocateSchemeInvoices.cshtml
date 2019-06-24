@@ -1,12 +1,13 @@
-﻿
+﻿@model  IEnumerable< CaresoftHMISDataAccess.BillPayment>
 @{
     ViewBag.Title = "AllocateSchemeInvoices";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Accounting/Views/Shared/_Layout.cshtml";
     ViewBag.ShowTopMenu = true;
 
 }
 
 <div class="col-md-2">
+    @Html.Partial("~/Areas/Accounting/Views/Shared/CreditorsOperationsLeftPanel.cshtml")
 </div>
 <div class="col-md-8">
 
@@ -16,136 +17,97 @@
                 Allocate Scheme Invoices
             </div>
             <div class="panel-body">
-                <form>
-                    <div class="col-md-12">
-                        <table>
-                            <tr>
-                                <td>
-                                    <label style="">
-                                        Scheme:
-                                    </label>
-                                </td>
-                                <td>
-                                    <select name="Scheme" class="text-box margin-top-bottom-2" style="width:100%">
-                                        <option>--Select--</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    &nbsp; Scheme  Manager:
-                                </td>
-                                <td>
-                                    <input name="SchemeManger" class="text-box margin-top-bottom-2" style="width:100%" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>
-                                        Period From:
-                                    </label>
-                                </td>
-                                <td>
-                                    <input type="date" name="PeriodFrom" class="text-box margin-top-bottom-2" style="width:100%" />
-                                </td>
-                                <td>
-                                    &nbsp; Period To:
-                                </td>
-                                <td>
-                                    <input type="date" name="PeriodTo" class="text-box margin-top-bottom-2" style="width:100%" />
-                                </td>
-                                <td>&nbsp;</td>
-                                <td>
-                                    <input type="checkbox" value="ComfirmPeriod" /> Confirm Period
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Receipt No:
-                                </td>
-                                <td>
-                                    <input type="number" name="ReceiptNo" class="text-box margin-top-bottom-2" style="width:100%" />
-                                </td>
-                                <td>
-                                    &nbsp; Account No:
-                                </td>
-                                <td>
-                                    <input type="number" name="AccNo" class="text-box margin-top-bottom-2" style="width:100%" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    ChequeNo:
-                                </td>
-                                <td>
-                                    <input type="number" name="ChequeNo" class="text-box margin-top-bottom-2" style="width:100%" />
-                                </td>
-                                <td>
-                                    &nbsp; Cheque Allocatable Amount:
-                                </td>
-                                <td>
-                                    <input type="number" name="ChequeAmount" class="text-box margin-top-bottom-2" style="width:100%" />
-                                </td>
-                                <td>
-                                    &nbsp; Cheque Date:
-                                </td>
-                                <td>
-                                    <input type="date" name="ChequeDate" class="text-box margin-top-bottom-2" style="width:100%" />
-                                </td>
-                            </tr>
-                        </table>
+                <form id="family-planning" method="post">
 
-                    </div>
                     &nbsp;
                     <div class="col-md-12">
-                        <table class="table table-data-pathology table-condensed">
+                        <table class="table-form">
                             <tr>
-                                <th>Date</th>
-                                <th>Inv No</th>
-                                <th>Patient No</th>
-                                <th>Inv Amount</th>
-                                <th>Amount to Allocate</th>
-                                <th>Balance</th>
-                                <th>Allocate</th>
-                            </tr>
-                            <tbody style="background-color: white">
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <input type="checkbox" name="Allocate" value="Allocate" style="width:100%"/>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-12">
-                        <table>
-                            <tr>
+                                <td><label>From Date</label></td>
                                 <td>
-                                    Allocatale Balance:
+                                    <input type="date" class="text-box box-lg" />
                                 </td>
+                                <td><label>To Date</label></td>
                                 <td>
-                                    <input type="number" name="AllocatableBalance" class="text-box margin-top-bottom-2" style="width:100%" />
-                                </td>
-                                <td>
-                                    &nbsp; Allocated Amount:
-                                </td>
-                                <td>
-                                    <input type="number" name="AllocateAmount" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    <input type="date" class="text-box box-lg" />
                                 </td>
                             </tr>
+                            <tr>
+                                <td><label>Voucher Number</label></td>
+                                <td>
+                                    <input id="Service" onkeyup="searchFunction($(this))" type="text" class="text-box box-lg" />
+                                </td>
+                                <td><label>Amount</label></td>
+                                <td>
+                                    <input id="Barcode" onkeyup="searchFunction($(this))" type="text" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Scheme Name</label></td>
+                                <td>
+                                    <input id="RegNumber" onkeyup="searchFunction($(this))" type="text" class="text-box box-lg" />
+                                </td>
+
+                            </tr>
+
                         </table>
+                       
+                        <div align="right">
+                            <a class="btn btn-sm btn-primary" href="@Url.Action("SchemeReport","/Home", Model)">Report</a>
+                        </div>
                     </div>
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Allocate</button>
-                        <button type="reset" class="btn btn-default margin-top-bottom-2">Clear</button>
-                    </div>
+
+
                 </form>
+                
+
+                <div id="infusionList">
+                    @Html.Partial("~/Areas/Accounting/Views/Home/_PatientShemes.cshtml", Model)
+                </div>
+
             </div>
         </div>
     </div>
 </div>
 
+@section scripts{
+    
+<script>
+
+
+        function searchFunction(item) {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = item;
+            filter = input.val().toUpperCase();
+            table = document.getElementById("searchTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+
+                if (input.attr('id') == 'BarCode') {
+                    //td = tr[i].getElementsByTagName("td")[1];
+                } else if (input.attr('id') == 'Name') {
+                    td = tr[i].getElementsByTagName("td")[5];
+                } else if (input.attr('id') == 'RegNumber') {
+                    td = tr[i].getElementsByTagName("td")[3];
+                }
+                else if (input.attr('id') == 'Sevice') {
+                    td = tr[i].getElementsByTagName("td")[1];
+                }
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().trim().indexOf(filter.trim()) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+</script>
+    
+    }

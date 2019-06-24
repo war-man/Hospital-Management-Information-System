@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.BillService>
+
+<table id="searchTable" class="table table-data-pathology table-responsive  table-condensed">
+    <tr>
+        <th></th>
+        <th>
+            Service
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Commission
+        </th>
+        <th>
+            Doctor
+        </th>
+    </tr>
+    <tbody class="bg-white">
+
+        @{
+            CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+
+        }
+        @foreach (var item in db.BillServices)
+        {
+            <tr>
+                <td></td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quatity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorFee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Employee.FName)
+                    @Html.DisplayFor(modelItem => item.User.Employee.OtherName)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>

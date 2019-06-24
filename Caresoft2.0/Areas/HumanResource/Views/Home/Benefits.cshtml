@@ -1,0 +1,203 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRBenefitsProcessing>
+@{
+       
+                ViewBag.Title = "Benefits Processing";
+                ViewBag.showTopMenu = true;
+                ViewBag.WideView = true;
+                Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveBenefitsData","Home",new {Area="HumanResource"})">
+
+                        <table class="table-form">
+
+                            <tr>
+                                <td><label>Staff Id</label></td>
+                                <td>
+                                    <input type="number" name="StaffId" class="text-box box-lg" />
+                                </td>
+                                <td><label>Benefit Id</label></td>
+                                <td>
+                                    <input type="number" name="BenefitId" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>EligibilityStatus</label>
+                                </td>
+                                <td>
+                                    <select name="EligibilityStatus" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Eligible</option>
+                                        <option>Not Eligible</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label>Insurance Policy</label>
+                                </td>
+                                <td>
+                                    <select name="InsurancePolicy" class="text-box box-lg">
+                                        <option>Select</option>
+                                        
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Trust Fund</label>
+                                </td>
+                                <td>
+                                    <select name="TrustFund" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                                <td><label>Tax Amount</label></td>
+                                <td>
+                                    <input type="number" name="TaxAmount" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Amount Due</label></td>
+                                <td>
+                                    <input type="number" name="AmountDue" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                        </table>
+                        <label><strong>BENEFICIARIES</strong></label>
+                        <table>
+                            <tr>
+                                <td><label>Beneficiary Id</label></td>
+                                <td>
+                                    <input type="number" name="BeneficiaryId" class="text-box box-lg" />
+                                </td>
+                                <td><label>Beneficiary Name</label></td>
+                                <td>
+                                    <input type="text" name="BeneficiaryName" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Relationship</label></td>
+                                <td>
+                                    <input type="text" name="Relationship" class="text-box box-lg" />
+                                </td>
+                                <td><label>% Owing</label></td>
+                                <td>
+                                    <input type="number" name="PercentageOwing" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Remarks</label></td>
+                                <td>
+                                    <input type="text" name="Remarks" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Payer</label></td>
+                                <td>
+                                    <input type="text" name="Payer" class="text-box box-lg" />
+                                </td>
+                                <td><label>Broker</label></td>
+                                <td>
+                                    <input type="text" name="Broker" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                        </table>
+                        <label><strong>DEDUCTIONS</strong></label>
+                        <table>
+                            <tr>
+                                <td><label>Item No</label></td>
+                                <td>
+                                    <input type="number" name="ItemNo" class="text-box box-lg" />
+                                </td>
+                                <td><label>Particulars</label></td>
+                                <td>
+                                    <input type="text" name="Particulars" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Amount</label></td>
+                                <td>
+                                    <input type="number" name="Amount" class="text-box box-lg" />
+                                </td>
+                                <td><label>Remarks</label></td>
+                                <td>
+                                    <input type="text" name="Remarks1" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Total Deductions</label></td>
+                                <td>
+                                    <input type="number" name="TotalDeductions" class="text-box box-lg" />
+                                </td>
+                                <td><label>Employers Contribution</label></td>
+                                <td>
+                                    <input type="text" name="EmployersContribution" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>BenefitSalary</label></td>
+                                <td>
+                                    <input type="number" name="BenefitSalary" class="text-box box-lg" />
+                                </td>
+                                <td>
+                                    <label>Payment Mode</label>
+                                </td>
+                                <td>
+                                    <select name="PaymentMode" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Cash</option>
+                                        <option>Cheque</option>
+                                        <option>Credit Card</option>
+                                        <option>Money Order</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Expected Date Of Payment</label></td>
+                                <td>
+                                    <input type="date" name="ExpectedDateOfPayment" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("BenefitsGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

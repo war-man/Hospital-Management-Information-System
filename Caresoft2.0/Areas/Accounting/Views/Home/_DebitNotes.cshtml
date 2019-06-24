@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ProcurementDataAccess.DebitNote>
+
+
+
+<table class="table table-data table-condensed table-hover">
+    <tr>
+        <th>
+            DebitNote No.
+        </th>
+
+
+
+
+        <th>
+            Amount Debited
+        </th>
+        <th>
+           Date Added
+        </th>
+        <th>
+            Approved By
+        </th>
+
+
+
+    </tr>
+    <tbody class="bg-white">
+        @{ 
+            ProcurementDataAccess.CaresoftProcurementEntities db = new ProcurementDataAccess.CaresoftProcurementEntities();
+
+
+        }
+        @foreach (var item in db.DebitNotes.OrderByDescending(e=>e.Id))
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAdded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAdded)
+            </td>
+
+
+
+
+           
+
+        </tr>
+        }
+</table>
+

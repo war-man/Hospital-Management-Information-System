@@ -1,0 +1,148 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRBenefitsProcessing>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BenefitId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EligibilityStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsurancePolicy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrustFund)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaxAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmountDue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeneficiaryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeneficiaryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Relationship)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PercentageOwing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Particulars)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalDeductions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployersContribution)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BenefitSalary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentMode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedDateOfPayment)
+        </th>
+       
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BenefitId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EligibilityStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InsurancePolicy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrustFund)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaxAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AmountDue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeneficiaryId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeneficiaryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Relationship)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PercentageOwing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Particulars)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalDeductions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployersContribution)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BenefitSalary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentMode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedDateOfPayment)
+        </td>
+        
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

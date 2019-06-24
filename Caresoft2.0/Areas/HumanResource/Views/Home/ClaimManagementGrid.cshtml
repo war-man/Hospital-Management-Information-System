@@ -1,0 +1,76 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRClaimManagement>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ClaimNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RefNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeOfClaim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmountOfClaim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdemnityIssuer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedDateOfReimbursement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+       
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClaimNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RefNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeOfClaim)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmountOfClaim)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdemnityIssuer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpectedDateOfReimbursement)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

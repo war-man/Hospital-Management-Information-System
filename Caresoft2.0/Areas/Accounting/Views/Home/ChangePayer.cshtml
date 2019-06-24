@@ -1,35 +1,51 @@
-﻿
+﻿@model CaresoftHMISDataAccess.CreditTransfer
 @{
     ViewBag.Title = "ChangePayer";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Accounting/Views/Shared/_Layout.cshtml";
     ViewBag.ShowTopMenu = true;
 
 }
 
 <div class="col-md-2">
+    @Html.Partial("~/Areas/Accounting/Views/Shared/CreditorsOperationsLeftPanel.cshtml")
 </div>
 <div class="col-md-7">
 
     <div class="">
         <div class="panel panel-primary caresoft-panel glass">
             <div class="panel-heading">
-                Change Scheme Payer/Category
+                Change Scheme Payer Category
             </div>
             <div class="panel-body">
-                <form>
+                <form id="family-planning" method="post" action="@Url.Action("UpdateCreditTransfer", "Home")">
                     <div class="col-md-6">
                         <fieldset class="col-md-12">
                             <legend>From</legend>
                             <div class="col-md-12">
+                                <input hidden name="Id" id="Id" />
+
+                                <input hidden name="UserId" id="UserId" />
+                                <input hidden name="BranchId" id="BranchId" />
+                                <input hidden name="DateAdded" id="DateAdded" />
+
+                                <input hidden name="Amount" id="Amount" />
+                                <input hidden name="OriginalBalance" id="OriginalBalance" />
+                                <input hidden name="BalanceLeft" id="BalanceLeft" />
+                                <input hidden name="OtherDetails" id="OtherDetails" />
+                                <input hidden name="ReceiptNo" id="ReceiptNo" />
+                                <input hidden type="date" name="ReceiptDate" id="ReceiptDate" />
+                                
+                                <input hidden name="Amount" id="Amount" />
+                                <input hidden name="SchemeName" id="SchemeName" />
+                                
                                 <table>
                                     <tr>
                                         <td>
                                             Account No:
                                         </td>
                                         <td>
-                                            <select name="AccNoFrom" class="text-box margin-top-bottom-2" style="width:100%">
-                                                <option>--Select--</option>
-                                            </select>
+                                            @*@Html.EditorFor(model => model.AccountNo, new { htmlAttributes = new { @class = "text-box box-sm" } })*@
+                                            <input id="InvoiceNo" class="text-box margin-top-bottom-2" style="width:100%" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -37,7 +53,7 @@
                                             Scheme Name:
                                         </td>
                                         <td>
-                                            <input name="SchemeNameFrom" class="text-box margin-top-bottom-2" style="width:100%" />
+                                            <input id="SchemeName" readonly class="text-box margin-top-bottom-2" style="width:100%" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -45,7 +61,7 @@
                                             Scheme Payer:
                                         </td>
                                         <td>
-                                            <input name="SchemePayer" class="text-box margin-top-bottom-2" style="width:100%" />
+                                            <input readonly id="PayerName" class="text-box margin-top-bottom-2" style="width:100%" />
                                         </td>
                                     </tr>
                                 </table>
@@ -64,9 +80,7 @@
                                             Account No:
                                         </td>
                                         <td>
-                                            <select name="AccNoTo" class="text-box margin-top-bottom-2" style="width:100%">
-                                                <option>--Select--</option>
-                                            </select>
+                                            <input name="AccountNo" class="text-box margin-top-bottom-2" style="width:100%" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -74,7 +88,7 @@
                                             Payer Name:
                                         </td>
                                         <td>
-                                            <input name="PayerName" class="text-box margin-top-bottom-2" style="width:100%" />
+                                            <input name="Payer" class="text-box margin-top-bottom-2" style="width:100%" />
                                         </td>
                                     </tr>
                                 </table>
@@ -85,7 +99,7 @@
                     </div>
                     <br />
                     <div class="col-md-12 marg-top-16px">
-                        <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Change Payer</button>
+                        <button type="submit" class="btn btn-primary bn-sm margin-top-bottom-2">Change Payer</button>
                         <button type="reset" class="btn btn-default margin-top-bottom-2">Refresh</button>
                     </div>
 
@@ -95,3 +109,70 @@
     </div>
 </div>
 
+@section scripts{
+
+    <script type="text/javascript">
+      
+
+        $(document).ready(function () {
+            $("#InvoiceNo").autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+                        url: "/Accounting/Home/SearchCreditTransfer",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        data: { search: $("#InvoiceNo").val() },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.AccountNo + "(" + item.Payer + ")",
+                                    //                            value: item.InvoiceNo,
+                                    value: item.AccountNo, Payer: item.Payer, SchemeName: item.SchemeName, Id: item.Id, UserId: item.UserId,
+                                    BranchId: item.BranchId, DateAdded: item.DateAdded, Amount: item.Amount, OriginalBalance: item.OriginalBalance,
+                                    BalanceLeft: item.BalanceLeft, SchemeName: item.SchemeName, OtherDetails: item.OtherDetails, ReceiptNo: item.ReceiptNo,
+                                    ReceiptDate: item.ReceiptDate
+                                };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "", results: ""
+
+                }
+
+            });
+           
+
+            $("#InvoiceNo").on("autocompleteselect", function (event, ui) {
+
+                $('#PayerName').val(ui.item.Payer);
+                $('#SchemeName').val(ui.item.SchemeName);
+                $("#AccountNo").val(ui.item.AccountNo);
+                $("#Id").val(ui.item.Id);
+                $("#UserId").val(ui.item.UserId);
+                $("#BranchId").val(ui.item.BranchId);
+                $("#DateAdded").val(ui.item.DateAdded);
+                $("#Amount").val(ui.item.Amount);
+                $("#OriginalBalance").val(ui.item.OriginalBalance);
+                $("#BalanceLeft").val(ui.item.BalanceLeft);
+                $("#SchemeName").val(ui.item.SchemeName);
+                $("#OtherDetails").val(ui.item.OtherDetails);
+                $("#ReceiptNo").val(ui.item.ReceiptNo);
+                $("#ReceiptDate").val(ui.item.ReceiptDate);
+
+
+
+                console.log(ui);
+
+
+            });
+
+        })
+    </script>
+
+
+}

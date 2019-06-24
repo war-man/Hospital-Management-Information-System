@@ -1,0 +1,480 @@
+﻿
+<table class="table-top-menu" width="100%">
+    <tr style="background-color:#C1D8F9">
+        <td>
+            | A/C Receivables <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            | Debtor Transactions <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("CreditTransfer", "Home", new { Area = "Accounting" })">
+                                            | Credit Transfer
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("MiscDebtors", "Home", new { Area = "Accounting" })">
+                                            | Misc Debtors
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("MergeSchemeAccounts", "Home", new { Area = "Accounting" })">
+                                            | Merge Scheme Accounts
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("ChangePayer", "Home", new { Area = "Accounting" })">
+                                            | Change Payer
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("ChargeInterest", "Home", new { Area = "Accounting" })">
+                                            | Charge Interest
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Returned Claims <i class="fa fa-caret-right"></i>
+                                            <div class="sidekick-table-holder">
+                                                <table class="sidekick-table" width="100%">
+                                                    <tr>
+                                                        <td data-href="@Url.Action("ReturnedClaims", "Home", new { Area = "Accounting" })">
+                                                            | Retuned Claims
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-href="@Url.Action("ResubmittClaims", "Home", new { Area = "Accounting" })">
+                                                            | Resubmitt Claims
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AllocateSchemeInvoices", "Home", new { Area = "Accounting" })">
+                            | Allocate Scheme Invoices
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AllocateInvoicePartly", "Home", new { Area = "Accounting" })">
+                            | Allocate Invoice Partly
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AllocateInvoicebyPayer", "Home", new { Area = "Accounting" })">
+                            | Allocate by Payer
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AllocationDocExcempted", "Home", new { Area = "Accounting" })">
+                            | Allocation Doc Excempted
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AllocationWithoutCredits", "Home", new { Area = "Accounting" })">
+                            | Allocation Without Credits
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AutomatedWriteoffs", "Home", new { Area = "Accounting" })">
+                            | Automated WriteOffs
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("AllocateDoctorsInvoices", "Home", new { Area = "Accounting" })">
+                            | Allocate Doctor's Bills
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ReviseAllocation", "Home", new { Area = "Accounting" })">
+                            | Revise Allocation
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Debtors Provision <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td data-href="@Url.Action("Provision", "Home", new { Area = "Accounting" })">
+                                            | Provisions
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-href="@Url.Action("ProvisionsPerDebtors", "Home", new { Area = "Accounting" })">
+                                            | Provisions Per Debtors
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+
+        <td>
+            | A/C Payables <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("EnterBills", "Home", new { Area = "Accounting" })">
+                            | Enter Bills
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("LinkGMToCreditors", "Home", new { Area = "Accounting" })">
+                            | Link GM to Creditors
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("DebitNotes", "Home", new { Area = "Accounting" })">
+                            | Debit Notes
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ApproveBills", "Home", new { Area = "Accounting" })">
+                            | Approve Bills
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("CreditorsAllocation", "Home", new { Area = "Accounting" })">
+                            | Creditors Allocation
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("DoctorsLedger", "Home", new { Area = "Accounting" })">
+                            | Doctors Ledger
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td data-href="@Url.Action("MiscCreditors", "Home", new { Area = "Accounting" })">
+            | Misc Creditors
+        </td>
+        <td data-href="@Url.Action("Journal", "Home", new { Area = "Accounting" })">
+            | Journal
+        </td>
+        <td data-href="@Url.Action("ProjectJournals", "Home", new { Area = "Accounting" })">
+            | Project Journals
+        </td>
+        <td>
+            | Write Offs <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("WriteOffsDebits", "Home", new { Area = "Accounting" })">
+                            | Write Offs Debits
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("WriteOffsCredits", "Home", new { Area = "Accounting" })">
+                            | Write Offs Credits
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>
+            | Reports <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            | Cash Reports <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td>
+                                            | View Chart of Accounts
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Shift Report
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Shift Report(Receipt Paper)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Detailed Shift Report
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Uncollected Shifts
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Total Shifts
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Total Shifts Summary
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Inpatient Receipts(total)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Receipt List per Date
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Receipts List Per Receipt No
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Shift Breakdown
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Receips Breakdown
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Receipts Brwk per Cash Point
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Receipts Summary per Cash Point
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Patient Receipts
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Cash Per Day Analysis
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Daily Cash Returns
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Sales Reports <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td>
+                                            | Cash collected Analysis
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Receipts Summary Report
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Cash Sales Breakdown
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Sales Report
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | IP Services Summary
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Invoices Shift Report
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Revenue <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td>
+                                            | Daily Revenue
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Departments Revenue
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Transaction Per Account
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Revenue Report
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Out Patient Rev.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | OP Rev by Account
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | IP Revenue
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | IP Rev By ACC.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Theatre Revenue
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Revenue vs Budget
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Activity vs Revenue
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Activity vs Revenue Average
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Ambulance Report
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Petty Cash <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td>
+                                            | Petty Cash Payment rep
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Petty Cash Requisitions
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Petty Cash Vouchers
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Petty Cash Shifts
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Petty Cash Reimbursement
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Petty Cash Shifts Summary
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Petty Cash Shift Payment
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Petty Cash Payment Summary
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Other Voucher
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Expenses
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Journal By Journal
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Pharmacy
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+
+        <td data-href="@Url.Action("MergeGLAcc", "Home", new { Area = "Accounting" })">
+            | Merge GL Acc
+        </td>
+        <td data-href="@Url.Action("AuditAccounts", "Home", new { Area = "Accounting" })">
+            | Audit Accounts
+        </td>
+    </tr>
+</table>
+
+

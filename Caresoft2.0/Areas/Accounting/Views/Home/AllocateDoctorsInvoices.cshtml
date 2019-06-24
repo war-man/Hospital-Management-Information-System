@@ -1,11 +1,11 @@
 ﻿
 @{
     ViewBag.Title = "AllocateDoctorsInvoices";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Accounting/Views/Shared/_Layout.cshtml";
     ViewBag.ShowTopMenu = true;
 }
-
 <div class="col-md-2">
+    @Html.Partial("~/Areas/Accounting/Views/Shared/CreditorsOperationsLeftPanel.cshtml")
 </div>
 <div class="col-md-8">
 
@@ -120,7 +120,7 @@
                         </table>
                     </div>
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Allocate</button>
+                        <button type="submit" class="btn btn-primary bn-sm margin-top-bottom-2">Allocate</button>
                         <button type="reset" class="btn btn-default margin-top-bottom-2">Clear</button>
                     </div>
                 </form>

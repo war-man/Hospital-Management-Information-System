@@ -1,0 +1,380 @@
+﻿
+@model IList<CaresoftHMISDataAccess.BillPayment>
+
+@using PagedList.Mvc;
+
+
+
+@{
+    Layout = "~/Areas/Accounting/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+    ViewBag.Title = "ApproveBills";
+
+
+    ProcurementDataAccess.CaresoftProcurementEntities1 db = new ProcurementDataAccess.CaresoftProcurementEntities1();
+    var t = db.Invoices;
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Accounting/Views/Shared/CreditorsOperationsLeftPanel.cshtml")
+</div>
+
+
+<div class="col-md-8">
+    <div class="panel panel-primary caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <strong>Approve Invoice </strong>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-form">
+                        @if (Session["StartDate"] != null && Session["ToDate"] != null)
+                        {
+                            DateTime fromDate = (DateTime)Session["StartDate"];
+                            DateTime toDate = (DateTime)Session["ToDate"];
+
+                            <tr>
+                                <td>From Date</td>
+                                <td>
+                                    <input type="date" id="fromDate" value="@fromDate.ToString("yyyy-MM-dd")" class="text-box" />
+                                </td>
+                                <td>To Date</td>
+                                <td>
+                                    <input type="date" id="toDate" value="@toDate.ToString("yyyy-MM-dd")" class="text-box" />
+                                </td>
+                            </tr>
+
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>From Date</td>
+                                <td>
+                                    <input type="date" id="fromDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" class="text-box" />
+                                </td>
+                                <td>To Date</td>
+                                <td>
+                                    <input type="date" id="toDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" class="text-box" />
+                                </td>
+                            </tr>
+                        }
+
+                        @if (Session["StartDate"] != null && Session["ToDate"] != null)
+                        {
+                            DateTime fromDate = (DateTime)Session["StartDate"];
+                            DateTime toDate = (DateTime)Session["ToDate"];
+
+
+                        }
+                        else
+                        {
+
+                        }
+                        <tr>
+                            <td>Search Scheme Name</td>
+                            <td>
+                                @{ CaresoftHMISDataAccess.CaresoftHMISEntities db2 = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+
+                                }
+                                <select  class="text-box" id="tarrif">
+                                    <option></option>
+
+                                    @foreach (var item in db2.Tariffs)
+                                    {
+
+
+
+                                        <option value="@item.TariffName">@item.TariffName</option>
+
+
+                                    }
+
+                                </select>
+                            </td>
+
+                        </tr>
+
+
+                    </table>
+                    <div id="InvoiceList">
+                        <br />
+                        @*@Html.Partial("~/Areas/Accounting/Views/Home/_ApproveBills.cshtml", Model)*@
+
+                        @*@if (ViewBag.SearchDates == true || ViewBag.SearchPagination == true)
+                            {
+
+                            }
+                            else
+                            {
+                                <div id="pagination" class="col-md-12">
+                                    <br />
+                                    <div class="col-md-6 col-offset-3">
+                                        <div class="pagination">
+                                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                                            of @Model.PageCount
+
+                                            @Html.PagedListPager(Model, page => Url.Action("EditInvoice", new { page }))
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }*@
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+
+
+        $(window).on('load', function () {
+            //$("#fromDate").datepicker({
+            //    changeMonth: true,
+            //    changeYear: true
+            //});
+
+            //$("#toDate").datepicker({
+            //    changeMonth: true,
+            //    changeYear: true
+            //});
+            Approve();
+        })
+
+        $("#SupplierName").keyup(function () {
+            var supplierName = $(this).val().val();
+
+            if (supplierName) {
+                var url = "/Home/GetSupplierInvoiceApprovedDisapproved?supplierName=" + supplierName;
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    beforeSend: function () {
+
+                    },
+                    success: function (obj) {
+                        $("#InvoiceList").empty();
+                        $("#InvoiceList").append(obj);
+                        Approve();
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                        Approve();
+                    }
+                });
+
+            }
+        })
+
+        $("#fromDate").on('change', function () {
+            var fromDate = $(this).val();
+            var toDate = $("#toDate").val();
+            var tarrif = $("#tarrif").val();
+
+            var dates = { fromDate: fromDate, toDate: toDate, tarrif: tarrif };
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: "/Accounting/Home/SearchByDatesScheme",
+                data: dates,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                    Approve();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    Approve();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+
+        })
+        $("#tarrif").on('change', function () {
+            var fromDate = $("#fromDate").val();
+            var toDate = $("#toDate").val();
+            var tarrif = $("#tarrif").val();
+
+            var dates = { fromDate: fromDate, toDate: toDate, tarrif: tarrif };
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: "/Accounting/Home/SearchByDatesScheme",
+                data: dates,
+                beforeSend: function () {
+                    $(".loader").show();
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                    Approve();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    Approve();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+
+        })
+
+
+        $("#toDate").on('change', function () {
+            var fromDate = $("#fromDate").val();
+            var toDate = $(this).val();
+
+            var dates = { fromDate: fromDate, toDate: toDate };
+
+            //console.log(dates);
+            $.ajax({
+                type: "POST",
+                url: "/Home/SearchByDatesScheme",
+                data: dates,
+                beforeSend: function () {
+                    $(".loader").show();
+
+                },
+                success: function (obj) {
+                    $("#InvoiceList").empty();
+                    $("#InvoiceList").append(obj);
+                    $(".loader").hide();
+                    Approve();
+                },
+                error: function (x, y, z) {
+                    console.log(x.responseText);
+                    $(".loader").hide();
+                    Approve();
+                    $.notify("An Error Occured with the request", "error")
+                }
+            });
+
+        })
+
+
+        function Approve() {
+            $(".approve").click(function () {
+
+                var id = $(this).data('id');
+                var url = "/Home/ApproveSpecificInvoice?id=" + id;
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    beforeSend: function () {
+                        $(".loader").show();
+                    },
+                    success: function (obj) {
+                        $("#InvoiceList").empty();
+                        $("#InvoiceList").append(obj);
+                        $(".loader").hide();
+                        Approve();
+
+                    },
+                    error: function (x, y, z) {
+                        console.log(x.responseText);
+                        $(".loader").hide();
+                    }
+
+                });
+
+            })
+        }
+
+        $("#SelectItemName").on('change', function () {
+
+            var itemName = $(this).val();
+
+            // var url = "/PharmacyReports/SearchItem?name=" + itemName;
+            var url = "/Home/SearchItemId?Id=" + itemName;
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                beforeSend: function () { $(".loader").show(); },
+                success: function (obj) {
+                    $(".loader").hide();
+                    var lstStock = $("#lstStock");
+                    lstStock.empty()
+                    lstStock.append(obj);
+                },
+                error: function (x, y, z) {
+                    $(".loader").hide();
+                    console.log(x.resposeText);
+                }
+            });
+        })
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

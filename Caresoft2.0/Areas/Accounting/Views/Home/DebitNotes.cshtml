@@ -1,11 +1,12 @@
-﻿
+﻿@model ProcurementDataAccess.Invoice
 @{
-    ViewBag.Title = "DebitNotes";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "CreditorsAllocation";
+    Layout = "~/Areas/Accounting/Views/Shared/_Layout.cshtml";
     ViewBag.ShowTopMenu = true;
 }
 
 <div class="col-md-2">
+    @Html.Partial("~/Areas/Accounting/Views/Shared/CreditorsOperationsLeftPanel.cshtml")
 </div>
 <div class="col-md-8">
 
@@ -15,74 +16,192 @@
                 Enter Debit Note
             </div>
             <div class="panel-body">
-                <form>
+                <form id="family-planning" method="post" action="@Url.Action("SaveDebitNote", "Home")">
                     <div class="col-md-12">
-                        <table>
+                        <table class="table-form">
+
+
                             <tr>
                                 <td>
-                                    <input type="radio" value="BookDebitNote" /> Book Debit Note
+                                    <label>Invoice Number</label>
                                 </td>
-                                <td></td>
-                                <td></td>
                                 <td>
-                                    <input type="checkbox" value="AddGIItem" /> Click to add a GI Item
+                                    @Html.EditorFor(model => model.InvoiceNo, new { htmlAttributes = new { @class = "text-box box-sm" } })
                                 </td>
+                                <td>
+                                    <label>Supplier Name</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-sm" name="SupplierName" id="SupplierName" readonly required />
+
+                                </td>
+                                <td>
+                                    <label>Invoice Date</label>
+                                </td>
+                                <td>
+                                    <input type="datetime" value="@DateTime.Now.ToString("MM/dd/yyyy")" class="text-box box-sm" name="InvoiceDate" id="InvoiceDate" readonly required />
+
+                                </td>
+
                             </tr>
+                            <td>&nbsp;</td>
                             <tr>
-                                <td> &nbsp;</td>
+                                <td>
+                                    <label>Amount</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="text-box box-sm" name="Amount" required />
+
+                                </td>
+
                             </tr>
+
+                        </table>
+                        <table class="table-form">
                             <tr>
                                 <td>
-                                    Dealer:
-                                </td>
-                                <td>
-                                    <select name="Dealer" class="text-box margin-top-bottom-2" style="width:100%">
-                                        <option>--Select</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    &nbsp; Date:
-                                </td>
-                                <td>
-                                    <input type="date" name="Date" class="text-box margin-top-bottom-2" style="width:100%" />
+                                    <label> Debiting Reason</label>
+                                    <textarea name="DebitingReason" rows="4" cols="60" class="text-box box-xlg" placeholder="Write Debiting Reason..."></textarea>
                                 </td>
                             </tr>
                         </table>
                     </div>
-                    &nbsp;
+
+
                     <div class="col-md-12">
-                        <table class="table table-data-pathology table-condensed">
-                            <tr>
-                                <th>Description</th>
-                                <th>Activity Code</th>
-                                <th>Invoice No.</th>
-                                <th>Invoice Date</th>
-                                <th>Date Due</th>
-                                <th>Reason for Debiting</th>
-                                <th>Amount</th>
-                                <th>VAT Amount</th>
-                            </tr>
-                            <tbody style="background-color: white">
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>                           
-                        </table>
+                        <button type="submit" class="btn btn-primary bn-sm margin-top-bottom-2">Save</button>
+
                     </div>
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Save</button>
-                        <button type="reset" class="btn btn-default margin-top-bottom-2">Clear</button>
-                    </div>
-                </form>                
+                </form>
+
+                <div id="nurseNotesList">
+                    @Html.Partial("~/Areas/Accounting/Views/Home/_DebitNotes.cshtml")
+                </div>
             </div>
+
+
+
         </div>
     </div>
 </div>
 
+@section scripts{
+
+    <script type="text/javascript">
+        //$(document).ready(function () {
+        //    alert();
+        //    $("#InvoiceNo").autocomplete({
+
+        //        source: function (request, res) {
+        //            alert();
+        //            $.ajax({
+
+        //                type: "POST",
+        //                url: "/Accounting/Home/SearchInvoice",
+
+        //                dataType: "json",
+        //                data: { Prefix: request.term },
+
+
+        //                data: { search: $("#InvoiceNo").val() },
+        //                success: function (data) {
+        //                    res($.map(data, function (item) {
+        //                        return {
+        //                            label: item.InvoiceNo + "(" + item.SupplierName + ")",
+        //                            value: item.InvoiceNo
+        //                        }));
+        //                },
+
+        //                error: function (xmlhttprequest, textstatus, errorthrown) {
+        //                    console.log(errorthrown, "danger")
+        //                    console.log(xmlhttprequest.responseText);
+        //                }
+
+        //            });
+        //        },
+
+        //        messages: {
+        //            noResults: "", results: ""
+
+        //        }
+
+        //    });
+        //    $("#invoice").on("autocompleteselect", function (event, ui) {
+        //        $("#RPatientName").val(ui.item.name);
+        //        $("#PatientId").val(ui.item.patientId);
+        //        $("#OpdNum").val(ui.item.OpdId);
+
+
+
+        //        console.log(ui);
+
+
+        //    });
+        //});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $(document).ready(function () {
+            $("#InvoiceNo").autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+                        url: "/Accounting/Home/SearchInvoice",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        data: { search: $("#InvoiceNo").val() },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.InvoiceNo + "(" + item.SupplierName + ")",
+                                    //                            value: item.InvoiceNo,
+                                    value: item.InvoiceNo, SupplierName: item.SupplierName, InvoiceDate: item.InvoiceDate
+                                };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "", results: ""
+
+                }
+
+            });
+
+            $("#InvoiceNo").on("autocompleteselect", function (event, ui) {
+                alert(ui.item.InvoiceDate);
+                $('#SupplierName').val(ui.item.SupplierName);
+                $('#InvoiceDate').val(ui.item.InvoiceDate);
+                $("#TPatientId").val(ui.item.patientId);
+                $("#TOPDNo").val(ui.item.OpdId);
+
+
+
+                console.log(ui);
+
+
+            });
+
+        })
+    </script>
+
+
+}

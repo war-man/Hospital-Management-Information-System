@@ -1,0 +1,90 @@
+﻿@model   CaresoftHMISDataAccess.BillService
+@{
+    ViewBag.Title = "CreditorsAllocation";
+    Layout = "~/Areas/Accounting/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+}
+
+<div class="col-md-2">
+    @Html.Partial("~/Areas/Accounting/Views/Shared/CreditorsOperationsLeftPanel.cshtml")
+</div>
+<div class="col-md-8">
+
+    <div class="">
+        <div class="panel panel-primary caresoft-panel glass">
+            <div class="panel-heading">
+                Patient Schemes Total
+            </div>
+            <div class="panel-body">
+                <form id="family-planning" method="post">
+
+                    <table class="table-form">
+                        @{ 
+                            CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+                            var data = db.BillServices;
+                        }
+                        @foreach (var item in data.Where(e=>e.OPDNo == 6) )
+                        {
+                            <tr>
+                                <td>
+                                    @item.OPDNo
+
+                                </td>
+                                <td>
+                                    @item.Price
+                                </td>
+
+                            </tr>
+
+                        }
+                    </table>
+
+
+                </form>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+
+        function searchFunction(item) {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = item;
+            filter = input.val().toUpperCase();
+            table = document.getElementById("searchTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+
+                if (input.attr('id') == 'BarCode') {
+                    //td = tr[i].getElementsByTagName("td")[1];
+                } else if (input.attr('id') == 'Name') {
+                    td = tr[i].getElementsByTagName("td")[5];
+                } else if (input.attr('id') == 'RegNumber') {
+                    td = tr[i].getElementsByTagName("td")[3];
+                }
+                else if (input.attr('id') == 'Sevice') {
+                    td = tr[i].getElementsByTagName("td")[1];
+                }
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().trim().indexOf(filter.trim()) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+}

@@ -210,7 +210,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Accounting\AccountingAreaRegistration.cs" />
-    <Compile Include="Areas\Accounting\Controllers\HomeController.cs" />
     <Compile Include="Areas\Appointments\AppointmentsAreaRegistration.cs" />
     <Compile Include="Areas\Appointments\Controllers\HomeController.cs" />
     <Compile Include="Areas\BloodBank\BloodBankAreaRegistration.cs" />
@@ -5040,6 +5039,10 @@
     <Content Include="Areas\CareSoftReports\Reports\DataSetHospitalDetails.xsc">
       <DependentUpon>DataSetHospitalDetails.xsd</DependentUpon>
     </Content>
+    <Content Include="Areas\Accounting\Views\Shared\_AccountingNav.cshtml" />
+    <Content Include="Areas\Accounting\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Accounting\Views\Shared\CreditorsOperationsLeftPanel.cshtml" />
+    <Content Include="Areas\Accounting\Views\_ViewStart.cshtml" />
     <None Include="Areas\CareSoftReports\Reports\DataSetHospitalDetails.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DataSetHospitalDetails1.Designer.cs</LastGenOutput>
@@ -5880,6 +5883,28 @@
     <Content Include="Areas\HumanResource\Views\Home\TrainingGrid.cshtml" />
     <Content Include="Areas\HumanResource\Views\Home\Grievances.cshtml" />
     <Content Include="Areas\HumanResource\Views\Home\GrievancesGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\ClaimManagement.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\ClaimManagementGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\Operator.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\OperatorGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\Guaranteering.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\GuaranteeringGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\Reason.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\ReasonGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\CheckOff.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\CheckOffGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\Incentive.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\IncenGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\CheckOut.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\CheckOutGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\Benefits.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\BenefitsGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\PolicyAdministration.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\PolicyAdministrationGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\ApplicantInformation.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\ApplicantInforGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\ProcessingAndRepayment.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\ProcessingRepaymentGrid.cshtml" />
     <None Include="Areas\PharmacyModule\Reports\BillWiseDailyReportSale\BillWiseDailyDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>BillWiseDailyDataSet1.Designer.cs</LastGenOutput>
@@ -7281,9 +7306,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Accounting\Controllers\" />
     <Folder Include="Areas\Accounting\Models\" />
     <Folder Include="Areas\Accounting\Views\Default\" />
-    <Folder Include="Areas\Accounting\Views\Shared\" />
+    <Folder Include="Areas\Accounting\Views\InvoicesApprovals\" />
     <Folder Include="Areas\Appointments\Models\" />
     <Folder Include="Areas\BloodBank\Models\" />
     <Folder Include="Areas\CareSoftReports\Models\" />

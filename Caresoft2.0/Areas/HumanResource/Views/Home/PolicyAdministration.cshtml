@@ -1,0 +1,122 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRAbsentism>
+@{
+
+    ViewBag.Title = "Policy Administration Operations";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SavePolicyAdministrationData","Home",new {Area="HumanResource"})">
+
+                        <table class="table-form">
+
+                            <tr>
+                                <td><label>PolicyNo</label></td>
+                                <td>
+                                    <input type="number" name="PolicyNo" class="text-box box-lg" />
+                                </td>
+                                <td><label>MatureDate</label></td>
+                                <td>
+                                    <input type="date" name="MatureDate" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Policy Type</label></td>
+                                <td>
+                                    <input type="text" name="PolicyType" class="text-box box-lg" />
+                                </td>
+                                <td><label>Payer</label></td>
+                                <td>
+                                    <input type="text" name="Payer" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Insurance Agent</label></td>
+                                <td>
+                                    <input type="text" name="InsuranceAgent" class="text-box box-lg" />
+                                </td>
+                                <td><label>Amount</label></td>
+                                <td>
+                                    <input type="number" name="Amount" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Job Type</label>
+                                </td>
+                                <td>
+                                    <select name="JobType" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                                <td>
+                                    <label>Staff Accesing The Cover</label>
+                                </td>
+                                <td>
+                                    <select name="StaffAccesingTheCover" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Intervention Date</label></td>
+                                <td>
+                                    <input type="date" name="InterventionDate" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Comments<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="Comments" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("PolicyAdministrationGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

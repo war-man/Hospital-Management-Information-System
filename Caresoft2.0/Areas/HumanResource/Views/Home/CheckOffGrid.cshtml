@@ -1,0 +1,99 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRContractTerminationCheckOff>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.LoansBalances)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SaccoBalances)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckOffSystemBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HRSBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdvanceBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrainingAllowanceBal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Penalties)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelExpenses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdvancedItems)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Interests)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.LoansBalances)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaccoBalances)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckOffSystemBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HRSBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdvanceBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrainingAllowanceBal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Penalties)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelExpenses)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdvancedItems)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interests)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </td>
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

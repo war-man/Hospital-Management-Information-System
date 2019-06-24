@@ -1454,7 +1454,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.BloodBankPatientBloodGroupings' d
           <Property Name="BeneficiaryName" Type="varchar" MaxLength="50" />
           <Property Name="Relationship" Type="varchar" MaxLength="50" />
           <Property Name="PercentageOwing" Type="varchar" MaxLength="50" />
-          <Property Name="Remarks" Type="varchar" MaxLength="50" />
+          <Property Name="Remarks" Type="nchar" MaxLength="10" />
           <Property Name="ItemNo" Type="int" />
           <Property Name="Particulars" Type="varchar" MaxLength="50" />
           <Property Name="Amount" Type="float" />
@@ -1464,6 +1464,8 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.BloodBankPatientBloodGroupings' d
           <Property Name="BenefitSalary" Type="float" />
           <Property Name="PaymentMode" Type="varchar" MaxLength="50" />
           <Property Name="ExpectedDateOfPayment" Type="date" />
+          <Property Name="Payer" Type="varchar" MaxLength="50" />
+          <Property Name="Broker" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="HRBioData">
           <Key>
@@ -2556,8 +2558,34 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.HRJobDesignations' does not have 
           <Property Name="Value" Type="float" />
           <Property Name="Serial" Type="int" />
           <Property Name="Model" Type="varchar" MaxLength="50" />
-          <Property Name="Value1" Type="varchar" MaxLength="50" />
           <Property Name="Remarks" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HRStaffLoanProcessingAndRepayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="DateAdded" Type="date" />
+          <Property Name="LoanApplicationNo" Type="int" />
+          <Property Name="PaymentMode" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentDate" Type="date" />
+          <Property Name="ApprovedAmount" Type="float" />
+          <Property Name="ExpectedPaymentPeriod" Type="varchar" MaxLength="50" />
+          <Property Name="ExpendInstallmentsNo" Type="int" />
+          <Property Name="AmountPerInstallment" Type="float" />
+          <Property Name="InterestPerMonth" Type="float" />
+          <Property Name="DeadlineDatesOfRepayment" Type="date" />
+          <Property Name="PenaltiesForDefault" Type="varchar" MaxLength="50" />
+          <Property Name="RepaymentMode" Type="varchar" MaxLength="50" />
+          <Property Name="InstalmentNo" Type="int" />
+          <Property Name="DueDate" Type="date" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="Interest" Type="float" />
+          <Property Name="Balances" Type="float" />
+          <Property Name="AccumulatedTotal" Type="float" />
+          <Property Name="TermsAndConditions" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="HRStaffProfessionalQualification">
           <Key>
@@ -8524,6 +8552,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySet Name="HRStaffBioData" EntityType="Self.HRStaffBioData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRStaffEducationQualification" EntityType="Self.HRStaffEducationQualification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRStaffLoan" EntityType="Self.HRStaffLoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HRStaffLoanProcessingAndRepayment" EntityType="Self.HRStaffLoanProcessingAndRepayment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRStaffProfessionalQualification" EntityType="Self.HRStaffProfessionalQualification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRStaffReferee" EntityType="Self.HRStaffReferee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRStaffWorkExperience" EntityType="Self.HRStaffWorkExperience" Schema="dbo" store:Type="Tables" />
@@ -9917,6 +9946,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySet Name="HRStaffBioDatas" EntityType="CaresoftHMISModel.HRStaffBioData" />
           <EntitySet Name="HRStaffEducationQualifications" EntityType="CaresoftHMISModel.HRStaffEducationQualification" />
           <EntitySet Name="HRStaffLoans" EntityType="CaresoftHMISModel.HRStaffLoan" />
+          <EntitySet Name="HRStaffLoanProcessingAndRepayments" EntityType="CaresoftHMISModel.HRStaffLoanProcessingAndRepayment" />
           <EntitySet Name="HRStaffProfessionalQualifications" EntityType="CaresoftHMISModel.HRStaffProfessionalQualification" />
           <EntitySet Name="HRStaffReferees" EntityType="CaresoftHMISModel.HRStaffReferee" />
           <EntitySet Name="HRStaffWorkExperiences" EntityType="CaresoftHMISModel.HRStaffWorkExperience" />
@@ -12445,7 +12475,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="BeneficiaryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Relationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PercentageOwing" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="ItemNo" Type="Int32" />
           <Property Name="Particulars" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Amount" Type="Double" />
@@ -12455,6 +12485,8 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="BenefitSalary" Type="Double" />
           <Property Name="PaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ExpectedDateOfPayment" Type="DateTime" Precision="0" />
+          <Property Name="Payer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Broker" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HRBioData">
           <Key>
@@ -13500,8 +13532,34 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="Value" Type="Double" />
           <Property Name="Serial" Type="Int32" />
           <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Value1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HRStaffLoanProcessingAndRepayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="DateAdded" Type="DateTime" Precision="0" />
+          <Property Name="LoanApplicationNo" Type="Int32" />
+          <Property Name="PaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="0" />
+          <Property Name="ApprovedAmount" Type="Double" />
+          <Property Name="ExpectedPaymentPeriod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ExpendInstallmentsNo" Type="Int32" />
+          <Property Name="AmountPerInstallment" Type="Double" />
+          <Property Name="InterestPerMonth" Type="Double" />
+          <Property Name="DeadlineDatesOfRepayment" Type="DateTime" Precision="0" />
+          <Property Name="PenaltiesForDefault" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RepaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InstalmentNo" Type="Int32" />
+          <Property Name="DueDate" Type="DateTime" Precision="0" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="Interest" Type="Double" />
+          <Property Name="Balances" Type="Double" />
+          <Property Name="AccumulatedTotal" Type="Double" />
+          <Property Name="TermsAndConditions" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HRStaffProfessionalQualification">
           <Key>
@@ -21161,6 +21219,8 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySetMapping Name="HRBenefitsProcessings">
             <EntityTypeMapping TypeName="CaresoftHMISModel.HRBenefitsProcessing">
               <MappingFragment StoreEntitySet="HRBenefitsProcessing">
+                <ScalarProperty Name="Broker" ColumnName="Broker" />
+                <ScalarProperty Name="Payer" ColumnName="Payer" />
                 <ScalarProperty Name="ExpectedDateOfPayment" ColumnName="ExpectedDateOfPayment" />
                 <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
                 <ScalarProperty Name="BenefitSalary" ColumnName="BenefitSalary" />
@@ -22274,7 +22334,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             <EntityTypeMapping TypeName="CaresoftHMISModel.HRStaffLoan">
               <MappingFragment StoreEntitySet="HRStaffLoan">
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="Value1" ColumnName="Value1" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="Serial" ColumnName="Serial" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
@@ -22291,6 +22350,34 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
                 <ScalarProperty Name="StaffId" ColumnName="StaffId" />
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRStaffLoanProcessingAndRepayments">
+            <EntityTypeMapping TypeName="CaresoftHMISModel.HRStaffLoanProcessingAndRepayment">
+              <MappingFragment StoreEntitySet="HRStaffLoanProcessingAndRepayment">
+                <ScalarProperty Name="TermsAndConditions" ColumnName="TermsAndConditions" />
+                <ScalarProperty Name="AccumulatedTotal" ColumnName="AccumulatedTotal" />
+                <ScalarProperty Name="Balances" ColumnName="Balances" />
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="InstalmentNo" ColumnName="InstalmentNo" />
+                <ScalarProperty Name="RepaymentMode" ColumnName="RepaymentMode" />
+                <ScalarProperty Name="PenaltiesForDefault" ColumnName="PenaltiesForDefault" />
+                <ScalarProperty Name="DeadlineDatesOfRepayment" ColumnName="DeadlineDatesOfRepayment" />
+                <ScalarProperty Name="InterestPerMonth" ColumnName="InterestPerMonth" />
+                <ScalarProperty Name="AmountPerInstallment" ColumnName="AmountPerInstallment" />
+                <ScalarProperty Name="ExpendInstallmentsNo" ColumnName="ExpendInstallmentsNo" />
+                <ScalarProperty Name="ExpectedPaymentPeriod" ColumnName="ExpectedPaymentPeriod" />
+                <ScalarProperty Name="ApprovedAmount" ColumnName="ApprovedAmount" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="LoanApplicationNo" ColumnName="LoanApplicationNo" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

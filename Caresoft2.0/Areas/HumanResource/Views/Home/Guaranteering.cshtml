@@ -1,0 +1,170 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRCheckOffGuaranteering>
+@{
+
+    ViewBag.Title = "Guaranteering";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveGuaranteeringData","Home",new {Area="HumanResource"})">
+
+                        <table class="table-form">
+
+                            <tr>
+                                <td><label>Staff Id</label></td>
+                                <td>
+                                    <input type="number" name="StaffId" class="text-box box-lg" />
+                                </td>
+
+                                <td>
+                                    <label>Check Off Operator</label>
+                                </td>
+                                <td>
+                                    <select name="CheckOffOperator" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Guarantor 1</label></td>
+                                <td>
+                                    <input type="text" name="Guarantor1" class="text-box box-lg" />
+                                </td>
+                                <td><label>Amount For Guarantor 1</label></td>
+                                <td>
+                                    <input type="number" name="AmountForGuarantor1" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Guarantor 2</label></td>
+                                <td>
+                                    <input type="text" name="Guarantor2" class="text-box box-lg" />
+                                </td>
+                                <td><label>Amount For Guarantor 3</label></td>
+                                <td>
+                                    <input type="number" name="AmountForGuarantor3" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Guarantor 3</label></td>
+                                <td>
+                                    <input type="text" name="Guarantor3" class="text-box box-lg" />
+                                </td>
+                                <td><label>Amount For Guarantor 3</label></td>
+                                <td>
+                                    <input type="number" name="AmountForGuarantor3" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Date</label></td>
+                                <td>
+                                    <input type="date" name="" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            </table>
+                        <label><strong>ITEM</strong></label>
+                        <table>
+                            <tr>
+                                <td><label>ItemNo</label></td>
+                                <td>
+                                    <input type="number" name="ItemNo" class="text-box box-lg" />
+                                </td>
+                                <td><label>Particulars</label></td>
+                                <td>
+                                    <input type="text" name="Particulars" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Amount</label></td>
+                                <td>
+                                    <input type="number" name="Amount" class="text-box box-lg" />
+                                </td>
+                                <td><label>% Interest</label></td>
+                                <td>
+                                    <input type="number" name="PercentageInterest" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>TotalAmount</label></td>
+                                <td>
+                                    <input type="number" name="TotalAmount" class="text-box box-lg" />
+                                </td>
+                                <td><label>Remarks</label></td>
+                                <td>
+                                    <input type="text" name="Remarks" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr>
+                                <td><label>Total Principal</label></td>
+                                <td>
+                                    <input type="number" name="TotalPrincipal" class="text-box box-lg" />
+                                </td>
+                                <td><label>Total+Interest</label></td>
+                                <td>
+                                    <input type="number" name="TotalInterest" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Installments Amount</label></td>
+                                <td>
+                                    <input type="number" name="InstallmentsAmount" class="text-box box-lg" />
+                                </td>
+                                <td><label>Interest Amount</label></td>
+                                <td>
+                                    <input type="number" name="InterestAmount" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>DateOfPayment</label></td>
+                                <td>
+                                    <input type="date" name="DateOfPayment" class="text-box box-lg" />
+                                </td>
+                                <td><label>Penalties For Default</label></td>
+                                <td>
+                                    <input type="text" name="PenaltiesForDefault" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("GuaranteeringGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

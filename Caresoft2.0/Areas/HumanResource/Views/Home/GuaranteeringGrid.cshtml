@@ -1,0 +1,151 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRCheckOffGuaranteering>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckOffOperator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Guarantor1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmountForGuarantor1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Guarantor2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmountForGuarantor2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Guarantor3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmountForGuarantor3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Particulars)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PercentageInterest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrincipal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalInterest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InstallmentsAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterestAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfPayment)
+        </th>
+        th>
+        @Html.DisplayNameFor(model => model.PenaltiesForDefault)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckOffOperator)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Guarantor1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AmountForGuarantor1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Guarantor2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AmountForGuarantor2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Guarantor3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AmountForGuarantor3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Particulars)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PercentageInterest)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPrincipal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalInterest)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterestAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfPayment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PenaltiesForDefault)
+        </td>
+
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

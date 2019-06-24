@@ -1,0 +1,125 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRContractTerminationCheckOff>
+@{
+
+    ViewBag.Title = "Check Off";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveCheckOffData","Home",new {Area="HumanResource"})">
+                       <label><strong>Check Off</strong></label>
+                       <table class="table-form">
+
+                           <tr>
+                               <td><label>Loans Balances</label></td>
+                               <td>
+                                   <input type="number" name="LoansBalances" class="text-box box-lg" />
+                               </td>
+                               <td><label>Sacco Balances</label></td>
+                               <td>
+                                   <input type="number" name="SaccoBalances" class="text-box box-lg" />
+                               </td>
+                           </tr>
+                           <tr>
+                               <td><label>Check Off System Balance</label></td>
+                               <td>
+                                   <input type="number" name="CheckOffSystemBalance" class="text-box box-lg" />
+                               </td>
+                               <td><label>HRS/Balance</label></td>
+                               <td>
+                                   <input type="number" name="HRSBalance" class="text-box box-lg" />
+                               </td>
+                           </tr>
+                           <tr>
+                               <td><label>Advance Balance</label></td>
+                               <td>
+                                   <input type="number" name="AdvanceBalance" class="text-box box-lg" />
+                               </td>
+                               <td><label>Training Allowance Bal</label></td>
+                               <td>
+                                   <input type="number" name="TrainingAllowanceBal" class="text-box box-lg" />
+                               </td>
+                           </tr>
+                           </table>
+                        <label><strong>Other Details</strong></label>
+                        <table>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Penalties<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="Penalties" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Tax</label></td>
+                                <td>
+                                    <input type="number" name="Tax" class="text-box box-lg" />
+                                </td>
+                                <td><label>Tel.Expenses</label></td>
+                                <td>
+                                    <input type="number" name="TelExpenses" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>AdvancedItems</label></td>
+                                <td>
+                                    <input type="text" name="AdvancedItems" class="text-box box-lg" />
+                                </td>
+                                <td><label>Interests</label></td>
+                                <td>
+                                    <input type="text" name="Interests" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Comments<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="Comments" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("CheckOffGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

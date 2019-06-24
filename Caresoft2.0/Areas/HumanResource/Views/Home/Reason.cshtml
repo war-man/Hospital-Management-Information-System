@@ -1,0 +1,130 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRContractTerminationReason>
+@{
+
+    ViewBag.Title = "Reason";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveReasonData","Home",new {Area="HumanResource"})">
+                        <label><strong>Enter The Required Info</strong></label>
+                        <table class="table-form">
+
+                            <tr>
+                                <td><label>Contract No</label></td>
+                                <td>
+                                    <input type="number" name="ContractNo" class="text-box box-lg" />
+                                </td>
+                                <td><label>Staff Id</label></td>
+                                <td>
+                                    <input type="number" name="StaffId" class="text-box box-lg" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Reason Of Termination</label>
+                                </td>
+                                <td>
+                                    <select name="ReasonOfTermination" class="text-box box-lg">
+                                        <option>Select</option>
+
+                                    </select>
+                                </td>
+                                <td><label>Termination Date</label></td>
+                                <td>
+                                    <input type="date" name="TerminationDate" class="text-box box-lg" />
+                                </td>
+
+                            </tr>
+                            
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Description<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="Description" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <label><strong>Enter Settlement Details</strong></label>
+                        <table>
+                            <tr>
+                                <td><label>AmountDue</label></td>
+                                <td>
+                                    <input type="number" name="AmountDue" class="text-box box-lg" />
+                                </td>
+                                <td><label>AmountPaid</label></td>
+                                <td>
+                                    <input type="number" name="AmountPaid" class="text-box box-lg" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Balance</label></td>
+                                <td>
+                                    <input type="number" name="Balance" class="text-box box-lg" />
+                                </td>
+                                <td>
+                                    <label>Mode Of Payment</label>
+                                </td>
+                                <td>
+                                    <select name="ModeOfPayment" class="text-box box-lg">
+                                        <option>Select</option>
+                                        <option>Cash</option>
+                                        <option>Cheque</option>
+                                        <option>Credit Card</option>
+                                        <option>Money Order</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Expected Date Of Payment</label></td>
+                                <td>
+                                    <input type="date" name="ExpectedDateOfPayment" class="text-box box-lg" />
+                                </td>
+                             </tr>
+                        </table>
+                        <br />
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("ReasonGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

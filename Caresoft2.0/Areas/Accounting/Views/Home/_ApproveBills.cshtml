@@ -1,0 +1,398 @@
+﻿
+@using PagedList.Mvc;
+
+
+@model PagedList.IPagedList<ProcurementDataAccess.Invoice>
+
+<table class="table-data-pathology table-condensed " width="100%">
+    <thead class="bg-primary">
+        <tr>
+            <th>Invoice Number</th>
+            <th>Invoice Date</th>
+            <th>Supplier Name</th>
+            <th>Invoice Amount</th>
+            <th>Approve</th>
+
+
+        </tr>
+    </thead>
+    <tbody style="background:white">
+
+        @{
+            ProcurementDataAccess.CaresoftProcurementEntities1 db = new ProcurementDataAccess.CaresoftProcurementEntities1();
+var invoice = db.InvoiceApprovals.FirstOrDefault().InvoiceNo;
+           
+
+        }
+
+        @if (Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                if (item.FinalApproval == true)
+                {
+                    <tr @*style="background-color:hotpink"*@>
+                        <td>
+                            @item.InvoiceNo
+                        </td>
+
+                        <td>
+                            @item.InvoiceDate.ToString("dd-MMM-yyyy")
+                        </td>
+                        <td>
+                            @item.SupplierName
+                        </td>
+                        <td>
+                            Ksh. @item.InvoiceAmount.ToString("N2")
+                            <input hidden value="@item.Id" id="teeest" />
+                        </td>
+                        <td>
+                            <div data-callback="test">
+
+
+                                @Ajax.ActionLink("Approve", "ApprovalForm", "/Home", new { id = item.Id },
+                                        new AjaxOptions {
+                                            LoadingElementId = "loadingElement",
+                                            UpdateTargetId = "UniversalModalView",
+                                            OnSuccess = "$('#UniversalModal').modal('show');",
+                                            HttpMethod = "GET",
+
+                                        }, new { @class = "call-modal-form btn btn-xs btn-primary" })
+
+
+                            </div>
+                        </td>
+
+
+
+
+                    </tr>
+
+                }
+
+
+            }
+
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" style="text-align:center;font-style:italic;">
+                    No data to display
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+
+<div class="modal fade" id="nurse-request">
+    <div class="col-xs-8" style="align-content:flex-start; margin-left:260px">
+
+        <div class="panel panel-primary caresoft-panel">
+
+
+            <div class="panel-body">
+                <div id="cssd-request" class="right-element">
+                    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+                    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+                    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+                    <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+                    <script src="~/Scripts/bootstrap.min.js"></script>
+
+                    <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+                    <script src="~/Scripts/moment.js"></script>
+
+                    <link href="~/Content/Css/JQueryUI/themes/base/jquery-ui.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <script type="text/javascript">
+
+
+
+
+
+
+                    </script>
+
+
+
+
+                    <style>
+
+                        .legend {
+                            list-style: none;
+                        }
+
+                            .legend li {
+                                float: left;
+                                margin-right: 10px;
+                            }
+
+                            .legend span {
+                                border: 1px solid #ccc;
+                                float: left;
+                                width: 12px;
+                                height: 12px;
+                                margin: 2px;
+                            }
+                            /* your colors */
+                            .legend .Pending {
+                                background-color: red;
+                            }
+
+
+                            .legend .Completed {
+                                background-color: green;
+                            }
+                    </style>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (ViewBag.SearchPagination == true)
+{
+    <div id="pagination" class="col-md-12">
+        <br />
+        <div class="col-md-6 col-offset-3">
+
+            <div class="pagination">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("ApproveInvoice", "ProcurementPurchase", new { page, Area = "Procurement" }))
+            </div>
+        </div>
+
+    </div>
+}
+else if (ViewBag.SearchDates == true)
+{
+    <div id="pagination" class="col-md-12">
+        <br />
+
+        <div class="col-md-6 col-offset-3">
+            <div class="pagination">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("ApproveInvoice", "ProcurementPurchase", new { page, Area = "Procurement" }))
+            </div>
+        </div>
+
+    </div>
+    ViewBag.SearchPagination = null;
+}
+
+
+
+
+
+@section scripts{
+
+    <script>
+
+        function calcAmountBal() {
+            alert();
+            var Bal = 0;
+            var w = parseFloat($("#Amount").val());
+            var h = parseFloat($("#AmountApproved").val());
+            if (h > 0 && h < w) {
+                Bal = w - h;
+            }
+            alert("successful");
+
+
+
+
+
+            $("#TargetBal").val(Bal.toFixed(2));
+
+
+            $("#Amount").change(function () {
+                calcAmountBal();
+            });
+
+            $("#Amount").keyup(function () {
+                calcAmountBal();
+            });
+
+            $("#AmountApproved").change(function () {
+                calcAmountBal();
+            });
+
+            $("#AmountApproved").keyup(function () {
+                calcAmountBal();
+            });
+
+
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@using PagedList.Mvc;
+
+    @model PagedList.IPagedList<ProcurementDataAccess.Invoice>
+
+        @{
+            ProcurementDataAccess.CaresoftProcurementEntities1 db = new ProcurementDataAccess.CaresoftProcurementEntities1();
+            var t = db.Invoices;
+
+        }
+
+    <table class="table table-data-pathology table-condensed" style="backgrounD:white;">
+        <tr>
+            <th>Edit</th>
+            <th>Invoice Number</th>
+            <th>Invoice Date</th>
+            <th>PO. No</th>
+            <th>Supplier Name</th>
+            <th>Invoice Amount</th>
+        </tr>
+        @if (t.Count() > 0)
+        {
+
+            foreach (var item in t)
+            {
+                <tr>
+
+                    <td>
+                        @if (item.FinalApproval)
+                        {
+                            <a href="@Url.Action("Edit","ProcurementPurchase",new { Id = @item.Id, area= "Procurement" })" class="btn btn-primary btn-xs disabled">Edit</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Edit","ProcurementPurchase",new { Id = @item.Id , area= "Procurement" })" class="btn btn-primary btn-xs">Edit</a>
+                        }
+                    </td>
+
+                    <td>
+                        @item.InvoiceNo
+                    </td>
+
+                    <td>
+                        @item.InvoiceDate.ToString("dd-MMM-yyyy")
+                    </td>
+                    <td>
+                        @item.PONumber
+                    </td>
+                    <td>
+                        @item.SupplierName
+                    </td>
+                    <td>
+                        @item.InvoiceAmount
+                    </td>
+                </tr>
+            }
+
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" style="text-align:center;font-style:italic;">
+                    No data to display
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    @if (ViewBag.SearchPagination == true)
+    {
+        <div id="pagination" class="col-md-12">
+            <br />
+            <div class="col-md-6 col-offset-3">
+
+                <div class="pagination">
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                    of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("EditInvoice", "ProcurementPurchase", new { page, Area = "Procurement" }))
+                </div>
+            </div>
+
+        </div>
+    }
+    else if (ViewBag.SearchDates == true)
+    {
+        <div id="pagination" class="col-md-12">
+            <div class="pagination">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("EditInvoice", "ProcurementPurchase", new { page, Area = "Procurement" }))
+            </div>
+        </div>
+        ViewBag.SearchPagination = null;
+    }*@
+

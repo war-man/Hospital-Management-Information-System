@@ -1,0 +1,155 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRStaffLoanProcessingAndRepayment>
+@{
+
+    ViewBag.Title = "Processing And Repayment";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveProcessingAndRepaymentData","Home",new {Area="HumanResource"})">
+                      <label><label><strong>REPAYMENT PLAN</strong></label></label>
+                        <table class="table-form">
+
+                            <tr>
+                                <td><label>Loan Application No</label></td>
+                                <td>
+                                    <input type="number" name="LoanApplicationNo" class="text-box box-lg" />
+                                </td>
+                                <td><label>Payment Mode</label></td>
+                                <td>
+                                    <input type="text" name="PaymentMode" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Payment Date</label></td>
+                                <td>
+                                    <input type="date" name="PaymentDate" class="text-box box-lg" />
+                                </td>
+                                <td><label>Approved Amount</label></td>
+                                <td>
+                                    <input type="number" name="ApprovedAmount" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>ExpectedPaymentPeriod</label></td>
+                                <td>
+                                    <input type="text" name="ExpectedPaymentPeriod" class="text-box box-lg" />
+                                </td>
+                                <td><label>ExpendInstallmentsNo</label></td>
+                                <td>
+                                    <input type="number" name="ExpendInstallmentsNo" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>AmountPerInstallment</label></td>
+                                <td>
+                                    <input type="number" name="AmountPerInstallment" class="text-box box-lg" />
+                                </td>
+                                <td><label>InterestPerMonth</label></td>
+                                <td>
+                                    <input type="number" name="InterestPerMonth" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>DeadlineDatesOfRepayment</label></td>
+                                <td>
+                                    <input type="date" name="DeadlineDatesOfRepayment" class="text-box box-lg" />
+                                </td>
+                                <td><label>PenaltiesForDefault</label></td>
+                                <td>
+                                    <input type="text" name="PenaltiesForDefault" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Repayment Mode</label></td>
+                                <td>
+                                    <input type="text" name="RepaymentMode" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            </table>
+                        <label><strong>GENERATED LOAN RECOVERY SCHEDULE</strong></label>
+                        <table>
+                            <tr>
+                                <td><label>InstalmentNo</label></td>
+                                <td>
+                                    <input type="number" name="InstalmentNo" class="text-box box-lg" />
+                                </td>
+                                <td><label>DueDate</label></td>
+                                <td>
+                                    <input type="date" name="DueDate" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Amount</label></td>
+                                <td>
+                                    <input type="number" name="Amount" class="text-box box-lg" />
+                                </td>
+                                <td><label>Interest</label></td>
+                                <td>
+                                    <input type="number" name="Interest" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Balances</label></td>
+                                <td>
+                                    <input type="number" name="Balances" class="text-box box-lg" />
+                                </td>
+                                <td><label>Accumulated Total</label></td>
+                                <td>
+                                    <input type="number" name="AccumulatedTotal" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">TermsAndConditions<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="TermsAndConditions" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("ProcessingRepaymentGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

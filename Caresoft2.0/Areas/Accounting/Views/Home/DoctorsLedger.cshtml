@@ -1,11 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "DoctorsLedger";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "CreditorsAllocation";
+    Layout = "~/Areas/Accounting/Views/Shared/_Layout.cshtml";
     ViewBag.ShowTopMenu = true;
 }
 
 <div class="col-md-2">
+    @Html.Partial("~/Areas/Accounting/Views/Shared/CreditorsOperationsLeftPanel.cshtml")
 </div>
 <div class="col-md-8">
 
@@ -15,126 +16,92 @@
                 Doctors Ledger
             </div>
             <div class="panel-body">
-                <div class="col-md-12">
-                    <table>
-                        <tr>
-                            <td>
-                                <input type="checkbox" value="OutPatient" name="patient" /> Out Patients
-                            </td>
-                            <td>
-                                <input type="checkbox" value="OinPatient" name="patient" /> In Patients
-                            </td>
-                            <td>
-                                <input type="checkbox" value="others" name="patient" /> Out Patients
-                            </td>
-                            <td>&nbsp;</td>
-                            <td>
-                                Date:
-                            </td>
-                            <td>
-                                <input type="date" name="Date" class="text-box margin-top-bottom-2" style="width:100%"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="search" value="SearchByNo" /> Search By No.
-                            </td>
-                            <td>
-                                &nbsp; <input type="checkbox" name="search" value="SearchByName" /> Search By Name
-                            </td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>
-                                Invoice No.
-                            </td>
-                            <td>
-                                <input type="number" name="InvoiceNo" class="text-box margin-top-bottom-2" style="width:100%" />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                &nbsp;
-                <div class="col-md-12">
-                    <table>
-                        <tr>
-                            <td>
-                                Patient No.
-                            </td>
-                            <td>
-                                <select name="PatienNo" class="text-box margin-top-bottom-2" style="width:100%">
-                                    <option>--Select</option>
-                                </select>
-                            </td>
-                            <td>
-                                &nbsp; Name:
-                            </td>
-                            <td>
-                                <input name="PatientName" class="text-box margin-top-bottom-2" style="width:100%" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Payment Mode:
-                            </td>
-                            <td>
-                                <input name="PaymentMode" class="text-box margin-top-bottom-2" style="width:100%" />
-                            </td>
-                            <td>
-                                &nbsp; Patient Category:
-                            </td>
-                            <td>
-                                <input name="PatientCategory" class="text-box margin-top-bottom-2" style="width:100%" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Revenue Dep:
-                            </td>
-                            <td>
-                                <input name="RevenueDep" class="text-box margin-top-bottom-2" style="width:100%" />
-                            </td>
-                        </tr>
-                    </table>
-                </div>      
-                <div class="col-md-12">
-                    <table class="table table-data-pathology table-condensed marg-top-16px">
-                        <tr>
-                            <th>Servive</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Total</th>
-                            <th>GI Account</th>
-                            <th>Doctor</th>
-                        </tr>
-                        <tbody style="background-color: white">
+                <form id="family-planning" method="post">
+
+                    &nbsp;
+                    <div class="col-md-12">
+                        <table class="table-form">
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><label>From Date</label></td>
+                                <td>
+                                    <input type="date" class="text-box box-lg" />
+                                </td>
+                                <td><label>To Date</label></td>
+                                <td>
+                                    <input type="date" class="text-box box-lg" />
+                                </td>
                             </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-12">
-                    <table>
-                        <tr>
-                            <td>
-                                Amount:
-                            </td>
-                            <td>
-                                <input type="number" name="Amount" class="text-box margin-top-bottom-2" style="width:100%" />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary btn-sm bn-sm margin-top-bottom-2">Ok</button>
-                    <button type="reset" class="btn btn-default margin-top-bottom-2">Clear</button>
+                            <tr>
+                                <td><label>Service</label></td>
+                                <td>
+                                    <input id="Service" onkeyup="searchFunction($(this))" type="text" class="text-box box-lg" />
+                                </td>
+                                <td><label>Quantity</label></td>
+                                <td>
+                                    <input id="Barcode" onkeyup="searchFunction($(this))" type="text" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Price</label></td>
+                                <td>
+                                    <input id="RegNumber" onkeyup="searchFunction($(this))" type="text" class="text-box box-lg" />
+                                </td>
+                                <td><label>Doctors Name</label></td>
+                                <td>
+                                    <input id="Name" onkeyup="searchFunction($(this))" type="text" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </form>
+                <div id="infusionList">
+                    @Html.Partial("~/Areas/Accounting/Views/Home/_DoctorsLedger.cshtml")
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+@section scripts{
+    <script>
+
+
+        function searchFunction(item) {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = item;
+            filter = input.val().toUpperCase();
+            table = document.getElementById("searchTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+
+                if (input.attr('id') == 'BarCode') {
+                    //td = tr[i].getElementsByTagName("td")[1];
+                } else if (input.attr('id') == 'Name') {
+                    td = tr[i].getElementsByTagName("td")[5];
+                } else if (input.attr('id') == 'RegNumber') {
+                    td = tr[i].getElementsByTagName("td")[3];
+                }
+                else if (input.attr('id') == 'Sevice') {
+                    td = tr[i].getElementsByTagName("td")[1];
+                }
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().trim().indexOf(filter.trim()) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+}

@@ -1,0 +1,213 @@
+﻿@model CaresoftHMISDataAccess.CreditTransfer
+
+@{
+
+    ViewBag.Title = "ApproveBills";
+
+    Layout = "~/Areas/Accounting/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowTopMenu = true;
+    ViewBag.Title = "ApproveBills";
+    ProcurementDataAccess.CaresoftProcurementEntities1 db = new ProcurementDataAccess.CaresoftProcurementEntities1();
+    var t = db.Invoices;
+}
+
+<div class="col-md-8" style="margin-left:220px">
+    <div class=" panel panel-primary shadow glass caresoft-panel">
+        <div class="panel-heading custom-navbar">
+            <p>Calculate Interest </p>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-md-8">
+                    <form id="form-approval" method="post" action="@Url.Action("UpdateCreditTransferInt", "Home")">
+                        <input hidden value="@ViewBag.InterestId" name="Id"  />
+
+                        <input hidden name="UserId" id="UserId" />
+                        <input hidden name="BranchId" id="BranchId" />
+                        <input hidden name="DateAdded" id="DateAdded" />
+
+                        <input hidden name="Amount" id="Amount" />
+                        <input hidden name="OriginalBalance" id="OriginalBalance" />
+                        <input hidden name="BalanceLeft" id="BalanceLeft" />
+                        <input hidden name="OtherDetails" id="OtherDetails" />
+                        <input hidden name="ReceiptNo" id="ReceiptNo" />
+                        <input hidden type="date" name="ReceiptDate" id="ReceiptDate" />
+
+                        <input hidden name="Amount" id="Amount" />
+                        <input hidden name="SchemeName" id="SchemeName" />
+                        <input hidden name="Payer" id="Amount" />
+                        <input hidden name="AccountNo" id="SchemeName" />
+
+                        <table class="table-form">
+
+
+                            <tr>
+                                <td>
+                                    <label> Amount</label>
+                                </td>
+                                <td>
+                                    <input value="@Model.Amount" id="Amount" class="text-box box-lg" readonly />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label> Rate (%)</label>
+                                </td>
+                                <td>
+                                    <input name="Rate" id="Rate" class="text-box box-lg" required />
+                                </td>
+                                <td>
+                                    <label> Time (Years)</label>
+                                </td>
+                                <td>
+                                    <input name="Time" required id="Time" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <label> Interest</label>
+                                </td>
+                                <td>
+                                    <input name="Interest" id="TargetInt" onkeyup="calcAmountInt()" class="text-box box-lg" />
+                                </td>
+                            </tr>
+
+
+                        </table>
+
+                        <button type="submit" class="btn btn-sm btn-primary" name="btnSubmit">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#InvoiceNo").autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+                        url: "/Accounting/Home/SearchCreditTransfer",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        data: { search: $("#InvoiceNo").val() },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.AccountNo + "(" + item.Payer + ")",
+                                    //                            value: item.InvoiceNo,
+                                    value: item.AccountNo, Payer: item.Payer, SchemeName: item.SchemeName, Id: item.Id, UserId: item.UserId,
+                                    BranchId: item.BranchId, DateAdded: item.DateAdded, Amount: item.Amount, OriginalBalance: item.OriginalBalance,
+                                    BalanceLeft: item.BalanceLeft, SchemeName: item.SchemeName, OtherDetails: item.OtherDetails, ReceiptNo: item.ReceiptNo,
+                                    ReceiptDate: item.ReceiptDate
+                                };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "", results: ""
+
+                }
+
+            });
+
+
+            $("#InvoiceNo").on("autocompleteselect", function (event, ui) {
+
+                $('#PayerName').val(ui.item.Payer);
+                $('#SchemeName').val(ui.item.SchemeName);
+                $("#AccountNo").val(ui.item.AccountNo);
+                $("#Id").val(ui.item.Id);
+                $("#UserId").val(ui.item.UserId);
+                $("#BranchId").val(ui.item.BranchId);
+                $("#DateAdded").val(ui.item.DateAdded);
+                $("#Amount").val(ui.item.Amount);
+                $("#OriginalBalance").val(ui.item.OriginalBalance);
+                $("#BalanceLeft").val(ui.item.BalanceLeft);
+                $("#SchemeName").val(ui.item.SchemeName);
+                $("#OtherDetails").val(ui.item.OtherDetails);
+                $("#ReceiptNo").val(ui.item.ReceiptNo);
+                $("#ReceiptDate").val(ui.item.ReceiptDate);
+
+
+
+                console.log(ui);
+
+
+            });
+
+        })
+    function calcAmountInt() {
+        var Int = 0;
+        var r = parseFloat($("#Rate").val());
+        var t = parseFloat($("#Time").val());
+        var a = parseFloat($("#Amount").val());
+        if (r > 0 && t > 0 && a > 0) {
+            Int = ((r/100) * a) * t;
+        }
+
+        $("#TargetInt").val(Int.toFixed(2));
+    }
+
+    $("#Rate").change(function () {
+        calcAmountInt();
+    });
+
+    $("#Rate").keyup(function () {
+        calcAmountInt();
+    });
+
+    $("#Time").change(function () {
+        calcAmountInt();
+    });
+
+    $("#Time").keyup(function () {
+        calcAmountInt();
+        });
+        $("#Amount").change(function () {
+            calcAmountInt();
+        });
+
+        $("#Amount").keyup(function () {
+            calcAmountInt();
+        });
+
+
+
+     $("#form-approval").submit(function (e) {
+            if ($("#DoctorNote").val().trim() === "") {
+                showNotification("Write in some note", "warning", true);
+                return false;
+            }
+            $(".loader").show();
+            e.preventDefault();
+            var data = $(this).serialize();
+            $.ajax({
+                method: "post",
+                url: "@Url.Action("SaveApprovalForm", "Home")",
+                data: data,
+                success: function (result) {
+                    $(".loader").hide();
+                    $("#DoctorNote").val("");
+                    $("#doctorNotesList").html(result);
+                    applyHumanTime();
+                },
+                error: function (e, x, h) {
+                    $(".loader").hide();
+                    showNotification("An error occured!", "danger", true);
+                    console.log(e.responseText());
+                }
+            })
+    })
+
+
+    </script>
+
+}

@@ -1,0 +1,120 @@
+﻿@model ProcurementDataAccess.Invoice
+
+@{
+
+    ViewBag.Title = "ApproveBills";
+
+
+    ProcurementDataAccess.CaresoftProcurementEntities1 db = new ProcurementDataAccess.CaresoftProcurementEntities1();
+    var t = db.Invoices;
+}
+<div class="col-md-8" style="margin-left:220px">
+    <div class=" panel panel-primary shadow glass caresoft-panel">
+        <div class="panel-heading custom-navbar">
+            <p>Approval Form </p>
+        </div>
+        <div class="panel-body">
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <form id="form-approval" method="post" action="@Url.Action("SaveApprovalForm", "Home")">
+                        <input hidden name="InvoiceNo" value="@Model.Id"/>
+                        
+
+                        <table class="table-form">
+
+                            <tr>
+                                <td>
+                                    <label> Amount</label>
+                                </td>
+                                <td>
+                                    <input value="@Model.InvoiceAmount" id="Amount" class="text-box box-lg" readonly />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label> Balance</label>
+                                </td>
+                                <td>
+                                    <input id="TargetBal" class="text-box box-lg" readonly />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label> Amount Approved</label>
+                                </td>
+                                <td>
+                                    <input name="ApprovalAmount" id="AmountApproved" onkeyup="calcAmountBal()" class="text-box box-lg" />
+                                </td>
+                            </tr>
+
+
+                        </table>
+
+                        <button type="submit" class="btn btn-sm btn-primary" name="btnSubmit">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+<script>
+    function calcAmountBal() {
+        var Bal = 0;
+        var w = parseFloat($("#Amount").val());
+        var h = parseFloat($("#AmountApproved").val());
+        if (h > 0 && h < w) {
+            Bal = w - h;
+        }
+
+        $("#TargetBal").val(Bal.toFixed(2));
+    }
+
+    $("#Amount").change(function () {
+        calcAmountBal();
+    });
+
+    $("#Amount").keyup(function () {
+        calcAmountBal();
+    });
+
+    $("#AmountApproved").change(function () {
+        calcAmountBal();
+    });
+
+    $("#AmountApproved").keyup(function () {
+        calcAmountBal();
+    });
+
+
+     $("#form-approval").submit(function (e) {
+            if ($("#DoctorNote").val().trim() === "") {
+                showNotification("Write in some note", "warning", true);
+                return false;
+            }
+            $(".loader").show();
+            e.preventDefault();
+            var data = $(this).serialize();
+            $.ajax({
+                method: "post",
+                url: "@Url.Action("SaveApprovalForm", "Home")",
+                data: data,
+                success: function (result) {
+                    $(".loader").hide();
+                    $("#DoctorNote").val("");
+                    $("#doctorNotesList").html(result);
+                    applyHumanTime();
+                },
+                error: function (e, x, h) {
+                    $(".loader").hide();
+                    showNotification("An error occured!", "danger", true);
+                    console.log(e.responseText());
+                }
+            })
+    })
+
+
+</script>
+
+}

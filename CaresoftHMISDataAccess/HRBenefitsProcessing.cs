@@ -39,5 +39,7 @@ namespace CaresoftHMISDataAccess
         public Nullable<double> BenefitSalary { get; set; }
         public string PaymentMode { get; set; }
         public Nullable<System.DateTime> ExpectedDateOfPayment { get; set; }
+        public string Payer { get; set; }
+        public string Broker { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace Caresoft2._0.Areas.Accounting
             context.MapRoute(
                 "Accounting_default",
                 "Accounting/{controller}/{action}/{id}",
-                new { Controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new { Controller = "Home", action = "EnterBills", id = UrlParameter.Optional },
                                 namespaces: new[] { "Caresoft2._0.Areas.Accounting.Controllers" }
             );
         }
