@@ -1,0 +1,147 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRInjury>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CaseCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InjuryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartOfBodyffected)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccidenntLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActiveInjuryAgent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeOfDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InjuryDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActionTaken)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfAction)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonReportedTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RestrictedTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InjuryType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhysicianName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HospitalTaken)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostalAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LostTime)
+        </th>
+
+<tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CaseCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InjuryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartOfBodyffected)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccidenntLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActiveInjuryAgent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeOfDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InjuryDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActionTaken)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfAction)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonReportedTo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RestrictedTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InjuryType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhysicianName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HospitalTaken)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostalAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReturnDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LostTime)
+        </td>
+    </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

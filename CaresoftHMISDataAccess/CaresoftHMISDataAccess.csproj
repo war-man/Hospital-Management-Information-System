@@ -366,6 +366,9 @@
     <Compile Include="HRCountry.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="HRDashboard.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="HRDemotion.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>

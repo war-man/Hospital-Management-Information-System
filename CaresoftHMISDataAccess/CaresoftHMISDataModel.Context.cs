@@ -111,6 +111,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<HRContractTerminationCheckOut> HRContractTerminationCheckOuts { get; set; }
         public virtual DbSet<HRContractTerminationReason> HRContractTerminationReasons { get; set; }
         public virtual DbSet<HRCountry> HRCountries { get; set; }
+        public virtual DbSet<HRDashboard> HRDashboards { get; set; }
         public virtual DbSet<HRDemotion> HRDemotions { get; set; }
         public virtual DbSet<HRDepartment> HRDepartments { get; set; }
         public virtual DbSet<HRDepartmentalLayout> HRDepartmentalLayouts { get; set; }

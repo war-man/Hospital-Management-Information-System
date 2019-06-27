@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using CaresoftHMISDataAccess;
+using PagedList;
+using ProcurementDataAccess;
 
 namespace Caresoft2._0.Areas.Finance.Controllers
 {
@@ -9,6 +13,7 @@ namespace Caresoft2._0.Areas.Finance.Controllers
     public class HomeController : Controller
     {
         private CaresoftHMISEntities db = new CaresoftHMISEntities();
+        private CaresoftProcurementEntities1 db2 = new CaresoftProcurementEntities1();
 
         // GET: Finance/Home
         public ActionResult Index()
@@ -80,11 +85,9 @@ namespace Caresoft2._0.Areas.Finance.Controllers
             return View();
         }
 
-        public ActionResult ApproveVoucher()
-        {
-            return View();
-        }
+        
 
+     
         public ActionResult PettyPayments()
         {
             return View();

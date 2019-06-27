@@ -9,10 +9,10 @@
 
 }
 <div class="col-md-2">
-    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_JobRequisitionNav.cshtml")
 </div>
 
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary  caresoft-panel glass">
             <div class="panel-heading">
@@ -22,7 +22,7 @@
                 <div class="col-md-12">
                     <form id="branches" method="post" action="@Url.Action("SaveVettingData","Home",new {Area="HumanResource"})">
                         <label> <strong>VETTING</strong></label>
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>SearchingCriteria</label></td>
                                 <td>

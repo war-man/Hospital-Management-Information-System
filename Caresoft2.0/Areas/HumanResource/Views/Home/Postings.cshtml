@@ -8,7 +8,7 @@
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 }
 <div class="col-md-2">
-    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_InternalCommunicationNav.cshtml")
 </div>
 
 <div class="col-md-7">
@@ -59,24 +59,24 @@
                                     </select>
                                 </td>
                             </tr>
-
-                            <tr>
-                                <td class="form-group">
-                                    <label class="info-title col-md-12" for="black_name">Terms Of Service<span><font color="black"><b></b></font></span></label>
+                            </table>
+                                <div class="form-group">
+                                    <label class="info-title col-md-12" for="black_name"><strong>Terms Of Service</strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
-                                    <textarea style="width:150%;height:70px;" name="TermsOfService" class="text-box unicase-form-control text-input" id="extension_number"
+                                    <textarea style="width:250px;height:70px;" name="TermsOfService" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
                                         
                                     </textarea>
-                                </td>
-                            </tr>
+                                </div>
+                           <table class="table-form">
                             <tr>
                                 <td><label>Expected Date Of Appraisal</label></td>
                                 <td>
                                     <input type="date" name="ExpectedDateOfAppraisal" class="text-box box-lg" />
                                 </td>
                             </tr>
-                            <tr><td><label>Objectives & Key Performance Indicators</label></td></tr>
+                            
+                            <tr><td><label><strong>Objectives & Key Performance Indicators</strong></label></td></tr>
                             <tr>
                                 <td><label>Session</label></td>
                                 <td>

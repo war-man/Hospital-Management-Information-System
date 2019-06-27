@@ -8,12 +8,12 @@
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 }
 <div class="col-md-2">
-    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_InternalCommunicationNav.cshtml")
 </div>
 @{
     var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
 }
-<div class="col-md-7">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading custom-navbar">
@@ -77,23 +77,25 @@
                                 <td>
                                     <input type="text" name="Supervisor" class="text-box box-lg" />
                                 </td>
-                                </tr>
+                            </tr>
                             <tr><td><label><strong>Staff Involved</strong></label></td></tr>
                             <tr>
                                 <td><label>Staff Id</label></td>
                                 <td>
                                     <input type="number" name="StaffId" class="text-box box-lg" />
                                 </td>
-                                <td class="form-group">
-                                    <label class="info-title col-md-12" for="black_name">Task<span><font color="black"><b></b></font></span></label>
-                                    <span id='message_full_name'></span>
-                                    <textarea style="width:150%;height:70px;" name="Task" class="text-box unicase-form-control text-input" id="extension_number"
-                                              placeholder="Enter plan">
-                                        
-                                    </textarea>
-                                </td>
+
                             </tr>
                         </table>
+                        <br />
+                        <div class="form-group">
+                            <label class="info-title col-md-12" for="black_name"><strong>Task</strong><span><font color="black"><b></b></font></span></label>
+                            <span id='message_full_name'></span>
+                            <textarea style="width:250px;height:70px;" name="Task" class="text-box unicase-form-control text-input" id="extension_number"
+                                      placeholder="Enter plan">
+                                        
+                                    </textarea>
+                        </div>
                         <br />
 
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />

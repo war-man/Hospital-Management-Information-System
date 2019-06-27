@@ -1,49 +1,36 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.ShowTopMenu = true;
+    Layout = "~/Areas/Finance/Views/Shared/_Layout.cshtml";
 
 }
 
 <div class="col-md-12">
-    <div class="col-md-3">
+    <div class="col-md-4">
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="panel panel-primary caresoft-panel glass">
             <div class="panel-heading">
             </div>
             <div class="panel-body">
-                <table width="100%" >
+                <table width="100%">
                     <tr>
-                        <td class="text-center">
+                        <td align="center">
                             <a href="~/Finance/Home/TotalShiftReport">
-                                <img style="height:100px; width:auto; border-radius:10px" src="~/Content/icons/dashboard/Finance.jpg" />
-                                @*<p>FINANCE</p>*@
-                            </a>
-
-                            <a style="color: black" href="~/Finance/Home/TotalShiftReport">
-                                <br /><br /><b>FINANCE</b>
+                                <img style="border-radius:10px" width="100px;" height="100px" src="~/Content/icons/dashboard/Finance.jpg" />
+                                <p style="padding:10px">FINANCE</p>
                             </a>
                         </td>
-                        <td class="text-center">
-                            <a href="~/Accounting/">
-                                <img style="height:100px; width:auto; border-radius:10px" src="~/Content/icons/dashboard/Accounting.png" />
-                                @*<p>ACCOUNT</p>*@
-                            </a>
-
-                            <a style="color: black" href="~/Finance/Home/TotalShiftReport">
-                                <br /><br /><b>ACCOUNT</b>
+                        <td align="center">
+                            <a href="~/Accounting/Home">
+                                <img style="border-radius:10px" width="100px;" height="100px" src="~/Content/icons/dashboard/Accounting.png" />
+                                <p style="padding:10px">ACCOUNTING</p>
                             </a>
                         </td>
-                        <td class="text-center">
+                        <td align="center">
                             <a href="#">
-                                <img style="height:100px; width:auto; border-radius:10px" src="~/Content/icons/dashboard/Budget.png" />
-                                @*<p>BUDGET</p>*@
-                            </a>
-
-                            <a style="color: black" href="~/Finance/Home/TotalShiftReport">
-                                <br /><br /><b>BUDGET</b>
+                                <img  style="border-radius:10px" width="100px;" height="100px" src="~/Content/icons/dashboard/Budget.png" />
+                                <p style="padding:10px">BUDGET</p>
                             </a>
                         </td>
                     </tr>

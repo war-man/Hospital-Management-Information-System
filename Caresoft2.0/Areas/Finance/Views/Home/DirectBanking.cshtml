@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "DirectBanking";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Finance/Views/Shared/_Layout.cshtml";
     var banks = (List<CaresoftHMISDataAccess.FinanceBank>)ViewBag.Banks;
     ViewBag.ShowTopMenu = true;
 
@@ -36,7 +36,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    Cheque No:
+                                   &nbsp; Cheque No:
                                 </td>
                                 <td>
                                     <input type="number" name="ChequeNo" id="ChequeNo" class="text-box margin-top-bottom-2" style="width:100%" />
@@ -67,7 +67,7 @@
                                     </datalist>
                                 </td>
                                 <td>
-                                    Acc No:
+                                   &nbsp; Acc No:
                                 </td>
                                 <td>
                                     <input type="text" name="AccNo" class="text-box margin-top-bottom-2" style="width:100%" id="AccNumber" />

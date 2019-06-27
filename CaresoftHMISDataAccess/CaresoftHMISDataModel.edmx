@@ -1689,6 +1689,15 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.HRConfirmation' does not have a p
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="DateAdded" Type="date" />
         </EntityType>
+        <EntityType Name="HRDashboard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Action" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Icon" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="HRDemotion">
           <Key>
             <PropertyRef Name="Id" />
@@ -8502,6 +8511,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySet Name="HRContractTerminationCheckOut" EntityType="Self.HRContractTerminationCheckOut" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRContractTerminationReason" EntityType="Self.HRContractTerminationReason" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRCountry" EntityType="Self.HRCountry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HRDashboard" EntityType="Self.HRDashboard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRDemotion" EntityType="Self.HRDemotion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRDepartment" EntityType="Self.HRDepartment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRDepartmentalLayout" EntityType="Self.HRDepartmentalLayout" Schema="dbo" store:Type="Tables" />
@@ -9896,6 +9906,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySet Name="HRContractTerminationCheckOuts" EntityType="CaresoftHMISModel.HRContractTerminationCheckOut" />
           <EntitySet Name="HRContractTerminationReasons" EntityType="CaresoftHMISModel.HRContractTerminationReason" />
           <EntitySet Name="HRCountries" EntityType="CaresoftHMISModel.HRCountry" />
+          <EntitySet Name="HRDashboards" EntityType="CaresoftHMISModel.HRDashboard" />
           <EntitySet Name="HRDemotions" EntityType="CaresoftHMISModel.HRDemotion" />
           <EntitySet Name="HRDepartments" EntityType="CaresoftHMISModel.HRDepartment" />
           <EntitySet Name="HRDepartmentalLayouts" EntityType="CaresoftHMISModel.HRDepartmentalLayout" />
@@ -12679,6 +12690,15 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="BranchId" Type="Int32" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="DateAdded" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="HRDashboard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HRDemotion">
           <Key>
@@ -21447,6 +21467,16 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
                 <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
                 <ScalarProperty Name="CountryName" ColumnName="CountryName" />
                 <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRDashboards">
+            <EntityTypeMapping TypeName="CaresoftHMISModel.HRDashboard">
+              <MappingFragment StoreEntitySet="HRDashboard">
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "PettyPayments";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Finance/Views/Shared/_Layout.cshtml";
     ViewBag.ShowTopMenu = true;
 
 }
@@ -26,7 +26,7 @@
                             <input type="text" name="CashPoint" id="CashPoint" class="text-box margin-top-bottom-2" style="width:100%" />
                         </td>
                         <td>
-                            Shift No:
+                           &nbsp; Shift No:
                         </td>
                         <td>
                             <input type="number" name="ShiftNo" id="ShiftNo" class="text-box margin-top-bottom-2" style="width:100%" />
@@ -47,7 +47,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="Payments">
                         <form>
-                            <fieldset>
+                            <div class="col-md-12">
                                 <table>
                                     <tr>
                                         <td>
@@ -70,7 +70,7 @@
                                             </datalist>
                                         </td>
                                         <td>
-                                            Department:
+                                          &nbsp;  Department:
                                         </td>
                                         <td>
                                             <select class="text-box margin-top-bottom-2" style="width:100%" name="Department" id="Department">
@@ -89,7 +89,7 @@
                                             </datalist>
                                         </td>
                                         <td>
-                                            Date:
+                                            &nbsp;  Date:
                                         </td>
                                         <td>
                                             <input type="date" name="Date" id="Date" class="text-box margin-top-bottom-2" style="width:100%" />
@@ -102,14 +102,14 @@
                                             <input type="text" name="Requisitioner" id="Requisitioner" class="text-box margin-top-bottom-2" style="width:100%" />
                                         </td>
                                         <td>
-                                            Voucher No:
+                                            &nbsp;  Voucher No:
                                         </td>
                                         <td>
                                             <input type="number" name="VoucherNo" id="VoucherNo" class="text-box margin-top-bottom-2" style="width:100%" />
                                         </td>
                                     </tr>
                                 </table>
-                            </fieldset>
+                            </div>
 
                             <table>
                                 <tr>
@@ -135,7 +135,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        Cheque No:
+                                        &nbsp; Cheque No:
                                     </td>
                                     <td>
                                         <input type="number" name="ChequeNo" id="ChequeNo" class="text-box margin-top-bottom-2" style="width:100%" />
@@ -143,7 +143,7 @@
                                 </tr>
                             </table>
                             <br />
-                            <fieldset>
+                            <div class="col-md-12">
                                 <table class="table table-data-pathology table-condensed">
                                     <tr>
                                         <th>Purpose</th>
@@ -172,15 +172,17 @@
                                 </table>
                                 <br />
                                 Amount : <input type="number" name="AmountTotal" id="AmountTotal" class="text-box margin-top-bottom-2" />
-                            </fieldset>
-                            <button type="submit" name="Save" class="btn btn-primary bn-sm">Save</button>
-                            <button type="reset">Clear</button>
+                            </div>
+                            <div class="col-md-12 marg-top-16px">
+                                <button type="submit" name="Save" class="btn btn-primary bn-sm">Save</button>
+                                <button type="reset">Clear</button>
+                            </div>
+                           
                         </form>
                     </div>
                     <div class="tab-pane" id="InPatientsRefunds">
                         <form>
-                            <fieldset>
-                                <legend>Select patient</legend>
+                            <div class="col-md-12">
                                 <table>
                                     <tr>
                                         <td>
@@ -200,7 +202,7 @@
                                             </datalist>
                                         </td>
                                         <td>
-                                            Paid To:
+                                            &nbsp;  Paid To:
                                         </td>
                                         <td>
                                             <input type="text" name="PaidTo" id="PaidTo" class="text-box margin-top-bottom-2" style="width:100%" />
@@ -214,7 +216,7 @@
                                             <input name="VisitID" id="VisitID" class="text-box margin-top-bottom-2" style="width:100%" />
                                         </td>
                                         <td>
-                                            Donor:
+                                            &nbsp;   Donor:
                                         </td>
                                         <td>
                                             <select class="text-box margin-top-bottom-2" style="width:100%" name="Donor" id="Donor">
@@ -230,7 +232,7 @@
                                             <input type="text" name="Name" id="Name" class="text-box margin-top-bottom-2" style="width:100%" />
                                         </td>
                                         <td>
-                                            Project:
+                                            &nbsp;  Project:
                                         </td>
                                         <td>
                                             <select class="text-box margin-top-bottom-2" style="width:100%" name="Project" id="Project">
@@ -246,7 +248,7 @@
                                             <input type="number" name="Balance" id="Balance" class="text-box margin-top-bottom-2" style="width:100%" />
                                         </td>
                                         <td>
-                                            Unit:
+                                            &nbsp;  Unit:
                                         </td>
                                         <td>
                                             <select class="text-box margin-top-bottom-2" style="width:100%" name="Unit" id="Unit">
@@ -262,7 +264,7 @@
                                             <input type="text" name="PatienCategory" id="PatientCategory" class="text-box margin-top-bottom-2" style="width:100%" />
                                         </td>
                                         <td>
-                                            Voucher No:
+                                            &nbsp;  Voucher No:
                                         </td>
                                         <td>
                                             <input type="number" name="VoucherNo" id="VoucherNo" class="text-box margin-top-bottom-2" style="width:100%" />
@@ -279,7 +281,7 @@
                                             </datalist>
                                         </td>
                                         <td>
-                                            GL Account:
+                                            &nbsp;  GL Account:
                                         </td>
                                         <td>
                                             <input name="GIAcc" id="GIAcc" class="text-box margin-top-bottom-2" style="width:100%" />
@@ -293,16 +295,18 @@
                                             <input type="number" name="AmtPaid" id="AmtPaid" class="text-box margin-top-bottom-2" style="width:100%" />
                                         </td>
                                         <td>
-                                            Reason:
+                                            &nbsp; Reason:
                                         </td>
                                         <td>
                                             <input type="text" name="Reason" id="Reason" class="text-box margin-top-bottom-2" style="width:100%" />
                                         </td>
                                     </tr>
                                 </table>
-                            </fieldset>
-                            <button type="submit" class="btn btn-primary bn-sm">Ok</button>
-                            <button type="reset">Clear</button>
+                            </div>
+                            <div class="col-md-12 marg-top-16px">
+                                <button type="submit" class="btn btn-primary bn-sm">Ok</button>
+                                <button type="reset">Clear</button>
+                            </div>                            
                         </form>
                     </div>
                 </div>

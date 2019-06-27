@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRHealthAndSafetyPromotion>
+
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SafetyEquipmentIssued)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IssuedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OperatingTrainingRequired)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicalTestRequired)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfLastTest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfNextTest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastTestResults)
+        </th>
+       
+    <tbody class="bg-white">
+        @foreach (var item in Model.OrderByDescending(e => e.Id))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SafetyEquipmentIssued)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IssuedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OperatingTrainingRequired)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MedicalTestRequired)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfLastTest)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfNextTest)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastTestResults)
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

@@ -9,10 +9,10 @@
 
 }
 <div class="col-md-2">
-    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_JobRequisitionNav.cshtml")
 </div>
 
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary  caresoft-panel glass">
             <div class="panel-heading">
@@ -22,7 +22,7 @@
                 <div class="col-md-12">
                     <form id="tests" method="post" action="@Url.Action("SaveTestsData","Home",new {Area="HumanResource"})">
 
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>TestId</label></td>
                                 <td>
@@ -44,17 +44,17 @@
                                 </td>
                             </tr>
                             <tr>
-                                
+
                                 <td><label>Supervisor</label></td>
                                 <td>
                                     <input type="text" name="Supervisor" class="text-box box-lg " style="margin-bottom:3px" />
                                 </td>
-                           
+
                                 <td><label>Scores</label></td>
                                 <td>
                                     <input type="text" name="Scores" class="text-box box-lg " style="margin-bottom:3px" />
                                 </td>
-                                
+
                             </tr>
                             <tr>
                                 <td><label>Total Weighted Score</label></td>
@@ -75,20 +75,16 @@
                                     </select>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="form-group">
+                        </table>
+                                <div class="form-group">
                                     <label class="info-title col-md-12" for="black_name">Remarks<strong></strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
-                                    <textarea style="width: 250%;height:120px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
+                                    <textarea style="width: 250px;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
                                         
                                     </textarea>
-                                </td>
-                                
-                            </tr>
-                        </table>
-
-                        <br /><br />
+                                </div>
+                         
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
                     <br /><br />

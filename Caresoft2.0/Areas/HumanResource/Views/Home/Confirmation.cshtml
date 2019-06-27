@@ -9,10 +9,10 @@
 
 }
 <div class="col-md-2">
-    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_JobRequisitionNav.cshtml")
 </div>
 
-<div class="col-md-8">
+<div class="col-md-7">
     <div class="">
         <div class="panel panel-primary  caresoft-panel glass">
             <div class="panel-heading">
@@ -27,10 +27,9 @@
                             
                            <input type="number" name="ApplicantId" class="text-box box-lg " style="margin-bottom:3px" />
                         <br />
-                        <br />
-                            
+                        
                         <label> <strong>Confirmation of Academic/Professional Records </strong></label>
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>Level</label></td>
                                 <td>
@@ -64,21 +63,18 @@
                                 </td>
 
                             </tr>
-
-                            <tr>
-                                <td class="form-group">
+                        </table>
+                                <div class="form-group">
                                     <label class="info-title col-md-12" for="black_name"><strong>Remarks</strong><strong></strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
-                                    <textarea style="width: 250%;height:120px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
+                                    <textarea style="width:250px;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
                                         
                                     </textarea>
-                                </td>
+                                </div>
 
-                            </tr>
-                        </table>
                         <label> <strong>Confirmation of Referees/Previous Employers </strong></label>
-                        <table>
+                        <table class="table-form">
 
                             <tr>
                                 <td><label>Name</label></td>
@@ -114,28 +110,26 @@
                                     <input type="text" name="ResultsObtained1" class="text-box box-lg " style="margin-bottom:3px" />
                                 </td>
 
+                            </tr>
+                            <tr>
                                 <td><label>Date</label></td>
                                 <td>
                                     <input type="text" name="Date" class="text-box box-lg " style="margin-bottom:3px" />
                                 </td>
-
                             </tr>
-
-                            <tr>
-                                <td class="form-group">
+                        </table>
+                                <div class="form-group">
                                     <label class="info-title col-md-12" for="black_name"><strong>Remarks</strong><strong></strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
-                                    <textarea style="width: 250%;height:120px;" name="Remarks1" class="text-box unicase-form-control text-input" id="extension_number"
+                                    <textarea style="width: 250px;height:70px;" name="Remarks1" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
                                         
                                     </textarea>
-
-                            </tr>
-                        </table>
-                        <br /><br />
+                                 </div>
+                       
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
-                    <br /><br />
+                    
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("ConfirmationGrid")
                     </div>

@@ -688,7 +688,6 @@
     <Compile Include="Areas\CCC\Controllers\ViewInvestigationController.cs" />
     <Compile Include="Areas\CCC\Controllers\VoluntaryTestingMasterController.cs" />
     <Compile Include="Areas\CCC\Controllers\WorkOrderController.cs" />
-    <Compile Include="Areas\Finance\Controllers\HomeController.cs" />
     <Compile Include="Areas\Finance\FinanceAreaRegistration.cs" />
     <Compile Include="Areas\FixedAssets\Controllers\MasterFixedAssetsController.cs" />
     <Compile Include="Areas\FixedAssets\Controllers\TransactionFixedAssetsController.cs" />
@@ -735,6 +734,8 @@
     <Compile Include="Areas\Pathology\PathologyAreaRegistration.cs" />
     <Compile Include="Areas\PatientModule\Controllers\HomeController.cs" />
     <Compile Include="Areas\PatientModule\PatientModuleAreaRegistration.cs" />
+    <Compile Include="Areas\Payroll\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Payroll\PayrollAreaRegistration.cs" />
     <Compile Include="Areas\PharmacyModule\Controllers\PharmacyMasterController.cs" />
     <Compile Include="Areas\PharmacyModule\Controllers\PharmacyPatientTransactionController.cs" />
     <Compile Include="Areas\PharmacyModule\Controllers\PharmacyReportsController.cs" />
@@ -4549,6 +4550,8 @@
     <Content Include="Content\icons\dashboard\Charges.png" />
     <Content Include="Content\icons\dashboard\Confirm Banking.png" />
     <Content Include="Content\icons\dashboard\consultant-module.png" />
+    <Content Include="Content\icons\dashboard\ContractManagement.png" />
+    <Content Include="Content\icons\dashboard\ContractTermination.png" />
     <Content Include="Content\icons\dashboard\CSSD.png" />
     <Content Include="Content\icons\dashboard\CSSD1.png" />
     <Content Include="Content\icons\dashboard\dental.png" />
@@ -4562,6 +4565,11 @@
     <Content Include="Content\icons\dashboard\HIV.png" />
     <Content Include="Content\icons\dashboard\HMS.png" />
     <Content Include="Content\icons\dashboard\housekeeping.png" />
+    <Content Include="Content\icons\dashboard\HR.png" />
+    <Content Include="Content\icons\dashboard\HRReports1.png" />
+    <Content Include="Content\icons\dashboard\HRRequisition.png" />
+    <Content Include="Content\icons\dashboard\HRTraining.png" />
+    <Content Include="Content\icons\dashboard\InternalCommunication.png" />
     <Content Include="Content\icons\dashboard\Inventory.png" />
     <Content Include="Content\icons\dashboard\Inventory1.png" />
     <Content Include="Content\icons\dashboard\ipd.png" />
@@ -4658,6 +4666,13 @@
     <Content Include="Content\icons\emrMenuIcons\work-order.png" />
     <Content Include="Content\icons\Fingerprint1.jpg" />
     <Content Include="Content\icons\home.png" />
+    <Content Include="Content\icons\HRIcons\ContractManagement.png" />
+    <Content Include="Content\icons\HRIcons\ContractTermination.png" />
+    <Content Include="Content\icons\HRIcons\HR.png" />
+    <Content Include="Content\icons\HRIcons\HRReports1.png" />
+    <Content Include="Content\icons\HRIcons\HRRequisition.png" />
+    <Content Include="Content\icons\HRIcons\HRTraining.png" />
+    <Content Include="Content\icons\HRIcons\InternalCommunication.png" />
     <Content Include="Content\icons\id-card-bg.jpg" />
     <Content Include="Content\icons\ipd.jpg" />
     <Content Include="Content\icons\ipddashboardicons\admitpatient.png" />
@@ -5872,9 +5887,7 @@
     <Content Include="Areas\HumanResource\Views\Home\VettingGrid.cshtml" />
     <Content Include="Areas\HumanResource\Views\Home\WorkExperience.cshtml" />
     <Content Include="Areas\HumanResource\Views\Home\WorkExperienceGrid.cshtml" />
-    <Content Include="Areas\HumanResource\Views\Shared\_ApplicantResumeNav.cshtml" />
     <Content Include="Areas\HumanResource\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\HumanResource\Views\Shared\_StaffResumeNav.cshtml" />
     <Content Include="Areas\HumanResource\Views\web.config" />
     <Content Include="Areas\HumanResource\Views\_HRNav.cshtml" />
     <Content Include="Areas\HumanResource\Views\_SideNav.cshtml" />
@@ -5905,6 +5918,23 @@
     <Content Include="Areas\HumanResource\Views\Home\ApplicantInforGrid.cshtml" />
     <Content Include="Areas\HumanResource\Views\Home\ProcessingAndRepayment.cshtml" />
     <Content Include="Areas\HumanResource\Views\Home\ProcessingRepaymentGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\Injury.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\InjuryGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\HealthSafety.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\HealthAndSafetyGrid.cshtml" />
+    <Content Include="Areas\Finance\Views\Shared\_FinanceNav.cshtml" />
+    <Content Include="Areas\Finance\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Payroll\Views\web.config" />
+    <Content Include="Areas\Payroll\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Payroll\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Payroll\Views\Home\Index.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\DashBoard.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Shared\_HRDashboardIcons.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Shared\_JobRequisitionNav.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Shared\_ContractManagementNav.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Shared\_InternalCommunicationNav.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Shared\_TrainingAndDevelopmentNav.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Shared\_ContractTerminationNav.cshtml" />
     <None Include="Areas\PharmacyModule\Reports\BillWiseDailyReportSale\BillWiseDailyDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>BillWiseDailyDataSet1.Designer.cs</LastGenOutput>
@@ -7315,6 +7345,7 @@
     <Folder Include="Areas\CareSoftReports\Models\" />
     <Folder Include="Areas\CCC\Models\" />
     <Folder Include="Areas\CCC\Views\billing\" />
+    <Folder Include="Areas\Finance\Controllers\" />
     <Folder Include="Areas\Finance\Models\" />
     <Folder Include="Areas\Finance\Views\TriggerRealTimeData\" />
     <Folder Include="Areas\FixedAssets\Models\" />
@@ -7324,6 +7355,7 @@
     <Folder Include="Areas\Pathology\Views\Inventory\" />
     <Folder Include="Areas\Pathology\Views\Report\" />
     <Folder Include="Areas\PatientModule\Models\" />
+    <Folder Include="Areas\Payroll\Models\" />
     <Folder Include="Areas\PharmacyModule\Models\" />
     <Folder Include="Areas\Procurement\Reports\InvoiceReports\PurchaseWise\" />
     <Folder Include="Areas\Procurement\Views\SuppliersStatement\" />

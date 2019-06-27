@@ -1,0 +1,372 @@
+﻿
+<table class="table-top-menu" width="100%">
+    <tr style="background-color:#C1D8F9">
+        <td>
+            |Payment <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("Payments", "Home", new { Area = "Finance" })">
+                            | Payment
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("LumpsumPayments", "Home", new { Area = "Finance" })">
+                            | Lumpsum Payment
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("Cosultants", "Home", new { Area = "Finance" })">
+                            | Consultants
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("PaymentsAdjustment", "Home", new { Area = "Finance" })">
+                            | Payment Adjustment
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>
+            |Petty Cash <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td data-href="@Url.Action("RaiseVoucher", "Home", new { Area = "Finance" })">
+                            | Raise Voucher
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("ApproveVoucher", "Home", new { Area = "Finance" })">
+                            | Approve Voucher
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("PettyPayments", "Home", new { Area = "Finance" })">
+                            | Petty Cash Payment
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("DirectNGOPayments", "Home", new { Area = "Finance" })">
+                            | Direct NGO Petty Cash Payments
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("DirectCashtPayments", "Home", new { Area = "Finance" })">
+                            | Direct Cash Payments
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-href="@Url.Action("PettyCashAdjustment", "Home", new { Area = "Finance" })">
+                            | Petty Cash Adjustment
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td data-href="@Url.Action("TotalShiftReport", "Home", new { Area = "Finance" })">
+            | Total Shift Report
+        </td>
+        <td data-href="@Url.Action("ReconcileCash", "Home", new { Area = "Finance" })">
+            | Cash point Reconciliaiton
+        </td>
+        <td data-href="@Url.Action("Banking", "Home", new { Area = "Finance" })">
+            | Banking
+        </td>
+        <td data-href="@Url.Action("ConfirmBanking", "Home", new { Area = "Finance" })">
+            | confirm Banking
+        </td>
+        <td>
+            |Reports <i class="fa fa-caret-down"></i>
+            <div class="dropdown-table-holder">
+                <table class="dropdown-table" width="100%">
+                    <tr>
+                        <td>
+                            | Transaction List
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Transaction Audit
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Transaction Audit Per Date
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Cash Book <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td>
+                                            | Cash Book
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Post Dated Cheques
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Cancelled Cheques
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | CashBook Balances
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | CashBook Summary
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Cash Flow Operations
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Cheque Requisition
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Bank Reconciliation Summary
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Payroll Cash Payment
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Bank Statements <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td>
+                                            | Deposit Per Bank
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Banking Per Bank
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Bank Reconciliation
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | UnReconcilled Items
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Unreconcilled Item Per Bank
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Bank Recon Discripancies
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Profit & Loss <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td>
+                                            | Profit & Loss
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Profit & Loss Analysis
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Profit & Loss Txt.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Trading Profit & Loss
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Income Statement Summary
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Income Statement Detailed
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Trial Balance <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td>
+                                            Trial Balance
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Detailed Trial Balance Txt
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Annual Trail Balance
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Trail Balance Movement
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Trail Balance Per Period
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Trail Balance As Balance
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | General Ledger
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Balance Sheet <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td>
+                                            | Balance Sheet
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Balance Sheet Movnt
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Balance Sheet Detailed
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Balance Sheet BreakDown
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Department Inc. & Exp
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Transaction By Account
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Patient Control Acc
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Patient Ctl Summary
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Transaction By Acc Summary
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Journal
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Payments Summary
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            | Taxes <i class="fa fa-caret-right"></i>
+                            <div class="sidekick-table-holder">
+                                <table class="sidekick-table" width="100%">
+                                    <tr>
+                                        <td>
+                                            | Corporation Tax
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            | Tax Return
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+
+        <td data-href="@Url.Action("BankReconciliation", "Home", new { Area = "Finance" })">
+            | Bank Reconciliation
+        </td>
+        <td data-href="@Url.Action("BankCharges", "Home", new { Area = "Finance" })">
+            | Bank Charges
+        </td>
+        <td data-href="@Url.Action("DirectBanking", "Home", new { Area = "Finance" })">
+            | Direct Banking
+        </td>
+    </tr>
+</table>

@@ -7,14 +7,15 @@
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 
 }
+
 <div class="col-md-2">
-    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_JobRequisitionNav.cshtml")
 </div>
 @{
     var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
 }
 
-<div class="col-md-7">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary  caresoft-panel glass">
             <div class="panel-heading">
@@ -108,28 +109,24 @@
                         </table>
 
                         <label> <strong>REQUIREMENTS</strong></label>
-                        <table>
-                            <tr>
-                                <td class="form-group">
+                        
+                                <div class="form-group">
                                     <label class="info-title col-md-12" for="black_name"><strong>Education</strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
-                                    <textarea style="width: 150%;height:70px;" name="Education" class="text-box unicase-form-control text-input" id="extension_number"
+                                    <textarea style="width: 250px;height:70px;" name="Education" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
                                         
                                     </textarea>
-                                    </td>
-                                </tr>
-                            <tr>
-                                <td>
+                                    </div>
+                          <br />
+                                <div>
                                     <label class="info-title col-md-12" for="black_name"><strong>Skills/Experience</strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
-                                    <textarea style="width:150%;height:70px;" name="SkillsOrExperience" class="text-box unicase-form-control text-input" id="extension_number"
+                                    <textarea style="width:250px;height:70px;" name="SkillsOrExperience" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
                                         
                                     </textarea>
-                                </td>
-                            </tr>
-                        </table>
+                                </div>
 
                         <br />
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />

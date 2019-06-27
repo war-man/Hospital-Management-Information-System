@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "BankReconciliation";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Finance/Views/Shared/_Layout.cshtml";
     ViewBag.ShowTopMenu = true;
     var banks = (List<CaresoftHMISDataAccess.FinanceBank>)ViewBag.banks;
 
@@ -34,11 +34,13 @@
                                 <td>
                                    <input type="date" name="ToDate" id="ToDate" class="text-box margin-top-bottom-2" style="width:100%"/>
                                 </td>
+                                <td>&nbsp;</td>
                                 <td>
-                                    <input type="radio" name="RadioB" id="CBookDiscripacy" /> &nbsp; <strong>Enter C/Book Discripacy</strong> 
-                                </td>                                
+                                    <input type="radio" name="RadioB" id="CBookDiscripacy" /><strong>Enter C/Book Discripacy</strong> 
+                                </td>     
+                                <td>&nbsp;</td>
                                 <td>
-                                    <input type="radio" name="RadioB" id="StmtDiscripacy" /> &nbsp; <strong>Enter Bnk Stmt Stmt Discripacy</strong>
+                                    <input type="radio" name="RadioB" id="StmtDiscripacy" /><strong>Enter Bnk Stmt Stmt Discripacy</strong>
                                 </td>
                             </tr>
                         <tr><td>&nbsp;</td></tr>
@@ -84,18 +86,10 @@
                             </tr>
                             <tbody style="background-color: white">
                                 <tr>
-                                    <td>
-                                        @*<input type="date" class="text-box margin-top-bottom-2 Date" id="Date" />*@
-                                    </td>
-                                    <td>
-                                        @*<input type="number" class="text-box margin-top-bottom-2 ChequeNo" id="ChequeNo"/>*@
-                                    </td>
-                                    <td>
-                                        @*<input type="number" class="text-box margin-top-bottom-2 Debit" id="Debit"/>*@
-                                    </td>
-                                    <td>
-                                        @*<input type="number" class="text-box margin-top-bottom-2 Credit" id="Credit" />*@
-                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
                                         <input type="checkbox" class="text-box margin-top-bottom-2 Reconciled" id="Reconciled" style="width:100%" />
                                     </td>
@@ -106,7 +100,7 @@
                     <div class="col-md-12">
                         <table>
                             <tr>
-                                <td>
+                                @*<td>
                                     Cheque NO.
                                 </td>
                                 <td>
@@ -114,9 +108,9 @@
                                     <datalist id="ChequeNo">
                                         <option value=""></option>
                                     </datalist>
-                                </td>
+                                </td>*@
                                 <td>
-                                  &nbsp;  Amount:
+                                    Amount:
                                 </td>
                                 <td>
                                     <input type="number" class="text-box margin-top-bottom-2" name="Amount" id="Amount" style="width:100%"/>
@@ -175,9 +169,8 @@
                     type: "GET",
                     url: "/Finance/Home/getCashTotals",
                     data: { AccNo: $("#CashBNO").val() },
-                    success: function (Cash) {
-                        $("#CashBBalance").val(Cash);
-                        console.log(Cash);
+                    success: function (details) {
+                        console.log(details);
                     },
                     error: function () {
                     }

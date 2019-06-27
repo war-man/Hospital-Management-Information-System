@@ -2737,6 +2737,68 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             return RedirectToAction("Grievances");
         }
         #endregion
+        #region Injury And Incident Information
+        public ActionResult DepInjury()
+        {
+
+            var departments = db.Departments.Where(e => e.DepartmentName != null).ToList();
+
+            return View(departments);
+        }
+        public ActionResult Injury()
+        {
+            ViewBag.Departments = db.Departments.ToList();
+            ViewBag.HRInjury = db.HRInjuries.ToList();
+            var data = db.HRInjuries.ToList();
+
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SaveInjuryData(HRInjury data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+
+
+            db.HRInjuries.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("Injury");
+        }
+        #endregion
+        #region Health And Safety Promotion
+        public ActionResult DepHealth()
+        {
+
+            var departments = db.Departments.Where(e => e.DepartmentName != null).ToList();
+
+            return View(departments);
+        }
+        public ActionResult HealthSafety()
+        {
+            ViewBag.Departments = db.Departments.ToList();
+            ViewBag.HRHealthAndSafetyPromotion = db.HRHealthAndSafetyPromotions.ToList();
+            var data = db.HRHealthAndSafetyPromotions.ToList();
+
+            return View(data);
+
+        }
+        [HttpPost]
+        public ActionResult SaveHealthSafetyData(HRHealthAndSafetyPromotion data)
+        {
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = 1;
+
+
+            db.HRHealthAndSafetyPromotions.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("HealthSafety");
+        }
+        #endregion
         #region Staff Loan Applicant Information
         public ActionResult ApplicantInformation()
         {
@@ -3006,6 +3068,14 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             db.SaveChanges();
 
             return RedirectToAction("ClaimManagement");
+        }
+        #endregion
+        #region DashBoard
+        public ActionResult DashBoard()
+        {
+
+            return View();
+
         }
         #endregion
     }

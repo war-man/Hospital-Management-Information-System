@@ -1,0 +1,175 @@
+﻿
+@model IEnumerable<CaresoftHMISDataAccess.HRInjury>
+@{
+
+    ViewBag.Title = "Injury And Incident Information";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-2">
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_TrainingAndDevelopmentNav.cshtml")
+</div>
+
+@{
+    var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+}
+
+
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="country" method="post" action="@Url.Action("SaveInjuryData","Home",new {Area="HumanResource"})">
+
+                        <table class="table-form">
+
+                            <tr>
+                                <td><label>Staff Id</label></td>
+                                <td>
+                                    <input type="number" name="StaffId" class="text-box box-lg" />
+                                </td>
+                                <td class="">
+                                    <p>Department Name</p>
+                                </td>
+                                <td>
+                                    <select name="Department" class="text-box box-lg ">
+                                        <option>All</option>
+                                        @foreach (var r in departments)
+                                        {
+                                            <option>@r.DepartmentName</option>
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td><label>Case Code</label></td>
+                                <td>
+                                    <input type="number" name="CaseCode" class="text-box box-lg " />
+                                </td>
+                                <td><label>Illness/InjuryDate</label></td>
+                                <td>
+                                    <input type="date" name="InjuryDate" class="text-box box-lg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Part Of Body Affected</label></td>
+                                <td>
+                                    <input type="text" name="PartOfBodyffected" class="text-box box-lg " />
+                                </td>
+                                <td><label>Accident Location</label></td>
+                                <td>
+                                    <input type="text" name="AccidenntLocation" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Active Injury Agent</label></td>
+                                <td>
+                                    <input type="text" name="ActiveInjuryAgent" class="text-box box-lg " />
+                                </td>
+                                <td><label>Time Of Day</label></td>
+                                <td>
+                                    <input type="time" name="TimeOfDay" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="form-group">
+                                    <label class="info-title col-md-12" for="black_name">Brief Illness/Injury Description<span><font color="black"><b></b></font></span></label>
+                                    <span id='message_full_name'></span>
+                                    <textarea style="width:150%;height:70px;" name="InjuryDescription" class="text-box unicase-form-control text-input" id="extension_number"
+                                              placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Action Taken</label></td>
+                                <td>
+                                    <input type="text" name="ActionTaken" class="text-box box-lg " />
+                                </td>
+                                <td><label>Date Of Action</label></td>
+                                <td>
+                                    <input type="date" name="DateOfAction" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Person Reported To</label></td>
+                                <td>
+                                    <input type="text" name="PersonReportedTo" class="text-box box-lg " />
+                                </td>
+                                <td><label>Restricted Time</label></td>
+                                <td>
+                                    <input type="time" name="RestrictedTime" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Injury Type</label></td>
+                                <td>
+                                    <input type="text" name="InjuryType" class="text-box box-lg " />
+                                </td>
+                                <td><label>Physician Name</label></td>
+                                <td>
+                                    <input type="text" name="PhysicianName" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Hospital Taken</label></td>
+                                <td>
+                                    <input type="text" name="HospitalTaken" class="text-box box-lg " />
+                                </td>
+                                <td><label>Postal Address</label></td>
+                                <td>
+                                    <input type="text" name="PostalAddress" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Mobile</label></td>
+                                <td>
+                                    <input type="number" name="Mobile" class="text-box box-lg " />
+                                </td>
+                                <td><label>Return Date</label></td>
+                                <td>
+                                    <input type="date" name="ReturnDate" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Lost Time</label></td>
+                                <td>
+                                    <input type="time" name="LostTime" class="text-box box-lg " />
+                                </td>
+                                </tr>
+                        </table>
+                        <br />
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("InjuryGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

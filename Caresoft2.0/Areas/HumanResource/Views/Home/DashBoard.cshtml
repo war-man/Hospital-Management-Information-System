@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRDashboard>
+
+@{
+    ViewBag.Title = "HUMAN RESOURCE MANAGEMENT DASHBOARD";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-3">
+    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+</div>
+<div class="col-md-7">
+    <div class="">
+        <div class="panel panel-primary  caresoft-panel glass">
+            <div class="panel-heading">
+                HUMAN RESOURCE MANAGEMENT DASHBOARD
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <table class="table-dashboard-icons">
+                        <tr>
+
+                            <td data-href="@Url.Action("JobRequisitionInfor","Home",new {Area="HumanResource"})">
+                                <img style="border:1px solid #151515; border-radius:7px;" src="~/Content/icons/HRIcons/HRRequisition.png" />
+                                <p><strong>Job Requisition,Recruitment & Hiring</strong></p>
+                            </td>
+                            <td data-href="@Url.Action("StaffWorkExperience","Home",new {Area="HumanResource"})">
+                                <img style="border:1px solid #151515; border-radius:7px;" src="~/Content/icons/HRIcons/ContractManagement.png" />
+                                <p><strong>Contract Management</strong></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-href="@Url.Action("Memos","Home",new {Area="HumanResource"})">
+                                <img style="border:1px solid #151515; border-radius:7px;" src="~/Content/icons/HRIcons/InternalCommunication.png" />
+                                <p>
+                                    <strong>
+                                        Internal Communication
+                                    </strong>
+                                </p>
+                            </td>
+                            <td data-href="@Url.Action("Training","Home",new {Area="HumanResource"})">
+                                <img style="border:1px solid #151515; border-radius:7px;" src="~/Content/icons/HRIcons/HRTraining.png" />
+                                <p><strong>Training & Development</strong></p>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+                            <td data-href="@Url.Action("Reason","Home",new {Area="HumanResource"})">
+                                <img style="border:1px solid #151515; border-radius:7px;" src="~/Content/icons/HRIcons/ContractTermination.png" />
+                                <p><strong>Contract Termination</strong></p>
+                            </td>
+                            <td data-href="">
+                                <img style="border:1px solid #151515; border-radius:7px;" src="~/Content/icons/HRIcons/HRReports1.png" />
+                                <p>
+                                    <strong>
+                                        Reports
+                                    </strong>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                    <p style="font-size:13px; float:right; padding:10px; color:#0099FF; font-family: Tahoma; white-space:normal"><strong>Caresoft v@{ <span>@Session["Version"]</span>}</strong></p>
+
+
+
