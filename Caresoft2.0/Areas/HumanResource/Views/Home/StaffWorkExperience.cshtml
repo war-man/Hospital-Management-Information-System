@@ -12,17 +12,17 @@
     @Html.Partial("~/Areas/HumanResource/Views/Shared/_ContractManagementNav.cshtml")
 </div>
 
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
-        <div class="panel panel-primary  caresoft-panel glass">
+        <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading">
                 Work Experience
             </div>
             <div class="panel-body">
-                <div class="col-md-12">
-                    <form id="tests" method="post" action="@Url.Action("SaveStaffWorkExperienceData","Home",new {Area="HumanResource"})">
+                <div class="col-sm-12">
+                    <form method="post" action="@Url.Action("SaveStaffWorkExperienceData","Home",new {Area="HumanResource"})">
 
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>Staff Id</label></td>
                                 <td>
@@ -63,10 +63,9 @@
                             </tr>
                         </table>
 
-                        <br /><br />
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
-                    <br /><br />
+                    <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("StaffWorkExperienceGrid")
                     </div>

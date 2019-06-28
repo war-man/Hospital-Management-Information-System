@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<CaresoftHMISDataAccess.HRHealthAndSafety>
+@model IEnumerable<CaresoftHMISDataAccess.HRIncidentType>
 @{
 
     ViewBag.Title = "Incident Types";
@@ -11,7 +11,7 @@
     @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
 </div>
 
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading custom-navbar">
@@ -23,7 +23,7 @@
                     <form id="country" method="post" action="@Url.Action("SaveIncidentTypesData","Home",new {Area="HumanResource"})">
 
                         @*<label> <strong>PLEASE ENTER DISPLINARY ACTION TAKEN </strong></label>*@
-                        <table class="form-class">
+                        <table class="table-form">
                             <tr>
                                 <td><label>Incident Code</label></td>
                                 <td>
@@ -40,11 +40,10 @@
                             
                         </table>
 
-                        <br />
-                        <br />
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
 
                     </form>
+                    <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("IncidentTypeGrid")
                     </div>

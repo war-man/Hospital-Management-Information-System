@@ -16,11 +16,11 @@
 }
 
 
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
-            <div class="panel-heading custom-navbar">
-                <p>@ViewBag.Title</p>
+            <div class="panel-heading">
+                Appraisals
             </div>
             <div class="panel-body">
                 <div class="col-sm-12">
@@ -81,19 +81,18 @@
                                     </select>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="form-group">
-                                    <label class="info-title col-md-12" for="black_name">Roles and Resposibilities<span><font color="black"><b></b></font></span></label>
-                                    <span id='message_full_name'></span>
-                                    <textarea style="width:150%;height:70px;" name="RolesndResposibilities" class="text-box unicase-form-control text-input" id="extension_number"
-                                              placeholder="Enter plan">
+                        </table>
+                        <div class="form-group">
+                            <label class="info-title col-md-12" for="black_name"><strong>Roles and Resposibilities</strong><span><font color="black"><b></b></font></span></label>
+                            <span id='message_full_name'></span>
+                            <textarea style="width:250px;height:70px;" name="RolesndResposibilities" class="text-box unicase-form-control text-input" id="extension_number"
+                                      placeholder="Enter plan">
                                         
                                     </textarea>
-                                </td>
-                            </tr>
-                        </table>
+                        </div>
+
                         <label><strong>Objectives</strong></label>
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>Task</label></td>
                                 <td>
@@ -116,7 +115,7 @@
                             </tr>
                         </table>
                         <label><strong>Difficulties Noted</strong></label>
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>Code</label></td>
                                 <td>
@@ -139,18 +138,17 @@
                             </tr>
                         </table>
                         <div class="form-group">
-                            <label class="info-title col-md-12" for="black_name">Remarks<span><font color="black"><b></b></font></span></label>
+                            <label class="info-title col-md-12" for="black_name"><strong>Remarks</strong><span><font color="black"><b></b></font></span></label>
                             <span id='message_full_name'></span>
-                            <textarea style="width:150%;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
+                            <textarea style="width:250px;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
                                       placeholder="Enter plan">
                                         
                                     </textarea>
-
-                            <br />
-                            <br />
-                            <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                         </div>
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+
                     </form>
+                    <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("RolesAndObjectivesGrid")
                     </div>

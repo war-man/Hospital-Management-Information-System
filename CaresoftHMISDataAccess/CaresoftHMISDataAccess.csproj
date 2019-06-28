@@ -303,6 +303,9 @@
     <Compile Include="HRAbsentism.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="HRAction.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="HRAddress.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -390,6 +393,9 @@
     <Compile Include="HREmployeeSetup.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="HREmployeeStatu.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="HREmploymentBenefit.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -418,6 +424,9 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HRIncentive.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRIncidentType.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HRInjury.cs">
@@ -460,6 +469,9 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HRManagement.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRMedicalTest.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HRMeetingVenue.cs">

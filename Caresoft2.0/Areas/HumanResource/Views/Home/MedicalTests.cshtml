@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<CaresoftHMISDataAccess.HRHealthAndSafety>
+@model IEnumerable<CaresoftHMISDataAccess.HRMedicalTest>
 @{
                
                 ViewBag.Title = "Medical Tests";
@@ -17,7 +17,7 @@
                 <p>@ViewBag.Title</p>
             </div>
             <div class="panel-body">
-                <div class="col-md-12">
+                <div class="col-sm-12">
 
                     <form id="country" method="post" action="@Url.Action("SaveMedicalTestsData","Home",new {Area="HumanResource"})">
 

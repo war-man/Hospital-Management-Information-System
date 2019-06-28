@@ -11,20 +11,23 @@
     @Html.Partial("~/Areas/HumanResource/Views/Shared/_ContractManagementNav.cshtml")
 </div>
 
-<div class="col-md-7">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
-            <div class="panel-heading custom-navbar">
-                <p>@ViewBag.Title</p>
+            <div class="panel-heading">
+                Union Registration
             </div>
             <div class="panel-body">
                 <div class="col-sm-12">
 
                     <form id="country" method="post" action="@Url.Action("SaveUnionRegistrationData","Home",new {Area="HumanResource"})">
-                       <label>Union Id</label>
-                        
-                       <input type="number" name="UnionId" class="text-box box-lg" />
-                        
+                        <table class="table-form">
+                            <tr>
+                                <td><label>Union Id</label></td>
+                                <td><input type="number" name="UnionId" class="text-box box-lg" /></td>
+                            </tr>
+                        </table>
+
                         <label><strong>Register Staff To Union</strong></label>
                         <table class="table-form">
 
@@ -73,17 +76,15 @@
                                         <option>Yearly</option>
                                     </select>
                                 </td>
-                                <td class="form-group">
-                                    <label class="info-title col-md-12" for="black_name">Remarks<span><font color="black"><b></b></font></span></label>
-                                    <span id='message_full_name'></span>
-                                    <textarea style="width:150%;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
-                                              placeholder="Enter plan">
+                        </table>
+                        <div class="form-group">
+                            <label class="info-title col-md-12" for="black_name"><strong>Remarks</strong><span><font color="black"><b></b></font></span></label>
+                            <span id='message_full_name'></span>
+                            <textarea style="width:250px;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
+                                      placeholder="Enter plan">
                                         
                                     </textarea>
-                                </td>
-                            </tr>
-                        </table>
-                        <br />
+                        </div>
 
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>

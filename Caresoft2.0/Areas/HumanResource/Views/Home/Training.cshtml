@@ -8,7 +8,7 @@
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 }
 <div class="col-md-2">
-    @Html.Partial("~/Areas/HumanResource/Views/_TrainingAndDevelopmentNav.cshtml")
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_TrainingAndDevelopmentNav.cshtml")
 </div>
 
 <div class="col-md-7">
@@ -59,7 +59,7 @@
                                 <td>
                                     <input type="number" name="ExpectedTravelCost" class="text-box box-lg" />
                                 </td>
-                                <td><label>Expected Allowance PerPerson</label></td>
+                                <td><label>Expected Allowance Per Person</label></td>
                                 <td>
                                     <input type="number" name="ExpectedAllowancePerPerson" class="text-box box-lg" />
                                 </td>
@@ -103,8 +103,7 @@
                             </tr>
 
                         </table>
-                        <br />
-
+                        
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
                     <br />

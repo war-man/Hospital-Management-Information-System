@@ -8,7 +8,7 @@
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 }
 <div class="col-md-2">
-    @Html.Partial("~/Areas/HumanResource/Views/_TrainingAndDevelopmentNav.cshtml")
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_TrainingAndDevelopmentNav.cshtml")
 </div>
 
 @{
@@ -16,7 +16,7 @@
 }
 
 
-<div class="col-md-7">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading custom-navbar">
@@ -27,7 +27,7 @@
 
                     <form id="country" method="post" action="@Url.Action("SaveGrievancesData","Home",new {Area="HumanResource"})">
                         <label><strong>Enter The Required Details</strong></label>
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>Grievance Id</label></td>
                                 <td>
@@ -84,20 +84,17 @@
                             </tr>
                         </table>
                         <label><strong>Settlement</strong></label>
-                        <table class="table-form">
-
-                            <tr>
-                                <td class="form-group">
+                        
+                                <div class="form-group">
                                     <label class="info-title col-md-12" for="black_name"><strong>Grievance Description</strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
-                                    <textarea style="width:300px;height:70px;" name="GrievanceDescription" class="text-box unicase-form-control text-input" id="extension_number"
+                                    <textarea style="width:250px;height:70px;" name="GrievanceDescription" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
                                         
                                     </textarea>
-                                </td>
-                            </tr>
-                            </table>
-                        <table>
+                                </div>
+                            
+                        <table class="table-form">
                             <tr>
                                 <td><label>Settlement Code</label></td>
                                 <td>
@@ -109,20 +106,16 @@
                                 </td>
                             </tr>
                             </table>
-                        <table>
-                            <tr>
-                                <td class="form-group">
+                        
+                                <div class="form-group">
                                     <label class="info-title col-md-12" for="black_name"><strong>Settlement Description</strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
                                     <textarea style="width:300px;height:70px;" name="SettlementDescription" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
                                         
                                     </textarea>
-                                </td>
-                            </tr>
-                        </table>
-                        <br />
-
+                                </div>
+                            
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
                     <br />

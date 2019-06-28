@@ -21,10 +21,5 @@ namespace CaresoftHMISDataAccess
         public Nullable<int> EquipmentCode { get; set; }
         public string EquipmentName { get; set; }
         public string OperatingTrainingRequired { get; set; }
-        public Nullable<int> TestCode { get; set; }
-        public string TestDescription { get; set; }
-        public string ExpertContracted { get; set; }
-        public Nullable<int> IncidentCode { get; set; }
-        public string IncidentDescription { get; set; }
     }
 }

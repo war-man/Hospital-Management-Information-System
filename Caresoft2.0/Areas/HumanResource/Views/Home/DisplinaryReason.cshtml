@@ -10,7 +10,7 @@
 <div class="col-md-2">
     @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
 </div>
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading custom-navbar">
@@ -22,7 +22,7 @@
                     <form id="country" method="post" action="@Url.Action("SaveDisplinaryReasonData","Home",new {Area="HumanResource"})">
 
                         <label> <strong>PLEASE ENTER THE STARDARD REASONS </strong></label>
-                        <table class="form-class">
+                        <table class="table-form">
                             <tr>
                                 <td><label>Reason Code</label></td>
                                 <td>
@@ -39,11 +39,10 @@
 
                         </table>
 
-                        <br />
-                        <br />
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
 
                     </form>
+                    <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("DisplinaryReasonGrid")
                     </div>

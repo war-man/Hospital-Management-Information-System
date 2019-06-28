@@ -20,7 +20,5 @@ namespace CaresoftHMISDataAccess
         public Nullable<System.DateTime> DateAdded { get; set; }
         public Nullable<int> CategoryId { get; set; }
         public string CategoryDescription { get; set; }
-        public Nullable<int> StatusId { get; set; }
-        public string StatusDescription { get; set; }
     }
 }

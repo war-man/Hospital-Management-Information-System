@@ -11,7 +11,7 @@
     @Html.Partial("~/Areas/HumanResource/Views/Shared/_ContractTerminationNav.cshtml")
 </div>
 
-<div class="col-md-7">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading custom-navbar">
@@ -63,29 +63,29 @@
                                 <td>
                                     <input type="text" name="Floor" class="text-box box-lg" />
                                 </td>
+                                
+                            </tr>
+                            <tr>
                                 <td><label>Court</label></td>
                                 <td>
                                     <input type="text" name="Court" class="text-box box-lg" />
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="form-group">
-                                    <label class="info-title col-md-12" for="black_name">TermsAndConditions<span><font color="black"><b></b></font></span></label>
+                        </table>
+                                <div class="form-group">
+                                    <label class="info-title col-md-12" for="black_name"><strong>Terms And Conditions</strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
-                                    <textarea style="width:150%;height:70px;" name="TermsAndConditions" class="text-box unicase-form-control text-input" id="extension_number"
+                                    <textarea style="width:250px;height:70px;" name="TermsAndConditions" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
                                         
                                     </textarea>
-                                </td>
-                            </tr>
-                        </table>
-                        <br />
-
+                                </div>
+                           
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
                     <br />
                     <div id="ipd-list" class="scrollable-table-container">
-                        @Html.Partial("OperatorGrid")
+                     @Html.Partial("OperatorGrid")
                     </div>
                 </div>
             </div>

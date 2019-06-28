@@ -12,13 +12,13 @@ namespace CaresoftHMISDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class HRDisplinaryAction
+    public partial class HRAction
     {
         public int Id { get; set; }
         public int UserId { get; set; }
         public int BranchId { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
-        public Nullable<int> ReasonCode { get; set; }
+        public Nullable<int> ActionCode { get; set; }
         public string Description { get; set; }
     }
 }

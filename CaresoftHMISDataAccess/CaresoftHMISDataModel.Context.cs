@@ -91,6 +91,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<GroupRight> GroupRights { get; set; }
         public virtual DbSet<HouseKeeping> HouseKeepings { get; set; }
         public virtual DbSet<HRAbsentism> HRAbsentism { get; set; }
+        public virtual DbSet<HRAction> HRActions { get; set; }
         public virtual DbSet<HRAddress> HRAddresses { get; set; }
         public virtual DbSet<HRAllocationOfRole> HRAllocationOfRoles { get; set; }
         public virtual DbSet<HRApplicantQualification> HRApplicantQualifications { get; set; }
@@ -119,6 +120,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<HRDistrict> HRDistricts { get; set; }
         public virtual DbSet<HRDutyStation> HRDutyStations { get; set; }
         public virtual DbSet<HREmployeeSetup> HREmployeeSetups { get; set; }
+        public virtual DbSet<HREmployeeStatu> HREmployeeStatus { get; set; }
         public virtual DbSet<HREmploymentBenefit> HREmploymentBenefits { get; set; }
         public virtual DbSet<HRExtraCurricular> HRExtraCurriculars { get; set; }
         public virtual DbSet<HRExtraMural> HRExtraMurals { get; set; }
@@ -129,6 +131,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<HRHealthAndSafety> HRHealthAndSafeties { get; set; }
         public virtual DbSet<HRHealthAndSafetyPromotion> HRHealthAndSafetyPromotions { get; set; }
         public virtual DbSet<HRIncentive> HRIncentives { get; set; }
+        public virtual DbSet<HRIncidentType> HRIncidentTypes { get; set; }
         public virtual DbSet<HRInjury> HRInjuries { get; set; }
         public virtual DbSet<HRInsuranceCover> HRInsuranceCovers { get; set; }
         public virtual DbSet<HRInterviewSetUp> HRInterviewSetUps { get; set; }
@@ -142,6 +145,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<HRLeaveScheduling> HRLeaveSchedulings { get; set; }
         public virtual DbSet<HRLeaveType> HRLeaveTypes { get; set; }
         public virtual DbSet<HRManagement> HRManagements { get; set; }
+        public virtual DbSet<HRMedicalTest> HRMedicalTests { get; set; }
         public virtual DbSet<HRMeetingVenue> HRMeetingVenues { get; set; }
         public virtual DbSet<HRMemo> HRMemos { get; set; }
         public virtual DbSet<HRMinutesOfMeeting> HRMinutesOfMeetings { get; set; }

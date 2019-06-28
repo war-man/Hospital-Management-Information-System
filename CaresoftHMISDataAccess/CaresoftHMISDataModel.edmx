@@ -1247,6 +1247,17 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.BloodBankPatientBloodGroupings' d
           <Property Name="EndDate" Type="date" />
           <Property Name="Comments" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="HRAction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="DateAdded" Type="date" />
+          <Property Name="ActionCode" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="HRAddresses">
           <Key>
             <PropertyRef Name="Id" />
@@ -1749,8 +1760,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.HRConfirmation' does not have a p
           <Property Name="DateAdded" Type="date" />
           <Property Name="ReasonCode" Type="int" />
           <Property Name="Description" Type="varchar" MaxLength="50" />
-          <Property Name="ActionCode" Type="int" />
-          <Property Name="ActionDescription" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="HRDistrict">
           <Key>
@@ -1786,6 +1795,15 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.HRConfirmation' does not have a p
           <Property Name="DateAdded" Type="date" />
           <Property Name="CategoryId" Type="int" />
           <Property Name="CategoryDescription" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HREmployeeStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="DateAdded" Type="date" />
           <Property Name="StatusId" Type="int" />
           <Property Name="StatusDescription" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -1925,11 +1943,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.HRConfirmation' does not have a p
           <Property Name="EquipmentCode" Type="int" />
           <Property Name="EquipmentName" Type="varchar" MaxLength="50" />
           <Property Name="OperatingTrainingRequired" Type="varchar" MaxLength="50" />
-          <Property Name="TestCode" Type="int" />
-          <Property Name="TestDescription" Type="varchar" MaxLength="50" />
-          <Property Name="ExpertContracted" Type="varchar" MaxLength="50" />
-          <Property Name="IncidentCode" Type="int" />
-          <Property Name="IncidentDescription" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="HRHealthAndSafetyPromotion">
           <Key>
@@ -1966,6 +1979,17 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.HRConfirmation' does not have a p
           <Property Name="Demotion" Type="bit" />
           <Property Name="Date" Type="date" />
           <Property Name="Remarks" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HRIncidentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="DateAdded" Type="date" />
+          <Property Name="IncidentCode" Type="int" />
+          <Property Name="IncidentDescription" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="HRInjury">
           <Key>
@@ -2116,7 +2140,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.HRJobDesignations' does not have 
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="BranchId" Type="int" Nullable="false" />
           <Property Name="DateAdded" Type="date" />
-          <Property Name="RequisitionNo" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="RequisitionNo" Type="int" />
           <Property Name="RequistionType" Type="varchar" MaxLength="50" />
           <Property Name="Department" Type="varchar" MaxLength="50" />
           <Property Name="RequisitionDate" Type="date" />
@@ -2201,6 +2225,18 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.HRJobDesignations' does not have 
           <Property Name="ManagementLevelDesignation" Type="varchar" MaxLength="50" />
           <Property Name="Comments" Type="varchar" MaxLength="50" />
           <Property Name="ManagementLevel" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HRMedicalTests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="DateAdded" Type="date" />
+          <Property Name="TestCode" Type="int" />
+          <Property Name="TestDescription" Type="varchar" MaxLength="50" />
+          <Property Name="ExpertContracted" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="HRMeetingVenues">
           <Key>
@@ -8491,6 +8527,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySet Name="GroupRights" EntityType="Self.GroupRights" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HouseKeeping" EntityType="Self.HouseKeeping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRAbsentism" EntityType="Self.HRAbsentism" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HRAction" EntityType="Self.HRAction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRAddresses" EntityType="Self.HRAddresses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRAllocationOfRoles" EntityType="Self.HRAllocationOfRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRApplicantQualification" EntityType="Self.HRApplicantQualification" Schema="dbo" store:Type="Tables" />
@@ -8519,6 +8556,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySet Name="HRDistrict" EntityType="Self.HRDistrict" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRDutyStation" EntityType="Self.HRDutyStation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HREmployeeSetups" EntityType="Self.HREmployeeSetups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HREmployeeStatus" EntityType="Self.HREmployeeStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HREmploymentBenefits" EntityType="Self.HREmploymentBenefits" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRExtraCurricular" EntityType="Self.HRExtraCurricular" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRExtraMural" EntityType="Self.HRExtraMural" Schema="dbo" store:Type="Tables" />
@@ -8529,6 +8567,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySet Name="HRHealthAndSafety" EntityType="Self.HRHealthAndSafety" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRHealthAndSafetyPromotion" EntityType="Self.HRHealthAndSafetyPromotion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRIncentives" EntityType="Self.HRIncentives" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HRIncidentType" EntityType="Self.HRIncidentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRInjury" EntityType="Self.HRInjury" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRInsuranceCovers" EntityType="Self.HRInsuranceCovers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRInterviewSetUp" EntityType="Self.HRInterviewSetUp" Schema="dbo" store:Type="Tables" />
@@ -8542,6 +8581,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySet Name="HRLeaveScheduling" EntityType="Self.HRLeaveScheduling" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRLeaveType" EntityType="Self.HRLeaveType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRManagement" EntityType="Self.HRManagement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HRMedicalTests" EntityType="Self.HRMedicalTests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRMeetingVenues" EntityType="Self.HRMeetingVenues" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRMemos" EntityType="Self.HRMemos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRMinutesOfMeetings" EntityType="Self.HRMinutesOfMeetings" Schema="dbo" store:Type="Tables" />
@@ -9886,6 +9926,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySet Name="GroupRights" EntityType="CaresoftHMISModel.GroupRight" />
           <EntitySet Name="HouseKeepings" EntityType="CaresoftHMISModel.HouseKeeping" />
           <EntitySet Name="HRAbsentism" EntityType="CaresoftHMISModel.HRAbsentism" />
+          <EntitySet Name="HRActions" EntityType="CaresoftHMISModel.HRAction" />
           <EntitySet Name="HRAddresses" EntityType="CaresoftHMISModel.HRAddress" />
           <EntitySet Name="HRAllocationOfRoles" EntityType="CaresoftHMISModel.HRAllocationOfRole" />
           <EntitySet Name="HRApplicantQualifications" EntityType="CaresoftHMISModel.HRApplicantQualification" />
@@ -9914,6 +9955,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySet Name="HRDistricts" EntityType="CaresoftHMISModel.HRDistrict" />
           <EntitySet Name="HRDutyStations" EntityType="CaresoftHMISModel.HRDutyStation" />
           <EntitySet Name="HREmployeeSetups" EntityType="CaresoftHMISModel.HREmployeeSetup" />
+          <EntitySet Name="HREmployeeStatus" EntityType="CaresoftHMISModel.HREmployeeStatu" />
           <EntitySet Name="HREmploymentBenefits" EntityType="CaresoftHMISModel.HREmploymentBenefit" />
           <EntitySet Name="HRExtraCurriculars" EntityType="CaresoftHMISModel.HRExtraCurricular" />
           <EntitySet Name="HRExtraMurals" EntityType="CaresoftHMISModel.HRExtraMural" />
@@ -9924,6 +9966,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySet Name="HRHealthAndSafeties" EntityType="CaresoftHMISModel.HRHealthAndSafety" />
           <EntitySet Name="HRHealthAndSafetyPromotions" EntityType="CaresoftHMISModel.HRHealthAndSafetyPromotion" />
           <EntitySet Name="HRIncentives" EntityType="CaresoftHMISModel.HRIncentive" />
+          <EntitySet Name="HRIncidentTypes" EntityType="CaresoftHMISModel.HRIncidentType" />
           <EntitySet Name="HRInjuries" EntityType="CaresoftHMISModel.HRInjury" />
           <EntitySet Name="HRInsuranceCovers" EntityType="CaresoftHMISModel.HRInsuranceCover" />
           <EntitySet Name="HRInterviewSetUps" EntityType="CaresoftHMISModel.HRInterviewSetUp" />
@@ -9937,6 +9980,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySet Name="HRLeaveSchedulings" EntityType="CaresoftHMISModel.HRLeaveScheduling" />
           <EntitySet Name="HRLeaveTypes" EntityType="CaresoftHMISModel.HRLeaveType" />
           <EntitySet Name="HRManagements" EntityType="CaresoftHMISModel.HRManagement" />
+          <EntitySet Name="HRMedicalTests" EntityType="CaresoftHMISModel.HRMedicalTest" />
           <EntitySet Name="HRMeetingVenues" EntityType="CaresoftHMISModel.HRMeetingVenue" />
           <EntitySet Name="HRMemos" EntityType="CaresoftHMISModel.HRMemo" />
           <EntitySet Name="HRMinutesOfMeetings" EntityType="CaresoftHMISModel.HRMinutesOfMeeting" />
@@ -12279,6 +12323,17 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="HRAction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="DateAdded" Type="DateTime" Precision="0" />
+          <Property Name="ActionCode" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="HRAddress">
           <Key>
             <PropertyRef Name="Id" />
@@ -12751,8 +12806,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="DateAdded" Type="DateTime" Precision="0" />
           <Property Name="ReasonCode" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ActionCode" Type="Int32" />
-          <Property Name="ActionDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HRDistrict">
           <Key>
@@ -12788,6 +12841,15 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="DateAdded" Type="DateTime" Precision="0" />
           <Property Name="CategoryId" Type="Int32" />
           <Property Name="CategoryDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HREmployeeStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="DateAdded" Type="DateTime" Precision="0" />
           <Property Name="StatusId" Type="Int32" />
           <Property Name="StatusDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
@@ -12927,11 +12989,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="EquipmentCode" Type="Int32" />
           <Property Name="EquipmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OperatingTrainingRequired" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TestCode" Type="Int32" />
-          <Property Name="TestDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ExpertContracted" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IncidentCode" Type="Int32" />
-          <Property Name="IncidentDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HRHealthAndSafetyPromotion">
           <Key>
@@ -12968,6 +13025,17 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="Demotion" Type="Boolean" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HRIncidentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="DateAdded" Type="DateTime" Precision="0" />
+          <Property Name="IncidentCode" Type="Int32" />
+          <Property Name="IncidentDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HRInjury">
           <Key>
@@ -13101,7 +13169,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="BranchId" Type="Int32" Nullable="false" />
           <Property Name="DateAdded" Type="DateTime" Precision="0" />
-          <Property Name="RequisitionNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RequisitionNo" Type="Int32" />
           <Property Name="RequistionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RequisitionDate" Type="DateTime" Precision="0" />
@@ -13186,6 +13254,18 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="ManagementLevelDesignation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ManagementLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HRMedicalTest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="DateAdded" Type="DateTime" Precision="0" />
+          <Property Name="TestCode" Type="Int32" />
+          <Property Name="TestDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ExpertContracted" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HRMeetingVenue">
           <Key>
@@ -21039,6 +21119,18 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="HRActions">
+            <EntityTypeMapping TypeName="CaresoftHMISModel.HRAction">
+              <MappingFragment StoreEntitySet="HRAction">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ActionCode" ColumnName="ActionCode" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="HRAddresses">
             <EntityTypeMapping TypeName="CaresoftHMISModel.HRAddress">
               <MappingFragment StoreEntitySet="HRAddresses">
@@ -21528,8 +21620,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySetMapping Name="HRDisplinaryActions">
             <EntityTypeMapping TypeName="CaresoftHMISModel.HRDisplinaryAction">
               <MappingFragment StoreEntitySet="HRDisplinaryActions">
-                <ScalarProperty Name="ActionDescription" ColumnName="ActionDescription" />
-                <ScalarProperty Name="ActionCode" ColumnName="ActionCode" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ReasonCode" ColumnName="ReasonCode" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
@@ -21568,10 +21658,20 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySetMapping Name="HREmployeeSetups">
             <EntityTypeMapping TypeName="CaresoftHMISModel.HREmployeeSetup">
               <MappingFragment StoreEntitySet="HREmployeeSetups">
-                <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="CategoryDescription" ColumnName="CategoryDescription" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HREmployeeStatus">
+            <EntityTypeMapping TypeName="CaresoftHMISModel.HREmployeeStatu">
+              <MappingFragment StoreEntitySet="HREmployeeStatus">
+                <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -21714,11 +21814,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySetMapping Name="HRHealthAndSafeties">
             <EntityTypeMapping TypeName="CaresoftHMISModel.HRHealthAndSafety">
               <MappingFragment StoreEntitySet="HRHealthAndSafety">
-                <ScalarProperty Name="IncidentDescription" ColumnName="IncidentDescription" />
-                <ScalarProperty Name="IncidentCode" ColumnName="IncidentCode" />
-                <ScalarProperty Name="ExpertContracted" ColumnName="ExpertContracted" />
-                <ScalarProperty Name="TestDescription" ColumnName="TestDescription" />
-                <ScalarProperty Name="TestCode" ColumnName="TestCode" />
                 <ScalarProperty Name="OperatingTrainingRequired" ColumnName="OperatingTrainingRequired" />
                 <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
                 <ScalarProperty Name="EquipmentCode" ColumnName="EquipmentCode" />
@@ -21760,6 +21855,18 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
                 <ScalarProperty Name="Section" ColumnName="Section" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRIncidentTypes">
+            <EntityTypeMapping TypeName="CaresoftHMISModel.HRIncidentType">
+              <MappingFragment StoreEntitySet="HRIncidentType">
+                <ScalarProperty Name="IncidentDescription" ColumnName="IncidentDescription" />
+                <ScalarProperty Name="IncidentCode" ColumnName="IncidentCode" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -21991,6 +22098,19 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
                 <ScalarProperty Name="Section" ColumnName="Section" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="ManagementLevelId" ColumnName="ManagementLevelId" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRMedicalTests">
+            <EntityTypeMapping TypeName="CaresoftHMISModel.HRMedicalTest">
+              <MappingFragment StoreEntitySet="HRMedicalTests">
+                <ScalarProperty Name="ExpertContracted" ColumnName="ExpertContracted" />
+                <ScalarProperty Name="TestDescription" ColumnName="TestDescription" />
+                <ScalarProperty Name="TestCode" ColumnName="TestCode" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />

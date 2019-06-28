@@ -1611,20 +1611,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult EmployeeStatus()
         {
            
-            ViewBag.HREmployeeSetup = db.HREmployeeSetups.ToList();
-            var data = db.HREmployeeSetups.ToList();
+            ViewBag.HREmployeeStatu = db.HREmployeeStatus.ToList();
+            var data = db.HREmployeeStatus.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveEmployeeStatusData(HREmployeeSetup data)
+        public ActionResult SaveEmployeeStatusData(HREmployeeStatu data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HREmployeeSetups.Add(data);
+            db.HREmployeeStatus.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("EmployeeStatus");
@@ -1657,20 +1657,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult TypesOfAction()
         {
 
-            ViewBag.HRDisplinaryAction = db.HRDisplinaryActions.ToList();
-            var data = db.HRDisplinaryActions.ToList();
+            ViewBag.HRAction = db.HRActions.ToList();
+            var data = db.HRActions.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveTypesOfActionData(HRDisplinaryAction data)
+        public ActionResult SaveTypesOfActionData(HRAction data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRDisplinaryActions.Add(data);
+            db.HRActions.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("TypesOfAction");
@@ -1703,20 +1703,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult MedicalTests()
         {
 
-            ViewBag.HRHealthAndSafety = db.HRHealthAndSafeties.ToList();
-            var data = db.HRHealthAndSafeties.ToList();
+            ViewBag.HRMedicalTest = db.HRMedicalTests.ToList();
+            var data = db.HRMedicalTests.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveMedicalTestsData(HRHealthAndSafety data)
+        public ActionResult SaveMedicalTestsData(HRMedicalTest data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRHealthAndSafeties.Add(data);
+            db.HRMedicalTests.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("MedicalTests");
@@ -1726,20 +1726,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult IncidentTypes()
         {
 
-            ViewBag.HRHealthAndSafety = db.HRHealthAndSafeties.ToList();
-            var data = db.HRHealthAndSafeties.ToList();
+            ViewBag.HRIncidentType = db.HRIncidentTypes.ToList();
+            var data = db.HRIncidentTypes.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveIncidentTypesData(HRHealthAndSafety data)
+        public ActionResult SaveIncidentTypesData(HRIncidentType data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRHealthAndSafeties.Add(data);
+            db.HRIncidentTypes.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("IncidentTypes");

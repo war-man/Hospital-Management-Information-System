@@ -16,11 +16,11 @@
 }
 
 
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
-            <div class="panel-heading custom-navbar">
-                <p>@ViewBag.Title</p>
+            <div class="panel-heading">
+                Contract Management
             </div>
             <div class="panel-body">
                 <div class="col-sm-12">
@@ -108,32 +108,35 @@
 
                                     </select>
                                 </td>
-                            </tr>
-                            <tr>
                                 <td><label>Contractual Amount</label></td>
                                 <td>
                                     <input type="number" name="ContractualAmount" class="text-box box-lg " />
                                 </td>
+                            </tr>
+                            <tr>
+
                                 <td><label>Monthly Payment</label></td>
                                 <td>
                                     <input type="number" name="MonthlyPayment" class="text-box box-lg " />
                                 </td>
+                                <td><label>Final Dues For Payment</label></td>
+                                <td>
+                                    <input type="number" name="FinalDuesForPayment" class="text-box box-lg " />
+                                </td>
                             </tr>
                             <tr>
-                            <td><label>Final Dues For Payment</label></td>
-                            <td>
-                                <input type="number" name="FinalDuesForPayment" class="text-box box-lg " />
-                            </td>
-                            <td><label>Final Payment Amount</label></td>
-                            <td>
-                                <input type="number" name="FinalPaymentAmount" class="text-box box-lg " />
-                            </td>
-                            </tr>
-                            <tr>
+
+                                <td><label>Final Payment Amount</label></td>
+                                <td>
+                                    <input type="number" name="FinalPaymentAmount" class="text-box box-lg " />
+                                </td>
                                 <td><label>Renewable</label></td>
                                 <td>
                                     <input type="radio" name="Renewable" />
                                 </td>
+                            </tr>
+                            <tr>
+                                
                                 <td><label>Final Date Of Payment</label></td>
                                 <td>
                                     <input type="date" name="FinalDateOfPayment" class="text-box box-lg " />
@@ -141,18 +144,17 @@
                             </tr>
                         </table>
                         <div class="form-group">
-                            <label class="info-title col-md-12" for="black_name">Requirements For Contract <span><font color="black"><b></b></font></span></label>
+                            <label class="info-title col-md-12" for="black_name"><strong>Requirements For Contract</strong> <span><font color="black"><b></b></font></span></label>
                             <span id='message_full_name'></span>
-                            <textarea style="width:150%;height:70px;" name="RequirementsForContract" class="text-box unicase-form-control text-input" id="extension_number"
+                            <textarea style="width:250px;height:70px;" name="RequirementsForContract" class="text-box unicase-form-control text-input" id="extension_number"
                                       placeholder="Enter plan">
                                         
                                     </textarea>
-
-                            <br />
-                            <br />
-                            <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                         </div>
+                            <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                        
                     </form>
+                    <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("ContractManagementGrid")
                     </div>

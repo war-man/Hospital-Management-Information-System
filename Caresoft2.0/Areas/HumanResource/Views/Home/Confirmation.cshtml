@@ -12,22 +12,24 @@
     @Html.Partial("~/Areas/HumanResource/Views/Shared/_JobRequisitionNav.cshtml")
 </div>
 
-<div class="col-md-7">
+<div class="col-md-6">
     <div class="">
-        <div class="panel panel-primary  caresoft-panel glass">
+        <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading">
                 Confirmations
             </div>
             <div class="panel-body">
                 <div class="col-md-12">
                     <form id="branches" method="post" action="@Url.Action("SaveConfirmationData","Home",new {Area="HumanResource"})">
+                        <table class="table-form"> 
+                            <tr>
+                                <td>
+                                    <label>Applicant Id</label>
 
-                        
-                            <label>Applicant Id</label>
-                            
-                           <input type="number" name="ApplicantId" class="text-box box-lg " style="margin-bottom:3px" />
-                        <br />
-                        
+                                    <input type="number" name="ApplicantId" class="text-box box-lg " style="margin-bottom:3px" />
+                                </td>
+                            </tr>
+                        </table>
                         <label> <strong>Confirmation of Academic/Professional Records </strong></label>
                         <table class="table-form">
                             <tr>
@@ -99,9 +101,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>PostalAddress</label></td>
+                                <td><label>Postal Address</label></td>
                                 <td>
-                                    <input type="text" name="DateConfirmed" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="PostalAddress" class="text-box box-lg " style="margin-bottom:3px" />
                                 </td>
 
 
@@ -129,7 +131,7 @@
                        
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
-                    
+                    <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("ConfirmationGrid")
                     </div>

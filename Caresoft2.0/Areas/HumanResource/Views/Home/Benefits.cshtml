@@ -8,10 +8,10 @@
                 Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 }
 <div class="col-md-2">
-    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_TrainingAndDevelopmentNav.cshtml")
 </div>
 
-<div class="col-md-7">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading custom-navbar">
@@ -78,7 +78,7 @@
                             </tr>
                         </table>
                         <label><strong>BENEFICIARIES</strong></label>
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>Beneficiary Id</label></td>
                                 <td>
@@ -99,12 +99,7 @@
                                     <input type="number" name="PercentageOwing" class="text-box box-lg" />
                                 </td>
                             </tr>
-                            <tr>
-                                <td><label>Remarks</label></td>
-                                <td>
-                                    <input type="text" name="Remarks" class="text-box box-lg" />
-                                </td>
-                            </tr>
+
                             <tr>
                                 <td><label>Payer</label></td>
                                 <td>
@@ -115,9 +110,15 @@
                                     <input type="text" name="Broker" class="text-box box-lg" />
                                 </td>
                             </tr>
+                            <tr>
+                                <td><label>Remarks</label></td>
+                                <td>
+                                    <input type="text" name="Remarks" class="text-box box-lg" />
+                                </td>
+                            </tr>
                         </table>
                         <label><strong>DEDUCTIONS</strong></label>
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>Item No</label></td>
                                 <td>
@@ -173,8 +174,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <br />
-
+                       
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
                     <br />

@@ -1,10 +1,15 @@
 ﻿@model Caresoft2._0.CustomData.EMR_OPD_Data
 @{
     ViewBag.WideView = true;
-    ViewBag.Title = "Medication Administration Record";
+    ViewBag.Title = "Procedures Report";
     Layout = "~/Views/Shared/_EMRForms.cshtml";
 }
 
+
+
+<style>
+   
+</style>
 <div class="panel panel-primary shadow glass caresoft-panel">
     <div class="panel-heading custom-navbar">
         <p>MAR</p>
@@ -13,10 +18,406 @@
         <ul class="nav nav-pills">
             <li class="active top-tab"><a data-toggle="pill" href="#drugs">Drugs</a></li>
             <li class="top-tab"><a data-toggle="pill" href="#procedures">Procedures</a></li>
+            <li class="top-tab"><a data-toggle="pill" href="#infusion-therapy">Infusion <br />Therapy</a></li>
             <li class="top-tab"><a data-toggle="pill" href="#doctor-notes">Doctor Notes</a></li>
+            <li class="top-tab"><a data-toggle="pill" href="#nurse-notes">Cardex Notes</a></li>
+            <li class="top-tab"><a data-toggle="pill" href="#turning-chart">Nurse Turning<br /> Chart</a></li>
+            <li class="top-tab"><a data-toggle="pill" href="#IntakeOutput">Intake Input<br /> Output</a></li>
+
+
+            <li>
+                <div id="lab" class="class=" panel panel-primary caresoft-panel">
+                    <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("InvestigationForm", "EMR", new { id= ViewBag.OpdNo })"
+                            data-callback="investigationModalListener">
+                        Lab
+                    </button>
+
+                </div>
+
+            </li>
         </ul>
 
         <div class="tab-content">
+
+
+
+            <div id="turning-chart" class="tab-pane fade">
+                <fieldset>
+                    @*@using (Ajax.BeginForm("SaveTurningChart", "emr", new { }, new AjaxOptions
+                    {
+                        LoadingElementId = "loadingElement",
+                        HttpMethod = "POST",
+                        UpdateTargetId = "",
+                        OnFailure = "showNotification('Failed', 'danger', 'false')",
+                        OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+                    }))
+                    {*@
+                        <form id="form-turning" method="post" action="@Url.Action("SaveTurningChart", "emr")">
+                            <input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+
+
+
+                            <table class="table-form">
+
+                                <tr> <td>&nbsp;</td></tr>
+                                <tr>
+                                    <td>
+                                        <label> Side From </label>
+                                        <input name="SideFrom" class="text-box box-lg" type="text" required />
+                                    </td>
+                                    <td> &nbsp;</td>
+                                    <td> &nbsp;</td>
+                                    <td>
+                                        <label> Side To </label>
+                                        <input name="SideTo" class="text-box box-lg" type="text" required />
+                                    </td>
+                                    <td> &nbsp;</td>
+                                    <td> &nbsp;</td>
+                                    <td>
+                                        <label> Bed Number </label>
+                                        <input type="text" name="BedNumber" class="text-box box-lg" value="@Model.OpdRegister.BedId" readonly />
+                                    </td>
+
+
+                                </tr>
+                                <tr> <td>&nbsp;</td></tr>
+
+
+
+                                <tr> <td>&nbsp;</td></tr>
+                                <tr>
+
+                                    <td>
+                                        <label> Turning Date </label>
+                                        <input name="TurningDate" type="datetime" id="to" class="text-box box-lg" value="@DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")" required />
+                                    </td>
+                                    <td> &nbsp;</td>
+                                    <td> &nbsp;</td>
+                                    <td>
+                                        <label> Visit Id </label>
+                                        <input type="number" name="VisitId" class="text-box box-lg" value="@Model.OpdRegister.VisitNumber" disabled />
+                                    </td>
+
+
+                                </tr>
+                                <tr> <td>&nbsp;</td></tr>
+                            </table>
+                            <table>
+
+                                <tr>
+                                    <td>
+                                        <label> Remarks </label>
+                                        <textarea name="Remarks" rows="4" cols="60" class="text-box box-xlg" placeholder="Write some note..."></textarea>
+                                    </td>
+
+                                </tr>
+                                @*<tr>
+
+                                <td>
+                                    <label> Remarks </label>
+                                    <textarea cols="30" rows="5" name="Remarks"> </textarea>
+                                </td>
+                            </tr>*@
+
+
+
+
+
+
+
+
+
+
+                            </table>
+                            <div class="">
+                                <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit" name="btnSubmit">Save</button>
+                                <button type="reset" class="btn btn-sm btn-primary">Cancel</button>
+
+                                &nbsp;
+                                &nbsp;
+
+                            </div>
+                            <div align="right">
+
+                                <a class="call-modal-form" data-action="/IPD/TurningChartReport/@ViewBag.OpdNo">
+                                    <img src="~/Content/icons/emrMenuIcons/print.png" />
+                                </a>
+
+
+                            </div>
+                        </form>
+
+                    
+                    <table id="turningChat" class="table table-data table-condensed table-hover">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>SideFrom</th>
+                                <th>SideTo</th>
+                                <th>Bed Number</th>
+                                <th>Turning Date</th>
+                                <th>Visit Id</th>
+                                <th>Nurse</th>
+                                <th>Remarks</th>
+
+
+                            </tr>
+                            @*<tr class="table-primary-row filter-row">
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td></td>
+                        </tr>*@
+                        </thead>
+                        <tbody class="bg-white">
+                            @foreach (var infusion in Model.OpdRegister.NurseTurningCharts.OrderByDescending(e => e.Id))
+                            {
+                                <tr class="">
+                                    <td>@infusion.SideFrom</td>
+                                    <td>@infusion.SideTo</td>
+                                    <td>@infusion.BedNumber</td>
+
+                                    <td>@infusion.TurningDate</td>
+                                    <td>@infusion.VisitNumber</td>
+                                    <td>
+                                        @infusion.Employee.FName
+                                        @infusion.Employee.OtherName
+                                    </td>
+                                    <td>@infusion.Remarks</td>
+
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+
+            <div id="IntakeOutput" class="tab-pane fade">
+                <fieldset>
+                    @*@using (Ajax.BeginForm("SaveIntakeOutput", "emr", new { }, new AjaxOptions
+                {
+                    LoadingElementId = "loadingElement",
+                    HttpMethod = "POST",
+                    UpdateTargetId = "",
+                    OnFailure = "showNotification('Failed', 'danger', 'false')",
+                    OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')"
+
+
+
+                }
+
+                ))
+                {*@
+                    <form id="form-input-output" method="post" action="@Url.Action("SaveIntakeOutput", "emr")">
+                        <input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+
+
+
+                        <table class="table-form">
+
+                            <tbody>
+
+
+                            <td>&nbsp;</td>
+
+                            <tr>
+                                <td>
+                                    <label> Oral Intake </label>
+
+                                </td>
+                                <td>
+                                    <input id="Oral" class="text-box box-lg" value="0" name="OralIntake" type="number" />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+
+                                <td>
+                                    <label> Intravenous Intake </label>
+
+                                </td>
+                                <td>
+                                    <input id="Intrav"  value="0" class="text-box box-lg" type="number" name="IntravenousIntake" />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <label> Blood Intake </label>
+
+                                </td>
+                                <td>
+                                    <input id="Blood" class="text-box box-lg"  value="0" name="BloodIntake" type="number" />
+                                </td>
+
+                            </tr>
+                           
+                            <td>&nbsp;</td>
+                            <tr>
+                                <td>
+                                    <label> Vomit Output </label>
+
+                                </td>
+                                <td>
+                                    <input id="Vomit"  value="0" class="text-box box-lg" name="VomitOutput" type="number" />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <label> Urine Output </label>
+
+                                </td>
+                                <td>
+                                    <input id="Urine"  value="0" class="text-box box-lg" type="number" name="UrineOutput" />
+                                </td>
+                                <td> &nbsp;</td>
+
+
+                            </tr>
+
+
+
+                            <tr> <td>&nbsp;</td></tr>
+                            <tr>
+                                <td>
+                               Total Intake
+
+                                </td>
+
+                                <td>
+                                    <input id="TargetTInput" readonly class="text-box box-lg" name="Intake" type="number" />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>
+                                  Total Output
+
+                                </td>
+                                <td>
+                                    <input readonly id="TargetTOutput" class="text-box box-lg" type="number" name="Output" />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <label>Total Balance </label>
+
+                                </td>
+                                <td>
+                                    <input id="Targetbal"  class="text-box box-lg" name="Balance" readonly type="number" />
+                                </td>
+
+                            </tr>
+                            <tr> <td>&nbsp;</td></tr>
+                            <tr>
+                                @*<td>
+                Pulse
+
+            </td>
+            <td>
+                <input class="text-box box-lg" name="Pulse" type="number" />
+            </td>
+
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>
+                BP
+
+            </td>
+            <td>
+                <input class="text-box box-lg" type="number" name="BP" />
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>*@
+
+                                <td>
+                                    <label> I/O Entry Date </label> &nbsp;&nbsp;
+
+                                </td>
+                                <td>
+                                    <input class="text-box box-lg" name="IODate" id="to" type="datetime" value="@DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")" required />
+
+                                </td>
+
+                            </tr>
+
+                            </tbody>
+
+
+                        </table>
+                        <div class="">
+                            <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit" name="btnSubmit">Save</button>
+                            <button type="reset" class="btn btn-sm btn-primary">Cancel</button>
+
+                            &nbsp;
+                            &nbsp;
+
+                        </div>
+                        <div align="right">
+
+                            <a class="call-modal-form" data-action="/IPD/InputOutputReport/@ViewBag.OpdNo">
+                                <img src="~/Content/icons/emrMenuIcons/print.png" />
+                            </a>
+
+
+                        </div>
+                    </form>
+
+
+                    <table class="table table-data table-condensed table-hover">
+                        <thead class="bg-primary">
+                            <tr>
+                                
+                                <th>Recording<br />date</th>
+                                <th>Oral<br />Intake</th>
+                                <th>Blood<br />Intake</th>
+                                <th>Intravenous<br />Intake</th>
+                                <th>Vomit<br />Output</th>
+                                <th>Urine<br />Output</th>
+                                <th>Total<br />Intake</th>
+                                <th>Total<br /> Output</th>
+                                <th>Balance</th>
+                               
+
+
+
+                            </tr>
+                            @*<tr class="table-primary-row filter-row">
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td></td>
+                        </tr>*@
+                        </thead>
+                        <tbody class="bg-white">
+                            @foreach (var infusion in Model.OpdRegister.IntakeInputOutputs.OrderByDescending(e => e.Id))
+                            {
+                                <tr class="">
+                                    
+
+                                    <td>@infusion.IODate</td>
+                                    <td>@infusion.OralIntake</td>
+                                    <td>@infusion.BloodIntake</td>
+                                    <td>@infusion.IntravenousIntake</td>
+                                    <td>@infusion.VomitOutput</td>
+                                    <td>@infusion.UrineOutput</td>
+                                    <td>@infusion.Intake</td>
+                                    <td>@infusion.Output</td>
+                                    <td>@infusion.Balance</td>
+
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+
             <div id="drugs" class="tab-pane fade in active">
                 <fieldset>
                     <form id="prescription-form" class="collapse">
@@ -71,18 +472,18 @@
                                     <select class="text-box box-sm" name="RoutingAdmin" id="RoutingAdmin">
                                         <option>Select</option>
                                         @*@foreach(var x in Model.RoutingAdmins)
-                            {
-                                <option value="@x.Id">@x.RoutingAdminName</option>
-                            }*@
+                                    {
+                                        <option value="@x.Id">@x.RoutingAdminName</option>
+                                    }*@
                                     </select>
                                 </td>
                                 <td>
                                     <select class="text-box box-sm" name="Frequency" id="Frequency">
                                         <option>Select</option>
                                         @*@foreach (var y in Model.Frequencies)
-                            {
-                                <option value="@y.Id" data-quantity="@y.Value">@y.DisplayText</option>
-                            }*@
+                                    {
+                                        <option value="@y.Id" data-quantity="@y.Value">@y.DisplayText</option>
+                                    }*@
                                     </select>
                                 </td>
                                 <td><input type="number" class="text-box box-sm" name="Day" id="Day" min="1" /></td>
@@ -96,7 +497,16 @@
                     </form>
                     <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("TreatmentForm", "EMR", new { id= ViewBag.OpdNo })" data-callback="treatmentFormModalListener">Add Medication</button>
 
-                    @{var medications = Model.OpdRegister.Medications; }
+
+                    <div align="right">
+
+                        <a class="call-modal-form" data-action="/IPD/MedicationReport/@ViewBag.OpdNo">
+                            <img src="~/Content/icons/emrMenuIcons/print.png" />
+                        </a>
+
+
+                    </div>
+
                     <table class="table table-stripped table-data table-hover table-condensed" width="100%">
                         <thead>
                             <tr>
@@ -104,47 +514,47 @@
                                 <th>Dose</th>
                                 <th>Dose Standard</th>
                                 <th>Routing Admin</th>
-                                <th>Last Admin</th>
+
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody class="bg-white">
-                            @foreach (var med in medications)
-            {
-                <tr>
-                    <td style="white-space:normal">@med.DrugName</td>
-                    <td>@med.Quantity</td>
-                    <td>@med.Frequency</td>
-                    <td>@med.RoutingAdmin</td>
-                    <td id="last-admin-@med.Id" class="human-time">
-                        @if (med.MedicalAdministrationEntries.Count() > 0)
-        {
-            var lastAdmin = med.MedicalAdministrationEntries.OrderByDescending(e => e.Id).FirstOrDefault();
-            if (lastAdmin != null)
-            {
-                <lable>@lastAdmin.DateApplied</lable>
-                <br />
-}
-}
-else
-{
-                <em><small>Never</small></em>
-}
-                    </td>
-                    <td>
-                        <lable class="btn btn-xs btn-admin-medication" data-medication-id="@med.Id">Administer</lable>
-                    </td>
-                </tr>
-}
+                            @foreach (var med in Model.OpdRegister.Medications.OrderByDescending(e => e.Id))
+                            {
+
+                                <tr>
+                                    <td style="white-space:normal">@med.DrugName</td>
+                                    <td>@med.Quantity</td>
+                                    <td>@med.Frequency</td>
+                                    <td>@med.RoutingAdmin</td>
+
+
+                                </tr>
+                            }
+
                         </tbody>
                     </table>
 
                 </fieldset>
             </div>
+
+
+
             <div id="procedures" class="tab-pane fade">
                 <fieldset>
                     <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("ProcedureForm", "EMR", new { id= ViewBag.OpdNo })"
-                            data-callback="procedureFormModalListener">Add Procedure</button>
+                            data-callback="procedureFormModalListener">
+                        Add Procedure
+                    </button>
+
+                    <div align="right">
+
+                        <a class="call-modal-form" data-action="/IPD/ProceduresReport/@ViewBag.OpdNo">
+                            <img src="~/Content/icons/emrMenuIcons/print.png" />
+                        </a>
+
+
+                    </div>
 
                     <table class="table table-data table-condensed table-hover">
                         <thead class="bg-primary">
@@ -159,55 +569,356 @@ else
                                 <th>Apply</th>
                             </tr>
                             @*<tr class="table-primary-row filter-row">
-                    <td contenteditable="true"></td>
-                    <td contenteditable="true"></td>
-                    <td contenteditable="true"></td>
-                    <td contenteditable="true"></td>
-                    <td contenteditable="true"></td>
-                    <td contenteditable="true"></td>
-                    <td contenteditable="true"></td>
-                    <td></td>
-                </tr>*@
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td></td>
+                        </tr>*@
                         </thead>
                         <tbody class="bg-white">
-                            @foreach (var procedure in Model.OpdRegister.BillServices.Where(e=>e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim().Equals("procedure")))
+                            @foreach (var procedure in Model.OpdRegister.BillServices.Where(e => e.Service.ServiceGroup.ServiceGroupName.ToLower().Trim().Equals("procedure")))
                             {
-                            <tr class="">
-                                <td>@procedure.ServiceName</td>
-                                <td>@procedure.DateAdded</td>
-                                <td></td>
-                                <td>@procedure.Quatity</td>
-                                <td>@procedure.Award</td>
-                                <td>@(procedure.Quatity * procedure.Quatity)</td>
-                                <td>@procedure.IsNurse</td>
-                                <td><button type="button" class="btn btn-xs btn-primary">Apply</button></td>
-                            </tr>
+                                <tr class="">
+                                    <td>@procedure.ServiceName</td>
+                                    <td>@procedure.DateAdded</td>
+                                    <td></td>
+                                    <td>@procedure.Quatity</td>
+                                    <td>@procedure.Award</td>
+                                    <td>@(procedure.Quatity * procedure.Quatity)</td>
+                                    <td>@procedure.IsNurse</td>
+                                    <td><button type="button" class="btn btn-xs btn-primary">Apply</button></td>
+                                </tr>
                             }
                         </tbody>
                     </table>
                 </fieldset>
             </div>
+
+
             <div id="doctor-notes" class="tab-pane fade">
                 <fieldset>
+
                     <form id="form-doctor-notes">
                         <input type="hidden" name="IpdOpdNo" value="@ViewBag.OpdNo" />
                         <table class="table-form">
+
+
+
+                            <td>&nbsp;</td>
 
                             <tr>
                                 <td>
                                     <textarea name="DoctorNote1" id="DoctorNote" class="text-box box-xlg" placeholder="Write some note..."></textarea>
                                 </td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary">Add Note</button>
-                                </td>
+
                             </tr>
                         </table>
+                        <table>
+
+                            <td>
+                                <label> Date Added </label>
+
+                            </td>
+
+                            <td>
+                                <input type="datetime" name="NotesDate" id="" value="@DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")" required />
+                            </td>
+
+                        </table>
+                        <div>
+
+                            <button class="btn btn-sm btn-primary">Save</button>
+
+                        </div>
+                        <div align="right">
+
+                            <a class="call-modal-form" data-action="/IPD/DoctorsNoteReport/@ViewBag.OpdNo">
+                                <img src="~/Content/icons/emrMenuIcons/print.png" />
+                            </a>
+
+
+                        </div>
                     </form>
-                    <div id="doctorNotesList">
-                        @Html.Partial("~/Views/IPD/DoctorNotesList.cshtml", Model.OpdRegister.DoctorNotes.OrderByDescending(e=>e.Id))
+                    <div  class="container" id="container"">
+                        @Html.Partial("~/Views/IPD/DoctorNotesList.cshtml", Model.OpdRegister.DoctorNotes.OrderByDescending(e => e.Id))
                     </div>
                 </fieldset>
             </div>
+
+
+
+
+
+            <div id="nurse-notes" class="tab-pane fade">
+                <fieldset>
+                    <form id="form-nurse-notes">
+                        <input type="hidden" name="IPDNo" value="@ViewBag.OpdNo" />
+                        &nbsp;
+
+
+                        <table>
+                            <tr>
+                                <td>
+                                    <label>Time Added </label>
+                                </td>
+                                <td>&nbsp;</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <td>
+                                    <input type="datetime" class="text-box box-sm" name="EntryDate" value="@DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")" />
+                                </td>
+                            </tr>
+
+                            @*<tr>
+                            <td>
+                                <label>Temperature <sup>o</sup>C</label>
+                            </td>
+                            <td>
+                                <input type="number" id="Temperature" name="Temperature" />
+                            </td>
+                            &nbsp;
+                            <td>
+                                <label> Pulse Rate </label>
+                            </td>
+                            <td>
+                                <input type="number" id="Pulse" name="Pulse" />
+                            </td>
+                        </tr>
+
+                        <td>&nbsp;</td>
+                        <tr>
+                            <td>
+                                <label> Systolic B.P </label>
+                            </td>
+                            <td>
+                                <input type="number" id="SystolicBp" name="SystolicBp" />
+                            </td>
+                            &nbsp;
+                            <td>
+                                <label> Dystolic B.P </label>
+                            </td>
+                            <td>
+                                <input type="number" id="DystolicBp" name="DystolicBp" />
+                            </td>
+
+                        </tr>
+                        <td>&nbsp;</td>
+                        <tr>
+                            <td>
+                                <label> Repository Rate</label>
+                            </td>
+                            <td>
+                                <input type="number" id="RepositoryRate" name="RepositoryRate" />
+                            </td>
+                        </tr>*@
+                            <td>&nbsp;</td>
+
+
+                            <td>&nbsp;</td>
+
+                        </table>
+                        <table>
+
+
+                            <tr>
+                                <td>
+                                    <label> Remarks </label>
+                                    <textarea name="NurseNote1" id="NurseNote" rows="4" cols="60" class="text-box box-xlg" placeholder="Write some note..."></textarea>
+                                </td>
+
+                            </tr>
+
+
+
+
+                        </table>
+
+                        <div>
+
+
+                            <button class="btn btn-sm btn-primary">Save</button>
+
+
+                            &nbsp;
+                            &nbsp;
+
+                        </div>
+
+                        <div>&nbsp;</div>
+                        <div id="lab" class="class-" ">
+                            @*<a class="call-modal-form btn btn-sm btn-primary" data-action="/EMR/MarPhysicalExamination/@ViewBag.OpdNo> Physical Examination</a>*@
+
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("MarPhysicalExamination", "EMR", new { id = ViewBag.OpdNo })" data-callback="physical" id="btn-open-diseaseEntry">Physical Examination</button>
+
+                        </div>
+
+                        <div align="right">
+
+                            <a class="call-modal-form" data-action="/IPD/NurseNotesReport/@ViewBag.OpdNo">
+                                <img src="~/Content/icons/emrMenuIcons/print.png" />
+                            </a>
+
+
+                        </div>
+
+
+                    </form>
+                    <div id="nurseNotesList">
+                        @Html.Partial("~/Views/IPD/NurseNotesList.cshtml", Model.OpdRegister.NurseNotes.OrderByDescending(e => e.Id))
+                    </div>
+                </fieldset>
+            </div>
+
+
+            <div id="infusion-therapy" class="tab-pane fade">
+                <fieldset>
+                    @*@using (Ajax.BeginForm("SaveInfusinTherapy", "emr", new { }, new AjaxOptions
+                {
+                    LoadingElementId = "loadingElement",
+                    HttpMethod = "POST",
+                    UpdateTargetId = "",
+                    OnFailure = "showNotification('Failed', 'danger', 'false')",
+                    OnSuccess = "showNotification('Data saved Successfully', 'success', 'true')",
+
+                }
+
+
+
+                ))
+                {*@
+                    <form id="form-infusion" method="post" action="@Url.Action("SaveInfusinTherapy", "emr")">
+                        <input type="hidden" name="OPDNo" value="@Model.OpdRegister.Id" />
+
+                        &nbsp;
+                        &nbsp;
+
+                        <table class="table-form">
+
+                            <tr> <td>&nbsp;</td></tr>
+                            <tr>
+                                <td>
+                                    <label> Infusion Date </label>
+
+                                </td>
+
+                                <td>
+                                    <input class="text-box box-lg" type="datetime" name="InfusionDate" id="" value="@DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")" required />
+                                </td>
+                                <td> &nbsp;</td>
+
+                                <td>
+                                    <label> I.V Fluid </label>
+
+                                </td>
+
+                                <td>
+                                    <input class="text-box box-lg" type="text" name="IvFluid" id="iv-fluid" />
+                                </td>
+
+
+                                <td> &nbsp;</td>
+                                <td> &nbsp;</td>
+
+                                <td>
+                                    <label> IV Fluid<br /> Volume (mls) </label>
+
+                                </td>
+                                <td>
+                                    <input class="text-box box-lg" name="IVFluidVolume" type="number" required />
+                                </td>
+
+
+
+
+                                <td> &nbsp;</td>
+                                <td> &nbsp;</td>
+
+                            </tr>
+                            <tr> <td>&nbsp;</td></tr>
+
+                            <tr>
+                                <td>
+                                    <label> Drugs Added </label>
+                                </td>
+                                <td>
+
+                                    <select class="text-box box-lg" id="" name="DrugsAdded">
+                                        <option value="1"> Glucose </option>
+                                        <option value="2">two</option>
+                                        <option value="3">three</option>
+                                        <option value="4">four</option>
+                                    </select>
+                                </td>
+                                <td> &nbsp;</td>
+
+                                <td>
+                                    <label> Drugs<br /> Added <br />Volume (mls)</label>
+                                </td>
+                                <td>
+                                    <input class="text-box box-lg" name="DrugsVolume" type="number" required />
+                                </td>
+                            </tr>
+                            <tr> <td>&nbsp;</td></tr>
+                            <tr>
+                                <td>
+                                    <label> Start Time </label>
+                                </td>
+                                <td>
+                                    <input class="text-box box-lg" type="time" name="StartTime" id="start-time" value="12:00" required />
+                                </td>
+
+                                <td>&nbsp;</td>
+                                <td>
+                                    <label> Stop Time </label>
+
+                                </td>
+                                <td>
+                                    <input class="text-box box-lg" type="time" name="StopTime" id="stop-time" value="12:00" required />
+                                </td>
+                            </tr>
+
+                        </table>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+
+                        <div class="">
+                            <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit" name="btnSubmit">Save</button>
+                            <button type="reset" class="btn btn-sm btn-primary">Cancel</button>
+
+                            &nbsp;
+                            &nbsp;
+
+                        </div>
+                        <div align="right">
+
+                            <a class="call-modal-form" data-action="/IPD/InfusionTherapyReport/@ViewBag.OpdNo">
+                                <img src="~/Content/icons/emrMenuIcons/print.png" />
+                            </a>
+
+
+                        </div>
+
+
+
+
+
+
+
+
+                    </form>
+
+                    <div id="infusionList">
+                        @Html.Partial("~/Views/EMR/InfusionList.cshtml", Model.OpdRegister.InfusionTherapies.OrderByDescending(e => e.Id))
+                    </div>
+
+                </fieldset>
+            </div>
+
+
         </div>
     </div>
 </div>
@@ -216,7 +927,312 @@ else
 
 
 @section scripts{
-    <script>
+
+
+<script>
+   
+    function calcInput() {
+        var TInput = 0;
+        var OI = parseFloat($("#Oral").val());
+        var BI = parseFloat($("#Blood").val());
+        var II = parseFloat($("#Intrav").val());
+        if (OI >= 0 && BI >= 0 && II >= 0) {
+            TInput = OI + BI + II;
+        }
+
+        $("#TargetTInput").val(TInput.toFixed(2));
+        
+    }
+
+    $("#Oral").change(function () {
+        calcInput();
+    });
+
+    $("#Oral").keyup(function () {
+        calcInput();
+    });
+
+    $("#Blood").change(function () {
+        calcInput();
+    });
+
+    $("#Blood").keyup(function () {
+        calcInput();
+    });
+    $("#Intrav").change(function () {
+        calcInput();
+    });
+    $("#Intrav").keyup(function () {
+        calcInput();
+    });
+
+
+
+
+
+
+
+
+    function calcOutput() {
+        var TOutput = 0;
+        var VO = parseFloat($("#Vomit").val());
+        var UO = parseFloat($("#Urine").val());
+        if (VO > 0 && UO > 0) {
+            TOutput = VO + UO;
+        }
+
+        $("#TargetTOutput").val(TOutput.toFixed(2));
+        
+    }
+
+    $("#Vomit").change(function () {
+        calcOutput();
+    });
+
+    $("#Vomit").keyup(function () {
+        calcOutput();
+    });
+
+    $("#Urine").change(function () {
+        calcOutput();
+    });
+
+    $("#Urine").keyup(function () {
+        calcOutput();
+    });
+
+
+    function calcBal() {
+        var bal = 0;
+        
+        var VO = parseFloat($("#Vomit").val());
+        var UO = parseFloat($("#Urine").val());
+        var OI = parseFloat($("#Oral").val());
+        var BI = parseFloat($("#Blood").val());
+        var II = parseFloat($("#Intrav").val());
+        if (VO >= 0 && UO >= 0 && OI >= 0 && BI >= 0 && II) {
+            bal = (OI+BI+II)-(VO+UO)
+        }
+        $("#Targetbal").val(bal.toFixed(2));
+    }
+    $("#Vomit").change(function () {
+        calcBal();
+    });
+
+    $("#Vomit").keyup(function () {
+        calcBal();
+    });
+
+    $("#Urine").change(function () {
+        calcBal();
+    });
+
+    $("#Urine").keyup(function () {
+        calcBal();
+    });
+    $("#Oral").change(function () {
+        calcBal();
+    });
+
+    $("#Oral").keyup(function () {
+        calcBal();
+    });
+
+    $("#Blood").change(function () {
+        calcBal();
+    });
+
+    $("#Blood").keyup(function () {
+        calcBal();
+    });
+    $("#Intrav").change(function () {
+        calcBal();
+    });
+    $("#Intrav").keyup(function () {
+        calcBal();
+    });
+
+
+    
+
+    function physical() {
+
+        var logContainer = $('#physical-exam-results-log');
+        var logContainer2 = $('#infusionList');
+        getRecentInfo();
+
+        $.ajax({
+            type: "GET",
+            url: "/EMR/OPDMiniList/",
+
+            success: function (result) {
+                $('#list').html(result);
+            }
+        });
+
+        function getLog() {
+
+            var containerWidth = logContainer.width();
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetPhysicalExamination/" +@Model.Patient.Id,
+                success: function (result) {
+                    logContainer.html(result);
+                    logContainer.css("width", containerWidth);
+                }
+            });
+        }
+
+
+        $("#physical-examination-form").submit(function (e) {
+            e.preventDefault();
+            var data = $(this).serialize();
+
+            console.log(data);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("PostPhysicalExamination", "EMR")",
+                data: data,
+                success: function (result) {
+                    $("#physical-examination-form")[0].reset();
+                    getRecentInfo();
+                    logContainer.html(result);
+                }
+            });
+        });
+
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/" +@Model.Patient.Id,
+
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                    getLog();
+                }
+            });
+        }
+
+
+        function calcBMI() {
+            var BMI = 0;
+            var w = parseFloat($("#Weight").val());
+            var h = parseFloat($("#Height").val());
+            if (h > 0 && w > 0) {
+                BMI = w / (h * h);
+            }
+
+            $("#TargetBMI").val(BMI.toFixed(2));
+        }
+
+        $("#Weight").change(function () {
+            calcBMI();
+        });
+
+        $("#Weight").keyup(function () {
+            calcBMI();
+        });
+
+        $("#Height").change(function () {
+            calcBMI();
+        });
+
+        $("#Height").keyup(function () {
+            calcBMI();
+        });
+
+
+    }
+
+
+      
+        var logContainer = $('#physical-exam-results-log');
+        getRecentInfo();
+
+        $.ajax({
+            type: "GET",
+            url: "/EMR/OPDMiniList/",
+
+            success: function (result) {
+                $('#list').html(result);
+            }
+        });
+
+        function getLog() {
+
+            var containerWidth = logContainer.width();
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetPhysicalExamination/" +@Model.Patient.Id,
+                success: function (result) {
+                    logContainer.html(result);
+                    logContainer.css("width", containerWidth);
+                }
+            });
+        }
+
+
+        $("#physical-examination-form").submit(function (e) {
+            e.preventDefault();
+            var data = $(this).serialize();
+
+            console.log(data);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("PostPhysicalExamination", "EMR")",
+                data: data,
+                success: function (result) {
+                    $("#physical-examination-form")[0].reset();
+                    getRecentInfo();
+                    logContainer.html(result);
+                }
+            });
+        });
+
+        function getRecentInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/EMR/GetMostRecentPhysicalExam/"+@Model.Patient.Id,
+
+                success: function (result) {
+                    $('#patient-recent-physical-info').html(result);
+                    getLog();
+                }
+            });
+        }
+
+
+        function calcBMI() {
+            var BMI = 0;
+            var w = parseFloat($("#Weight").val());
+            var h = parseFloat($("#Height").val());
+            if (h > 0 && w> 0) {
+                BMI = w / (h * h);
+            }
+
+            $("#TargetBMI").val(BMI.toFixed(2));
+        }
+
+        $("#Weight").change(function () {
+            calcBMI();
+        });
+
+        $("#Weight").keyup(function () {
+            calcBMI();
+        });
+
+        $("#Height").change(function () {
+            calcBMI();
+        });
+
+        $("#Height").keyup(function () {
+            calcBMI();
+        });
+
+
+
+
+    
         getRecentInfo();
         applyHumanTime();
         function getRecentInfo() {
@@ -280,7 +1296,114 @@ else
                     console.log(e.responseText());
                 }
             })
+    })
+
+     $("#form-input-output").submit(function (e) {
+           
+            $(".loader").show();
+            e.preventDefault();
+            var data = $(this).serialize();
+            $.ajax({
+                method: "post",
+                url: "@Url.Action("SaveIntakeOutput", "EMR")",
+                data: data,
+                success: function (result) {
+                    $(".loader").hide();
+                    $("#DoctorNote").val("");
+                    showNotification(" saved successfully!", "success", true);
+                    $("#form-input-output")[0].reset();
+                    //$("#doctorNotesList").html(result);
+                    applyHumanTime();
+                },
+                error: function (e, x, h) {
+                    $(".loader").hide();
+                    showNotification("An error occured!", "danger", true);
+                    console.log(e.responseText());
+                }
+            })
+    })
+ $("#form-turning").submit(function (e) {
+           
+            $(".loader").show();
+            e.preventDefault();
+            var data = $(this).serialize();
+            $.ajax({
+                method: "post",
+                url: "@Url.Action("SaveTurningChart", "EMR")",
+                data: data,
+                success: function (result) {
+                    $(".loader").hide();
+                    showNotification(" saved successfully!", "success", true);
+                    $("#form-turning")[0].reset();
+                    //$("#turningChat").html(result);
+                    applyHumanTime();
+                },
+                error: function (e, x, h) {
+                    $(".loader").hide();
+                    showNotification("An error occured!", "danger", true);
+                    console.log(e.responseText());
+                }
+            })
+    })
+
+     $("#form-infusion").submit(function (e) {
+           
+            $(".loader").show();
+            e.preventDefault();
+            var data = $(this).serialize();
+            $.ajax({
+                method: "post",
+                url: "@Url.Action("SaveInfusinTherapy", "EMR")",
+                data: data,
+                success: function (result) {
+                    $(".loader").hide();
+                    showNotification(" saved successfully!", "success", true);
+                    $("#form-infusion")[0].reset();
+                    logContainer2.html(result);
+                    applyHumanTime();
+                },
+                error: function (e, x, h) {
+                    $(".loader").hide();
+                    showNotification("An error occured!", "danger", true);
+                    console.log(e.responseText());
+                }
+            })
         })
+
+
+        $("#form-nurse-notes").submit(function (e) {
+            if ($("#NurseNote").val().trim() === "") {
+                showNotification("Write in some note", "warning", true);
+                return false;
+            }
+            $(".loader").show();
+            e.preventDefault();
+            var data = $(this).serialize();
+
+
+            $.ajax({
+                method: "post",
+                url: "@Url.Action("AddNursesNotes", "IPD")",
+                data: data,
+                success: function (result) {
+                    $(".loader").hide();
+                    $("#NurseNote").val("");
+                    $("#Pulse").val("");
+                    $("#Temperature").val("");
+                    $("#RepositoryRate").val("");
+                    $("#SystolicBp").val("");
+                    $("#DystolicBp").val("");
+                    $("#nurseNotesList").html(result);
+                    applyHumanTime();
+                },
+                error: function (e, x, h) {
+                    $(".loader").hide();
+                    showNotification("An error occured!", "danger", true);
+                    console.log(e.responseText());
+                }
+            })
+        })
+        
     </script>
 }
 
