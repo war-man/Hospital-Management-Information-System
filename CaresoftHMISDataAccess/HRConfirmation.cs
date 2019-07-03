@@ -18,21 +18,18 @@ namespace CaresoftHMISDataAccess
         public int UserId { get; set; }
         public int BranchId { get; set; }
         public System.DateTime DateAdded { get; set; }
-        public Nullable<int> ApplicantId { get; set; }
+        public string ApplicantId { get; set; }
         public Nullable<int> Level1 { get; set; }
         public string InstitutionName { get; set; }
         public string ContactedPerson { get; set; }
         public Nullable<System.DateTime> DateConfirmed { get; set; }
         public string Reviewer { get; set; }
         public string ResultsObtained { get; set; }
-        public string Remarks { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
         public string Instiution { get; set; }
         public string Telephone { get; set; }
         public string PostalAddress { get; set; }
-        public string ResultsObtained1 { get; set; }
-        public string Remarks1 { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
     }
 }

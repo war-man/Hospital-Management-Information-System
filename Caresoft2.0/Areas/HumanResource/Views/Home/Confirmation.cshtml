@@ -19,14 +19,14 @@
                 Confirmations
             </div>
             <div class="panel-body">
-                <div class="col-md-12">
-                    <form id="branches" method="post" action="@Url.Action("SaveConfirmationData","Home",new {Area="HumanResource"})">
+                <div class="col-sm-12">
+                    <form method="post" action="@Url.Action("SaveConfirmationData","Home",new {Area="HumanResource"})">
                         <table class="table-form"> 
                             <tr>
                                 <td>
                                     <label>Applicant Id</label>
 
-                                    <input type="number" name="ApplicantId" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="ApplicantId" class="text-box box-lg " />
                                 </td>
                             </tr>
                         </table>
@@ -35,100 +35,76 @@
                             <tr>
                                 <td><label>Level</label></td>
                                 <td>
-                                    <input type="number" name="Level1" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="number" name="Level1" class="text-box box-lg "/>
                                 </td>
                                 <td><label>Institution Name</label></td>
                                 <td>
-                                    <input type="text" name="InstitutionName" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="InstitutionName" class="text-box box-lg " />
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>Contacted Person</label></td>
                                 <td>
-                                    <input type="number" name="ContactedPerson" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="number" name="ContactedPerson" class="text-box box-lg "  />
                                 </td>
                                 <td><label>Date Confirmed</label></td>
                                 <td>
-                                    <input type="date" name="DateConfirmed" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="date" name="DateConfirmed" class="text-box box-lg "  />
                                 </td>
                             </tr>
                             <tr>
 
                                 <td><label>Reviewer</label></td>
                                 <td>
-                                    <input type="text" name="Reviewer" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="Reviewer" class="text-box box-lg " />
                                 </td>
 
                                 <td><label>Results Obtained</label></td>
                                 <td>
-                                    <input type="text" name="ResultsObtained" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="ResultsObtained" class="text-box box-lg " />
                                 </td>
 
                             </tr>
                         </table>
-                                <div class="form-group">
-                                    <label class="info-title col-md-12" for="black_name"><strong>Remarks</strong><strong></strong><span><font color="black"><b></b></font></span></label>
-                                    <span id='message_full_name'></span>
-                                    <textarea style="width:250px;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
-                                              placeholder="Enter plan">
-                                        
-                                    </textarea>
-                                </div>
-
+                               
                         <label> <strong>Confirmation of Referees/Previous Employers </strong></label>
                         <table class="table-form">
 
                             <tr>
                                 <td><label>Name</label></td>
                                 <td>
-                                    <input type="text" name="Name" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="Name" class="text-box box-lg "/>
                                 </td>
 
                                 <td><label>Title</label></td>
                                 <td>
-                                    <input type="text" name="Level1" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="Level1" class="text-box box-lg " />
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>Institution</label></td>
                                 <td>
-                                    <input type="text" name="Instiution" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="Instiution" class="text-box box-lg " />
                                 </td>
 
                                 <td><label>Telephone</label></td>
                                 <td>
-                                    <input type="tel" name="ContactedPerson" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="tel" name="ContactedPerson" class="text-box box-lg "/>
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>Postal Address</label></td>
                                 <td>
-                                    <input type="text" name="PostalAddress" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="PostalAddress" class="text-box box-lg " />
                                 </td>
-
-
-                                <td><label>Results Obtained</label></td>
-                                <td>
-                                    <input type="text" name="ResultsObtained1" class="text-box box-lg " style="margin-bottom:3px" />
-                                </td>
-
-                            </tr>
-                            <tr>
                                 <td><label>Date</label></td>
                                 <td>
-                                    <input type="text" name="Date" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="Date" class="text-box box-lg " />
                                 </td>
                             </tr>
+                           
                         </table>
-                                <div class="form-group">
-                                    <label class="info-title col-md-12" for="black_name"><strong>Remarks</strong><strong></strong><span><font color="black"><b></b></font></span></label>
-                                    <span id='message_full_name'></span>
-                                    <textarea style="width: 250px;height:70px;" name="Remarks1" class="text-box unicase-form-control text-input" id="extension_number"
-                                              placeholder="Enter plan">
-                                        
-                                    </textarea>
-                                 </div>
-                       
+                               
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
                     <br />

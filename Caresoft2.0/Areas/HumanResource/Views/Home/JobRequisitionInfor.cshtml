@@ -1,6 +1,9 @@
 ﻿
 @model IEnumerable<CaresoftHMISDataAccess.HRJobRequisition>
+    
 @{
+    CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+    
     ViewBag.Title = "Job Requisition Information";
     ViewBag.showTopMenu = true;
     ViewBag.WideView = true;
@@ -12,6 +15,7 @@
     @Html.Partial("~/Areas/HumanResource/Views/Shared/_JobRequisitionNav.cshtml")
 </div>
 @{
+    
     var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
 }
 
@@ -23,15 +27,17 @@
             </div>
             <div class="panel-body">
                 <div class="col-sm-12">
-                    <form id="branches" method="post" action="@Url.Action("SaveJobRequisitionInforData","Home",new {Area="HumanResource"})">
+                    <form  method="post" action="@Url.Action("SaveJobRequisitionInforData","Home",new {Area="HumanResource"})">
 
                         <label> <strong>ENTER THE REQUIRED INFORMATION</strong></label>
 
                         <table class="table-form">
                             <tr>
+                              
                                 <td><label>Requisition No</label></td>
+                              
                                 <td>
-                                    <input type="number" name="RequisitionNo" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input  type="text"  name="RequisitionNo" class="text-box box-lg " readonly value="RN/@db.HRJobRequisitions.Count()" />
                                 </td>
                                 <td>
                                     <label>Job Category</label>
@@ -70,7 +76,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Department Name</label>
+                                    <label>Department</label>
                                 </td>
                                 <td>
                                     <select name="Department" class="text-box box-lg ">
@@ -86,7 +92,7 @@
                                     <label>Hiring Authority</label>
                                 </td>
                                 <td>
-                                    <select name="HiringAuthority" class="text-box box-lg">
+                                    <select  name="HiringAuthority" class="text-box box-lg">
                                         <option>Select</option>
                                         <option>Board Chairman</option>
                                         <option>Junior Level Management</option>
@@ -99,34 +105,34 @@
                             <tr>
                                 <td><label>Requisition Date</label></td>
                                 <td>
-                                    <input type="date" name="RequisitionDate" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="date" name="RequisitionDate" class="text-box box-lg " />
                                 </td>
                                 <td><label>Date Due</label></td>
                                 <td>
-                                    <input type="date" name="DateDue" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="date" name="DateDue" class="text-box box-lg "  />
                                 </td>
                             </tr>
                         </table>
 
                         <label> <strong>REQUIREMENTS</strong></label>
-                        
-                                <div class="form-group">
-                                    <label class="info-title col-md-12" for="black_name"><strong>Education</strong><span><font color="black"><b></b></font></span></label>
-                                    <span id='message_full_name'></span>
-                                    <textarea style="width: 250px;height:70px;" name="Education" class="text-box unicase-form-control text-input" id="extension_number"
-                                              placeholder="Enter plan">
+
+                        <div class="form-group">
+                            <label class="info-title col-md-12" for="black_name"><strong>Education</strong><span><font color="black"><b></b></font></span></label>
+                            <span id='message_full_name'></span>
+                            <textarea style="width: 250px;height:70px;" name="Education" class="text-box unicase-form-control text-input" id="extension_number"
+                                      placeholder="Enter plan">
                                         
                                     </textarea>
-                                    </div>
-                         
-                                <div>
-                                    <label class="info-title col-md-12" for="black_name"><strong>Skills/Experience</strong><span><font color="black"><b></b></font></span></label>
-                                    <span id='message_full_name'></span>
-                                    <textarea style="width:250px;height:70px;" name="SkillsOrExperience" class="text-box unicase-form-control text-input" id="extension_number"
-                                              placeholder="Enter plan">
+                        </div>
+
+                        <div>
+                            <label class="info-title col-md-12" for="black_name"><strong>Skills/Experience</strong><span><font color="black"><b></b></font></span></label>
+                            <span id='message_full_name'></span>
+                            <textarea style="width:250px;height:70px;" name="SkillsOrExperience" class="text-box unicase-form-control text-input" id="extension_number"
+                                      placeholder="Enter plan">
                                         
                                     </textarea>
-                                </div>
+                        </div>
 
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>

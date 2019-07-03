@@ -2,29 +2,29 @@
 @model IEnumerable<CaresoftHMISDataAccess.HRApplication>
 @{
 
-    ViewBag.Title = "Job Requisition Types ";
+    ViewBag.Title = "Interview Types ";
     ViewBag.showTopMenu = true;
     ViewBag.WideView = true;
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 
 }
-<div class="col-md-2">
+<div class="col-md-3">
     @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
 </div>
 
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
-        <div class="panel panel-primary  caresoft-panel glass">
+        <div class="panel panel-primary shadow caresoft-panel glass">
             <div class="panel-heading">
-                Job Requisition Types
+                Interview Types
             </div>
             <div class="panel-body">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     <form id="branches" method="post" action="@Url.Action("SaveJobRequsitionData","Home",new {Area="HumanResource"})">
 
                         <label> <strong>PLEASE REGISTER JOB REQUISITION TYPES HERE</strong></label>
 
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>Interview Type Code </label></td>
                                 <td>
@@ -41,11 +41,10 @@
 
                         </table>
 
-                        <br /><br />
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
 
                     </form>
-
+                    <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("InterviewTypesGrid")
                     </div>

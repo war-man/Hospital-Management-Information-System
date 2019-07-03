@@ -7,10 +7,10 @@
     ViewBag.WideView = true;
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 }
-<div class="col-md-2">
+<div class="col-md-3">
     @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
 </div>
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading custom-navbar">
@@ -22,11 +22,11 @@
                     <form id="country" method="post" action="@Url.Action("SaveRetirementBenefitsData","Home",new {Area="HumanResource"})">
 
                         <label> <strong>PLEASE REGISTER RETIREMENT BENEFITS HERE </strong></label>
-                        <table class="form-class">
+                        <table class="table-form">
                             <tr>
                                 <td><label>Benefit Id</label></td>
                                 <td>
-                                    <input type="number" name="BenefitId" class="text-box box-lg " />
+                                    <input type="text" name="BenefitId" class="text-box box-lg " />
                                 </td>
                             
                                 <td><label>Description</label></td>
@@ -38,18 +38,17 @@
                             
                         </table>
                         <div class="form-group">
-                            <label class="info-title col-md-12" for="black_name">Comments<span><font color="black"><b></b></font></span></label>
+                            <label class="info-title col-md-12" for="black_name"><strong>Comments</strong><span><font color="black"><b></b></font></span></label>
                             <span id='message_full_name'></span>
                             <textarea style="width: 50%;height:70px;" name="Comments" class="text-box unicase-form-control text-input" id="extension_number"
                                       placeholder="Enter plan">
                                         
                                     </textarea>
 
-                            <br />
-                            <br />
                             <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                         </div>
                     </form>
+                    <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("RetirementBenefitsGrid")
                     </div>

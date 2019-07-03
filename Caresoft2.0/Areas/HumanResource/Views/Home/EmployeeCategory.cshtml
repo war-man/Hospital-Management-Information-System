@@ -7,11 +7,11 @@
     ViewBag.WideView = true;
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 }
-<div class="col-md-2">
+<div class="col-md-3">
     @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
 </div>
 
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading custom-navbar">
@@ -20,10 +20,10 @@
             <div class="panel-body">
                 <div class="col-sm-12">
 
-                    <form id="country" method="post" action="@Url.Action("SaveEmployeeCategoryData","Home",new {Area="HumanResource"})">
+                    <form method="post" action="@Url.Action("SaveEmployeeCategoryData","Home",new {Area="HumanResource"})">
 
                         <label> <strong>PLEASE REGISTER EMPLOYEE CATEGORIES HERE </strong></label>
-                        <table class="form-class">
+                        <table class="table-form">
                             <tr>
                                 <td><label>Category Id</label></td>
                                 <td>
@@ -40,11 +40,10 @@
 
                         </table>
 
-                        <br />
-                        <br />
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
 
                     </form>
+                    <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("EmployeeCategoryGrid")
                     </div>

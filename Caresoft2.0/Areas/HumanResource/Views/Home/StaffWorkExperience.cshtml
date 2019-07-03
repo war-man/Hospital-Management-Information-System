@@ -7,6 +7,8 @@
     ViewBag.WideView = true;
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 
+    CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+
 }
 <div class="col-md-2">
     @Html.Partial("~/Areas/HumanResource/Views/Shared/_ContractManagementNav.cshtml")
@@ -19,6 +21,64 @@
                 Work Experience
             </div>
             <div class="panel-body">
+
+                <ul class="nav nav-pills">
+                    <li>
+                        <div class="class=" panel panel-primary caresoft-panel">
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("FileDetails","Home",new {Area="HumanResource"})">
+                                File Details
+
+                            </button>
+
+                        </div>
+
+                    </li>
+                    <li>&nbsp;</li>
+                    <li>&nbsp;</li>
+                    <li>
+                        <div class="class=" panel panel-primary caresoft-panel">
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("StaffBioData","Home",new {Area="HumanResource"})">
+                                Bio Data
+                            </button>
+
+                        </div>
+
+                    </li>
+                    <li>&nbsp;</li>
+                    <li>&nbsp;</li>
+                    <li>
+                        <div class="class=" panel panel-primary caresoft-panel">
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("EducationalQuaifications","Home",new {Area="HumanResource"})">
+                                Educational Qualifications
+                            </button>
+
+                        </div>
+
+                    </li>
+                    <li>&nbsp;</li>
+                    <li>&nbsp;</li>
+                    <li>
+                        <div class="class=" panel panel-primary caresoft-panel">
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("ProfessionalQuaifications","Home",new {Area="HumanResource"})">
+                                Professional Qualifications
+                            </button>
+
+                        </div>
+
+                    </li>
+                    <li>&nbsp;</li>
+                    <li>&nbsp;</li>
+                    <li>
+                        <div class="class=" panel panel-primary caresoft-panel">
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("StaffReferees","Home",new {Area="HumanResource"})">
+                              Referees
+                            </button>
+
+                        </div>
+
+                    </li>
+                </ul>
+                <br />
                 <div class="col-sm-12">
                     <form method="post" action="@Url.Action("SaveStaffWorkExperienceData","Home",new {Area="HumanResource"})">
 
@@ -26,7 +86,7 @@
                             <tr>
                                 <td><label>Staff Id</label></td>
                                 <td>
-                                    <input type="number" name="StaffId" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="StaffId" class="text-box box-lg " readonly value="ST/@db.HRStaffWorkExperiences.Count()"  />
                                 </td>
 
                             </tr>
@@ -34,31 +94,31 @@
                             <tr>
                                 <td><label>Begin Date</label></td>
                                 <td>
-                                    <input type="date" name="BeginDate" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="date" name="BeginDate" class="text-box box-lg "/>
                                 </td>
                                 <td><label>End Date</label></td>
                                 <td>
-                                    <input type="date" name="EndDate" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="date" name="EndDate" class="text-box box-lg "/>
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>Employer</label></td>
                                 <td>
-                                    <input type="text" name="Employer" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="Employer" class="text-box box-lg "/>
                                 </td>
                                 <td><label>Position</label></td>
                                 <td>
-                                    <input type="text" name="Position" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="Position" class="text-box box-lg "/>
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>Salary</label></td>
                                 <td>
-                                    <input type="number" name="Salary" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="number" name="Salary" class="text-box box-lg "/>
                                 </td>
                                 <td><label>Remarks</label></td>
                                 <td>
-                                    <input type="text" name="Remarks" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="Remarks" class="text-box box-lg "/>
                                 </td>
                             </tr>
                         </table>

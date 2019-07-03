@@ -4,19 +4,21 @@
 <table class="table table-data table-condensed">
      
     <tr>
-        
+        <th>Edit</th>
+        <th>Delete</th>
         <th>
             @Html.DisplayNameFor(model => model.StatusId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.StatusDescription)
         </th>
-
+        </tr>
     <tbody class="bg-white">
         @foreach (var item in Model.OrderByDescending(e => e.Id))
         {
             <tr>
-
+                <td>Edit</td>
+                <td>Delete</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.StatusId)
                 </td>

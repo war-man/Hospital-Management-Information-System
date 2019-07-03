@@ -8,12 +8,12 @@
                 Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 
 }
-<div class="col-md-2">
+<div class="col-md-3">
     @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
 </div>
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
-        <div class="panel panel-primary  caresoft-panel glass">
+        <div class="panel panel-primary shadow caresoft-panel glass">
             <div class="panel-heading">
                 Job Functions
             </div>
@@ -23,30 +23,26 @@
 
                         <label> <strong>PLEASE REGISTER JOB FUNCTIONS HERE</strong></label>
 
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>Job Function Id </label></td>
                                 <td>
                                     <input type="number" name="JobFunctionId" class="text-box box-sm " style="margin-bottom:3px" />
                                 </td>
-
-
-                            </tr>
-
+                           </tr>
                         </table>
                         <div class="form-group">
-                            <label class="info-title col-md-12" for="black_name">Function Description<span><font color="black"><b></b></font></span></label>
+                            <label class="info-title col-md-12" for="black_name"><strong>Function Description</strong><span><font color="black"><b></b></font></span></label>
                             <span id='message_full_name'></span>
                             <textarea style="width: 50%;height:70px;" name="FunctionDescription" class="text-box unicase-form-control text-input" id="extension_number"
                                       placeholder="Enter plan">
                                         
                                     </textarea>
-
-                            <br /><br />
-                            <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                         </div>
+                            <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                        
                     </form>
-
+                    <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("JobFunctionGrid")
                     </div>

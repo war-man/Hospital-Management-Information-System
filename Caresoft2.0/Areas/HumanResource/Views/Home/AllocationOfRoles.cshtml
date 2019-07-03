@@ -25,13 +25,13 @@
             <div class="panel-body">
                 <div class="col-sm-12">
 
-                    <form id="country" method="post" action="@Url.Action("SaveAllocationOfRolesData","Home",new {Area="HumanResource"})">
+                    <form method="post" action="@Url.Action("SaveAllocationOfRolesData","Home",new {Area="HumanResource"})">
 
                         <table class="table-form">
                             <tr>
                                 <td><label>Staff Id</label></td>
                                 <td>
-                                    <input type="number" name="StaffId" class="text-box box-lg " />
+                                    <input type="text" name="StaffId" class="text-box box-lg " />
                                 </td>
                                 <td>
                                     <label>Designation</label>
@@ -88,7 +88,7 @@
                                 </td>
                                 <td><label>Shift</label></td>
                                 <td>
-                                    <input type="radio" name="Shift" />
+                                    <input type="checkbox" name="Shift"/>
                                 </td>
                             </tr>
                             <tr>

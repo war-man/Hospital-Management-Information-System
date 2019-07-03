@@ -6,6 +6,8 @@
     ViewBag.WideView = true;
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 
+    CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+
 }
 <div class="col-md-2">
     @Html.Partial("~/Areas/HumanResource/Views/Shared/_JobRequisitionNav.cshtml")
@@ -19,45 +21,94 @@
                 Basic Information
             </div>
             <div class="panel-body">
+
+                <ul class="nav nav-pills">
+                    <li>
+                        <div class="class=" panel panel-primary caresoft-panel">
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("BioData","Home",new {Area="HumanResource"})">
+
+                                Bio Data/Addresses
+                            </button>
+
+                        </div>
+
+                    </li>
+                    <li>&nbsp;</li>
+                    <li>&nbsp;</li>
+                    <li>
+                        <div class="class=" panel panel-primary caresoft-panel">
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("Qualifications","Home",new {Area="HumanResource"})">
+                                Qualifications
+                            </button>
+
+                        </div>
+
+                    </li>
+                    <li>&nbsp;</li>
+                    <li>&nbsp;</li>
+                    <li>
+                        <div class="class=" panel panel-primary caresoft-panel">
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("WorkExperience","Home",new {Area="HumanResource"})">
+                                Work Experience
+                            </button>
+
+                        </div>
+
+                    </li>
+                    <li>&nbsp;</li>
+                    <li>&nbsp;</li>
+                    <li>
+                        <div class="class=" panel panel-primary caresoft-panel">
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("Refereees","Home",new {Area="HumanResource"})">
+                                Referees
+                            </button>
+
+                        </div>
+
+                    </li>
+                    
+                </ul>
+                <br />
                 <div class="col-sm-12">
-                    <form id="branches" method="post" action="@Url.Action("SaveApplicantResumeData","Home",new {Area="HumanResource"})">
+                    <form  method="post" action="@Url.Action("SaveApplicantResumeData","Home",new {Area="HumanResource"})">
 
                         <table class="table-form">
                             <tr>
                                 <td><label>Applicant Id</label></td>
                                 <td>
-                                    <input type="number" name="ApplicantId" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="ApplicantId" class="text-box box-lg " readonly value="AN/@db.HRFileInformations.Count()" />
                                 </td>
-                                <td><label>Requisition No</label></td>
+                                @*<td><label>Requisition No</label></td>
+
+                                @{ CaresoftHMISDataAccess.CaresoftHMISEntities db3 = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+                                    var data = db3.HRJobRequisitions;
+                                    }
                                 <td>
-                                    <input type="number" name="RequisitionNo" class="text-box box-lg " style="margin-bottom:3px" />
-                                </td>
+                                    <input type="text" name="RequisitionNo" class="text-box box-lg "  readonly value="@da" />
+                                </td>*@
                             </tr>
                             <tr>
                                 <td><label>Surname</label></td>
                                 <td>
-                                    <input type="text" name="Surname" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="Surname" class="text-box box-lg " />
                                 </td>
                                 <td><label>Date Of Application</label></td>
                                 <td>
-                                    <input type="date" name="DateOfApplication" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="date" name="DateOfApplication" class="text-box box-lg " />
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>First Name</label></td>
                                 <td>
-                                    <input type="text" name="FirstName" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="FirstName" class="text-box box-lg " />
                                 </td>
-                                <td><label>Application Receipt Date</label></td>
+                                <td><label>Other Names</label></td>
                                 <td>
-                                    <input type="date" name="ApplicationReceiptDate" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="OtherNames" class="text-box box-lg " />
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>Other Names</label></td>
-                                <td>
-                                    <input type="text" name="OtherNames" class="text-box box-lg " style="margin-bottom:3px" />
-                                </td>
+
                                 <td>
                                     <label>Application Source</label>
                                 </td>
@@ -75,17 +126,16 @@
 
                                     </select>
                                 </td>
-                            </tr>
-                            <tr>
                                 <td>
                                     <label>Position Applied For</label>
                                 </td>
                                 <td>
                                     <select name="PositionAppliedFor" class="text-box box-lg">
                                         <option>Select</option>
-                                        </select>
-                                    </td>
+                                    </select>
+                                </td>
                             </tr>
+                            
                         </table>
 
                         <br />

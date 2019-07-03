@@ -19,7 +19,7 @@ namespace CaresoftHMISDataAccess
         public int BranchId { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
         public string SearchingCriteria { get; set; }
-        public Nullable<int> RequisitionNo { get; set; }
+        public string RequisitionNo { get; set; }
         public string EducationalQualifications { get; set; }
         public string ProfessionalQualificatons { get; set; }
         public string Experiences { get; set; }

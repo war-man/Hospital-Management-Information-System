@@ -18,9 +18,8 @@ namespace CaresoftHMISDataAccess
         public int UserId { get; set; }
         public int BranchId { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
-        public Nullable<int> InterviewId { get; set; }
+        public string InterviewId { get; set; }
         public string Department { get; set; }
-        public Nullable<int> RefInterviewId { get; set; }
         public string InterviewType { get; set; }
         public string Section { get; set; }
         public string InterviewVenue { get; set; }

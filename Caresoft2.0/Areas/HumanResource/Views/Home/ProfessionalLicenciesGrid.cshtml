@@ -1,10 +1,11 @@
-﻿@model IEnumerable<CaresoftHMISDataAccess.HRQualification>
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRApplicantQualification>
 
 
 <table class="table table-data table-condensed">
 
     <tr>
-
+        <th>Edit</th>
+        <th>Delete</th>
         <th>
             @Html.DisplayNameFor(model => model.LicenceId)
         </th>
@@ -22,7 +23,8 @@
         @foreach (var item in Model.OrderByDescending(e => e.Id))
         {
             <tr>
-
+                <td>Edit</td>
+                <td>Delete</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.LicenceId)
                 </td>

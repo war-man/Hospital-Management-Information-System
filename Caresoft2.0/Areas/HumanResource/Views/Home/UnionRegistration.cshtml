@@ -15,12 +15,25 @@
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading">
-                Union Registration
+               Registration
             </div>
             <div class="panel-body">
+
+                <ul class="nav nav-pills">
+                    <li>
+                        <div class="class=" panel panel-primary caresoft-panel">
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("UnionDeregistration","Home",new {Area="HumanResource"})">
+                               Deregistration
+                            </button>
+
+                        </div>
+
+                    </li>
+                </ul>
+
                 <div class="col-sm-12">
 
-                    <form id="country" method="post" action="@Url.Action("SaveUnionRegistrationData","Home",new {Area="HumanResource"})">
+                    <form method="post" action="@Url.Action("SaveUnionRegistrationData","Home",new {Area="HumanResource"})">
                         <table class="table-form">
                             <tr>
                                 <td><label>Union Id</label></td>

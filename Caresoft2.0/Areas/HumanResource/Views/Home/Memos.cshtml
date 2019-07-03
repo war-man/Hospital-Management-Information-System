@@ -20,7 +20,7 @@
             <div class="panel-body">
                 <div class="col-sm-12">
 
-                    <form id="country" method="post" action="@Url.Action("SaveMemosData","Home",new {Area="HumanResource"})">
+                    <form method="post" action="@Url.Action("SaveMemosData","Home",new {Area="HumanResource"})">
 
                         <table class="table-form">
 
@@ -54,18 +54,16 @@
                                 </td>
                             </tr>
                         </table>
-                        <br />
+                        
                                 <div class="form-group">
-                                    <label class="info-title col-md-12" for="black_name">Memo Details<span><font color="black"><b></b></font></span></label>
+                                    <label class="info-title col-md-12" for="black_name"><strong>Memo Details</strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
                                     <textarea style="width:250px;height:70px;" name="MemoDetails" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
                                         
                                     </textarea>
                                 </div>
-                            
-                        <br />
-
+                        
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
                     <br />

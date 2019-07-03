@@ -1,56 +1,46 @@
 ﻿
 @model IEnumerable<CaresoftHMISDataAccess.HRFileDetail>
-@{
 
-    ViewBag.Title = "File Details";
-    ViewBag.showTopMenu = true;
-    ViewBag.WideView = true;
-    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
-
-}
-<div class="col-md-2">
-    @Html.Partial("~/Areas/HumanResource/Views/Shared/_SideNav.cshtml")
-</div>
 @{
     var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
 }
 
-<div class="col-md-8">
+<div class="col-md-12">
     <div class="">
-        <div class="panel panel-primary  caresoft-panel glass">
+        <div class="panel panel-primary shadow caresoft-panel glass">
             <div class="panel-heading">
                 File Details
             </div>
             <div class="panel-body">
-                <div class="col-md-12">
-                    <form id="tests" method="post" action="@Url.Action("SaveFileDetailsData","Home",new {Area="HumanResource"})">
+                <div class="col-sm-12">
+                    <form  method="post" action="@Url.Action("SaveFileDetailsData","Home",new {Area="HumanResource"})">
 
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>File Id</label></td>
                                 <td>
-                                    <input type="number" name="FileId" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="number" name="FileId" class="text-box box-lg "/>
                                 </td>
                                 <td><label>Staff Id</label></td>
                                 <td>
-                                    <input type="number" name="StaffId" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="number" name="StaffId" class="text-box box-lg "  />
                                 </td>
                             </tr>
 
                             <tr>
                                 <td><label>First Name</label></td>
                                 <td>
-                                    <input type="text" name="FirstName" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="FirstName" class="text-box box-lg "  />
                                 </td>
                                 <td><label>Designation</label></td>
                                 <td>
-                                    <input type="text" name="Designation" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="Designation" class="text-box box-lg "  />
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>Second Name</label></td>
                                 <td>
-                                    <input type="text" name="SecondName" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="SecondName" class="text-box box-lg " />
                                 </td>
                                 <td>
                                     <label>Section</label>
@@ -65,7 +55,7 @@
                             <tr>
                                 <td><label>OtherNames</label></td>
                                 <td>
-                                    <input type="text" name="OtherNames" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="text" name="OtherNames" class="text-box box-lg "  />
                                 </td>
                                 <td class="">
                                     <p>Department</p>
@@ -84,11 +74,11 @@
                             <tr>
                                 <td><label>Interview Date</label></td>
                                 <td>
-                                    <input type="date" name="InterviewDate" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="date" name="InterviewDate" class="text-box box-lg " />
                                 </td>
                                 <td><label>Hire Date</label></td>
                                 <td>
-                                    <input type="date" name="HireDate" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="date" name="HireDate" class="text-box box-lg "  />
                                 </td>
                             </tr>
                             <tr>
@@ -142,10 +132,9 @@
                             </tr>
                         </table>
 
-                        <br /><br />
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
-                    <br /><br />
+                    <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("FileDetailsGrid")
                     </div>

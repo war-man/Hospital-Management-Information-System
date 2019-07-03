@@ -8,11 +8,11 @@
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 
 }
-<div class="col-md-2">
+<div class="col-md-3">
     @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
 </div>
 
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary  caresoft-panel glass">
             <div class="panel-heading">
@@ -24,7 +24,7 @@
 
                         <label> <strong>PLEASE REGISTER JOB CATEGORIES HERE</strong></label>
 
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>Job Category Id </label></td>
                                 <td>
@@ -42,9 +42,9 @@
                             </tr>
                         </table>
 
-                        <br /><br />
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
+                    <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("CategoryGrid")
                     </div>

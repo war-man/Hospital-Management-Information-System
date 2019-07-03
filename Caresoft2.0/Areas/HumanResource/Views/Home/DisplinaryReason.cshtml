@@ -7,7 +7,7 @@
     ViewBag.WideView = true;
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 }
-<div class="col-md-2">
+<div class="col-md-3">
     @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
 </div>
 <div class="col-md-6">
@@ -19,14 +19,14 @@
             <div class="panel-body">
                 <div class="col-sm-12">
 
-                    <form id="country" method="post" action="@Url.Action("SaveDisplinaryReasonData","Home",new {Area="HumanResource"})">
+                    <form  method="post" action="@Url.Action("SaveDisplinaryReasonData","Home",new {Area="HumanResource"})">
 
                         <label> <strong>PLEASE ENTER THE STARDARD REASONS </strong></label>
                         <table class="table-form">
                             <tr>
                                 <td><label>Reason Code</label></td>
                                 <td>
-                                    <input type="number" name="ReasonCode" class="text-box box-lg " />
+                                    <input type="text" name="ReasonCode" class="text-box box-lg " />
                                 </td>
                             </tr>
                             <tr>

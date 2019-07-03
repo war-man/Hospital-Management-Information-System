@@ -7,7 +7,7 @@
     ViewBag.WideView = true;
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 }
-<div class="col-md-2">
+<div class="col-md-3">
     @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
 </div>
 
@@ -15,7 +15,7 @@
     var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
 }
 
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading custom-navbar">
@@ -24,10 +24,10 @@
             <div class="panel-body">
                 <div class="col-sm-12">
 
-                    <form id="country" method="post" action="@Url.Action("SaveJobDesriptionData","Home",new {Area="HumanResource"})">
+                    <form method="post" action="@Url.Action("SaveJobDesriptionData","Home",new {Area="HumanResource"})">
 
                         <label> <strong>PLEASE REGISTER YOUR JOB DESCRIPTIONS HERE </strong></label>
-                        <table class="form-class">
+                        <table class="table-form">
                             <tr>
                                 <td><label>Job Id No</label></td>
                                 <td>
@@ -64,11 +64,11 @@
                             </tr>
                         </table>
 
-                        <br /><br />
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+
                     </form>
                 </div>
-
+                <br />
                 <div id="ipd-list" class="scrollable-table-container">
                     @Html.Partial("JobDescriptionGrid")
                 </div>
@@ -76,7 +76,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
 
 

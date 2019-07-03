@@ -5935,6 +5935,7 @@
     <Content Include="Areas\HumanResource\Views\Shared\_InternalCommunicationNav.cshtml" />
     <Content Include="Areas\HumanResource\Views\Shared\_TrainingAndDevelopmentNav.cshtml" />
     <Content Include="Areas\HumanResource\Views\Shared\_ContractTerminationNav.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\JobFunctionGrid.cshtml" />
     <None Include="Areas\PharmacyModule\Reports\BillWiseDailyReportSale\BillWiseDailyDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>BillWiseDailyDataSet1.Designer.cs</LastGenOutput>

@@ -1,32 +1,21 @@
 ﻿
 @model IEnumerable<CaresoftHMISDataAccess.HRBioData>
-@{
 
-    ViewBag.Title = "Bio Data/Addresses";
-    ViewBag.showTopMenu = true;
-    ViewBag.WideView = true;
-    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
-
-}
-<div class="col-md-2">
-    @Html.Partial("~/Areas/HumanResource/Views/Shared/_ApplicantResumeNav.cshtml")
-</div>
-
-<div class="col-md-8">
+<div class="col-md-12">
     <div class="">
         <div class="panel panel-primary  caresoft-panel glass">
             <div class="panel-heading">
                 Bio Data/Addresses
             </div>
             <div class="panel-body">
-                <div class="col-md-12">
-                    <form id="tests" method="post" action="@Url.Action("SaveBioData","Home",new {Area="HumanResource"})">
+                <div class="col-sm-12">
+                    <form  method="post" action="@Url.Action("SaveBioData","Home",new {Area="HumanResource"})">
 
                         <table class="table-form">
                             <tr>
                                 <td><label>Applicant Id</label></td>
                                 <td>
-                                    <input type="number" name="ApplicantId" class="text-box box-lg " style="margin-bottom:3px" />
+                                    <input type="number" name="ApplicantId" class="text-box box-lg " />
                                 </td>
                                 <td>
                                     <label>Gender</label>

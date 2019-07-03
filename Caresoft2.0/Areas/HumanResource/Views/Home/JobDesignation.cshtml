@@ -7,7 +7,7 @@
     ViewBag.WideView = true;
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 }
-<div class="col-md-2">
+<div class="col-md-3">
     @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
 </div>
 
@@ -15,7 +15,7 @@
     var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
 }
 
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading custom-navbar">
@@ -27,11 +27,11 @@
                     <form id="country" method="post" action="@Url.Action("SaveJobDesignationData","Home",new {Area="HumanResource"})">
 
                         <label> <strong>PLEASE REGISTER YOUR JOB DESCRIPTIONS HERE </strong></label>
-                        <table class="form-class">
+                        <table class="table-form">
                             <tr>
                                 <td><label>Job Id No</label></td>
                                 <td>
-                                    <input type="number" name="JobIdNo" class="text-box box-sm " style="margin-bottom:3px" />
+                                    <input type="number" name="JobIdNo" class="text-box box-lg "/>
                                 </td>
                                 <td class="">
                                     <p>Department</p>
@@ -50,7 +50,7 @@
                             <tr>
                                 <td><label>Job Designation</label></td>
                                 <td>
-                                    <input type="text" name="JobDesignation" class="text-box box-sm " style="margin-bottom:3px" />
+                                    <input type="text" name="JobDesignation" class="text-box box-lg"/>
                                 </td>
                                 <td>
                                     <label>Sections</label>
@@ -64,11 +64,10 @@
                             </tr>
                         </table>
 
-                        <br /><br />
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
                 </div>
-
+                <br />
                 <div id="ipd-list" class="scrollable-table-container">
                     @Html.Partial("JobDesignationGrid")
                 </div>

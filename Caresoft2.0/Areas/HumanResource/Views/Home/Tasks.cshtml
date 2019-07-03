@@ -23,15 +23,16 @@
                 Tasks And Administration
             </div>
             <div class="panel-body">
+
                 <div class="col-sm-12">
 
-                    <form id="country" method="post" action="@Url.Action("SaveTasksData","Home",new {Area="HumanResource"})">
+                    <form  method="post" action="@Url.Action("SaveTasksData","Home",new {Area="HumanResource"})">
                         <label><strong>Data Utilization Utility</strong></label>
                         <table class="table-form">
                             <tr>
                                 <td><label>Task Id</label></td>
                                 <td>
-                                    <input type="number" name="TaskId" class="text-box box-lg " />
+                                    <input type="text" name="TaskId" class="text-box box-lg " />
                                 </td>
                                 <td><label>New Task</label></td>
                                 <td>

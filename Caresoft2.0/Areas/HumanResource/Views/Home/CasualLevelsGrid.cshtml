@@ -4,7 +4,8 @@
 <table class="table table-data table-condensed">
 
     <tr>
-       
+       <th>Edit</th>
+        <th>Delete</th>
         <th>
             @Html.DisplayNameFor(model => model.CasualJobId)
         </th>
@@ -14,9 +15,7 @@
         <th>
             @Html.DisplayNameFor(model => model.MaximumTenurePeriod)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Renewable)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.CasualDesignationDescription)
         </th>
@@ -26,7 +25,8 @@
         @foreach (var item in Model.OrderByDescending(e => e.Id))
         {
             <tr>
-
+                 <td>Edit</td>
+                <td>Delete</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CasualJobId)
                 </td>
@@ -36,9 +36,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.MaximumTenurePeriod)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Renewable)
-                </td>
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.CasualDesignationDescription)
                 </td>

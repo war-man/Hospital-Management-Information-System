@@ -23,103 +23,116 @@
                 Attendance Sheet
             </div>
             <div class="panel-body">
-                <div class="col-sm-12">
 
-                    <form id="country" method="post" action="@Url.Action("SaveAttendanceData","Home",new {Area="HumanResource"})">
+                <ul class="nav nav-pills">
+                    <li>
+                        <div class="class=" panel panel-primary caresoft-panel">
+                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("Absentism","Home",new {Area="HumanResource"})">
 
-                        <table class="table-form">
+                                Absentism
+                            </button>
 
-                            <tr>
-                                <td class="">
-                                    <p>Department Name</p>
-                                </td>
-                                <td>
-                                    <select name="Department" class="text-box box-lg ">
-                                        <option>All</option>
-                                        @foreach (var r in departments)
-                                        {
-                                            <option>@r.DepartmentName</option>
-                                        }
-                                    </select>
-                                </td>
-                                <td>
-                                    <label>Section</label>
-                                </td>
-                                <td>
-                                    <select name="Section" class="text-box box-lg">
-                                        <option>Select</option>
-
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Duty Station</label>
-                                </td>
-                                <td>
-                                    <select name="DutyStation" class="text-box box-lg">
-                                        <option>Select</option>
-
-                                    </select>
-                                </td>
-                                <td>
-                                    <label>Work Bench</label>
-                                </td>
-                                <td>
-                                    <select name="WorkBench" class="text-box box-lg">
-                                        <option>Select</option>
-
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>Section Leader</label></td>
-                                <td>
-                                    <input type="text" name="SectionLeader" class="text-box box-lg" />
-                                </td>
-                                <td><label>Shift No</label></td>
-                                <td>
-                                    <input type="number" name="ShiftNo" class="text-box box-lg" />
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><label>Date</label></td>
-                                <td>
-                                    <input type="date" name="Date" class="text-box box-lg " />
-                                </td>
-                                <td><label>Staff Id</label></td>
-                                <td>
-                                    <input type="number" name="StaffId" class="text-box box-lg" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>Time In</label></td>
-                                <td>
-                                    <input type="time" name="TimeIn" class="text-box box-lg " />
-                                </td>
-                                <td><label>Time Out</label></td>
-                                <td>
-                                    <input type="time" name="TimeOut" class="text-box box-lg " />
-                                </td>
-                            </tr>
-                        </table>
-                        <div class="form-group">
-                            <label class="info-title col-md-12" for="black_name"><strong>Comments</strong><span><font color="black"><b></b></font></span></label>
-                            <span id='message_full_name'></span>
-                            <textarea style="width:250px;height:70px;" name="Comments" class="text-box unicase-form-control text-input" id="extension_number"
-                                      placeholder="Enter plan">
-                                        
-                                    </textarea>
                         </div>
 
-                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
-                    </form>
-                    <br />
-                    <div id="ipd-list" class="scrollable-table-container">
-                        @Html.Partial("AttendanceGrid")
+                    </li>
+                    </ul>
+                    <div class="col-sm-12">
+
+                        <form id="country" method="post" action="@Url.Action("SaveAttendanceData","Home",new {Area="HumanResource"})">
+
+                            <table class="table-form">
+
+                                <tr>
+                                    <td class="">
+                                        <p>Department Name</p>
+                                    </td>
+                                    <td>
+                                        <select name="Department" class="text-box box-lg ">
+                                            <option>All</option>
+                                            @foreach (var r in departments)
+                                            {
+                                                <option>@r.DepartmentName</option>
+                                            }
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <label>Section</label>
+                                    </td>
+                                    <td>
+                                        <select name="Section" class="text-box box-lg">
+                                            <option>Select</option>
+
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Duty Station</label>
+                                    </td>
+                                    <td>
+                                        <select name="DutyStation" class="text-box box-lg">
+                                            <option>Select</option>
+
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <label>Work Bench</label>
+                                    </td>
+                                    <td>
+                                        <select name="WorkBench" class="text-box box-lg">
+                                            <option>Select</option>
+
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Section Leader</label></td>
+                                    <td>
+                                        <input type="text" name="SectionLeader" class="text-box box-lg" />
+                                    </td>
+                                    <td><label>Shift No</label></td>
+                                    <td>
+                                        <input type="number" name="ShiftNo" class="text-box box-lg" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><label>Date</label></td>
+                                    <td>
+                                        <input type="date" name="Date" class="text-box box-lg " />
+                                    </td>
+                                    <td><label>Staff Id</label></td>
+                                    <td>
+                                        <input type="number" name="StaffId" class="text-box box-lg" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Time In</label></td>
+                                    <td>
+                                        <input type="time" name="TimeIn" class="text-box box-lg " />
+                                    </td>
+                                    <td><label>Time Out</label></td>
+                                    <td>
+                                        <input type="time" name="TimeOut" class="text-box box-lg " />
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="form-group">
+                                <label class="info-title col-md-12" for="black_name"><strong>Comments</strong><span><font color="black"><b></b></font></span></label>
+                                <span id='message_full_name'></span>
+                                <textarea style="width:250px;height:70px;" name="Comments" class="text-box unicase-form-control text-input" id="extension_number"
+                                          placeholder="Enter plan">
+                                        
+                                    </textarea>
+                            </div>
+
+                            <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                        </form>
+                        <br />
+                        <div id="ipd-list" class="scrollable-table-container">
+                            @Html.Partial("AttendanceGrid")
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>

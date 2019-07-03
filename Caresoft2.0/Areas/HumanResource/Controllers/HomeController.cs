@@ -1,8 +1,6 @@
 ﻿using CaresoftHMISDataAccess;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Caresoft2._0.Areas.HumanResource.Controllers
@@ -1782,7 +1780,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             ViewBag.HRFileInformation = db.HRFileInformations.ToList();
             var data = db.HRFileInformations.ToList();
 
-            return View(data);
+            return PartialView(data);
         }
         [HttpPost]
         public ActionResult SaveApplicantResumeData(HRFileInformation data)
@@ -1805,7 +1803,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             ViewBag.HRBioData = db.HRBioDatas.ToList();
             var data = db.HRBioDatas.ToList();
 
-            return View(data);
+            return PartialView(data);
         }
         [HttpPost]
         public ActionResult SaveBioData(HRBioData data)
@@ -1818,7 +1816,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             db.HRBioDatas.Add(data);
             db.SaveChanges();
 
-            return RedirectToAction("BioData");
+            return RedirectToAction("ApplicantResume");
         }
         #endregion
         #region Qualifications
@@ -1828,7 +1826,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             ViewBag.HRQualification = db.HRQualifications.ToList();
             var data = db.HRQualifications.ToList();
 
-            return View(data);
+            return PartialView(data);
         }
         [HttpPost]
         public ActionResult SaveQualificationsData(HRQualification data)
@@ -1841,7 +1839,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             db.HRQualifications.Add(data);
             db.SaveChanges();
 
-            return RedirectToAction("Qualifications");
+            return RedirectToAction("ApplicantResume");
         }
         #endregion
         #region Work Experience
@@ -1851,7 +1849,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             ViewBag.HRWorkExperience = db.HRWorkExperiences.ToList();
             var data = db.HRWorkExperiences.ToList();
 
-            return View(data);
+            return PartialView(data);
         }
         [HttpPost]
         public ActionResult SaveWorkExperienceData(HRWorkExperience data)
@@ -1864,7 +1862,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             db.HRWorkExperiences.Add(data);
             db.SaveChanges();
 
-            return RedirectToAction("WorkExperience");
+            return RedirectToAction("ApplicantResume");
         }
         #endregion
         #region Extra Curricular
@@ -1876,7 +1874,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             ViewBag.HRReferee = db.HRReferees.ToList();
             var data = db.HRReferees.ToList();
 
-            return View(data);
+            return PartialView(data);
         }
         [HttpPost]
         public ActionResult SaveRefereeesData(HRReferee data)
@@ -1884,12 +1882,11 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
-
-
+            
             db.HRReferees.Add(data);
             db.SaveChanges();
 
-            return RedirectToAction("Refereees");
+            return RedirectToAction("ApplicantResume");
         }
         #endregion
         #region Application Form
@@ -2043,7 +2040,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             ViewBag.Departments = db.Departments.ToList();
             var departments = db.Departments.Where(e => e.DepartmentName != null).ToList();
 
-            return View(departments);
+            return PartialView(departments);
         }
         public ActionResult FileDetails()
         {
@@ -2051,7 +2048,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             ViewBag.HRFileDetail = db.HRFileDetails.ToList();
             var data = db.HRFileDetails.ToList();
 
-            return View(data);
+            return PartialView(data);
         }
         [HttpPost]
         public ActionResult SaveFileDetailsData(HRFileDetail data)
@@ -2064,7 +2061,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             db.HRFileDetails.Add(data);
             db.SaveChanges();
 
-            return RedirectToAction("FileDetails");
+            return RedirectToAction("StaffWorkExperience");
         }
         #endregion
         #region Staff Bio Data
@@ -2074,7 +2071,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             ViewBag.HRStaffBioData = db.HRStaffBioDatas.ToList();
             var data = db.HRStaffBioDatas.ToList();
 
-            return View(data);
+            return PartialView(data);
         }
         [HttpPost]
         public ActionResult SaveStaffBioData(HRStaffBioData data)
@@ -2104,7 +2101,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             ViewBag.HRStaffEducationQualification = db.HRStaffEducationQualifications.ToList();
             var data = db.HRStaffEducationQualifications.ToList();
 
-            return View(data);
+            return PartialView(data);
         }
         [HttpPost]
         public ActionResult SaveEducationalQuaificationsData(HRStaffEducationQualification data)
@@ -2127,7 +2124,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             ViewBag.HRStaffProfessionalQualification = db.HRStaffProfessionalQualifications.ToList();
             var data = db.HRStaffProfessionalQualifications.ToList();
 
-            return View(data);
+            return PartialView(data);
         }
         [HttpPost]
         public ActionResult SaveProfessionalQuaificationsData(HRStaffProfessionalQualification data)
@@ -2150,7 +2147,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             ViewBag.HRStaffReferee = db.HRStaffReferees.ToList();
             var data = db.HRStaffReferees.ToList();
 
-            return View(data);
+            return PartialView(data);
         }
         [HttpPost]
         public ActionResult SaveStaffRefereesData(HRStaffReferee data)
@@ -2364,7 +2361,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             ViewBag.Departments = db.Departments.ToList();
             var departments = db.Departments.Where(e => e.DepartmentName != null).ToList();
 
-            return View(departments);
+            return PartialView(departments);
         }
 
         public ActionResult Absentism()

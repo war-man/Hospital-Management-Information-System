@@ -18,13 +18,13 @@ namespace CaresoftHMISDataAccess
         public int UserId { get; set; }
         public int BranchId { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
-        public Nullable<int> ContractId { get; set; }
-        public Nullable<int> StaffId { get; set; }
+        public string ContractId { get; set; }
+        public string StaffId { get; set; }
         public string Department { get; set; }
         public string Section { get; set; }
         public string Designation { get; set; }
         public Nullable<System.DateTime> ExpectedExpiryDate { get; set; }
-        public Nullable<int> AccessControlPassId { get; set; }
+        public string AccessControlPassId { get; set; }
         public string AccessControlPassStatus { get; set; }
         public Nullable<double> ContractualAmount { get; set; }
         public Nullable<double> MonthlyPayment { get; set; }

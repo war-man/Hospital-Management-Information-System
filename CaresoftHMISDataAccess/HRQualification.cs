@@ -18,7 +18,7 @@ namespace CaresoftHMISDataAccess
         public int UserId { get; set; }
         public int BranchId { get; set; }
         public System.DateTime DateAdded { get; set; }
-        public int ApplicantId { get; set; }
+        public string ApplicantId { get; set; }
         public string EducationLevel { get; set; }
         public string QualificationsAttained { get; set; }
         public string GradeObtained { get; set; }

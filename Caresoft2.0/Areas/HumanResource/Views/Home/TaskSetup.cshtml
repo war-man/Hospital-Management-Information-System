@@ -8,43 +8,43 @@
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 
 }
-<div class="col-md-2">
+<div class="col-md-3">
     @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
 </div>
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
-        <div class="panel panel-primary  caresoft-panel glass">
+        <div class="panel panel-primary shadow caresoft-panel glass">
             <div class="panel-heading">
                 Tasks Setup
             </div>
             <div class="panel-body">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     <form id="task" method="post" action="@Url.Action("SaveTaskSetupData","Home",new {Area="HumanResource"})">
 
                         <label> <strong>PLEASE SETUP YOUR TASKS HERE</strong></label>
 
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>Task Id</label></td>
                                 <td>
-                                    <input type="number" name="TaskId" class="text-box box-sm " style="margin-bottom:3px" />
+                                    <input type="number" name="TaskId" class="text-box box-lg" style="margin-bottom:3px" />
                                 </td>
 
                             </tr>
 
                         </table>
                         <div class="form-group">
-                            <label class="info-title col-md-12" for="black_name">Task Description<span><font color="black"><b></b></font></span></label>
+                            <label class="info-title col-md-12" for="black_name"><strong>Task Description</strong><span><font color="black"><b></b></font></span></label>
                             <span id='message_full_name'></span>
                             <textarea style="width: 50%;height:70px;" name="TaskDescription" class="text-box unicase-form-control text-input" id="extension_number"
                                       placeholder="Enter plan">
                                         
                                     </textarea>
-                            <br /><br />
-                            <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                         </div>
+                            <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                        
                     </form>
-
+                    <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("TaskSetupGrid")
                     </div>

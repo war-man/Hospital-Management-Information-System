@@ -105,6 +105,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<HRBioData> HRBioDatas { get; set; }
         public virtual DbSet<HRCheckOffGuaranteering> HRCheckOffGuaranteerings { get; set; }
         public virtual DbSet<HRClaimManagement> HRClaimManagements { get; set; }
+        public virtual DbSet<HRConfirmation> HRConfirmations { get; set; }
         public virtual DbSet<HRContractManagement> HRContractManagements { get; set; }
         public virtual DbSet<HRContract> HRContracts { get; set; }
         public virtual DbSet<HRContractTermination> HRContractTerminations { get; set; }
@@ -337,7 +338,6 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<BloodBankCrossMatch> BloodBankCrossMatches { get; set; }
         public virtual DbSet<BloodBankMasterSetting> BloodBankMasterSettings { get; set; }
         public virtual DbSet<BloodBankPatientBloodGrouping> BloodBankPatientBloodGroupings { get; set; }
-        public virtual DbSet<HRConfirmation> HRConfirmations { get; set; }
         public virtual DbSet<HRJobDesignation> HRJobDesignations { get; set; }
         public virtual DbSet<PatientClaim> PatientClaims { get; set; }
         public virtual DbSet<SystemExamParticular> SystemExamParticulars { get; set; }

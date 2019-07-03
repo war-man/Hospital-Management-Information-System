@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CaresoftHMISDataAccess.HRApplicantQualification>
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRJobFunction>
 
 
 <table class="table table-data table-condensed">
@@ -7,12 +7,12 @@
         <th>Edit</th>
         <th>Delete</th>
         <th>
-            @Html.DisplayNameFor(model => model.LevelId)
+            @Html.DisplayNameFor(model => model.JobFunctionId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LevelDescription)
+            @Html.DisplayNameFor(model => model.FunctionDescription)
         </th>
-
+       
     <tbody class="bg-white">
         @foreach (var item in Model.OrderByDescending(e => e.Id))
         {
@@ -20,16 +20,17 @@
                 <td>Edit</td>
                 <td>Delete</td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LevelId)
+                    @Html.DisplayFor(modelItem => item.JobFunctionId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LevelDescription)
+                    @Html.DisplayFor(modelItem => item.FunctionDescription)
                 </td>
-
+               
             </tr>
         }
     </tbody>
 </table>
+
 
 
 
