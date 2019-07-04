@@ -18,14 +18,7 @@ namespace CaresoftHMISDataAccess
         public int BranchId { get; set; }
         public int UserId { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
-        public Nullable<int> SocietyId { get; set; }
+        public string SocietyId { get; set; }
         public string SocietyName { get; set; }
-        public Nullable<int> LoanCode { get; set; }
-        public string Type { get; set; }
-        public Nullable<int> ModeId { get; set; }
-        public string PaymentType { get; set; }
-        public string RepaymentType { get; set; }
-        public Nullable<int> GuarantorId { get; set; }
-        public string GuarantorName { get; set; }
     }
 }

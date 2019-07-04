@@ -1013,20 +1013,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult ExtraCurricularActivity()
         {
 
-            ViewBag.HRExtraMural = db.HRExtraMurals.ToList();
-            var data = db.HRExtraMurals.ToList();
+            ViewBag.HRCurricularActivity = db.HRCurricularActivities.ToList();
+            var data = db.HRCurricularActivities.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveExtraCurricularActivityData(HRExtraMural data)
+        public ActionResult SaveExtraCurricularActivityData(HRCurricularActivity data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRExtraMurals.Add(data);
+            db.HRCurricularActivities.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("ExtraCurricularActivity");
@@ -1036,20 +1036,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult RecreationalFacilities()
         {
 
-            ViewBag.HRExtraMural = db.HRExtraMurals.ToList();
-            var data = db.HRExtraMurals.ToList();
+            ViewBag.HRRecreational = db.HRRecreationals.ToList();
+            var data = db.HRRecreationals.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveRecreationalFacilitiesData(HRExtraMural data)
+        public ActionResult SaveRecreationalFacilitiesData(HRRecreational data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRExtraMurals.Add(data);
+            db.HRRecreationals.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("RecreationalFacilities");
@@ -1082,20 +1082,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult Sports()
         {
 
-            ViewBag.HRExtraMural = db.HRExtraMurals.ToList();
-            var data = db.HRExtraMurals.ToList();
+            ViewBag.HRSport = db.HRSports.ToList();
+            var data = db.HRSports.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveSportsData(HRExtraMural data)
+        public ActionResult SaveSportsData(HRSport data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRExtraMurals.Add(data);
+            db.HRSports.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("Sports");
@@ -1105,20 +1105,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult Languages()
         {
 
-            ViewBag.HRExtraMural = db.HRExtraMurals.ToList();
-            var data = db.HRExtraMurals.ToList();
+            ViewBag.HRLanguage = db.HRLanguages.ToList();
+            var data = db.HRLanguages.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveLanguagesData(HRExtraMural data)
+        public ActionResult SaveLanguagesData(HRLanguage data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRExtraMurals.Add(data);
+            db.HRLanguages.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("Languages");
@@ -1129,7 +1129,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         {
 
             ViewBag.HRPerformanceVariable = db.HRPerformanceVariables.ToList();
-            var data = db.HRExtraMurals.ToList();
+            var data = db.HRPerformanceVariables.ToList();
 
             return View(data);
         }
@@ -1151,20 +1151,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult QualityIndicators()
         {
 
-            ViewBag.HRPerformanceVariable = db.HRPerformanceVariables.ToList();
-            var data = db.HRExtraMurals.ToList();
+            ViewBag.HRQualityIndicator = db.HRQualityIndicators.ToList();
+            var data = db.HRQualityIndicators.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveQualityIndicatorsData(HRPerformanceVariable data)
+        public ActionResult SaveQualityIndicatorsData(HRQualityIndicator data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRPerformanceVariables.Add(data);
+            db.HRQualityIndicators.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("QualityIndicators");
@@ -1174,20 +1174,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult GradesAndMerits()
         {
 
-            ViewBag.HRPerformanceVariable = db.HRPerformanceVariables.ToList();
-            var data = db.HRExtraMurals.ToList();
+            ViewBag.HRGradesMerit = db.HRGradesMerits.ToList();
+            var data = db.HRGradesMerits.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveGradesAndMeritsData(HRPerformanceVariable data)
+        public ActionResult SaveGradesAndMeritsData(HRGradesMerit data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRPerformanceVariables.Add(data);
+            db.HRGradesMerits.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("GradesAndMerits");
@@ -1197,20 +1197,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult MemoGrading()
         {
 
-            ViewBag.HRPerformanceVariable = db.HRPerformanceVariables.ToList();
-            var data = db.HRExtraMurals.ToList();
+            ViewBag.HRGradingMemo = db.HRGradingMemos.ToList();
+            var data = db.HRGradingMemos.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveMemoGradingData(HRPerformanceVariable data)
+        public ActionResult SaveMemoGradingData(HRGradingMemo data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRPerformanceVariables.Add(data);
+            db.HRGradingMemos.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("MemoGrading");
@@ -1227,20 +1227,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult Incentives()
         {
             ViewBag.Departments = db.Departments.ToList();
-            ViewBag.HRPerformanceVariable = db.HRPerformanceVariables.ToList();
-            var data = db.HRExtraMurals.ToList();
+            ViewBag.HRIncentivesSetup = db.HRIncentivesSetups.ToList();
+            var data = db.HRIncentivesSetups.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveIncentivesData(HRPerformanceVariable data)
+        public ActionResult SaveIncentivesData(HRIncentivesSetup data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRPerformanceVariables.Add(data);
+            db.HRIncentivesSetups.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("Incentives");
@@ -1464,20 +1464,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult StaffLoanType()
         {
 
-            ViewBag.HRSaccoAndStaffLoan = db.HRSaccoAndStaffLoans.ToList();
+            ViewBag.HRStaffLoanType = db.HRStaffLoanTypes.ToList();
             var data = db.HRSaccoAndStaffLoans.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveStaffLoanTypeData(HRSaccoAndStaffLoan data)
+        public ActionResult SaveStaffLoanTypeData(HRStaffLoanType data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRSaccoAndStaffLoans.Add(data);
+            db.HRStaffLoanTypes.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("StaffLoanType");
@@ -1487,20 +1487,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult PaymentMode()
         {
 
-            ViewBag.HRSaccoAndStaffLoan = db.HRSaccoAndStaffLoans.ToList();
-            var data = db.HRSaccoAndStaffLoans.ToList();
+            ViewBag.HRPaymentMode = db.HRPaymentModes.ToList();
+            var data = db.HRPaymentModes.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SavePaymentModeData(HRSaccoAndStaffLoan data)
+        public ActionResult SavePaymentModeData(HRPaymentMode data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRSaccoAndStaffLoans.Add(data);
+            db.HRPaymentModes.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("PaymentMode");
@@ -1510,20 +1510,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult RepaymentMode()
         {
 
-            ViewBag.HRSaccoAndStaffLoan = db.HRSaccoAndStaffLoans.ToList();
-            var data = db.HRSaccoAndStaffLoans.ToList();
+            ViewBag.HRRepayment = db.HRRepayments.ToList();
+            var data = db.HRRepayments.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveRepaymentModeData(HRSaccoAndStaffLoan data)
+        public ActionResult SaveRepaymentModeData(HRRepayment data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRSaccoAndStaffLoans.Add(data);
+            db.HRRepayments.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("RepaymentMode");
@@ -1533,20 +1533,20 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult Guarantors()
         {
 
-            ViewBag.HRSaccoAndStaffLoan = db.HRSaccoAndStaffLoans.ToList();
-            var data = db.HRSaccoAndStaffLoans.ToList();
+            ViewBag.HRGuarantor = db.HRGuarantors.ToList();
+            var data = db.HRGuarantors.ToList();
 
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveGuarantorsData(HRSaccoAndStaffLoan data)
+        public ActionResult SaveGuarantorsData(HRGuarantor data)
         {
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
 
 
-            db.HRSaccoAndStaffLoans.Add(data);
+            db.HRGuarantors.Add(data);
             db.SaveChanges();
 
             return RedirectToAction("Guarantors");
@@ -1797,8 +1797,10 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         }
         #endregion
         #region Bio Data
-        public ActionResult BioData()
+        public ActionResult BioData(int? id)
         {
+            var data2 = db.HRBioDatas;
+            ViewBag.ApId = db.HRFileInformations.Find(id);
 
             ViewBag.HRBioData = db.HRBioDatas.ToList();
             var data = db.HRBioDatas.ToList();

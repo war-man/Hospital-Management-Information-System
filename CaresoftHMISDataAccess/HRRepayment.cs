@@ -12,19 +12,13 @@ namespace CaresoftHMISDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class HRPerformanceVariable
+    public partial class HRRepayment
     {
         public int Id { get; set; }
-        public int BranchId { get; set; }
         public int UserId { get; set; }
+        public int BranchId { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
-        public string KPIId { get; set; }
-        public string KPIName { get; set; }
-        public Nullable<bool> CompoundIndicator { get; set; }
-        public string Title1 { get; set; }
-        public string Title2 { get; set; }
-        public string Title3 { get; set; }
-        public string Title4 { get; set; }
-        public string Remarks { get; set; }
+        public string ModeId { get; set; }
+        public string RepaymentType { get; set; }
     }
 }

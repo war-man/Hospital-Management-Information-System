@@ -14,6 +14,12 @@ namespace CaresoftHMISDataAccess
     
     public partial class HRFileInformation
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public HRFileInformation()
+        {
+            this.HRBioDatas = new HashSet<HRBioData>();
+        }
+    
         public int Id { get; set; }
         public int UserId { get; set; }
         public int BranchId { get; set; }
@@ -25,5 +31,8 @@ namespace CaresoftHMISDataAccess
         public string OtherNames { get; set; }
         public string ApplicationSource { get; set; }
         public string PositionAppliedFor { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HRBioData> HRBioDatas { get; set; }
     }
 }

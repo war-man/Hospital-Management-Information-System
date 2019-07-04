@@ -1,10 +1,11 @@
-﻿@model IEnumerable<CaresoftHMISDataAccess.HRPerformanceVariable>
+﻿@model IEnumerable<CaresoftHMISDataAccess.HRGradingMemo>
 
 
 <table class="table table-data table-condensed">
 
     <tr>
-
+        <th>Edit</th>
+        <th>Delete</th>
         <th>
             @Html.DisplayNameFor(model => model.MemoSource)
         </th>
@@ -16,7 +17,8 @@
         @foreach (var item in Model.OrderByDescending(e => e.Id))
         {
             <tr>
-
+                <td>Edit</td>
+                <td>Delete</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MemoSource)
                 </td>

@@ -113,6 +113,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<HRContractTerminationCheckOut> HRContractTerminationCheckOuts { get; set; }
         public virtual DbSet<HRContractTerminationReason> HRContractTerminationReasons { get; set; }
         public virtual DbSet<HRCountry> HRCountries { get; set; }
+        public virtual DbSet<HRCurricularActivity> HRCurricularActivities { get; set; }
         public virtual DbSet<HRDashboard> HRDashboards { get; set; }
         public virtual DbSet<HRDemotion> HRDemotions { get; set; }
         public virtual DbSet<HRDepartment> HRDepartments { get; set; }
@@ -128,10 +129,15 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<HRFileDetail> HRFileDetails { get; set; }
         public virtual DbSet<HRFileInformation> HRFileInformations { get; set; }
         public virtual DbSet<HRGeoLocation> HRGeoLocations { get; set; }
+        public virtual DbSet<HRGradesMerit> HRGradesMerits { get; set; }
+        public virtual DbSet<HRGradingMemo> HRGradingMemos { get; set; }
         public virtual DbSet<HRGrievanceResolution> HRGrievanceResolutions { get; set; }
+        public virtual DbSet<HRGuarantor> HRGuarantors { get; set; }
         public virtual DbSet<HRHealthAndSafety> HRHealthAndSafeties { get; set; }
         public virtual DbSet<HRHealthAndSafetyPromotion> HRHealthAndSafetyPromotions { get; set; }
+        public virtual DbSet<HRHobby> HRHobbies { get; set; }
         public virtual DbSet<HRIncentive> HRIncentives { get; set; }
+        public virtual DbSet<HRIncentivesSetup> HRIncentivesSetups { get; set; }
         public virtual DbSet<HRIncidentType> HRIncidentTypes { get; set; }
         public virtual DbSet<HRInjury> HRInjuries { get; set; }
         public virtual DbSet<HRInsuranceCover> HRInsuranceCovers { get; set; }
@@ -143,6 +149,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<HRJobRequisition> HRJobRequisitions { get; set; }
         public virtual DbSet<HRJobSetUp> HRJobSetUps { get; set; }
         public virtual DbSet<HRJobStatu> HRJobStatus { get; set; }
+        public virtual DbSet<HRLanguage> HRLanguages { get; set; }
         public virtual DbSet<HRLeaveScheduling> HRLeaveSchedulings { get; set; }
         public virtual DbSet<HRLeaveType> HRLeaveTypes { get; set; }
         public virtual DbSet<HRManagement> HRManagements { get; set; }
@@ -151,23 +158,29 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<HRMemo> HRMemos { get; set; }
         public virtual DbSet<HRMinutesOfMeeting> HRMinutesOfMeetings { get; set; }
         public virtual DbSet<HROperatorCheckOff> HROperatorCheckOffs { get; set; }
+        public virtual DbSet<HRPaymentMode> HRPaymentModes { get; set; }
         public virtual DbSet<HRPerformanceVariable> HRPerformanceVariables { get; set; }
         public virtual DbSet<HRPolicy> HRPolicies { get; set; }
         public virtual DbSet<HRPosting> HRPostings { get; set; }
         public virtual DbSet<HRPromotion> HRPromotions { get; set; }
         public virtual DbSet<HRQualification> HRQualifications { get; set; }
+        public virtual DbSet<HRQualityIndicator> HRQualityIndicators { get; set; }
+        public virtual DbSet<HRRecreational> HRRecreationals { get; set; }
         public virtual DbSet<HRRecruitmentProcessing> HRRecruitmentProcessings { get; set; }
         public virtual DbSet<HRReferee> HRReferees { get; set; }
+        public virtual DbSet<HRRepayment> HRRepayments { get; set; }
         public virtual DbSet<HRResourceAccessControl> HRResourceAccessControls { get; set; }
         public virtual DbSet<HRResourseAccess> HRResourseAccesses { get; set; }
         public virtual DbSet<HRRole> HRRoles { get; set; }
         public virtual DbSet<HRSaccoAndStaffLoan> HRSaccoAndStaffLoans { get; set; }
         public virtual DbSet<HRSection> HRSections { get; set; }
         public virtual DbSet<HRShiftScheduling> HRShiftSchedulings { get; set; }
+        public virtual DbSet<HRSport> HRSports { get; set; }
         public virtual DbSet<HRStaffBioData> HRStaffBioDatas { get; set; }
         public virtual DbSet<HRStaffEducationQualification> HRStaffEducationQualifications { get; set; }
         public virtual DbSet<HRStaffLoan> HRStaffLoans { get; set; }
         public virtual DbSet<HRStaffLoanProcessingAndRepayment> HRStaffLoanProcessingAndRepayments { get; set; }
+        public virtual DbSet<HRStaffLoanType> HRStaffLoanTypes { get; set; }
         public virtual DbSet<HRStaffProfessionalQualification> HRStaffProfessionalQualifications { get; set; }
         public virtual DbSet<HRStaffReferee> HRStaffReferees { get; set; }
         public virtual DbSet<HRStaffWorkExperience> HRStaffWorkExperiences { get; set; }

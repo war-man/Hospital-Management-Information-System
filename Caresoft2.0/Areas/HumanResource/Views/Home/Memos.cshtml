@@ -6,6 +6,8 @@
     ViewBag.showTopMenu = true;
     ViewBag.WideView = true;
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+
+    CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
 }
 <div class="col-md-2">
     @Html.Partial("~/Areas/HumanResource/Views/Shared/_InternalCommunicationNav.cshtml")
@@ -31,7 +33,7 @@
                                 </td>
                                 <td><label>Code</label></td>
                                 <td>
-                                    <input type="number" name="Code" class="text-box box-lg" />
+                                    <input type="text" name="Code" class="text-box box-lg" readonly value="MEMO/@db.HRMemos.Count()" />
                                 </td>
                             </tr>
                             <tr>

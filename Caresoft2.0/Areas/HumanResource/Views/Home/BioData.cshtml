@@ -1,5 +1,8 @@
 ﻿
 @model IEnumerable<CaresoftHMISDataAccess.HRBioData>
+    @{ 
+        CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+    }
 
 <div class="col-md-12">
     <div class="">
@@ -15,7 +18,7 @@
                             <tr>
                                 <td><label>Applicant Id</label></td>
                                 <td>
-                                    <input type="number" name="ApplicantId" class="text-box box-lg " />
+                                    <input type="number" name="ApplicantId" class="text-box box-lg "  readonly value="@ViewBag.ApId"/>
                                 </td>
                                 <td>
                                     <label>Gender</label>

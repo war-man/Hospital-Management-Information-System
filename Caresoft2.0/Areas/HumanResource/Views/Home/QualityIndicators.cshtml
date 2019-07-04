@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<CaresoftHMISDataAccess.HRPerformanceVariable>
+@model IEnumerable<CaresoftHMISDataAccess.HRQualityIndicator>
 @{
 
     ViewBag.Title = "Quality Indicators";
@@ -7,10 +7,10 @@
     ViewBag.WideView = true;
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 }
-<div class="col-md-2">
+<div class="col-md-3">
     @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
 </div>
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading custom-navbar">

@@ -18,21 +18,8 @@ namespace CaresoftHMISDataAccess
         public int UserId { get; set; }
         public int BranchId { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
-        public Nullable<int> ClubId { get; set; }
+        public string ClubId { get; set; }
         public string ClubName { get; set; }
         public string Remarks { get; set; }
-        public Nullable<int> ActivityId { get; set; }
-        public string ActivityDescription { get; set; }
-        public string ActivityRemarks { get; set; }
-        public Nullable<int> FacilityId { get; set; }
-        public string FacilityName { get; set; }
-        public string FacilityDescription { get; set; }
-        public string FacilityRemarks { get; set; }
-        public Nullable<int> HobbyId { get; set; }
-        public string HobbyDescription { get; set; }
-        public Nullable<int> SportId { get; set; }
-        public string SportName { get; set; }
-        public Nullable<int> LanguageId { get; set; }
-        public string LanguageName { get; set; }
     }
 }

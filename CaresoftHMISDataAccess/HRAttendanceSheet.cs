@@ -23,9 +23,9 @@ namespace CaresoftHMISDataAccess
         public string DutyStation { get; set; }
         public string WorkBench { get; set; }
         public string SectionLeader { get; set; }
-        public Nullable<int> ShiftNo { get; set; }
+        public string ShiftNo { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<int> StaffId { get; set; }
+        public string StaffId { get; set; }
         public Nullable<System.TimeSpan> TimeIn { get; set; }
         public Nullable<System.TimeSpan> TimeOut { get; set; }
         public string Comments { get; set; }

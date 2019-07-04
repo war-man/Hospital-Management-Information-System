@@ -19,7 +19,7 @@ namespace CaresoftHMISDataAccess
         public int BranchId { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
         public Nullable<System.DateTime> DateOfMemo { get; set; }
-        public Nullable<decimal> Code { get; set; }
+        public string Code { get; set; }
         public string Subject { get; set; }
         public string GradingOfMemo { get; set; }
         public string MemoDetails { get; set; }

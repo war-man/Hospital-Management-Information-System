@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<CaresoftHMISDataAccess.HRPerformanceVariable>
+@model IEnumerable<CaresoftHMISDataAccess.HRGradesMerit>
 @{
 
     ViewBag.Title = "Grades + Merits";
@@ -7,10 +7,10 @@
     ViewBag.WideView = true;
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 }
-<div class="col-md-2">
+<div class="col-md-3">
     @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
 </div>
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading custom-navbar">
@@ -22,7 +22,7 @@
                     <form id="country" method="post" action="@Url.Action("SaveGradesAndMeritsData","Home",new {Area="HumanResource"})">
 
                         <label> <strong>PLEASE REGISTER GRADES AND MERITS </strong></label>
-                        <table class="form-class">
+                        <table class="table-form">
                             <tr>
                                 <td><label>Merit Id</label></td>
                                 <td>
@@ -43,7 +43,7 @@
                                     <input type="radio" name="MeritPercentage" class="text-box box-lg " />
                                 </td>
                             </tr>
-                            <
+                            
                         </table>
                         <div class="form-group">
                             <label class="info-title col-md-12" for="black_name">Remarks<span><font color="black"><b></b></font></span></label>
@@ -53,11 +53,11 @@
                                         
                                     </textarea>
 
-                            <br />
-                            <br />
+                           
                             <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                         </div>
                     </form>
+                    <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("GradesAndMeritsGrid")
                     </div>
