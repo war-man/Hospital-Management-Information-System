@@ -18,7 +18,7 @@
                             <tr>
                                 <td><label>Applicant Id</label></td>
                                 <td>
-                                    <input type="number" name="ApplicantId" class="text-box box-lg "  readonly value="@ViewBag.ApId"/>
+                                    <input type="text" name="ApplicantId" class="text-box box-lg " />
                                 </td>
                                 <td>
                                     <label>Gender</label>
@@ -28,7 +28,7 @@
                                         <option>Select</option>
                                         <option>Male</option>
                                         <option>Female</option>
-                                        
+
                                     </select>
                                 </td>
 
@@ -79,13 +79,13 @@
                                     <input type="number" name="PassportNo" class="text-box box-lg " style="margin-bottom:3px" />
                                 </td>
                                 <td>
-                                    
-                                        <label>Nationality</label>
+
+                                    <label>Nationality</label>
                                 </td>
                                 <td>
                                     <select name="Nationality" class="text-box box-lg">
                                         <option>Select</option>
-                                        
+
                                     </select>
                                 </td>
                             </tr>
@@ -125,9 +125,15 @@
                                     <input type="text" name="EmailAddress" class="text-box box-lg " style="margin-bottom:3px" />
                                 </td>
                             </tr>
+                            <tr>
+                                <td> <label> <b>Upload a copy of your National ID</b></label> </td>
+                                <td>
+                                    <input type="file" class="text-box box-lg" id="Filename" value="" name="Filename" />
+                                </td>
+                            </tr>
+                            
                         </table>
 
-                        <br />
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
                     <br />

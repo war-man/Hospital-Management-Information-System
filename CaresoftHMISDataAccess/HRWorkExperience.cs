@@ -25,5 +25,6 @@ namespace CaresoftHMISDataAccess
         public string Position { get; set; }
         public string Remarks { get; set; }
         public Nullable<double> Salary { get; set; }
+        public string Filename { get; set; }
     }
 }

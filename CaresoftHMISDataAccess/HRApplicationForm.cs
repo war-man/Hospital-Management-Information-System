@@ -20,5 +20,6 @@ namespace CaresoftHMISDataAccess
         public Nullable<System.DateTime> DateAdded { get; set; }
         public string ApplicantId { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+        public string Filename { get; set; }
     }
 }

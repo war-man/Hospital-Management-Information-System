@@ -34,7 +34,6 @@ namespace CaresoftHMISDataAccess
         public string City { get; set; }
         public string Town { get; set; }
         public int ApId { get; set; }
-    
-        public virtual HRFileInformation HRFileInformation { get; set; }
+        public string Filename { get; set; }
     }
 }

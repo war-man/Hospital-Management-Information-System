@@ -27,6 +27,10 @@
         <th>
             @Html.DisplayNameFor(model => model.Remarks)
         </th>
+         <th>
+            @Html.DisplayNameFor(model => model.Filename)
+        </th>
+
         
     <tbody class="bg-white">
         @foreach (var item in Model.OrderByDescending(e => e.Id))
@@ -55,7 +59,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Remarks)
                 </td>
-                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Filename)
+                </td>
             </tr>
         }
     </tbody>

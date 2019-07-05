@@ -7239,6 +7239,11 @@
     <Content Include="Views\Pediatric\Pedriatic.cshtml" />
     <Content Include="Views\IPD\Ped.cshtml" />
     <Content Include="Views\IPD\Pedriatic.cshtml" />
+    <Content Include="Views\Branches\Create.cshtml" />
+    <Content Include="Views\Branches\Delete.cshtml" />
+    <Content Include="Views\Branches\Details.cshtml" />
+    <Content Include="Views\Branches\Edit.cshtml" />
+    <Content Include="Views\Branches\Index.cshtml" />
     <None Include="Views\Reports\ReceiptReport\ReceiptsDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ReceiptsDataSet1.Designer.cs</LastGenOutput>
@@ -7363,6 +7368,7 @@
     <Folder Include="Areas\Procurement\Views\SupplierSummary\" />
     <Folder Include="Areas\Radiology\Views\Inventory\" />
     <Folder Include="Areas\Theatre\Models\" />
+    <Folder Include="Content\Testimonials\" />
     <Folder Include="Views\AddressBooks\" />
     <Folder Include="Views\JPay\" />
     <Folder Include="Views\MOH711\" />

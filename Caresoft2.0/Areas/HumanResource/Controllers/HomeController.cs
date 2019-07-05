@@ -1,6 +1,8 @@
 ﻿using CaresoftHMISDataAccess;
 using System;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Caresoft2._0.Areas.HumanResource.Controllers
@@ -1797,19 +1799,25 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         }
         #endregion
         #region Bio Data
-        public ActionResult BioData(int? id)
+        public ActionResult BioData()
         {
-            var data2 = db.HRBioDatas;
-            ViewBag.ApId = db.HRFileInformations.Find(id);
-
+            
             ViewBag.HRBioData = db.HRBioDatas.ToList();
             var data = db.HRBioDatas.ToList();
 
             return PartialView(data);
         }
         [HttpPost]
-        public ActionResult SaveBioData(HRBioData data)
+        public ActionResult SaveBioData(HRBioData data, HttpPostedFileBase Filename)
         {
+            if (Filename?.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(Filename.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName);
+                Filename.SaveAs(path);
+
+            }
+
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
@@ -1831,8 +1839,16 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             return PartialView(data);
         }
         [HttpPost]
-        public ActionResult SaveQualificationsData(HRQualification data)
+        public ActionResult SaveQualificationsData(HRQualification data , HttpPostedFileBase Filename)
         {
+            if (Filename?.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(Filename.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName);
+                Filename.SaveAs(path);
+
+            }
+            
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
@@ -1854,8 +1870,17 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             return PartialView(data);
         }
         [HttpPost]
-        public ActionResult SaveWorkExperienceData(HRWorkExperience data)
+        public ActionResult SaveWorkExperienceData(HRWorkExperience data, HttpPostedFileBase Filename)
         {
+
+            if (Filename?.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(Filename.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName);
+                Filename.SaveAs(path);
+
+            }
+           
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
@@ -1879,8 +1904,17 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             return PartialView(data);
         }
         [HttpPost]
-        public ActionResult SaveRefereeesData(HRReferee data)
+        public ActionResult SaveRefereeesData(HRReferee data, HttpPostedFileBase Filename)
         {
+
+            if (Filename?.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(Filename.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName);
+                Filename.SaveAs(path);
+
+            }
+            
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
@@ -1901,8 +1935,17 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             return View(data);
         }
         [HttpPost]
-        public ActionResult SaveApplicationFormData(HRApplicationForm data)
+        public ActionResult SaveApplicationFormData(HRApplicationForm data,HttpPostedFileBase Filename)
         {
+
+            if (Filename?.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(Filename.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName);
+                Filename.SaveAs(path);
+
+            }
+           
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;

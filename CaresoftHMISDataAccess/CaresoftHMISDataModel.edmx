@@ -1362,6 +1362,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.BloodBankPatientBloodGroupings' d
           <Property Name="DateAdded" Type="date" />
           <Property Name="ApplicantId" Type="varchar(max)" Nullable="false" />
           <Property Name="Date" Type="date" />
+          <Property Name="Filename" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="HRAppraisalOverrallGrading">
           <Key>
@@ -1502,6 +1503,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.BloodBankPatientBloodGroupings' d
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="Town" Type="varchar" MaxLength="50" />
           <Property Name="ApId" Type="int" Nullable="false" />
+          <Property Name="Filename" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="HRCheckOffGuaranteering">
           <Key>
@@ -2466,6 +2468,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.HRJobDesignations' does not have 
           <Property Name="TitleCourse" Type="varchar" MaxLength="50" />
           <Property Name="Grade" Type="varchar" MaxLength="50" />
           <Property Name="Remarks1" Type="varchar" MaxLength="50" />
+          <Property Name="Filename" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="HRQualityIndicators">
           <Key>
@@ -2532,6 +2535,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.HRJobDesignations' does not have 
           <Property Name="BeginDate" Type="date" />
           <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="Remarks1" Type="varchar" MaxLength="50" />
+          <Property Name="Filename" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="HRRepayment">
           <Key>
@@ -2995,6 +2999,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.HRJobDesignations' does not have 
           <Property Name="Position" Type="varchar" MaxLength="50" />
           <Property Name="Remarks" Type="varchar" MaxLength="50" />
           <Property Name="Salary" Type="float" />
+          <Property Name="Filename" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="HSBeds">
           <Key>
@@ -6527,18 +6532,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HRBioData_HRBioData">
-          <End Role="HRFileInformation" Type="Self.HRFileInformation" Multiplicity="1" />
-          <End Role="HRBioData" Type="Self.HRBioData" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HRFileInformation">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HRBioData">
-              <PropertyRef Name="ApId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_HSBeds_HSWards">
           <End Role="HSWards" Type="Self.HSWards" Multiplicity="1" />
           <End Role="HSBeds" Type="Self.HSBeds" Multiplicity="*" />
@@ -9283,10 +9276,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             <End Role="RoleRights" EntitySet="RoleRights" />
             <End Role="GroupRights" EntitySet="GroupRights" />
           </AssociationSet>
-          <AssociationSet Name="FK_HRBioData_HRBioData" Association="Self.FK_HRBioData_HRBioData">
-            <End Role="HRFileInformation" EntitySet="HRFileInformation" />
-            <End Role="HRBioData" EntitySet="HRBioData" />
-          </AssociationSet>
           <AssociationSet Name="FK_HSBeds_HSWards" Association="Self.FK_HSBeds_HSWards">
             <End Role="HSWards" EntitySet="HSWards" />
             <End Role="HSBeds" EntitySet="HSBeds" />
@@ -10594,10 +10583,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <AssociationSet Name="FK_GroupRights_RoleRights" Association="CaresoftHMISModel.FK_GroupRights_RoleRights">
             <End Role="RoleRight" EntitySet="RoleRights" />
             <End Role="GroupRight" EntitySet="GroupRights" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HRBioData_HRBioData" Association="CaresoftHMISModel.FK_HRBioData_HRBioData">
-            <End Role="HRFileInformation" EntitySet="HRFileInformations" />
-            <End Role="HRBioData" EntitySet="HRBioDatas" />
           </AssociationSet>
           <AssociationSet Name="FK_HSBeds_HSWards" Association="CaresoftHMISModel.FK_HSBeds_HSWards">
             <End Role="HSWard" EntitySet="HSWards" />
@@ -12568,6 +12553,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="DateAdded" Type="DateTime" Precision="0" />
           <Property Name="ApplicantId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HRAppraisalOverrallGrading">
           <Key>
@@ -12708,7 +12694,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Town" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ApId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="HRFileInformation" Relationship="CaresoftHMISModel.FK_HRBioData_HRBioData" FromRole="HRBioData" ToRole="HRFileInformation" />
+          <Property Name="Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HRCheckOffGuaranteering">
           <Key>
@@ -13097,7 +13083,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="OtherNames" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ApplicationSource" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="PositionAppliedFor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="HRBioDatas" Relationship="CaresoftHMISModel.FK_HRBioData_HRBioData" FromRole="HRFileInformation" ToRole="HRBioData" />
         </EntityType>
         <EntityType Name="HRGeoLocation">
           <Key>
@@ -13657,6 +13642,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="TitleCourse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Grade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Remarks1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HRQualityIndicator">
           <Key>
@@ -13723,6 +13709,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="BeginDate" Type="DateTime" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Remarks1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HRRepayment">
           <Key>
@@ -14186,6 +14173,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Salary" Type="Double" />
+          <Property Name="Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HSBed">
           <Key>
@@ -18312,18 +18300,6 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HRBioData_HRBioData">
-          <End Type="CaresoftHMISModel.HRFileInformation" Role="HRFileInformation" Multiplicity="1" />
-          <End Type="CaresoftHMISModel.HRBioData" Role="HRBioData" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HRFileInformation">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HRBioData">
-              <PropertyRef Name="ApId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_HSBeds_HSWards">
           <End Type="CaresoftHMISModel.HSWard" Role="HSWard" Multiplicity="1" />
           <End Type="CaresoftHMISModel.HSBed" Role="HSBed" Multiplicity="*" />
@@ -21485,6 +21461,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySetMapping Name="HRApplicationForms">
             <EntityTypeMapping TypeName="CaresoftHMISModel.HRApplicationForm">
               <MappingFragment StoreEntitySet="HRApplicationForm">
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
@@ -21617,6 +21594,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySetMapping Name="HRBioDatas">
             <EntityTypeMapping TypeName="CaresoftHMISModel.HRBioData">
               <MappingFragment StoreEntitySet="HRBioData">
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
                 <ScalarProperty Name="ApId" ColumnName="ApId" />
                 <ScalarProperty Name="Town" ColumnName="Town" />
                 <ScalarProperty Name="City" ColumnName="City" />
@@ -22629,6 +22607,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySetMapping Name="HRQualifications">
             <EntityTypeMapping TypeName="CaresoftHMISModel.HRQualification">
               <MappingFragment StoreEntitySet="HRQualification">
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
                 <ScalarProperty Name="Remarks1" ColumnName="Remarks1" />
                 <ScalarProperty Name="Grade" ColumnName="Grade" />
                 <ScalarProperty Name="TitleCourse" ColumnName="TitleCourse" />
@@ -22699,6 +22678,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySetMapping Name="HRReferees">
             <EntityTypeMapping TypeName="CaresoftHMISModel.HRReferee">
               <MappingFragment StoreEntitySet="HRReferee">
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
                 <ScalarProperty Name="Remarks1" ColumnName="Remarks1" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="BeginDate" ColumnName="BeginDate" />
@@ -23195,6 +23175,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySetMapping Name="HRWorkExperiences">
             <EntityTypeMapping TypeName="CaresoftHMISModel.HRWorkExperience">
               <MappingFragment StoreEntitySet="HRWorkExperience">
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="Position" ColumnName="Position" />

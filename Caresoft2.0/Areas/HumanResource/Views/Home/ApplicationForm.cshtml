@@ -19,7 +19,7 @@
             </div>
             <div class="panel-body">
                 <div class="col-sm-12">
-                    <form id="application" method="post" action="@Url.Action("SaveApplicationFormData","Home",new {Area="HumanResource"})">
+                    <form  method="post" action="@Url.Action("SaveApplicationFormData","Home",new {Area="HumanResource"})">
 
                         <table class="table-form">
                             <tr>
@@ -31,8 +31,12 @@
                             <tr>
                                 <td><label>Date</label></td>
                                 <td>
-                                    <input type="date" name="Date" class="text-box box-lg "
-                                           />
+                                    <input type="date" name="Date" class="text-box box-lg " />
+
+                                </td>
+                                <td> <label> <b>Upload Cover Letter</b></label> </td>
+                                <td>
+                                    <input type="file" class="text-box box-lg" id="Filename" value="" name="Filename" />
                                 </td>
                             </tr>
                             

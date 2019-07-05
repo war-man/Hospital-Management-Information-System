@@ -14,8 +14,11 @@
         <th>
             @Html.DisplayNameFor(model => model.Date)
         </th>
-        
-    <tbody class="bg-white">
+        <th>
+            @Html.DisplayNameFor(model => model.Filename)
+        </th>
+
+<tbody class="bg-white">
         @foreach (var item in Model.OrderByDescending(e => e.Id))
         {
             <tr>
@@ -29,7 +32,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
-                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Filename)
+                </td>
             </tr>
         }
     </tbody>
