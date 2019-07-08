@@ -33,7 +33,9 @@
         <th>
             @Html.DisplayNameFor(model => model.InterviewDecisison)
         </th>
-
+        <th>
+            @Html.DisplayNameFor(model => model.Filename)
+        </th>
 <tbody class="bg-white">
         @foreach (var item in Model.OrderByDescending(e => e.Id))
         {
@@ -67,7 +69,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.InterviewDecisison)
         </td>
-
+        <td>
+            @Html.DisplayFor(modelItem => item. Filename)
+        </td>
     </tr>
         }
     </tbody>

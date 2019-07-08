@@ -19,8 +19,9 @@ namespace CaresoftHMISDataAccess
         public int BranchId { get; set; }
         public string StaffId { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
-        public Nullable<int> QualificationId { get; set; }
+        public string QualificationId { get; set; }
         public string Department { get; set; }
         public string QualificationDescription { get; set; }
+        public string Filename { get; set; }
     }
 }

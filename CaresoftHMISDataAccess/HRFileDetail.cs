@@ -18,8 +18,8 @@ namespace CaresoftHMISDataAccess
         public int UserId { get; set; }
         public int BranchId { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
-        public Nullable<int> FileId { get; set; }
-        public Nullable<int> StaffId { get; set; }
+        public string FileId { get; set; }
+        public string StaffId { get; set; }
         public string FirstName { get; set; }
         public string Designation { get; set; }
         public string SecondName { get; set; }

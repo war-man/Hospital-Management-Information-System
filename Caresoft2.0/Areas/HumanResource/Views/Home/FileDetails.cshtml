@@ -3,6 +3,7 @@
 
 @{
     var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+    CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
 }
 
 <div class="col-md-12">
@@ -19,11 +20,11 @@
                             <tr>
                                 <td><label>File Id</label></td>
                                 <td>
-                                    <input type="number" name="FileId" class="text-box box-lg "/>
+                                    <input type="text" name="FileId" class="text-box box-lg " readonly vaue="FD/@db.HRFileDetails.Count()"/>
                                 </td>
                                 <td><label>Staff Id</label></td>
                                 <td>
-                                    <input type="number" name="StaffId" class="text-box box-lg "  />
+                                    <input type="text" name="StaffId" class="text-box box-lg "  />
                                 </td>
                             </tr>
 
@@ -130,6 +131,7 @@
                                     </select>
                                 </td>
                             </tr>
+                            
                         </table>
 
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />

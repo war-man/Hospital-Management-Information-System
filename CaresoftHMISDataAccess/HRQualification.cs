@@ -31,5 +31,6 @@ namespace CaresoftHMISDataAccess
         public string Grade { get; set; }
         public string Remarks1 { get; set; }
         public string Filename { get; set; }
+        public string Filename1 { get; set; }
     }
 }

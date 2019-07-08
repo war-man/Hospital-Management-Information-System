@@ -80,13 +80,13 @@
                 </ul>
                 <br />
                 <div class="col-sm-12">
-                    <form method="post" action="@Url.Action("SaveStaffWorkExperienceData","Home",new {Area="HumanResource"})">
-
+                    @using (Html.BeginForm("SaveStaffWorkExperienceData", "Home", new { Area = "HumanResource" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
                         <table class="table-form">
                             <tr>
                                 <td><label>Staff Id</label></td>
                                 <td>
-                                    <input type="text" name="StaffId" class="text-box box-lg " readonly value="ST/@db.HRStaffWorkExperiences.Count()"  />
+                                    <input type="text" name="StaffId" class="text-box box-lg " readonly value="ST/@db.HRStaffWorkExperiences.Count()" />
                                 </td>
 
                             </tr>
@@ -94,41 +94,48 @@
                             <tr>
                                 <td><label>Begin Date</label></td>
                                 <td>
-                                    <input type="date" name="BeginDate" class="text-box box-lg "/>
+                                    <input type="date" name="BeginDate" class="text-box box-lg " />
                                 </td>
                                 <td><label>End Date</label></td>
                                 <td>
-                                    <input type="date" name="EndDate" class="text-box box-lg "/>
+                                    <input type="date" name="EndDate" class="text-box box-lg " />
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>Employer</label></td>
                                 <td>
-                                    <input type="text" name="Employer" class="text-box box-lg "/>
+                                    <input type="text" name="Employer" class="text-box box-lg " />
                                 </td>
                                 <td><label>Position</label></td>
                                 <td>
-                                    <input type="text" name="Position" class="text-box box-lg "/>
+                                    <input type="text" name="Position" class="text-box box-lg " />
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>Salary</label></td>
                                 <td>
-                                    <input type="number" name="Salary" class="text-box box-lg "/>
+                                    <input type="number" name="Salary" class="text-box box-lg " />
                                 </td>
                                 <td><label>Remarks</label></td>
                                 <td>
-                                    <input type="text" name="Remarks" class="text-box box-lg "/>
+                                    <input type="text" name="Remarks" class="text-box box-lg " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> <label> <b>Upload Recommendations(IF ANY)</b></label> </td>
+                                <td>
+                                    <input type="file" class="text-box box-lg" id="Filename" value="" name="Filename" />
                                 </td>
                             </tr>
                         </table>
 
-                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
-                    </form>
+                    <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+
                     <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("StaffWorkExperienceGrid")
                     </div>
+                    }
                 </div>
             </div>
         </div>

@@ -18,12 +18,13 @@ namespace CaresoftHMISDataAccess
         public int UserId { get; set; }
         public int BranchId { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
-        public Nullable<int> StaffId { get; set; }
+        public string StaffId { get; set; }
         public string Course { get; set; }
         public Nullable<System.DateTime> DateOfQualification { get; set; }
         public string CourseTitle { get; set; }
         public string Institution { get; set; }
         public string Grade { get; set; }
         public string Remarks { get; set; }
+        public string Filename { get; set; }
     }
 }

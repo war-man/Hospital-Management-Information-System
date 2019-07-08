@@ -27,36 +27,43 @@
         <th>
             @Html.DisplayNameFor(model => model.Remarks)
         </th>
+        <th>
+           
+        </th>
 
-    <tbody class="bg-white">
+<tbody class="bg-white">
         @foreach (var item in Model.OrderByDescending(e => e.Id))
         {
-            <tr>
-                <td>Edit</td>
-                <td>Delete</td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StaffId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BeginDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Employer)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Position)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Salary)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Remarks)
-                </td>
-
-            </tr>
+            var path = item.Filename;
+            var test = path.Split(new string[] { "monials" }, StringSplitOptions.None).Last().Trim();
+    <tr>
+        <td>Edit</td>
+        <td>Delete</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeginDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            <a class=" btn btn-sm btn-primary" href="~/Content/Testimonials/@test" target="_blank">Link</a>
+        </td>
+    </tr>
         }
     </tbody>
 </table>

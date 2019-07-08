@@ -27,5 +27,6 @@ namespace CaresoftHMISDataAccess
         public string Remarks { get; set; }
         public string TotalWeightedScore { get; set; }
         public string InterviewDecisison { get; set; }
+        public string Filename { get; set; }
     }
 }

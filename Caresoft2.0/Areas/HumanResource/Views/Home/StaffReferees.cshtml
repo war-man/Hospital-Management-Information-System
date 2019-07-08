@@ -1,7 +1,7 @@
 ﻿
 @model IEnumerable<CaresoftHMISDataAccess.HRStaffReferee>
 
-<div class="col-md-8">
+<div class="col-md-12">
     <div class="">
         <div class="panel panel-primary shadow caresoft-panel glass">
             <div class="panel-heading">
@@ -14,7 +14,7 @@
                             <tr>
                                 <td><label>Staff Id</label></td>
 
-                                <td><input type="number" name="StaffId" class="text-box box-lg " /></td>
+                                <td><input type="text" name="StaffId" class="text-box box-lg " /></td>
                             </tr>
                         </table>
                          <label><strong>Referees Details</strong></label>
@@ -36,7 +36,7 @@
                                 <td>
                                     <input type="text" name="Title" class="text-box box-lg "  />
                                 </td>
-                                <td><label>PostalAddress</label></td>
+                                <td><label>Postal Address</label></td>
                                 <td>
                                     <input type="text" name="PostalAddress" class="text-box box-lg " />
                                 </td>
@@ -65,11 +65,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>BeginDate</label></td>
+                                <td><label>Begin Date</label></td>
                                 <td>
                                     <input type="date" name="BeginDate" class="text-box box-lg "/>
                                 </td>
-                                <td><label>EndDate</label></td>
+                                <td><label>End Date</label></td>
                                 <td>
                                     <input type="date" name="EndDate" class="text-box box-lg "/>
                                 </td>
@@ -79,8 +79,12 @@
                                 <td>
                                     <input type="text" name="Remarks1" class="text-box box-lg " />
                                 </td>
-
+                                <td> <label> <b>Upload Supporting Documents(IF ANY)</b></label> </td>
+                                <td>
+                                    <input type="file" class="text-box box-lg" id="Filename" value="" name="Filename" />
+                                </td>
                             </tr>
+                            
                         </table>
                         
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />

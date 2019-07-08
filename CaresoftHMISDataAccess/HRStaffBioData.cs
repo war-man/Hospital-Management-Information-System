@@ -18,7 +18,7 @@ namespace CaresoftHMISDataAccess
         public int UserId { get; set; }
         public int BranchId { get; set; }
         public System.DateTime DateAdded { get; set; }
-        public Nullable<int> StaffId { get; set; }
+        public string StaffId { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
         public string MaritalStatus { get; set; }
         public string CurrentResidence { get; set; }

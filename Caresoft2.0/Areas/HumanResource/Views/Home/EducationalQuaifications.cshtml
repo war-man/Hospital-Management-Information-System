@@ -2,6 +2,7 @@
 @model IEnumerable<CaresoftHMISDataAccess.HRStaffEducationQualification>
 @{
     var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
+    CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
 }
 <div class="col-md-12">
     <div class="">
@@ -17,12 +18,12 @@
                             <tr>
                                 <td><label>Staff Id</label></td>
                                 <td>
-                                    <input type="number" name="StaffId" class="text-box box-lg " />
+                                    <input type="text" name="StaffId" class="text-box box-lg " />
                                 </td>
 
                                 <td><label>Qualification Id</label></td>
                                 <td>
-                                    <input type="number" name="QualificationId" class="text-box box-lg "/>
+                                    <input type="text" name="QualificationId" class="text-box box-lg " readonly value="QD/@db.HRStaffEducationQualifications.Count()"/>
                                 </td>
                             </tr>
                             <tr>
@@ -43,6 +44,12 @@
                                 <td><label>Qualification Description</label></td>
                                 <td>
                                     <input type="text" name="QualificationDescription" class="text-box box-lg "/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> <label> <b>Upload Testimonials</b></label> </td>
+                                <td>
+                                    <input type="file" class="text-box box-lg" id="Filename" value="" name="Filename" />
                                 </td>
                             </tr>
                         </table>
