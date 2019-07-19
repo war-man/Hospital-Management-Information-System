@@ -6,6 +6,7 @@
     ViewBag.showTopMenu = true;
     ViewBag.WideView = true;
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
+    CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
 }
 <div class="col-md-2">
     @Html.Partial("~/Areas/HumanResource/Views/Shared/_ContractTerminationNav.cshtml")
@@ -27,11 +28,11 @@
                             <tr>
                                 <td><label>Claim No</label></td>
                                 <td>
-                                    <input type="number" name="ClaimNo" class="text-box box-lg" />
+                                    <input type="text" name="ClaimNo" class="text-box box-lg" readonly value="CLM/@db.HRClaimManagements.Count()" />
                                 </td>
                                 <td><label>Ref No</label></td>
                                 <td>
-                                    <input type="number" name="RefNo" class="text-box box-lg" />
+                                    <input type="text" name="RefNo" class="text-box box-lg" readonly value="REF/@db.HRClaimManagements.Count()" />
                                 </td>
                             </tr>
                             <tr>

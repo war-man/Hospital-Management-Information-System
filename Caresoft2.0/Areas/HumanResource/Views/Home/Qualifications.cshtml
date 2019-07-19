@@ -1,5 +1,9 @@
 ﻿
-@model IEnumerable<CaresoftHMISDataAccess.HRQualification>
+@model  IEnumerable< CaresoftHMISDataAccess.HRQualification>
+@{
+    CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+    //var data = db.HRQualifications.Where(e => e.ApplicantId == ).ToList();
+}
 
 <div class="col-md-12">
     <div class="">
@@ -9,106 +13,109 @@
             </div>
             <div class="panel-body">
                 <div class="col-sm-12">
-                    <form method="post" action="@Url.Action("SaveQualificationsData","Home",new {Area="HumanResource"})">
+                    <form id="discharge_summaryF" method="post" action="">
+                        @using (Html.BeginForm("SaveQualificationsData", "Home", new { Area = "HumanResource" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <table class="table-form">
+                                <tr>
+                                    <td><label>Applicant Id</label></td>
+                                    <td>
+                                        <input type="text" name="ApplicantId" class="text-box box-lg " />
+                                    </td>
+                                </tr>
+                            </table>
+                            <label><strong>Enter Details of Education Level</strong></label>
+                            <table class="table-form">
+                                <tr>
+                                    <td><label>Education Level</label></td>
+                                    <td>
+                                        <input type="text" name="EducationLevel" class="text-box box-lg " />
+                                    </td>
+                                    <td><label>Qualifications Attained</label></td>
+                                    <td>
+                                        <input type="text" name="QualificationsAttained" class="text-box box-lg " />
+                                    </td>
+                                </tr>
+                                <tr>
 
-                        <table class="table-form">
-                            <tr>
-                                <td><label>Applicant Id</label></td>
-                                <td>
-                                    <input type="text" name="ApplicantId" class="text-box box-lg " />
-                                </td>
-                            </tr>
-                        </table>
-                        <label><strong>Enter Details of Education Level</strong></label>
-                        <table class="table-form">
-                            <tr>
-                                <td><label>Education Level</label></td>
-                                <td>
-                                    <input type="text" name="EducationLevel" class="text-box box-lg " />
-                                </td>
-                                <td><label>Qualifications Attained</label></td>
-                                <td>
-                                    <input type="text" name="QualificationsAttained" class="text-box box-lg " />
-                                </td>
-                            </tr>
-                            <tr>
+                                    <td><label>Grade Obtained</label></td>
+                                    <td>
+                                        <input type="text" name="GradeObtained" class="text-box box-lg " />
+                                    </td>
+                                    <td><label>Institution Attended</label></td>
+                                    <td>
+                                        <input type="text" name="InstitutionAttended" class="text-box box-lg " />
+                                    </td>
+                                </tr>
+                                <tr>
 
-                                <td><label>Grade Obtained</label></td>
-                                <td>
-                                    <input type="text" name="GradeObtained" class="text-box box-lg " />
-                                </td>
-                                <td><label>Institution Attended</label></td>
-                                <td>
-                                    <input type="text" name="InstitutionAttended" class="text-box box-lg " />
-                                </td>
-                            </tr>
-                            <tr>
+                                    <td>
+                                        <label>Graduation Year</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="GraduationYear" class="text-box box-lg " />
+                                    </td>
+                                    <td><label>Remarks</label></td>
+                                    <td>
+                                        <input type="text" name="Remarks" class="text-box box-lg " />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> <label> <b>Upload Testimonials</b></label> </td>
+                                    <td>
+                                        <input type="file" class="text-box box-lg" id="Filename1" value="" name="Filename1" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <label><strong>Enter Details Of Professional Courses Done</strong></label>
+                            <table class="table-form">
+                                <tr>
+                                    <td><label>Date Of Qualification</label></td>
+                                    <td>
+                                        <input type="date" name="DateOfQualification" class="text-box box-lg " />
+                                    </td>
+                                    <td><label>Institution</label></td>
+                                    <td>
+                                        <input type="text" name="Institution" class="text-box box-lg " />
+                                    </td>
+                                </tr>
+                                <tr>
 
-                                <td>
-                                    <label>Graduation Year</label>
-                                </td>
-                                <td>
-                                    <input type="text" name="GraduationYear" class="text-box box-lg " />
-                                </td>
-                                <td><label>Remarks</label></td>
-                                <td>
-                                    <input type="text" name="Remarks" class="text-box box-lg " />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td> <label> <b>Upload Testimonials</b></label> </td>
-                                <td>
-                                    <input type="file" class="text-box box-lg" id="Filename1" value="" name="Filename1" />
-                                </td>
-                            </tr>
-                        </table>
-                        <label><strong>Enter Details Of Professional Courses Done</strong></label>
-                        <table class="table-form">
-                            <tr>
-                                <td><label>Date Of Qualification</label></td>
-                                <td>
-                                    <input type="date" name="DateOfQualification" class="text-box box-lg " />
-                                </td>
-                                <td><label>Institution</label></td>
-                                <td>
-                                    <input type="text" name="Institution" class="text-box box-lg " />
-                                </td>
-                            </tr>
-                            <tr>
+                                    <td><label>Course Title</label></td>
+                                    <td>
+                                        <input type="text" name="TitleCourse" class="text-box box-lg " />
+                                    </td>
+                                    <td><label>Grade</label></td>
+                                    <td>
+                                        <input type="text" name="Grade" class="text-box box-lg " />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Remarks</label></td>
+                                    <td>
+                                        <input type="text" name="Remarks1" class="text-box box-lg " />
+                                    </td>
+                                    <td> <label> <b>Upload Testimonials</b></label> </td>
+                                    <td>
+                                        <input type="file" class="text-box box-lg" id="Filename" value="" name="Filename" />
+                                    </td>
+                                </tr>
+                            </table>
 
-                                <td><label>Course Title</label></td>
-                                <td>
-                                    <input type="text" name="TitleCourse" class="text-box box-lg " />
-                                </td>
-                                <td><label>Grade</label></td>
-                                <td>
-                                    <input type="text" name="Grade" class="text-box box-lg " />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>Remarks</label></td>
-                                <td>
-                                    <input type="text" name="Remarks1" class="text-box box-lg " />
-                                </td>
-                                <td> <label> <b>Upload Testimonials</b></label> </td>
-                                <td>
-                                <input type="file" class="text-box box-lg" id="Filename" value="" name="Filename" />
-                                </td>
-                            </tr>
-                        </table>
-                        
-                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
-
+                            <input id="btnsave" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                            <br />
+                            <br />
+                            <div id="containerr" class="scrollable-table-container">
+                               @Html.Partial("QualificationGrid")
+                            </div>
+                        }
                     </form>
-                    <br />
-                    <div id="ipd-list" class="scrollable-table-container">
-                        @Html.Partial("QualificationGrid")
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+</div>
+
 
 
 

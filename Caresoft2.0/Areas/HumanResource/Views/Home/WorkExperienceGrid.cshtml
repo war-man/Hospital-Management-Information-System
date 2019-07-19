@@ -4,8 +4,7 @@
 <table class="table table-data table-condensed">
 
     <tr>
-        <th>Edit</th>
-        <th>Delete</th>
+       
         <th>
             @Html.DisplayNameFor(model => model.ApplicantId)
         </th>
@@ -35,34 +34,47 @@
     <tbody class="bg-white">
         @foreach (var item in Model.OrderByDescending(e => e.Id))
         {
-            <tr>
-                <td>Edit</td>
-                <td>Delete</td>
+            var path = item.Filename;
+           
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicantId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeginDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            @if (path is null)
+            {
                 <td>
-                    @Html.DisplayFor(modelItem => item.ApplicantId)
+                    <button class=" btn btn-sm btn-primary" disabled> Link</button>
                 </td>
+
+            }
+            else
+            {
+                var test = path.Split(new string[] { "monials" }, StringSplitOptions.None).Last().Trim();
                 <td>
-                    @Html.DisplayFor(modelItem => item.BeginDate)
+
+                    <a class=" btn btn-sm btn-primary" href="~/Content/Testimonials/@test" target="_blank">Link</a>
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Employer)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Position)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Salary)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Remarks)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Filename)
-                </td>
-            </tr>
+            }
+        </tr>
         }
     </tbody>
 </table>

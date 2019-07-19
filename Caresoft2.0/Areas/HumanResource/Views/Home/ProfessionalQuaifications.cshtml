@@ -9,8 +9,8 @@
             </div>
             <div class="panel-body">
                 <div class="col-sm-12">
-                    <form method="post" action="@Url.Action("SaveProfessionalQuaificationsData","Home",new {Area="HumanResource"})">
-                       
+                    @using (Html.BeginForm("SaveProfessionalQuaificationsData", "Home", new { Area = "HumanResource" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
                         <table class="table-form">
                             <tr>
                                 <td><label>Staff Id</label></td>
@@ -20,7 +20,7 @@
 
                                 <td><label>Course</label></td>
                                 <td>
-                                    <input type="text" name="Course" class="text-box box-lg "/>
+                                    <input type="text" name="Course" class="text-box box-lg " />
                                 </td>
                             </tr>
                             <tr>
@@ -28,11 +28,11 @@
 
                                 <td><label>DateOfQualification</label></td>
                                 <td>
-                                    <input type="date" name="DateOfQualification" class="text-box box-lg "/>
+                                    <input type="date" name="DateOfQualification" class="text-box box-lg " />
                                 </td>
                                 <td><label>Course Title</label></td>
                                 <td>
-                                    <input type="text" name="CourseTitle" class="text-box box-lg "/>
+                                    <input type="text" name="CourseTitle" class="text-box box-lg " />
                                 </td>
                             </tr>
                             <tr>
@@ -43,7 +43,7 @@
                                 </td>
                                 <td><label>Grade</label></td>
                                 <td>
-                                    <input type="text" name="Grade" class="text-box box-lg "  />
+                                    <input type="text" name="Grade" class="text-box box-lg " />
                                 </td>
                             </tr>
                             <tr>
@@ -53,22 +53,23 @@
                                 </td>
                             </tr>
                         </table>
-                                <div class="form-group">
-                                    <label class="info-title col-md-12" for="black_name"><strong>Remarks</strong><span><font color="black"><b></b></font></span></label>
-                                    <span id='message_full_name'></span>
-                                    <textarea style="width:250px;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
-                                              placeholder="Enter plan">
+                        <div class="form-group">
+                            <label class="info-title col-md-12" for="black_name"><strong>Remarks</strong><span><font color="black"><b></b></font></span></label>
+                            <span id='message_full_name'></span>
+                            <textarea style="width:250px;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
+                                      placeholder="Enter plan">
                                         
                                     </textarea>
-                                    </div>
-                           
+                        </div>
+
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
-                    </form>
-                    <br />
-                    <div id="ipd-list" class="scrollable-table-container">
-                        @Html.Partial("StaffProfessionalQualificationGrid")
+                       <br />
+                        <br />
+                        <div id="ipd-list" class="scrollable-table-container">
+                            @Html.Partial("StaffProfessionalQualificationGrid")
+                        </div>
+                    }
                     </div>
-                </div>
             </div>
         </div>
     </div>

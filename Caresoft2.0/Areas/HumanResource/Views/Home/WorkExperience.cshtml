@@ -9,25 +9,25 @@
             </div>
             <div class="panel-body">
                 <div class="col-sm-12">
-                    <form  method="post" action="@Url.Action("SaveWorkExperienceData","Home",new {Area="HumanResource"})">
-
+                    @using (Html.BeginForm("SaveWorkExperienceData", "Home", new { Area = "HumanResource" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
                         <table class="table-form">
                             <tr>
                                 <td><label>Applicant Id</label></td>
                                 <td>
-                                    <input type="text" name="ApplicantId" class="text-box box-lg "/>
+                                    <input type="text" name="ApplicantId" class="text-box box-lg " />
                                 </td>
-                                
+
                             </tr>
-                           
+
                             <tr>
                                 <td><label>Begin Date</label></td>
                                 <td>
-                                    <input type="date" name="BeginDate" class="text-box box-lg "  />
+                                    <input type="date" name="BeginDate" class="text-box box-lg " />
                                 </td>
                                 <td><label>End Date</label></td>
                                 <td>
-                                    <input type="date" name="EndDate" class="text-box box-lg "  />
+                                    <input type="date" name="EndDate" class="text-box box-lg " />
                                 </td>
                             </tr>
                             <tr>
@@ -37,17 +37,17 @@
                                 </td>
                                 <td><label>Position</label></td>
                                 <td>
-                                    <input type="text" name="Position" class="text-box box-lg "  />
+                                    <input type="text" name="Position" class="text-box box-lg " />
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>Salary</label></td>
                                 <td>
-                                    <input type="number" name="Salary" class="text-box box-lg "/>
+                                    <input type="number" name="Salary" class="text-box box-lg " />
                                 </td>
                                 <td><label>Remarks</label></td>
                                 <td>
-                                    <input type="text" name="Remarks" class="text-box box-lg "  />
+                                    <input type="text" name="Remarks" class="text-box box-lg " />
                                 </td>
                             </tr>
                             <tr>
@@ -58,14 +58,14 @@
                             </tr>
                         </table>
 
-                        <br />
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
-                    </form>
-                    <br />
-                    <div id="ipd-list" class="scrollable-table-container">
-                        @Html.Partial("WorkExperienceGrid")
+                      <br />
+                        <br />
+                        <div id="ipd-list" class="scrollable-table-container">
+                            @Html.Partial("WorkExperienceGrid")
+                        </div>
+                    }}
                     </div>
-                </div>
             </div>
         </div>
     </div>

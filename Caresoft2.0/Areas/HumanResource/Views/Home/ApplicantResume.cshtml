@@ -37,7 +37,7 @@
                     <li>&nbsp;</li>
                     <li>
                         <div class="class=" panel panel-primary caresoft-panel">
-                            <button type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("Qualifications","Home",new {Area="HumanResource"})">
+                            <button data-callback="EditdischargeFormModalListener" type="button" class="call-modal-form btn btn-sm btn-primary" data-action="@Url.Action("Qualifications","Home",new {Area="HumanResource"})">
                                 Qualifications
                             </button>
 
@@ -76,7 +76,7 @@
                             <tr>
                                 <td><label>Applicant Id</label></td>
                                 <td>
-                                    <input type="text" name="ApplicantId" class="text-box box-lg " readonly value="AN/@db.HRFileInformations.Count()" />
+                                    <input type="text" name="ApplicantId" class="text-box box-lg " />
                                 </td>
                                 @*<td><label>Requisition No</label></td>
 
@@ -138,7 +138,6 @@
                             
                         </table>
 
-                        <br />
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
                     <br />
@@ -150,6 +149,43 @@
         </div>
     </div>
 </div>
+<script>
+    function EditdischargeFormModalListener() {
+        universalModalCaller();
+        $("#discharge_summaryF").submit(function (e) {
+            e.preventDefault();
+            var data = $(this).serializeObject();
+            var Methd = $("#DischargeMethod").val();
+
+            $(".loader").show();
+            
+            $.ajax({
+                type: "POST",
+                url: "SaveQualificationsData",
+                data: data,
+                headers: {
+                    "authToken": ""
+                },
+                success: function (result) {
+                    $(".loader").hide();
+                    $("#containerr").empty();
+                    $("#containerr").html(result);
+                    universalModalCaller();
+                    
+                    showNotification("Data saved successfully!", "success", true);
+                    
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+
+        });
+
+    }
+</script>
 
 
 

@@ -95,6 +95,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<HRAddress> HRAddresses { get; set; }
         public virtual DbSet<HRAllocationOfRole> HRAllocationOfRoles { get; set; }
         public virtual DbSet<HRApplicantQualification> HRApplicantQualifications { get; set; }
+        public virtual DbSet<HRApplicant> HRApplicants { get; set; }
         public virtual DbSet<HRApplication> HRApplications { get; set; }
         public virtual DbSet<HRApplicationForm> HRApplicationForms { get; set; }
         public virtual DbSet<HRAppraisalOverrallGrading> HRAppraisalOverrallGradings { get; set; }
@@ -183,6 +184,7 @@ namespace CaresoftHMISDataAccess
         public virtual DbSet<HRStaffLoanType> HRStaffLoanTypes { get; set; }
         public virtual DbSet<HRStaffProfessionalQualification> HRStaffProfessionalQualifications { get; set; }
         public virtual DbSet<HRStaffReferee> HRStaffReferees { get; set; }
+        public virtual DbSet<HRStaffRegistration> HRStaffRegistrations { get; set; }
         public virtual DbSet<HRStaffWorkExperience> HRStaffWorkExperiences { get; set; }
         public virtual DbSet<HRStatutoryBody> HRStatutoryBodies { get; set; }
         public virtual DbSet<HRSystemProcedure> HRSystemProcedures { get; set; }

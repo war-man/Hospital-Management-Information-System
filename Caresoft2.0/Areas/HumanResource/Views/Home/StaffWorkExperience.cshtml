@@ -86,11 +86,10 @@
                             <tr>
                                 <td><label>Staff Id</label></td>
                                 <td>
-                                    <input type="text" name="StaffId" class="text-box box-lg " readonly value="ST/@db.HRStaffWorkExperiences.Count()" />
+                                    <input type="text" name="StaffId" class="text-box box-lg " readonly value="ST/@db.HRStaffWorkExperiences.Count()"/>
                                 </td>
-
                             </tr>
-
+                           
                             <tr>
                                 <td><label>Begin Date</label></td>
                                 <td>
@@ -131,6 +130,7 @@
 
                     <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
 
+                    <br />
                     <br />
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("StaffWorkExperienceGrid")

@@ -1,0 +1,604 @@
+﻿@model Caresoft2._0.CustomData.HRRegistrationData
+@{ViewBag.ShowTopMenu = true;
+    CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+    }
+
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <fieldset>
+                        <legend>Registration Type</legend>
+
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="radio" name="regType" id="new_file" checked value="new_file">
+                                    <label for="new_file">New Applicant</label>
+                                </td>
+                                <td>
+                                    <input type="radio" name="regType" id="old_file" value="old_file">
+                                    <label for="old_file">Old Applicant</label>
+                                    <input class="radio-bound" type="text" data-boubd-radio="old_file" disabled name="existingApplicantId" id="existingApplicantId" placeholder="Applicant Id">
+                                </td>
+                                <td class="collapse">
+                                    <input type="radio" name="regType" id="applicant_edit" value="applicant_edit">
+                                    <label for="applicant_edit">Edit Applicant Record</label>
+                                    <input class="radio-bound" data-boubd-radio="applicant_edit" type="text" disabled name="search_applicant" id="searchapplicant" placeholder="Search Applicant"> <span id="applicantListLoader" class="collapse"><small><em><i>Searching...</i></em></small></span>
+                                    <div class="suggestions" id="suggested-patients" style="width:auto;"></div>
+                                    <input type="hidden" id="applicant_edit_id" value="0" />
+                                </td>
+                            </tr>
+                        </table>
+
+
+                    </fieldset>
+                    <h4 id="current-applicant"></h4>
+
+                    <div class="tab-content" id="reg-form-holder">
+                        <div id="personal-details" class="tab-pane fade in active">
+                            <form name="" action="" method="post" id="applicant_reg_form">
+                                <fieldset class="">
+                                    <legend>Personal Details</legend>
+                                    <table class="table-form">
+                                        <tr>
+                                            <td>
+                                                <label for="ApplicantId">Applicant Id</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" readonly disabled class="text-box box-lg" id="ApplicantId" name="ApplicantId" />
+                                            </td>
+
+                                            <td>
+                                                <label for="FirstName">First Name</label>
+                                            </td>
+                                            <td>
+                                                <select required class="text-box" name="Salutation" id="patient-salutation">
+
+                                                    @foreach (var saluts in Model.Salutations)
+                                                    {
+                                                        <option>@saluts.SalutationName</option>
+                                                    }
+                                                </select>
+                                                <input type="text" class="text-box" name="FirstName" id="FirstName" required />
+
+                                            </td>
+                                        <tr>
+                                            <td>
+                                                <label for="OtherNames">Other Names:</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="text-box box-lg" name="OtherNames" id="OtherNames" />
+
+                                            </td>
+
+                                            <td><label for="Surname">Surname:</label></td>
+                                            <td>
+                                                <input type="text" class="text-box box-lg" name="Surname" id="Surname" required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="Gender">Gender:</label>
+                                            </td>
+                                            <td>
+                                                <select class="text-box box-lg" id="Gender" name="Gender" required>
+                                                    <option value="M">Male</option>
+                                                    <option value="F">Female</option>
+                                                    <option value="B">Other</option>
+                                                </select>
+                                            </td>
+
+                                            <td>
+                                                <label for="DOB">Date of Birth:</label>
+                                            </td>
+                                            <td>
+                                                <input type="date" class="text-box box-lg" name="DOB" id="DOB" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+
+                                            </td>
+
+                                        <tr>
+                                            <td>
+                                                <label for="Mobile">Mobile Number</label>
+                                            </td>
+                                            <td>
+                                                <input type="number" class="text-box box-lg" id="Mobile" name="Mobile" required />
+                                            </td>
+                                            <td>
+                                                <label for="Email">Email</label>
+                                            </td>
+                                            <td>
+                                                <input type="email" class="text-box box-lg" id="Email" name="Email" />
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <td>
+                                                <label for="NationalId">ID Number</label>
+                                            </td>
+                                            <td>
+                                                <input type="number" class="text-box box-lg" id="NationalId" name="NationalId" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="HomeAddress">Landmark/Address/Location</label>
+                                            </td>
+                                            <td>
+                                                <textarea name="HomeAddress" id="HomeAddress" class="text-box box-lg" required></textarea>
+                                            </td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="RegDate">Registration Date</label>
+                                            </td>
+                                            <td>
+                                                <input type="date" id="RegDate" name="RegDate" required class="text-box box-lg" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                            </td>
+                                            <td>
+                                                <label for="RegTime">Registration Time</label>
+                                            </td>
+                                            <td>
+                                                <input name="RegTime" id="RegTime" required type="time" class="text-box box-lg" value="@DateTime.Now.ToString("HH:mm")" />
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <div class="row">
+                                        <div class="col-xs-12" style="margin-top:16px">
+                                            <button type="submit" title="Save" class="btn btn-primary" id="save-btn">
+                                                <i class="fa fa-save fa-2x"></i>
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                  </fieldset>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="reg-complete-dialog" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="exampleModalLabel">File Saved Successfully</h3>
+            </div>
+            <div class="modal-body">
+                <h4>
+                    File <b><span id="applicant-name-modal"></span></b>
+                    with applicant id <b><span id="app-ap-id-modal"></span></b> has been saved successfully.
+                </h4>
+                <p>Username:<b><span id="app-username"></span></b>  Password:<b><span id="app-password"></span></b></p>
+                <p>Proceed to:</p>
+                <div class="list-group">
+                    <a href="#" id="goToApplicantResume"
+                       data-action="" data-callback="opdRegistrationCallBack" class="list-group-item" data-dismiss="modal">Applicants List</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="modal fade" id="extra-form-modal" tabindex="-1" role="dialog" aria-labelledby="extra-form-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content theme-form">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="extra-form-modal-label"></h4>
+            </div>
+            <div class="modal-body" id="loaded-form">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('#goToApplicantResume').click(function (e) {
+
+            e.preventDefault();
+            $(".loader").show();
+            
+            var action = $(this).attr("href");
+            var callback = $(this).data("callback");
+            var fallback = $(this).data("fallback");
+
+            $.ajax({
+                type: "GET",
+                url: action,
+                datatype: "html",
+                success: function (result) {
+                    if (typeof (result) === "object") {
+                        $(".loader").hide();
+                        showNotification(result.message, result.status, true);
+                        if (result.status.toLowerCase() !== "success") {
+                            if (typeof (fallback) !== "undefined") {
+                                window[fallback]();
+                            }
+                        }
+
+                        return false;
+                    }
+
+                    $(".loader").hide();
+                    $("#modal-content").html(result);
+                    preventModalBackdrop("modal-forms-holder");
+                    addClosingButton("modal-forms-holder");
+                    $('#modal-forms-holder').modal('show');
+                    if (typeof (callback) !== 'undefined') {
+                        window[callback]();
+                    }
+
+                },
+                error: function (xhr, status) {
+                    $(".loader").hide();
+                }
+            });
+        });
+
+        //save current view/active tab
+        $('a[data-toggle="tab"]').each(function () {
+            var a = $(this);
+            var parent = a.parent();
+            $(this).click(function () {
+                sessionStorage.applicantRegActiveTab = a.attr("href");
+            });
+        });
+
+        $("#prev-btn").click(function () {
+            $("#nxt-btn").removeClass("disabled");
+            var prev = "";
+            $("li").each(function () {
+                var li = $(this);
+
+                if (li.hasClass("active")) {
+
+                    prev = li.prev().find('a');
+
+                    if (prev.text() === $('.nav-tabs li:eq(0) a').text()) {
+                        //no previous tabs/ we are at our first tab
+                        $("#prev-btn").addClass("disabled");
+                    }
+                }
+            });
+            prev.trigger("click");
+        });
+
+        $("#nxt-btn").click(function () {
+            $("#prev-btn").removeClass("disabled");
+            var btn = $(this);
+            var nxt = "";
+            var DATA = {};
+            var URL = "";
+            var METHOD = "";
+            $("li").each(function () {
+                var li = $(this);
+                if (li.hasClass("active")) {
+
+                    nxt = li.next().find('a');
+                    var hasNext = li.next().next();
+
+                    if (hasNext.length < 1) {
+                        //the end of tabs
+                        /*Change next button to save button*/
+                        btn.addClass("disabled");
+                    } else {
+                        btn.removeClass("disabled");
+                    }
+
+
+
+                    if (sessionStorage.currentId === ""
+                        || typeof (sessionStorage.currentId) === "undefined") {
+                        DATA = $("#applicant-personal-details-form").serialize();
+                        URL = "../api/Applicant";
+                        METHOD = "POST";
+                        initialSave(DATA, URL, METHOD);
+                    } else {
+                        //update entries
+                        if (li.text() === "Personal Details") {
+                            //update personal details
+                            DATA = $("#applicant-finish-reg-form,#applicant-contact-info-form,#applicant-personal-details-form").serialize();
+                            URL = "../api/Applicant/" + sessionStorage.currentId;
+                            METHOD = "PUT";
+                            subsequentSave(DATA, URL, METHOD);
+
+                        } else {
+                            
+                        }
+                    }
+
+                }
+            });
+
+            nxt.trigger("click");
+
+        });
+
+        $("#applicant_reg_form").submit(function (e) {
+            e.preventDefault();
+
+
+            if (!isValidForm($(this))) {
+                return false;
+            }
+
+            if (data.Mobile.length < 10 || data.Mobile.length > 13 ) {
+                showNotification("Please enter a valid Mobile number!", "warning", true);
+                return false;
+            }
+            var url ="@Url.Action("SaveApplicant", "Home", new { Area = "HumanResource" })",
+            var method = "POST";
+
+            var file_mode = $("input[name=regType]:checked").val();
+
+            if (file_mode === "new_file") {
+               
+            } else if (file_mode === "old_file") {
+                var applicantid = $("#existingApplicantId").val().trim();
+                if (applicantid === "") {
+                    showNotification("Provide Applicant Id or Select \"Create New File\" option", "info", true);
+                    return false;
+                }
+
+                data.ApplicantId = applicantid;
+
+
+
+            } else if (file_mode === "applicant_edit") {
+                var applicant_id = $("#applicant_edit_id").val();
+                if (applicant_id !== "0") {
+                    data = data + '&Id=' + applicant_id;
+                } else {
+                    alert("Search and select the applicant to edit");
+                    return false;
+                }
+            }
+
+          saveFile(data, url, method);
+        });
+
+        function saveFile(data, url, method) {
+            $(".loader").show();
+            console.log(url);
+            $.ajax({
+                type: method,
+                url: url,
+                datatype: "json",
+                data: data,
+                headers: {
+                    "authToken": ""
+                },
+                success: function (obj) {
+                    $(".loader").hide();
+                    console.log(obj);
+                    if (obj.Status === "Success") {
+                        $("form").each(function () {
+                            $(this)[0].reset();
+                        });
+                        $("#existingApplicantId").val("");
+                        $("#applicant-name-modal").text(obj.ApplicantName);
+                        $("#app-ap-id-modal").add($("#app-username")).text(obj.ApplicantId);
+                        $("#applicant_edit_id").val(obj.Id);
+                        $("#app-password").text(obj.Password);
+                        $("#reg-complete-dialog").modal('show');
+
+                        var actionAppid = '@Url.Action("ApplicantResume", "Home")/' + obj.Id;
+                       
+                        $("#goToApplicantResume").attr("href", actionAppid);
+                       
+
+                    } else {
+                        alert(obj.Message);
+                    }
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+        }
+
+
+        function initialSave(DATA, URL, METHOD, callBack) {
+            if (typeof (callBack) === "undefined") {
+                callBack = sillence; //if no method is passed as the 4th argument, call silence callback on ajax success
+            }
+            $(".loader").show();
+            $.ajax({
+                type: METHOD,
+                url: URL,
+                datatype: "json",
+                data: DATA,
+                headers: {
+                    "authToken": ""
+                },
+                success: function (result) {
+                    $(".loader").hide();
+                    console.log(result);
+                    
+                    sessionStorage.currentId = result.Id;
+                    $("#current-applicant").text(result.ApplicantId + " " + result.Salutation + " " + result.FirstName +
+                        " " + result.OtherNames + " " + result.Surname);
+                    $("#applicant-name-modal").text(result.Salutation + " " + result.FirstName +
+                        " " + result.OtherNames + " " + result.Surname);
+                    $("#app-ap-id-modal").text(result.ApplicantId);
+                    callBack();
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+        }
+        function subsequentSave(DATA, URL, METHOD, callBack) {
+            if (typeof (callBack) === "undefined") {
+                callBack = sillence; //if no method is passed as the 4th argument, call silence callback on ajax success
+            }
+            $(".loader").show();
+
+            $.ajax({
+                type: METHOD,
+                url: URL,
+                datatype: "json",
+                data: DATA,
+                headers: {
+                    "authToken": ""
+                },
+                success: function (result) {
+                    $(".loader").hide();
+                    console.log(result);
+
+                    $("#current-applicant").text(sessionStorage.currentPatientRegNUmber + " " + result.Salutation + " " + result.FirstName +
+                        " " + result.OtherNames + " " + result.Surname);
+                    $("#applicant-name-modal").text(result.Salutation + " " + result.FirstName +
+                        " " + result.OtherNames + " " + result.Surname);
+                    $("#app-ap-id-modal").text(sessionStorage.currentApplicantId);
+                    callBack();
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+        }
+        function initializeRegForm() {
+
+            $('form').each(function () { this.reset() });
+            $("#current-applicant").text("");
+            sessionStorage.removeItem("currentId");
+            sessionStorage.removeItem("currentApplicantId");
+            
+            $('.nav-tabs li:eq(0) a').trigger('click');
+            $("button#nxt-btn").text("Next");
+        }
+        function sillence() {
+            //leave as it is,
+            // called on empty callbacks
+        }
+
+        $("#searchApplicant").keyup(function () {
+            var SearchWord = $(this).val();
+            if (SearchWord.length < 1) {
+                $("#suggested-applicants").fadeOut();
+            } else {
+                $("#applicantListLoader").show();
+                $.ajax({
+                type: "POST",
+                url:"@Url.Action("ApplicantsList", "Home", new { Area = "HumanResource" })",
+                data: { "SearchWord": SearchWord},
+                success: function (result) {
+                    $("#applicantListLoader").hide();
+                    console.log(result);
+                    $("#suggested-applicants").html(result);
+                    $("#suggested-applicants").fadeIn();
+
+                    $("table#applicantsList tr").each(function () {
+                        $(this).click(function () {
+                            var selected = $(this).attr("data-applicant-id");
+                            if (typeof (selected) !== "undefined") {
+                                getApplicantData(selected);
+                            }
+                        });
+                    });
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $("#applicantListLoader").hide();
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+
+
+            }
+        });
+
+        function getApplicantData(selected) {
+            $(".loader").show();
+            $.ajax({
+                url: "Home/GetApplicantDataForRepopulation/" + selected,
+                headers: {
+                    "authToken": ""
+                },
+                success: function (result) {
+                    $(".loader").hide();
+                    console.log(result);
+                    populateMyView(result, "#reg-form-holder")
+                    $("#suggested-applicants").fadeOut();
+                    $("#searchApplicant").val("");
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+        }
+
+
+        function populateMyView(data, formId) {
+            $("#applicant_edit_id").val(data.Id);
+            $.each(data, function (key, value) {
+                if (key === 'DOB') {
+                    var fDate = new Date(parseInt(value.substr(6)));
+                    $(formId).find("input[name=" + key + "]").val(fDate.getFullYear() + "-" + ('0' + (parseInt(fDate.getMonth()) + 1)).slice(-2) + "-" + ('0' + fDate.getDate()).slice(-2));
+
+                    var age = calculateAge($("#DOB").val());
+                    $("#age").val(age.number);
+                    $("#ageUnit [value=" + age.unit + "]").prop("selected", true);
+                } else {
+                    $(formId).find("input[name=" + key + "]").val(value);
+                }
+
+            });
+        };
+
+        $("#applicant-salutation").change(function () {
+            var selected = $(this).val();
+            if (selected === "Mr") {
+                $("#Gender").val("M");
+            } else if (selected === "Mrs" || selected === "Miss") {
+                $("#Gender").val("F");
+            } else if (selected === "Baby") {
+                $("#maritalStatus").val("Baby")
+            }
+        });
+
+        $("#Gender").change(function () {
+            var g = $(this).val();
+
+            if (g === "M") {
+                $("#applicant-salutation").val("Mr");
+            } else if (g === "F") {
+                $("#applicant-salutation").val("Miss");
+            }
+        });
+    </script>
+
+}

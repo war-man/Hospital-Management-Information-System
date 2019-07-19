@@ -43,11 +43,7 @@ namespace Caresoft2._0.CrystalReports.AdmittedPatients
 
         {
             CaresoftHMISEntities db = new CaresoftHMISEntities();
-            //var toDate = DateTime.Now;
-            //var fromDate = new DateTime();
-
-
-
+            
             ReportDocument rd = new ReportDocument();
             rd.Load(Path.Combine(Server.MapPath("~/CrystalReports/AdmittedPatients/Admitted.rpt")));
 

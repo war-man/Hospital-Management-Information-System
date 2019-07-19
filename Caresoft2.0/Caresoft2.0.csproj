@@ -699,7 +699,30 @@
     <Compile Include="Areas\GeneralStore\Models\CategoryGstore.cs" />
     <Compile Include="Areas\GeneralStore\Models\ItemMasterGstore.cs" />
     <Compile Include="Areas\HumanResource\Controllers\HomeController.cs" />
+    <Compile Include="Areas\HumanResource\Controllers\HRReportsController.cs" />
     <Compile Include="Areas\HumanResource\HumanResourceAreaRegistration.cs" />
+    <Compile Include="Areas\HumanResource\Reports\ApplicantsList\ApplicantDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicantDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\ApplicantsList\ApplicantReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicantReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\StaffList\StaffDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaffDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\StaffList\StaffReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaffReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Areas\MedicalStore\Controllers\BranchTransactionMStoreController.cs" />
     <Compile Include="Areas\MedicalStore\Controllers\DepartmentTransactionMStoreController.cs" />
     <Compile Include="Areas\MedicalStore\Controllers\MedicalStoreMasterController.cs" />
@@ -872,6 +895,7 @@
     <Compile Include="Areas\Theatre\TheatreAreaRegistration.cs" />
     <Compile Include="Auth.cs" />
     <Compile Include="Controllers\AmbulatoryController.cs" />
+    <Compile Include="Controllers\API\ApplicantController.cs" />
     <Compile Include="Controllers\API\BillsController.cs" />
     <Compile Include="Controllers\API\ChargeablesController.cs" />
     <Compile Include="Controllers\API\ComplaintsController.cs" />
@@ -1162,6 +1186,7 @@
     <Compile Include="CustomData\FinalizeOPDRegData.cs" />
     <Compile Include="CustomData\FloorMasterData.cs" />
     <Compile Include="CustomData\GetActionsInControllerData.cs" />
+    <Compile Include="CustomData\HRRegistrationData.cs" />
     <Compile Include="CustomData\InsuranceAwardData.cs" />
     <Compile Include="CustomData\InsuranceCompanyData.cs" />
     <Compile Include="CustomData\InsuranceDetailsData.cs" />
@@ -5936,6 +5961,35 @@
     <Content Include="Areas\HumanResource\Views\Shared\_TrainingAndDevelopmentNav.cshtml" />
     <Content Include="Areas\HumanResource\Views\Shared\_ContractTerminationNav.cshtml" />
     <Content Include="Areas\HumanResource\Views\Home\JobFunctionGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\ApplicantsList.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\_DataFilter.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\Registration.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\RegistrationGrid.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\EditRegistration.cshtml" />
+    <Content Include="Areas\HumanResource\Reports\ApplicantsList\ApplicantDataSet.xsc">
+      <DependentUpon>ApplicantDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\HumanResource\Reports\ApplicantsList\ApplicantDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ApplicantDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\HumanResource\Reports\ApplicantsList\ApplicantDataSet.xss">
+      <DependentUpon>ApplicantDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\HumanResource\Views\HRReports\Index.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\StaffRegistration.cshtml" />
+    <Content Include="Areas\HumanResource\Reports\StaffList\StaffDataSet.xsc">
+      <DependentUpon>StaffDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\HumanResource\Reports\StaffList\StaffDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StaffDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\HumanResource\Reports\StaffList\StaffDataSet.xss">
+      <DependentUpon>StaffDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Areas\PharmacyModule\Reports\BillWiseDailyReportSale\BillWiseDailyDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>BillWiseDailyDataSet1.Designer.cs</LastGenOutput>
@@ -7616,6 +7670,14 @@
     <EmbeddedResource Include="Areas\CareSoftReports\Reports\UserRolesAndRights\RptUserRolesAndRights.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptUserRolesAndRights1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\HumanResource\Reports\ApplicantsList\ApplicantReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ApplicantReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\HumanResource\Reports\StaffList\StaffReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>StaffReport.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Areas\PharmacyModule\Reports\BillWiseDailyReportSale\BillWiseDailyReportSale.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

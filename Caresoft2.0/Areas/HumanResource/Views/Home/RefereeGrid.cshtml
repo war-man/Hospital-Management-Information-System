@@ -4,8 +4,7 @@
 <table class="table table-data table-condensed">
 
     <tr>
-        <th>Edit</th>
-        <th>Delete</th>
+        
         <th>
             @Html.DisplayNameFor(model => model.ApplicantId)
         </th>
@@ -43,15 +42,15 @@
             @Html.DisplayNameFor(model => model.Remarks1)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Filename)
+           Documents
         </th>
     <tbody class="bg-white">
         @foreach (var item in Model.OrderByDescending(e => e.Id))
         {
+            var path = item.Filename;
+            
         <tr>
-            <td>Edit</td>
-            <td>Delete</td>
-
+           
             <td>
                 @Html.DisplayFor(modelItem => item.ApplicantId)
             </td>
@@ -88,10 +87,22 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Remarks1)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Filename)
-            </td>
-        </tr>
+            @if (path is null)
+            {
+                <td>
+                    <button class=" btn btn-sm btn-primary" disabled> Link</button>
+                </td>
+
+            }
+            else
+            {
+                var test = path.Split(new string[] { "monials" }, StringSplitOptions.None).Last().Trim();
+                <td>
+
+                    <a class=" btn btn-sm btn-primary" href="~/Content/Testimonials/@test" target="_blank">Link</a>
+                </td>
+            }
+            </tr>
         }
     </tbody>
 </table>

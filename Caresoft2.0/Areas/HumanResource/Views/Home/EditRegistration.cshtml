@@ -1,0 +1,548 @@
+﻿@model Caresoft2._0.CustomData.HRRegistrationData
+@{ViewBag.ShowTopMenu = true;}
+
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="panel panel-primary caresoft-panel">
+            <div class="panel-heading">
+                Edit Registration Details
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+
+
+                    <div class="tab-content" id="reg-form-holder">
+                        <div id="personal-details" class="tab-pane fade in active">
+                            <form name="" id="applicant_edit_form">
+                                
+                                    <table class="table-form">
+                                        <tr>
+                                            <td>
+                                                <label for="ApplicantId">Applicant Id</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" readonly disabled class="text-box box-lg" id="ApplicantId" value="@Model.Applicant.ApplicantId" name="ApplicantId" />
+                                            </td>
+                                          
+                                            <td>
+                                                <label for="FirstName">First Name</label>
+                                            </td>
+                                            <td>
+                                                <select class="text-box" name="Salutation" id="applicant-salutation">
+                                                    <option>@Model.Applicant.Salutation</option>
+                                                    @foreach (var saluts in Model.Salutations)
+                                                    {
+                                                        <option>@saluts.SalutationName</option>
+                                                    }
+                                                </select>
+                                                <input type="text" class="text-box" name="FirstName" id="FirstName" required value="@Model.Applicant.FirstName" />
+
+                                            </td>
+                                            </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="OtherNames">Other Names:</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="text-box box-lg" name="OtherNames" id="OtherNames" value="@Model.Applicant.OtherNames" />
+
+                                            </td>
+
+                                            <td><label for="Surname">Surname:</label></td>
+                                            <td>
+                                                <input type="text" class="text-box box-lg" name="Surname" id="Surname" required value="@Model.Applicant.Surname" />
+                                            </td>
+                                            </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="Gender">Gender:</label>
+                                            </td>
+                                            <td>
+                                                <select class="text-box box-lg" id="Gender" name="Gender" required>
+                                                    <opion value="@Model.Applicant.Gender">
+                                                        @if (@Model.Applicant.Gender == "M")
+                                                        {<text>Male</text>}
+                                                    else if (@Model.Applicant.Gender == "F")
+                                                    { <text>Female</text>}
+                                                else
+                                                { <text>Other</text>            }
+                                                    </opion>
+                                                    <option value="M">Male</option>
+                                                    <option value="F">Female</option>
+                                                    <option value="B">Other</option>
+                                                </select>
+                                            </td>
+                                        
+                                            <td>
+                                                <label for="DOB">Date of Birth:</label>
+                                            </td>
+                                            <td>
+                                                <input type="date" class="text-box box-lg" name="DOB" id="DOB" value="@Model.Applicant.DOB.Value.ToString("yyyy-MM-dd")" required />
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="Mobile">Mobile Number</label>
+                                            </td>
+                                            <td>
+                                                <input type="number" class="text-box box-lg" id="Mobile" name="Mobile" required min="10" value="@Model.Applicant.Mobile" />
+                                            </td>
+                                            <td>
+                                                <label for="Email">Email</label>
+                                            </td>
+                                            <td>
+                                                <input type="email" class="text-box box-lg" id="Email" name="Email" value="@Model.Applicant.Email" />
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            
+                                            <td>
+                                                <label for="NationalId">ID Number</label>
+                                            </td>
+                                            <td>
+                                                <input type="number" class="text-box box-lg" id="NationalId" name="NationalId" value="@Model.Applicant.NationalId" />
+                                            </td>
+                                        
+                                            <td>
+                                                <label for="HomeAddress">Home Address</label>
+                                            </td>
+                                            <td>
+                                                <textarea name="HomeAddress" id="HomeAddress" class="text-box box-lg">@Model.Applicant.HomeAddress</textarea>
+                                            </td>
+                                            </tr>
+                                        
+                                    </table>
+
+                                    <div class="row">
+                                        <div class="col-xs-12" style="margin-top:16px">
+                                            <button title="Save" type="submit" class="btn btn-primary" id="btn-save-edit">
+                                                <i class="fa fa-save fa-2x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+
+
+        $("#ageUnit").on("change", function () {
+            var ageUnit = $(this).val();
+            var age = $("#age").val();
+            estimateDOB(age, ageUnit);
+        });
+
+        $("#age").on("keyup", function () {
+
+            var ageUnit = $("#ageUnit").val();
+            var age = $(this).val();
+            estimateDOB(age, ageUnit);
+        });
+
+        $("#age").on("change", function () {
+
+            var ageUnit = $("#ageUnit").val();
+            var age = $(this).val();
+            estimateDOB(age, ageUnit);
+        });
+
+
+        calculateAge();
+
+        $("#DOB").change(function () {
+            calculateAge()
+
+        });
+
+        function calculateAge() {
+            var dob = $("#DOB").val();
+            //using moment.js
+            var age = { number: "0", unit: "days" };
+            var dob = new Date(dob);
+
+
+            var endMoment = moment(new Date());
+            var startMoment = moment(dob);
+
+            var days = endMoment.diff(startMoment, 'days');
+            age.number = days;
+            age.unit = "days";
+            if (Math.floor(days / 7) > 0) {
+                age.number = Math.floor(days / 7);
+                age.unit = "weeks";
+            }
+
+
+            if (Math.floor(days / 30) > 0) {
+                age.number = Math.floor(days / 30);
+                age.unit = "months";
+
+                if (age.number == 12) {
+                    age.number = 1;
+                    age.unit = "years";
+                }
+            }
+
+            if (Math.floor(days / 365.25) > 0) {
+                age.number = Math.floor(days / 365.5);
+                age.unit = "years";
+            }
+
+
+
+            $("#age").val(age.number);
+            $("#ageUnit [value=" + age.unit + "]").prop("selected", true);
+
+        }
+
+        function estimateDOB(age, ageUnit) {
+             //using moment.js
+            var dob = moment().add(-age, ageUnit).format("YYYY-MM-DD");
+            $("#DOB").val(dob);
+
+        }
+
+         /**
+         * Resizing input boxes with precedding select box
+         */
+
+        var patSalutationWidth = $("#patient-salutation").width();
+        var mainCategoryWidth = $("#MainCategory").width();
+        var fnameWidth = (mainCategoryWidth - patSalutationWidth -3);
+        $("#FName").width(fnameWidth);
+        $("#KinFName").width(fnameWidth);
+
+        var ageWidth = (mainCategoryWidth - $("#ageUnit").width() -3);
+        $("#age").width(ageWidth);
+
+        //save current view/active tab
+        $('a[data-toggle="tab"]').each(function () {
+            var a = $(this);
+            var parent = a.parent();
+            $(this).click(function () {
+                sessionStorage.patientRegActiveTab = a.attr("href");
+            });
+        });
+
+        $("#prev-btn").click(function () {
+            $("#nxt-btn").removeClass("disabled");
+            var prev = "";
+            $("li").each(function () {
+                var li = $(this);
+
+                if (li.hasClass("active")) {
+
+                    prev = li.prev().find('a');
+
+                    if (prev.text() === $('.nav-tabs li:eq(0) a').text()) {
+                        //no previous tabs/ we are at our first tab
+                        $("#prev-btn").addClass("disabled");
+                    }
+                }
+            });
+            prev.trigger("click");
+        });
+
+        $("#nxt-btn").click(function () {
+            $("#prev-btn").removeClass("disabled");
+            var btn = $(this);
+            var nxt = "";
+            var DATA = {};
+            var URL = "";
+            var METHOD = "";
+            $("li").each(function () {
+                var li = $(this);
+                if (li.hasClass("active")) {
+
+                    nxt = li.next().find('a');
+                    var hasNext = li.next().next();
+
+                    if (hasNext.length < 1) {
+                        //the end of tabs
+                        /*Change next button to save button*/
+                        btn.addClass("disabled");
+                    } else {
+                        btn.removeClass("disabled");
+                    }
+
+
+
+                    if (sessionStorage.currentPatientId === ""
+                        || typeof (sessionStorage.currentPatientId)==="undefined") {
+                        DATA = $("#patient-personal-details-form").serialize();
+                        URL = "";
+                        METHOD = "POST";
+                        initialSave(DATA, URL, METHOD);
+                    } else {
+                        //update entries
+                        if (li.text() === "Personal Details") {
+                            //update personal details
+                            DATA = $("#patient-finish-reg-form,#patient-contact-info-form,#patient-personal-details-form").serialize();
+                            URL = "../api/Patients/" + sessionStorage.currentPatientId;
+                            METHOD = "PUT";
+                            subsequentSave(DATA, URL, METHOD);
+
+                        } else if (li.text() === "Contact Information") {
+                            //update contact info
+
+                            DATA = $("#patient-finish-reg-form,#patient-contact-info-form,#patient-personal-details-form").serialize();
+                            URL = "../api/Patients/" + sessionStorage.currentPatientId;
+                            METHOD = "PUT";
+                            subsequentSave(DATA, URL, METHOD);
+                        } else if (li.text() === "Insuarance Details") {
+                            //update insuarance info
+                        } else {
+                            //stay cool for now
+                        }
+                    }
+
+                }
+            });
+
+            nxt.trigger("click");
+
+        });
+
+
+
+        $("#patient_edit_form").submit(function (e) {
+            e.preventDefault();
+            if (!isValidForm($(this))){
+                return false;
+            }
+
+            var data = $(this).serializeObject();
+            if ((parseInt(data.age) || 0) < 1) {
+                showNotification("Age cannot be zero", "warning", true);
+                return false;
+            }
+
+            if (data.Mobile.length < 10 || data.Mobile.length > 13) {
+                showNotification("Please enter a valid Mobile number!", "warning", true);
+                return false;
+            }
+            var url = "@Url.Action("SaveEditApplicant","Home",new { Area = "HumanResoiurce" })";
+            var method = "POST";
+
+          saveFile(data, url, method);
+        });
+
+        function saveFile(data, url, method) {
+            $(".loader").show();
+            console.log(url);
+            $.ajax({
+                type: method,
+                url: url,
+                data: data,
+                success: function (obj) {
+                    $(".loader").hide();
+                    console.log(obj);
+                    showNotification("Applicant Details Updated Successfully!", "success", true);
+                    window.location = "@Url.Action("ApplicantsList", "Home", new { Area = "HumanResource" })";
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+        }
+
+
+        function initialSave(DATA, URL, METHOD, callBack) {
+            if (typeof (callBack) === "undefined") {
+                callBack = sillence; //if no method is passed as the 4th argument, call silence callback on ajax success
+            }
+            $(".loader").show();
+            $.ajax({
+                type: METHOD,
+                url: URL,
+                datatype: "json",
+                data: DATA,
+                headers: {
+                    "authToken": ""
+                },
+                success: function (result) {
+                    $(".loader").hide();
+                    console.log(result);
+                    sessionStorage.currentPatientId = result.Id;
+                    sessionStorage.currentPatientRegNUmber = result.RegNumber;
+                    $("#current-patient").text(result.RegNumber + " " + result.Salutation + " " + result.FName +
+                        " " + result.MName + " " + result.LName);
+                    $("#patient-name-modal").text(result.Salutation + " " + result.FName +
+                        " " + result.MName + " " + result.LName);
+                    $("#pat-reg-number-modal").text(result.RegNumber);
+                    callBack();
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+        }
+        function subsequentSave(DATA, URL, METHOD, callBack) {
+            if (typeof (callBack) === "undefined") {
+                callBack = sillence; //if no method is passed as the 4th argument, call silence callback on ajax success
+            }
+            $(".loader").show();
+
+            $.ajax({
+                type: METHOD,
+                url: URL,
+                datatype: "json",
+                data: DATA,
+                headers: {
+                    "authToken": ""
+                },
+                success: function (result) {
+                    $(".loader").hide();
+                    console.log(result);
+
+                    $("#current-patient").text(sessionStorage.currentPatientRegNUmber + " " + result.Salutation + " " + result.FName +
+                        " " + result.MName + " " + result.LName);
+                    $("#patient-name-modal").text(result.Salutation + " " + result.FName +
+                        " " + result.MName + " " + result.LName);
+                    $("#pat-reg-number-modal").text(sessionStorage.currentPatientRegNUmber);
+                    callBack();
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+        }
+        function initializeRegForm() {
+
+            $('form').each(function () { this.reset() });
+            $("#current-patient").text("");
+            sessionStorage.removeItem("currentPatientId");
+            sessionStorage.removeItem("currentPatientRegNUmber");
+
+            $('.nav-tabs li:eq(0) a').trigger('click');
+            $("button#nxt-btn").text("Next");
+        }
+        function sillence() {
+            //leave as it is,
+            // called on empty callbacks
+        }
+
+        
+        function OPDFormListeners() {
+            alert("OPDFormListeners deprecated. Please use modal form callback for OPD Modal");
+
+        }
+
+        $("input[name=regType]").each(function () {
+            $(this).click(function () {
+                $("#patient_edit_id").val("0");
+                var checked_radio = $("input[name=regType]:checked");
+
+                $(".radio-bound").each(function () {
+                    if ($(this).attr("data-boubd-radio") === checked_radio.val()) {
+                        $(this).prop('disabled', false);
+                    } else {
+                        $(this).prop('disabled', true);
+                    }
+                })
+
+            });
+        });
+
+        $("#searchPatient").keyup(function () {
+            var SearchWord = $(this).val();
+            if (SearchWord.length < 1) {
+                $("#suggested-patients").fadeOut();
+            } else {
+                $("#patientListLoader").show();
+                $.ajax({
+                type: "POST",
+                url: "@Url.Action("ApplicantsList", "Home", new { Area = "HumanResource" })",
+                data: { "SearchWord": SearchWord},
+                success: function (result) {
+                    $("#patientListLoader").hide();
+                    console.log(result);
+                    $("#suggested-patients").html(result);
+                    $("#suggested-patients").fadeIn();
+
+                    $("table#patientList tr").each(function () {
+                        $(this).click(function () {
+                            var selected = $(this).attr("data-patient-id");
+                            if (typeof (selected) !== "undefined") {
+                                getPatientData(selected);
+                            }
+                        });
+                    });
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $("#patientListLoader").hide();
+                        console.log(xmlhttprequest.responseText);
+                    }
+                });
+
+
+            }
+        });
+
+        function getPatientData(selected) {
+            $(".loader").show();
+            $.ajax({
+                url: "HumanResource/Home/GetApplicantDataForRepopulation/" + selected,
+                headers: {
+                    "authToken": ""
+                },
+                success: function (result) {
+                    $(".loader").hide();
+                    console.log(result);
+                    populateMyView(result, "#reg-form-holder")
+                    $("#suggested-patients").fadeOut();
+                    $("#searchPatient").val("");
+                },
+                error: function (xmlhttprequest, textstatus, errorthrown) {
+                    $(".loader").hide();
+                    console.log(errorthrown, "danger")
+                    console.log(xmlhttprequest.responseText);
+                }
+            });
+        }
+
+
+        function populateMyView(data, formId) {
+            $("#patient_edit_id").val(data.Id);
+            $.each(data, function (key, value) {
+                if (key === 'DOB') {
+                    var fDate = new Date(parseInt(value.substr(6)));
+                    $(formId).find("input[name=" + key + "]").val(fDate.getFullYear() + "-" + ('0' + (parseInt(fDate.getMonth()) + 1)).slice(-2) + "-" + ('0' + fDate.getDate()).slice(-2));
+
+                    var age = calculateAge($("#DOB").val());
+                    $("#age").val(age.number);
+                    $("#ageUnit [value=" + age.unit + "]").prop("selected", true);
+                } else {
+                    $(formId).find("input[name=" + key + "]").val(value);
+                }
+
+            });
+        };
+
+    </script>
+
+}

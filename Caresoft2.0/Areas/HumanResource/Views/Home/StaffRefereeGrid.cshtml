@@ -4,8 +4,7 @@
 <table class="table table-data table-condensed">
 
     <tr>
-        <th>Edit</th>
-        <th>Delete</th>
+
         <th>
             @Html.DisplayNameFor(model => model.StaffId)
         </th>
@@ -40,54 +39,70 @@
             @Html.DisplayNameFor(model => model.EndDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Remarks1)
+            Remarks
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Filename)
         </th>
 
-    <tbody class="bg-white">
+<tbody class="bg-white">
         @foreach (var item in Model.OrderByDescending(e => e.Id))
         {
-            <tr>
-                <td>Edit</td>
-                <td>Delete</td>
+            var path = item.Filename;
+    <tr>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.StaffId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Organization)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostalAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Telephone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Remarks)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Club)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Position)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BeginDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Remarks1)
-                </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Organization)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostalAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Club)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeginDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks1)
+        </td>
+        @if (path is null)
+        {
+            <td>
+                <button class=" btn btn-sm btn-primary" disabled> Link</button>
+            </td>
 
-            </tr>
+        }
+        else
+        {
+            var test = path.Split(new string[] { "monials" }, StringSplitOptions.None).Last().Trim();
+            <td>
+
+                <a class=" btn btn-sm btn-primary" href="~/Content/Testimonials/@test" target="_blank">Link</a>
+            </td>
+        }
+    </tr>
         }
     </tbody>
 </table>

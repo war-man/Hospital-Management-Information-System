@@ -1,11 +1,10 @@
-﻿@model IEnumerable<CaresoftHMISDataAccess.HRQualification>
-
+﻿
+@model IEnumerable< CaresoftHMISDataAccess.HRQualification>
 
 <table class="table table-data table-condensed">
 
     <tr>
-        <th>Edit</th>
-        <th>Delete</th>
+
         <th>
             @Html.DisplayNameFor(model => model.ApplicantId)
         </th>
@@ -28,6 +27,9 @@
             @Html.DisplayNameFor(model => model.Remarks)
         </th>
         <th>
+            Educational Documents
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.DateOfQualification)
         </th>
         <th>
@@ -40,18 +42,20 @@
             @Html.DisplayNameFor(model => model.Grade)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Remarks1)
+            Remarks
         </th>
-         <th>
-            @Html.DisplayNameFor(model => model.Filename)
+        <th>
+            Professional Documents
         </th>
-       
+
     <tbody class="bg-white">
         @foreach (var item in Model.OrderByDescending(e => e.Id))
         {
+
+            var path = item.Filename;
+
             <tr>
-                <td>Edit</td>
-                <td>Delete</td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.ApplicantId)
                 </td>
@@ -73,6 +77,21 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Remarks)
                 </td>
+                @if (path is null)
+                {
+                    <td>
+                        <button class=" btn btn-sm btn-primary" disabled> Link</button>
+                    </td>
+
+                }
+                else
+                {
+                    var test = path.Split(new string[] { "monials" }, StringSplitOptions.None).Last().Trim();
+                    <td>
+
+                        <a class=" btn btn-sm btn-primary" href="~/Content/Testimonials/@test" target="_blank">Link</a>
+                    </td>
+                }
                 <td>
                     @Html.DisplayFor(modelItem => item.DateOfQualification)
                 </td>
@@ -88,9 +107,23 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Remarks1)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Filename)
-                </td>
+                @if (path is null)
+                {
+                    <td>
+                        <button class=" btn btn-sm btn-primary" disabled> Link</button>
+                    </td>
+
+                }
+                else
+                {
+                    var test = path.Split(new string[] { "monials" }, StringSplitOptions.None).Last().Trim();
+                    <td>
+
+                        <a class=" btn btn-sm btn-primary" href="~/Content/Testimonials/@test" target="_blank">Link</a>
+                    </td>
+                }
+
+
             </tr>
         }
     </tbody>

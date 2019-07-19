@@ -1,5 +1,8 @@
-﻿using CaresoftHMISDataAccess;
+﻿using Caresoft2._0.Controllers;
+using Caresoft2._0.CustomData;
+using CaresoftHMISDataAccess;
 using System;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -499,7 +502,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         #region Leave Types
         public ActionResult LeaveType()
         {
-           
+
             ViewBag.HRLeaveType = db.HRLeaveTypes.ToList();
             var data = db.HRLeaveTypes.ToList();
 
@@ -876,7 +879,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         #region Tasks Setup
         public ActionResult TaskSetup()
         {
-           
+
             ViewBag.HRRole = db.HRRoles.ToList();
             var data = db.HRRoles.ToList();
 
@@ -1251,7 +1254,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         #region Retirement Benefits
         public ActionResult RetirementBenefits()
         {
-           
+
             ViewBag.HRInsuranceCover = db.HRInsuranceCovers.ToList();
             var data = db.HRInsuranceCovers.ToList();
 
@@ -1442,7 +1445,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         #region Savings and Saccos
         public ActionResult SavingsAndSaccos()
         {
-           
+
             ViewBag.HRSaccoAndStaffLoan = db.HRSaccoAndStaffLoans.ToList();
             var data = db.HRSaccoAndStaffLoans.ToList();
 
@@ -1587,7 +1590,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         #region Employee Category
         public ActionResult EmployeeCategory()
         {
-            
+
             ViewBag.HREmployeeSetup = db.HREmployeeSetups.ToList();
             var data = db.HREmployeeSetups.ToList();
 
@@ -1610,7 +1613,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         #region Employee Status
         public ActionResult EmployeeStatus()
         {
-           
+
             ViewBag.HREmployeeStatu = db.HREmployeeStatus.ToList();
             var data = db.HREmployeeStatus.ToList();
 
@@ -1775,18 +1778,205 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             return RedirectToAction("JobRequisitionInfor");
         }
         #endregion
-        #region Applicant Resume Data Base
+        #region Applicants Registration
+        public ActionResult Registration()
+        {
+
+            ViewBag.Title = "Applicant Registration";
+            HRRegistrationData registrationData = new HRRegistrationData();
+
+            registrationData.Salutations = db.Salutations.ToList();
+
+            return View("Registration", registrationData);
+
+        }
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("ApplicantsList");
+            }
+
+
+            HRRegistrationData registrationData = new HRRegistrationData();
+            registrationData.Salutations = db.Salutations.ToList();
+
+            if (db.HRApplicants.Find(id) == null)
+            {
+                return RedirectToAction("ApplicantsList");
+            }
+            registrationData.Applicant = db.HRApplicants.Find(id);
+
+            return View("EditRegistration", registrationData);
+        }
+
+        public class SearchApplicantsListData
+        {
+            public String Searchtype { get; set; }
+            public String Department { get; set; }
+            public DateTime StartDate { get; set; }
+            public DateTime EndDate { get; set; }
+            public string SearchText { get; set; }
+
+        }
+
+        [HttpPost]
+        public ActionResult ApplicantsList(SearchApplicantsListData data)
+        {
+            var res = db.HRApplicants.Take(20).ToList()
+                .Take(20).ToList();
+
+            if (data.Searchtype != null && data.Searchtype.ToLower().Equals("app"))
+            {
+                res = db.HRApplicants.Where(e => e.ApplicantId.Contains(data.SearchText)).Take(20).ToList();
+            }
+            else
+            {
+                res = db.HRApplicants.Where(e => (e.ApplicantId.Contains(data.SearchText) || e.FirstName.Contains(data.SearchText)
+                           || e.Surname.Contains(data.SearchText) || e.OtherNames.Contains(data.SearchText) || e.NationalId == data.SearchText ||
+                           e.Email.Contains(data.SearchText))).Take(20).ToList();
+
+            }
+
+            if (data.SearchText == null || data.SearchText.Trim().Equals(""))
+            {
+                res = db.HRApplicants.OrderByDescending(e => e.Id).Take(20).ToList();
+            }
+
+            ViewBag.IsSearch = true;
+            return PartialView("ApplicantsList", res);
+        }
+
+        public ActionResult ApplicantsList()
+        {
+            var data = db.HRApplicants.OrderByDescending(e => e.Id).Take(20).ToList();
+            
+            ViewBag.MinimalFilterControlls = true;
+            return View(data);
+        }
+        public ActionResult GetApplicantDataForRepopulation(int? id)
+        {
+            var applicant = db.HRApplicants.Include(i => i.ApplicantId).AsNoTracking().FirstOrDefault(e => e.Id == id);
+            applicant.ApplicantId = null;
+            return Json(applicant, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult SaveApplicant(HRApplicant applicant)
+        {
+            applicant.UserId = (int)Session["UserId"];
+            var filetype = "new";
+            if (applicant.ApplicantId != null)
+            {
+
+                filetype = "old";
+            }
+            else if (applicant.Id > 0)
+            {
+                filetype = "revisit";
+            }
+
+            if (filetype == "revisit")
+            {
+
+                var file = db.HRApplicants.Find(applicant.Id);
+                if (file != null)
+                {
+                    db.Entry(applicant).State = EntityState.Modified;
+
+                    db.SaveChanges();
+                    return Json(new { Status = "Success", ApplicantId = applicant.ApplicantId, ApplicantName
+                        = applicant.Salutation + " " + applicant.FirstName + " " + applicant.OtherNames + " " + applicant.Surname,
+                        Id = applicant.Id,Username = applicant.ApplicantId, Password = applicant.Password });
+                      
+                }
+            }
+
+
+            if (applicant.NationalId != null && db.HRApplicants.Where(e => e.NationalId == applicant.NationalId).ToList().Count > 0)
+            {
+                return Json(new { Status = "Error", Message = "The National Id Number you provided is associated with another applicant" });
+            }
+            if (applicant.Email != null && db.HRApplicants.Where(e => e.Email == applicant.Email).ToList().Count > 0)
+            {
+                return Json(new { Status = "Error", Message = "The Email Address you provided is associated with another applicant" });
+            }
+
+            applicant.Timestamp = DateTime.Now;
+            applicant.DateAdded = DateTime.Now;
+            db.HRApplicants.Add(applicant);
+            db.SaveChanges();
+
+            if (filetype == "new")
+            {
+                var facilityinitial = db.KeyValuePairs.FirstOrDefault(e => e.Key_ == "facilityinittials").Value;
+                var year = DateTime.Now.ToString("yy");
+                var prefix = "00";
+                if (applicant.Id > 9)
+                {
+                    prefix = "0";
+                }
+                else if (applicant.Id > 99)
+                {
+                    prefix = "";
+                }
+
+                var branchid = (int)Session["UserBranchId"];
+                var applicantid = facilityinitial + "/" + branchid + "/" + prefix + applicant.Id + "/" + year;
+                applicant.ApplicantId = applicantid;
+            }
+            var password = "app" + applicant.Id.ToString();
+            if (applicant.FirstName != null && applicant.OtherNames != null)
+            {
+                char[] fnameArr = applicant.FirstName.ToCharArray();
+                char[] mnameArr = applicant.OtherNames.ToCharArray();
+                password = fnameArr[0].ToString() + fnameArr[1].ToString() + mnameArr[0].ToString() + mnameArr[1].ToString() + DateTime.Now.ToString("dd");
+            }
+
+            applicant.Password = password.ToLower();
+            db.SaveChanges();
+
+            return Json(new { Status = "Success", ApplicantId = applicant.ApplicantId, ApplicantName = applicant.Salutation + " " + applicant.FirstName + " " + applicant.OtherNames + " " + applicant.Surname
+                ,Id = applicant.Id,  Username = applicant.ApplicantId, Password = applicant.Password });
+        }
+    
+        [HttpPost]
+        public ActionResult SaveEditApplicant(HRApplicant epat)
+        {
+            epat.UserId = (int)Session["UserId"];
+
+            var app = db.HRApplicants.Find((int)epat.Id);
+            app.Salutation = epat.Salutation;
+            app.FirstName = epat.FirstName;
+            app.OtherNames = epat.OtherNames;
+            app.Surname = epat.Surname;
+            app.Gender = epat.Gender;
+            app.DOB = epat.DOB;
+            app.Mobile = epat.Mobile;
+            app.Email = epat.Email;
+            app.NationalId = epat.NationalId;
+            app.HomeAddress = epat.HomeAddress;
+
+            db.SaveChanges();
+            
+            return Json(new { status = "success", message = "Applicant Details Updated Successfully!" });
+        }
+
+        #endregion
+        #region Applicants Resume
         public ActionResult ApplicantResume()
         {
-            
+
             ViewBag.HRFileInformation = db.HRFileInformations.ToList();
             var data = db.HRFileInformations.ToList();
 
             return PartialView(data);
         }
+       
         [HttpPost]
         public ActionResult SaveApplicantResumeData(HRFileInformation data)
         {
+            
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
@@ -1807,16 +1997,29 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
 
             return PartialView(data);
         }
+        public ActionResult GetID(string fileName)
+        {
+
+            fileName = "Upload ID.pdf";
+            string filePath = "~/Content/Testimonials" + fileName;
+            Response.AddHeader("Content-Disposition", "inline; filename=Upload Recommendations.pdf");
+
+            return File(filePath, "application/pdf");
+        }
+
         [HttpPost]
         public ActionResult SaveBioData(HRBioData data, HttpPostedFileBase Filename)
         {
-            if (Filename?.ContentLength > 0)
+            if (Filename.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(Filename.FileName);
                 var path = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName);
                 Filename.SaveAs(path);
 
             }
+            var fileName2 = Path.GetFileName(Filename.FileName);
+            var path2 = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName2);
+            data.Filename = path2;
 
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
@@ -1826,7 +2029,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             db.HRBioDatas.Add(data);
             db.SaveChanges();
 
-            return RedirectToAction("ApplicantResume");
+            return RedirectToAction("BioData");
         }
         #endregion
         #region Qualifications
@@ -1838,26 +2041,54 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
 
             return PartialView(data);
         }
-        [HttpPost]
-        public ActionResult SaveQualificationsData(HRQualification data , HttpPostedFileBase Filename)
+
+        public ActionResult GetDocs(string fileName)
         {
-            if (Filename?.ContentLength > 0)
+
+            fileName = "Upload Docs.pdf";
+            string filePath = "~/Content/Testimonials" + fileName;
+            Response.AddHeader("Content-Disposition", "inline; filename=Upload Recommendations.pdf");
+
+            return File(filePath, "application/pdf");
+        }
+        
+        [HttpPost]
+        public ActionResult SaveQualificationsData(HRQualification data , HttpPostedFileBase Filename,HttpPostedFileBase Filename1)
+        {
+
+            if (Filename is null)
+            {
+                data.Filename = null;
+            }
+
+           else if (Filename.ContentLength >0)
             {
                 var fileName = Path.GetFileName(Filename.FileName);
                 var path = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName);
                 Filename.SaveAs(path);
-
+                
+            }
+            if (Filename1 is null)
+            {
+                data.Filename1 = null;
+            }
+            else if (Filename1.ContentLength>0)
+            {
+                var fileName = Path.GetFileName(Filename1.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName);
+                Filename.SaveAs(path);
             }
             
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
-
-
+            
             db.HRQualifications.Add(data);
             db.SaveChanges();
+            var test = db.HRQualifications.Where(e => e.ApplicantId == data.ApplicantId).ToList();
 
-            return RedirectToAction("ApplicantResume");
+            return RedirectToAction("~/Areas/HumanResource/Views/QualificationGrid", test);
+
         }
         #endregion
         #region Work Experience
@@ -1869,18 +2100,33 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
 
             return PartialView(data);
         }
+        public ActionResult GetDocus(string fileName)
+        {
+
+            fileName = "Upload Docs.pdf";
+            string filePath = "~/Content/Testimonials" + fileName;
+            Response.AddHeader("Content-Disposition", "inline; filename=Upload Recommendations.pdf");
+
+            return File(filePath, "application/pdf");
+        }
+
         [HttpPost]
         public ActionResult SaveWorkExperienceData(HRWorkExperience data, HttpPostedFileBase Filename)
         {
+            if (Filename is null)
+            {
+                data.Filename = null;
+            }
 
-            if (Filename?.ContentLength > 0)
+            if (Filename.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(Filename.FileName);
                 var path = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName);
                 Filename.SaveAs(path);
 
             }
-           
+
+
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
@@ -1889,7 +2135,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             db.HRWorkExperiences.Add(data);
             db.SaveChanges();
 
-            return RedirectToAction("ApplicantResume");
+            return RedirectToAction("WorkExperience");
         }
         #endregion
         #region Extra Curricular
@@ -1903,18 +2149,35 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
 
             return PartialView(data);
         }
+        public ActionResult GetDocum(string fileName)
+        {
+
+            fileName = "Upload Docs.pdf";
+            string filePath = "~/Content/Testimonials" + fileName;
+            Response.AddHeader("Content-Disposition", "inline; filename=Upload Recommendations.pdf");
+
+            return File(filePath, "application/pdf");
+        }
+
         [HttpPost]
         public ActionResult SaveRefereeesData(HRReferee data, HttpPostedFileBase Filename)
         {
 
-            if (Filename?.ContentLength > 0)
+            if (Filename is null)
+            {
+                data.Filename = null;
+            }
+
+
+            if (Filename.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(Filename.FileName);
                 var path = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName);
                 Filename.SaveAs(path);
 
             }
-            
+           
+
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
@@ -1922,7 +2185,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             db.HRReferees.Add(data);
             db.SaveChanges();
 
-            return RedirectToAction("ApplicantResume");
+            return RedirectToAction("Refereees");
         }
         #endregion
         #region Application Form
@@ -2064,6 +2327,37 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             return RedirectToAction("Tests");
         }
         #endregion
+        #region Staff Registration
+        public ActionResult DeptStaffReg()
+        {
+            ViewBag.Departments = db.Departments.ToList();
+            var departments = db.Departments.Where(e => e.DepartmentName != null).ToList();
+
+            return PartialView(departments);
+        }
+        public ActionResult StaffRegistration()
+        {
+            ViewBag.Departments = db.Departments.ToList();
+            ViewBag.HRStaffRegistration = db.HRStaffRegistrations.ToList();
+            var data = db.HRStaffRegistrations.ToList();
+
+            return PartialView(data);
+        }
+        [HttpPost]
+        public ActionResult SaveStaffRegDataData(HRStaffRegistration data)
+        {
+
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId =(int)Session["UserBranchId"];
+
+
+            db.HRStaffRegistrations.Add(data);
+            db.SaveChanges();
+
+            return RedirectToAction("StaffRegistration");
+        }
+        #endregion
         #region Staff Work Experience
         public ActionResult StaffWorkExperience()
         {
@@ -2085,6 +2379,11 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         [HttpPost]
         public ActionResult SaveStaffWorkExperienceData(HRStaffWorkExperience data, HttpPostedFileBase Filename)
         {
+            if (Filename is null)
+            {
+                data.Filename = null;
+            }
+
             if (Filename.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(Filename.FileName);
@@ -2092,10 +2391,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
                 Filename.SaveAs(path);
 
             }
-            var fileName2 = Path.GetFileName(Filename.FileName);
-            var path2 = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName2);
-            data.Filename = path2;
-
+            
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
@@ -2169,6 +2465,16 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
 
             return View(departments);
         }
+        public ActionResult GetTestimonials(string fileName)
+        {
+
+            fileName = "Upload Testimonials.pdf";
+            string filePath = "~/Content/Testimonials" + fileName;
+            Response.AddHeader("Content-Disposition", "inline; filename=Upload Recommendations.pdf");
+
+            return File(filePath, "application/pdf");
+        }
+
         public ActionResult EducationalQuaifications()
         {
             ViewBag.Departments = db.Departments.ToList();
@@ -2180,14 +2486,18 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         [HttpPost]
         public ActionResult SaveEducationalQuaificationsData(HRStaffEducationQualification data, HttpPostedFileBase Filename)
         {
-            if (Filename?.ContentLength > 0)
+            if (Filename is null)
+            {
+                data.Filename = null;
+            }
+            if (Filename.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(Filename.FileName);
                 var path = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName);
                 Filename.SaveAs(path);
 
             }
-
+            
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
@@ -2208,10 +2518,24 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
 
             return PartialView(data);
         }
+        public ActionResult GetTest(string fileName)
+        {
+
+            fileName = "Upload Testimonials.pdf";
+            string filePath = "~/Content/Testimonials" + fileName;
+            Response.AddHeader("Content-Disposition", "inline; filename=Upload Recommendations.pdf");
+
+            return File(filePath, "application/pdf");
+        }
         [HttpPost]
         public ActionResult SaveProfessionalQuaificationsData(HRStaffProfessionalQualification data, HttpPostedFileBase Filename)
         {
-            if (Filename?.ContentLength > 0)
+            if (Filename is null)
+            {
+                data.Filename = null;
+            }
+
+            if (Filename.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(Filename.FileName);
                 var path = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName);
@@ -2239,22 +2563,36 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
 
             return PartialView(data);
         }
+        public ActionResult GetDoc(string fileName)
+        {
+
+            fileName = "Upload Testimonials.pdf";
+            string filePath = "~/Content/Testimonials" + fileName;
+            Response.AddHeader("Content-Disposition", "inline; filename=Upload Recommendations.pdf");
+
+            return File(filePath, "application/pdf");
+        }
+
         [HttpPost]
         public ActionResult SaveStaffRefereesData(HRStaffReferee data, HttpPostedFileBase Filename)
         {
-            if (Filename?.ContentLength > 0)
+            if (Filename is null)
+            {
+                data.Filename = null;
+            }
+
+            if (Filename.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(Filename.FileName);
                 var path = Path.Combine(Server.MapPath("~/Content/Testimonials"), fileName);
                 Filename.SaveAs(path);
 
             }
-
+            
             data.UserId = (int)Session["UserId"];
             data.DateAdded = DateTime.Now;
             data.BranchId = 1;
-
-
+            
             db.HRStaffReferees.Add(data);
             db.SaveChanges();
 
@@ -2354,7 +2692,7 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
             db.HRAppraisalRoleAndObjectives.Add(data);
             db.SaveChanges();
 
-            return RedirectToAction("OverallGrading");
+            return RedirectToAction("RolesAndObjectives");
         }
         #endregion
         #region Appraisal Overall Grading

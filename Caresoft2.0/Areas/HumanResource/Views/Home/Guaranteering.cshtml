@@ -8,7 +8,7 @@
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
 }
 <div class="col-md-2">
-    @Html.Partial("~/Areas/HumanResource/Views/_SideNav.cshtml")
+    @Html.Partial("~/Areas/HumanResource/Views/Shared/_ContractTerminationNav.cshtml")
 </div>
 
 <div class="col-md-7">
@@ -20,7 +20,7 @@
             <div class="panel-body">
                 <div class="col-sm-12">
 
-                    <form id="country" method="post" action="@Url.Action("SaveGuaranteeringData","Home",new {Area="HumanResource"})">
+                    <form method="post" action="@Url.Action("SaveGuaranteeringData","Home",new {Area="HumanResource"})">
 
                         <table class="table-form">
 
@@ -78,7 +78,7 @@
                             </tr>
                             </table>
                         <label><strong>ITEM</strong></label>
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>ItemNo</label></td>
                                 <td>
@@ -141,8 +141,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <br />
-
+                        
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
                     </form>
                     <br />

@@ -30,5 +30,6 @@ namespace CaresoftHMISDataAccess
         public Nullable<System.DateTime> BeginDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public string Remarks1 { get; set; }
+        public string Filename { get; set; }
     }
 }

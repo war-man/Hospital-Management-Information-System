@@ -9,7 +9,8 @@
             </div>
             <div class="panel-body">
                 <div class="col-md-12">
-                    <form method="post" action="@Url.Action("SaveStaffRefereesData","Home",new {Area="HumanResource"})">
+                    @using (Html.BeginForm("SaveStaffWorkExperienceData", "Home", new { Area = "HumanResource" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
                         <table class="table-form">
                             <tr>
                                 <td><label>Staff Id</label></td>
@@ -17,14 +18,14 @@
                                 <td><input type="text" name="StaffId" class="text-box box-lg " /></td>
                             </tr>
                         </table>
-                         <label><strong>Referees Details</strong></label>
+                        <label><strong>Referees Details</strong></label>
                         <br />
 
                         <table class="table-form">
                             <tr>
                                 <td><label>Name</label></td>
                                 <td>
-                                    <input type="text" name="Name" class="text-box box-lg "  />
+                                    <input type="text" name="Name" class="text-box box-lg " />
                                 </td>
                                 <td><label>Organization</label></td>
                                 <td>
@@ -34,7 +35,7 @@
                             <tr>
                                 <td><label>Title</label></td>
                                 <td>
-                                    <input type="text" name="Title" class="text-box box-lg "  />
+                                    <input type="text" name="Title" class="text-box box-lg " />
                                 </td>
                                 <td><label>Postal Address</label></td>
                                 <td>
@@ -48,7 +49,7 @@
                                 </td>
                                 <td><label>Remarks</label></td>
                                 <td>
-                                    <input type="text" name="Remarks" class="text-box box-lg "  />
+                                    <input type="text" name="Remarks" class="text-box box-lg " />
                                 </td>
                             </tr>
                         </table>
@@ -57,7 +58,7 @@
                             <tr>
                                 <td><label>Club</label></td>
                                 <td>
-                                    <input type="text" name="Club" class="text-box box-lg "  />
+                                    <input type="text" name="Club" class="text-box box-lg " />
                                 </td>
                                 <td><label>Position</label></td>
                                 <td>
@@ -67,11 +68,11 @@
                             <tr>
                                 <td><label>Begin Date</label></td>
                                 <td>
-                                    <input type="date" name="BeginDate" class="text-box box-lg "/>
+                                    <input type="date" name="BeginDate" class="text-box box-lg " />
                                 </td>
                                 <td><label>End Date</label></td>
                                 <td>
-                                    <input type="date" name="EndDate" class="text-box box-lg "/>
+                                    <input type="date" name="EndDate" class="text-box box-lg " />
                                 </td>
                             </tr>
                             <tr>
@@ -84,16 +85,17 @@
                                     <input type="file" class="text-box box-lg" id="Filename" value="" name="Filename" />
                                 </td>
                             </tr>
-                            
+
                         </table>
-                        
+
                         <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
-                    </form>
-                    <br />
-                    <div id="ipd-list" class="scrollable-table-container">
-                        @Html.Partial("StaffRefereeGrid")
+                        <br />
+                        <br />
+                        <div id="ipd-list" class="scrollable-table-container">
+                            @Html.Partial("StaffRefereeGrid")
+                        </div>
+                    }
                     </div>
-                </div>
             </div>
         </div>
     </div>

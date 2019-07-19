@@ -25,9 +25,9 @@
             <div class="panel-body">
                 <div class="col-sm-12">
 
-                    <form id="country" method="post" action="@Url.Action("SaveHRAppraisalOverrallGradingData","Home",new {Area="HumanResource"})">
+                    <form method="post" action="@Url.Action("SaveHRAppraisalOverrallGradingData","Home",new {Area="HumanResource"})">
                         <label><strong>Data Utilization Utility</strong></label>
-                        <table class="form-class">
+                        <table class="table-form">
                             <tr>
                                 <td><label>Staff Id</label></td>
                                 <td>
@@ -81,10 +81,10 @@
                                     </select>
                                 </td>
                             </tr>
-                            
+
                         </table>
                         <label><strong>Training Requirements</strong></label>
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>Course</label></td>
                                 <td>
@@ -106,28 +106,28 @@
                                 </td>
                             </tr>
                             <tr>
-                            <td><label>Course Duration</label></td>
-                            <td>
-                                <input type="text" name="CourseDuration" class="text-box box-lg " />
-                            </td>
-                            <td><label>Starting Date</label></td>
-                            <td>
-                                <input type="date" name="" class="text-box box-lg " />
-                            </td>
+                                <td><label>Course Duration</label></td>
+                                <td>
+                                    <input type="text" name="CourseDuration" class="text-box box-lg " />
+                                </td>
+                                <td><label>Starting Date</label></td>
+                                <td>
+                                    <input type="date" name="" class="text-box box-lg " />
+                                </td>
                             </tr>
                             <tr>
                                 <td class="form-group">
-                                    <label class="info-title col-md-12" for="black_name">Remarks<span><font color="black"><b></b></font></span></label>
+                                    <label class="info-title col-md-12" for="black_name"><strong>Remarks</strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
-                                    <textarea style="width:150%;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
+                                    <textarea style="width:250px;height:70px;" name="Remarks" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
                                         
                                     </textarea>
-                                    </td>
+                                </td>
                             </tr>
                         </table>
                         <label><strong>Objectives for the coming period</strong></label>
-                        <table>
+                        <table class="table-form">
                             <tr>
                                 <td><label>Task</label></td>
                                 <td>
@@ -140,7 +140,7 @@
                             </tr>
                             <tr>
                                 <td class="form-group">
-                                    <label class="info-title col-md-12" for="black_name">Remarks<span><font color="black"><b></b></font></span></label>
+                                    <label class="info-title col-md-12" for="black_name"><strong>Remarks</strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
                                     <textarea style="width:150%;height:70px;" name="Remarks1" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
@@ -150,19 +150,20 @@
                             </tr>
                             <tr>
                                 <td class="form-group">
-                                    <label class="info-title col-md-12" for="black_name">Overall Grading and Comments<span><font color="black"><b></b></font></span></label>
+                                    <label class="info-title col-md-12" for="black_name"><strong>Overall Grading and Comments</strong><span><font color="black"><b></b></font></span></label>
                                     <span id='message_full_name'></span>
-                                    <textarea style="width:150%;height:70px;" name="OverallGradingAndComments" class="text-box unicase-form-control text-input" id="extension_number"
+                                    <textarea style="width:250px;height:70px;" name="OverallGradingAndComments" class="text-box unicase-form-control text-input" id="extension_number"
                                               placeholder="Enter plan">
                                         
                                     </textarea>
                                 </td>
                             </tr>
                         </table>
-                                <br />
-                                <br />
-                                <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
-                               </form> 
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+                    </form>
+                    <br />
+                   
                     <div id="ipd-list" class="scrollable-table-container">
                         @Html.Partial("OverallGradingGrid")
                     </div>

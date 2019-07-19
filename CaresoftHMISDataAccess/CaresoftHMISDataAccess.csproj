@@ -168,6 +168,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CaresoftHMISDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="CaresoftHMISDataModel1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CashPointReconciliation.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
@@ -310,6 +315,9 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HRAllocationOfRole.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRApplicant.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HRApplicantQualification.cs">
@@ -580,6 +588,9 @@
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HRStaffReferee.cs">
+      <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRStaffRegistration.cs">
       <DependentUpon>CaresoftHMISDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HRStaffWorkExperience.cs">
@@ -1122,7 +1133,7 @@
     <Content Include="CaresoftHMISDataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CaresoftHMISDataModel.edmx</DependentUpon>
-      <LastGenOutput>CaresoftHMISDataModel.cs</LastGenOutput>
+      <LastGenOutput>CaresoftHMISDataModel1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

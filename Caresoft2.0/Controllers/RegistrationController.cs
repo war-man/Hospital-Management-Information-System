@@ -11,9 +11,7 @@ namespace Caresoft2._0.Controllers
 {
     [Auth]
     public class 
-        
-        
-        
+      
         RegistrationController : Controller
     {
        
@@ -499,7 +497,7 @@ namespace Caresoft2._0.Controllers
                     db.Entry(patient).State = EntityState.Modified;
 
                     db.SaveChanges();
-                    return Json(new { Status = "Success", RegNumber = patient.RegNumber, PatientName = patient.Salutation + " " + patient.FName + " " + patient.MName + " " + patient.LName, PatientId = patient.Id, Username = patient.RegNumber, Password = patient.Password });
+                    return Json(new { Status = "Success", RegNumber = patient.RegNumber, ApplicantName = patient.Salutation + " " + patient.FName + " " + patient.MName + " " + patient.LName, PatientId = patient.Id, Username = patient.RegNumber, Password = patient.Password });
                 }
             }
 
@@ -551,7 +549,7 @@ namespace Caresoft2._0.Controllers
             patient.Password = password.ToLower();
             db.SaveChanges();
 
-            return Json(new {Status = "Success", RegNumber = patient.RegNumber, PatientName = patient.Salutation+" "+patient.FName+" "+patient.MName+" "+patient.LName,  PatientId = patient.Id, Username = patient.RegNumber, Password = patient.Password });
+            return Json(new {Status = "Success", RegNumber = patient.RegNumber, ApplicantName = patient.Salutation+" "+patient.FName+" "+patient.MName+" "+patient.LName,  PatientId = patient.Id, Username = patient.RegNumber, Password = patient.Password });
         }
 
         [HttpPost]
