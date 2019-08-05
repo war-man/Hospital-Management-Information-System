@@ -50,8 +50,22 @@
             <script>
         var method = "POST";
         var action = "@Url.Action("ApplicantsList", "Home",new {Area="HumanResource"})"
-    function OPDFormListeners() {
-    }
+
+                $("input[name=regType]").each(function () {
+                    $(this).click(function () {
+                        $("#revisit_applicant_id").val("0");
+                        var checked_radio = $("input[name=regType]:checked");
+
+                        $(".radio-bound").each(function () {
+                            if ($(this).attr("data-boubd-radio") === checked_radio.val()) {
+                                $(this).prop('disabled', false);
+                            } else {
+                                $(this).prop('disabled', true);
+                            }
+                        })
+
+                    });
+                });
             </script>
         }
     

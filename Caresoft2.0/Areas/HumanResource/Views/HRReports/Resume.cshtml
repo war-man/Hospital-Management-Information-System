@@ -1,0 +1,65 @@
+﻿
+@{
+            
+    ViewBag.Title = "Resume";
+
+}
+
+<style>
+    .text-box {
+        width: 200px;
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+</style>
+<div class="col-md-6 col-md-offset-2">
+    <div class="panel panel-primary shadow caresoft-panel" style="margin-top:10px">
+        <div class="panel-heading custom-navbar">
+            <p style="color:black ; margin-left:5px">
+                <strong>Applicant's Resume</strong>
+            </p>
+        </div>
+        <div class="panel-body">
+            <form method="get" action="@Url.Action("GenerateResumeReport","HRReports",new {Area="HumanResource"})">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table-form">
+                            <tr>
+                                <td>Start Date</td>
+                                <td>
+                                    <input type="date" class="text-box" name="fromDate" id="fromDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                </td>
+                                <td>End Date</td>
+                                <td>
+                                    <input type="date" class="text-box" name="toDate" id="toDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <input type="submit" class="btn btn-primary btn-sm" value="Generate Report" />
+
+                                </td>
+                            </tr>
+                        </table>
+
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

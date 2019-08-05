@@ -17,7 +17,7 @@
                     </li>
                     <li class="collapsibleListOpen" style="user-select: none;">
                         <img src="~/Content/icons/emrMenuIcons/allergies1.png" /> Allergies</a>
-
+                        <a href="~/Views/Shared/_SideNavigation.cshtml">~/Views/Shared/_SideNavigation.cshtml</a>
                     </li>
             </li>
             <li class="collapsibleListOpen" style="user-select: none;">
@@ -26,6 +26,7 @@
             <li class="collapsibleListOpen" style="user-select: none;">
                 <a href="@Url.Action("History", "emr", new { Id = ViewBag.OpdNo})"><img src="~/Content/icons/emrMenuIcons/history.png" /> History</a>
             </li>
+
             <li class="collapsibleListOpen" style="user-select: none;">
                 <img src="~/Content/icons/emrMenuIcons/examination.png" /> Examination
                 <ul class="collapsibleList" style="display: block;">
@@ -43,6 +44,19 @@
                 </a>
 
             </li>
+           
+            <li class="collapsibleListClosed" style="user-select: none;">
+                <img src="~/Content/icons/emrMenuIcons/image1.png" /> HTC Service Summary
+                <ul class="collapsibleList" style="display: none;">
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        <a href="@Url.Action("HTCService", "emr", new { Id = ViewBag.OpdNo})"><img src="~/Content/icons/emrMenuIcons/image1.png" />HTC Form</a>
+                    </li>
+                    <li class="collapsibleListOpen" style="user-select: none;">
+                        <a href="@Url.Action("HTC","MISReports", new { Area="CareSoftReports"})"><img src="~/Content/icons/emrMenuIcons/image1.png" /> HTC Report</a>
+                    </li>
+                   </ul>
+                </li>
+</li>
             <li class="collapsibleListOpen" style="user-select: none;">
                 <img src="~/Content/icons/emrMenuIcons/investigation.png" /> Investigation
                 <ul class="collapsibleList" style="display: block;">
@@ -452,6 +466,7 @@
                     <img src="~/Content/icons/emrMenuIcons/MAR.png" /> MAR
                 </a>
             </li>
+            
             <li class="lastChild" style="user-select: none;">
                 <img src="~/Content/icons/emrMenuIcons/operation-note.png" /> Operational Notes
             </li>
@@ -492,6 +507,16 @@
             <li class="lastChild" style="user-select: none;">
                 <img src="~/Content/icons/emrMenuIcons/image1.png" /> Upload File
             </li>
+            @*<li class="lastChild" style="user-select: none;">
+                @{
+                    CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
+                    
+
+                }
+                <a href="@Url.Action("HTCService", "EMR", new { id = ViewBag.OpdNo})">
+                    <img src="~/Content/icons/emrMenuIcons/image1.png" /> HTC Service Summary
+                </a>
+            </li>*@
         </ul>
     </li>
     <li class="lastChild"></li>

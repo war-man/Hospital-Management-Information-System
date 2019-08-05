@@ -17,17 +17,11 @@ namespace CaresoftHMISDataAccess
         public int Id { get; set; }
         public System.DateTime DateAdded { get; set; }
         public int UserId { get; set; }
-        public string RegNo { get; set; }
         public Nullable<int> OPDNo { get; set; }
         public int BranchId { get; set; }
-        public string PatientName { get; set; }
-        public Nullable<decimal> Age { get; set; }
-        public string Gender { get; set; }
-        public string Mobile { get; set; }
-        public string MaritalStatus { get; set; }
         public string KeyPopulation { get; set; }
         public string EverTested { get; set; }
-        public string Retesting { get; set; }
+        public Nullable<int> Retesting { get; set; }
         public string SelfTest { get; set; }
         public string Disability { get; set; }
         public string Consent { get; set; }
@@ -43,5 +37,7 @@ namespace CaresoftHMISDataAccess
         public string AssessedForHIVRisk { get; set; }
         public string HTSProvider { get; set; }
         public string Remarks { get; set; }
+    
+        public virtual OpdRegister OpdRegister { get; set; }
     }
 }

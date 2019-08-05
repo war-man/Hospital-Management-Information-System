@@ -1345,5 +1345,33 @@ namespace Caresoft2._0.Controllers
             return File(Stream, "application/pdf", FileName);
 
         }
+        
+        public ActionResult HTCService(int? id)
+        {
+           
+            var data = new EMR_OPD_Data();
+            data.OpdRegister = db.OpdRegisters.Find(id);
+            data.Patient = data.OpdRegister.Patient;
+            ViewBag.OpdNo = id;
+            return View(data);
+
+        }
+       
+        [HttpPost]
+        public ActionResult SaveHTCServiceSummaryData(HTCServiceSummary data)
+        {
+            
+            data.UserId = (int)Session["UserId"];
+            data.DateAdded = DateTime.Now;
+            data.BranchId = (int)Session["UserId"];
+            db.HTCServiceSummaries.Add(data);
+
+            db.SaveChanges();
+
+            return RedirectToAction("HTCService");
+            
+
+        }
+        
     }
 }

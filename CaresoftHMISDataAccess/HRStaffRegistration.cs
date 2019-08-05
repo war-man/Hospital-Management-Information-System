@@ -29,5 +29,7 @@ namespace CaresoftHMISDataAccess
         public Nullable<System.DateTime> DateOfEmployment { get; set; }
         public string Salutation { get; set; }
         public Nullable<System.DateTime> RegDate { get; set; }
+        public string Password { get; set; }
+        public Nullable<System.DateTime> Timestamp { get; set; }
     }
 }

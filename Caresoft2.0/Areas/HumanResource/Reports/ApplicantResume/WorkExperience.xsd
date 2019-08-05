@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="WorkExperience" targetNamespace="http://tempuri.org/WorkExperience.xsd" xmlns:mstns="http://tempuri.org/WorkExperience.xsd" xmlns="http://tempuri.org/WorkExperience.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="WorkExperience" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="WorkExperience" msprop:Generator_UserDSName="WorkExperience">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Work" msprop:Generator_TableClassName="WorkDataTable" msprop:Generator_TableVarName="tableWork" msprop:Generator_TablePropName="Work" msprop:Generator_RowDeletingName="WorkRowDeleting" msprop:Generator_RowChangingName="WorkRowChanging" msprop:Generator_RowEvHandlerName="WorkRowChangeEventHandler" msprop:Generator_RowDeletedName="WorkRowDeleted" msprop:Generator_UserTableName="Work" msprop:Generator_RowChangedName="WorkRowChanged" msprop:Generator_RowEvArgName="WorkRowChangeEvent" msprop:Generator_RowClassName="WorkRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BeginDate" msprop:Generator_ColumnVarNameInTable="columnBeginDate" msprop:Generator_ColumnPropNameInRow="BeginDate" msprop:Generator_ColumnPropNameInTable="BeginDateColumn" msprop:Generator_UserColumnName="BeginDate" type="xs:string" minOccurs="0" />
+              <xs:element name="EndDate" msprop:Generator_ColumnVarNameInTable="columnEndDate" msprop:Generator_ColumnPropNameInRow="EndDate" msprop:Generator_ColumnPropNameInTable="EndDateColumn" msprop:Generator_UserColumnName="EndDate" type="xs:string" minOccurs="0" />
+              <xs:element name="Employer" msprop:Generator_ColumnVarNameInTable="columnEmployer" msprop:Generator_ColumnPropNameInRow="Employer" msprop:Generator_ColumnPropNameInTable="EmployerColumn" msprop:Generator_UserColumnName="Employer" type="xs:string" minOccurs="0" />
+              <xs:element name="Position" msprop:Generator_ColumnVarNameInTable="columnPosition" msprop:Generator_ColumnPropNameInRow="Position" msprop:Generator_ColumnPropNameInTable="PositionColumn" msprop:Generator_UserColumnName="Position" type="xs:string" minOccurs="0" />
+              <xs:element name="Salary" msprop:Generator_ColumnVarNameInTable="columnSalary" msprop:Generator_ColumnPropNameInRow="Salary" msprop:Generator_ColumnPropNameInTable="SalaryColumn" msprop:Generator_UserColumnName="Salary" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

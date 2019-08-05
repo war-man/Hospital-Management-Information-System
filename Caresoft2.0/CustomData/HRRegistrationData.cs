@@ -9,7 +9,7 @@ namespace Caresoft2._0.CustomData
     public class HRRegistrationData
     {
         public List<Salutation> Salutations { get; set; }
-        public HRApplicant Applicant { get; set; }
-        public HRStaffRegistration StaffRegistration { get; set; }
+        public HRApplicant Applicant                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     { get; set; }
+        public HRStaffRegistration StaffRegistration;
     }
 }

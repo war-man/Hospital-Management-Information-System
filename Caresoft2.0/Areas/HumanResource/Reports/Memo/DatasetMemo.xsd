@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DatasetMemo" targetNamespace="http://tempuri.org/DatasetMemo.xsd" xmlns:mstns="http://tempuri.org/DatasetMemo.xsd" xmlns="http://tempuri.org/DatasetMemo.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DatasetMemo" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DatasetMemo" msprop:Generator_UserDSName="DatasetMemo">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Memos" msprop:Generator_TableClassName="MemosDataTable" msprop:Generator_TableVarName="tableMemos" msprop:Generator_TablePropName="Memos" msprop:Generator_RowDeletingName="MemosRowDeleting" msprop:Generator_RowChangingName="MemosRowChanging" msprop:Generator_RowEvHandlerName="MemosRowChangeEventHandler" msprop:Generator_RowDeletedName="MemosRowDeleted" msprop:Generator_UserTableName="Memos" msprop:Generator_RowChangedName="MemosRowChanged" msprop:Generator_RowEvArgName="MemosRowChangeEvent" msprop:Generator_RowClassName="MemosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DateOfMemo" msprop:Generator_ColumnVarNameInTable="columnDateOfMemo" msprop:Generator_ColumnPropNameInRow="DateOfMemo" msprop:Generator_ColumnPropNameInTable="DateOfMemoColumn" msprop:Generator_UserColumnName="DateOfMemo" type="xs:string" minOccurs="0" />
+              <xs:element name="Code" msprop:Generator_ColumnVarNameInTable="columnCode" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_ColumnPropNameInTable="CodeColumn" msprop:Generator_UserColumnName="Code" type="xs:string" minOccurs="0" />
+              <xs:element name="Subject" msprop:Generator_ColumnVarNameInTable="columnSubject" msprop:Generator_ColumnPropNameInRow="Subject" msprop:Generator_ColumnPropNameInTable="SubjectColumn" msprop:Generator_UserColumnName="Subject" type="xs:string" minOccurs="0" />
+              <xs:element name="GradingOfMemo" msprop:Generator_ColumnVarNameInTable="columnGradingOfMemo" msprop:Generator_ColumnPropNameInRow="GradingOfMemo" msprop:Generator_ColumnPropNameInTable="GradingOfMemoColumn" msprop:Generator_UserColumnName="GradingOfMemo" type="xs:string" minOccurs="0" />
+              <xs:element name="MemoDetails" msdata:Caption="MemoDetas" msprop:Generator_ColumnVarNameInTable="columnMemoDetails" msprop:Generator_ColumnPropNameInRow="MemoDetails" msprop:Generator_ColumnPropNameInTable="MemoDetailsColumn" msprop:Generator_UserColumnName="MemoDetails" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

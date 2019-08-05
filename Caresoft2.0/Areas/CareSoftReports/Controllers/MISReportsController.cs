@@ -1,5 +1,7 @@
-﻿using Caresoft2._0.Areas.CareSoftReports.Reports.MISReports.DepartmentalOutpatientAttendance;
+﻿using Caresoft2._0.Areas.CareSoftReports.Reports.HTCServiceReport;
+using Caresoft2._0.Areas.CareSoftReports.Reports.MISReports.DepartmentalOutpatientAttendance;
 using Caresoft2._0.Areas.CareSoftReports.Reports.MISReports.DiagnosisSummary;
+using Caresoft2._0.Areas.CareSoftReports.Reports.MISReports.HTCServiceReport;
 using Caresoft2._0.Areas.CareSoftReports.Reports.MISReports.InsuranceReport;
 using Caresoft2._0.Areas.CareSoftReports.Reports.MISReports.PatientDiagnosisComments;
 using Caresoft2._0.Areas.CareSoftReports.Reports.MISReports.PatientList;
@@ -28,6 +30,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
         ProcurementDbContext db = new ProcurementDbContext();
         CaresoftHMISEntities db2 = new CaresoftHMISEntities();
         CareSoftLabsEntities db3 = new CareSoftLabsEntities();
+        private object renal;
 
         // GET: CareSoftReports/MISReports
         public ActionResult Index()
@@ -651,6 +654,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                                     var calcAge = FromDate.Year - pat.DOB.Value.Year;
 
                                     if (calcAge < 1)
+
                                     {
                                         model.MUnderOneYearR++;
                                     }
@@ -660,6 +664,18 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                                     }
                                     else if (calcAge > 4 && calcAge < 15)
                                     {
+
+                                        {
+                                            model.MUnderOneYearR++;
+                                        }
+                                    }
+                                    else if (calcAge > 0 && calcAge < 5)
+                                    {
+                                        model.MOneToFourYearsR++;
+                                    }
+                                    else if (calcAge > 4 && calcAge < 15)
+                                    {
+
                                         model.MFiveToFourteenYearsR++;
                                     }
                                     else if (calcAge > 14 && calcAge < 46)
@@ -693,11 +709,21 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                                         model.MOneToFourYearsN++;
                                     }
                                     else if (calcAge > 4 && calcAge < 15)
+
                                     {
                                         model.MFiveToFourteenYearsN++;
                                     }
                                     else if (calcAge > 14 && calcAge < 46)
                                     {
+
+                                        {
+                                            model.MFiveToFourteenYearsN++;
+                                        }
+                                    }
+                                    else if (calcAge > 14 && calcAge < 46)
+                                    {
+
+
                                         model.MFifteenToFortyFourYearsN++;
                                     }
                                     else if (calcAge > 44 && calcAge < 61)
@@ -734,6 +760,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                                         model.FFiveToFourteenYearsR++;
                                     }
                                     else if (calcAge > 14 && calcAge < 46)
+
                                     {
                                         model.FFifteenToFourtyYearsR++;
                                     }
@@ -743,6 +770,17 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                                     }
                                     else if (calcAge > 60)
                                     {
+                                        {
+                                            model.FFifteenToFourtyYearsR++;
+                                        }
+                                    }
+                                    else if (calcAge > 44 && calcAge < 61)
+                                    {
+                                        model.FFortyFiveToSixtyYearsR++;
+                                    }
+                                    else if (calcAge > 60)
+                                    {
+
                                         model.FOverSixtyYearsR++;
                                     }
                                 }
@@ -756,6 +794,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                                     var calcAge = FromDate.Year - pat.DOB.Value.Year;
 
                                     if (calcAge < 1)
+
                                     {
                                         model.FUnderOneYearN++;
                                     }
@@ -769,6 +808,21 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                                     }
                                     else if (calcAge > 14 && calcAge < 46)
                                     {
+                                        {
+                                            model.FUnderOneYearN++;
+                                        }
+                                    }
+                                    else if (calcAge > 0 && calcAge < 5)
+                                    {
+                                        model.FOneToFourYearsN++;
+                                    }
+                                    else if (calcAge > 4 && calcAge < 15)
+                                    {
+                                        model.FFiveToFourteenYearsN++;
+                                    }
+                                    else if (calcAge > 14 && calcAge < 46)
+                                    {
+
                                         model.FFifteenToFortyFourYearsN++;
                                     }
                                     else if (calcAge > 44 && calcAge < 61)
@@ -800,6 +854,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                                         model.MUnderOneYearR++;
                                     }
                                     else if (calcAge > 0 && calcAge < 5)
+
                                     {
                                         model.MOneToFourYearsR++;
                                     }
@@ -813,6 +868,22 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                                     }
                                     else if (calcAge > 44 && calcAge < 61)
                                     {
+
+                                        {
+                                            model.MOneToFourYearsR++;
+                                        }
+                                    }
+                                    else if (calcAge > 4 && calcAge < 15)
+                                    {
+                                        model.MFiveToFourteenYearsR++;
+                                    }
+                                    else if (calcAge > 14 && calcAge < 46)
+                                    {
+                                        model.MFifteenToFourtyYearsR++;
+                                    }
+                                    else if (calcAge > 44 && calcAge < 61)
+                                    {
+
                                         model.MFortyFiveToSixtyYearsR++;
                                     }
                                     else if (calcAge > 60)
@@ -834,6 +905,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                                         model.MUnderOneYearN++;
                                     }
                                     else if (calcAge > 0 && calcAge < 5)
+
                                     {
                                         model.MOneToFourYearsN++;
                                     }
@@ -847,6 +919,21 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                                     }
                                     else if (calcAge > 44 && calcAge < 61)
                                     {
+                                        {
+                                            model.MOneToFourYearsN++;
+                                        }
+                                    }
+                                    else if (calcAge > 4 && calcAge < 15)
+                                    {
+                                        model.MFiveToFourteenYearsN++;
+                                    }
+                                    else if (calcAge > 14 && calcAge < 46)
+                                    {
+                                        model.MFifteenToFortyFourYearsN++;
+                                    }
+                                    else if (calcAge > 44 && calcAge < 61)
+                                    {
+
                                         model.MFortyFiveToSixtyYearsN++;
                                     }
                                     else if (calcAge > 60)
@@ -866,30 +953,55 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
                                     var calcAge = FromDate.Year - pat.DOB.Value.Year;
 
-                                    if (calcAge < 1)
-                                    {
-                                        model.FUnderOneYearR++;
-                                    }
-                                    else if (calcAge > 0 && calcAge < 5)
-                                    {
-                                        model.FOneToFourYearsR++;
-                                    }
-                                    else if (calcAge > 4 && calcAge < 15)
-                                    {
-                                        model.FFiveToFourteenYearsR++;
-                                    }
-                                    else if (calcAge > 14 && calcAge < 46)
-                                    {
-                                        model.FFifteenToFourtyYearsR++;
-                                    }
-                                    else if (calcAge > 44 && calcAge < 61)
-                                    {
-                                        model.FFortyFiveToSixtyYearsR++;
-                                    }
-                                    else if (calcAge > 60)
-                                    {
-                                        model.FOverSixtyYearsR++;
-                                    }
+                                                    if (calcAge < 1)
+
+                                                    {
+                                                        model.FUnderOneYearR++;
+                                                    }
+                                                    else if (calcAge > 0 && calcAge < 5)
+                                                    {
+                                                        model.FOneToFourYearsR++;
+                                                    }
+                                                    else if (calcAge > 4 && calcAge < 15)
+                                                    {
+                                                        model.FFiveToFourteenYearsR++;
+                                                    }
+                                                    else if (calcAge > 14 && calcAge < 46)
+                                                    {
+                                                        model.FFifteenToFourtyYearsR++;
+                                                    }
+                                                    else if (calcAge > 44 && calcAge < 61)
+                                                    {
+                                                        model.FFortyFiveToSixtyYearsR++;
+                                                    }
+                                                    else if (calcAge > 60)
+                                                    {
+
+                                                        {
+                                                            model.FUnderOneYearR++;
+                                                        }
+                                                    }
+                                                    else if (calcAge > 0 && calcAge < 5)
+                                                    {
+                                                        model.FOneToFourYearsR++;
+                                                    }
+                                                    else if (calcAge > 4 && calcAge < 15)
+                                                    {
+                                                        model.FFiveToFourteenYearsR++;
+                                                    }
+                                                    else if (calcAge > 14 && calcAge < 46)
+                                                    {
+                                                        model.FFifteenToFourtyYearsR++;
+                                                    }
+                                                    else if (calcAge > 44 && calcAge < 61)
+                                                    {
+                                                        model.FFortyFiveToSixtyYearsR++;
+                                                    }
+                                                    else if (calcAge > 60)
+                                                    {
+
+                                                        model.FOverSixtyYearsR++;
+                                                    }
                                 }
                             }
                             else
@@ -900,30 +1012,55 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
                                     var calcAge = FromDate.Year - pat.DOB.Value.Year;
 
-                                    if (calcAge < 1)
-                                    {
-                                        model.FUnderOneYearN++;
-                                    }
-                                    else if (calcAge > 0 && calcAge < 5)
-                                    {
-                                        model.FOneToFourYearsN++;
-                                    }
-                                    else if (calcAge > 4 && calcAge < 15)
-                                    {
-                                        model.FFiveToFourteenYearsN++;
-                                    }
-                                    else if (calcAge > 14 && calcAge < 46)
-                                    {
-                                        model.FFifteenToFortyFourYearsN++;
-                                    }
-                                    else if (calcAge > 44 && calcAge < 61)
-                                    {
-                                        model.FFortyFiveToSixtyYearsN++;
-                                    }
-                                    else if (calcAge > 60)
-                                    {
-                                        model.FOverSixtyYearsN++;
-                                    }
+                                                    if (calcAge < 1)
+
+                                                    {
+                                                        model.FUnderOneYearN++;
+                                                    }
+                                                    else if (calcAge > 0 && calcAge < 5)
+                                                    {
+                                                        model.FOneToFourYearsN++;
+                                                    }
+                                                    else if (calcAge > 4 && calcAge < 15)
+                                                    {
+                                                        model.FFiveToFourteenYearsN++;
+                                                    }
+                                                    else if (calcAge > 14 && calcAge < 46)
+                                                    {
+                                                        model.FFifteenToFortyFourYearsN++;
+                                                    }
+                                                    else if (calcAge > 44 && calcAge < 61)
+                                                    {
+                                                        model.FFortyFiveToSixtyYearsN++;
+                                                    }
+                                                    else if (calcAge > 60)
+                                                    {
+
+                                                        {
+                                                            model.FUnderOneYearN++;
+                                                        }
+                                                    }
+                                                    else if (calcAge > 0 && calcAge < 5)
+                                                    {
+                                                        model.FOneToFourYearsN++;
+                                                    }
+                                                    else if (calcAge > 4 && calcAge < 15)
+                                                    {
+                                                        model.FFiveToFourteenYearsN++;
+                                                    }
+                                                    else if (calcAge > 14 && calcAge < 46)
+                                                    {
+                                                        model.FFifteenToFortyFourYearsN++;
+                                                    }
+                                                    else if (calcAge > 44 && calcAge < 61)
+                                                    {
+                                                        model.FFortyFiveToSixtyYearsN++;
+                                                    }
+                                                    else if (calcAge > 60)
+                                                    {
+
+                                                        model.FOverSixtyYearsN++;
+                                                    }
                                 }
                             }
                         }
@@ -1365,8 +1502,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             return dataSet;
         }
-    
-       
+
         public ActionResult TbReport()
         {
             var insuranceCompanies = db2.Companies.Where(p => p.CompanyType.CompanyTypeName.ToLower().Trim() == "insurance").ToList();
@@ -1407,10 +1543,11 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
                 return File(Stream, "application/pdf", FileName);
             }
-           
+
         }
 
-        public class TBDataViewModel{
+        public class TBDataViewModel
+        {
             public string CategoryName { get; set; }
             public int ChildrenLessThanFourteenYearsFemale { get; set; }
             public int ChildrenLessThanFourteenYearsMale { get; set; }
@@ -1424,10 +1561,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             var dataSet = new DataSetTbReport();
             var lstTBViewModel = new List<TBDataViewModel>();
 
-           var data = db2.TBScreeningResponses
-                .Where(p => DbFunctions.TruncateTime(p.DateAdded)>= FromDate && DbFunctions.TruncateTime(p.DateAdded) <= ToDate)
-                .DistinctBy(x=>x.OPDNo)
-                .ToList();
+            var data = db2.TBScreeningResponses
+                 .Where(p => DbFunctions.TruncateTime(p.DateAdded) >= FromDate && DbFunctions.TruncateTime(p.DateAdded) <= ToDate)
+                 .DistinctBy(x => x.OPDNo)
+                 .ToList();
 
 
             TBDataViewModel tBCasesDetected = new TBDataViewModel()
@@ -1437,10 +1574,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             foreach (var item in data)
             {
-                if(item.OpdRegister.Patient.Gender == "M")
+                if (item.OpdRegister.Patient.Gender == "M")
                 {
                     var age = DateTime.Now.Year - item.OpdRegister.Patient.DOB.Value.Year;
-                    if(age <= 14)
+                    if (age <= 14)
                     {
                         tBCasesDetected.ChildrenLessThanFourteenYearsMale++;
                     }
@@ -1451,17 +1588,17 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
                 }
                 else
                 {
-                        var age = DateTime.Now.Year - item.OpdRegister.Patient.DOB.Value.Year;
-                        if (age <= 14)
-                        {
-                            tBCasesDetected.ChildrenLessThanFourteenYearsFemale++;
-                        }
-                        else
-                        {
-                            tBCasesDetected.AdultGreaterThanFourteenYearsFemale++;
-                        }
+                    var age = DateTime.Now.Year - item.OpdRegister.Patient.DOB.Value.Year;
+                    if (age <= 14)
+                    {
+                        tBCasesDetected.ChildrenLessThanFourteenYearsFemale++;
+                    }
+                    else
+                    {
+                        tBCasesDetected.AdultGreaterThanFourteenYearsFemale++;
+                    }
                 }
-               
+
 
             }
 
@@ -1515,10 +1652,10 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
 
             Stream Stream = Rd.ExportToStream(
                 CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                Stream.Seek(0, SeekOrigin.Begin);
+            Stream.Seek(0, SeekOrigin.Begin);
             string FileName = "Services And Prices " + DateTime.Now.ToString("dd-MM-yyyy") + " .pdf";
 
-            return File(Stream, "application/pdf", FileName); 
+            return File(Stream, "application/pdf", FileName);
         }
 
         class ServicesAndPricesViewModel
@@ -1534,19 +1671,19 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             List<ServicesAndPricesViewModel> lstServicesAndPrices = new List<ServicesAndPricesViewModel>();
             var ServicesData = new List<Service>();
 
-            if(department==0 && serviceGroup==0)
+            if (department == 0 && serviceGroup == 0)
             {
                 ServicesData = db2.Services.OrderBy(p => p.DepartmentId).ToList();
             }
-            else if(department > 0 && serviceGroup >0)
+            else if (department > 0 && serviceGroup > 0)
             {
-                ServicesData = db2.Services.Where(p=>p.DepartmentId == department && p.ServiceGroupId ==serviceGroup).OrderBy(p => p.DepartmentId).ToList();
+                ServicesData = db2.Services.Where(p => p.DepartmentId == department && p.ServiceGroupId == serviceGroup).OrderBy(p => p.DepartmentId).ToList();
             }
-            else if(department>0 && serviceGroup == 0)
+            else if (department > 0 && serviceGroup == 0)
             {
                 ServicesData = db2.Services.Where(p => p.DepartmentId == department).OrderBy(p => p.DepartmentId).ToList();
             }
-            else if(department==0 && serviceGroup > 0)
+            else if (department == 0 && serviceGroup > 0)
             {
                 ServicesData = db2.Services.Where(p => p.ServiceGroupId == serviceGroup).OrderBy(p => p.DepartmentId).ToList();
             }
@@ -1568,7 +1705,7 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             foreach (var item in lstServicesAndPrices)
             {
                 dataSet.ServiceAndPrices.AddServiceAndPricesRow(
-                    
+
                     item.ServiceGroup,
                     item.Department,
                     item.ServiceName,
@@ -1578,33 +1715,343 @@ namespace Caresoft2._0.Areas.CareSoftReports.Controllers
             return dataSet;
         }
 
-        #region Monthly Revenue Report
-
-        public ActionResult MonthlyRevenue()
+        #region Renal Report
+        public ActionResult RenalReport()
         {
             return View();
         }
-
-        public class MonthlyReveneuModel
+        public class RenalViewModel
         {
-            public string NameOfDepartment { get; set; } 
-            public string Months { get; set; }
-            public int Year { get; set; }
+            public string FirstVisit { get; set; }
+            public string Revisit { get; set; }
+            public string DialysisDoneCount { get; set; }
+
+        }
+        public ActionResult GenerateRenalReport(DateTime FromDate, DateTime ToDate)
+
+        {
+            DatasetRenal datasetRenal = new DatasetRenal();
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Areas/CareSoftReports/Reports/MISReports/RenalReport/RReport.rpt")));
+
+            rd.SetDataSource(Renal);
+            rd.Subreports["RptReportHeader.rpt"].SetDataSource(CrystalReports.HeaderAndFooterForReports.GetAllReportHeader());
+
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+
+            Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            stream.Seek(0, SeekOrigin.Begin);
+            string fileName = " Renal Report" + DateTime.Today + ".pdf";
+            return File(stream, "application/pdf", fileName);
+        }
+        private object Renal
+        {
+            get
+            {
+                DatasetRenal datasetRenal = new DatasetRenal();
+
+                var FirstVisit = db2.RenalPatientProfiles.Count(e => e.Id > 0);
+                var Revisit = db2.OpdRegisters.Count(e => e.Department == "Renal Procedure" && e.Patient.OpdRegisters.Count > 1);
+                var DialysisDoneCount = db2.RenalDialysisOrders.Count(e => e.Id > 0);
+
+                //datasetRenal._DatasetRenal.(FirstVisit,
+                //                                              Revisit,
+                //                                              DialysisDoneCount
+                //                                              );
+                return datasetRenal;
+            }
+
         }
 
+        #endregion
 
+        #region TB Screening Report
 
-        //public ActionResult GetMonthlyRevenueReport(int Year, string Months)
-        //{
+        public ActionResult TBScreening()
+        {
+            return View();
+        }
+        public class TBScreeningViewModel
+        {
+            public string TotalScreened { get; set; }
+            public string PatientName { get; set; }
+            public string OPDNo { get; set; }
+            public string TestResults { get; set; }
+            public string DateTested { get; set; }
 
+        }
+        public ActionResult GenerateTBScreeningReport(DateTime FromDate, DateTime ToDate)
 
-        //    var Jan = db2.BillServices.Where(p => p.DepartmentId == item.Id && p.DateAdded.Month == 1
-        //                  && p.DateAdded.Year == Year && p.OpdRegister.Tariff.Company.CompanyName == Insurance).Sum(p => (p.Award * p.Quatity));
-        //}
+        {
+            TBS tBS = new TBS();
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Areas/CareSoftReports/Reports/MISReports/TBScreeningReport/TBScreenReport.rpt")));
 
+            rd.SetDataSource(TB);
+            rd.Subreports["RptReportHeader.rpt"].SetDataSource(CrystalReports.HeaderAndFooterForReports.GetAllReportHeader());
 
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
 
+            Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            stream.Seek(0, SeekOrigin.Begin);
+            string fileName = "TB Screening Report" + DateTime.Today + ".pdf";
+            return File(stream, "application/pdf", fileName);
+        }
+        private object TB
+        {
+            get
+            {
+                TBS tBS = new TBS();
+
+                var AllPatientsScreened = db2.TBScreeningResponses.Count(e => e.Id > 0);
+                var ListPatientsScreened = db2.OutsideTests.Where(e => e.TestName == "SPITUM FOR GENE EXPERT").ToList();
+
+                foreach (var pat in ListPatientsScreened)
+                {
+
+                    //    tBS.TBScreening.AddTBScreeningRow(AllPatientsScreened.ToString(),
+                    //                                       pat.OpdRegister.Patient.FName + "" + pat.OpdRegister.Patient.LName,
+                    //                                       pat.OPDId.ToString(),
+                    //                                       pat.TestResults.ToString(),
+                    //                                       pat.CreatedDate.ToString()
+                    //                                       );
+                }
+                return tBS;
+            }
+        }
+
+            #endregion
+            #region HTC Service Summary Report
+             public ActionResult HTC()
+             {
+                 return View();
+            }
+
+        public ActionResult GenerateHTCServiceSummaryReport(DateTime FromDate, DateTime ToDate)
+        {
+            var fromDate = FromDate;
+            var toDate = ToDate.Date;
+
+            DatasetHT datasetHT = new DatasetHT();
+            var One = 0;
+            var Two = 0;
+            var Three = 0;
+            var Four = 0;
+            var Five = 0;
+            var Six = 0;
+            var Seven = 0;
+            var Eight = 0;
+            var Nine = 0;
+            var Ten = 0;
+            var HundredThree = 0;
+            var Eleven = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.EverTested == "Y" && (e.DateAdded.Year-e.OpdRegister.Patient.DOB.Value.Year)<15 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var Twelve = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.EverTested == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) < 15 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var Thirteen = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.EverTested == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 15 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 24 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var Fourteen = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.EverTested == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 15 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 24 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var Fifteen = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.EverTested == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 24 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 49 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var Sixteen = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.EverTested == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 24 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 49 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var Seventeen = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.EverTested == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 50);
+            var Eighteen = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.EverTested == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 50);
+            var Nineteen = Eleven + Thirteen + Fifteen + Seventeen;
+            var Twenty = Twelve + Fourteen + Sixteen + Eighteen;
+            var HundredFour = Nineteen + Twenty;
+            var TwentyOne = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) < 15);
+            var TwentyTwo = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) < 15);
+            var TwentyThree = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 15 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 24 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var TwentyFour = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 15 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 24 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var TwentyFive = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 24 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 49 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var TwentySix = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 24 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 49 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var TwentySeven = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 50 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var TwentyEight = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 50 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var TwentyNine = TwentyOne + TwentyThree + TwentyFive + TwentySeven;
+            var Thirty = TwentyTwo + TwentyFour + TwentySix + TwentyEight;
+            var HundredFive = TwentyNine + Thirty;
+            var ThirtyOne = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResultGiven == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) < 15 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var ThirtyTwo = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResultGiven == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) < 15 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var ThirtyThree = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResultGiven == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 15 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 24 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var ThirtyFour = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResultGiven == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 15 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 24 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var ThirtyFive = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResultGiven == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 24 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 49 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var ThirtySix = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResultGiven == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 24 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 49 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var ThirtySeven = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResultGiven == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 50 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var ThirtyEight = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResultGiven == "Y" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 50 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var ThirtyNine = ThirtyOne + ThirtyThree + ThirtyFive + ThirtySeven;
+            var Fourty = ThirtyTwo + ThirtyFour + ThirtySix + ThirtyEight;
+            var HundredSix = ThirtyNine + Fourty;
+            var FourtyOne = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResultGiven == "Y" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) < 15 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FourtyTwo = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResultGiven == "Y" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) < 15 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FourtyThree = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResultGiven == "Y" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 15 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 24 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FourtyFour = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResultGiven == "Y" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 15 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 24 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FourtyFive = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResultGiven == "Y" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 24 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 49 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FourtySix = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResultGiven == "Y" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 24 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 49 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FourtySeven = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResultGiven == "Y" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 50 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FourtyEight = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResultGiven == "Y" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 50 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FourtyNine = FourtyOne + FourtyThree + FourtyFive + FourtySeven;
+            var Fifty = FourtyTwo + FourtyFour + FourtySix + FourtyEight;
+            var HundredSeven = FourtyNine + Fifty;
+            var FiftyOne = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResult == "P" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) < 15 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FiftyTwo = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResult == "P" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) < 15 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FiftyThree = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResult == "P" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 15 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 24 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FiftyFour = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResult == "P" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 15 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 24 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FiftyFive = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResult == "P" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 24 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 49 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FiftySix = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResult == "P" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 24 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 49 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FiftySeven = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResult == "P" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 50 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FiftyEight = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResult == "P" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 50 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var FiftyNine = FiftyOne + FiftyThree + FiftyFive + FiftySeven;
+            var Sixty = FiftyTwo + FiftyFour + FiftySix + FiftyEight;
+            var HundredEight = FiftyNine + Sixty;
+            var SixtyOne = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResult == "P" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) < 15 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var SixtyTwo = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResult == "P" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) < 15 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var SixtyThree = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResult == "P" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 15 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 24 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var SixtyFour = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResult == "P" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 15 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 24 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var SixtyFive = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResult == "P" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 24 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 49 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var SixtySix = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResult == "P" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 24 && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) <= 49 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var SixtySeven = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "M" && e.FinalResult == "P" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 50 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var SixtyEight = db2.HTCServiceSummaries.Count(e => e.OpdRegister.Patient.Gender == "F" && e.FinalResult == "P" && e.EverTested == "N" && (e.DateAdded.Year - e.OpdRegister.Patient.DOB.Value.Year) >= 50 && e.DateAdded >= FromDate && e.DateAdded <= ToDate);
+            var SixtyNine = SixtyOne + SixtyThree + SixtyFive + SixtySeven;
+            var Seventy = SixtyTwo + SixtyFour + SixtySix + SixtyEight;
+            var HundredNine = SixtyNine + Seventy;
+            var SeventyOne = 0;
+            var SeventyTwo = 0;
+            var SeventyThree = 0;
+            var SeventyFour = 0;
+            var SeventyFive = 0;
+            var SeventySix = 0;
+            var SeventySeven = 0;
+            var SeventyEight = 0;
+            var SeventyNine = 0;
+            var Eighty = 0;
+            var HundredTen = 0;
+            var EightyOne = 0;
+            var EightyTwo = 0;
+            var EightyThree = 0;
+            var EightyFour = 0;
+            var EightyFive = 0;
+            var EightySix = 0;
+            var EightySeven = 0;
+            var EightyEight = 0;
+            var EightyNine = 0;
+            var Ninety = 0;
+            var HundredEleven = 0;
+            var NinetyOne = 0;
+            var NinetyTwo = 0;
+            var NinetyThree = 0;
+            var NinetyFour = 0;
+            var NinetyFive = 0;
+            var NinetySix = 0;
+            var NinetySeven = 0;
+            var NinetyEight = 0;
+            var NinetyNine = 0;
+            var Hundred = 0;
+            var HundredTwelve = 0;
+            var HundredOne = 0;
+            var HundredTwo = db2.HTCServiceSummaries.Count(e => e.CoupleDiscordant == "Y");
+            var HundredThirteen = db2.HTCServiceSummaries.Count(e => e.HIVTest1 == "N");
+            var HundredFourteen = db2.HTCServiceSummaries.Count(e => e.HIVTest2 == "N");
+            var HundredFifteen = 0;
+            var HundredSixteen = db2.HTCServiceSummaries.Count(e => e.HIVTest1 == "P");
+            var HundredSeventeen = db2.HTCServiceSummaries.Count(e => e.HIVTest2 == "P");
+            var HundredEighteen = 0;
+            var HundredNineteen = db2.HTCServiceSummaries.Count(e => e.HIVTest1 == "I");
+            var HundredTwenty = db2.HTCServiceSummaries.Count(e => e.HIVTest2 == "I");
+            var Hundred21 = 0;
+            var Hundred22 = 0;
+            var Hundred23 = 0;
+            var Hundred24 = 0;
+            var Hundred25 = HundredThirteen + HundredSixteen + HundredNineteen + Hundred21;
+            var Hundred26 = HundredFourteen + HundredSeventeen + HundredTwenty + Hundred23;
+            var Hundred27 = 0;
+
+            datasetHT.HTC.AddHTCRow(One, Two,
+                Three, Four,
+                Five, Six,
+                Seven, Eight,
+                Nine, Ten,
+                Eleven,
+                Twelve, Thirteen,
+                Fourteen, Fifteen,
+                Sixteen, Seventeen,
+                Eighteen, 
+                Twenty, TwentyOne,
+                TwentyTwo, TwentyThree,
+                TwentyFour, TwentyFive,
+                TwentySix, TwentySeven,
+                TwentyEight, TwentyNine,
+                Thirty, ThirtyOne,
+                ThirtyTwo, ThirtyThree,
+                ThirtyFour, ThirtyFive,
+                ThirtySix, ThirtySeven,
+                ThirtyEight, ThirtyNine,
+                Fourty, FourtyOne,
+                FourtyTwo, FourtyThree,
+                FourtyFour, FourtyFive,
+                FourtySix, FourtySeven,
+                FourtyEight, FourtyNine,
+                Fifty, FiftyOne,
+                FiftyTwo, FiftyThree,
+                FiftyFour, FiftyFive,
+                FiftySix, FiftySeven,
+                FiftyEight, FiftyNine,
+                Sixty, SixtyOne,
+                SixtyTwo, SixtyThree,
+                SixtyFour, SixtyFive,
+                SixtySix, SixtySeven,
+                SixtyEight, SixtyNine,
+                Seventy, SeventyOne,
+                SeventyTwo, SeventyThree,
+                SeventyFour, SeventyFive,
+                SeventySix, SeventySeven,
+                SeventyEight, SeventyNine,
+                Eighty, EightyOne,
+                EightyTwo, EightyThree,
+                EightyFour, EightyFive,
+                EightySix, EightySeven,
+                EightyEight, EightyNine,
+                Ninety, NinetyOne,
+                NinetyTwo, NinetyThree,
+                NinetyFour, NinetyFive,
+                NinetySix, NinetySeven,
+                NinetyEight, NinetyNine,
+                Hundred, HundredOne,
+                HundredTwo, HundredThree,
+                HundredFive, HundredSix,
+                HundredSeven, HundredEight,
+                HundredNine, HundredTen,
+                HundredEleven, HundredTwelve,
+                HundredThirteen, HundredFourteen,
+                HundredFifteen, HundredSixteen,
+                HundredSeventeen, HundredEighteen,
+                HundredNineteen, HundredTwenty,
+                Hundred21, Hundred22,
+                Hundred23, Hundred24,
+                Hundred25, Hundred26,
+                Hundred27,Nineteen);
+         
+        ReportDocument Rd = new ReportDocument();
+            Rd.Load(Path.Combine(Server.MapPath("~/Areas/CareSoftReports/Reports/HTCServiceReport/HTCReport.rpt")));
+            Rd.SetDataSource(datasetHT);
+            Rd.Subreports["RptReportHeader.rpt"].SetDataSource(HeaderAndFooterForReports.GetAllReportHeader());
+
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            
+            Stream Stream = Rd.ExportToStream(
+                CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            Stream.Seek(0, SeekOrigin.Begin);
+            string FileName = "HTC Service Summary " + DateTime.Now.ToString("dd-MM-yyyy") + " .pdf";
+
+            return File(Stream, "application/pdf", FileName);
+        }
+  
 
         #endregion
     }
-}
+    
+
+
+    }
+

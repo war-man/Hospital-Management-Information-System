@@ -216,12 +216,28 @@
     <Compile Include="Areas\BloodBank\Controllers\HomeController.cs" />
     <Compile Include="Areas\CareSoftReports\CareSoftReportsAreaRegistration.cs" />
     <Compile Include="Areas\CareSoftReports\Controllers\AccountPerDepartmentController.cs" />
+    <Compile Include="Areas\CareSoftReports\Controllers\DatasetRenal.cs" />
     <Compile Include="Areas\CareSoftReports\Controllers\DayAmount.cs" />
     <Compile Include="Areas\CareSoftReports\Controllers\HomeReportsController.cs" />
     <Compile Include="Areas\CareSoftReports\Controllers\MaternalServices.cs" />
     <Compile Include="Areas\CareSoftReports\Controllers\MISReportsController.cs" />
+    <Compile Include="Areas\CareSoftReports\Controllers\TBS.cs" />
     <Compile Include="Areas\CareSoftReports\DateTimeExtensions.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\DataSetHospitalDetails.Designer.cs" />
+    <Compile Include="Areas\CareSoftReports\Reports\HTCServiceReport\DatasetHT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatasetHT.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\HTCServiceReport\HTCReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\CareSoftReports\Reports\HTCServiceReport\HTCReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HTCReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Areas\CareSoftReports\Reports\MISReports\DepartmentalOutpatientAttendance\DataSetDepartmentalOuptaptient.Designer.cs" />
     <Compile Include="Areas\CareSoftReports\Reports\MISReports\DepartmentalOutpatientAttendance\RptDepartmentalOutpatientAttendance.cs">
       <SubType>Component</SubType>
@@ -701,6 +717,67 @@
     <Compile Include="Areas\HumanResource\Controllers\HomeController.cs" />
     <Compile Include="Areas\HumanResource\Controllers\HRReportsController.cs" />
     <Compile Include="Areas\HumanResource\HumanResourceAreaRegistration.cs" />
+    <Compile Include="Areas\HumanResource\Reports\ApplicantResume\BasicInformation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BasicInformation.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\ApplicantResume\BasicInforReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BasicInforReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\ApplicantResume\BioData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BioData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\ApplicantResume\BioDataReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BioDataReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\ApplicantResume\MainReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\ApplicantResume\Qualification.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Qualification.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\ApplicantResume\QualificationReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QualificationReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\ApplicantResume\Referees.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Referees.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\ApplicantResume\RefereesReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RefereesReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\ApplicantResume\WorkExperience.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkExperience.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\ApplicantResume\WorkExperienceReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkExperienceReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Areas\HumanResource\Reports\ApplicantsList\ApplicantDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -710,6 +787,28 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ApplicantReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\EmployeeHistory\DatasetEmployee.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatasetEmployee.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\EmployeeHistory\EmployeeReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\Memo\DatasetMemo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatasetMemo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HumanResource\Reports\Memo\MemoReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MemoReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Areas\HumanResource\Reports\StaffList\StaffDataSet.Designer.cs">
@@ -5094,6 +5193,17 @@
     <Content Include="Areas\CareSoftReports\Reports\MISReports\DepartmentalOutpatientAttendance\DataSetDepartmentalOuptaptient.xsc">
       <DependentUpon>DataSetDepartmentalOuptaptient.xsd</DependentUpon>
     </Content>
+    <Content Include="Areas\CareSoftReports\Reports\HTCServiceReport\DatasetHT.xsc">
+      <DependentUpon>DatasetHT.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\CareSoftReports\Reports\HTCServiceReport\DatasetHT.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatasetHT.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\CareSoftReports\Reports\HTCServiceReport\DatasetHT.xss">
+      <DependentUpon>DatasetHT.xsd</DependentUpon>
+    </Content>
     <None Include="Areas\CareSoftReports\Reports\MISReports\DepartmentalOutpatientAttendance\DataSetDepartmentalOuptaptient.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DataSetDepartmentalOuptaptient1.Designer.cs</LastGenOutput>
@@ -5969,6 +6079,62 @@
     <Content Include="Areas\HumanResource\Reports\ApplicantsList\ApplicantDataSet.xsc">
       <DependentUpon>ApplicantDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="Areas\HumanResource\Reports\ApplicantResume\BasicInformation.xsc">
+      <DependentUpon>BasicInformation.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\CareSoftReports\Views\MISReports\HTC.cshtml" />
+    <None Include="Areas\HumanResource\Reports\ApplicantResume\BasicInformation.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BasicInformation.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\HumanResource\Reports\ApplicantResume\BasicInformation.xss">
+      <DependentUpon>BasicInformation.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\HumanResource\Reports\ApplicantResume\BioData.xsc">
+      <DependentUpon>BioData.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\HumanResource\Reports\ApplicantResume\BioData.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BioData.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\HumanResource\Reports\ApplicantResume\BioData.xss">
+      <DependentUpon>BioData.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\HumanResource\Reports\ApplicantResume\Qualification.xsc">
+      <DependentUpon>Qualification.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\HumanResource\Reports\ApplicantResume\Qualification.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Qualification.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\HumanResource\Reports\ApplicantResume\Qualification.xss">
+      <DependentUpon>Qualification.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\HumanResource\Reports\ApplicantResume\WorkExperience.xsc">
+      <DependentUpon>WorkExperience.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\HumanResource\Reports\ApplicantResume\Referees.xsc">
+      <DependentUpon>Referees.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\HumanResource\Reports\ApplicantResume\Referees.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Referees.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\HumanResource\Reports\ApplicantResume\Referees.xss">
+      <DependentUpon>Referees.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\HumanResource\Reports\ApplicantResume\WorkExperience.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WorkExperience.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\HumanResource\Reports\ApplicantResume\WorkExperience.xss">
+      <DependentUpon>WorkExperience.xsd</DependentUpon>
+    </Content>
     <None Include="Areas\HumanResource\Reports\ApplicantsList\ApplicantDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -5982,6 +6148,28 @@
     <Content Include="Areas\HumanResource\Reports\StaffList\StaffDataSet.xsc">
       <DependentUpon>StaffDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="Areas\HumanResource\Reports\Memo\DatasetMemo.xsc">
+      <DependentUpon>DatasetMemo.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\HumanResource\Reports\EmployeeHistory\DatasetEmployee.xsc">
+      <DependentUpon>DatasetEmployee.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\HumanResource\Reports\EmployeeHistory\DatasetEmployee.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatasetEmployee.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\HumanResource\Reports\EmployeeHistory\DatasetEmployee.xss">
+      <DependentUpon>DatasetEmployee.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\HumanResource\Reports\Memo\DatasetMemo.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatasetMemo.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\HumanResource\Reports\Memo\DatasetMemo.xss">
+      <DependentUpon>DatasetMemo.xsd</DependentUpon>
+    </Content>
     <None Include="Areas\HumanResource\Reports\StaffList\StaffDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -5990,6 +6178,10 @@
     <Content Include="Areas\HumanResource\Reports\StaffList\StaffDataSet.xss">
       <DependentUpon>StaffDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="Areas\HumanResource\Views\HRReports\Resume.cshtml" />
+    <Content Include="Areas\HumanResource\Views\HRReports\Memo.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\StaffList.cshtml" />
+    <Content Include="Areas\HumanResource\Views\Home\StaffRegistrationGrid.cshtml" />
     <None Include="Areas\PharmacyModule\Reports\BillWiseDailyReportSale\BillWiseDailyDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>BillWiseDailyDataSet1.Designer.cs</LastGenOutput>
@@ -7298,6 +7490,8 @@
     <Content Include="Views\Branches\Details.cshtml" />
     <Content Include="Views\Branches\Edit.cshtml" />
     <Content Include="Views\Branches\Index.cshtml" />
+    <Content Include="Views\EMR\HTCService.cshtml" />
+    <Content Include="Views\EMR\HTCGrid.cshtml" />
     <None Include="Views\Reports\ReceiptReport\ReceiptsDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ReceiptsDataSet1.Designer.cs</LastGenOutput>
@@ -7443,6 +7637,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Areas\CareSoftReports\Reports\HTCServiceReport\HTCReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>HTCReport1.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Areas\CareSoftReports\Reports\MISReports\DepartmentalOutpatientAttendance\RptDepartmentalOutpatientAttendance.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptDepartmentalOutpatientAttendance1.cs</LastGenOutput>
@@ -7671,9 +7869,41 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptUserRolesAndRights1.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Areas\HumanResource\Reports\ApplicantResume\BasicInforReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BasicInforReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\HumanResource\Reports\ApplicantResume\BioDataReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BioDataReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\HumanResource\Reports\ApplicantResume\MainReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MainReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\HumanResource\Reports\ApplicantResume\QualificationReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>QualificationReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\HumanResource\Reports\ApplicantResume\RefereesReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RefereesReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\HumanResource\Reports\ApplicantResume\WorkExperienceReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>WorkExperienceReport.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Areas\HumanResource\Reports\ApplicantsList\ApplicantReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ApplicantReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\HumanResource\Reports\EmployeeHistory\EmployeeReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>EmployeeReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\HumanResource\Reports\Memo\MemoReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MemoReport.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Areas\HumanResource\Reports\StaffList\StaffReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

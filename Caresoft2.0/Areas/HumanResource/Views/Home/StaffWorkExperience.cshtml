@@ -2,7 +2,7 @@
 @model IEnumerable<CaresoftHMISDataAccess.HRStaffWorkExperience>
 @{
 
-    ViewBag.Title = "Work Experience";
+    ViewBag.Title = "Staff Resume Database";
     ViewBag.showTopMenu = true;
     ViewBag.WideView = true;
     Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
@@ -18,7 +18,7 @@
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading">
-                Work Experience
+                Staff Resume Database
             </div>
             <div class="panel-body">
 
@@ -78,7 +78,9 @@
 
                     </li>
                 </ul>
+                
                 <br />
+                <label><strong><u>Work Experience</u></strong></label>
                 <div class="col-sm-12">
                     @using (Html.BeginForm("SaveStaffWorkExperienceData", "Home", new { Area = "HumanResource" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {

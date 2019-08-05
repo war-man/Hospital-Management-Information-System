@@ -2,6 +2,7 @@
 @{ViewBag.ShowTopMenu = true;
     CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
 }
+
 @{
     var departments = (List<CaresoftHMISDataAccess.Department>)ViewBag.Departments;
 }
@@ -16,7 +17,7 @@
                 <div class="col-sm-12">
                     <div class="tab-content" id="reg-form-holder">
                         <div id="personal-details" class="tab-pane fade in active">
-                            <form name="" action="" method="post" id="staff_reg_form">
+                            <form id="staff_reg_form" method="post" action="@Url.Action("SaveStaff","Home",new {Area="HumanResource"})">
                                 <fieldset class="">
                                     <legend>Personal Details</legend>
                                     <table class="table-form">

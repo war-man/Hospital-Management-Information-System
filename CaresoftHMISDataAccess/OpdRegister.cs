@@ -36,6 +36,7 @@ namespace CaresoftHMISDataAccess
             this.Fibromyalgias = new HashSet<Fibromyalgia>();
             this.FitnessCertificates = new HashSet<FitnessCertificate>();
             this.GlucomaPerfomaEntries = new HashSet<GlucomaPerfomaEntry>();
+            this.HTCServiceSummaries = new HashSet<HTCServiceSummary>();
             this.Hypermobilities = new HashSet<Hypermobility>();
             this.ImmunizationAdmins = new HashSet<ImmunizationAdmin>();
             this.InformedConsents = new HashSet<InformedConsent>();
@@ -177,6 +178,8 @@ namespace CaresoftHMISDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GlucomaPerfomaEntry> GlucomaPerfomaEntries { get; set; }
         public virtual HSBed HSBed { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HTCServiceSummary> HTCServiceSummaries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hypermobility> Hypermobilities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

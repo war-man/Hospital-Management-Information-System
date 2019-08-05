@@ -1,0 +1,123 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HTCServiceSummary>
+   
+
+<table class="table table-data table-condensed">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.KeyPopulation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Retesting)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SelfTest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disability)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Consent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientTestedAs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Strategy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HIVTest1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HIVTest2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinalResult)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinalResultGiven)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CoupleDiscordant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TBScreening)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LinkedToCare)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssessedForHIVRisk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HTSProvider)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+
+<tbody class="bg-white">
+             @foreach (var item in Model.OrderByDescending(e => e.Id))
+             {
+
+                 <tr>
+
+                     <td>
+                         @Html.DisplayFor(modelItem => item.KeyPopulation)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.Retesting)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.SelfTest)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.Disability)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.Consent)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.ClientTestedAs)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.Strategy)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.HIVTest1)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.HIVTest2)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.FinalResult)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.FinalResultGiven)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.CoupleDiscordant)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.TBScreening)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.LinkedToCare)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.AssessedForHIVRisk)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.HTSProvider)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.Remarks)
+                     </td>
+
+                 </tr>
+             }
+    </table>
+
+

@@ -2338,25 +2338,195 @@ namespace Caresoft2._0.Areas.HumanResource.Controllers
         public ActionResult StaffRegistration()
         {
             ViewBag.Departments = db.Departments.ToList();
-            ViewBag.HRStaffRegistration = db.HRStaffRegistrations.ToList();
-            var data = db.HRStaffRegistrations.ToList();
 
-            return PartialView(data);
+            ViewBag.Title = "Staff Registration";
+            HRRegistrationData registrationData = new HRRegistrationData();
+
+            registrationData.Salutations = db.Salutations.ToList();
+
+            return View("StaffRegistration", registrationData);
         }
-        [HttpPost]
-        public ActionResult SaveStaffRegDataData(HRStaffRegistration data)
+        public ActionResult EditStaff(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("StaffList");
+            }
 
-            data.UserId = (int)Session["UserId"];
-            data.DateAdded = DateTime.Now;
-            data.BranchId =(int)Session["UserBranchId"];
 
+            HRRegistrationData registrationData = new HRRegistrationData();
+            registrationData.Salutations = db.Salutations.ToList();
 
-            db.HRStaffRegistrations.Add(data);
+            if (db.HRStaffRegistrations.Find(id) == null)
+            {
+                return RedirectToAction("StaffList");
+            }
+            registrationData.StaffRegistration = db.HRStaffRegistrations.Find(id);
+
+            return View("EditStaffRegistration", registrationData);
+        }
+
+        public class SearchStaffListData
+        {
+            public String Searchtype { get; set; }
+            public String Department { get; set; }
+            public DateTime StartDate { get; set; }
+            public DateTime EndDate { get; set; }
+            public string SearchText { get; set; }
+
+        }
+
+        [HttpPost]
+        public ActionResult StaffList(SearchStaffListData data)
+        {
+            var res = db.HRStaffRegistrations.Take(20).ToList()
+                .Take(20).ToList();
+
+            if (data.Searchtype != null && data.Searchtype.ToLower().Equals("app"))
+            {
+                res = db.HRStaffRegistrations.Where(e => e.StaffId.Contains(data.SearchText)).Take(20).ToList();
+            }
+            else
+            {
+                res = db.HRStaffRegistrations.Where(e => (e.StaffId.Contains(data.SearchText) || e.FirstName.Contains(data.SearchText)
+                           || e.Surname.Contains(data.SearchText) || e.OtherNames.Contains(data.SearchText) || e.Position == data.SearchText ||
+                           e.Email.Contains(data.SearchText))).Take(20).ToList();
+
+            }
+
+            if (data.SearchText == null || data.SearchText.Trim().Equals(""))
+            {
+                res = db.HRStaffRegistrations.OrderByDescending(e => e.Id).Take(20).ToList();
+            }
+
+            ViewBag.IsSearch = true;
+            return PartialView("StaffList", res);
+        }
+
+        public ActionResult StaffList()
+        {
+            var data = db.HRStaffRegistrations.OrderByDescending(e => e.Id).Take(20).ToList();
+
+            ViewBag.MinimalFilterControlls = true;
+            return View(data);
+        }
+        public ActionResult GetStaffDataForRepopulation(int? id)
+        {
+            var staff = db.HRStaffRegistrations.Include(i => i.StaffId).AsNoTracking().FirstOrDefault(e => e.Id == id);
+            staff.StaffId = null;
+            return Json(staff, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult SaveStaff(HRStaffRegistration staff)
+        {
+            staff.UserId = (int)Session["UserId"];
+            var filetype = "new";
+            if (staff.StaffId != null)
+            {
+
+                filetype = "old";
+            }
+            else if (staff.Id > 0)
+            {
+                filetype = "revisit";
+            }
+
+            if (filetype == "revisit")
+            {
+
+                var file = db.HRStaffRegistrations.Find(staff.Id);
+                if (file != null)
+                {
+                    db.Entry(staff).State = EntityState.Modified;
+
+                    db.SaveChanges();
+                    return Json(new
+                    {
+                        Status = "Success",
+                        StaffId = staff.StaffId,
+                        StaffName
+                        = staff.Salutation + " " + staff.FirstName + " " + staff.OtherNames + " " + staff.Surname,
+                        Id = staff.Id,
+                        Username = staff.StaffId,
+                        Password = staff.Password
+                    });
+
+                }
+            }
+            
+            if (staff.Email != null && db.HRStaffRegistrations.Where(e => e.Email == staff.Email).ToList().Count > 0)
+            {
+                return Json(new { Status = "Error", Message = "The Email Address you provided is associated with another staff" });
+            }
+
+            staff.Timestamp = DateTime.Now;
+            staff.DateAdded = DateTime.Now;
+            db.HRStaffRegistrations.Add(staff);
             db.SaveChanges();
 
-            return RedirectToAction("StaffRegistration");
+            if (filetype == "new")
+            {
+                var facilityinitial = db.KeyValuePairs.FirstOrDefault(e => e.Key_ == "facilityinittials").Value;
+                var year = DateTime.Now.ToString("yy");
+                var prefix = "00";
+                if (staff.Id > 9)
+                {
+                    prefix = "0";
+                }
+                else if (staff.Id > 99)
+                {
+                    prefix = "";
+                }
+
+                var branchid = (int)Session["UserBranchId"];
+                var staffid = facilityinitial + "/" + branchid + "/" + prefix + staff.Id + "/" + year;
+                staff.StaffId = staffid;
+            }
+            var password = "app" + staff.Id.ToString();
+            if (staff.FirstName != null && staff.OtherNames != null)
+            {
+                char[] fnameArr = staff.FirstName.ToCharArray();
+                char[] mnameArr = staff.OtherNames.ToCharArray();
+                password = fnameArr[0].ToString() + fnameArr[1].ToString() + mnameArr[0].ToString() + mnameArr[1].ToString() + DateTime.Now.ToString("dd");
+            }
+
+            staff.Password = password.ToLower();
+            db.SaveChanges();
+
+            return Json(new
+            {
+                Status = "Success",
+                StaffId = staff.StaffId,
+                StaffName = staff.Salutation + " " + staff.FirstName + " " + staff.OtherNames + " " + staff.Surname
+                ,
+                Id = staff.Id,
+                Username = staff.StaffId,
+                Password = staff.Password
+            });
         }
+
+        [HttpPost]
+        public ActionResult SaveEditStaff(HRStaffRegistration epat)
+        {
+            epat.UserId = (int)Session["UserId"];
+
+            var app = db.HRStaffRegistrations.Find((int)epat.Id);
+            app.Salutation = epat.Salutation;
+            app.FirstName = epat.FirstName;
+            app.OtherNames = epat.OtherNames;
+            app.Surname = epat.Surname;
+            app.Department = epat.Department;
+            app.Mobile = epat.Mobile;
+            app.Email = epat.Email;
+            app.Position = epat.Position;
+            
+
+            db.SaveChanges();
+
+            return Json(new { status = "success", message = "Staff Details Updated Successfully!" });
+        }
+
         #endregion
         #region Staff Work Experience
         public ActionResult StaffWorkExperience()

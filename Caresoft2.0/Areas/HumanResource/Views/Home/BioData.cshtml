@@ -11,6 +11,7 @@
                 Bio Data/Addresses
             </div>
             <div class="panel-body">
+
                 <div class="col-sm-12">
                     @using (Html.BeginForm("SaveBioData", "Home", new { Area = "HumanResource" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
@@ -18,7 +19,7 @@
                             <tr>
                                 <td><label>Applicant Id</label></td>
                                 <td>
-                                    <input type="text" name="ApplicantId" class="text-box box-lg " />
+                                    <input type="text" name="ApplicantId" class="text-box box-lg" value="readonly" />
                                 </td>
                                 <td>
                                     <label>Gender</label>

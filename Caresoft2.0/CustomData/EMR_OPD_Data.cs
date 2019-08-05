@@ -17,5 +17,6 @@ namespace Caresoft2._0.CustomData
         public List<FamilyMedicalHistoryQuestion> FamilyMedHistQuestions { get; set; }
         public Complaint TodaysComplaint { get; set; }
         public List<Questionnaire> Questionnaires { get; set; }
+        
     }
 }

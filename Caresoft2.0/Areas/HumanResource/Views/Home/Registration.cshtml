@@ -4,7 +4,7 @@
     }
 
 <div class="row">
-    <div class="col-sm-10 col-sm-offset-1">
+    <div class="col-sm-8 col-sm-offset-2">
         <div class="panel panel-primary caresoft-panel">
             <div class="panel-heading">
                 @ViewBag.Title
@@ -41,7 +41,7 @@
 
                     <div class="tab-content" id="reg-form-holder">
                         <div id="personal-details" class="tab-pane fade in active">
-                            <form name="" action="" method="post" id="applicant_reg_form">
+                            <form id="applicant_reg_form" method="post" action="@Url.Action("SaveApplicant","Home",new {Area="HumanResource"})">
                                 <fieldset class="">
                                     <legend>Personal Details</legend>
                                     <table class="table-form">
@@ -217,7 +217,7 @@
     </div>
 </div>
 
-@section scripts{
+@*@section scripts{
     <script>
         $('#goToApplicantResume').click(function (e) {
 
@@ -352,7 +352,7 @@
                 showNotification("Please enter a valid Mobile number!", "warning", true);
                 return false;
             }
-            var url ="@Url.Action("SaveApplicant", "Home", new { Area = "HumanResource" })",
+            var url ="@Url.Action("SaveApplicant", "Home")",
             var method = "POST";
 
             var file_mode = $("input[name=regType]:checked").val();
@@ -601,4 +601,4 @@
         });
     </script>
 
-}
+}*@

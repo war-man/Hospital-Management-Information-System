@@ -559,7 +559,10 @@
                                         <td>|Applications by Professional Qualifications</td>
                                     </tr>
                                     <tr>
-                                        <td>|Applicant Resume</td>
+                                        <td data-href="@Url.Action("Resume", "HRReports", new { Area = "HumanResource" })">
+                                            
+                                            |Applicant Resume
+                                        </td>
                                     </tr>
 
                                 </table>
@@ -573,15 +576,19 @@
                                 <table class="sidekick-table" width="100%">
 
                                     <tr>
-                                        <td data-href="@Url.Action("", "HRReports",new { Area="HumanResource"})">
+                                        <td data-href="@Url.Action("Staff", "HRReports",new { Area="HumanResource"})">
                                             | Staff List Report
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>|Memos</td>
+                                        <td data-href="@Url.Action("Memo", "HRReports",new { Area="HumanResource"})">
+                                            | Memos
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>|Employee History</td>
+                                        <td data-href="@Url.Action("", "HRReports",new { Area="HumanResource"})">
+                                            |Employee History
+                                         </td>
                                     </tr>
                                     <tr>
                                         <td>|Staff Attendance Report</td>

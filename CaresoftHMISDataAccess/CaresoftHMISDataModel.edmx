@@ -1332,12 +1332,12 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.BloodBankPatientBloodGroupings' d
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ApplicantId" Type="varchar(max)" Nullable="false" />
+          <Property Name="ApplicantId" Type="varchar(max)" />
           <Property Name="Salutation" Type="varchar" MaxLength="50" />
           <Property Name="Surname" Type="varchar" MaxLength="50" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="OtherNames" Type="varchar" MaxLength="50" />
-          <Property Name="Gender" Type="varchar" MaxLength="1" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
           <Property Name="DOB" Type="datetime" />
           <Property Name="Mobile" Type="varchar" MaxLength="50" />
           <Property Name="HomeAddress" Type="varchar(max)" />
@@ -2827,6 +2827,8 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.HRJobDesignations' does not have 
           <Property Name="DateOfEmployment" Type="date" />
           <Property Name="Salutation" Type="varchar" MaxLength="50" />
           <Property Name="RegDate" Type="datetime" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Timestamp" Type="datetime" />
         </EntityType>
         <EntityType Name="HRStaffWorkExperience">
           <Key>
@@ -3112,32 +3114,26 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.HRJobDesignations' does not have 
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DateAdded" Type="datetime" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="RegNo" Type="varchar" MaxLength="50" />
           <Property Name="OPDNo" Type="int" />
           <Property Name="BranchId" Type="int" Nullable="false" />
-          <Property Name="PatientName" Type="varchar" MaxLength="50" />
-          <Property Name="Age" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="Gender" Type="varchar" MaxLength="10" />
-          <Property Name="Mobile" Type="varchar" MaxLength="50" />
-          <Property Name="MaritalStatus" Type="varchar" MaxLength="50" />
-          <Property Name="KeyPopulation" Type="varchar" MaxLength="50" />
-          <Property Name="EverTested" Type="varchar" MaxLength="10" />
-          <Property Name="Retesting" Type="varchar" MaxLength="50" />
-          <Property Name="SelfTest" Type="varchar" MaxLength="10" />
-          <Property Name="Disability" Type="varchar" MaxLength="10" />
-          <Property Name="Consent" Type="varchar" MaxLength="10" />
-          <Property Name="ClientTestedAs" Type="varchar" MaxLength="10" />
-          <Property Name="Strategy" Type="varchar" MaxLength="50" />
-          <Property Name="HIVTest1" Type="varchar" MaxLength="50" />
-          <Property Name="HIVTest2" Type="varchar" MaxLength="50" />
-          <Property Name="FinalResult" Type="varchar" MaxLength="50" />
-          <Property Name="FinalResultGiven" Type="varchar" MaxLength="10" />
-          <Property Name="CoupleDiscordant" Type="varchar" MaxLength="50" />
-          <Property Name="TBScreening" Type="varchar" MaxLength="50" />
-          <Property Name="LinkedToCare" Type="varchar" MaxLength="50" />
-          <Property Name="AssessedForHIVRisk" Type="varchar" MaxLength="10" />
+          <Property Name="KeyPopulation" Type="varchar(max)" />
+          <Property Name="EverTested" Type="varchar(max)" />
+          <Property Name="Retesting" Type="int" />
+          <Property Name="SelfTest" Type="varchar(max)" />
+          <Property Name="Disability" Type="varchar(max)" />
+          <Property Name="Consent" Type="varchar(max)" />
+          <Property Name="ClientTestedAs" Type="varchar(max)" />
+          <Property Name="Strategy" Type="varchar(max)" />
+          <Property Name="HIVTest1" Type="varchar(max)" />
+          <Property Name="HIVTest2" Type="varchar(max)" />
+          <Property Name="FinalResult" Type="varchar(max)" />
+          <Property Name="FinalResultGiven" Type="varchar(max)" />
+          <Property Name="CoupleDiscordant" Type="varchar(max)" />
+          <Property Name="TBScreening" Type="varchar(max)" />
+          <Property Name="LinkedToCare" Type="varchar(max)" />
+          <Property Name="AssessedForHIVRisk" Type="varchar(max)" />
           <Property Name="HTSProvider" Type="varchar" MaxLength="50" />
-          <Property Name="Remarks" Type="varchar" MaxLength="50" />
+          <Property Name="Remarks" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Hypermobility">
           <Key>
@@ -6630,6 +6626,18 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HTCServiceSummary_OpdRegisters">
+          <End Role="OpdRegisters" Type="Self.OpdRegisters" Multiplicity="0..1" />
+          <End Role="HTCServiceSummary" Type="Self.HTCServiceSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OpdRegisters">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HTCServiceSummary">
+              <PropertyRef Name="OPDNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Hypermobility_OpdRegisters">
           <End Role="OpdRegisters" Type="Self.OpdRegisters" Multiplicity="0..1" />
           <End Role="Hypermobility" Type="Self.Hypermobility" Multiplicity="*" />
@@ -9344,6 +9352,10 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             <End Role="HSWardCategories" EntitySet="HSWardCategories" />
             <End Role="HSWards" EntitySet="HSWards" />
           </AssociationSet>
+          <AssociationSet Name="FK_HTCServiceSummary_OpdRegisters" Association="Self.FK_HTCServiceSummary_OpdRegisters">
+            <End Role="OpdRegisters" EntitySet="OpdRegisters" />
+            <End Role="HTCServiceSummary" EntitySet="HTCServiceSummary" />
+          </AssociationSet>
           <AssociationSet Name="FK_Hypermobility_OpdRegisters" Association="Self.FK_Hypermobility_OpdRegisters">
             <End Role="OpdRegisters" EntitySet="OpdRegisters" />
             <End Role="Hypermobility" EntitySet="Hypermobility" />
@@ -10661,6 +10673,10 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <AssociationSet Name="FK_WardTypeCharges_HSWardCategories" Association="CaresoftHMISModel.FK_WardTypeCharges_HSWardCategories">
             <End Role="HSWardCategory" EntitySet="HSWardCategories" />
             <End Role="WardTypeCharge" EntitySet="WardTypeCharges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HTCServiceSummary_OpdRegisters" Association="CaresoftHMISModel.FK_HTCServiceSummary_OpdRegisters">
+            <End Role="OpdRegister" EntitySet="OpdRegisters" />
+            <End Role="HTCServiceSummary" EntitySet="HTCServiceSummaries" />
           </AssociationSet>
           <AssociationSet Name="FK_Hypermobility_OpdRegisters" Association="CaresoftHMISModel.FK_Hypermobility_OpdRegisters">
             <End Role="OpdRegister" EntitySet="OpdRegisters" />
@@ -12577,12 +12593,12 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ApplicantId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Salutation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OtherNames" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DOB" Type="DateTime" Precision="3" />
           <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="HomeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -14055,6 +14071,8 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="DateOfEmployment" Type="DateTime" Precision="0" />
           <Property Name="Salutation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RegDate" Type="DateTime" Precision="3" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Timestamp" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="HRStaffWorkExperience">
           <Key>
@@ -14350,32 +14368,27 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="RegNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OPDNo" Type="Int32" />
           <Property Name="BranchId" Type="Int32" Nullable="false" />
-          <Property Name="PatientName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Age" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="KeyPopulation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EverTested" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Retesting" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SelfTest" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Disability" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Consent" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="ClientTestedAs" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Strategy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="HIVTest1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="HIVTest2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FinalResult" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FinalResultGiven" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="CoupleDiscordant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TBScreening" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LinkedToCare" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="AssessedForHIVRisk" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="KeyPopulation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EverTested" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Retesting" Type="Int32" />
+          <Property Name="SelfTest" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Disability" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Consent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ClientTestedAs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Strategy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HIVTest1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HIVTest2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FinalResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FinalResultGiven" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CoupleDiscordant" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TBScreening" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LinkedToCare" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AssessedForHIVRisk" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="HTSProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OpdRegister" Relationship="CaresoftHMISModel.FK_HTCServiceSummary_OpdRegisters" FromRole="HTCServiceSummary" ToRole="OpdRegister" />
         </EntityType>
         <EntityType Name="Hypermobility">
           <Key>
@@ -15866,6 +15879,7 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <NavigationProperty Name="FitnessCertificates" Relationship="CaresoftHMISModel.FK_FitnessCertificate_FitnessCertificate" FromRole="OpdRegister" ToRole="FitnessCertificate" />
           <NavigationProperty Name="GlucomaPerfomaEntries" Relationship="CaresoftHMISModel.FK_GlucomaPerfomaEntry_OpdRegisters" FromRole="OpdRegister" ToRole="GlucomaPerfomaEntry" />
           <NavigationProperty Name="HSBed" Relationship="CaresoftHMISModel.FK_OpdRegister_HSBeds" FromRole="OpdRegister" ToRole="HSBed" />
+          <NavigationProperty Name="HTCServiceSummaries" Relationship="CaresoftHMISModel.FK_HTCServiceSummary_OpdRegisters" FromRole="OpdRegister" ToRole="HTCServiceSummary" />
           <NavigationProperty Name="Hypermobilities" Relationship="CaresoftHMISModel.FK_Hypermobility_OpdRegisters" FromRole="OpdRegister" ToRole="Hypermobility" />
           <NavigationProperty Name="ImmunizationAdmins" Relationship="CaresoftHMISModel.FK_ImmunizationAdmin_OpdRegisters" FromRole="OpdRegister" ToRole="ImmunizationAdmin" />
           <NavigationProperty Name="InformedConsents" Relationship="CaresoftHMISModel.FK_InformedConsent_OpdRegisters" FromRole="OpdRegister" ToRole="InformedConsent" />
@@ -18473,6 +18487,18 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
             </Principal>
             <Dependent Role="WardTypeCharge">
               <PropertyRef Name="WardCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HTCServiceSummary_OpdRegisters">
+          <End Type="CaresoftHMISModel.OpdRegister" Role="OpdRegister" Multiplicity="0..1" />
+          <End Type="CaresoftHMISModel.HTCServiceSummary" Role="HTCServiceSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OpdRegister">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HTCServiceSummary">
+              <PropertyRef Name="OPDNo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -23092,6 +23118,8 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
           <EntitySetMapping Name="HRStaffRegistrations">
             <EntityTypeMapping TypeName="CaresoftHMISModel.HRStaffRegistration">
               <MappingFragment StoreEntitySet="HRStaffRegistration">
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="RegDate" ColumnName="RegDate" />
                 <ScalarProperty Name="Salutation" ColumnName="Salutation" />
                 <ScalarProperty Name="DateOfEmployment" ColumnName="DateOfEmployment" />
@@ -23426,14 +23454,8 @@ warning 6002: The table/view 'CaresoftHMIS.dbo.vw_ServiceChatter' does not have 
                 <ScalarProperty Name="Retesting" ColumnName="Retesting" />
                 <ScalarProperty Name="EverTested" ColumnName="EverTested" />
                 <ScalarProperty Name="KeyPopulation" ColumnName="KeyPopulation" />
-                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="OPDNo" ColumnName="OPDNo" />
-                <ScalarProperty Name="RegNo" ColumnName="RegNo" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

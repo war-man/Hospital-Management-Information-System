@@ -1,0 +1,323 @@
+﻿@model IEnumerable<CaresoftHMISDataAccess.HTCServiceSummary>
+@{
+
+    ViewBag.Title = "HTC Service Summary";
+    ViewBag.showTopMenu = true;
+    ViewBag.WideView = true;
+    }
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="panel panel-primary shadow glass caresoft-panel">
+            <div class="panel-heading custom-navbar">
+                <p>@ViewBag.Title</p>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+
+                    <form id="service-summary" method="post" action="@Url.Action("SaveHTCServiceSummaryData", "HTC")">
+                        <input name="OPDNo" hidden value="@ViewBag.OpdNo" />
+                        <input name="RegNo" hidden value="@ViewBag.RegNo" />
+                        <input name="PatientName" hidden value="@ViewBag.PatientName" />
+                        <input name="Age" hidden value="@ViewBag.Age" />
+                        <input name="Gender" hidden value="@ViewBag.Gender" />
+                        <input name="Mobile" hidden value="@ViewBag.Mobile" />
+                        <input name="MaritalSatus" hidden value="@ViewBag.MaritalSatus" />
+                        <fieldset class="col-sm-12">
+                            <legend>Patient Details</legend>
+
+                            <table class="table-form">
+                             
+                                </tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <tr>
+                                    <td>
+                                        <label>Key Population</label>
+                                    </td>
+                                    <td>
+                                        <select name="KeyPopulation" class="text-box box-lg">
+                                            <option>Select</option>
+                                            <option>SW</option>
+                                            <option>MSM</option>
+                                            <option>IDU</option>
+                                        </select>
+                                    </td>
+
+                                    <td><label>Ever Tested?</label></td>
+                                    <td>
+                                        <select name="EverTested" class="text-box box-lg">
+                                            <option>Select</option>
+                                            <option>Y</option>
+                                            <option>N</option>
+
+                                        </select>
+                                    </td>
+
+                                    <td><label>Re-Testing</label></td>
+                                    <td>
+                                        <input type="number" name="Retesting" class="text-box box-lg" />
+                                    </td>
+
+                                </tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <tr>
+
+                                    <td><label>Ever had an HIV self test this year?</label></td>
+                                    <td>
+                                        <select name="SelfTest" class="text-box box-lg">
+                                            <option>Select</option>
+                                            <option>Y</option>
+                                            <option>N</option>
+
+                                        </select>
+                                    </td>
+
+                                    <td><label>Disability</label></td>
+                                    <td>
+                                        <select name="Disability" class="text-box box-lg">
+                                            <option>Select</option>
+                                            <option>NA</option>
+                                            <option>D</option>
+                                            <option>B</option>
+                                            <option>M</option>
+                                            <option>P</option>
+                                            <option>O</option>
+
+                                        </select>
+                                    </td>
+
+                                    <td><label>Consent</label></td>
+                                    <td>
+                                        <select name="Consent" class="text-box box-lg">
+                                            <option>Select</option>
+                                            <option>Y</option>
+                                            <option>N</option>
+
+                                        </select>
+                                    </td>
+
+                                </tr>
+
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <tr>
+
+                                    <td><label>Client tested as</label></td>
+                                    <td>
+                                        <select name="ClientTestedAs" class="text-box box-lg">
+                                            <option>Select</option>
+                                            <option>I</option>
+                                            <option>C</option>
+                                        </select>
+                                    </td>
+
+                                    <td><label>HIV Test 1</label></td>
+                                    <td>
+                                        <select name="HIVTest1" class="text-box box-lg">
+                                            <option>Select</option>
+                                            <option>N</option>
+                                            <option>P</option>
+                                            <option>I</option>
+                                        </select>
+                                    </td>
+
+                                    <td><label>HIVTest2</label></td>
+                                    <td>
+                                        <select name="HIVTest2" class="text-box box-lg">
+                                            <option>Select</option>
+                                            <option>N</option>
+                                            <option>P</option>
+                                            <option>I</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+
+                                <tr>
+                                    <td><label>Final Result</label></td>
+                                    <td>
+                                        <select name="FinalResult" class="text-box box-lg">
+                                            <option>Select</option>
+                                            <option>N</option>
+                                            <option>P</option>
+                                            <option>Ic</option>
+                                        </select>
+                                    </td>
+                                    <td><label>FinalResultGiven</label></td>
+                                    <td>
+                                        <select name="FinalResult" class="text-box box-lg">
+                                            <option>Select</option>
+                                            <option>Y</option>
+                                            <option>N</option>
+
+                                        </select>
+                                    </td>
+                                    <td><label>TB Screening</label></td>
+                                    <td>
+                                        <select name="TBScreening" class="text-box box-lg">
+                                            <option>Select</option>
+                                            <option>PrTB</option>
+                                            <option>NS</option>
+                                            <option>ND</option>
+                                            <option>TBRX</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <tr>
+                                    <td><label>Couple Discordant</label></td>
+                                    <td>
+                                        <select name="CoupleDiscordant" class="text-box box-lg">
+                                            <option>Select</option>
+                                            <option>Y</option>
+                                            <option>N</option>
+                                            <option>NA</option>
+
+                                        </select>
+                                    </td>
+
+                                    <td><label>Linked To Care</label></td>
+                                    <td>
+                                        <select style="width:70%" class="text-box box-lg" name="AssessedForHIVRisk">
+                                            <option>Select</option>
+                                            <option>Y</option>
+                                            <option>N</option>
+
+                                        </select>
+                                    </td>
+
+                                    <td><label>HTS Provider</label></td>
+                                    <td>
+                                        <input type="text" name="HTSProvider" class="text-box box-sm " style="margin-bottom:3px" />
+                                    </td>
+                                </tr>
+
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+
+                                <tr>
+
+                                    <td><label>Strategy</label></td>
+                                    <td>
+                                        <select name="Strategy" class="text-box box-lg">
+                                            <option>Select</option>
+                                            <option>HP</option>
+                                            <option>NP</option>
+                                            <option>VI</option>
+                                            <option>VS</option>
+                                            <option>HB</option>
+                                            <option>MO</option>
+                                            <option>O</option>
+
+                                        </select>
+                                    </td>
+
+                                    <td class="form-group">
+                                        <label class="info-title col-md-12" for="black_name">Remarks <span><font color="black"><b></b></font></span></label>
+                                        <span id='message_full_name'></span>
+                                        <textarea style="width: 150%;height:70px;" name="" type="text" class="text-box unicase-form-control text-input" id="extension_number"
+                                                  placeholder="Enter plan">
+                                        
+                                    </textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+
+                        <input id="Button1" class="btn btn-sm btn-primary" type="submit" style="margin-right:100px" value="Save" />
+
+                    </form>
+                    <div id="ipd-list" class="scrollable-table-container">
+                        @Html.Partial("HTCGrid")
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[name="PregnanciesHistory"]').click(function () {
+                var inputValue = $(this).attr("value");
+                var targetBox = $("." + inputValue);
+                $(".box").not(targetBox).hide();
+                $(targetBox).show();
+            });
+
+
+                                    $("#RegNo").autocomplete({
+
+                            source: function (request, res) {
+
+
+                                $.ajax({
+
+                                    type: "POST",
+                                    url: "@Url.Action("SearchPatient", "NurseModule")",
+
+                                    dataType: "json",
+                                    data: { Prefix: request.term },
+
+
+                                    data: { search: $("#RegNo").val() },
+                                    success: function (data) {
+                                        res($.map(data, function (item) {
+                                            return {
+                                                label: item.RegNumber + "(" + item.Name + ")" + "( Visit Date : " + item.OpdDate + ")",
+                                                value: item.RegNumber,
+                                                OpdId: item.OpdId,
+                                                Gender: item.Gender,
+                                                Age: item.Age,
+                                                patientId: item.PatientId, name: item.Name, FName: item.FName, MName: item.MName
+                                                , LName: item.LNames };
+                                        }));
+                                    },
+
+                                    error: function (xmlhttprequest, textstatus, errorthrown) {
+                                        console.log(errorthrown, "danger")
+                                        console.log(xmlhttprequest.responseText);
+                                    }
+
+                                });
+                            },
+
+                            messages: {
+                                noResults: "", results: ""
+
+                            }
+
+                        });
+
+                        $("#RegNo").on("autocompleteselect", function (event, ui) {
+                            $("#PatientName").val(ui.item.name);
+                            $("#age").val(ui.item.Age);
+                            $("#OPDNo").val(ui.item.OpdId);
+                            $("#Gender").val(ui.item.Gender);
+
+
+
+                            console.log(ui);
+
+
+                        });
+
+
+
+        });
+
+
+    </script>
+}

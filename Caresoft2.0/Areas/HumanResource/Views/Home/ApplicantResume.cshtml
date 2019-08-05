@@ -1,24 +1,16 @@
 ﻿
 @model IEnumerable<CaresoftHMISDataAccess.HRFileInformation>
 @{
-    ViewBag.Title = "Basic Information";
-    ViewBag.showTopMenu = true;
-    ViewBag.WideView = true;
-    Layout = "~/Areas/HumanResource/Views/Shared/_Layout.cshtml";
-
+  
     CaresoftHMISDataAccess.CaresoftHMISEntities db = new CaresoftHMISDataAccess.CaresoftHMISEntities();
 
 }
-<div class="col-md-2">
-    @Html.Partial("~/Areas/HumanResource/Views/Shared/_JobRequisitionNav.cshtml")
-</div>
 
-
-<div class="col-md-6">
+<div class="col-md-12">
     <div class="">
         <div class="panel panel-primary shadow glass caresoft-panel">
             <div class="panel-heading">
-                Basic Information
+                Applicant Resume Database
             </div>
             <div class="panel-body">
 
@@ -69,23 +61,17 @@
                     
                 </ul>
                 <br />
+                <br />
                 <div class="col-sm-12">
                     <form  method="post" action="@Url.Action("SaveApplicantResumeData","Home",new {Area="HumanResource"})">
-
+                      <label><strong><u>Basic Information</u></strong></label>
                         <table class="table-form">
                             <tr>
                                 <td><label>Applicant Id</label></td>
                                 <td>
                                     <input type="text" name="ApplicantId" class="text-box box-lg " />
                                 </td>
-                                @*<td><label>Requisition No</label></td>
-
-                                @{ CaresoftHMISDataAccess.CaresoftHMISEntities db3 = new CaresoftHMISDataAccess.CaresoftHMISEntities();
-                                    var data = db3.HRJobRequisitions;
-                                    }
-                                <td>
-                                    <input type="text" name="RequisitionNo" class="text-box box-lg "  readonly value="@da" />
-                                </td>*@
+                                
                             </tr>
                             <tr>
                                 <td><label>Surname</label></td>
@@ -94,7 +80,7 @@
                                 </td>
                                 <td><label>Date Of Application</label></td>
                                 <td>
-                                    <input type="date" name="DateOfApplication" class="text-box box-lg " />
+                                    <input type="date" name="DateOfApplication" class="text-box box-lg" value="@DateTime.Today" />
                                 </td>
                             </tr>
                             <tr>
